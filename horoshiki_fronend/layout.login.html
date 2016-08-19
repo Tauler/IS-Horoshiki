@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="horoshikiAppLogin" xmlns="http://www.w3.org/1999/xhtml">
+<head ng-controller="HeaderController">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/theme-private-cloud/img/favicon.ico" type="image/x-icon"/>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/theme-private-cloud/css/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
+
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="/theme-private-cloud/css/pages/page_log_reg_v2.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/theme-private-cloud/css/custom.css">
+
+    <!-- JS lib -->
+    <script type="text/javascript" src="/theme-private-cloud/plugins/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/theme-private-cloud/plugins/backstretch/jquery.backstretch.min.js"></script>
+    <script type="text/javascript" src="/theme-private-cloud/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Angular lib -->
+    <!--<script type="text/javascript" src="/plugins/angular/lib/angular.min.js"></script>-->
+    <script type="text/javascript" src="/plugins/angular/angular.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-resource.min.js"></script>
+
+    <!-- Angular app -->
+    <script type="text/javascript" src="/angular-app/app.js"></script>
+    <script type="text/javascript" src="/angular-app/custom.js"></script>
+
+    <!-- Angular controllers -->
+    <script type="text/javascript" src="/angular-app/controllers/LayoutController.js"></script>
+    <script type="text/javascript" src="/angular-app/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="/angular-app/controllers/ErrorController.js"></script>
+
+    <!-- Angular services -->
+    <script type="text/javascript" src="/angular-app/service/TranslationService.js"></script>
+    <script type="text/javascript" src="/angular-app/service/BackendService.js"></script>
+    <script type="text/javascript" src="/angular-app/service/AccountService.js"></script>
+
+    <base href="/" />
+
+    <title>{{title}} | IS Horoshiki</title>
+</head>
+<body>
+    <div class="container" ng-controller="LoginLayoutController">
+        <div class="reg-block">
+            <!-- CONTENT -->
+            <div ng-view></div>
+        </div>
+
+        <!-- Modal errror -->
+        <div class="modal fade" id="serverErrorModal" tabindex="-1" role="dialog" aria-labelledby="serverErrorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="serverErrorModalLabel">{{translation.lk_error_modal_title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{translation.lk_error_modal_description}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $.backstretch([
+            "/theme-private-cloud/img/bg.png",
+            "/theme-private-cloud/img/bg/4.jpg"
+        ], {
+            fade: 1000,
+            duration: 7000
+        });
+    </script>
+
+</body>
+</html>

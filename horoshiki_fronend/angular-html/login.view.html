@@ -1,0 +1,27 @@
+<form class="sky-form" id="loginForm" name="loginForm" method="post">
+    <div class="margin-bottom-10 ">
+        <img class="max-width" src="/theme-private-cloud/img/logo_mini.png" alt="Logo">
+    </div>
+    <div class="reg-block-header"><br/>
+        <!--<h2>{{$parent.translation.mbs_auth_login_title}}</h2>-->
+    </div>
+    <div class="input-group margin-bottom-20">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <input type="text" name="login" ng-model="username" class="form-control" placeholder="{{$parent.translation.auth_login_field_mail}}"/>
+    </div>
+    <div class="input-group margin-bottom-20">
+        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+        <input type="password" name="password" ng-model="password" class="form-control" placeholder="{{$parent.translation.auth_login_field_pass}}"/>
+    </div>
+    <div id="loginAlert" style="display: none" class="alert alert-danger fade in">
+        {{$parent.translation.auth_login_error_login}}
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <button type="submit" class="btn-u btn-u-blue btn-block" ng-click="login()">
+                {{$parent.translation.auth_login_login}}
+            </button>
+        </div>
+    </div>
+</form>

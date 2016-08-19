@@ -1,0 +1,35 @@
+{
+  "lk_error_404_code" : "404",
+  "lk_error_404_title" : "Страница не найдена!",
+  "lk_error_404_title_2" : "Ссылки",
+  "lk_error_404_description" : "Запрашиваемая Вами страница не была найдена на сервере.",
+  "lk_error_404_back" : "Вернуться на главную",
+
+  "lk_error_modal_title" : "ОШИБКА",
+  "lk_error_modal_description" : "Ваш запрос завершился неудачей",
+
+  "template_footer_year" : "2016",
+  "template_footer_url" : "site.ru",
+  "template_footer_copyright" : "ALL Rights Reserved",
+  "template_header_navigation" : "Навигация",
+  "template_header_tab_main" : "Главная",
+  "template_header_tab_main_view" : "Главная",
+  "template_header_tab_exit" : "Выход",
+
+  "error" : "Неизвестная ошибка",
+
+
+
+
+  "auth_login_title" : "IS Horoshiki Авторизация",
+  "auth_login_field_mail" : "Логин",
+  "auth_login_field_pass" : "Пароль",
+  "auth_login_error_login" : "Неправильный логин или пароль",
+  "auth_login_title" : "Авторизация",
+  "auth_login_field_mail" : "Электронная почта",
+  "auth_login_field_pass" : "Пароль",
+  "auth_login_error_login" : "Неправильный логин или пароль",
+  "auth_login_login" : "Войти"
+
+
+}

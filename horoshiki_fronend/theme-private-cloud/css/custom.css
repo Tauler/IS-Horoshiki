@@ -1,0 +1,341 @@
+/*Color definitions*/
+
+a, a:hover {
+   color: #157CB2;
+}
+
+.copyright a{
+	color: #157CB2;
+}
+
+.copyright a:hover {
+	color: #1BA0E2;
+}
+
+.header .dropdown-menu {
+    border-top: solid 2px #1BA0E2;
+}
+
+/* Add here all your css styles (customizations) */
+
+.pagination {
+    margin: 0 !important;
+}
+
+.sky-form {
+    border: none !important;
+}
+
+.progress-margin-bottom-0 {
+    margin-bottom: 0px !important;
+}
+
+.custom-balance {
+    font-size: 21px;
+    color: #585f69;
+}
+
+.custom-balance span {
+    font-size: 18px;
+    color: #585f69;
+}
+
+.custom span {
+    font-size: 13px;
+}
+
+.max-width {
+    max-width: 100%;
+}
+
+.div-poster-black {
+    background-color: #000;
+    text-align: center;
+}
+
+.img-responsive-poster {
+    max-height: 100% !important;
+    display: block;
+    width: auto;
+}
+
+.cam-title {
+    border: #EEEEEE solid 1px;
+    padding-left: 20px;
+    background-color: #f8f8f8
+}
+
+.margin-15-not-bottom {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+}
+
+.border-solid {
+    border: #3c3c3c solid 1px;
+}
+
+.border-solid-2 {
+    border-top: 1px solid #ddd;
+}
+
+.div-menu-button {
+    position: absolute;
+    right: 10px;
+    margin-top: 5px
+}
+
+.view-list-cam-title {
+    width: 100%;
+    height: 30px;
+    color: #ffffff;
+    background-color: #3c3c3c;
+    border: #3c3c3c solid 1px;
+    display: block;
+    padding: 3px;
+}
+
+.view-list-cam-img {
+    width: 100%;
+    padding-bottom: 70%;
+}
+
+.float-left-padding-top-3 {
+    float: left;
+    padding-top: 3px;
+}
+
+.float-right {
+    float: right;
+}
+
+.nowrap {
+    white-space: nowrap;
+    width: 93%;
+    overflow-x: hidden;
+}
+
+.balance {
+    font-size: 14px;
+}
+
+.service_table {
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.disabled {
+    display: none;
+}
+
+.enabled {
+    display: inherit;
+}
+
+.badge-big {
+    background-color: #a4eaa4;
+
+    font-weight: 400;
+    padding: 8px 12px !important;
+
+}
+
+.pay_way {
+    cursor: pointer;
+}
+
+.pay_way:hover .servive-block-light {
+    box-shadow: none;
+    background: #579162;
+}
+
+.pay_way:hover .servive-block-light h2, .pay_way:hover .servive-block-light i {
+    color: #ffffff !important;
+}
+
+code{
+    white-space: normal !important;
+}
+
+.cam-multi-height{
+    height: 400px;
+}
+
+.cam-multi-container{
+    padding: 5px;
+    text-align: center;
+    border: 5px dashed #EEEEEE;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+}
+
+.cam-multi-container-btn{
+    background-color: #FFFFFF;
+}
+
+.cam-multi-container-btn-text{
+    font-size: 180pt;
+    color: #EEEEEE;
+    cursor: pointer;
+}
+
+.cam-multi-not-available{
+    border: 2px solid #3C3C3C;
+    width: 100%;
+    height: 100%;
+    background: url('/resources/theme-private-cloud/img/cam_no_video.png');
+    background-size: cover;
+}
+
+.cam-multi-controls-container{
+    background-color: #3C3C3C;
+    border: 1px solid #3C3C3C;
+    height: 30px;
+    padding: 3px;
+    color: #ffffff;
+}
+
+.err-page-container {
+	width: 380px;
+	padding: 20px;
+	margin: 60px auto;
+	background: #fff;
+	border-top: solid 2px #157CB2;
+	text-align: center;
+}
+
+.err-page-container h1, h2, h3, h4, h5, h6 {
+    color: #585f69;
+    font-family: "Open Sans",sans-serif;
+    font-weight: normal;
+    margin-top: 5px;
+    text-shadow: none;
+}
+
+.err-page-container p {
+    color: #585f69;
+    font-family: "Open Sans",sans-serif;
+}
+
+.err-page-container div {
+    text-align: left;
+}
+
+.err-page-container a, a:focus, a:visited, a:hover, a:active {
+    color: #157CB2;
+}
+
+.cam-list-add-cam-container {
+    height: 215px;
+    border: 5px dashed #EEEEEE;
+    text-align: center;
+}
+
+.cam-list-add-cam-container button {
+    background-color: #FFFFFF;
+}
+
+.cam-list-add-cam-container span {
+    font-size: 96pt;
+    color: #EEEEEE;
+    cursor: pointer;
+}
+
+.tooltip.cam-additionalusers-tooltip .tooltip-inner {
+    text-align: left;
+    color: #585f69;
+    background-color: #F8F8F8;
+    border: 1px solid #DDDDDD;
+    max-width: 300px;
+}
+
+.tooltip.cam-additionalusers-tooltip .tooltip-arrow {
+    border-width: 0 5px 5px;
+    border-bottom-color: #DDDDDD;
+}
+
+.smp-video-container, .vh5-video-container{
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 2px solid black;
+}
+
+.smp-logo-container, .vh5-logo-container{
+    position: absolute;
+    z-index: 20;
+    top: 0px;
+    right: 0px;
+    padding: 3px;
+}
+
+.smp-btn-fullscreen{
+    position: absolute;
+    z-index: 20;
+    bottom: 3px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.smp-btn-play-overlay{
+    position: absolute;
+    z-index: 20;
+    bottom: 3px;
+    left: 6px;
+    width: 30px;
+    height: 30px;
+    cursor: not-allowed;
+}
+
+.loading-camera-placeholder{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 20%;
+}
+
+.offline-camera-placeholder{
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+    background: url('/resources/theme-private-cloud/img/cam_no_video.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.not-available-camera-placeholder{
+    border: 2px solid black;
+    width: 100%;
+    height: 100%;
+    background: url('/resources/theme-private-cloud/img/cam_access_denied.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.offline-camera-placeholder-list{
+    background: url('/resources/theme-private-cloud/img/cam_no_video_small.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.nopaddings{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+span.label-dark-green,
+span.badge-dark-green {
+    background: #5cb85c;
+}
+
+.reg-block {
+    border-top: solid 2px #157CB2;
+}
+
+i.icon-1x {
+  font-size: 15px;
+}
