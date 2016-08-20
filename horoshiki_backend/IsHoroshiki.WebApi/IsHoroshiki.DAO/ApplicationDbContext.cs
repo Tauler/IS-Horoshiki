@@ -47,7 +47,14 @@ namespace IsHoroshiki.DAO
             set;
         }
 
-        
+        /// <summary>
+        /// Список сущностей БД Отделы
+        /// </summary>
+        public DbSet<Department> Departments
+        {
+            get;
+            set;
+        }
 
         #endregion
 
@@ -77,6 +84,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new StatusSiteConfiguration());
             modelBuilder.Configurations.Add(new PositionConfiguration());
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
+            modelBuilder.Configurations.Add(new DepartmentConfiguration());
         }
 
         #endregion

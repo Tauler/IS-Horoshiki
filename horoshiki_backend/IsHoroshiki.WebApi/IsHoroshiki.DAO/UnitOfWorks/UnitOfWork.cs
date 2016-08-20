@@ -42,6 +42,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private EmployeeStatusRepository _employeeStatusRepository;
 
+        /// <summary>
+        /// Репозиторий Отделы
+        /// </summary>
+        private DepartmentRepository _departmentRepository;
+
         #endregion
 
         #region Конструктор
@@ -115,6 +120,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._employeeStatusRepository = new EmployeeStatusRepository(_context);
                 }
                 return _employeeStatusRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Отделы  
+        /// </summary>  
+        public DepartmentRepository DepartmentRepository
+        {
+            get
+            {
+                if (this._departmentRepository == null)
+                {
+                    this._departmentRepository = new DepartmentRepository(_context);
+                }
+                return _departmentRepository;
             }
         }
 

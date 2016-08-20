@@ -63,6 +63,7 @@
     <Compile Include="DaoEntities\NotEditableDictionaries\BuyProcess.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BuyProcessConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntityConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PositionConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\EmployeeStatusConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\StatusSiteConfiguration.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Repositories\NotEditableDictionaries\BaseNotEditableDictionaryRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\PositionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\EmployeeStatusRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\DepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\StatusSiteRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BuyProcessRepository.cs" />
     <Compile Include="UnitOfWorks\UnitOfWork.cs" />
