@@ -14,6 +14,26 @@ namespace IsHoroshiki.WebApi
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
+            using (var u = new UnitOfWork())
+            {
+                u.BuyProcessPepository.Insert(new BuyProcess()
+                {
+                    Value = DateTime.Now.ToLongTimeString()
+                });
+
+                u.StatusSiteRepository.Insert(new StatusSite()
+                {
+                    Value = DateTime.Now.ToLongTimeString()
+                });
+
+                u.PositionRepository.Insert(new Position()
+                {
+                    Value = DateTime.Now.ToLongTimeString()
+                });
+
+                u.Save();
+            }
         }
     }
 }

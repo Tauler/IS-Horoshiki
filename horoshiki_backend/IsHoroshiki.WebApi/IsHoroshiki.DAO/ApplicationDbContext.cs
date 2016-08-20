@@ -20,6 +20,24 @@ namespace IsHoroshiki.DAO
             set;
         }
 
+        /// <summary>
+        /// Список сущностей БД Статус площадки
+        /// </summary>
+        public DbSet<StatusSite> StatusSites
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Список сущностей БД Должности
+        /// </summary>
+        public DbSet<Position> Positions
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Конструктор
@@ -46,6 +64,7 @@ namespace IsHoroshiki.DAO
 
             modelBuilder.Configurations.Add(new BuyProcessConfiguration());
             modelBuilder.Configurations.Add(new StatusSiteConfiguration());
+            modelBuilder.Configurations.Add(new PositionConfiguration());
         }
 
         #endregion
