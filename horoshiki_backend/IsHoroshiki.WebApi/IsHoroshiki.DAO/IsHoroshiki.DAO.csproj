@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,23 +49,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="BaseDaoEntity.cs" />
-    <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryDaoEntity.cs" />
-    <Compile Include="NotEditableDictionaries\PriceType.cs" />
-    <Compile Include="NotEditableDictionaries\DeliveryZoneType.cs" />
-    <Compile Include="NotEditableDictionaries\Position.cs" />
-    <Compile Include="NotEditableDictionaries\Department.cs" />
-    <Compile Include="NotEditableDictionaries\Subdivision.cs" />
-    <Compile Include="NotEditableDictionaries\EmployeeStatus.cs" />
-    <Compile Include="NotEditableDictionaries\OrderSetting.cs" />
-    <Compile Include="NotEditableDictionaries\StatusSite.cs" />
-    <Compile Include="NotEditableDictionaries\BuyProcess.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntity.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\PriceType.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\DeliveryZoneType.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\Position.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\Department.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\Subdivision.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\EmployeeStatus.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\OrderSetting.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\StatusSite.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\BuyProcess.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BuyProcessConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntityConfiguration.cs" />
+    <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\BaseNotEditableDictionaryRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\BuyProcessRepository.cs" />
+    <Compile Include="UnitOfWorks\UnitOfWork.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Script\2016-08-20 нередактируемые справочники.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
