@@ -176,7 +176,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\ApplicationUserManager.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -215,6 +215,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\CustomRole.cs" />
+    <Compile Include="Models\CustomRoleStore.cs" />
+    <Compile Include="Models\CustomUserClaim.cs" />
+    <Compile Include="Models\CustomUserLogin.cs" />
+    <Compile Include="Models\CustomUserRole.cs" />
+    <Compile Include="Models\CustomUserStore.cs" />
     <Compile Include="Models\ExternalLoginModel.cs" />
     <Compile Include="Models\ManageInfoModel.cs" />
     <Compile Include="Models\SetPasswordBindingModel.cs" />
