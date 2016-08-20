@@ -56,6 +56,15 @@ namespace IsHoroshiki.DAO
             set;
         }
 
+        /// <summary>
+        /// Список сущностей БД Настройки заказа
+        /// </summary>
+        public DbSet<OrderSetting> OrderSettings
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Конструктор
@@ -85,6 +94,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new PositionConfiguration());
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
+            modelBuilder.Configurations.Add(new OrderSettingConfiguration());
         }
 
         #endregion

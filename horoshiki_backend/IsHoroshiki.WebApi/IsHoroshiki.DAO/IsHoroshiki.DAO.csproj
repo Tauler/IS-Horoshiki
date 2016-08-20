@@ -66,6 +66,7 @@
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PositionConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\EmployeeStatusConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\OrderSettingConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\StatusSiteConfiguration.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Repositories\NotEditableDictionaries\PositionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\EmployeeStatusRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\DepartmentRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\OrderSettingRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\StatusSiteRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BuyProcessRepository.cs" />
     <Compile Include="UnitOfWorks\UnitOfWork.cs" />
