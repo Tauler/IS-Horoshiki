@@ -83,6 +83,15 @@ namespace IsHoroshiki.DAO
             set;
         }
 
+        /// <summary>
+        /// Список сущностей БД Типы зон доставки
+        /// </summary>
+        public DbSet<DeliveryZoneType> DeliveryZoneTypes
+        {
+            get;
+            set;
+        }
+        
         #endregion
 
         #region Конструктор
@@ -115,6 +124,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new OrderSettingConfiguration());
             modelBuilder.Configurations.Add(new SubdivisionConfiguration());
             modelBuilder.Configurations.Add(new PriceTypeConfiguration());
+            modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
         }
 
         #endregion

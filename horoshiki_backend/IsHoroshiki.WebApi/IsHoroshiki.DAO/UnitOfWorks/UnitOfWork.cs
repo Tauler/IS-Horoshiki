@@ -62,6 +62,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private PriceTypeRepository _priceTypeRepository;
 
+        /// <summary>
+        /// Репозиторий Типы зон доставки
+        /// </summary>
+        private DeliveryZoneTypeRepository _deliveryZoneTypeRepository;
+        
         #endregion
 
         #region Конструктор
@@ -195,6 +200,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._priceTypeRepository = new PriceTypeRepository(_context);
                 }
                 return _priceTypeRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Типы зон доставки  
+        /// </summary>  
+        public DeliveryZoneTypeRepository DeliveryZoneTypeRepository
+        {
+            get
+            {
+                if (this._deliveryZoneTypeRepository == null)
+                {
+                    this._deliveryZoneTypeRepository = new DeliveryZoneTypeRepository(_context);
+                }
+                return _deliveryZoneTypeRepository;
             }
         }
 
