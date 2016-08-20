@@ -57,6 +57,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private SubdivisionRepository _subdivisionRepository;
 
+        /// <summary>
+        /// Репозиторий Типы цен
+        /// </summary>
+        private PriceTypeRepository _priceTypeRepository;
+
         #endregion
 
         #region Конструктор
@@ -175,6 +180,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._subdivisionRepository = new SubdivisionRepository(_context);
                 }
                 return _subdivisionRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Типы цен  
+        /// </summary>  
+        public PriceTypeRepository PriceTypeRepository
+        {
+            get
+            {
+                if (this._priceTypeRepository == null)
+                {
+                    this._priceTypeRepository = new PriceTypeRepository(_context);
+                }
+                return _priceTypeRepository;
             }
         }
 
