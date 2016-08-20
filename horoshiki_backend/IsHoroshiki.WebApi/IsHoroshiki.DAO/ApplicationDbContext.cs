@@ -65,6 +65,15 @@ namespace IsHoroshiki.DAO
             set;
         }
 
+        /// <summary>
+        /// Список сущностей БД Подразделения
+        /// </summary>
+        public DbSet<Subdivision> Subdivisions
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Конструктор
@@ -95,6 +104,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
             modelBuilder.Configurations.Add(new OrderSettingConfiguration());
+            modelBuilder.Configurations.Add(new SubdivisionConfiguration());
         }
 
         #endregion

@@ -52,6 +52,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private OrderSettingRepository _orderSettingRepository;
 
+        /// <summary>
+        /// Репозиторий Подразделения
+        /// </summary>
+        private SubdivisionRepository _subdivisionRepository;
+
         #endregion
 
         #region Конструктор
@@ -155,6 +160,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._orderSettingRepository = new OrderSettingRepository(_context);
                 }
                 return _orderSettingRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Подразделения  
+        /// </summary>  
+        public SubdivisionRepository SubdivisionRepository
+        {
+            get
+            {
+                if (this._subdivisionRepository == null)
+                {
+                    this._subdivisionRepository = new SubdivisionRepository(_context);
+                }
+                return _subdivisionRepository;
             }
         }
 
