@@ -27,6 +27,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private BuyProcessRepository _buyProcessPepository;
 
+        /// <summary>
+        /// Репозиторий Статус площадки
+        /// </summary>
+        private StatusSiteRepository _statusSiteRepository;
+        
         #endregion
 
         #region Конструктор
@@ -58,10 +63,25 @@ namespace IsHoroshiki.DAO.UnitOfWorks
             }
         }
 
+        /// <summary>  
+        /// Репозиторий Статус площадки  
+        /// </summary>  
+        public StatusSiteRepository StatusSiteRepository
+        {
+            get
+            {
+                if (this._statusSiteRepository == null)
+                {
+                    this._statusSiteRepository = new StatusSiteRepository(_context);
+                }
+                return _statusSiteRepository;
+            }
+        }
+
         #endregion
 
         #region методы
-          
+
         /// <summary>  
         /// Сохранить контекст  
         /// </summary>  
@@ -91,7 +111,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
 
         #endregion
 
-        #region IDisposable...  
+        #region IDisposable 
 
         /// <summary>  
         /// IDisposable

@@ -45,6 +45,7 @@ namespace IsHoroshiki.DAO
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new BuyProcessConfiguration());
+            modelBuilder.Configurations.Add(new StatusSiteConfiguration());
         }
 
         #endregion

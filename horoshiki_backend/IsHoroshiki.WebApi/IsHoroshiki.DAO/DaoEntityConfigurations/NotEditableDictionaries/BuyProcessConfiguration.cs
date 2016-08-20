@@ -3,7 +3,7 @@
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
 {
     /// <summary>
-    /// Базовая конфигурация нередактируемого справочника
+    /// Конфигурация Способы покупки
     /// </summary>
     public class BuyProcessConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<BuyProcess>
     {

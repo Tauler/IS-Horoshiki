@@ -63,10 +63,12 @@
     <Compile Include="DaoEntities\NotEditableDictionaries\BuyProcess.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BuyProcessConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntityConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\StatusSiteConfiguration.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BaseNotEditableDictionaryRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\StatusSiteRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BuyProcessRepository.cs" />
     <Compile Include="UnitOfWorks\UnitOfWork.cs" />
   </ItemGroup>
