@@ -662,6 +662,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController">
+            <summary>
+            Контроллер Статус площадки
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController._service">
+            <summary>
+            Cервис Типы цен
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IPriceTypeService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус площадки</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController.Get">
+            <summary>
+            Получить все Типы цен 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController">
             <summary>
             Контроллер Подразделения
