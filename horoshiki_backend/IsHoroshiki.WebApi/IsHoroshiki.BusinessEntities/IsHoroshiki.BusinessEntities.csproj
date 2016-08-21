@@ -54,10 +54,12 @@
     <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPositionModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IOrderSettingModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\ISubdivisionModel.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\PositionModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\EmployeeStatusModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\DepartmentModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\OrderSettingModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\SubdivisionModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\StatusSiteModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\BuyProcessModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\OrderSettingModel.cs" />

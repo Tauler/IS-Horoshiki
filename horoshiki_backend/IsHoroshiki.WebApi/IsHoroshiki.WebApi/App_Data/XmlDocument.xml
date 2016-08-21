@@ -662,6 +662,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController">
+            <summary>
+            Контроллер Подразделения
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController._service">
+            <summary>
+            Cервис Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubdivisionService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Подразделения</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController.Get">
+            <summary>
+            Получить все Подразделения 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
             <summary>
             Контроллер Статус площадки

@@ -31,6 +31,7 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IEmployeeStatusService, EmployeeStatusService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IDepartmentService, DepartmentService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IOrderSettingService, OrderSettingService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISubdivisionService, SubdivisionService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 
             return container;
         }
