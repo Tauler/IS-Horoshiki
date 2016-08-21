@@ -49,9 +49,11 @@
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPositionService.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IDepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteService.cs" />
     <Compile Include="NotEditableDictionaries\PositionService.cs" />
     <Compile Include="NotEditableDictionaries\EmployeeStatusService.cs" />
+    <Compile Include="NotEditableDictionaries\DepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\StatusSiteService.cs" />
     <Compile Include="NotEditableDictionaries\BuyProcessService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessService.cs" />

@@ -618,6 +618,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController">
+            <summary>
+            Контроллер Отделы
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController._service">
+            <summary>
+            Cервис Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDepartmentService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус площадки</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController.Get">
+            <summary>
+            Получить все Отделы 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
             <summary>
             Контроллер Статус площадки

@@ -243,6 +243,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\PositionsController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\EmployeeStatusesController.cs" />
+    <Compile Include="Controllers\NotEditableDictionaries\DepartmentsController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\StatusSitesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\BuyProcessesController.cs" />
     <Compile Include="Handlers\ApiResponse.cs" />
