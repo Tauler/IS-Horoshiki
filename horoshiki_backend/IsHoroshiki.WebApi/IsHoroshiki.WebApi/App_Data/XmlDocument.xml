@@ -574,6 +574,28 @@
             <param name="result"></param>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController">
+            <summary>
+            Контроллер Должности
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController._service">
+            <summary>
+            Cервис Должности
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IPositionService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Должности</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController.Get">
+            <summary>
+            Получить все Статус площадки 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
             <summary>
             Контроллер Статус площадки
