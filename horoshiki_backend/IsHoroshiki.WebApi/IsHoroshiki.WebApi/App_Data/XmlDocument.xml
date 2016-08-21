@@ -684,6 +684,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController">
+            <summary>
+            Контроллер Типы зон доставки
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController._service">
+            <summary>
+            Cервис Типы зон доставки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDeliveryZoneTypeService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Типы зон доставки</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController.Get">
+            <summary>
+            Получить все Типы зон доставки 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController">
             <summary>
             Контроллер Подразделения

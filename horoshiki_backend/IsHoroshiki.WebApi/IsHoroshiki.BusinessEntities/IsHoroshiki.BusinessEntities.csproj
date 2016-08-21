@@ -47,6 +47,7 @@
     <Compile Include="NotEditableDictionaries\DeliveryZoneTypeModel.cs" />
     <Compile Include="NotEditableDictionaries\DepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\EmployeeStatusModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryZoneTypeModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IDepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessModel.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="NotEditableDictionaries\MappingDao\DepartmentModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\OrderSettingModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\PriceTypeModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\DeliveryZoneTypeModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\SubdivisionModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\StatusSiteModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\BuyProcessModelMappingDao.cs" />

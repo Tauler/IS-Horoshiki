@@ -52,6 +52,7 @@
     <Compile Include="NotEditableDictionaries\Interfaces\IDepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IOrderSettingService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPriceTypeService.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryZoneService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\ISubdivisionService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteService.cs" />
     <Compile Include="NotEditableDictionaries\PositionService.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="NotEditableDictionaries\DepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\OrderSettingService.cs" />
     <Compile Include="NotEditableDictionaries\PriceTypeService.cs" />
+    <Compile Include="NotEditableDictionaries\DeliveryZoneTypeService.cs" />
     <Compile Include="NotEditableDictionaries\SubdivisionService.cs" />
     <Compile Include="NotEditableDictionaries\StatusSiteService.cs" />
     <Compile Include="NotEditableDictionaries\BuyProcessService.cs" />
