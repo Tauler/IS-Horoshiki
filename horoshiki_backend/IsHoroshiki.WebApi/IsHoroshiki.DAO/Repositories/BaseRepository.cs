@@ -39,7 +39,7 @@ namespace IsHoroshiki.DAO.Repositories
         }
         #endregion
 
-        #region Public member methods...  
+        #region методы
 
         /// <summary>  
         /// Найти по Id 

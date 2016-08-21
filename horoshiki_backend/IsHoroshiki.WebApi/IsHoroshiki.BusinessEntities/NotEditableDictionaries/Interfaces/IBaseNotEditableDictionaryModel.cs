@@ -1,14 +1,14 @@
-﻿namespace IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries
+﻿namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces
 {
     /// <summary>
     /// Базовый нередактируемый тип справочника
     /// </summary>
-    public abstract class BaseNotEditableDictionaryDaoEntity : BaseDaoEntity
+    public interface IBaseNotEditableDictionaryModel : IBaseBusninessModel
     {
         /// <summary>
         /// Id в БД
         /// </summary>
-        public int Id
+        int Id
         {
             get;
             set;
@@ -17,7 +17,7 @@
         /// <summary>
         /// Значение
         /// </summary>
-        public string Value
+        string Value
         {
             get;
             set;

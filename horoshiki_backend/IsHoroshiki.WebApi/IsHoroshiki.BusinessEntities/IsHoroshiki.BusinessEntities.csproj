@@ -40,8 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseBusninessEntity.cs" />
+    <Compile Include="IBaseBusninessModel.cs" />
+    <Compile Include="BaseBusninessModel.cs" />
+    <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryModel.cs" />
+    <Compile Include="NotEditableDictionaries\BuyProcessModel.cs" />
+    <Compile Include="NotEditableDictionaries\DeliveryZoneTypeModel.cs" />
+    <Compile Include="NotEditableDictionaries\DepartmentModel.cs" />
+    <Compile Include="NotEditableDictionaries\EmployeeStatusModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryModel.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\BuyProcessModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\OrderSettingModel.cs" />
+    <Compile Include="NotEditableDictionaries\PositionModel.cs" />
+    <Compile Include="NotEditableDictionaries\PriceTypeModel.cs" />
+    <Compile Include="NotEditableDictionaries\StatusSiteModel.cs" />
+    <Compile Include="NotEditableDictionaries\SubdivisionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IsHoroshiki.DAO\IsHoroshiki.DAO.csproj">
+      <Project>{EFC9DAF6-3B76-49AA-9D1B-D6658C2C3CFF}</Project>
+      <Name>IsHoroshiki.DAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,9 +1,9 @@
-﻿namespace IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries
+﻿namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
 {
     /// <summary>
     /// Базовый нередактируемый тип справочника
     /// </summary>
-    public abstract class BaseNotEditableDictionaryDaoEntity : BaseDaoEntity
+    public abstract class BaseNotEditableDictionaryModel : BaseBusninessModel
     {
         /// <summary>
         /// Id в БД

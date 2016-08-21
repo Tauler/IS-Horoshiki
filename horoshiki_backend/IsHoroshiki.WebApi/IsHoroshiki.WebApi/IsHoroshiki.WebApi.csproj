@@ -34,8 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>App_Data/XmlDocument.xml</DocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -209,8 +208,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\NotEditableDictionaries\BuyProcessesController.cs" />
+    <Compile Include="Handlers\ApiResponse.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Handlers\WrappingHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,6 +295,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BuyProcess\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -304,9 +306,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IsHoroshiki.DAO\IsHoroshiki.DAO.csproj">
-      <Project>{efc9daf6-3b76-49aa-9d1b-d6658c2c3cff}</Project>
-      <Name>IsHoroshiki.DAO</Name>
+    <ProjectReference Include="..\IsHoroshiki.BusinessEntities\IsHoroshiki.BusinessEntities.csproj">
+      <Project>{1f75276e-5c47-4a18-9267-baf940355976}</Project>
+      <Name>IsHoroshiki.BusinessEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IsHoroshiki.BusinessServices\IsHoroshiki.BusinessServices.csproj">
+      <Project>{76ccee72-2781-4502-a5d8-2f71a6d1cd11}</Project>
+      <Name>IsHoroshiki.BusinessServices</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

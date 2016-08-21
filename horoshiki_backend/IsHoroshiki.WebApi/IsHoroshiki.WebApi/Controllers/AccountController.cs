@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
 using IsHoroshiki.WebApi.Models;
-using IsHoroshiki.WebApi.Providers;
-using IsHoroshiki.WebApi.Results;
 
 namespace IsHoroshiki.WebApi.Controllers
 {
+    /// <summary>
+    /// Контроллер авторизации
+    /// </summary>
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -51,7 +50,6 @@ namespace IsHoroshiki.WebApi.Controllers
             get;
             private set;
         }
-
 
         private IAuthenticationManager Authentication
         {
@@ -87,22 +85,10 @@ namespace IsHoroshiki.WebApi.Controllers
 
         #region Сервисы
 
-        //// GET api/Account/UserInfo
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        //[Route("UserInfo")]
-        //public UserInfoModel GetUserInfo()
-        //{
-        //    ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
-        //    return new UserInfoModel
-        //    {
-        //        Username = User.Identity.GetUserName(),
-        //        HasRegistered = externalLogin == null,
-        //        LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-        //    };
-        //}
-
-        // POST api/Account/Logout
+        /// <summary>
+        /// Выход из системы
+        /// </summary>
+        /// <returns></returns>
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
@@ -110,47 +96,11 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
-        //// GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
-        //[Route("ManageInfo")]
-        //public async Task<ManageInfoModel> GetManageInfo(string returnUrl, bool generateState = false)
-        //{
-        //    IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-
-        //    if (user == null)
-        //    {
-        //        return null;
-        //    }
-
-        //    List<UserLoginInfoModel> logins = new List<UserLoginInfoModel>();
-
-        //    foreach (IdentityUserLogin linkedAccount in user.Logins)
-        //    {
-        //        logins.Add(new UserLoginInfoModel
-        //        {
-        //            LoginProvider = linkedAccount.LoginProvider,
-        //            ProviderKey = linkedAccount.ProviderKey
-        //        });
-        //    }
-
-        //    if (user.PasswordHash != null)
-        //    {
-        //        logins.Add(new UserLoginInfoModel
-        //        {
-        //            LoginProvider = LocalLoginProvider,
-        //            ProviderKey = user.UserName,
-        //        });
-        //    }
-
-        //    return new ManageInfoModel
-        //    {
-        //        LocalLoginProvider = LocalLoginProvider,
-        //        Email = user.UserName,
-        //        Logins = logins,
-        //        ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
-        //    };
-        //}
-
-        // POST api/Account/ChangePassword
+        /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="model">Данные</param>
+        /// <returns></returns>
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -170,6 +120,11 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Установить пароль
+        /// </summary>
+        /// <param name="model">Данные</param>
+        /// <returns></returns>
         // POST api/Account/SetPassword
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
@@ -189,45 +144,10 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
-        //// POST api/Account/AddExternalLogin
-        //[Route("AddExternalLogin")]
-        //public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-
-        //    AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
-
-        //    if (ticket == null || ticket.Identity == null || (ticket.Properties != null
-        //        && ticket.Properties.ExpiresUtc.HasValue
-        //        && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
-        //    {
-        //        return BadRequest("External login failure.");
-        //    }
-
-        //    ExternalLoginData externalData = ExternalLoginData.FromIdentity(ticket.Identity);
-
-        //    if (externalData == null)
-        //    {
-        //        return BadRequest("The external login is already associated with an account.");
-        //    }
-
-        //    IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
-        //        new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
-
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    return Ok();
-        //}
-
-        // POST api/Account/RemoveLogin
+        /// <summary>
+        /// Удалить пользователя
+        /// </summary>
+        /// <param name="model">Данные</param>
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
@@ -256,105 +176,10 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
-        ////// GET api/Account/ExternalLogin
-        ////[OverrideAuthentication]
-        ////[HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
-        ////[AllowAnonymous]
-        ////[Route("ExternalLogin", Name = "ExternalLogin")]
-        ////public async Task<IHttpActionResult> GetExternalLogin(string provider, string error = null)
-        ////{
-        ////    if (error != null)
-        ////    {
-        ////        return Redirect(Url.Content("~/") + "#error=" + Uri.EscapeDataString(error));
-        ////    }
-
-        ////    if (!User.Identity.IsAuthenticated)
-        ////    {
-        ////        return new ChallengeResult(provider, this);
-        ////    }
-
-        ////    ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-
-        ////    if (externalLogin == null)
-        ////    {
-        ////        return InternalServerError();
-        ////    }
-
-        ////    if (externalLogin.LoginProvider != provider)
-        ////    {
-        ////        Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-        ////        return new ChallengeResult(provider, this);
-        ////    }
-
-        ////    ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
-        ////        externalLogin.ProviderKey));
-
-        ////    bool hasRegistered = user != null;
-
-        ////    if (hasRegistered)
-        ////    {
-        ////        Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-        ////         ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-        ////            OAuthDefaults.AuthenticationType);
-        ////        ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
-        ////            CookieAuthenticationDefaults.AuthenticationType);
-
-        ////        AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
-        ////        Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
-        ////    }
-        ////    else
-        ////    {
-        ////        IEnumerable<Claim> claims = externalLogin.GetClaims();
-        ////        ClaimsIdentity identity = new ClaimsIdentity(claims, OAuthDefaults.AuthenticationType);
-        ////        Authentication.SignIn(identity);
-        ////    }
-
-        ////    return Ok();
-        ////}
-
-        //// GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
-        //[AllowAnonymous]
-        //[Route("ExternalLogins")]
-        //public IEnumerable<ExternalLoginModel> GetExternalLogins(string returnUrl, bool generateState = false)
-        //{
-        //    IEnumerable<AuthenticationDescription> descriptions = Authentication.GetExternalAuthenticationTypes();
-        //    List<ExternalLoginModel> logins = new List<ExternalLoginModel>();
-
-        //    string state;
-
-        //    if (generateState)
-        //    {
-        //        const int strengthInBits = 256;
-        //        state = RandomOAuthStateGenerator.Generate(strengthInBits);
-        //    }
-        //    else
-        //    {
-        //        state = null;
-        //    }
-
-        //    foreach (AuthenticationDescription description in descriptions)
-        //    {
-        //        ExternalLoginModel login = new ExternalLoginModel
-        //        {
-        //            Name = description.Caption,
-        //            Url = Url.Route("ExternalLogin", new
-        //            {
-        //                provider = description.AuthenticationType,
-        //                response_type = "token",
-        //                client_id = Startup.PublicClientId,
-        //                redirect_uri = new Uri(Request.RequestUri, returnUrl).AbsoluteUri,
-        //                state = state
-        //            }),
-        //            State = state
-        //        };
-        //        logins.Add(login);
-        //    }
-
-        //    return logins;
-        //}
-
-        // POST api/Account/Register
+        /// <summary>
+        /// Создать пользователя
+        /// </summary>
+        /// <param name="model">Данные</param>
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
@@ -380,39 +205,10 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
-        //// POST api/Account/RegisterExternal
-        //[OverrideAuthentication]
-        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        //[Route("RegisterExternal")]
-        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var info = await Authentication.GetExternalLoginInfoAsync();
-        //    if (info == null)
-        //    {
-        //        return InternalServerError();
-        //    }
-
-        //    var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
-
-        //    IdentityResult result = await UserManager.CreateAsync(user);
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result);
-        //    }
-
-        //    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-        //    if (!result.Succeeded)
-        //    {
-        //        return GetErrorResult(result); 
-        //    }
-        //    return Ok();
-        //}
-
+        /// <summary>
+        /// Очистить ресурсы
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -429,7 +225,7 @@ namespace IsHoroshiki.WebApi.Controllers
         #region методы
 
         /// <summary>
-        /// Jib,rb
+        /// ДОбавление ошибок
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>

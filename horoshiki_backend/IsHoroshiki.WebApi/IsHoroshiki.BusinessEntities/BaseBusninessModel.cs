@@ -9,7 +9,7 @@ namespace IsHoroshiki.BusinessEntities
     /// <summary>
     /// Базовая сущность для всех сущностей в сервисе
     /// </summary>
-    public abstract class BaseBusninessEntity
+    public abstract class BaseBusninessModel : IBaseBusninessModel
     {
     }
 }
