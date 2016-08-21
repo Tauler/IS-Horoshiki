@@ -640,6 +640,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderSettingsController">
+            <summary>
+            Контроллер Настройки заказа
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderSettingsController._service">
+            <summary>
+            Cервис Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderSettingsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IOrderSettingService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус площадки</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderSettingsController.Get">
+            <summary>
+            Получить все Настройки заказа 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
             <summary>
             Контроллер Статус площадки
