@@ -1,9 +1,11 @@
-﻿namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
+﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
+
+namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
 {
     /// <summary>
     /// Статус сотрудника
     /// </summary>
-    public class EmployeeStatusModel : BaseNotEditableDictionaryModel
+    public class EmployeeStatusModel : BaseNotEditableDictionaryModel, IEmployeeStatusModel
     {
     }
 }

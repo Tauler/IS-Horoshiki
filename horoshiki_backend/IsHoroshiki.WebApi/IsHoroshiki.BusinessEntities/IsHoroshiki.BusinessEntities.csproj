@@ -47,11 +47,13 @@
     <Compile Include="NotEditableDictionaries\DeliveryZoneTypeModel.cs" />
     <Compile Include="NotEditableDictionaries\DepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\EmployeeStatusModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPositionModel.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\PositionModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\EmployeeStatusModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\StatusSiteModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\BuyProcessModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\OrderSettingModel.cs" />

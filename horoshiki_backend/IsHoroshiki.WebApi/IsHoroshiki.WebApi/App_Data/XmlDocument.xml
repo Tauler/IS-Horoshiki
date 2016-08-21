@@ -596,6 +596,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController">
+            <summary>
+            Контроллер Статус сотрудника
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController._service">
+            <summary>
+            Cервис Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IEmployeeStatusService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус сотрудника</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController.Get">
+            <summary>
+            Получить все Статус сотрудника 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
             <summary>
             Контроллер Статус площадки
