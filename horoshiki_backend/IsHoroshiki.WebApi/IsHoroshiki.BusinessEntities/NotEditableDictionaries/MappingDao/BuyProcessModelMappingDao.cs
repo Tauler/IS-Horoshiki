@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
 
 namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
@@ -14,7 +15,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static BuyProcess ToDaoEntity(this BuyProcessModel model)
+        public static BuyProcess ToDaoEntity(this IBuyProcessModel model)
         {
             return new BuyProcess()
             {
@@ -28,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<BuyProcess> ToDaoEntityList(this IEnumerable<BuyProcessModel> models)
+        public static IEnumerable<BuyProcess> ToDaoEntityList(this IEnumerable<IBuyProcessModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -38,7 +39,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static BuyProcessModel ToModelEntity(this BuyProcess model)
+        public static IBuyProcessModel ToModelEntity(this BuyProcess model)
         {
             return new BuyProcessModel()
             {
@@ -52,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<BuyProcessModel> ToModelEntityList(this IEnumerable<BuyProcess> models)
+        public static IEnumerable<IBuyProcessModel> ToModelEntityList(this IEnumerable<BuyProcess> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

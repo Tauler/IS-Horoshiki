@@ -1,11 +1,12 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
+using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
 {
     /// <summary>
     /// Репозиторий Статус площадки
     /// </summary>
-    public class StatusSiteRepository : BaseNotEditableDictionaryRepository<StatusSite>
+    public class StatusSiteRepository : BaseNotEditableDictionaryRepository<StatusSite>, IStatusSiteRepository
     {
         #region Конструктор
 

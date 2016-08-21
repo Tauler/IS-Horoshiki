@@ -1,11 +1,12 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
+using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
 {
     /// <summary>
     /// Репозиторий Способы покупки
     /// </summary>
-    public class BuyProcessRepository : BaseNotEditableDictionaryRepository<BuyProcess>
+    public class BuyProcessRepository : BaseNotEditableDictionaryRepository<BuyProcess>, IBuyProcessRepository
     {
         #region Конструктор
 

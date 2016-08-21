@@ -10,7 +10,8 @@ namespace IsHoroshiki.DAO.Repositories
     /// </summary>  
     /// <typeparam name="TDaoEntity">Тип сущности Dao</typeparam> 
     /// <typeparam name="TPrimaryKey">Тип primary key в БД</typeparam> 
-    public abstract class BaseRepository<TDaoEntity, TPrimaryKey> where TDaoEntity : BaseDaoEntity
+    public abstract class BaseRepository<TDaoEntity, TPrimaryKey> : IBaseRepository<TDaoEntity, TPrimaryKey>
+        where TDaoEntity : BaseDaoEntity
     {
         #region поля и свойства
 
@@ -64,7 +65,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// Удалить по Id 
         /// </summary>  
         /// <param name="id">Id</param>  
-        public virtual void Delete(object id)
+        public virtual void Delete(TPrimaryKey id)
         {
             TDaoEntity entityToDelete = DbSet.Find(id);
             Delete(entityToDelete);

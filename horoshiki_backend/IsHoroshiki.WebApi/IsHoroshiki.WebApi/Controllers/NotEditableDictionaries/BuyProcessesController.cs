@@ -2,7 +2,8 @@
 using System.Web.Http;
 using System.Web.Http.Description;
 using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
-using IsHoroshiki.BusinessServices.NotEditableDictionaries;
+using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
+using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
 {
@@ -12,6 +13,30 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
     [Authorize]
     public class BuyProcessesController : ApiController
     {
+        #region поля и свойства
+
+        /// <summary>
+        /// Cервис Способы покупки
+        /// </summary>
+        private readonly IBuyProcessService _service;
+
+        #endregion
+
+        #region Конструктор
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="service">Cервис Способы покупки</param>
+        public BuyProcessesController(IBuyProcessService service)
+        {
+            _service = service;
+        }
+
+        #endregion
+
+        #region методы контроллера
+
         /// <summary>
         /// Получить все Способы покупки 
         /// </summary>
@@ -20,10 +45,9 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         [ResponseType(typeof(IEnumerable<BuyProcessModel>))]
         public IHttpActionResult Get()
         {
-            using (var buyProcessService = new BuyProcessService())
-            {
-                return Ok(buyProcessService.GetAll());
-            }
+            return Ok(_service.GetAll());
         }
+
+        #endregion
     }
 }

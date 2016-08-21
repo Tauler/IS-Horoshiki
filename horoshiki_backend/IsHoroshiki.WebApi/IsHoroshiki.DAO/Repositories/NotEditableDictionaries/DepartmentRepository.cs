@@ -1,11 +1,12 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
+using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
 {
     /// <summary>
     /// Репозиторий Отделы
     /// </summary>
-    public class DepartmentRepository : BaseNotEditableDictionaryRepository<Department>
+    public class DepartmentRepository : BaseNotEditableDictionaryRepository<Department>, IDepartmentRepository
     {
         #region Конструктор
 

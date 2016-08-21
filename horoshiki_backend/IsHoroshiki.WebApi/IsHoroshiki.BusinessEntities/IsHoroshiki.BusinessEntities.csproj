@@ -49,6 +49,8 @@
     <Compile Include="NotEditableDictionaries\EmployeeStatusModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteModel.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\StatusSiteModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\BuyProcessModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\OrderSettingModel.cs" />
     <Compile Include="NotEditableDictionaries\PositionModel.cs" />

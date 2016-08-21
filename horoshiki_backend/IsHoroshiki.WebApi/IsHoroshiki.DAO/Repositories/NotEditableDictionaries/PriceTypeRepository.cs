@@ -1,11 +1,12 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
+using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
 {
     /// <summary>
     /// Репозиторий Типы цен
     /// </summary>
-    public class PriceTypeRepository : BaseNotEditableDictionaryRepository<PriceType>
+    public class PriceTypeRepository : BaseNotEditableDictionaryRepository<PriceType>, IPriceTypeRepository
     {
         #region Конструктор
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -15,11 +14,6 @@ namespace IsHoroshiki.BusinessServices
         /// </summary>
         private bool _disposed;
 
-        /// <summary>
-        /// UnitOfWork
-        /// </summary>
-        protected readonly UnitOfWork _unitOfWork = new UnitOfWork();
-
         #endregion
 
         #region IDisposable 
@@ -32,7 +26,7 @@ namespace IsHoroshiki.BusinessServices
         {
             if (!this._disposed && disposing)
             {
-                _unitOfWork.Dispose();
+                
             }
             this._disposed = true;
         }

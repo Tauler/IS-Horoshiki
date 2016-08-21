@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,9 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="IBaseBusinessService.cs" />
     <Compile Include="BaseBusinessService.cs" />
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryService.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteService.cs" />
+    <Compile Include="NotEditableDictionaries\StatusSiteService.cs" />
     <Compile Include="NotEditableDictionaries\BuyProcessService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryService.cs" />

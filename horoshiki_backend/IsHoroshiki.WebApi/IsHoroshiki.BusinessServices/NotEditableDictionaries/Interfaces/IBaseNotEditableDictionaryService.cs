@@ -15,7 +15,7 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces
         /// Получить все сущности
         /// </summary>
         /// <returns></returns>
-        IEnumerable<IBaseNotEditableDictionaryModel> GetAll();
+        IEnumerable<TBaseBusninessModel> GetAll();
 
         #endregion
     }

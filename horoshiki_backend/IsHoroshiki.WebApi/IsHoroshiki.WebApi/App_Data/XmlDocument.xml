@@ -9,6 +9,22 @@
             Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
             </summary>
         </member>
+        <member name="T:IsHoroshiki.WebApi.UnityConfig">
+            <summary>
+            Êîíôèãóðàöèÿ Unity
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.UnityConfig.RegisterComponents">
+            <summary>
+            Ðåãèñòðàöèÿ êîìïîíåíò
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.UnityConfig.BuildUnityContainer">
+            <summary>
+            Ðåãèñòðàöèÿ êîìïîíåíò
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:IsHoroshiki.WebApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -558,10 +574,43 @@
             <param name="result"></param>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
+            <summary>
+            Контроллер Статус площадки
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController._service">
+            <summary>
+            Cервис Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IStatusSiteService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус площадки</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController.Get">
+            <summary>
+            Получить все Статус площадки 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController">
             <summary>
             Контроллер Способы покупки
             </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController._service">
+            <summary>
+            Cервис Способы покупки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IBuyProcessService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Способы покупки</param>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController.Get">
             <summary>

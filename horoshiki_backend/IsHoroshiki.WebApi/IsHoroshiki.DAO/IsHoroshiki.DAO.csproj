@@ -38,6 +38,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,6 +54,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="BaseDaoEntity.cs" />
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntity.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\PriceType.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\DeliveryZoneType.cs" />
@@ -73,8 +77,19 @@
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\StatusSiteConfiguration.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BaseNotEditableDictionaryRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IBuyProcessRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDeliveryZoneTypeRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDepartmentRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IEmployeeStatusRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IOrderSettingRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IPositionRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IPriceTypeRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IStatusSiteRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\ISubdivisionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\PositionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\EmployeeStatusRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\DepartmentRepository.cs" />

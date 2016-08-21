@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries;
+using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.DAO.UnitOfWorks
 {
@@ -25,47 +26,47 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>
         /// Репозиторий Способы покупки
         /// </summary>
-        private BuyProcessRepository _buyProcessPepository;
+        private IBuyProcessRepository _buyProcessPepository;
 
         /// <summary>
         /// Репозиторий Статус площадки
         /// </summary>
-        private StatusSiteRepository _statusSiteRepository;
+        private IStatusSiteRepository _statusSiteRepository;
 
         /// <summary>
         /// Репозиторий Должности
         /// </summary>
-        private PositionRepository _positionRepository;
+        private IPositionRepository _positionRepository;
 
         /// <summary>
         /// Репозиторий Статус сотрудника
         /// </summary>
-        private EmployeeStatusRepository _employeeStatusRepository;
+        private IEmployeeStatusRepository _employeeStatusRepository;
 
         /// <summary>
         /// Репозиторий Отделы
         /// </summary>
-        private DepartmentRepository _departmentRepository;
+        private IDepartmentRepository _departmentRepository;
 
         /// <summary>
         /// Репозиторий Настройки заказа
         /// </summary>
-        private OrderSettingRepository _orderSettingRepository;
+        private IOrderSettingRepository _orderSettingRepository;
 
         /// <summary>
         /// Репозиторий Подразделения
         /// </summary>
-        private SubdivisionRepository _subdivisionRepository;
+        private ISubdivisionRepository _subdivisionRepository;
 
         /// <summary>
         /// Репозиторий Типы цен
         /// </summary>
-        private PriceTypeRepository _priceTypeRepository;
+        private IPriceTypeRepository _priceTypeRepository;
 
         /// <summary>
         /// Репозиторий Типы зон доставки
         /// </summary>
-        private DeliveryZoneTypeRepository _deliveryZoneTypeRepository;
+        private IDeliveryZoneTypeRepository _deliveryZoneTypeRepository;
         
         #endregion
 
@@ -86,7 +87,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Способы покупки  
         /// </summary>  
-        public BuyProcessRepository BuyProcessPepository
+        public IBuyProcessRepository BuyProcessPepository
         {
             get
             {
@@ -101,7 +102,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Статус площадки  
         /// </summary>  
-        public StatusSiteRepository StatusSiteRepository
+        public IStatusSiteRepository StatusSiteRepository
         {
             get
             {
@@ -116,7 +117,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Должности  
         /// </summary>  
-        public PositionRepository PositionRepository
+        public IPositionRepository PositionRepository
         {
             get
             {
@@ -131,7 +132,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Статус сотрудника  
         /// </summary>  
-        public EmployeeStatusRepository EmployeeStatusRepository
+        public IEmployeeStatusRepository EmployeeStatusRepository
         {
             get
             {
@@ -146,7 +147,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Отделы  
         /// </summary>  
-        public DepartmentRepository DepartmentRepository
+        public IDepartmentRepository DepartmentRepository
         {
             get
             {
@@ -161,7 +162,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Настройки заказа  
         /// </summary>  
-        public OrderSettingRepository OrderSettingRepository
+        public IOrderSettingRepository OrderSettingRepository
         {
             get
             {
@@ -176,7 +177,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Подразделения  
         /// </summary>  
-        public SubdivisionRepository SubdivisionRepository
+        public ISubdivisionRepository SubdivisionRepository
         {
             get
             {
@@ -191,7 +192,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Типы цен  
         /// </summary>  
-        public PriceTypeRepository PriceTypeRepository
+        public IPriceTypeRepository PriceTypeRepository
         {
             get
             {
@@ -206,7 +207,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Типы зон доставки  
         /// </summary>  
-        public DeliveryZoneTypeRepository DeliveryZoneTypeRepository
+        public IDeliveryZoneTypeRepository DeliveryZoneTypeRepository
         {
             get
             {
