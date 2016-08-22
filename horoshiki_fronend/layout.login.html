@@ -20,10 +20,10 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="/theme-private-cloud/css/custom.css">
+    <link rel="stylesheet" href="/theme-private-cloud/css/themes/dark-blue.css" id="style_color">
 
     <!-- JS lib -->
     <script type="text/javascript" src="/theme-private-cloud/plugins/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="/theme-private-cloud/plugins/backstretch/jquery.backstretch.min.js"></script>
     <script type="text/javascript" src="/theme-private-cloud/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Angular lib -->
@@ -52,7 +52,7 @@
 
     <title>{{title}} | IS Horoshiki</title>
 </head>
-<body>
+<body class="login_page_bg">
     <div class="container" ng-controller="LoginLayoutController">
         <div class="reg-block">
             <!-- CONTENT -->
@@ -74,16 +74,6 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-        $.backstretch([
-            "/theme-private-cloud/img/bg.png",
-            "/theme-private-cloud/img/bg/4.jpg"
-        ], {
-            fade: 1000,
-            duration: 7000
-        });
-    </script>
 
 </body>
 </html>

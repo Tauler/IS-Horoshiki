@@ -26,7 +26,7 @@
   "auth_login_field_pass" : "Пароль",
   "auth_login_error_login" : "Неправильный логин или пароль",
   "auth_login_title" : "Авторизация",
-  "auth_login_field_mail" : "Электронная почта",
+  "auth_login_field_mail" : "Логин",
   "auth_login_field_pass" : "Пароль",
   "auth_login_error_login" : "Неправильный логин или пароль",
   "auth_login_login" : "Войти"

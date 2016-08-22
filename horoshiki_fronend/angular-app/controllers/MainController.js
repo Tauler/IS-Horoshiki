@@ -8,14 +8,32 @@ mainControllers.controller('MainViewController', ['$scope', '$location', 'Backen
     function ($scope, $location, BackendService) {
 
 
-        BackendService.getOrders().success(function(result){
-            console.log(result);
-        }).error(function(result, status){
 
-            console.log(status);
-             httpErrors($location.url(), status);
-        })
+        $scope.obj={};
+        // BackendService.getOrders().success(function(result){
+        //     console.log(result);
+        // }).error(function(result, status){
+        //
+        //     console.log(status);
+        //      httpErrors($location.url(), status);
+        // })
 
+        $scope.geoObj = {
+            geometry: {
+                type: 'Polygon',
+                coordinates: []
+            }
+        }
+
+
+
+        $scope.getPoint = function (target) {
+            $scope.obj = target;
+        }
+
+        $scope.viewPoint = function () {
+            console.log($scope.obj.geometry.getCoordinates());
+        }
 
     }
 ]);
