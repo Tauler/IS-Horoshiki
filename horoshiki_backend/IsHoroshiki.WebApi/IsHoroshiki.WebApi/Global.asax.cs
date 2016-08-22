@@ -16,7 +16,7 @@ namespace IsHoroshiki.WebApi
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             UnityConfig.RegisterComponents();
-
+            
             //GlobalConfiguration.Configuration.MessageHandlers.Add(new CorsHandler());
         }
     }

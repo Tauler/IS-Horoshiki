@@ -70,16 +70,16 @@ namespace IsHoroshiki.WebApi.Controllers
         {
         }
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        /// <param name="userManager"></param>
-        /// <param name="accessTokenFormat"></param>
-        public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
-        {
-            UserManager = userManager;
-            AccessTokenFormat = accessTokenFormat;
-        }
+        ///// <summary>
+        ///// Конструктор
+        ///// </summary>
+        ///// <param name="userManager"></param>
+        ///// <param name="accessTokenFormat"></param>
+        //public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+        //{
+        //    UserManager = userManager;
+        //    AccessTokenFormat = accessTokenFormat;
+        //}
 
         #endregion
 

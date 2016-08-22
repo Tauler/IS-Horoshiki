@@ -522,13 +522,6 @@
             Конструктор
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.#ctor(IsHoroshiki.WebApi.ApplicationUserManager,Microsoft.Owin.Security.ISecureDataFormat{Microsoft.Owin.Security.AuthenticationTicket})">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="userManager"></param>
-            <param name="accessTokenFormat"></param>
-        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Logout">
             <summary>
             Выход из системы
