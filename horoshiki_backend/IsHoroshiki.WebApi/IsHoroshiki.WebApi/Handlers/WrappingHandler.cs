@@ -45,6 +45,11 @@ namespace IsHoroshiki.WebApi.Handlers
                 status = 1;
             }
 
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                return response;
+            }
+
             var newResponse = request.CreateResponse(HttpStatusCode.OK, new ApiResponse(status, content, errorMessage));
 
             foreach (var header in response.Headers)
