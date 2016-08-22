@@ -765,6 +765,27 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.UtilsController">
+            <summary>
+            Контроллер-хелпер работы с сервером
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.UtilsController._service">
+            <summary>
+            Cервис проверки доступности сервера и т.п.
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.UtilsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IUtilService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис проверки доступности сервера и т.п.</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.UtilsController.Get">
+            <summary>
+            Проверить доступность сервиса и БД
+            </summary>
+        </member>
         <member name="P:IsHoroshiki.WebApi.Controllers.ApiResponse.Version">
             <summary>
             Версия
