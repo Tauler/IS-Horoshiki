@@ -25,8 +25,9 @@ namespace IsHoroshiki.DAO
             }
 
             container.RegisterType<IBuyProcessRepository, BuyProcessRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<IDeliveryZoneTypeRepository, DeliveryZoneTypeRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IDeliveryZoneRepository, DeliveryZoneRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IDepartmentRepository, DepartmentRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISubDepartmentRepository, SubDepartmentRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IEmployeeStatusRepository, EmployeeStatusRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IOrderSettingRepository, OrderSettingRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IPositionRepository, PositionRepository>(new HierarchicalLifetimeManager());

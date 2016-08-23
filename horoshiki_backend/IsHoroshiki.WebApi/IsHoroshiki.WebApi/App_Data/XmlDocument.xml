@@ -4,6 +4,27 @@
         <name>IsHoroshiki.WebApi</name>
     </assembly>
     <members>
+        <member name="T:IsHoroshiki.WebApi.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Startup.OAuthOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Startup.PublicClientId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Startup.ConfigureAuth(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
         <member name="T:IsHoroshiki.WebApi.UnityConfig">
             <summary>
             Êîíôèãóðàöèÿ Unity
@@ -585,6 +606,28 @@
             </summary>
             <param name="disposing"></param>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController">
+            <summary>
+            Контроллер ПодОтделы
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController._service">
+            <summary>
+            Cервис ПодОтделы
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubDepartmentService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис ПодОтделы</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController.Get">
+            <summary>
+            Получить все Отделы 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController">
             <summary>
             Контроллер Должности
@@ -695,23 +738,23 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController">
             <summary>
             Контроллер Типы зон доставки
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController._service">
             <summary>
             Cервис Типы зон доставки
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDeliveryZoneTypeService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDeliveryZoneService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Cервис Типы зон доставки</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZoneTypesController.Get">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController.Get">
             <summary>
             Получить все Типы зон доставки 
             </summary>

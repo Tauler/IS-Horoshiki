@@ -64,8 +64,9 @@
     <Compile Include="BaseDaoEntity.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntity.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\SubDepartment.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\PriceType.cs" />
-    <Compile Include="DaoEntities\NotEditableDictionaries\DeliveryZoneType.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\DeliveryZone.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\Position.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\Department.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\Subdivision.cs" />
@@ -75,12 +76,13 @@
     <Compile Include="DaoEntities\NotEditableDictionaries\BuyProcess.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BuyProcessConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntityConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\SubDepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PositionConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\EmployeeStatusConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\OrderSettingConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PriceTypeConfiguration.cs" />
-    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DeliveryZoneTypeConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\SubdivisionConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\StatusSiteConfiguration.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
@@ -98,9 +100,11 @@
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Accounts\Interfaces\IAccountRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BaseNotEditableDictionaryRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\ISubDepartmentRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\SubDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IBuyProcessRepository.cs" />
-    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDeliveryZoneTypeRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDeliveryZoneRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IEmployeeStatusRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IOrderSettingRepository.cs" />
@@ -113,7 +117,7 @@
     <Compile Include="Repositories\NotEditableDictionaries\DepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\OrderSettingRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\PriceTypeRepository.cs" />
-    <Compile Include="Repositories\NotEditableDictionaries\DeliveryZoneTypeRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\DeliveryZoneRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\SubdivisionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\StatusSiteRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\BuyProcessRepository.cs" />
@@ -124,6 +128,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Script\2016-08-23 заполнение справочников.sql" />
     <Content Include="Script\2016-08-20 нередактируемые справочники.sql" />
   </ItemGroup>
   <ItemGroup />

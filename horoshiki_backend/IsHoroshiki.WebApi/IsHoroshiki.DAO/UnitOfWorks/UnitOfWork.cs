@@ -51,6 +51,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private IDepartmentRepository _departmentRepository;
 
         /// <summary>
+        /// Репозиторий ПотОтделы
+        /// </summary>
+        private ISubDepartmentRepository _subDepartmentRepository;
+
+        /// <summary>
         /// Репозиторий Настройки заказа
         /// </summary>
         private IOrderSettingRepository _orderSettingRepository;
@@ -68,7 +73,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>
         /// Репозиторий Типы зон доставки
         /// </summary>
-        private IDeliveryZoneTypeRepository _deliveryZoneTypeRepository;
+        private IDeliveryZoneRepository _deliveryZoneRepository;
 
         /// <summary>
         /// Репозитарий авторизации
@@ -166,6 +171,22 @@ namespace IsHoroshiki.DAO.UnitOfWorks
             }
         }
 
+
+        /// <summary>  
+        /// Репозиторий ПотОтделы  
+        /// </summary>  
+        public ISubDepartmentRepository SubDepartmentRepository
+        {
+            get
+            {
+                if (this._subDepartmentRepository == null)
+                {
+                    this._subDepartmentRepository = new SubDepartmentRepository(_context);
+                }
+                return _subDepartmentRepository;
+            }
+        }
+        
         /// <summary>  
         /// Репозиторий Настройки заказа  
         /// </summary>  
@@ -214,15 +235,15 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Типы зон доставки  
         /// </summary>  
-        public IDeliveryZoneTypeRepository DeliveryZoneTypeRepository
+        public IDeliveryZoneRepository DeliveryZoneRepository
         {
             get
             {
-                if (this._deliveryZoneTypeRepository == null)
+                if (this._deliveryZoneRepository == null)
                 {
-                    this._deliveryZoneTypeRepository = new DeliveryZoneTypeRepository(_context);
+                    this._deliveryZoneRepository = new DeliveryZoneRepository(_context);
                 }
-                return _deliveryZoneTypeRepository;
+                return _deliveryZoneRepository;
             }
         }
 

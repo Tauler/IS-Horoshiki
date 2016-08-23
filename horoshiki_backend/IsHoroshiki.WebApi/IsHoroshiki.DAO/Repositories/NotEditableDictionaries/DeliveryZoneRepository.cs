@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
     /// <summary>
     /// Репозиторий Типы зон доставки
     /// </summary>
-    public class DeliveryZoneTypeRepository : BaseNotEditableDictionaryRepository<DeliveryZoneType>, IDeliveryZoneTypeRepository
+    public class DeliveryZoneRepository : BaseNotEditableDictionaryRepository<DeliveryZone>, IDeliveryZoneRepository
     {
         #region Конструктор
 
@@ -14,7 +14,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
         /// Конструктор  
         /// </summary>  
         /// <param name="context">Контекст выполнения БД</param>  
-        public DeliveryZoneTypeRepository(ApplicationDbContext context)
+        public DeliveryZoneRepository(ApplicationDbContext context)
             : base(context)
         {
 

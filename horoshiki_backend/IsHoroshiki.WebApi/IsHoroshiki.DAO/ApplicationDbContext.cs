@@ -59,6 +59,15 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
+        /// Список сущностей БД ПодОтделы
+        /// </summary>
+        public DbSet<SubDepartment> SubDepartments
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Список сущностей БД Настройки заказа
         /// </summary>
         public DbSet<OrderSetting> OrderSettings
@@ -88,7 +97,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Типы зон доставки
         /// </summary>
-        public DbSet<DeliveryZoneType> DeliveryZoneTypes
+        public DbSet<DeliveryZone> DeliveryZones
         {
             get;
             set;
@@ -104,6 +113,7 @@ namespace IsHoroshiki.DAO
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
+            
         }
 
         #endregion
@@ -126,7 +136,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new OrderSettingConfiguration());
             modelBuilder.Configurations.Add(new SubdivisionConfiguration());
             modelBuilder.Configurations.Add(new PriceTypeConfiguration());
-            modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
+            modelBuilder.Configurations.Add(new DeliveryZoneConfiguration());
         }
 
         #endregion

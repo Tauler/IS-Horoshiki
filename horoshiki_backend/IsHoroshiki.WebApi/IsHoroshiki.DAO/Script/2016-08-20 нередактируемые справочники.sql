@@ -70,9 +70,10 @@ CREATE TABLE PriceTypes
 
 go
 
-CREATE TABLE DeliveryZoneTypes
+CREATE TABLE DeliveryZones
 (
    Id   INT identity (1, 1)  NOT NULL,
    Value VARCHAR (100)		 NOT NULL,   
+   Time INT NOT NULL,
    PRIMARY KEY (Id)
 );

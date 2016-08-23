@@ -61,6 +61,8 @@
     <Compile Include="IBaseBusinessService.cs" />
     <Compile Include="BaseBusinessService.cs" />
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryService.cs" />
+    <Compile Include="NotEditableDictionaries\SubDepartmentService.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\ISubDepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPositionService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IDepartmentService.cs" />
@@ -74,7 +76,7 @@
     <Compile Include="NotEditableDictionaries\DepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\OrderSettingService.cs" />
     <Compile Include="NotEditableDictionaries\PriceTypeService.cs" />
-    <Compile Include="NotEditableDictionaries\DeliveryZoneTypeService.cs" />
+    <Compile Include="NotEditableDictionaries\DeliveryZoneService.cs" />
     <Compile Include="NotEditableDictionaries\SubdivisionService.cs" />
     <Compile Include="NotEditableDictionaries\StatusSiteService.cs" />
     <Compile Include="NotEditableDictionaries\BuyProcessService.cs" />

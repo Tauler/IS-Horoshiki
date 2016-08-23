@@ -7,9 +7,9 @@ using IsHoroshiki.DAO.UnitOfWorks;
 namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
 {
     /// <summary>
-    /// Сервис Типы зон доставки
+    /// Сервис Отделы
     /// </summary>
-    public class DeliveryZoneTypeService : BaseNotEditableDictionaryService<IDeliveryZoneTypeModel>, IDeliveryZoneTypeService
+    public class SubDepartmentService : BaseNotEditableDictionaryService<ISubDepartmentModel>, ISubDepartmentService
     {
         #region поля и свойства
 
@@ -26,21 +26,21 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
         /// Конструктор
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
-        public DeliveryZoneTypeService(UnitOfWork unitOfWork)
+        public SubDepartmentService(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         #endregion
 
-        #region IDeliveryZoneTypeService
+        #region IDepartmentService
 
         /// <summary>
         /// Получить все сущности
         /// </summary>
-        public override IEnumerable<IDeliveryZoneTypeModel> GetAll()
+        public override IEnumerable<ISubDepartmentModel> GetAll()
         {
-            return _unitOfWork.DeliveryZoneTypeRepository.GetAll().ToModelEntityList();
+            return _unitOfWork.SubDepartmentRepository.GetAll().ToModelEntityList();
         }
 
         #endregion

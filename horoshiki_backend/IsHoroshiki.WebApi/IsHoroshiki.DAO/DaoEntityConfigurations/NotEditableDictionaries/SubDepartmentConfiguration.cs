@@ -3,19 +3,19 @@
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
 {
     /// <summary>
-    /// Конфигурация Типы зон доставки
+    /// Конфигурация Подотделы
     /// </summary>
-    public class DeliveryZoneTypeConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<DeliveryZoneType>
+    public class SubDepartmentConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<SubDepartment>
     {
         #region Конструктор
 
         /// <summary>  
         /// Конструктор  
         /// </summary>  
-        public DeliveryZoneTypeConfiguration() 
-            : base(" DeliveryZoneTypes")
+        public SubDepartmentConfiguration() 
+            : base("SubDepartment")
         {
-
+            HasRequired(s => s.Department);
         }
 
         #endregion

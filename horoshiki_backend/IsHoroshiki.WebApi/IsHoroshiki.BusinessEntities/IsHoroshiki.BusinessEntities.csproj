@@ -73,10 +73,13 @@
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryModel.cs" />
     <Compile Include="NotEditableDictionaries\BuyProcessModel.cs" />
-    <Compile Include="NotEditableDictionaries\DeliveryZoneTypeModel.cs" />
+    <Compile Include="NotEditableDictionaries\DeliveryZoneModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\ISubDepartmentModel.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\SubDepartmentModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\SubDepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\DepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\EmployeeStatusModel.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryZoneTypeModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryZoneModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IDepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessModel.cs" />

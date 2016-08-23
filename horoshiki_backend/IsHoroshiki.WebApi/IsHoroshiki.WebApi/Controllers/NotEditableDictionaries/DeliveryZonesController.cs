@@ -10,14 +10,14 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
     /// Контроллер Типы зон доставки
     /// </summary>
     [Authorize]
-    public class DeliveryZoneTypesController : ApiController
+    public class DeliveryZonesController : ApiController
     {
         #region поля и свойства
 
         /// <summary>
         /// Cервис Типы зон доставки
         /// </summary>
-        private readonly IDeliveryZoneTypeService _service;
+        private readonly IDeliveryZoneService _service;
 
         #endregion
 
@@ -27,7 +27,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         /// Конструктор
         /// </summary>
         /// <param name="service">Cервис Типы зон доставки</param>
-        public DeliveryZoneTypesController(IDeliveryZoneTypeService service)
+        public DeliveryZonesController(IDeliveryZoneService service)
         {
             _service = service;
         }
@@ -40,8 +40,8 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         /// Получить все Типы зон доставки 
         /// </summary>
         /// <returns></returns>
-        // GET api/DeliveryZoneTypes
-        [ResponseType(typeof(IEnumerable<DeliveryZoneTypeModel>))]
+        // GET api/DeliveryZones
+        [ResponseType(typeof(IEnumerable<DeliveryZoneModel>))]
         public IHttpActionResult Get()
         {
             return Ok(_service.GetAll());

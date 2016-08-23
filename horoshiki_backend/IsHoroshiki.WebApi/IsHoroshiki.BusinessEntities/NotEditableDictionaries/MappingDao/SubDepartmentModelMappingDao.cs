@@ -8,16 +8,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
     /// </summary>
-    public static class DeliveryZoneModelMappingDao
+    public static class SubDepartmentModelMappingDao
     {
         /// <summary>
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static DeliveryZone ToDaoEntity(this IDeliveryZoneModel model)
+        public static SubDepartment ToDaoEntity(this ISubDepartmentModel model)
         {
-            return new DeliveryZone()
+            return new SubDepartment()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<DeliveryZone> ToDaoEntityList(this IEnumerable<IDeliveryZoneModel> models)
+        public static IEnumerable<SubDepartment> ToDaoEntityList(this IEnumerable<ISubDepartmentModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -39,9 +39,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IDeliveryZoneModel ToModelEntity(this DeliveryZone model)
+        public static ISubDepartmentModel ToModelEntity(this SubDepartment model)
         {
-            return new DeliveryZoneModel()
+            return new SubDepartmentModel()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IDeliveryZoneModel> ToModelEntityList(this IEnumerable<DeliveryZone> models)
+        public static IEnumerable<ISubDepartmentModel> ToModelEntityList(this IEnumerable<SubDepartment> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

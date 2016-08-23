@@ -1,9 +1,9 @@
 ﻿namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces
 {
     /// <summary>
-    /// Типы зон доставки
+    /// ПодОтделы
     /// </summary>
-    public interface IDeliveryZoneTypeModel : IBaseNotEditableDictionaryModel
+    public interface ISubDepartmentModel : IBaseNotEditableDictionaryModel
     {
     }
 }
