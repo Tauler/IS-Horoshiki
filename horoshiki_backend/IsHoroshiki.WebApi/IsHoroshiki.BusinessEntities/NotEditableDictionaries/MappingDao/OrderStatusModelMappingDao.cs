@@ -8,16 +8,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
     /// </summary>
-    public static class OrderSettingModelMappingDao
+    public static class OrderStatusModelMappingDao
     {
         /// <summary>
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static OrderSetting ToDaoEntity(this IOrderSettingModel model)
+        public static OrderStatus ToDaoEntity(this IOrderStatusModel model)
         {
-            return new OrderSetting()
+            return new OrderStatus()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<OrderSetting> ToDaoEntityList(this IEnumerable<IOrderSettingModel> models)
+        public static IEnumerable<OrderStatus> ToDaoEntityList(this IEnumerable<IOrderStatusModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -39,9 +39,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IOrderSettingModel ToModelEntity(this OrderSetting model)
+        public static IOrderStatusModel ToModelEntity(this OrderStatus model)
         {
-            return new OrderSettingModel()
+            return new OrderStatusModel()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IOrderSettingModel> ToModelEntityList(this IEnumerable<OrderSetting> models)
+        public static IEnumerable<IOrderStatusModel> ToModelEntityList(this IEnumerable<OrderStatus> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

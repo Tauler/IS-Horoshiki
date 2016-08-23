@@ -1,9 +1,9 @@
 ﻿namespace IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries
 {
     /// <summary>
-    /// Настройки заказа
+    /// Статус заказа
     /// </summary>
-    public class OrderSetting : BaseNotEditableDictionaryDaoEntity
+    public class OrderStatus : BaseNotEditableDictionaryDaoEntity
     {
     }
 }

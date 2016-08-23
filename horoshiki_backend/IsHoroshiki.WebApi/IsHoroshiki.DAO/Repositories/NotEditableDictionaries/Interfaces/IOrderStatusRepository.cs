@@ -3,9 +3,9 @@
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces
 {
     /// <summary>
-    /// Репозиторий Настройки заказа
+    /// Репозиторий Статус заказа
     /// </summary>
-    public interface IOrderSettingRepository : IBaseNotEditableDictionaryRepository<OrderSetting>
+    public interface IOrderStatusRepository : IBaseNotEditableDictionaryRepository<OrderStatus>
     {
        
     }

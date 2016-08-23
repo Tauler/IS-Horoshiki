@@ -56,9 +56,9 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private ISubDepartmentRepository _subDepartmentRepository;
 
         /// <summary>
-        /// Репозиторий Настройки заказа
+        /// Репозиторий Статус заказа
         /// </summary>
-        private IOrderSettingRepository _orderSettingRepository;
+        private IOrderStatusRepository _orderSettingRepository;
 
         /// <summary>
         /// Репозиторий Подразделения
@@ -193,15 +193,15 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         }
         
         /// <summary>  
-        /// Репозиторий Настройки заказа  
+        /// Репозиторий Статус заказа  
         /// </summary>  
-        public IOrderSettingRepository OrderSettingRepository
+        public IOrderStatusRepository OrderSettingRepository
         {
             get
             {
                 if (this._orderSettingRepository == null)
                 {
-                    this._orderSettingRepository = new OrderSettingRepository(_context);
+                    this._orderSettingRepository = new OrderStatusRepository(_context);
                 }
                 return _orderSettingRepository;
             }

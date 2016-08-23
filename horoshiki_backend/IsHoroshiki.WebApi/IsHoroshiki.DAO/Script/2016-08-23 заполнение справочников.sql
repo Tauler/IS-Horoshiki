@@ -111,3 +111,30 @@ GO
 
 INSERT INTO [dbo].[EmployeeStatuses] ([Value]) VALUES  ('Уволен')
 GO
+
+
+
+INSERT INTO [dbo].[DeliveryTimes] ([Value]) VALUES ('Срочный')
+GO
+
+INSERT INTO [dbo].[DeliveryTimes] ([Value]) VALUES ('Предварительный')
+GO
+
+
+INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('Принят')
+GO
+
+INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('Готовится')
+GO
+
+INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('Приготовлен')
+GO
+
+INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('Упакован')
+GO
+
+INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('У курьера')
+GO
+
+INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('Доставлен')
+GO

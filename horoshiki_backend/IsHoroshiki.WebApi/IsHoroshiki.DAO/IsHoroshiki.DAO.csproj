@@ -72,7 +72,7 @@
     <Compile Include="DaoEntities\NotEditableDictionaries\Department.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\SubDivision.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\EmployeeStatus.cs" />
-    <Compile Include="DaoEntities\NotEditableDictionaries\OrderSetting.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\OrderStatus.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\StatusSite.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\BuyProcess.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BuyProcessConfiguration.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PositionConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\EmployeeStatusConfiguration.cs" />
-    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\OrderSettingConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\OrderStatusConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PriceTypeConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\SubDivisionConfiguration.cs" />
@@ -111,7 +111,7 @@
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDeliveryZoneRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IEmployeeStatusRepository.cs" />
-    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IOrderSettingRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IOrderStatusRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IPositionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IPriceTypeRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IStatusSiteRepository.cs" />
@@ -119,7 +119,7 @@
     <Compile Include="Repositories\NotEditableDictionaries\PositionRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\EmployeeStatusRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\DepartmentRepository.cs" />
-    <Compile Include="Repositories\NotEditableDictionaries\OrderSettingRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\OrderStatusRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\PriceTypeRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\DeliveryZoneRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\SubDivisionRepository.cs" />

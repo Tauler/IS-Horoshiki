@@ -3,9 +3,9 @@
 namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
 {
     /// <summary>
-    /// Настройки заказа
+    /// Статус заказа
     /// </summary>
-    public class OrderSettingModel : BaseNotEditableDictionaryModel, IOrderSettingModel
+    public class OrderStatusModel : BaseNotEditableDictionaryModel, IOrderStatusModel
     {
     }
 }

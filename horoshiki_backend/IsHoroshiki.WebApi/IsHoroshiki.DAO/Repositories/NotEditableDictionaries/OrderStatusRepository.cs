@@ -4,9 +4,9 @@ using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
 {
     /// <summary>
-    /// Репозиторий Настройки заказа
+    /// Репозиторий Статус заказа
     /// </summary>
-    public class OrderSettingRepository : BaseNotEditableDictionaryRepository<OrderSetting>, IOrderSettingRepository
+    public class OrderStatusRepository : BaseNotEditableDictionaryRepository<OrderStatus>, IOrderStatusRepository
     {
         #region Конструктор
 
@@ -14,7 +14,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
         /// Конструктор  
         /// </summary>  
         /// <param name="context">Контекст выполнения БД</param>  
-        public OrderSettingRepository(ApplicationDbContext context)
+        public OrderStatusRepository(ApplicationDbContext context)
             : base(context)
         {
 

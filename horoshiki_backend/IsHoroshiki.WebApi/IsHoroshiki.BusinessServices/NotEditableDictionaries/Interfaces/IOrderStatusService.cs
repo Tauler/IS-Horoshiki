@@ -3,9 +3,9 @@
 namespace IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces
 {
     /// <summary>
-    /// Cервис Настройки заказа
+    /// Cервис Статус заказа
     /// </summary>
-    public interface IOrderSettingService : IBaseNotEditableDictionaryService<IOrderSettingModel>
+    public interface IOrderStatusService : IBaseNotEditableDictionaryService<IOrderStatusModel>
     {
        
     }

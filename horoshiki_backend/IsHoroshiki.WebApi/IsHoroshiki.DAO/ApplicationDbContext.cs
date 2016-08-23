@@ -68,9 +68,9 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
-        /// Список сущностей БД Настройки заказа
+        /// Список сущностей БД Статус заказа
         /// </summary>
-        public DbSet<OrderSetting> OrderSettings
+        public DbSet<OrderStatus> OrderSettings
         {
             get;
             set;
@@ -133,7 +133,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new PositionConfiguration());
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
-            modelBuilder.Configurations.Add(new OrderSettingConfiguration());
+            modelBuilder.Configurations.Add(new OrderStatusConfiguration());
             modelBuilder.Configurations.Add(new SubDivisionConfiguration());
             modelBuilder.Configurations.Add(new PriceTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryZoneConfiguration());

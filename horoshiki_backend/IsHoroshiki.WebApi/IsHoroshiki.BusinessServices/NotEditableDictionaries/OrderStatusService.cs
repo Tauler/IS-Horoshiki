@@ -7,9 +7,9 @@ using IsHoroshiki.DAO.UnitOfWorks;
 namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
 {
     /// <summary>
-    /// Сервис Настройки заказа
+    /// Сервис Статус заказа
     /// </summary>
-    public class OrderSettingService : BaseNotEditableDictionaryService<IOrderSettingModel>, IOrderSettingService
+    public class OrderStatusService : BaseNotEditableDictionaryService<IOrderStatusModel>, IOrderStatusService
     {
         #region поля и свойства
 
@@ -26,7 +26,7 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
         /// Конструктор
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
-        public OrderSettingService(UnitOfWork unitOfWork)
+        public OrderStatusService(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -38,7 +38,7 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
         /// <summary>
         /// Получить все сущности
         /// </summary>
-        public override IEnumerable<IOrderSettingModel> GetAll()
+        public override IEnumerable<IOrderStatusModel> GetAll()
         {
             return _unitOfWork.OrderSettingRepository.GetAll().ToModelEntityList();
         }

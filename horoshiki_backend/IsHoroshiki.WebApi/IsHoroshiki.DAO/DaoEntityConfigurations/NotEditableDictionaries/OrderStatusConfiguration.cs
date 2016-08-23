@@ -3,17 +3,17 @@
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
 {
     /// <summary>
-    /// Конфигурация Настройки заказа
+    /// Конфигурация Статус заказа
     /// </summary>
-    public class OrderSettingConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<OrderSetting>
+    public class OrderStatusConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<OrderStatus>
     {
         #region Конструктор
 
         /// <summary>  
         /// Конструктор  
         /// </summary>  
-        public OrderSettingConfiguration() 
-            : base("OrderSettings")
+        public OrderStatusConfiguration() 
+            : base("OrderStatuses")
         {
 
         }

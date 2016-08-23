@@ -249,7 +249,7 @@
     <Compile Include="Controllers\NotEditableDictionaries\PositionsController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\EmployeeStatusesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\DepartmentsController.cs" />
-    <Compile Include="Controllers\NotEditableDictionaries\OrderSettingsController.cs" />
+    <Compile Include="Controllers\NotEditableDictionaries\OrderStatusesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\PriceTypesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\DeliveryZonesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\SubdivisionsController.cs" />

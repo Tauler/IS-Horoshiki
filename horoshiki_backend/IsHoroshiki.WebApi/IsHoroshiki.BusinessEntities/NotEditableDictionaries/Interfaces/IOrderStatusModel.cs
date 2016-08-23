@@ -1,9 +1,9 @@
 ﻿namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces
 {
     /// <summary>
-    /// Настройки заказа
+    /// Статус заказа
     /// </summary>
-    public interface IOrderSettingModel : IBaseNotEditableDictionaryModel
+    public interface IOrderStatusModel : IBaseNotEditableDictionaryModel
     {
     }
 }

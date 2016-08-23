@@ -13,7 +13,7 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
         /// Конструктор  
         /// </summary>  
         public DeliveryTimeConfiguration() 
-            : base("DeliveryTime")
+            : base("DeliveryTimes")
         {
 
         }

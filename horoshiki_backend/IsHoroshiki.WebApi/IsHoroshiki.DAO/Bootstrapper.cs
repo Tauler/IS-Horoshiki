@@ -29,7 +29,7 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IDepartmentRepository, DepartmentRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<ISubDepartmentRepository, SubDepartmentRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IEmployeeStatusRepository, EmployeeStatusRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<IOrderSettingRepository, OrderSettingRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IOrderStatusRepository, OrderStatusRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IPositionRepository, PositionRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IPriceTypeRepository, PriceTypeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IStatusSiteRepository, StatusSiteRepository>(new HierarchicalLifetimeManager());
