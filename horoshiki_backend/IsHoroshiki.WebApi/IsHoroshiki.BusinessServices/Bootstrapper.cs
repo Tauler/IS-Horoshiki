@@ -34,9 +34,10 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IDepartmentService, DepartmentService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<ISubDepartmentService, SubDepartmentService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IOrderSettingService, OrderSettingService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
-            container.RegisterType<ISubdivisionService, SubdivisionService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISubDivisionService, SubDivisionService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IPriceTypeService, PriceTypeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IDeliveryZoneService, DeliveryZoneService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IDeliveryTimeService, DeliveryTimeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IUtilService, UtilService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 

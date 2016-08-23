@@ -8,19 +8,18 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
     /// </summary>
-    public static class DeliveryZoneModelMappingDao
+    public static class DeliveryTimeModelMappingDao
     {
         /// <summary>
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static DeliveryZone ToDaoEntity(this IDeliveryZoneModel model)
+        public static DeliveryTime ToDaoEntity(this IDeliveryTimeModel model)
         {
-            return new DeliveryZone()
+            return new DeliveryTime()
             {
                 Id = model.Id,
-                Time = model.Time,
                 Value = model.Value
             };
         }
@@ -30,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<DeliveryZone> ToDaoEntityList(this IEnumerable<IDeliveryZoneModel> models)
+        public static IEnumerable<DeliveryTime> ToDaoEntityList(this IEnumerable<IDeliveryTimeModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -40,12 +39,11 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IDeliveryZoneModel ToModelEntity(this DeliveryZone model)
+        public static IDeliveryTimeModel ToModelEntity(this DeliveryTime model)
         {
-            return new DeliveryZoneModel()
+            return new DeliveryTimeModel()
             {
                 Id = model.Id,
-                Time = model.Time,
                 Value = model.Value
             };
         }
@@ -55,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IDeliveryZoneModel> ToModelEntityList(this IEnumerable<DeliveryZone> models)
+        public static IEnumerable<IDeliveryTimeModel> ToModelEntityList(this IEnumerable<DeliveryTime> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

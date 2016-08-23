@@ -8,16 +8,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
     /// </summary>
-    public static class SubdivisionModelMappingDao
+    public static class SubDivisionModelMappingDao
     {
         /// <summary>
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static Subdivision ToDaoEntity(this ISubdivisionModel model)
+        public static SubDivision ToDaoEntity(this ISubDivisionModel model)
         {
-            return new Subdivision()
+            return new SubDivision()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<Subdivision> ToDaoEntityList(this IEnumerable<ISubdivisionModel> models)
+        public static IEnumerable<SubDivision> ToDaoEntityList(this IEnumerable<ISubDivisionModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -39,9 +39,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static ISubdivisionModel ToModelEntity(this Subdivision model)
+        public static ISubDivisionModel ToModelEntity(this SubDivision model)
         {
-            return new SubdivisionModel()
+            return new SubDivisionModel()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<ISubdivisionModel> ToModelEntityList(this IEnumerable<Subdivision> models)
+        public static IEnumerable<ISubDivisionModel> ToModelEntityList(this IEnumerable<SubDivision> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

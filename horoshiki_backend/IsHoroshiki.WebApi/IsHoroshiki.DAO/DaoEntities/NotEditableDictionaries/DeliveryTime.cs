@@ -1,9 +1,10 @@
 ﻿namespace IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries
 {
     /// <summary>
-    /// Подразделения
+    /// Время доставки
     /// </summary>
-    public class SubDivision : BaseNotEditableDictionaryDaoEntity
+    public class DeliveryTime : BaseNotEditableDictionaryDaoEntity
     {
+        
     }
 }

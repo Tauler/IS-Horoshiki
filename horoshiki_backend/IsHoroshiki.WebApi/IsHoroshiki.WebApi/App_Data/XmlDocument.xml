@@ -606,6 +606,28 @@
             </summary>
             <param name="disposing"></param>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController">
+            <summary>
+            Контроллер Время доставки
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController._service">
+            <summary>
+            Cервис Типы зон доставки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDeliveryTimeService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Время доставки</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController.Get">
+            <summary>
+            Получить все Время доставки
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController">
             <summary>
             Контроллер ПодОтделы
@@ -770,7 +792,7 @@
             Cервис Статус площадки
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubdivisionService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubDivisionService)">
             <summary>
             Конструктор
             </summary>

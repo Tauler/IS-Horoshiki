@@ -3,17 +3,17 @@
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
 {
     /// <summary>
-    /// Конфигурация Подразделения
+    /// Конфигурация Время доставки
     /// </summary>
-    public class SubDivisionConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<SubDivision>
+    public class DeliveryTimeConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<DeliveryTime>
     {
         #region Конструктор
 
         /// <summary>  
         /// Конструктор  
         /// </summary>  
-        public SubDivisionConfiguration() 
-            : base("SubDivisions")
+        public DeliveryTimeConfiguration() 
+            : base("DeliveryTime")
         {
 
         }

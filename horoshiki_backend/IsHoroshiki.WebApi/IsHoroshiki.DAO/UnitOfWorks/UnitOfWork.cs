@@ -63,7 +63,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>
         /// Репозиторий Подразделения
         /// </summary>
-        private ISubdivisionRepository _subdivisionRepository;
+        private ISubDivisionRepository _subdivisionRepository;
 
         /// <summary>
         /// Репозиторий Типы цен
@@ -74,6 +74,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// Репозиторий Типы зон доставки
         /// </summary>
         private IDeliveryZoneRepository _deliveryZoneRepository;
+
+        /// <summary>
+        /// Репозиторий Время доставки
+        /// </summary>
+        private IDeliveryTimeRepository _deliveryTimeRepository;
 
         /// <summary>
         /// Репозитарий авторизации
@@ -205,13 +210,13 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Подразделения  
         /// </summary>  
-        public ISubdivisionRepository SubdivisionRepository
+        public ISubDivisionRepository SubdivisionRepository
         {
             get
             {
                 if (this._subdivisionRepository == null)
                 {
-                    this._subdivisionRepository = new SubdivisionRepository(_context);
+                    this._subdivisionRepository = new SubDivisionRepository(_context);
                 }
                 return _subdivisionRepository;
             }
@@ -244,6 +249,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._deliveryZoneRepository = new DeliveryZoneRepository(_context);
                 }
                 return _deliveryZoneRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Время доставки  
+        /// </summary>  
+        public IDeliveryTimeRepository DeliveryTimeRepository
+        {
+            get
+            {
+                if (this._deliveryTimeRepository == null)
+                {
+                    this._deliveryTimeRepository = new DeliveryTimeRepository(_context);
+                }
+                return _deliveryTimeRepository;
             }
         }
 

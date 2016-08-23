@@ -7,5 +7,13 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
     /// </summary>
     public class DeliveryZoneModel : BaseNotEditableDictionaryModel, IDeliveryZoneModel
     {
+        /// <summary>
+        /// Время доставки в указанную зону в минутах
+        /// </summary>
+        public int Time
+        {
+            get;
+            set;
+        }
     }
 }

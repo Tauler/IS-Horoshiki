@@ -1,5 +1,4 @@
-﻿
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
 {
@@ -8,5 +7,22 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
     /// </summary>
     public class SubDepartmentModel : BaseNotEditableDictionaryModel, ISubDepartmentModel
     {
+        /// <summary>
+        /// Депратамент
+        /// </summary>
+        public int DepartmentId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Депратамент
+        /// </summary>
+        public IDepartmentModel Department
+        {
+            get;
+            set;
+        }
     }
 }

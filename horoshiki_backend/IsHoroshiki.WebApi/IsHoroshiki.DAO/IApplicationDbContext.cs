@@ -1,15 +1,13 @@
 ﻿using System.Data.Entity;
 using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
 using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries;
-using Microsoft.AspNet.Identity.EntityFramework;
-using IsHoroshiki.DAO.Identities;
 
 namespace IsHoroshiki.DAO
 {
     /// <summary>
     /// Контекст БД
     /// </summary>
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+    public class ApplicationDbContext : DbContext
     {
         #region поля и свойства
 
@@ -59,15 +57,6 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
-        /// Список сущностей БД ПодОтделы
-        /// </summary>
-        public DbSet<SubDepartment> SubDepartments
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Список сущностей БД Настройки заказа
         /// </summary>
         public DbSet<OrderSetting> OrderSettings
@@ -79,7 +68,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Подразделения
         /// </summary>
-        public DbSet<SubDivision> Subdivisions
+        public DbSet<Subdivision> Subdivisions
         {
             get;
             set;
@@ -97,7 +86,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Типы зон доставки
         /// </summary>
-        public DbSet<DeliveryZone> DeliveryZones
+        public DbSet<DeliveryZoneType> DeliveryZoneTypes
         {
             get;
             set;
@@ -113,7 +102,6 @@ namespace IsHoroshiki.DAO
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
-            
         }
 
         #endregion
@@ -134,10 +122,9 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
             modelBuilder.Configurations.Add(new OrderSettingConfiguration());
-            modelBuilder.Configurations.Add(new SubDivisionConfiguration());
+            modelBuilder.Configurations.Add(new SubdivisionConfiguration());
             modelBuilder.Configurations.Add(new PriceTypeConfiguration());
-            modelBuilder.Configurations.Add(new DeliveryZoneConfiguration());
-            modelBuilder.Configurations.Add(new DeliveryTimeConfiguration());
+            modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
         }
 
         #endregion

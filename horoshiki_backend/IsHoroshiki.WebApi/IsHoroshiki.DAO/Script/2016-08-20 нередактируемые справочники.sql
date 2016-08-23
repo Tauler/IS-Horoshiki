@@ -34,7 +34,7 @@ CREATE TABLE Departments
 
 go
 
-CREATE TABLE Subdivisions
+CREATE TABLE SubDivisions
 (
    Id   INT identity (1, 1)  NOT NULL,
    Value VARCHAR (100)		 NOT NULL,   

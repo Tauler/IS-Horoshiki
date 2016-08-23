@@ -3,9 +3,9 @@
 namespace IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces
 {
     /// <summary>
-    /// Cервис Подразделения
+    /// Cервис Время доставки
     /// </summary>
-    public interface ISubDivisionService : IBaseNotEditableDictionaryService<ISubDivisionModel>
+    public interface IDeliveryTimeService : IBaseNotEditableDictionaryService<IDeliveryTimeModel>
     {
        
     }

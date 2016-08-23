@@ -20,7 +20,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
             return new SubDepartment()
             {
                 Id = model.Id,
-                Value = model.Value
+                Value = model.Value,
+                DepartmentId = model.DepartmentId,
+                Department = model.Department?.ToDaoEntity()
             };
         }
 
@@ -44,7 +46,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
             return new SubDepartmentModel()
             {
                 Id = model.Id,
-                Value = model.Value
+                Value = model.Value,
+                DepartmentId = model.DepartmentId,
+                Department = model.Department?.ToModelEntity()
             };
         }
 

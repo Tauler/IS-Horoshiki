@@ -3,9 +3,9 @@
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces
 {
     /// <summary>
-    /// Репозиторий Подразделения
+    /// Репозиторий Время доставки
     /// </summary>
-    public interface ISubDivisionRepository : IBaseNotEditableDictionaryRepository<SubDivision>
+    public interface IDeliveryTimeRepository : IBaseNotEditableDictionaryRepository<DeliveryTime>
     {
 
     }

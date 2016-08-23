@@ -7,17 +7,17 @@ using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
 namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
 {
     /// <summary>
-    /// Контроллер Подразделения
+    /// Контроллер Время доставки
     /// </summary>
     [Authorize]
-    public class SubdivisionsController : ApiController
+    public class DeliveryTimesController : ApiController
     {
         #region поля и свойства
 
         /// <summary>
-        /// Cервис Статус площадки
+        /// Cервис Типы зон доставки
         /// </summary>
-        private readonly ISubDivisionService _service;
+        private readonly IDeliveryTimeService _service;
 
         #endregion
 
@@ -26,8 +26,8 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="service">Cервис Подразделения</param>
-        public SubdivisionsController(ISubDivisionService service)
+        /// <param name="service">Cервис Время доставки</param>
+        public DeliveryTimesController(IDeliveryTimeService service)
         {
             _service = service;
         }
@@ -37,11 +37,11 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         #region методы контроллера
 
         /// <summary>
-        /// Получить все Подразделения 
+        /// Получить все Время доставки
         /// </summary>
         /// <returns></returns>
-        // GET api/BuyProcesses
-        [ResponseType(typeof(IEnumerable<SubDivisionModel>))]
+        // GET api/DeliveryTimes
+        [ResponseType(typeof(IEnumerable<DeliveryTimeModel>))]
         public IHttpActionResult Get()
         {
             return Ok(_service.GetAll());

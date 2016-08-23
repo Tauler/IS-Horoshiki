@@ -13,7 +13,7 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
         /// Конструктор  
         /// </summary>  
         public DeliveryZoneConfiguration() 
-            : base(" DeliveryZones")
+            : base("DeliveryZones")
         {
 
         }

@@ -4,9 +4,9 @@ using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
 {
     /// <summary>
-    /// Репозиторий Подразделения
+    /// Репозиторий Время доставки
     /// </summary>
-    public class SubDivisionRepository : BaseNotEditableDictionaryRepository<SubDivision>, ISubDivisionRepository
+    public class DeliveryTimeRepository : BaseNotEditableDictionaryRepository<DeliveryTime>, IDeliveryTimeRepository
     {
         #region Конструктор
 
@@ -14,7 +14,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditableDictionaries
         /// Конструктор  
         /// </summary>  
         /// <param name="context">Контекст выполнения БД</param>  
-        public SubDivisionRepository(ApplicationDbContext context)
+        public DeliveryTimeRepository(ApplicationDbContext context)
             : base(context)
         {
 

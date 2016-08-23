@@ -73,8 +73,11 @@
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryModel.cs" />
     <Compile Include="NotEditableDictionaries\BuyProcessModel.cs" />
+    <Compile Include="NotEditableDictionaries\DeliveryTimeModel.cs" />
     <Compile Include="NotEditableDictionaries\DeliveryZoneModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryTimeModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\ISubDepartmentModel.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\DeliveryTimeTypeModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\SubDepartmentModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\SubDepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\DepartmentModel.cs" />
@@ -87,7 +90,7 @@
     <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPositionModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IOrderSettingModel.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\ISubdivisionModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\ISubDivisionModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IPriceTypeModel.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\PositionModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\EmployeeStatusModelMappingDao.cs" />
@@ -95,14 +98,14 @@
     <Compile Include="NotEditableDictionaries\MappingDao\OrderSettingModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\PriceTypeModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\DeliveryZoneTypeModelMappingDao.cs" />
-    <Compile Include="NotEditableDictionaries\MappingDao\SubdivisionModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\SubDivisionModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\StatusSiteModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\BuyProcessModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\OrderSettingModel.cs" />
     <Compile Include="NotEditableDictionaries\PositionModel.cs" />
     <Compile Include="NotEditableDictionaries\PriceTypeModel.cs" />
     <Compile Include="NotEditableDictionaries\StatusSiteModel.cs" />
-    <Compile Include="NotEditableDictionaries\SubdivisionModel.cs" />
+    <Compile Include="NotEditableDictionaries\SubDivisionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

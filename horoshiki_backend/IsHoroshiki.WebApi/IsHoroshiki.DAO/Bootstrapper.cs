@@ -33,8 +33,9 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IPositionRepository, PositionRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IPriceTypeRepository, PriceTypeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IStatusSiteRepository, StatusSiteRepository>(new HierarchicalLifetimeManager());
-            container.RegisterType<ISubdivisionRepository, SubdivisionRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISubDivisionRepository, SubDivisionRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountRepository, AccountRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IDeliveryTimeRepository, DeliveryTimeRepository>(new HierarchicalLifetimeManager());
 
             return container;
         }

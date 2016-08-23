@@ -3,9 +3,9 @@
 namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
 {
     /// <summary>
-    /// Подразделения
+    /// Время доставки
     /// </summary>
-    public class SubDivisionModel : BaseNotEditableDictionaryModel, ISubDivisionModel
+    public class DeliveryTimeModel : BaseNotEditableDictionaryModel, IDeliveryTimeModel
     {
     }
 }
