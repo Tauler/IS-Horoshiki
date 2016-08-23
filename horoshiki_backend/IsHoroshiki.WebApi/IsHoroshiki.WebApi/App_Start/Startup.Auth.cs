@@ -5,31 +5,38 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using IsHoroshiki.WebApi.Providers;
-using IsHoroshiki.WebApi.Models;
 
 namespace IsHoroshiki.WebApi
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static OAuthAuthorizationServerOptions OAuthOptions
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static string PublicClientId
         {
             get;
             private set;
         }
 
-        // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext(ApplicationDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
@@ -51,25 +58,6 @@ namespace IsHoroshiki.WebApi
             app.UseOAuthBearerTokens(OAuthOptions);
 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
-
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
+using IsHoroshiki.DAO.Accounts.Interfaces;
+using IsHoroshiki.DAO.Repositories.Accounts;
 
 namespace IsHoroshiki.DAO.UnitOfWorks
 {
@@ -67,7 +69,12 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// Репозиторий Типы зон доставки
         /// </summary>
         private IDeliveryZoneTypeRepository _deliveryZoneTypeRepository;
-        
+
+        /// <summary>
+        /// Репозитарий авторизации
+        /// </summary>
+        private IAccountRepository _accountRepository;
+
         #endregion
 
         #region Конструктор
@@ -216,6 +223,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._deliveryZoneTypeRepository = new DeliveryZoneTypeRepository(_context);
                 }
                 return _deliveryZoneTypeRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозитарий авторизации 
+        /// </summary>  
+        public IAccountRepository AccountRepository
+        {
+            get
+            {
+                if (this._accountRepository == null)
+                {
+                    this._accountRepository = new AccountRepository(_context);
+                }
+                return _accountRepository;
             }
         }
 

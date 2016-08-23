@@ -2,7 +2,6 @@
 using System.Web.Http;
 using System.Web.Http.Description;
 using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
 using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
 
 namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries

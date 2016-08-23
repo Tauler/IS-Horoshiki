@@ -3,6 +3,8 @@ using IsHoroshiki.BusinessServices.NotEditableDictionaries;
 using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.Practices.Unity;
+using IsHoroshiki.BusinessServices.Account.Interfaces;
+using IsHoroshiki.BusinessServices.Account;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -35,6 +37,7 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IPriceTypeService, PriceTypeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IDeliveryZoneTypeService, DeliveryZoneTypeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IUtilService, UtilService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 
             return container;
         }

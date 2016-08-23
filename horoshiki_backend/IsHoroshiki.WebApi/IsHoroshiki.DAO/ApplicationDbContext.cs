@@ -1,13 +1,15 @@
 ﻿using System.Data.Entity;
 using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
 using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries;
+using Microsoft.AspNet.Identity.EntityFramework;
+using IsHoroshiki.DAO.Identities;
 
 namespace IsHoroshiki.DAO
 {
     /// <summary>
     /// Контекст БД
     /// </summary>
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
         #region поля и свойства
 

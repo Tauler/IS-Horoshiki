@@ -12,7 +12,7 @@ namespace IsHoroshiki.BusinessServices
         /// <summary>
         /// true - если был вызван Dispose
         /// </summary>
-        private bool _disposed;
+        protected bool _disposed;
 
         #endregion
 

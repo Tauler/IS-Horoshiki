@@ -2,6 +2,8 @@
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 using Microsoft.Practices.Unity;
+using IsHoroshiki.DAO.Accounts.Interfaces;
+using IsHoroshiki.DAO.Repositories.Accounts;
 
 namespace IsHoroshiki.DAO
 {
@@ -31,6 +33,7 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IPriceTypeRepository, PriceTypeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IStatusSiteRepository, StatusSiteRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<ISubdivisionRepository, SubdivisionRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAccountRepository, AccountRepository>(new HierarchicalLifetimeManager());
 
             return container;
         }

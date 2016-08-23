@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using IsHoroshiki.WebApi.Models;
+using IsHoroshiki.BusinessServices.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.Account;
 
 namespace IsHoroshiki.WebApi.Controllers
 {
@@ -29,28 +29,13 @@ namespace IsHoroshiki.WebApi.Controllers
         private const string LocalLoginProvider = "Local";
 
         /// <summary>
-        /// 
+        /// Сервис аккаунтов
         /// </summary>
-        private ApplicationUserManager _userManager;
+        private readonly IAccountService _service;
 
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat
-        {
-            get;
-            private set;
-        }
-
+        /// <summary>
+        /// Менеджер аутентификации
+        /// </summary>
         private IAuthenticationManager Authentication
         {
             get
@@ -66,21 +51,12 @@ namespace IsHoroshiki.WebApi.Controllers
         /// <summary>
         /// Конструктор
         /// </summary>
-        public AccountController()
+        /// <param name="service">Сервис аккаунтов</param>
+        public AccountController(IAccountService service)
         {
+            _service = service;
         }
-
-        ///// <summary>
-        ///// Конструктор
-        ///// </summary>
-        ///// <param name="userManager"></param>
-        ///// <param name="accessTokenFormat"></param>
-        //public AccountController(ApplicationUserManager userManager, ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
-        //{
-        //    UserManager = userManager;
-        //    AccessTokenFormat = accessTokenFormat;
-        //}
-
+        
         #endregion
 
         #region Сервисы
@@ -109,9 +85,8 @@ namespace IsHoroshiki.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId<int>(), model.OldPassword,
-                model.NewPassword);
-            
+            IdentityResult result = await _service.ChangePasswordAsync(GetUserId(), model.OldPassword, model.NewPassword);
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -134,7 +109,7 @@ namespace IsHoroshiki.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId<int>(), model.NewPassword);
+            IdentityResult result = await _service.AddPasswordAsync(GetUserId(), model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -157,15 +132,13 @@ namespace IsHoroshiki.WebApi.Controllers
             }
 
             IdentityResult result;
-
             if (model.LoginProvider == LocalLoginProvider)
             {
-                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId<int>());
+                result = await _service.RemovePasswordAsync(GetUserId());
             }
             else
             {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId<int>(),
-                    new UserLoginInfo(model.LoginProvider, model.ProviderKey));
+                result = await _service.RemoveLoginAsync(GetUserId(), model.LoginProvider, model.ProviderKey);
             }
 
             if (!result.Succeeded)
@@ -189,13 +162,7 @@ namespace IsHoroshiki.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser()
-            {
-                UserName = model.UserName,
-                Email = model.UserName
-            };
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await _service.RegisterAsync(model.UserName, model.Password);
 
             if (!result.Succeeded)
             {
@@ -204,22 +171,7 @@ namespace IsHoroshiki.WebApi.Controllers
 
             return Ok();
         }
-
-        /// <summary>
-        /// Очистить ресурсы
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && _userManager != null)
-            {
-                _userManager.Dispose();
-                _userManager = null;
-            }
-
-            base.Dispose(disposing);
-        }
-
+  
         #endregion
 
         #region методы
@@ -256,6 +208,29 @@ namespace IsHoroshiki.WebApi.Controllers
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Найти Id пользователя
+        /// </summary>
+        /// <returns></returns>
+        private int GetUserId()
+        {
+            return User.Identity.GetUserId<int>();
+        }
+
+        /// <summary>
+        /// Очистить ресурсы
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && _service != null)
+            {
+                _service.Dispose();
+            }
+
+            base.Dispose(disposing);
         }
 
         #endregion

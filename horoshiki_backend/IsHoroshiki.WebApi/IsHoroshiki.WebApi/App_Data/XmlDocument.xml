@@ -4,11 +4,6 @@
         <name>IsHoroshiki.WebApi</name>
     </assembly>
     <members>
-        <member name="T:IsHoroshiki.WebApi.ApplicationUserManager">
-            <summary>
-            Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-            </summary>
-        </member>
         <member name="T:IsHoroshiki.WebApi.UnityConfig">
             <summary>
             Êîíôèãóðàöèÿ Unity
@@ -24,6 +19,17 @@
             Ðåãèñòðàöèÿ êîìïîíåíò
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.WebApiConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
         </member>
         <member name="M:IsHoroshiki.WebApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
@@ -512,15 +518,21 @@
             
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.AccountController._userManager">
+        <member name="F:IsHoroshiki.WebApi.Controllers.AccountController._service">
             <summary>
-            
+            Сервис аккаунтов
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.#ctor">
+        <member name="P:IsHoroshiki.WebApi.Controllers.AccountController.Authentication">
+            <summary>
+            Менеджер аутентификации
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.#ctor(IsHoroshiki.BusinessServices.Account.Interfaces.IAccountService)">
             <summary>
             Конструктор
             </summary>
+            <param name="service">Сервис аккаунтов</param>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Logout">
             <summary>
@@ -528,37 +540,31 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.ChangePassword(IsHoroshiki.WebApi.Models.ChangePasswordBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.ChangePassword(IsHoroshiki.BusinessEntities.Account.ChangePasswordBindingModel)">
             <summary>
             Изменить пароль
             </summary>
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.SetPassword(IsHoroshiki.WebApi.Models.SetPasswordBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.SetPassword(IsHoroshiki.BusinessEntities.Account.SetPasswordBindingModel)">
             <summary>
             Установить пароль
             </summary>
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.RemoveLogin(IsHoroshiki.WebApi.Models.RemoveLoginBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.RemoveLogin(IsHoroshiki.BusinessEntities.Account.RemoveLoginBindingModel)">
             <summary>
             Удалить пользователя
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Register(IsHoroshiki.WebApi.Models.RegisterBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Register(IsHoroshiki.BusinessEntities.Account.RegisterBindingModel)">
             <summary>
             Создать пользователя
             </summary>
             <param name="model">Данные</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Dispose(System.Boolean)">
-            <summary>
-            Очистить ресурсы
-            </summary>
-            <param name="disposing"></param>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
             <summary>
@@ -566,6 +572,18 @@
             </summary>
             <param name="result"></param>
             <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetUserId">
+            <summary>
+            Найти Id пользователя
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Dispose(System.Boolean)">
+            <summary>
+            Очистить ресурсы
+            </summary>
+            <param name="disposing"></param>
         </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController">
             <summary>
@@ -819,120 +837,56 @@
             Обработчик, возвращающий результ запроса, обернутый в объект ApiResponse
             </summary>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Models.CustomRole">
+        <member name="T:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider">
+            <summary>
+            Провайдер авторизации
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider._publicClientId">
             <summary>
             
             </summary>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Models.CustomRoleStore">
+        <member name="M:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider.#ctor(System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="publicClientId"></param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider.GrantResourceOwnerCredentials(Microsoft.Owin.Security.OAuth.OAuthGrantResourceOwnerCredentialsContext)">
             <summary>
             
             </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Models.CustomUserClaim">
+        <member name="M:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider.TokenEndpoint(Microsoft.Owin.Security.OAuth.OAuthTokenEndpointContext)">
             <summary>
             
             </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Models.CustomUserLogin">
+        <member name="M:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider.ValidateClientAuthentication(Microsoft.Owin.Security.OAuth.OAuthValidateClientAuthenticationContext)">
             <summary>
             
             </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Models.CustomUserRole">
+        <member name="M:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider.ValidateClientRedirectUri(Microsoft.Owin.Security.OAuth.OAuthValidateClientRedirectUriContext)">
             <summary>
             
             </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Models.CustomUserStore">
+        <member name="M:IsHoroshiki.WebApi.Providers.ApplicationOAuthProvider.CreateProperties(System.String)">
             <summary>
             
             </summary>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Models.SetPasswordBindingModel">
-            <summary>
-            Изменить пароль пользователя
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.SetPasswordBindingModel.NewPassword">
-            <summary>
-            Новый пароль
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.SetPasswordBindingModel.ConfirmPassword">
-            <summary>
-            Изменить пароль
-            </summary>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Models.UserInfoModel">
-            <summary>
-            Информация о пользователу
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.UserInfoModel.Username">
-            <summary>
-            Логин
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.UserInfoModel.HasRegistered">
-            <summary>
-            true - зарегистрирован как внешний пользователь
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.UserInfoModel.LoginProvider">
-            <summary>
-            Провайдер
-            </summary>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Models.ApplicationUser">
-            <summary>
-            Пользователь системы
-            </summary>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Models.RegisterBindingModel">
-            <summary>
-            Данные регистрации пользователя
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.RegisterBindingModel.UserName">
-            <summary>
-            Логин
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.RegisterBindingModel.Password">
-            <summary>
-            Пароль
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.RegisterBindingModel.ConfirmPassword">
-            <summary>
-            Потдверждение пароля
-            </summary>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Models.RegisterExternalBindingModel">
-            <summary>
-            Äàííûå ðåãèñòðàöèè àíîíèìíîãî ïîëüçîâàòåëÿ
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.RegisterExternalBindingModel.Email">
-            <summary>
-            Ïî÷òà
-            </summary>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Models.RemoveLoginBindingModel">
-            <summary>
-            Удалить пользователя
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.RemoveLoginBindingModel.LoginProvider">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Models.RemoveLoginBindingModel.ProviderKey">
-            <summary>
-            
-            </summary>
+            <param name="userName"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
