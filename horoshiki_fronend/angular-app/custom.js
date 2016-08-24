@@ -41,7 +41,7 @@ function redirect404(){
 }
 
 function redirectToMainSite(){
-    redirect("http://site.ru");
+    redirect("/");
 }
 
 function redirect(url){
