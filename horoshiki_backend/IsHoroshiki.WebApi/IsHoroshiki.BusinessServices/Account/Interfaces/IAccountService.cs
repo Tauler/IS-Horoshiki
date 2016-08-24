@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using IsHoroshiki.BusinessEntities.Account;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,10 +14,9 @@ namespace IsHoroshiki.BusinessServices.Account.Interfaces
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="userName">Имя пользователя</param>
-        /// <param name="password">Пароль</param>
+        /// <param name="userModel">Пользователь</param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterAsync(string userName, string password);
+        Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel);
 
         /// <summary>
         /// Найти пользоватея
