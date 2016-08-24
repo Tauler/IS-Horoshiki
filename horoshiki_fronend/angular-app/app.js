@@ -12,7 +12,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'mainControllers',
     'backendServices',
     'accountServices',
-    'translationServices'
+    'translationServices',
+    'yaMap'
 ]);
 
 horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
