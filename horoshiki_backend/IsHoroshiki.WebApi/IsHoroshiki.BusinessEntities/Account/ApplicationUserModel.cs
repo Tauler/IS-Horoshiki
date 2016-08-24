@@ -7,7 +7,7 @@ namespace IsHoroshiki.BusinessEntities.Account
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public class ApplicationUserModel : IApplicationUserModel
+    public class ApplicationUserModel : IApplicationUserModel 
     {
         /// <summary>
         /// Id

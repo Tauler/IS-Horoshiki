@@ -5,7 +5,7 @@ namespace IsHoroshiki.BusinessEntities.Account
     /// <summary>
     /// Изменить пароль пользователя
     /// </summary>
-    public class SetPasswordBindingModel
+    public class SetPasswordBindingModel 
     {
         /// <summary>
         /// Новый пароль

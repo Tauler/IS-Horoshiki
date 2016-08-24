@@ -7,5 +7,6 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
     /// </summary>
     public class DeliveryTimeModel : BaseNotEditableDictionaryModel, IDeliveryTimeModel
     {
+
     }
 }

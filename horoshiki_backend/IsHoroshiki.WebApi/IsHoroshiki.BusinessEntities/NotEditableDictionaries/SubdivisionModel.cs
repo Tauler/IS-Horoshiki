@@ -7,5 +7,6 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
     /// </summary>
     public class SubDivisionModel : BaseNotEditableDictionaryModel, ISubDivisionModel
     {
+
     }
 }

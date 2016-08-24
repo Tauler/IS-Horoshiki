@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
     /// Конфигурация Время доставки
     /// </summary>
     public class DeliveryTimeConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<DeliveryTime>
-    {
+    { 
         #region Конструктор
 
         /// <summary>  

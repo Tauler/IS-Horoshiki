@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace IsHoroshiki.BusinessEntities.Account
 {
-    public class ChangePasswordBindingModel
+    public class ChangePasswordBindingModel 
     {
         [Required]
         [DataType(DataType.Password)]
