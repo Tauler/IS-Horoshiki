@@ -77,9 +77,18 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
+        /// Список сущностей БД Оплата заказа
+        /// </summary>
+        public DbSet<OrderPay> OrderPays
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Список сущностей БД Подразделения
         /// </summary>
-        public DbSet<SubDivision> Subdivisions
+        public DbSet<SubDivision> SubDivisions
         {
             get;
             set;
@@ -134,6 +143,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
             modelBuilder.Configurations.Add(new OrderStatusConfiguration());
+            modelBuilder.Configurations.Add(new OrderPayConfiguration());
             modelBuilder.Configurations.Add(new SubDivisionConfiguration());
             modelBuilder.Configurations.Add(new PriceTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryZoneConfiguration());

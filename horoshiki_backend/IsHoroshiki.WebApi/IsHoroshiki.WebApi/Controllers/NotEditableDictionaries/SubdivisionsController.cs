@@ -10,7 +10,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
     /// Контроллер Подразделения
     /// </summary>
     [Authorize]
-    public class SubdivisionsController : ApiController
+    public class SubDivisionsController : ApiController
     {
         #region поля и свойства
 
@@ -27,7 +27,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         /// Конструктор
         /// </summary>
         /// <param name="service">Cервис Подразделения</param>
-        public SubdivisionsController(ISubDivisionService service)
+        public SubDivisionsController(ISubDivisionService service)
         {
             _service = service;
         }

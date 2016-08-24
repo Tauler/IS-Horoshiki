@@ -63,6 +63,8 @@
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryService.cs" />
     <Compile Include="NotEditableDictionaries\DeliveryTimeService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryTimeService.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IOrderPayService.cs" />
+    <Compile Include="NotEditableDictionaries\OrderPayService.cs" />
     <Compile Include="NotEditableDictionaries\SubDepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\ISubDepartmentService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusService.cs" />

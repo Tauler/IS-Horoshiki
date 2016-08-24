@@ -51,19 +51,24 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private IDepartmentRepository _departmentRepository;
 
         /// <summary>
-        /// Репозиторий ПотОтделы
+        /// Репозиторий Подoтделы
         /// </summary>
         private ISubDepartmentRepository _subDepartmentRepository;
 
         /// <summary>
         /// Репозиторий Статус заказа
         /// </summary>
-        private IOrderStatusRepository _orderSettingRepository;
+        private IOrderStatusRepository _orderStatusRepository;
+
+        /// <summary>
+        /// Репозиторий Оплата заказа
+        /// </summary>
+        private IOrderPayRepository _orderPayRepository;
 
         /// <summary>
         /// Репозиторий Подразделения
         /// </summary>
-        private ISubDivisionRepository _subdivisionRepository;
+        private ISubDivisionRepository _subDivisionRepository;
 
         /// <summary>
         /// Репозиторий Типы цен
@@ -178,7 +183,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
 
 
         /// <summary>  
-        /// Репозиторий ПотОтделы  
+        /// Репозиторий Подoтделы  
         /// </summary>  
         public ISubDepartmentRepository SubDepartmentRepository
         {
@@ -195,30 +200,45 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Статус заказа  
         /// </summary>  
-        public IOrderStatusRepository OrderSettingRepository
+        public IOrderStatusRepository OrderStatusRepository
         {
             get
             {
-                if (this._orderSettingRepository == null)
+                if (this._orderStatusRepository == null)
                 {
-                    this._orderSettingRepository = new OrderStatusRepository(_context);
+                    this._orderStatusRepository = new OrderStatusRepository(_context);
                 }
-                return _orderSettingRepository;
+                return _orderStatusRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Оплата заказа  
+        /// </summary>  
+        public IOrderPayRepository OrderPayRepository
+        {
+            get
+            {
+                if (this._orderPayRepository == null)
+                {
+                    this._orderPayRepository = new OrderPayRepository(_context);
+                }
+                return _orderPayRepository;
             }
         }
 
         /// <summary>  
         /// Репозиторий Подразделения  
         /// </summary>  
-        public ISubDivisionRepository SubdivisionRepository
+        public ISubDivisionRepository SubDivisionRepository
         {
             get
             {
-                if (this._subdivisionRepository == null)
+                if (this._subDivisionRepository == null)
                 {
-                    this._subdivisionRepository = new SubDivisionRepository(_context);
+                    this._subDivisionRepository = new SubDivisionRepository(_context);
                 }
-                return _subdivisionRepository;
+                return _subDivisionRepository;
             }
         }
 

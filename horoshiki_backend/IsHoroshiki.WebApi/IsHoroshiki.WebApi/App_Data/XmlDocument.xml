@@ -628,6 +628,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController">
+            <summary>
+            Контроллер Оплата заказа
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController._service">
+            <summary>
+            Cервис Оплата заказа
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IOrderPayService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Оплата заказа</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController.Get">
+            <summary>
+            Получить все Оплата заказа 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController">
             <summary>
             Контроллер ПодОтделы
@@ -723,14 +745,14 @@
         </member>
         <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController._service">
             <summary>
-            Cервис Статус площадки
+            Cервис Статус заказа
             </summary>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IOrderStatusService)">
             <summary>
             Конструктор
             </summary>
-            <param name="service">Cервис Статус площадки</param>
+            <param name="service">Cервис Статус заказа</param>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController.Get">
             <summary>
@@ -782,23 +804,23 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController">
             <summary>
             Контроллер Подразделения
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController._service">
             <summary>
             Cервис Статус площадки
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubDivisionService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubDivisionService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Cервис Подразделения</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubdivisionsController.Get">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController.Get">
             <summary>
             Получить все Подразделения 
             </summary>

@@ -7,17 +7,17 @@ using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
 namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
 {
     /// <summary>
-    /// Контроллер Статус заказа
+    /// Контроллер Оплата заказа
     /// </summary>
     [Authorize]
-    public class OrderStatusesController : ApiController
+    public class OrderPaysController : ApiController
     {
         #region поля и свойства
 
         /// <summary>
-        /// Cервис Статус заказа
+        /// Cервис Оплата заказа
         /// </summary>
-        private readonly IOrderStatusService _service;
+        private readonly IOrderPayService _service;
 
         #endregion
 
@@ -26,8 +26,8 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="service">Cервис Статус заказа</param>
-        public OrderStatusesController(IOrderStatusService service)
+        /// <param name="service">Cервис Оплата заказа</param>
+        public OrderPaysController(IOrderPayService service)
         {
             _service = service;
         }
@@ -37,11 +37,11 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditableDictionaries
         #region методы контроллера
 
         /// <summary>
-        /// Получить все Статус заказа 
+        /// Получить все Оплата заказа 
         /// </summary>
         /// <returns></returns>
-        // GET api/OrderStatuses
-        [ResponseType(typeof(IEnumerable<OrderStatusModel>))]
+        // GET api/OrderPays
+        [ResponseType(typeof(IEnumerable<OrderPayModel>))]
         public IHttpActionResult Get()
         {
             return Ok(_service.GetAll());

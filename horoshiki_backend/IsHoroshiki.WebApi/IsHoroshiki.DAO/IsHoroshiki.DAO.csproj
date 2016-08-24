@@ -65,6 +65,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntity.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\DeliveryTime.cs" />
+    <Compile Include="DaoEntities\NotEditableDictionaries\OrderPay.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\SubDepartment.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\PriceType.cs" />
     <Compile Include="DaoEntities\NotEditableDictionaries\DeliveryZone.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BuyProcessConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\BaseNotEditableDictionaryDaoEntityConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DeliveryTimeConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\OrderPayConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\SubDepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DepartmentConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\PositionConfiguration.cs" />
@@ -104,7 +106,9 @@
     <Compile Include="Repositories\NotEditableDictionaries\BaseNotEditableDictionaryRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\DeliveryTimeRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IDeliveryTimeRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IOrderPayRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\ISubDepartmentRepository.cs" />
+    <Compile Include="Repositories\NotEditableDictionaries\OrderPayRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\SubDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryRepository.cs" />
     <Compile Include="Repositories\NotEditableDictionaries\Interfaces\IBuyProcessRepository.cs" />

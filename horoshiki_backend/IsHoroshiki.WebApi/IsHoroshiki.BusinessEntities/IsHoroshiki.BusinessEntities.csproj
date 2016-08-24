@@ -76,9 +76,12 @@
     <Compile Include="NotEditableDictionaries\DeliveryTimeModel.cs" />
     <Compile Include="NotEditableDictionaries\DeliveryZoneModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryTimeModel.cs" />
+    <Compile Include="NotEditableDictionaries\Interfaces\IOrderPayModel.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\ISubDepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\DeliveryTimeTypeModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\MappingDao\OrderPayModelMappingDao.cs" />
     <Compile Include="NotEditableDictionaries\MappingDao\SubDepartmentModelMappingDao.cs" />
+    <Compile Include="NotEditableDictionaries\OrderPayModel.cs" />
     <Compile Include="NotEditableDictionaries\SubDepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\DepartmentModel.cs" />
     <Compile Include="NotEditableDictionaries\EmployeeStatusModel.cs" />

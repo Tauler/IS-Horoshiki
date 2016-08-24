@@ -40,7 +40,7 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
         /// </summary>
         public override IEnumerable<IOrderStatusModel> GetAll()
         {
-            return _unitOfWork.OrderSettingRepository.GetAll().ToModelEntityList();
+            return _unitOfWork.OrderStatusRepository.GetAll().ToModelEntityList();
         }
 
         #endregion

@@ -245,6 +245,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\DeliveryTimesController.cs" />
+    <Compile Include="Controllers\NotEditableDictionaries\OrderPaysController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\SubDepartmentsController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\PositionsController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\EmployeeStatusesController.cs" />
@@ -252,7 +253,7 @@
     <Compile Include="Controllers\NotEditableDictionaries\OrderStatusesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\PriceTypesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\DeliveryZonesController.cs" />
-    <Compile Include="Controllers\NotEditableDictionaries\SubdivisionsController.cs" />
+    <Compile Include="Controllers\NotEditableDictionaries\SubDivisionsController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\StatusSitesController.cs" />
     <Compile Include="Controllers\NotEditableDictionaries\BuyProcessesController.cs" />
     <Compile Include="Controllers\UtilsController.cs" />

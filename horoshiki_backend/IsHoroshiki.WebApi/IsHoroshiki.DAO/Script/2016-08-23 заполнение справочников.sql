@@ -138,3 +138,13 @@ GO
 
 INSERT INTO [dbo].[OrderStatuses] ([Value]) VALUES ('Доставлен')
 GO
+
+
+
+INSERT INTO [dbo].[OrderPays] ([Value]) VALUES ('Не оплачен')
+GO
+
+INSERT INTO [dbo].[OrderPays] ([Value]) VALUES ('Оплачен')
+GO
+
+INSERT

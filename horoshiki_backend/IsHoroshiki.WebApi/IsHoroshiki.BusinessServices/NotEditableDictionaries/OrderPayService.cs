@@ -7,9 +7,9 @@ using IsHoroshiki.DAO.UnitOfWorks;
 namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
 {
     /// <summary>
-    /// Сервис Подразделения
+    /// Сервис Оплата заказа
     /// </summary>
-    public class SubDivisionService : BaseNotEditableDictionaryService<ISubDivisionModel>, ISubDivisionService
+    public class OrderPayService : BaseNotEditableDictionaryService<IOrderPayModel>, IOrderPayService
     {
         #region поля и свойства
 
@@ -26,21 +26,21 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
         /// Конструктор
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
-        public SubDivisionService(UnitOfWork unitOfWork)
+        public OrderPayService(UnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
         #endregion
 
-        #region ISubDivisioneService
+        #region IOrderSettingService
 
         /// <summary>
         /// Получить все сущности
         /// </summary>
-        public override IEnumerable<ISubDivisionModel> GetAll()
+        public override IEnumerable<IOrderPayModel> GetAll()
         {
-            return _unitOfWork.SubDivisionRepository.GetAll().ToModelEntityList();
+            return _unitOfWork.OrderPayRepository.GetAll().ToModelEntityList();
         }
 
         #endregion
