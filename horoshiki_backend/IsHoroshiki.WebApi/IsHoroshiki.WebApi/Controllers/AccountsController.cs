@@ -11,6 +11,8 @@ using IsHoroshiki.BusinessEntities.Account;
 using System.Web.Http.ModelBinding;
 using System.Text;
 using IsHoroshiki.DAO.Helpers;
+using System.Web.Http.Description;
+using IsHoroshiki.BusinessEntities.Paging;
 
 namespace IsHoroshiki.WebApi.Controllers
 {
@@ -19,7 +21,7 @@ namespace IsHoroshiki.WebApi.Controllers
     /// </summary>
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountsController : ApiController
     {
         #region поля и свойства
 
@@ -52,7 +54,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// Конструктор
         /// </summary>
         /// <param name="service">Сервис аккаунтов</param>
-        public AccountController(IAccountService service)
+        public AccountsController(IAccountService service)
         {
             _service = service;
         }
@@ -60,6 +62,32 @@ namespace IsHoroshiki.WebApi.Controllers
         #endregion
 
         #region Сервисы
+
+        #region методы контроллера
+
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        [ResponseType(typeof(PagedResult<ApplicationUserModel>))]
+        public async Task<IHttpActionResult> Get(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        {
+            try
+            {
+                var list = await _service.GetAll(pageNo, pageSize, sortField, isAscending);
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Создать пользователя

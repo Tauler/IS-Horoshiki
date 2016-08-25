@@ -12,12 +12,12 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
     [TestClass]
     public class AccountControllerTest
     {
-        AccountController _controller;
+        AccountsController _controller;
 
         [TestInitialize]
         public void SetupContext()
         {
-            _controller = new AccountController(new AccountService());
+            _controller = new AccountsController(new AccountService());
         }
 
         /// <summary>
@@ -40,13 +40,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 FirstName = "FirstName" + Guid.NewGuid(),
                 LastName = "LastName" + Guid.NewGuid(),
-                EmployeeStatusId = 1,
                 EmployeeStatus = new EmployeeStatusModel()
                 {
                     Id= 1,
                     Value = "Новый статус"
                 },
-                PositionId = 1,
                 Position = new PositionModel
                 {
                     Id = 1,

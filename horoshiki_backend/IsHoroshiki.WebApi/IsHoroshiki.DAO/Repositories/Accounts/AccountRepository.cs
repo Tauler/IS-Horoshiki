@@ -4,7 +4,9 @@ using IsHoroshiki.DAO.Identities;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
-using System;
+using System.Linq;
+using System.Collections.Generic;
+using IsHoroshiki.DAO.Helpers;
 
 namespace IsHoroshiki.DAO.Repositories.Accounts
 {
@@ -42,6 +44,40 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         #endregion
 
         #region методы
+
+
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public Task<IEnumerable<ApplicationUser>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        {
+            int skip = (pageNo - 1) * pageSize;
+
+            var list = _ctx.Users
+                .OrderBy(c => c.Id)
+                .Skip(skip)
+                .Take(pageSize)
+                .OrderByPropertyName(sortField, isAscending)
+                .ToList()
+                .AsEnumerable();
+
+            return Task.FromResult(list);
+        }
+
+        /// <summary>
+        /// Количество всех пользователей
+        /// </summary>
+        /// <returns></returns>
+        public Task<int> CountAsync()
+        {
+            var result = _userManager.Users.Count();
+            return Task.FromResult<int>(result);
+        }
 
         /// <summary>
         /// Зарегистрировать пользователя

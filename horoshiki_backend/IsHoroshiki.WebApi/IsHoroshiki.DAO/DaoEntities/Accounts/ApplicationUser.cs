@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IsHoroshiki.DAO.Identities
 {
@@ -82,7 +83,7 @@ namespace IsHoroshiki.DAO.Identities
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        public EmployeeStatus EmployeeStatus
+        public virtual EmployeeStatus EmployeeStatus
         {
             get;
             set;
@@ -100,7 +101,7 @@ namespace IsHoroshiki.DAO.Identities
         /// <summary>
         /// Должности
         /// </summary>
-        public Position Position
+        public virtual Position Position
         {
             get;
             set;

@@ -104,6 +104,7 @@
     <Compile Include="NotEditableDictionaries\PriceTypeModel.cs" />
     <Compile Include="NotEditableDictionaries\StatusSiteModel.cs" />
     <Compile Include="NotEditableDictionaries\SubDivisionModel.cs" />
+    <Compile Include="Paging\PagedResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

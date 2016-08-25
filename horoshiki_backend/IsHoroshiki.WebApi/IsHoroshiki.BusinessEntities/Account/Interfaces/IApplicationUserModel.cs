@@ -74,25 +74,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        int EmployeeStatusId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Статус сотрудника
-        /// </summary>
         IEmployeeStatusModel EmployeeStatus
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Должности
-        /// </summary>
-        int PositionId
         {
             get;
             set;
