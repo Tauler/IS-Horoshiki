@@ -7,13 +7,16 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'ngSanitize',
     'ngResource',
     'ngCookies',
+    'yaMap',
     'layoutControllers',
     'errorControllers',
     'mainControllers',
+    'usersControllers',
     'backendServices',
     'accountServices',
     'translationServices',
-    'yaMap'
+    'usersServices'
+
 ]);
 
 horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
@@ -27,6 +30,12 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 controller: 'MainViewController',
                 pageId: 'mainViewPage',
                 title: 'Главная страница'
+            })
+            .when('/users', {
+                templateUrl: '/angular-html/users.view.html',
+                controller: 'UsersViewController',
+                pageId: 'usersViewPage',
+                title: 'Просмотр пользователей'
             })
             .when('/error', {
                 templateUrl: '/angular-html/error.view.html',
