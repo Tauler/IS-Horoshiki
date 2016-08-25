@@ -15,7 +15,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static Position ToDaoEntity(this IPositionModel model)
+        public static Position ToDaoEntity(this PositionModel model)
         {
             return new Position()
             {
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<Position> ToDaoEntityList(this IEnumerable<IPositionModel> models)
+        public static IEnumerable<Position> ToDaoEntityList(this IEnumerable<PositionModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -39,7 +39,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IPositionModel ToModelEntity(this Position model)
+        public static PositionModel ToModelEntity(this Position model)
         {
             return new PositionModel()
             {
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IPositionModel> ToModelEntityList(this IEnumerable<Position> models)
+        public static IEnumerable<PositionModel> ToModelEntityList(this IEnumerable<Position> models)
         {
             return models.Select(model => model.ToModelEntity());
         }
