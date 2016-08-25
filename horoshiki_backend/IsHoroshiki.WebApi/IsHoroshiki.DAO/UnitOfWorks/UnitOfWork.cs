@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
-using IsHoroshiki.DAO.Accounts.Interfaces;
 using IsHoroshiki.DAO.Repositories.Accounts;
+using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
 
 namespace IsHoroshiki.DAO.UnitOfWorks
 {

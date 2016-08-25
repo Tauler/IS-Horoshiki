@@ -147,4 +147,51 @@ GO
 INSERT INTO [dbo].[OrderPays] ([Value]) VALUES ('Оплачен')
 GO
 
-INSERT
+
+INSERT INTO [dbo].[AspNetUsers]
+           ([FirstName]
+           ,[MiddleName]
+           ,[LastName]
+           ,[Phone]
+           ,[IsHaveMedicalBook]
+           ,[MedicalBookEnd]
+           ,[EmployeeStatusId]
+           ,[PositionId]
+           ,[DateStart]
+           ,[DateEnd]
+           ,[IsAccess]
+           ,[Email]
+           ,[EmailConfirmed]
+           ,[PasswordHash]
+           ,[SecurityStamp]
+           ,[PhoneNumber]
+           ,[PhoneNumberConfirmed]
+           ,[TwoFactorEnabled]
+           ,[LockoutEndDateUtc]
+           ,[LockoutEnabled]
+           ,[AccessFailedCount]
+           ,[UserName])
+     VALUES
+           ('FirstName',
+           'MiddleName',
+           'LastName',
+           '',
+           1,
+           '2099-12-31 00:00:00.000',
+           2,
+           1,
+           getdate(),
+           NULL,
+           1,
+           NULL,
+           0,
+           'AHcI3+Ta5vX1AdLr/GRfB/SgbHewI5jNmJEb4jVcOMBFJ+XiO9Gg/7ua/F0/wGmzWQ==',
+           'a78192d3-ca42-454b-ad01-9a98093bd1af',
+           NULL,
+           0,
+           0,
+           NULL,
+           0,
+           0,
+           'test')
+GO

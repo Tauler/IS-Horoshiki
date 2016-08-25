@@ -1,9 +1,9 @@
-﻿using IsHoroshiki.BusinessEntities.Account;
-using IsHoroshiki.BusinessEntities.Paging;
+﻿using IsHoroshiki.BusinessEntities.Paging;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Account.Interfaces
 {
@@ -41,6 +41,12 @@ namespace IsHoroshiki.BusinessServices.Account.Interfaces
         /// <param name="userModel">Пользователь</param>
         /// <returns></returns>
         Task<IdentityResult> UpdateAsync(IApplicationUserModel userModel);
+
+        /// <summary>
+        /// Удалить пользователя по Id
+        /// </summary>
+        /// <param name="id">Id пользователя</param>
+        Task<IdentityResult> DeleteAsync(int id);
 
         /// <summary>
         /// Найти пользоватея

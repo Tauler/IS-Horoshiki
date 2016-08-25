@@ -1,12 +1,11 @@
-﻿using IsHoroshiki.BusinessEntities.Account;
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao;
+﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Account.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Account
 {
@@ -86,8 +85,7 @@ namespace IsHoroshiki.BusinessServices.Account
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="userName">Имя пользователя</param>
-        /// <param name="password">Пароль</param>
+        /// <param name="userModel">пользователь</param>
         /// <returns></returns>
         public Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel)
         {
@@ -129,6 +127,21 @@ namespace IsHoroshiki.BusinessServices.Account
             {
                 return new IdentityResult(ResourceBusinessServices.AccountsController_UserUpdateError);
             }
+        }
+
+        /// <summary>
+        /// Удалить пользователя по Id
+        /// </summary>
+        /// <param name="id">Id пользователя</param>
+        public async Task<IdentityResult> DeleteAsync(int id)
+        {
+            var user = await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            if (user == null)
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
+            }
+
+            return await _unitOfWork.AccountRepository.DeleteAsync(user);
         }
 
         /// <summary>

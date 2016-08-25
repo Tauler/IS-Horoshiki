@@ -2,6 +2,7 @@
 using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.Account
 {

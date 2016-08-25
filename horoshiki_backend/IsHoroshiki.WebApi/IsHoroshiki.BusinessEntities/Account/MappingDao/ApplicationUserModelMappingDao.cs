@@ -2,6 +2,7 @@
 using System.Linq;
 using IsHoroshiki.DAO.Identities;
 using IsHoroshiki.BusinessEntities.Account;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
 {

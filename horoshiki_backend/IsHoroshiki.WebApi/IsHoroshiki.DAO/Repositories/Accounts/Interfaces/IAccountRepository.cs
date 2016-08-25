@@ -1,11 +1,11 @@
-﻿using IsHoroshiki.DAO.Identities;
-using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IsHoroshiki.DAO.Identities;
+using Microsoft.AspNet.Identity;
 
-namespace IsHoroshiki.DAO.Accounts.Interfaces
+namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
 {
     /// <summary>
     /// Репозитарий авторизации
@@ -48,7 +48,13 @@ namespace IsHoroshiki.DAO.Accounts.Interfaces
         /// <param name="user">Пользователь</param>
         /// <returns></returns>
         Task<IdentityResult> UpdateAsync(ApplicationUser user);
-        
+
+        /// <summary>
+        /// Удалить пользователя по Id
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        Task<IdentityResult> DeleteAsync(ApplicationUser user);
+
         /// <summary>
         /// Найти пользоватея
         /// </summary>
