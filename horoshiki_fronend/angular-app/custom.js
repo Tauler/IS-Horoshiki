@@ -8,6 +8,15 @@ function resizeFooter(){
     $(".content-container").css("min-height", contentHeight + "px");
 }
 
+function getToken() {
+    var accesstoken = sessionStorage.getItem('accessToken');
+    var authHeaders = {};
+    if (accesstoken) {
+        authHeaders.Authorization = 'Bearer ' + accesstoken;
+    }
+    return authHeaders;
+}
+
 function httpErrors(url, status){
     switch(status){
         case 401:

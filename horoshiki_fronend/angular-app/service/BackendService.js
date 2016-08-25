@@ -16,7 +16,7 @@ backendServices.service('BackendService', ['$http', function($http) {
         if (accesstoken) {
             authHeaders.Authorization = 'Bearer ' + accesstoken;
         }
-        return $http.get('http://192.168.11.4:36791/api/orders', {timeout: backendTimeout, headers: authHeaders} );
+        return $http.get(backendServerAddr+'/api/orders', {timeout: backendTimeout, headers: authHeaders} );
     }
 
 }]);

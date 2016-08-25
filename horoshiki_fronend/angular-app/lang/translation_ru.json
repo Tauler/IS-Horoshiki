@@ -29,7 +29,12 @@
   "auth_login_field_mail" : "Логин",
   "auth_login_field_pass" : "Пароль",
   "auth_login_error_login" : "Неправильный логин или пароль",
-  "auth_login_login" : "Войти"
+  "auth_login_login" : "Войти",
+
+  "pagination_btn_first_page" : "Первая",
+  "pagination_btn_last_page" : "Последняя",
+  "pagination_btn_previous_page" : "Назад",
+  "pagination_btn_next_page" : "Вперед"
 
 
 }
