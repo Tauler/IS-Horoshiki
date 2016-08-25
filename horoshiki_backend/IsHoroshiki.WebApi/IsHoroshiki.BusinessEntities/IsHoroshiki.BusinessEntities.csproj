@@ -57,18 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AddExternalLoginBindingModel.cs" />
     <Compile Include="Account\ApplicationUserModel.cs" />
     <Compile Include="Account\ChangePasswordBindingModel.cs" />
-    <Compile Include="Account\ExternalLoginModel.cs" />
-    <Compile Include="Account\ManageInfoModel.cs" />
+    <Compile Include="Account\Interfaces\IApplicationUserModel.cs" />
     <Compile Include="Account\MappingDao\ApplicationUserModelMappingDao.cs" />
     <Compile Include="Account\RegisterBindingModel.cs" />
-    <Compile Include="Account\RegisterExternalBindingModel.cs" />
     <Compile Include="Account\RemoveLoginBindingModel.cs" />
     <Compile Include="Account\SetPasswordBindingModel.cs" />
-    <Compile Include="Account\UserInfoModel.cs" />
-    <Compile Include="Account\UserLoginInfoModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryModel.cs" />

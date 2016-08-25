@@ -1,6 +1,9 @@
-﻿using IsHoroshiki.BusinessServices.Account.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.Account;
+using IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao;
+using IsHoroshiki.BusinessServices.Account.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -50,9 +53,9 @@ namespace IsHoroshiki.BusinessServices.Account
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        public Task<IdentityResult> RegisterAsync(string userName, string password)
+        public Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel)
         {
-            return _unitOfWork.AccountRepository.RegisterAsync(userName, password);
+            return _unitOfWork.AccountRepository.RegisterAsync(userModel.ToDaoEntity(), userModel.Password);
         }
 
         /// <summary>

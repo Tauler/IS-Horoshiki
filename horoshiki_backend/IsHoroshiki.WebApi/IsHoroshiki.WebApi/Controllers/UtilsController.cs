@@ -39,6 +39,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// </summary>
         [ResponseType(typeof(bool))]
         [Route("api/Utils/IsAvailableServer")]
+        [AllowAnonymous]
         public IHttpActionResult Get()
         {
             return Ok(_service.IsAvailableServer());

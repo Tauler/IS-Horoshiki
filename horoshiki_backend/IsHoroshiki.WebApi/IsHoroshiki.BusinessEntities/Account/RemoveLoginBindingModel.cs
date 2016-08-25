@@ -5,7 +5,7 @@ namespace IsHoroshiki.BusinessEntities.Account
     /// <summary>
     /// Удалить пользователя
     /// </summary>
-    public class RemoveLoginBindingModel
+    public class RemoveLoginBindingModel 
     {
         /// <summary>
         /// 

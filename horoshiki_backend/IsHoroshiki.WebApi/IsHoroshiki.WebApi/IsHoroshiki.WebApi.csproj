@@ -344,6 +344,10 @@
       <Project>{76ccee72-2781-4502-a5d8-2f71a6d1cd11}</Project>
       <Name>IsHoroshiki.BusinessServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IsHoroshiki.DAO\IsHoroshiki.DAO.csproj">
+      <Project>{EFC9DAF6-3B76-49AA-9D1B-D6658C2C3CFF}</Project>
+      <Name>IsHoroshiki.DAO</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

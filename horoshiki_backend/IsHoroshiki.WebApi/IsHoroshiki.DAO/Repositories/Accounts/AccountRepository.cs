@@ -4,6 +4,7 @@ using IsHoroshiki.DAO.Identities;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
+using System;
 
 namespace IsHoroshiki.DAO.Repositories.Accounts
 {
@@ -45,16 +46,11 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="userName">Имя пользователя</param>
+        /// <param name="user">Пользователь</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        public Task<IdentityResult> RegisterAsync(string userName, string password)
+        public Task<IdentityResult> RegisterAsync(ApplicationUser user, string password)
         {
-            var user = new ApplicationUser
-            {
-                UserName = userName,
-            };
-
             return _userManager.CreateAsync(user, password);
         }
 

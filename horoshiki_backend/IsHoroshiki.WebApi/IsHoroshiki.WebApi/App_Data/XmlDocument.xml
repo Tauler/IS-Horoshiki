@@ -555,6 +555,12 @@
             </summary>
             <param name="service">Сервис аккаунтов</param>
         </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Add(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
+            <summary>
+            Создать пользователя
+            </summary>
+            <param name="model">Данные</param>
+        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Logout">
             <summary>
             Выход из системы
@@ -581,17 +587,18 @@
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Register(IsHoroshiki.BusinessEntities.Account.RegisterBindingModel)">
-            <summary>
-            Создать пользователя
-            </summary>
-            <param name="model">Данные</param>
-        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
             <summary>
             ДОбавление ошибок
             </summary>
             <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetErrorResult(System.Web.Http.ModelBinding.ModelStateDictionary)">
+            <summary>
+            Вернуть первую ошибку
+            </summary>
+            <param name="modelState"></param>
             <returns></returns>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetUserId">

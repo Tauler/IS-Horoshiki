@@ -6,7 +6,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries
     /// Типы зон доставки
     /// </summary>
     public class DeliveryZoneModel : BaseNotEditableDictionaryModel, IDeliveryZoneModel
-    {
+    { 
         /// <summary>
         /// Время доставки в указанную зону в минутах
         /// </summary>
