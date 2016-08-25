@@ -1,1 +1,65 @@
-<h1>users {{users}}</h1>
+<div class="container content">
+    <div class="row">
+        <!-- Begin Sidebar Menu -->
+        <div class="col-md-3">
+            <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
+
+                <li class="list-group-item list-toggle active">
+                    <a data-toggle="collapse" data-parent="#sidebar-nav" data-target="#collapse-nav1"
+                       href="javascript:void(0);" data-toggle="collapse">Меню 1</a>
+
+                    <ul id="collapse-nav1" class="collapse in">
+                        <li><a href="feature_typo_tagline_boxes.html"><i class="fa fa-user"></i> Пользователи</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </div>
+        <!-- End Sidebar Menu -->
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+
+            <div class="headline"><h2>Пользователи</h2></div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Логин</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th class="hidden-sm">Отчество</th>
+                    <th>Дата</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in model.users">
+                    <td>{{user.Id}}</td>
+                    <td ng-bind="user.UserName"></td>
+                    <td ng-bind="user.FirstName"></td>
+                    <td ng-bind="user.MiddleName"></td>
+                    <td ng-bind="user.LastName" class="hidden-sm">Otto</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <uib-pagination template-url="/angular-html/directives/pagination.html"
+                            ng-if="model.users.length>0"
+                            ng-model="model.paging.PageNo"
+                            total-items="model.paging.TotalRecordCount"
+                            max-size="5"
+                            items-per-page="model.clientPageSize"
+                            boundary-links="true"
+                            first-text="{{$parent.translation.pagination_btn_first_page}}"
+                            last-text="{{$parent.translation.pagination_btn_last_page}}"
+                            previous-text="{{$parent.translation.pagination_btn_previous_page}}"
+                            next-text="{{$parent.translation.pagination_btn_next_page}}">
+            </uib-pagination>
+
+
+        </div>
+    </div>
+</div>

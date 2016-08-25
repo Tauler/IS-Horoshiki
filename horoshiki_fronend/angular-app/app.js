@@ -8,6 +8,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'ngResource',
     'ngCookies',
     'yaMap',
+    'ui.bootstrap.pagination',
     'layoutControllers',
     'errorControllers',
     'mainControllers',
