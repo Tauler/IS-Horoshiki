@@ -23,6 +23,12 @@ namespace IsHoroshiki.BusinessServices.Account.Interfaces
         Task<PagedResult<IApplicationUserModel>> GetAll(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
 
         /// <summary>
+        /// Получить пользователя по Id
+        /// </summary>
+        /// <returns></returns>
+        Task<IApplicationUserModel> GetByIdAsync(int id);
+
+        /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
         /// <param name="userModel">Пользователь</param>

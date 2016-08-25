@@ -10,9 +10,9 @@ using IsHoroshiki.BusinessServices.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Account;
 using System.Web.Http.ModelBinding;
 using System.Text;
-using IsHoroshiki.DAO.Helpers;
 using System.Web.Http.Description;
 using IsHoroshiki.BusinessEntities.Paging;
+using IsHoroshiki.BusinessServices.Helpers;
 
 namespace IsHoroshiki.WebApi.Controllers
 {
@@ -61,8 +61,6 @@ namespace IsHoroshiki.WebApi.Controllers
 
         #endregion
 
-        #region Сервисы
-
         #region методы контроллера
 
         /// <summary>
@@ -86,8 +84,6 @@ namespace IsHoroshiki.WebApi.Controllers
                 return BadRequest(e.GetAllMessages());
             }
         }
-
-        #endregion
 
         /// <summary>
         /// Создать пользователя
@@ -116,6 +112,33 @@ namespace IsHoroshiki.WebApi.Controllers
             }
                       
             return Ok();
+        }
+
+        /// <summary>
+        /// Получить пользователя по Id
+        /// </summary>
+        /// <param name="Id">Id пользователя</param>
+        /// <returns></returns>
+        [Route("{id}")]
+        public async Task<IHttpActionResult> Get(int Id)
+        {
+            try
+            {
+                var user = await this._service.GetByIdAsync(Id);
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+                else
+                {
+                    return Ok(ResourceControllers.AccountsController_UserNotFound);
+                }
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
         }
 
         /// <summary>

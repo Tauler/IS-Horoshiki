@@ -571,6 +571,13 @@
             </summary>
             <param name="model">Данные</param>
         </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Get(System.Int32)">
+            <summary>
+            Получить пользователя по Id
+            </summary>
+            <param name="Id">Id пользователя</param>
+            <returns></returns>
+        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Logout">
             <summary>
             Выход из системы
@@ -991,6 +998,27 @@
             </summary>
             <param name="userName"></param>
             <returns></returns>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.ResourceControllers">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.ResourceControllers.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.ResourceControllers.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.ResourceControllers.AccountsController_UserNotFound">
+            <summary>
+              Looks up a localized string similar to Пользователь не найден!.
+            </summary>
         </member>
     </members>
 </doc>

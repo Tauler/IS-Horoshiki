@@ -68,6 +68,21 @@ namespace IsHoroshiki.BusinessServices.Account
         }
 
         /// <summary>
+        /// Получить пользователя по Id
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IApplicationUserModel> GetByIdAsync(int id)
+        {
+            var user = await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            if (user != null)
+            {
+                return user.ToModelEntity();
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
         /// <param name="userName">Имя пользователя</param>

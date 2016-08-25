@@ -45,7 +45,6 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
 
         #region методы
 
-
         /// <summary>
         /// Получить всех пользователей
         /// </summary>
@@ -67,6 +66,15 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
                 .AsEnumerable();
 
             return Task.FromResult(list);
+        }
+
+        /// <summary>
+        /// Получить пользователя по Id
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ApplicationUser> GetByIdAsync(int id)
+        {
+            return await _userManager.FindByIdAsync(id);
         }
 
         /// <summary>
