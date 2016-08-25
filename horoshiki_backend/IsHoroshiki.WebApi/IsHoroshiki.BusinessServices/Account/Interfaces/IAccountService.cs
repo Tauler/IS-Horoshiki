@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.BusinessEntities.Account;
+using IsHoroshiki.BusinessEntities.Paging;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Security.Claims;
@@ -11,6 +12,16 @@ namespace IsHoroshiki.BusinessServices.Account.Interfaces
     /// </summary>
     public interface IAccountService : IDisposable
     {
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        Task<PagedResult<IApplicationUserModel>> GetAll(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
+
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>

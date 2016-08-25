@@ -1,9 +1,9 @@
 ﻿using IsHoroshiki.BusinessEntities.Account;
 using IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao;
+using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Account.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.AspNet.Identity;
-using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -46,6 +46,26 @@ namespace IsHoroshiki.BusinessServices.Account
         #endregion
 
         #region IAccountService
+
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public async Task<PagedResult<IApplicationUserModel>> GetAll(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        {
+            if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
+            {
+                sortField += "Id";
+            }
+
+            var count = await _unitOfWork.AccountRepository.CountAsync();
+            var list = await _unitOfWork.AccountRepository.GetAllAsync(pageNo, pageSize, sortField, isAscending);
+            return new PagedResult<IApplicationUserModel>(list.ToModelEntityList(), pageNo, pageSize, count);
+        }
 
         /// <summary>
         /// Зарегистрировать пользователя

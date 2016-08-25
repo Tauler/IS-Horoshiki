@@ -89,6 +89,7 @@
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\SubDivisionConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditableDictionaries\StatusSiteConfiguration.cs" />
+    <Compile Include="Helpers\SortingHelper.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUser.cs" />
     <Compile Include="DaoEntities\Accounts\CustomRole.cs" />

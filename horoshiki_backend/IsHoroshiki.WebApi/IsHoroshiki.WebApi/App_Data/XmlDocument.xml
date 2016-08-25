@@ -529,85 +529,95 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.AccountController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.AccountsController">
             <summary>
             Контроллер авторизации
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.AccountController.LocalLoginProvider">
+        <member name="F:IsHoroshiki.WebApi.Controllers.AccountsController.LocalLoginProvider">
             <summary>
             
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.AccountController._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.AccountsController._service">
             <summary>
             Сервис аккаунтов
             </summary>
         </member>
-        <member name="P:IsHoroshiki.WebApi.Controllers.AccountController.Authentication">
+        <member name="P:IsHoroshiki.WebApi.Controllers.AccountsController.Authentication">
             <summary>
             Менеджер аутентификации
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.#ctor(IsHoroshiki.BusinessServices.Account.Interfaces.IAccountService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.#ctor(IsHoroshiki.BusinessServices.Account.Interfaces.IAccountService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Сервис аккаунтов</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Add(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Get(System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Получить всех пользователей
+            </summary>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <param name="sortField">Поле для сортировки</param>
+            <param name="isAscending">true - сортировать по возрастанию</param>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Add(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
             <summary>
             Создать пользователя
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Logout">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Logout">
             <summary>
             Выход из системы
             </summary>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.ChangePassword(IsHoroshiki.BusinessEntities.Account.ChangePasswordBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.ChangePassword(IsHoroshiki.BusinessEntities.Account.ChangePasswordBindingModel)">
             <summary>
             Изменить пароль
             </summary>
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.SetPassword(IsHoroshiki.BusinessEntities.Account.SetPasswordBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.SetPassword(IsHoroshiki.BusinessEntities.Account.SetPasswordBindingModel)">
             <summary>
             Установить пароль
             </summary>
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.RemoveLogin(IsHoroshiki.BusinessEntities.Account.RemoveLoginBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.RemoveLogin(IsHoroshiki.BusinessEntities.Account.RemoveLoginBindingModel)">
             <summary>
             Удалить пользователя
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
             <summary>
             ДОбавление ошибок
             </summary>
             <param name="result"></param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetErrorResult(System.Web.Http.ModelBinding.ModelStateDictionary)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetErrorResult(System.Web.Http.ModelBinding.ModelStateDictionary)">
             <summary>
             Вернуть первую ошибку
             </summary>
             <param name="modelState"></param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.GetUserId">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetUserId">
             <summary>
             Найти Id пользователя
             </summary>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountController.Dispose(System.Boolean)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Dispose(System.Boolean)">
             <summary>
             Очистить ресурсы
             </summary>
