@@ -58,6 +58,7 @@
     <Compile Include="Account\AccountService.cs" />
     <Compile Include="Account\Interfaces\IAccountService.cs" />
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="IBaseBusinessService.cs" />
     <Compile Include="BaseBusinessService.cs" />
     <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryService.cs" />

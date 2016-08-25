@@ -23,6 +23,12 @@ namespace IsHoroshiki.DAO.Accounts.Interfaces
         Task<IEnumerable<ApplicationUser>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
 
         /// <summary>
+        /// Получить пользователя по Id
+        /// </summary>
+        /// <returns></returns>
+        Task<ApplicationUser> GetByIdAsync(int id);
+
+        /// <summary>
         /// Количество всех пользователей
         /// </summary>
         /// <returns></returns>
