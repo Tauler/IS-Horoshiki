@@ -38,6 +38,30 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         }
 
         /// <summary>
+        /// Обновить поля в DAO модели
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static void Update(this ApplicationUser daoModel, IApplicationUserModel model)
+        {
+            daoModel.Id = model.Id;
+            daoModel.FirstName = model.FirstName;
+            daoModel.MiddleName = model.MiddleName;
+            daoModel.LastName = model.LastName;
+            daoModel.Phone = model.Phone;
+            daoModel.IsHaveMedicalBook = model.IsHaveMedicalBook;
+            daoModel.MedicalBookEnd = model.MedicalBookEnd;
+            daoModel.EmployeeStatusId = model.EmployeeStatus != null ? model.EmployeeStatus.Id : 0;
+            daoModel.EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToDaoEntity() : null;
+            daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
+            daoModel.Position = model.Position != null ? model.Position.ToDaoEntity() : null;
+            daoModel.DateStart = model.DateStart;
+            daoModel.DateEnd = model.DateEnd;
+            daoModel.IsAccess = model.IsAccess;
+            daoModel.UserName = model.UserName;
+        }
+
+        /// <summary>
         /// Модель в DAO
         /// </summary>
         /// <param name="models"></param>

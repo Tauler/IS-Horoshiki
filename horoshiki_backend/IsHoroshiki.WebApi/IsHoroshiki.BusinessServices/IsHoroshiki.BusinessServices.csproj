@@ -88,6 +88,11 @@
     <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessService.cs" />
     <Compile Include="NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceBusinessServices.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceBusinessServices.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\UtilService.cs" />
     <Compile Include="Utils\Interfaces\IUtilService.cs" />
   </ItemGroup>
@@ -104,7 +109,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ResourceBusinessServices.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceBusinessServices.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

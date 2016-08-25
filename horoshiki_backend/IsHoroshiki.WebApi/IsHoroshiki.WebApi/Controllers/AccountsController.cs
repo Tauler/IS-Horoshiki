@@ -142,6 +142,34 @@ namespace IsHoroshiki.WebApi.Controllers
         }
 
         /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="model">Данные</param>
+        [Route("Update")]
+        public async Task<IHttpActionResult> Update(ApplicationUserModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return GetErrorResult(ModelState);
+            }
+
+            try
+            {
+                IdentityResult result = await _service.UpdateAsync(model);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
         /// Выход из системы
         /// </summary>
         /// <returns></returns>

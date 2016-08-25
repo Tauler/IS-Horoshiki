@@ -99,6 +99,16 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         }
 
         /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        /// <returns></returns>
+        public Task<IdentityResult> UpdateAsync(ApplicationUser user)
+        {
+            return _userManager.UpdateAsync(user);
+        }
+
+        /// <summary>
         /// Найти пользоватея
         /// </summary>
         /// <param name="userName">Имя пользователя</param>

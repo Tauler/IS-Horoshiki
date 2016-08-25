@@ -36,6 +36,13 @@ namespace IsHoroshiki.BusinessServices.Account.Interfaces
         Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel);
 
         /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="userModel">Пользователь</param>
+        /// <returns></returns>
+        Task<IdentityResult> UpdateAsync(IApplicationUserModel userModel);
+
+        /// <summary>
         /// Найти пользоватея
         /// </summary>
         /// <param name="userName">Имя пользователя</param>

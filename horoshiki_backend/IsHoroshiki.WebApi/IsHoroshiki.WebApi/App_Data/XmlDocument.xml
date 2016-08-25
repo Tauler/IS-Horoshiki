@@ -578,6 +578,12 @@
             <param name="Id">Id пользователя</param>
             <returns></returns>
         </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Update(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
+            <summary>
+            Обновить пользователя
+            </summary>
+            <param name="model">Данные</param>
+        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Logout">
             <summary>
             Выход из системы

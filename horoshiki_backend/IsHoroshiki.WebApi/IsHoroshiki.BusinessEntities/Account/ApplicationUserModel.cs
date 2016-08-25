@@ -23,7 +23,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// Имя
         /// </summary>
         [MaxLength(256, ErrorMessage = "Имя должно быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите имя")]
+        [Required(ErrorMessage = "Пожалуйста, введите имя!")]
         public string FirstName
         {
             get;
@@ -44,7 +44,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// Фамилия
         /// </summary>
         [MaxLength(256, ErrorMessage = "Фамилия должна быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите файмилию")]
+        [Required(ErrorMessage = "Пожалуйста, введите файмилию!")]
         public string LastName
         {
             get;
@@ -139,7 +139,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// Пароль
         /// </summary>
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Пароль {0} должен быть не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password
@@ -153,7 +153,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// </summary>
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля не совпадают!")]
         public string ConfirmPassword
         {
             get;

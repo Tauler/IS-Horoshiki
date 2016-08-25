@@ -43,6 +43,13 @@ namespace IsHoroshiki.DAO.Accounts.Interfaces
         Task<IdentityResult> RegisterAsync(ApplicationUser user, string password);
 
         /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        /// <returns></returns>
+        Task<IdentityResult> UpdateAsync(ApplicationUser user);
+        
+        /// <summary>
         /// Найти пользоватея
         /// </summary>
         /// <param name="userName">Имя пользователя</param>
