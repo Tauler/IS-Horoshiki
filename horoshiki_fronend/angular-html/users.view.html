@@ -41,7 +41,7 @@
                     <td ng-bind="user.FirstName"></td>
                     <td ng-bind="user.MiddleName"></td>
                     <td ng-bind="user.LastName" class="hidden-sm">Otto</td>
-                    <td></td>
+                    <td>{{ user.DateStart | date : 'dd.MM.yyyy hh:mm'}}</td>
                 </tr>
                 </tbody>
             </table>
