@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries
     /// Конфигурация Типы зон доставки
     /// </summary>
     public class DeliveryZoneConfiguration : BaseNotEditableDictionaryDaoEntityConfiguration<DeliveryZone>
-    {
+    { 
         #region Конструктор
 
         /// <summary>  

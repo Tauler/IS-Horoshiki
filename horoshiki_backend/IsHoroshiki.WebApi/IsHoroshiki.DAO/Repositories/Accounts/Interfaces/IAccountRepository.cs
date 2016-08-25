@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using IsHoroshiki.DAO.Identities;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -13,10 +14,10 @@ namespace IsHoroshiki.DAO.Accounts.Interfaces
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="userName">Имя пользователя</param>
+        /// <param name="user">Пользователь</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterAsync(string userName, string password);
+        Task<IdentityResult> RegisterAsync(ApplicationUser user, string password);
 
         /// <summary>
         /// Найти пользоватея

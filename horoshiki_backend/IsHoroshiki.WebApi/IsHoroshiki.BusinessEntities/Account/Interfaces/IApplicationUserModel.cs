@@ -1,18 +1,17 @@
 ﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
 using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace IsHoroshiki.BusinessEntities.Account
 {
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public class ApplicationUserModel : IApplicationUserModel 
+    public interface IApplicationUserModel
     {
         /// <summary>
         /// Id
         /// </summary>
-        public int Id
+        int Id
         {
             get;
             set;
@@ -21,9 +20,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Имя
         /// </summary>
-        [MaxLength(256, ErrorMessage = "Имя должно быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите имя")]
-        public string FirstName
+        string FirstName
         {
             get;
             set;
@@ -32,8 +29,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Отчество
         /// </summary>
-        [MaxLength(256, ErrorMessage = "Отчество должно быть не более {1} символов.")]
-        public string MiddleName
+        string MiddleName
         {
             get;
             set;
@@ -42,9 +38,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Фамилия
         /// </summary>
-        [MaxLength(256, ErrorMessage = "Фамилия должна быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите файмилию")]
-        public string LastName
+        string LastName
         {
             get;
             set;
@@ -53,8 +47,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Телефон
         /// </summary>
-        [MaxLength(50, ErrorMessage = "Телефон должен быть не более {1} символов.")]
-        public string Phone
+        string Phone
         {
             get;
             set;
@@ -63,7 +56,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Наличие мед книжки
         /// </summary>
-        public bool IsHaveMedicalBook
+        bool IsHaveMedicalBook
         {
             get;
             set;
@@ -72,7 +65,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Наличие мед книжки
         /// </summary>
-        public DateTime? MedicalBookEnd
+        DateTime? MedicalBookEnd
         {
             get;
             set;
@@ -81,7 +74,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        public int EmployeeStatusId
+        int EmployeeStatusId
         {
             get;
             set;
@@ -90,7 +83,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        public IEmployeeStatusModel EmployeeStatus
+        IEmployeeStatusModel EmployeeStatus
         {
             get;
             set;
@@ -99,7 +92,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Должности
         /// </summary>
-        public int PositionId
+        int PositionId
         {
             get;
             set;
@@ -108,7 +101,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Должности
         /// </summary>
-        public IPositionModel Position
+        IPositionModel Position
         {
             get;
             set;
@@ -117,7 +110,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Дата приема
         /// </summary>
-        public DateTime DateStart
+        DateTime DateStart
         {
             get;
             set;
@@ -126,7 +119,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Дата уволнениея
         /// </summary>
-        public DateTime? DateEnd
+        DateTime? DateEnd
         {
             get;
             set;
@@ -135,7 +128,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Доступ в систему
         /// </summary>
-        public bool IsAccess
+        bool IsAccess
         {
             get;
             set;
@@ -144,9 +137,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Логин
         /// </summary>
-        [Required]
-        [Display(Name = "UserName")]
-        public string UserName
+        string UserName
         {
             get;
             set;
@@ -155,11 +146,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Пароль
         /// </summary>
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password
+        string Password
         {
             get;
             set;
@@ -168,10 +155,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Потдверждение пароля
         /// </summary>
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword
+        string ConfirmPassword
         {
             get;
             set;

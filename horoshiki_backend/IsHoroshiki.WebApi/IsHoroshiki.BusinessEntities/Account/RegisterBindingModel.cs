@@ -5,7 +5,7 @@ namespace IsHoroshiki.BusinessEntities.Account
     /// <summary>
     /// Данные регистрации пользователя
     /// </summary>
-    public class RegisterBindingModel
+    public class RegisterBindingModel 
     {
         /// <summary>
         /// Логин

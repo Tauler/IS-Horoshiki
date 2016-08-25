@@ -23,5 +23,47 @@ namespace IsHoroshiki.DAO.Helpers
                 throw new ArgumentNullException(arg);
             }
         }
+
+        /// <summary>
+        /// Все сообщение об ошибки
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        public static string GetAllMessages(this Exception exception)
+        {
+            var messages = exception.FromHierarchy(ex => ex.InnerException)
+                .Select(ex => ex.Message);
+
+            return String.Join(Environment.NewLine, messages);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="nextItem"></param>
+        /// <param name="canContinue"></param>
+        /// <returns></returns>
+        private static IEnumerable<TSource> FromHierarchy<TSource>(this TSource source, Func<TSource, TSource> nextItem, Func<TSource, bool> canContinue)
+        {
+            for (var current = source; canContinue(current); current = nextItem(current))
+            {
+                yield return current;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="nextItem"></param>
+        /// <returns></returns>
+        private static IEnumerable<TSource> FromHierarchy<TSource>(this TSource source, Func<TSource, TSource> nextItem)
+            where TSource : class
+        {
+            return FromHierarchy(source, nextItem, s => s != null);
+        }
     }
 }
