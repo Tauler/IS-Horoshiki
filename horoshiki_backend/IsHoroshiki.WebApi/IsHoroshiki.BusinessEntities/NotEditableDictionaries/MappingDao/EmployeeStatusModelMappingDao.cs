@@ -15,7 +15,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static EmployeeStatus ToDaoEntity(this IEmployeeStatusModel model)
+        public static EmployeeStatus ToDaoEntity(this EmployeeStatusModel model)
         {
             return new EmployeeStatus()
             {
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<EmployeeStatus> ToDaoEntityList(this IEnumerable<IEmployeeStatusModel> models)
+        public static IEnumerable<EmployeeStatus> ToDaoEntityList(this IEnumerable<EmployeeStatusModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -39,7 +39,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IEmployeeStatusModel ToModelEntity(this EmployeeStatus model)
+        public static EmployeeStatusModel ToModelEntity(this EmployeeStatus model)
         {
             return new EmployeeStatusModel()
             {
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IEmployeeStatusModel> ToModelEntityList(this IEnumerable<EmployeeStatus> models)
+        public static IEnumerable<EmployeeStatusModel> ToModelEntityList(this IEnumerable<EmployeeStatus> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

@@ -20,7 +20,7 @@ namespace IsHoroshiki.WebApi.Controllers
     /// Контроллер авторизации
     /// </summary>
     [Authorize]
-    [RoutePrefix("api/Account")]
+    [RoutePrefix("api/Accounts")]
     public class AccountsController : ApiController
     {
         #region поля и свойства
@@ -228,13 +228,12 @@ namespace IsHoroshiki.WebApi.Controllers
                 {
                     foreach (string error in result.Errors)
                     {
-                        ModelState.AddModelError("", error);
+                        return BadRequest(error);
                     }
                 }
 
                 if (ModelState.IsValid)
                 {
-                    // No ModelState errors are available to send, so just return an empty BadRequest.
                     return BadRequest();
                 }
 

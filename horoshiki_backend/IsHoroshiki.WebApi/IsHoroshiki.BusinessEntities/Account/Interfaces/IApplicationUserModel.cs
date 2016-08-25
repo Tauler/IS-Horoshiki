@@ -1,4 +1,4 @@
-﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
 using System;
 
 namespace IsHoroshiki.BusinessEntities.Account
@@ -74,7 +74,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        IEmployeeStatusModel EmployeeStatus
+        EmployeeStatusModel EmployeeStatus
         {
             get;
             set;
@@ -83,7 +83,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Должности
         /// </summary>
-        IPositionModel Position
+        PositionModel Position
         {
             get;
             set;
