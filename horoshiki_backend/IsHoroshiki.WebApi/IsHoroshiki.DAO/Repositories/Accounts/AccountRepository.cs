@@ -58,10 +58,9 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             int skip = (pageNo - 1) * pageSize;
 
             var list = _ctx.Users
-                .OrderBy(c => c.Id)
+                .OrderByPropertyName(sortField, isAscending)
                 .Skip(skip)
                 .Take(pageSize)
-                .OrderByPropertyName(sortField, isAscending)
                 .ToList()
                 .AsEnumerable();
 
