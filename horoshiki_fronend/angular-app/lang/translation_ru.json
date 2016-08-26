@@ -31,6 +31,14 @@
   "auth_login_error_login" : "Неправильный логин или пароль",
   "auth_login_login" : "Войти",
 
+  "user_list_fi" : "Фамилия Имя",
+  "user_list_is_access": "Доступ в IS",
+  "user_list_is_have_medical_book": "Мед. книжка",
+  "user_list_position": "Должность",
+  "user_list_employee_status": "Статус",
+
+
+
   "pagination_btn_first_page" : "Первая",
   "pagination_btn_last_page" : "Последняя",
   "pagination_btn_previous_page" : "Назад",

@@ -10,6 +10,10 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
         $scope.model.users = [];
         $scope.model.paging = {};
         $scope.model.clientPageSize = 10;
+        $scope.model.countPageButton = 5;
+        $scope.model.orderby = {}
+        $scope.model.orderby.field = 'Id';
+        $scope.model.orderby.asc = true;
 
         // Пагинация
         $scope.$watch('model.paging.PageNo', function(){
@@ -17,7 +21,7 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
         });
 
         $scope.getAllUsers = function () {
-            UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, "Id", true).success(function(result){
+            UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function(result){
                 $scope.model.users = result.Data.Data;
                 $scope.model.paging = result.Data.Paging;
                 console.log($scope.model);
@@ -25,6 +29,12 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
                 console.log(status);
                 httpErrors($location.url(), status);
             })
+        }
+
+        $scope.changeSort = function (fieldName, asc) {
+            $scope.model.orderby.field = fieldName;
+            $scope.model.orderby.asc = asc;
+            $scope.getAllUsers();
         }
 
         $scope.getAllUsers();
