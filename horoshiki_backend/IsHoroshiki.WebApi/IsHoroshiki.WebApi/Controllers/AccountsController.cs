@@ -278,6 +278,19 @@ namespace IsHoroshiki.WebApi.Controllers
 
             return Ok();
         }
+
+        /// <summary>
+        /// Получение текущего пользователя
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("Current")]
+        [ResponseType(typeof(ApplicationUserModel))]
+        public async Task<IHttpActionResult> GetCurrent()
+        {
+           var userId = User.Identity.GetUserId();
+           return await Get(Int32.Parse(userId));
+        }
  
         #endregion
 
