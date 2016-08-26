@@ -145,6 +145,17 @@ namespace IsHoroshiki.BusinessServices.Account
         }
 
         /// <summary>
+        /// Проверка существования логина для пользователя
+        /// </summary>
+        /// <param name="userName">Логин пользователя</param>
+        /// <returns></returns>
+        public async Task<bool> IsExistUserName(string userName)
+        {
+            var user = await _unitOfWork.AccountRepository.FindByNameAsync(userName);
+            return user != null;
+        }
+
+        /// <summary>
         /// Найти пользоватея
         /// </summary>
         /// <param name="userName">Имя пользователя</param>

@@ -49,6 +49,13 @@ namespace IsHoroshiki.BusinessServices.Account.Interfaces
         Task<IdentityResult> DeleteAsync(int id);
 
         /// <summary>
+        /// Проверка существования логина для пользователя
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <returns></returns>
+        Task<bool> IsExistUserName(string userName);
+
+        /// <summary>
         /// Найти пользоватея
         /// </summary>
         /// <param name="userName">Имя пользователя</param>

@@ -288,10 +288,38 @@ namespace IsHoroshiki.WebApi.Controllers
         [ResponseType(typeof(ApplicationUserModel))]
         public async Task<IHttpActionResult> GetCurrent()
         {
-           var userId = User.Identity.GetUserId();
-           return await Get(Int32.Parse(userId));
+            try
+            {
+                var userId = User.Identity.GetUserId();
+                return await Get(Int32.Parse(userId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
         }
- 
+
+        /// <summary>
+        /// Проверка существования логина для пользователя
+        /// </summary>
+        /// <param name="userName">Логин пользователя</param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("IsExist/{userName}")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> IsExistUserName(string userName)
+        {
+            try
+            {
+                var result = await _service.IsExistUserName(userName);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+        }
+
         #endregion
 
         #region методы
