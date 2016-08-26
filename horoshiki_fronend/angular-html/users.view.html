@@ -2,19 +2,7 @@
     <div class="row">
         <!-- Begin Sidebar Menu -->
         <div class="col-md-3">
-            <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
-
-                <li class="list-group-item list-toggle active">
-                    <a data-toggle="collapse" data-parent="#sidebar-nav" data-target="#collapse-nav1"
-                       href="javascript:void(0);" data-toggle="collapse">Меню 1</a>
-
-                    <ul id="collapse-nav1" class="collapse in">
-                        <li><a href="feature_typo_tagline_boxes.html"><i class="fa fa-user"></i> Пользователи</a></li>
-                    </ul>
-                </li>
-
-
-            </ul>
+            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
         </div>
         <!-- End Sidebar Menu -->
 
@@ -22,7 +10,10 @@
         <div class="col-md-9">
 
             <div class="headline"><h2>Пользователи</h2></div>
-
+            <div class="text-right">
+                <button class="btn-u btn-u-sm btn-u-dark-blue" type="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{$parent.translation.user_list_button_add_user}}</button>
+                <p></p>
+            </div>
             <table class="table table-striped">
                 <thead>
                 <tr>

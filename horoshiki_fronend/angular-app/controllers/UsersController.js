@@ -9,7 +9,11 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
         $scope.model = {};
         $scope.model.users = [];
         $scope.model.paging = {};
+        //текущая страница по умолчанию
+        $scope.model.paging.PageNo = 1;
+        //количество записей на страницу
         $scope.model.clientPageSize = 10;
+        //количество кнопок на строке пагинации
         $scope.model.countPageButton = 5;
         $scope.model.orderby = {}
         $scope.model.orderby.field = 'Id';
@@ -24,9 +28,10 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
             UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function(result){
                 $scope.model.users = result.Data.Data;
                 $scope.model.paging = result.Data.Paging;
-                console.log($scope.model);
             }).error(function(result, status){
+
                 console.log(status);
+
                 httpErrors($location.url(), status);
             })
         }
@@ -38,6 +43,12 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
         }
 
         $scope.getAllUsers();
+
+    }
+]);
+
+mainControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService',
+    function ($scope, $location, UsersService) {
 
     }
 ]);
