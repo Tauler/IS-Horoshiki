@@ -4,7 +4,7 @@
 
 var usersControllers = angular.module('usersControllers', []);
 
-mainControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService',
+usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService',
     function ($scope, $location, UsersService) {
         $scope.model = {};
         $scope.model.users = [];
@@ -29,9 +29,6 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
                 $scope.model.users = result.Data.Data;
                 $scope.model.paging = result.Data.Paging;
             }).error(function(result, status){
-
-                console.log(status);
-
                 httpErrors($location.url(), status);
             })
         }
@@ -41,14 +38,31 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
             $scope.model.orderby.asc = asc;
             $scope.getAllUsers();
         }
-
         $scope.getAllUsers();
-
     }
 ]);
 
-mainControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService',
-    function ($scope, $location, UsersService) {
+usersControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService', 'DictionaryService',
+    function ($scope, $location, UsersService, DictionaryService) {
+        $scope.model = {};
+
+        $scope.getPositions = function () {
+            DictionaryService.getPositions().success(function(result){
+                if(result.Success==1) {
+                    $scope.model.positions = result.Data;
+                    console.log($scope.model.positions);
+                }else{
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function(result, status){
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPositions();
+
 
     }
+
+
 ]);

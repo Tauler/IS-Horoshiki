@@ -616,6 +616,19 @@
             </summary>
             <param name="model">Данные</param>
         </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetCurrent">
+            <summary>
+            Получение текущего пользователя
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.IsExistUserName(System.String)">
+            <summary>
+            Проверка существования логина для пользователя
+            </summary>
+            <param name="userName">Логин пользователя</param>
+            <returns></returns>
+        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
             <summary>
             ДОбавление ошибок
