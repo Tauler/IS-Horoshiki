@@ -89,7 +89,6 @@ namespace IsHoroshiki.WebApi.Controllers
         /// Создать пользователя
         /// </summary>
         /// <param name="model">Данные</param>
-        [AllowAnonymous]
         [Route("Add")]
         public async Task<IHttpActionResult> Add(ApplicationUserModel model)
         {
@@ -117,14 +116,14 @@ namespace IsHoroshiki.WebApi.Controllers
         /// <summary>
         /// Получить пользователя по Id
         /// </summary>
-        /// <param name="Id">Id пользователя</param>
+        /// <param name="id">Id пользователя</param>
         /// <returns></returns>
         [Route("{id}")]
-        public async Task<IHttpActionResult> Get(int Id)
+        public async Task<IHttpActionResult> Get(int id)
         {
             try
             {
-                var user = await this._service.GetByIdAsync(Id);
+                var user = await this._service.GetByIdAsync(id);
                 if (user != null)
                 {
                     return Ok(user);
@@ -139,6 +138,57 @@ namespace IsHoroshiki.WebApi.Controllers
             {
                 return BadRequest(e.GetAllMessages());
             }
+        }
+
+        /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="model">Данные</param>
+        [Route("Update")]
+        public async Task<IHttpActionResult> Update(ApplicationUserModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return GetErrorResult(ModelState);
+            }
+
+            try
+            {
+                IdentityResult result = await _service.UpdateAsync(model);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Удалить пользователя по Id
+        /// </summary>
+        /// <param name="id">Id пользователя</param>
+        [Route("{id}")]
+        public async Task<IHttpActionResult> Delete(int id)
+        {
+            try
+            {
+                IdentityResult result = await _service.DeleteAsync(id);
+                if (!result.Succeeded)
+                {
+                    return GetErrorResult(result);
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+
+            return Ok();
         }
 
         /// <summary>

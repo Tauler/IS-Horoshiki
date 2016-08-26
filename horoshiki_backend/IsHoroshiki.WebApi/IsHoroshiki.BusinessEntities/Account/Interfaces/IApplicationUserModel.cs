@@ -1,7 +1,7 @@
-﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
-using System;
+﻿using System;
+using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
 
-namespace IsHoroshiki.BusinessEntities.Account
+namespace IsHoroshiki.BusinessEntities.Account.Interfaces
 {
     /// <summary>
     /// Пользователь системы

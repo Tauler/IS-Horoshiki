@@ -1,5 +1,4 @@
-﻿using IsHoroshiki.DAO.Accounts.Interfaces;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using IsHoroshiki.DAO.Identities;
 using System.Threading.Tasks;
 using System.Security.Claims;
@@ -7,6 +6,7 @@ using IsHoroshiki.DAO.DaoEntities.Accounts;
 using System.Linq;
 using System.Collections.Generic;
 using IsHoroshiki.DAO.Helpers;
+using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
 
 namespace IsHoroshiki.DAO.Repositories.Accounts
 {
@@ -58,10 +58,9 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             int skip = (pageNo - 1) * pageSize;
 
             var list = _ctx.Users
-                .OrderBy(c => c.Id)
+                .OrderByPropertyName(sortField, isAscending)
                 .Skip(skip)
                 .Take(pageSize)
-                .OrderByPropertyName(sortField, isAscending)
                 .ToList()
                 .AsEnumerable();
 
@@ -96,6 +95,25 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         public Task<IdentityResult> RegisterAsync(ApplicationUser user, string password)
         {
             return _userManager.CreateAsync(user, password);
+        }
+
+        /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        /// <returns></returns>
+        public Task<IdentityResult> UpdateAsync(ApplicationUser user)
+        {
+            return _userManager.UpdateAsync(user);
+        }
+
+        /// <summary>
+        /// Удалить пользователя по Id
+        /// </summary>
+        /// <param name="user">Пользователь</param>
+        public Task<IdentityResult> DeleteAsync(ApplicationUser user)
+        {
+            return _userManager.DeleteAsync(user);
         }
 
         /// <summary>

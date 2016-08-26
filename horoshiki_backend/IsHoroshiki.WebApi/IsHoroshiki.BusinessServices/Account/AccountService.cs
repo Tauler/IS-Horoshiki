@@ -1,11 +1,11 @@
-﻿using IsHoroshiki.BusinessEntities.Account;
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao;
+﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Account.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Account
 {
@@ -85,12 +85,63 @@ namespace IsHoroshiki.BusinessServices.Account
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="userName">Имя пользователя</param>
-        /// <param name="password">Пароль</param>
+        /// <param name="userModel">пользователь</param>
         /// <returns></returns>
         public Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel)
         {
+            var error = Validation(userModel, true);
+            if (!string.IsNullOrEmpty(error))
+            {
+                return Task.FromResult(new IdentityResult(error));
+            }
+
             return _unitOfWork.AccountRepository.RegisterAsync(userModel.ToDaoEntity(), userModel.Password);
+        }
+
+        /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="userModel">Пользователь</param>
+        /// <returns></returns>
+        public async Task<IdentityResult> UpdateAsync(IApplicationUserModel userModel)
+        {
+            try
+            {
+                var error = Validation(userModel, false);
+                if (!string.IsNullOrEmpty(error))
+                {
+                    return new IdentityResult(error);
+                }
+
+                var user = await _unitOfWork.AccountRepository.GetByIdAsync(userModel.Id);
+                if (user == null)
+                {
+                    return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
+                }
+
+                user.Update(userModel);
+
+                return await _unitOfWork.AccountRepository.UpdateAsync(user);
+            }
+            catch
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_UserUpdateError);
+            }
+        }
+
+        /// <summary>
+        /// Удалить пользователя по Id
+        /// </summary>
+        /// <param name="id">Id пользователя</param>
+        public async Task<IdentityResult> DeleteAsync(int id)
+        {
+            var user = await _unitOfWork.AccountRepository.GetByIdAsync(id);
+            if (user == null)
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
+            }
+
+            return await _unitOfWork.AccountRepository.DeleteAsync(user);
         }
 
         /// <summary>
@@ -158,6 +209,72 @@ namespace IsHoroshiki.BusinessServices.Account
         public Task<IdentityResult> RemoveLoginAsync(int userId, string loginProvider, string providerKey)
         {
             return _unitOfWork.AccountRepository.RemoveLoginAsync(userId, loginProvider, providerKey);
+        }
+
+        #endregion
+
+        #region private
+
+        /// <summary>
+        /// Валидация
+        /// </summary>
+        /// <param name="userModel">Пользователь</param>
+        /// <returns></returns>
+        private string Validation(IApplicationUserModel userModel, bool isCheckPassword)
+        {
+            if (string.IsNullOrEmpty(userModel.FirstName))
+            {
+                return ResourceBusinessServices.AccountsController_FirstNameIsNull;
+            }
+
+            if (string.IsNullOrEmpty(userModel.LastName))
+            {
+                return ResourceBusinessServices.AccountsController_LastNameIsNull;
+            }
+
+            if (string.IsNullOrEmpty(userModel.UserName))
+            {
+                return ResourceBusinessServices.AccountsController_UserNameIsNull;
+            }
+
+            if (isCheckPassword && string.IsNullOrEmpty(userModel.Password))
+            {
+                return ResourceBusinessServices.AccountsController_PasswordIsNull;
+            }
+
+            if (isCheckPassword && string.IsNullOrEmpty(userModel.ConfirmPassword))
+            {
+                return ResourceBusinessServices.AccountsController_ConfirmPasswordIsNull;
+            }
+
+            if (isCheckPassword && !string.Equals(userModel.Password, userModel.ConfirmPassword))
+            {
+                return ResourceBusinessServices.AccountsController_PasswordNotEquals;
+            }
+
+            if (userModel.Position == null)
+            {
+                return ResourceBusinessServices.AccountsController_PositionIsNull;
+            }
+
+            if (userModel.EmployeeStatus == null)
+            {
+                return ResourceBusinessServices.AccountsController_EmployeeStatusIsNull;
+            }
+
+            var position = _unitOfWork.PositionRepository.GetById(userModel.Position.Id);
+            if (position == null)
+            {
+                return string.Format(ResourceBusinessServices.AccountsController_PositionRepositoryIsNull, userModel.Position.Id);
+            }
+
+            var employeeStatus = _unitOfWork.EmployeeStatusRepository.GetById(userModel.EmployeeStatus.Id);
+            if (employeeStatus == null)
+            {
+                return string.Format(ResourceBusinessServices.AccountsController_EmployeeStatusRepositoryIsNull, userModel.EmployeeStatus.Id);
+            }
+
+            return string.Empty;
         }
 
         #endregion

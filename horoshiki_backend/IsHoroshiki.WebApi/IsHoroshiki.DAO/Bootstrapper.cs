@@ -2,8 +2,8 @@
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries;
 using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 using Microsoft.Practices.Unity;
-using IsHoroshiki.DAO.Accounts.Interfaces;
 using IsHoroshiki.DAO.Repositories.Accounts;
+using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
 
 namespace IsHoroshiki.DAO
 {
