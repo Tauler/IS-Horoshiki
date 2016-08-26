@@ -120,6 +120,16 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// Найти пользоватея
         /// </summary>
         /// <param name="userName">Имя пользователя</param>
+        /// <returns></returns>
+        public async Task<ApplicationUser> FindByNameAsync(string userName)
+        {
+            return await _userManager.FindByNameAsync(userName);
+        }
+
+        /// <summary>
+        /// Найти пользоватея
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
         public async Task<IUser<int>> FindAsync(string userName, string password)
