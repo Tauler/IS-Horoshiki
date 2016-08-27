@@ -8,7 +8,6 @@ accountServices.service('AccountService', ['$http', function($http) {
 
 
     this.login = function (username, password) {
-
         var resp = $http({
             url: backendServerAddr+'/token',
             method: 'POST',
@@ -17,5 +16,9 @@ accountServices.service('AccountService', ['$http', function($http) {
         });
         return resp;
     };
+
+    this.getCurrentUser = function () {
+        return $http.get(backendServerAddr+'/api/Accounts/Current', {timeout: backendTimeout, headers: getToken()});
+    }
 
 }]);

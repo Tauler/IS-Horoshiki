@@ -16,7 +16,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'backendServices',
     'accountServices',
     'translationServices',
-    'usersServices'
+    'usersServices',
+    'dictionaryServices'
 
 ]);
 
@@ -32,12 +33,19 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 pageId: 'mainViewPage',
                 title: 'Главная страница'
             })
+            .when('/users/add', {
+                templateUrl: '/angular-html/users.add.html',
+                controller: 'UsersAddController',
+                pageId: 'usersAddPage',
+                title: 'Добавление пользователя'
+            })
             .when('/users', {
                 templateUrl: '/angular-html/users.view.html',
                 controller: 'UsersViewController',
                 pageId: 'usersViewPage',
                 title: 'Просмотр пользователей'
             })
+
             .when('/error', {
                 templateUrl: '/angular-html/error.view.html',
                 controller: 'ErrorViewController',

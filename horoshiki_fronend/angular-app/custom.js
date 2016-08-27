@@ -18,22 +18,25 @@ function getToken() {
 }
 
 function httpErrors(url, status){
+
+    console.log(status);
     switch(status){
         case 401:
             redirect403(url);
             break;
         case 403:
             redirect403(url);
-        break;
+            break;
         case 404:
             redirect404();
-        break;
+            break;
         case 0:
-
-        break;
+            break;
+        case -1:
+            break;
         default:
             redirectBackendError();
-        break;
+            break;
     }
 }
 

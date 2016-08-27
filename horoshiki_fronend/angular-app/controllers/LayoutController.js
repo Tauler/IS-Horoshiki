@@ -17,7 +17,7 @@ layoutControllers.controller('LoginLayoutController', ['$scope', 'TranslationSer
     function ($scope, TranslationService, BackendService) {
 
         // Подгружаем перевод на выбранный язык
-        $scope.translate = function(){
+        $scope.translate = function () {
             TranslationService.getTranslation($scope);
         };
         $scope.translate();
@@ -33,47 +33,55 @@ layoutControllers.controller('LoginLayoutController', ['$scope', 'TranslationSer
     }
 ]);
 
-layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$location', 'TranslationService', 'BackendService','AccountService',
-    function ($scope, $rootScope, $location, TranslationService, BackendService, AccountService) {
+layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$location', 'TranslationService', 'AccountService',
+    function ($scope, $rootScope, $location, TranslationService, AccountService) {
 
-        $rootScope.$on('$routeChangeSuccess', function(e, current, pre){
+        $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $scope.pageId = current.pageId;
         });
 
         //Подгружаем перевод на выбранный язык
-        $scope.translate = function(){
+        $scope.translate = function () {
             TranslationService.getTranslation($scope);
         };
         $scope.translate();
 
         //Получаем текущего пользователя
-        $scope.getCurrentUser = function(){
-            AccountService.getCurrentUser().success(function(result){
-                if(result.success == true){
-                    $rootScope.currentUser = result.data;
+        $scope.initCurrentUserModel = function () {
+            $rootScope.currentUser = {};
+            $rootScope.currentUserLoaded = false;
+        }
+        $scope.initCurrentUserModel();
+
+        //Получаем текущего пользователя
+        $scope.getCurrentUser = function () {
+            AccountService.getCurrentUser().success(function (result) {
+                if (result.Success == 1) {
+                    $rootScope.currentUser = result.Data;
                     $rootScope.currentUserLoaded = true;
                     $rootScope.$broadcast('currentUserLoadedEvent');
-                }else{
+                } else {
                     displayErrorMessage($scope.translation[result.reason]);
                 }
-            }).error(function(result, status){
+            }).error(function (result, status) {
                 httpErrors($location.url(), status);
             });
         }
 
-        //Проверка доступности бэкэнда
+
+        // Проверка доступности бэкэнда
         // BackendService.checkIsAvailable().success(function(result){
         //     if(result.success == true){
-        //         $scope.getCurrentUser();
-        //     }else{
-        //         redirectBackendError();
-        //     }
+        $scope.getCurrentUser();
+        // }else{
+        //     redirectBackendError();
+        // }
         // }).error(function(result, status){
         //     httpErrors($location.url(), status);
         // });
 
         //Выход
-        $scope.logoutButton = function(){
+        $scope.logoutButton = function () {
             sessionStorage.removeItem('accessToken');
             redirectToMainSite();
         }

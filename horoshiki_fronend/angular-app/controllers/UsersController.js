@@ -4,12 +4,20 @@
 
 var usersControllers = angular.module('usersControllers', []);
 
-mainControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService',
+usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService',
     function ($scope, $location, UsersService) {
         $scope.model = {};
         $scope.model.users = [];
         $scope.model.paging = {};
+        //текущая страница по умолчанию
+        $scope.model.paging.PageNo = 1;
+        //количество записей на страницу
         $scope.model.clientPageSize = 10;
+        //количество кнопок на строке пагинации
+        $scope.model.countPageButton = 5;
+        $scope.model.orderby = {}
+        $scope.model.orderby.field = 'Id';
+        $scope.model.orderby.asc = true;
 
         // Пагинация
         $scope.$watch('model.paging.PageNo', function(){
@@ -17,17 +25,44 @@ mainControllers.controller('UsersViewController', ['$scope', '$location', 'Users
         });
 
         $scope.getAllUsers = function () {
-            UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, "Id", true).success(function(result){
+            UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function(result){
                 $scope.model.users = result.Data.Data;
                 $scope.model.paging = result.Data.Paging;
-                console.log($scope.model);
             }).error(function(result, status){
-                console.log(status);
                 httpErrors($location.url(), status);
             })
         }
 
+        $scope.changeSort = function (fieldName, asc) {
+            $scope.model.orderby.field = fieldName;
+            $scope.model.orderby.asc = asc;
+            $scope.getAllUsers();
+        }
         $scope.getAllUsers();
+    }
+]);
+
+usersControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService', 'DictionaryService',
+    function ($scope, $location, UsersService, DictionaryService) {
+        $scope.model = {};
+
+        $scope.getPositions = function () {
+            DictionaryService.getPositions().success(function(result){
+                if(result.Success==1) {
+                    $scope.model.positions = result.Data;
+                    console.log($scope.model.positions);
+                }else{
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function(result, status){
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPositions();
+
 
     }
+
+
 ]);
