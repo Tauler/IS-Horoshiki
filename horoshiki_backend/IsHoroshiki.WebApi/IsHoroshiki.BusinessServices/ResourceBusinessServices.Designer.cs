@@ -207,9 +207,18 @@ namespace IsHoroshiki.BusinessServices {
         /// <summary>
         ///   Looks up a localized string similar to Необходимо указать тип цены!.
         /// </summary>
-        internal static string SubDivisionValidator_PriceTypeMIsNullodel {
+        internal static string SubDivisionValidator_PriceTypeIsNullModel {
             get {
-                return ResourceManager.GetString("SubDivisionValidator_PriceTypeMIsNullodel", resourceCulture);
+                return ResourceManager.GetString("SubDivisionValidator_PriceTypeIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Некооректное значение часового пояса! Допустимый диапазон от -12 до +12!.
+        /// </summary>
+        internal static string SubDivisionValidator_TimezoneInvalidPeriod {
+            get {
+                return ResourceManager.GetString("SubDivisionValidator_TimezoneInvalidPeriod", resourceCulture);
             }
         }
         

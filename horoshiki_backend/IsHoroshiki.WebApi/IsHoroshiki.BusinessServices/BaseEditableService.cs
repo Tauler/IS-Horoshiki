@@ -140,6 +140,8 @@ namespace IsHoroshiki.BusinessServices
                 
                 _repository.Update(daoEntity);
 
+                _unitOfWork.Save();
+
                 return new ModelEntityModifyResult();
             }
             catch (Exception e)

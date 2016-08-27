@@ -165,8 +165,11 @@
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
     <value>Не найден тип цены с Id={0}!</value>
   </data>
-  <data name="SubDivisionValidator_PriceTypeMIsNullodel" xml:space="preserve">
+  <data name="SubDivisionValidator_PriceTypeIsNullModel" xml:space="preserve">
     <value>Необходимо указать тип цены!</value>
+  </data>
+  <data name="SubDivisionValidator_TimezoneInvalidPeriod" xml:space="preserve">
+    <value>Некооректное значение часового пояса! Допустимый диапазон от -12 до +12!</value>
   </data>
   <data name="SubDivisionValidator_TimezoneIsNull" xml:space="preserve">
     <value>Необходимо указать часовой пояс!</value>

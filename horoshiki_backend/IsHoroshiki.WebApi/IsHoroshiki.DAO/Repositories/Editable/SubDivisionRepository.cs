@@ -30,7 +30,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <param name="entity"></param>
         protected override void BeforeInsert(SubDivision entity)
         {
-            SetChildNull(entity);
+            SetChildEntity(entity);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <param name="entity"></param>
         protected override void BeforeUpdate(SubDivision entity)
         {
-            SetChildNull(entity);
+            SetChildEntity(entity);
         }
 
         #endregion
@@ -50,9 +50,9 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// Действие с сущностью перед обновлением в БД
         /// </summary>
         /// <param name="entity"></param>
-        private void SetChildNull(SubDivision entity)
+        private void SetChildEntity(SubDivision entity)
         {
-            entity.PriceType = null;
+            entity.PriceType = Context.PriceTypes.Find(entity.PriceTypeId);
         }
 
         #endregion

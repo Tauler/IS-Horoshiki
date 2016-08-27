@@ -89,6 +89,34 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Обновить объект в БД
+        /// </summary>
+        /// <param name="model">Данные</param>
+        [Route("Update")]
+        public async Task<IHttpActionResult> Update(TModelEntity model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return GetErrorResult(ModelState);
+            }
+
+            try
+            {
+                ModelEntityModifyResult result = await _service.UpdateAsync(model);
+                if (!result.IsValidationSucceeded || !result.IsSucceeded)
+                {
+                    return BadRequest(result.GetAllMessages());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+
+            return Ok();
+        }
+
         #endregion
     }
 }

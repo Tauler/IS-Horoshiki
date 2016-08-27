@@ -28,9 +28,14 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_TimezoneIsNull);
             }
 
+            if (element.Timezone > 12 || element.Timezone < -12)
+            {
+                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_TimezoneInvalidPeriod);
+            }
+
             if (element.PriceTypeModel == null)
             {
-                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_PriceTypeMIsNullodel);
+                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_PriceTypeIsNullModel);
             }
 
             return new ValidationResult();
