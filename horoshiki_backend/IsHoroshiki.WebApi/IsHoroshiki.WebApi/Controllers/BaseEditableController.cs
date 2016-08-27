@@ -117,6 +117,29 @@ namespace IsHoroshiki.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Удалить Объект из БД по Id
+        /// </summary>
+        /// <param name="id">Id объекта</param>
+        [Route("{id}")]
+        public async Task<IHttpActionResult> Delete(int id)
+        {
+            try
+            {
+                ModelEntityModifyResult result = await _service.DeleteAsync(id);
+                if (!result.IsValidationSucceeded || !result.IsSucceeded)
+                {
+                    return BadRequest(result.GetAllMessages());
+                }
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.GetAllMessages());
+            }
+
+            return Ok();
+        }
+
         #endregion
     }
 }

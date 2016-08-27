@@ -167,6 +167,8 @@ namespace IsHoroshiki.BusinessServices
 
                  _repository.Delete(id);
 
+                _unitOfWork.Save();
+
                 return new ModelEntityModifyResult();
             }
             catch (Exception e)
