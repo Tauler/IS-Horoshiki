@@ -92,6 +92,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private IAccountRepository _accountRepository;
 
+        /// <summary>
+        /// Репозиторий Площадка
+        /// </summary>
+        private IPlatformRepository _platformRepository;
+
         #endregion
 
         #region Конструктор
@@ -182,7 +187,6 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                 return _departmentRepository;
             }
         }
-
 
         /// <summary>  
         /// Репозиторий Подoтделы  
@@ -301,6 +305,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._accountRepository = new AccountRepository(_context);
                 }
                 return _accountRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозитарий Площадка 
+        /// </summary>  
+        public IPlatformRepository PlatformRepository
+        {
+            get
+            {
+                if (this._platformRepository == null)
+                {
+                    this._platformRepository = new PlatformRepository(_context);
+                }
+                return _platformRepository;
             }
         }
 

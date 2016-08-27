@@ -27,7 +27,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Статус площадки
         /// </summary>
-        public DbSet<StatusSite> StatusSites
+        public DbSet<PlatformStatus> StatusSites
         {
             get;
             set;
@@ -140,7 +140,8 @@ namespace IsHoroshiki.DAO
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new BuyProcessConfiguration());
-            modelBuilder.Configurations.Add(new StatusSiteConfiguration());
+            modelBuilder.Configurations.Add(new PlatformStatusConfiguration());
+            modelBuilder.Configurations.Add(new PlatformConfiguration());
             modelBuilder.Configurations.Add(new PositionConfiguration());
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());

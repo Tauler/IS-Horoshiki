@@ -74,10 +74,11 @@
     <Compile Include="DaoEntities\Editable\SubDivision.cs" />
     <Compile Include="DaoEntities\NotEditable\EmployeeStatus.cs" />
     <Compile Include="DaoEntities\NotEditable\OrderStatus.cs" />
-    <Compile Include="DaoEntities\NotEditable\StatusSite.cs" />
+    <Compile Include="DaoEntities\NotEditable\PlatformStatus.cs" />
     <Compile Include="DaoEntities\NotEditable\BuyProcess.cs" />
     <Compile Include="DaoEntities\Editable\Platform.cs" />
     <Compile Include="DaoEntityConfigurations\BaseDaoEntityConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\Editable\PlatformConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditable\BuyProcessConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditable\BaseNotEditableDaoEntityConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditable\DeliveryTimeConfiguration.cs" />
@@ -90,7 +91,7 @@
     <Compile Include="DaoEntityConfigurations\NotEditable\PriceTypeConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\NotEditable\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SubDivisionConfiguration.cs" />
-    <Compile Include="DaoEntityConfigurations\NotEditable\StatusSiteConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditable\PlatformStatusConfiguration.cs" />
     <Compile Include="Helpers\SortingHelper.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUser.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Repositories\Accounts\AccountRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUserManager.cs" />
+    <Compile Include="Repositories\Editable\PlatformRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Accounts\Interfaces\IAccountRepository.cs" />

@@ -16,9 +16,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static StatusSite ToDaoEntity(this IStatusSiteModel model)
+        public static PlatformStatus ToDaoEntity(this IStatusSiteModel model)
         {
-            return new StatusSite()
+            return new PlatformStatus()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -30,7 +30,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<StatusSite> ToDaoEntityList(this IEnumerable<IStatusSiteModel> models)
+        public static IEnumerable<PlatformStatus> ToDaoEntityList(this IEnumerable<IStatusSiteModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -40,7 +40,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IStatusSiteModel ToModelEntity(this StatusSite model)
+        public static IStatusSiteModel ToModelEntity(this PlatformStatus model)
         {
             return new StatusSiteModel()
             {
@@ -54,7 +54,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IStatusSiteModel> ToModelEntityList(this IEnumerable<StatusSite> models)
+        public static IEnumerable<IStatusSiteModel> ToModelEntityList(this IEnumerable<PlatformStatus> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

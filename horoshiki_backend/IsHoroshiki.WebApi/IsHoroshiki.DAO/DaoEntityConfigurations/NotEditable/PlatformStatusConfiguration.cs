@@ -3,19 +3,19 @@
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable
 {
     /// <summary>
-    /// Конфигурация Способы покупки
+    /// Конфигурация Статус площадки
     /// </summary>
-    public class StatusSiteConfiguration : BaseNotEditableDaoEntityConfiguration<StatusSite>
+    public class PlatformStatusConfiguration : BaseNotEditableDaoEntityConfiguration<PlatformStatus>
     {
         #region Конструктор
 
         /// <summary>  
         /// Конструктор  
         /// </summary>  
-        public StatusSiteConfiguration() 
-            : base("StatusSites")
+        public PlatformStatusConfiguration() 
+            : base("PlatformStatuses")
         {
-
+            
         }
 
         #endregion

@@ -3,7 +3,7 @@
 namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
 {
     /// <summary>
-    /// Площадка
+    /// Репозиторий Площадка
     /// </summary>
     public interface IPlatformRepository : IBaseRepository<Platform>
     {

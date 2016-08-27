@@ -3,7 +3,7 @@
     /// <summary>
     /// Статус площадки
     /// </summary>
-    public class StatusSite : BaseNotEditableDaoEntity
+    public class PlatformStatus : BaseNotEditableDaoEntity
     {
     }
 }

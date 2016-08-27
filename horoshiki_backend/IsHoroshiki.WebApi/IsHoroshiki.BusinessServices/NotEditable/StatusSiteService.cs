@@ -11,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Статус площадки
     /// </summary>
-    public class StatusSiteService : BaseNotEditableService<IStatusSiteModel, StatusSite>, IStatusSiteService
+    public class StatusSiteService : BaseNotEditableService<IStatusSiteModel, PlatformStatus>, IStatusSiteService
     {
         #region поля и свойства
 
@@ -43,7 +43,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="daoEntity"></param>
         /// <returns></returns>
-        protected override IStatusSiteModel ConvertTo(StatusSite daoEntity)
+        protected override IStatusSiteModel ConvertTo(PlatformStatus daoEntity)
         {
             return daoEntity.ToModelEntity();
         }
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="collection">коллекции Dao объектов</param>
         /// <returns></returns>
-        protected override IEnumerable<IStatusSiteModel> ConvertTo(IEnumerable<StatusSite> collection)
+        protected override IEnumerable<IStatusSiteModel> ConvertTo(IEnumerable<PlatformStatus> collection)
         {
             return collection.ToModelEntityList();
         }
