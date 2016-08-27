@@ -11,5 +11,13 @@ namespace IsHoroshiki.BusinessEntities
     /// </summary>
     public abstract class BaseBusninessModel : IBaseBusninessModel
     {
+        /// <summary>
+        /// Id в БД
+        /// </summary>
+        public int Id
+        {
+            get;
+            set;
+        }
     }
 }

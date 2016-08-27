@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
+using IsHoroshiki.DAO.Helpers;
 
 namespace IsHoroshiki.DAO.Repositories
 {
@@ -9,8 +11,7 @@ namespace IsHoroshiki.DAO.Repositories
     /// Базовый репозиторий
     /// </summary>  
     /// <typeparam name="TDaoEntity">Тип сущности Dao</typeparam> 
-    /// <typeparam name="TPrimaryKey">Тип primary key в БД</typeparam> 
-    public abstract class BaseRepository<TDaoEntity, TPrimaryKey> : IBaseRepository<TDaoEntity, TPrimaryKey>
+    public abstract class BaseRepository<TDaoEntity> : IBaseRepository<TDaoEntity>
         where TDaoEntity : BaseDaoEntity
     {
         #region поля и свойства
@@ -47,7 +48,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="id">Id</param>  
         /// <returns></returns>  
-        public virtual TDaoEntity GetById(TPrimaryKey id)
+        public virtual async Task<TDaoEntity> GetByIdAsync(int id)
         {
             return DbSet.Find(id);
         }
@@ -65,7 +66,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// Удалить по Id 
         /// </summary>  
         /// <param name="id">Id</param>  
-        public virtual void Delete(TPrimaryKey id)
+        public virtual void Delete(int id)
         {
             TDaoEntity entityToDelete = DbSet.Find(id);
             Delete(entityToDelete);
@@ -99,7 +100,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="where">Условие в запросе</param>  
         /// <returns></returns>  
-        public virtual IEnumerable<TDaoEntity> GetMany(Func<TDaoEntity, bool> where)
+        public virtual async Task<IEnumerable<TDaoEntity>> GetManyAsync(Func<TDaoEntity, bool> where)
         {
             return DbSet.Where(where).ToList();
         }
@@ -109,7 +110,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="where">Условие в запросе</param>  
         /// <returns></returns>  
-        public TDaoEntity Get(Func<TDaoEntity, Boolean> where)
+        public virtual async Task<TDaoEntity> GetAsync(Func<TDaoEntity, Boolean> where)
         {
             return DbSet.Where(where).FirstOrDefault<TDaoEntity>();
         }
@@ -119,7 +120,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="where">Условие в запросе</param>  
         /// <returns></returns>  
-        public void Delete(Func<TDaoEntity, Boolean> where)
+        public virtual void Delete(Func<TDaoEntity, Boolean> where)
         {
             IQueryable<TDaoEntity> objects = DbSet.Where<TDaoEntity>(where).AsQueryable();
             foreach (TDaoEntity obj in objects)
@@ -131,10 +132,29 @@ namespace IsHoroshiki.DAO.Repositories
         /// <summary>  
         /// Получить все записи
         /// </summary>  
-        /// <returns></returns>  
-        public virtual IEnumerable<TDaoEntity> GetAll()
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        public virtual async Task<IEnumerable<TDaoEntity>> GetAllAsync(int pageNo = 1, int pageSize = Int32.MaxValue, string sortField = "", bool isAscending = true)
         {
-            return DbSet.ToList();
+            int skip = (pageNo - 1) * pageSize;
+
+            return DbSet
+                .OrderByPropertyName(sortField, isAscending)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList()
+                .AsEnumerable(); 
+        }
+
+        /// <summary>  
+        /// Получить количество записей
+        /// </summary>  
+        /// <returns></returns>  
+        public virtual Task<int> CountAsync()
+        {
+            return DbSet.CountAsync();
         }
 
         /// <summary>  
@@ -142,7 +162,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="id">id</param>  
         /// <returns></returns>  
-        public bool Exists(TPrimaryKey id)
+        public virtual async Task<bool> IsExistsAsync(int id)
         {
             return DbSet.Find(id) != null;
         }

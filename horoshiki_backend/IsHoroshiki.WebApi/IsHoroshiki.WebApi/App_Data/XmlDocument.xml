@@ -529,33 +529,85 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.AccountsController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.BaseController`1">
+            <summary>
+            Абстрактный класс контроллера
+            </summary>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.BaseEditableController`1">
+            <summary>
+            Абстрактный класс редактируемого контроллера
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.BaseEditableController`1._service">
+            <summary>
+            Сервис бизнес-логики
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.#ctor(IsHoroshiki.BusinessServices.IBaseEditableService{`0})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Сервис бизнес-логики</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.Get(System.Int32,System.Int32,System.String,System.Boolean)">
+            <summary>
+            Получить все записи
+            </summary>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <param name="sortField">Поле для сортировки</param>
+            <param name="isAscending">true - сортировать по возрастанию</param>
+            <returns></returns>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1">
+            <summary>
+            Абстрактный класс нередактируемого контроллера
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1._service">
+            <summary>
+            Сервис бизнес-логики
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1.#ctor(IsHoroshiki.BusinessServices.IBaseNotEditableService{`0})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Сервис бизнес-логики</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1.Get">
+            <summary>
+            Получить все записи
+            </summary>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.Editable.AccountsController">
             <summary>
             Контроллер авторизации
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.AccountsController.LocalLoginProvider">
+        <member name="F:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.LocalLoginProvider">
             <summary>
             
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.AccountsController._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.Editable.AccountsController._service">
             <summary>
             Сервис аккаунтов
             </summary>
         </member>
-        <member name="P:IsHoroshiki.WebApi.Controllers.AccountsController.Authentication">
+        <member name="P:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Authentication">
             <summary>
             Менеджер аутентификации
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.#ctor(IsHoroshiki.BusinessServices.Account.Interfaces.IAccountService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.#ctor(IsHoroshiki.BusinessServices.Editable.Interfaces.IAccountService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Сервис аккаунтов</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Get(System.Int32,System.Int32,System.String,System.Boolean)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Get(System.Int32,System.Int32,System.String,System.Boolean)">
             <summary>
             Получить всех пользователей
             </summary>
@@ -565,364 +617,245 @@
             <param name="isAscending">true - сортировать по возрастанию</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Add(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Add(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
             <summary>
             Создать пользователя
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Get(System.Int32)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Get(System.Int32)">
             <summary>
             Получить пользователя по Id
             </summary>
             <param name="id">Id пользователя</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Update(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Update(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
             <summary>
             Обновить пользователя
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Delete(System.Int32)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Delete(System.Int32)">
             <summary>
             Удалить пользователя по Id
             </summary>
             <param name="id">Id пользователя</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Logout">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Logout">
             <summary>
             Выход из системы
             </summary>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.ChangePassword(IsHoroshiki.BusinessEntities.Account.ChangePasswordBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.ChangePassword(IsHoroshiki.BusinessEntities.Account.ChangePasswordBindingModel)">
             <summary>
             Изменить пароль
             </summary>
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.SetPassword(IsHoroshiki.BusinessEntities.Account.SetPasswordBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.SetPassword(IsHoroshiki.BusinessEntities.Account.SetPasswordBindingModel)">
             <summary>
             Установить пароль
             </summary>
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.RemoveLogin(IsHoroshiki.BusinessEntities.Account.RemoveLoginBindingModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.RemoveLogin(IsHoroshiki.BusinessEntities.Account.RemoveLoginBindingModel)">
             <summary>
             Удалить пользователя
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetCurrent">
+            <summary>
+            Получение текущего пользователя
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.IsExistUserName(System.String)">
+            <summary>
+            Проверка существования логина для пользователя
+            </summary>
+            <param name="userName">Логин пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
             <summary>
             ДОбавление ошибок
             </summary>
             <param name="result"></param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetErrorResult(System.Web.Http.ModelBinding.ModelStateDictionary)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetErrorResult(System.Web.Http.ModelBinding.ModelStateDictionary)">
             <summary>
             Вернуть первую ошибку
             </summary>
             <param name="modelState"></param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.GetUserId">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetUserId">
             <summary>
             Найти Id пользователя
             </summary>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.AccountsController.Dispose(System.Boolean)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Dispose(System.Boolean)">
             <summary>
             Очистить ресурсы
             </summary>
             <param name="disposing"></param>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController">
-            <summary>
-            Контроллер Время доставки
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController._service">
-            <summary>
-            Cервис Типы зон доставки
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDeliveryTimeService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Время доставки</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryTimesController.Get">
-            <summary>
-            Получить все Время доставки
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController">
-            <summary>
-            Контроллер Оплата заказа
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController._service">
-            <summary>
-            Cервис Оплата заказа
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IOrderPayService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Оплата заказа</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderPaysController.Get">
-            <summary>
-            Получить все Оплата заказа 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController">
-            <summary>
-            Контроллер ПодОтделы
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController._service">
-            <summary>
-            Cервис ПодОтделы
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubDepartmentService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис ПодОтделы</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDepartmentsController.Get">
-            <summary>
-            Получить все Отделы 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController">
-            <summary>
-            Контроллер Должности
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController._service">
-            <summary>
-            Cервис Должности
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IPositionService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Должности</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PositionsController.Get">
-            <summary>
-            Получить все Статус площадки 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController">
-            <summary>
-            Контроллер Статус сотрудника
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController._service">
-            <summary>
-            Cервис Статус площадки
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IEmployeeStatusService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Статус сотрудника</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.EmployeeStatusesController.Get">
-            <summary>
-            Получить все Статус сотрудника 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController">
-            <summary>
-            Контроллер Отделы
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController._service">
-            <summary>
-            Cервис Статус площадки
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDepartmentService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Статус площадки</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DepartmentsController.Get">
-            <summary>
-            Получить все Отделы 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController">
-            <summary>
-            Контроллер Статус заказа
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController._service">
-            <summary>
-            Cервис Статус заказа
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IOrderStatusService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Статус заказа</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.OrderStatusesController.Get">
-            <summary>
-            Получить все Статус заказа 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController">
-            <summary>
-            Контроллер Статус площадки
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController._service">
-            <summary>
-            Cервис Типы цен
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IPriceTypeService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Статус площадки</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.PriceTypesController.Get">
-            <summary>
-            Получить все Типы цен 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController">
-            <summary>
-            Контроллер Типы зон доставки
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController._service">
-            <summary>
-            Cервис Типы зон доставки
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IDeliveryZoneService)">
-            <summary>
-            Конструктор
-            </summary>
-            <param name="service">Cервис Типы зон доставки</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.DeliveryZonesController.Get">
-            <summary>
-            Получить все Типы зон доставки 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.Editable.SubDivisionsController">
             <summary>
             Контроллер Подразделения
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController._service">
-            <summary>
-            Cервис Статус площадки
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.ISubDivisionService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SubDivisionsController.#ctor(IsHoroshiki.BusinessServices.Editable.Interfaces.ISubDivisionService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Cервис Подразделения</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.SubDivisionsController.Get">
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryTimesController">
             <summary>
-            Получить все Подразделения 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController">
-            <summary>
-            Контроллер Статус площадки
+            Контроллер Время доставки
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController._service">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryTimesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IDeliveryTimeService)">
             <summary>
-            Cервис Статус площадки
+            Конструктор
+            </summary>
+            <param name="service">Cервис Время доставки</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.OrderPaysController">
+            <summary>
+            Контроллер Оплата заказа
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IStatusSiteService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.OrderPaysController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IOrderPayService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Оплата заказа</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.SubDepartmentsController">
+            <summary>
+            Контроллер ПодОтделы
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.SubDepartmentsController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.ISubDepartmentService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис ПодОтделы</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.PositionsController">
+            <summary>
+            Контроллер Должности
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.PositionsController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IPositionService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Должности</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.EmployeeStatusesController">
+            <summary>
+            Контроллер Статус сотрудника
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.EmployeeStatusesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IEmployeeStatusService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус сотрудника</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.DepartmentsController">
+            <summary>
+            Контроллер Отделы
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.DepartmentsController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IDepartmentService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Cервис Статус площадки</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.StatusSitesController.Get">
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.OrderStatusesController">
             <summary>
-            Получить все Статус площадки 
+            Контроллер Статус заказа
             </summary>
-            <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.OrderStatusesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IOrderStatusService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус заказа</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.PriceTypesController">
+            <summary>
+            Контроллер Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.PriceTypesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IPriceTypeService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус площадки</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryZonesController">
+            <summary>
+            Контроллер Типы зон доставки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryZonesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IDeliveryZoneService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Типы зон доставки</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.StatusSitesController">
+            <summary>
+            Контроллер Статус площадки
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.StatusSitesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IStatusSiteService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус площадки</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.BuyProcessesController">
             <summary>
             Контроллер Способы покупки
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController._service">
-            <summary>
-            Cервис Способы покупки
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IBuyProcessService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.BuyProcessesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IBuyProcessService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Cервис Способы покупки</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditableDictionaries.BuyProcessesController.Get">
-            <summary>
-            Получить все Способы покупки 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.UtilsController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.Utils.UtilsController">
             <summary>
             Контроллер-хелпер работы с сервером
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.UtilsController._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.Utils.UtilsController._service">
             <summary>
             Cервис проверки доступности сервера и т.п.
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.UtilsController.#ctor(IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces.IUtilService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Utils.UtilsController.#ctor(IsHoroshiki.BusinessServices.Utils.Interfaces.IUtilService)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Cервис проверки доступности сервера и т.п.</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.UtilsController.Get">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Utils.UtilsController.Get">
             <summary>
             Проверить доступность сервиса и БД
             </summary>

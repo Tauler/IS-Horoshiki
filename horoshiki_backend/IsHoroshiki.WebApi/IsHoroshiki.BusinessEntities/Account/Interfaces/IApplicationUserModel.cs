@@ -1,5 +1,5 @@
 ﻿using System;
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
+using IsHoroshiki.BusinessEntities.NotEditable;
 
 namespace IsHoroshiki.BusinessEntities.Account.Interfaces
 {

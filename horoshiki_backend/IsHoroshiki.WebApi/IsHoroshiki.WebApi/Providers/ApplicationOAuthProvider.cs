@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
-using IsHoroshiki.BusinessServices.Account.Interfaces;
-using IsHoroshiki.BusinessServices.Account;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
+using IsHoroshiki.BusinessServices.Editable;
+using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using Microsoft.Owin.Security.Cookies;
 
 namespace IsHoroshiki.WebApi.Providers

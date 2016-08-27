@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
-using IsHoroshiki.DAO.Repositories.NotEditableDictionaries;
-using IsHoroshiki.DAO.Repositories.NotEditableDictionaries.Interfaces;
 using IsHoroshiki.DAO.Repositories.Accounts;
 using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
+using IsHoroshiki.DAO.Repositories.Editable;
+using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
+using IsHoroshiki.DAO.Repositories.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 
 namespace IsHoroshiki.DAO.UnitOfWorks
 {

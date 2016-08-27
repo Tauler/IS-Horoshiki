@@ -58,10 +58,9 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             int skip = (pageNo - 1) * pageSize;
 
             var list = _ctx.Users
-                .OrderBy(c => c.Id)
+                .OrderByPropertyName(sortField, isAscending)
                 .Skip(skip)
                 .Take(pageSize)
-                .OrderByPropertyName(sortField, isAscending)
                 .ToList()
                 .AsEnumerable();
 
@@ -115,6 +114,16 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         public Task<IdentityResult> DeleteAsync(ApplicationUser user)
         {
             return _userManager.DeleteAsync(user);
+        }
+
+        /// <summary>
+        /// Найти пользоватея
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <returns></returns>
+        public async Task<ApplicationUser> FindByNameAsync(string userName)
+        {
+            return await _userManager.FindByNameAsync(userName);
         }
 
         /// <summary>

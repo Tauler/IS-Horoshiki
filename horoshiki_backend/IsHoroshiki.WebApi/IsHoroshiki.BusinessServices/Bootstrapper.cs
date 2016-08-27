@@ -1,10 +1,14 @@
 ﻿using System;
+using IsHoroshiki.BusinessServices.Editable;
 using IsHoroshiki.BusinessServices.NotEditableDictionaries;
-using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.Practices.Unity;
-using IsHoroshiki.BusinessServices.Account.Interfaces;
-using IsHoroshiki.BusinessServices.Account;
+using IsHoroshiki.BusinessServices.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.NotEditable;
+using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
+using IsHoroshiki.BusinessServices.Utils.Interfaces;
+using IsHoroshiki.BusinessServices.Validators.Editable;
+using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -41,6 +45,8 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IDeliveryTimeService, DeliveryTimeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IUtilService, UtilService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<ISubDivisionValidator, SubDivisionValidator>();
 
             return container;
         }

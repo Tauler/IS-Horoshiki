@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace IsHoroshiki.DAO.Repositories
 {
@@ -9,8 +8,7 @@ namespace IsHoroshiki.DAO.Repositories
     /// Базовый репозиторий
     /// </summary>  
     /// <typeparam name="TDaoEntity">Тип сущности Dao</typeparam> 
-    /// <typeparam name="TPrimaryKey">Тип primary key в БД</typeparam> 
-    public interface IBaseRepository<TDaoEntity, TPrimaryKey> where TDaoEntity : BaseDaoEntity
+    public interface IBaseRepository<TDaoEntity> where TDaoEntity : BaseDaoEntity
     {
         #region методы
 
@@ -19,7 +17,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="id">Id</param>  
         /// <returns></returns>  
-        TDaoEntity GetById(TPrimaryKey id);
+        Task<TDaoEntity> GetByIdAsync(int id);
 
         /// <summary>  
         /// Добавить
@@ -31,7 +29,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// Удалить по Id 
         /// </summary>  
         /// <param name="id">Id</param>  
-        void Delete(TPrimaryKey id);
+        void Delete(int id);
 
         /// <summary>  
         /// Удалить
@@ -50,14 +48,14 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="where">Условие в запросе</param>  
         /// <returns></returns>  
-        IEnumerable<TDaoEntity> GetMany(Func<TDaoEntity, bool> where);
+        Task<IEnumerable<TDaoEntity>> GetManyAsync(Func<TDaoEntity, bool> where);
 
         /// <summary>  
         /// Получить запись по условию    
         /// </summary>  
         /// <param name="where">Условие в запросе</param>  
         /// <returns></returns>  
-        TDaoEntity Get(Func<TDaoEntity, Boolean> where);
+        Task<TDaoEntity> GetAsync(Func<TDaoEntity, Boolean> where);
 
         /// <summary>  
         /// Удалить записи по условию 
@@ -69,15 +67,24 @@ namespace IsHoroshiki.DAO.Repositories
         /// <summary>  
         /// Получить все записи
         /// </summary>  
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        Task<IEnumerable<TDaoEntity>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
+
+        /// <summary>  
+        /// Получить количество записей
+        /// </summary>  
         /// <returns></returns>  
-        IEnumerable<TDaoEntity> GetAll();
+        Task<int> CountAsync();
 
         /// <summary>  
         /// Проверка на существование записи
         /// </summary>  
         /// <param name="id">id</param>  
         /// <returns></returns>  
-        bool Exists(TPrimaryKey id);
+        Task<bool> IsExistsAsync(int id);
 
         #endregion
     }

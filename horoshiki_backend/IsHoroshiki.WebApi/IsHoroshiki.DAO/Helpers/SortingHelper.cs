@@ -21,7 +21,7 @@ namespace IsHoroshiki.DAO.Helpers
         {
             if (string.IsNullOrEmpty(sortField))
             {
-                return query;
+                sortField = "Id";
             }
 
             var param = Expression.Parameter(typeof(T), "p");

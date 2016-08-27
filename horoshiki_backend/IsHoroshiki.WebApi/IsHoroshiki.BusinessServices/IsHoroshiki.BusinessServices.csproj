@@ -55,38 +55,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\AccountService.cs" />
-    <Compile Include="Account\Interfaces\IAccountService.cs" />
+    <Compile Include="Editable\AccountService.cs" />
+    <Compile Include="Editable\Interfaces\IAccountService.cs" />
+    <Compile Include="IBaseEditableService.cs" />
+    <Compile Include="BaseEditableService.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Helpers\ThrowExceptionHelper.cs" />
     <Compile Include="IBaseBusinessService.cs" />
     <Compile Include="BaseBusinessService.cs" />
-    <Compile Include="NotEditableDictionaries\BaseNotEditableDictionaryService.cs" />
-    <Compile Include="NotEditableDictionaries\DeliveryTimeService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryTimeService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IOrderPayService.cs" />
-    <Compile Include="NotEditableDictionaries\OrderPayService.cs" />
-    <Compile Include="NotEditableDictionaries\SubDepartmentService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\ISubDepartmentService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IEmployeeStatusService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IPositionService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IDepartmentService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IOrderStatusService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IPriceTypeService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IDeliveryZoneService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\ISubDivisionService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IStatusSiteService.cs" />
-    <Compile Include="NotEditableDictionaries\PositionService.cs" />
-    <Compile Include="NotEditableDictionaries\EmployeeStatusService.cs" />
-    <Compile Include="NotEditableDictionaries\DepartmentService.cs" />
-    <Compile Include="NotEditableDictionaries\OrderStatusService.cs" />
-    <Compile Include="NotEditableDictionaries\PriceTypeService.cs" />
-    <Compile Include="NotEditableDictionaries\DeliveryZoneService.cs" />
-    <Compile Include="NotEditableDictionaries\SubDivisionService.cs" />
-    <Compile Include="NotEditableDictionaries\StatusSiteService.cs" />
-    <Compile Include="NotEditableDictionaries\BuyProcessService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IBuyProcessService.cs" />
-    <Compile Include="NotEditableDictionaries\Interfaces\IBaseNotEditableDictionaryService.cs" />
+    <Compile Include="BaseNotEditableService.cs" />
+    <Compile Include="IBaseNotEditableService.cs" />
+    <Compile Include="ModelEntityModifyResult.cs" />
+    <Compile Include="NotEditable\DeliveryTimeService.cs" />
+    <Compile Include="NotEditable\Interfaces\IDeliveryTimeService.cs" />
+    <Compile Include="NotEditable\Interfaces\IOrderPayService.cs" />
+    <Compile Include="NotEditable\OrderPayService.cs" />
+    <Compile Include="NotEditable\SubDepartmentService.cs" />
+    <Compile Include="NotEditable\Interfaces\ISubDepartmentService.cs" />
+    <Compile Include="NotEditable\Interfaces\IEmployeeStatusService.cs" />
+    <Compile Include="NotEditable\Interfaces\IPositionService.cs" />
+    <Compile Include="NotEditable\Interfaces\IDepartmentService.cs" />
+    <Compile Include="NotEditable\Interfaces\IOrderStatusService.cs" />
+    <Compile Include="NotEditable\Interfaces\IPriceTypeService.cs" />
+    <Compile Include="NotEditable\Interfaces\IDeliveryZoneService.cs" />
+    <Compile Include="Editable\Interfaces\ISubDivisionService.cs" />
+    <Compile Include="NotEditable\Interfaces\IStatusSiteService.cs" />
+    <Compile Include="NotEditable\PositionService.cs" />
+    <Compile Include="NotEditable\EmployeeStatusService.cs" />
+    <Compile Include="NotEditable\DepartmentService.cs" />
+    <Compile Include="NotEditable\OrderStatusService.cs" />
+    <Compile Include="NotEditable\PriceTypeService.cs" />
+    <Compile Include="NotEditable\DeliveryZoneService.cs" />
+    <Compile Include="Editable\SubDivisionService.cs" />
+    <Compile Include="NotEditable\StatusSiteService.cs" />
+    <Compile Include="NotEditable\BuyProcessService.cs" />
+    <Compile Include="NotEditable\Interfaces\IBuyProcessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceBusinessServices.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,6 +98,10 @@
     </Compile>
     <Compile Include="Utils\UtilService.cs" />
     <Compile Include="Utils\Interfaces\IUtilService.cs" />
+    <Compile Include="Validators\Editable\Interfaces\ISubDivisionValidator.cs" />
+    <Compile Include="Validators\Editable\SubDivisionValidator.cs" />
+    <Compile Include="Validators\ValidationResult.cs" />
+    <Compile Include="Validators\IValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IsHoroshiki.BusinessEntities\IsHoroshiki.BusinessEntities.csproj">
@@ -115,6 +122,7 @@
       <LastGenOutput>ResourceBusinessServices.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
-using IsHoroshiki.DAO.DaoEntities.NotEditableDictionaries;
-using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditableDictionaries;
+using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.DaoEntityConfigurations.Editable;
+using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable;
 using Microsoft.AspNet.Identity.EntityFramework;
 using IsHoroshiki.DAO.Identities;
 

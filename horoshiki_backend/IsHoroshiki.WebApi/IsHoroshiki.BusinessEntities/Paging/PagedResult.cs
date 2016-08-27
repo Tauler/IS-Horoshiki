@@ -49,7 +49,6 @@ namespace IsHoroshiki.BusinessEntities.Paging
                 get;
                 set;
             }
-
         }
 
         /// <summary>

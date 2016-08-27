@@ -4,7 +4,7 @@ using IsHoroshiki.DAO.Identities;
 using IsHoroshiki.BusinessEntities.Account;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 
-namespace IsHoroshiki.BusinessEntities.NotEditableDictionaries.MappingDao
+namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
 {
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность

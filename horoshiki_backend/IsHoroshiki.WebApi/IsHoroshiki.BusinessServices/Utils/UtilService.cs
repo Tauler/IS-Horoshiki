@@ -1,4 +1,5 @@
-﻿using IsHoroshiki.BusinessServices.NotEditableDictionaries.Interfaces;
+﻿using System.Threading.Tasks;
+using IsHoroshiki.BusinessServices.Utils.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
@@ -35,11 +36,11 @@ namespace IsHoroshiki.BusinessServices.NotEditableDictionaries
         /// <summary>
         /// true - если сервер БД доступен
         /// </summary>
-        public bool IsAvailableServer()
+        public async Task<bool> IsAvailableServer()
         {
             try
             {
-                _unitOfWork.BuyProcessPepository.GetById(1);
+                var result = await _unitOfWork.BuyProcessPepository.GetByIdAsync(1);
                 return true;
             }
             catch

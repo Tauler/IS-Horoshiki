@@ -11,5 +11,13 @@ namespace IsHoroshiki.DAO
     /// </summary>
     public abstract class BaseDaoEntity
     {
+        /// <summary>
+        /// Id в БД
+        /// </summary>
+        public int Id
+        {
+            get;
+            set;
+        }
     }
 }

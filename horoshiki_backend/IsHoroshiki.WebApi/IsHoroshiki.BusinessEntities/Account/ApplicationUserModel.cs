@@ -1,5 +1,5 @@
-﻿using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;

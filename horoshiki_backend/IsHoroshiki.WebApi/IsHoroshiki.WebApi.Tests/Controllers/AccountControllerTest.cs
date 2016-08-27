@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using IsHoroshiki.WebApi.Controllers;
-using IsHoroshiki.BusinessServices.Account;
 using IsHoroshiki.BusinessEntities.Account;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using System;
-using IsHoroshiki.BusinessEntities.NotEditableDictionaries;
+using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.BusinessServices.Editable;
+using IsHoroshiki.WebApi.Controllers.Editable;
 
 namespace IsHoroshiki.WebApi.Tests.Controllers
 {
