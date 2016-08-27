@@ -1,20 +1,16 @@
-﻿using IsHoroshiki.BusinessEntities.Converters;
-using IsHoroshiki.BusinessEntities.Editable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using Newtonsoft.Json;
+﻿using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
-namespace IsHoroshiki.BusinessEntities.Editable
+namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
 {
     /// <summary>
     /// Подразделения
     /// </summary>
-    public class SubDivisionModel : BaseBusninessModel, ISubDivisionModel
+    public interface ISubDivisionModel : IBaseBusninessModel
     {
         /// <summary>
         /// Наименование
         /// </summary>
-        public string Name
+        string Name
         {
             get;
             set;
@@ -23,7 +19,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Часовой пояс
         /// </summary>
-        public int Timezone
+        int Timezone
         {
             get;
             set;
@@ -32,8 +28,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Типы цен
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<PriceTypeModel, IPriceTypeModel>))]
-        public IPriceTypeModel PriceTypeModel
+        IPriceTypeModel PriceTypeModel
         {
             get;
             set;
@@ -42,7 +37,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Заголовок на сайте
         /// </summary>
-        public string SiteHeader
+        string SiteHeader
         {
             get;
             set;

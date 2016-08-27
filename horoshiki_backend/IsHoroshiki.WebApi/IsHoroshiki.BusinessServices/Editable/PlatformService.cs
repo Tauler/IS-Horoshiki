@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using IsHoroshiki.BusinessEntities.Editable;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
@@ -12,9 +11,9 @@ using IsHoroshiki.DAO.UnitOfWorks;
 namespace IsHoroshiki.BusinessServices.Editable
 {
     /// <summary>
-    /// Сервис Подразделения
+    /// Сервис Платформа
     /// </summary>
-    public class SubDivisionService : BaseEditableService<ISubDivisionModel, SubDivision>, ISubDivisionService
+    public class PlatformService : BaseEditableService<IPlatformModel, Platform>, IPlatformService
     {
         #region Конструктор
 
@@ -23,8 +22,8 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="validator">Валидатор</param>
-        public SubDivisionService(UnitOfWork unitOfWork, ISubDivisionValidator validator)
-            : base(unitOfWork, unitOfWork.SubDivisionRepository, validator)
+        public PlatformService(UnitOfWork unitOfWork, IPlatformValidator validator)
+            : base(unitOfWork, unitOfWork.PlatformRepository, validator)
         {
             
         }
@@ -38,16 +37,16 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        protected async override Task<ValidationResult> ValidationInternal(ISubDivisionModel model)
+        protected async override Task<ValidationResult> ValidationInternal(IPlatformModel model)
         {
-            if (model.PriceTypeModel != null)
-            {
-                var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
-                if (daoPriceType == null)
-                {
-                    return new ValidationResult(string.Format(ResourceBusinessServices.SubDivisionService_PriceTypeNotFound, model.PriceTypeModel.Id));
-                }
-            }
+            //if (model.PriceTypeModel != null)
+            //{
+            //    var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
+            //    if (daoPriceType == null)
+            //    {
+            //        return new ValidationResult(string.Format(ResourceBusinessServices.SubDivisionService_PriceTypeNotFound, model.PriceTypeModel.Id));
+            //    }
+            //}
 
             return new ValidationResult();
         }
@@ -57,7 +56,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="daoEntity"></param>
         /// <returns></returns>
-        protected override ISubDivisionModel ConvertTo(SubDivision daoEntity)
+        protected override IPlatformModel ConvertTo(Platform daoEntity)
         {
             return daoEntity.ToModelEntity();
         }
@@ -67,7 +66,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="collection">коллекции Dao объектов</param>
         /// <returns></returns>
-        protected override IEnumerable<ISubDivisionModel> ConvertTo(IEnumerable<SubDivision> collection)
+        protected override IEnumerable<IPlatformModel> ConvertTo(IEnumerable<Platform> collection)
         {
             return collection.ToModelEntityList();
         }
@@ -77,7 +76,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        public override SubDivision CreateInternal(ISubDivisionModel model)
+        public override Platform CreateInternal(IPlatformModel model)
         {
             return model.ToDaoEntity();
         }
@@ -88,7 +87,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="daoEntity">dao Сущность</param>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        public override SubDivision UpdateDaoInternal(SubDivision daoEntity, ISubDivisionModel model)
+        public override Platform UpdateDaoInternal(Platform daoEntity, IPlatformModel model)
         {
             return daoEntity.Update(model);
         }

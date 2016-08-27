@@ -32,9 +32,11 @@ namespace IsHoroshiki.BusinessServices
             DAO.Bootstrapper.BuildUnityContainer(container);
 
             container.RegisterType<ISubDivisionValidator, SubDivisionValidator>();
+            container.RegisterType<IPlatformValidator, PlatformValidator>();
 
             container.RegisterType<IBuyProcessService, BuyProcessService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
-            container.RegisterType<IStatusSiteService, StatusSiteService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IPlatformStatusService, PlatformStatusService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IPlatformService, PlatformService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IPositionService, PositionService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IEmployeeStatusService, EmployeeStatusService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IDepartmentService, DepartmentService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());

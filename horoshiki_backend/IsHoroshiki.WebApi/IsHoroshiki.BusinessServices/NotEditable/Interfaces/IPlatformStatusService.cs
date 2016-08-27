@@ -6,7 +6,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable.Interfaces
     /// <summary>
     /// Cервис Статус площадки
     /// </summary>
-    public interface IStatusSiteService : IBaseNotEditableService<IStatusSiteModel>
+    public interface IPlatformStatusService : IBaseNotEditableService<IPlatformStatusModel>
     {
        
     }

@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Статус площадки
     /// </summary>
     [Authorize]
-    public class StatusSitesController : BaseNotEditableController<IStatusSiteModel>
+    public class StatusSitesController : BaseNotEditableController<IPlatformStatusModel>
     {
         #region Конструктор
 
@@ -16,7 +16,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
         /// Конструктор
         /// </summary>
         /// <param name="service">Cервис Статус площадки</param>
-        public StatusSitesController(IStatusSiteService service)
+        public StatusSitesController(IPlatformStatusService service)
             : base(service)
         {
             

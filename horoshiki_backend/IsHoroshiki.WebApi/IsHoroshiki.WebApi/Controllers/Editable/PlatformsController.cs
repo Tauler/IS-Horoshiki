@@ -5,19 +5,19 @@ using IsHoroshiki.BusinessServices.Editable.Interfaces;
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
     /// <summary>
-    /// Контроллер Подразделения
+    /// Контроллер Платформа
     /// </summary>
     [Authorize]
-    [RoutePrefix("api/SubDivisions")]
-    public class SubDivisionsController : BaseEditableController<ISubDivisionModel>
+    [RoutePrefix("api/Platforms")]
+    public class PlatformsController : BaseEditableController<IPlatformModel>
     {
         #region Конструктор
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="service">Cервис Подразделения</param>
-        public SubDivisionsController(ISubDivisionService service)
+        /// <param name="service">Cервис Платформа</param>
+        public PlatformsController(IPlatformService service)
             : base(service)
         {
             

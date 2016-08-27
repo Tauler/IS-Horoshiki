@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 
@@ -15,7 +16,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static SubDivision ToDaoEntity(this SubDivisionModel model)
+        public static SubDivision ToDaoEntity(this ISubDivisionModel model)
         {
             return new SubDivision()
             {
@@ -33,7 +34,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<SubDivision> ToDaoEntityList(this IEnumerable<SubDivisionModel> models)
+        public static IEnumerable<SubDivision> ToDaoEntityList(this IEnumerable<ISubDivisionModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -43,7 +44,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static SubDivisionModel ToModelEntity(this SubDivision model)
+        public static ISubDivisionModel ToModelEntity(this SubDivision model)
         {
             return new SubDivisionModel()
             {
@@ -60,7 +61,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<SubDivisionModel> ToModelEntityList(this IEnumerable<SubDivision> models)
+        public static IEnumerable<ISubDivisionModel> ToModelEntityList(this IEnumerable<SubDivision> models)
         {
             return models.Select(model => model.ToModelEntity());
         }
@@ -71,7 +72,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// <param name="daoModel"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static SubDivision Update(this SubDivision daoModel, SubDivisionModel model)
+        public static SubDivision Update(this SubDivision daoModel, ISubDivisionModel model)
         {
             daoModel.Id = model.Id;
             daoModel.Name = model.Name;

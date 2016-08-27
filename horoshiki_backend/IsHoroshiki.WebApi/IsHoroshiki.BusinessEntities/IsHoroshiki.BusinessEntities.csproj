@@ -70,6 +70,10 @@
     <Compile Include="Account\SetPasswordBindingModel.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
+    <Compile Include="Editable\Interfaces\IPlatformModel.cs" />
+    <Compile Include="Editable\Interfaces\ISubDivisionModel.cs" />
+    <Compile Include="Editable\MappingDao\PlatformMappingDao.cs" />
+    <Compile Include="Editable\PlatformModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayModel.cs" />
@@ -91,7 +95,7 @@
     <Compile Include="NotEditable\Interfaces\IEmployeeStatusModel.cs" />
     <Compile Include="NotEditable\Interfaces\IBuyProcessModel.cs" />
     <Compile Include="NotEditable\Interfaces\IBaseNotEditableModel.cs" />
-    <Compile Include="NotEditable\Interfaces\IStatusSiteModel.cs" />
+    <Compile Include="NotEditable\Interfaces\IPlatformStatusModel.cs" />
     <Compile Include="NotEditable\Interfaces\IPositionModel.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderStatusModel.cs" />
     <Compile Include="NotEditable\Interfaces\IPriceTypeModel.cs" />
@@ -102,12 +106,12 @@
     <Compile Include="NotEditable\MappingDao\PriceTypeModelMappingDao.cs" />
     <Compile Include="NotEditable\MappingDao\DeliveryZoneTypeModelMappingDao.cs" />
     <Compile Include="Editable\MappingDao\SubDivisionModelMappingDao.cs" />
-    <Compile Include="NotEditable\MappingDao\StatusSiteModelMappingDao.cs" />
+    <Compile Include="NotEditable\MappingDao\PlatformStatusModelMappingDao.cs" />
     <Compile Include="NotEditable\MappingDao\BuyProcessModelMappingDao.cs" />
     <Compile Include="NotEditable\OrderStatusModel.cs" />
     <Compile Include="NotEditable\PositionModel.cs" />
     <Compile Include="NotEditable\PriceTypeModel.cs" />
-    <Compile Include="NotEditable\StatusSiteModel.cs" />
+    <Compile Include="NotEditable\PlatformStatusModel.cs" />
     <Compile Include="Paging\PagedResult.cs" />
     <Compile Include="Editable\SubDivisionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -3,7 +3,7 @@
     /// <summary>
     /// Статус площадки
     /// </summary>
-    public interface IStatusSiteModel : IBaseNotEditableModel
+    public interface IPlatformStatusModel : IBaseNotEditableModel
     {
     }
 }

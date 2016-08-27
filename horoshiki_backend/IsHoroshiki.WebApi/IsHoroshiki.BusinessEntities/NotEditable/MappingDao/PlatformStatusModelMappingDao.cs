@@ -9,14 +9,14 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
     /// </summary>
-    public static class StatusSiteModelMappingDao
+    public static class PlatformStatusModelMappingDao
     {
         /// <summary>
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static PlatformStatus ToDaoEntity(this IStatusSiteModel model)
+        public static PlatformStatus ToDaoEntity(this IPlatformStatusModel model)
         {
             return new PlatformStatus()
             {
@@ -30,7 +30,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<PlatformStatus> ToDaoEntityList(this IEnumerable<IStatusSiteModel> models)
+        public static IEnumerable<PlatformStatus> ToDaoEntityList(this IEnumerable<IPlatformStatusModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -40,9 +40,9 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IStatusSiteModel ToModelEntity(this PlatformStatus model)
+        public static IPlatformStatusModel ToModelEntity(this PlatformStatus model)
         {
-            return new StatusSiteModel()
+            return new PlatformStatusModel()
             {
                 Id = model.Id,
                 Value = model.Value
@@ -54,7 +54,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IStatusSiteModel> ToModelEntityList(this IEnumerable<PlatformStatus> models)
+        public static IEnumerable<IPlatformStatusModel> ToModelEntityList(this IEnumerable<PlatformStatus> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

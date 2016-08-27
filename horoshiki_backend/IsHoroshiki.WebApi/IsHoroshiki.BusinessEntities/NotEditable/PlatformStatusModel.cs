@@ -6,7 +6,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable
     /// <summary>
     /// Статус площадки
     /// </summary>
-    public class StatusSiteModel : BaseNotEditableModel, IStatusSiteModel
+    public class PlatformStatusModel : BaseNotEditableModel, IPlatformStatusModel
     {
     }
 }

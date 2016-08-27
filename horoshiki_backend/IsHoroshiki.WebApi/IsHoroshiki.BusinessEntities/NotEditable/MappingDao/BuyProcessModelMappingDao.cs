@@ -37,6 +37,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// <summary>
         /// Модель в DAO
         /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        public static ICollection<BuyProcess> ToDaoEntityList(this ICollection<IBuyProcessModel> models)
+        {
+            return models.Select(model => model.ToDaoEntity()).ToList();
+        }
+
+        /// <summary>
+        /// Модель в DAO
+        /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public static IBuyProcessModel ToModelEntity(this BuyProcess model)
@@ -56,6 +66,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         public static IEnumerable<IBuyProcessModel> ToModelEntityList(this IEnumerable<BuyProcess> models)
         {
             return models.Select(model => model.ToModelEntity());
+        }
+
+        /// <summary>
+        /// DAO в модель
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        public static ICollection<IBuyProcessModel> ToModelEntityList(this ICollection<BuyProcess> models)
+        {
+            return models.Select(model => model.ToModelEntity()).ToList();
         }
     }
 }

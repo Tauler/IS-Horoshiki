@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
@@ -11,7 +10,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Статус площадки
     /// </summary>
-    public class StatusSiteService : BaseNotEditableService<IStatusSiteModel, PlatformStatus>, IStatusSiteService
+    public class PlatformStatusService : BaseNotEditableService<IPlatformStatusModel, PlatformStatus>, IPlatformStatusService
     {
         #region поля и свойства
 
@@ -28,7 +27,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// Конструктор
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
-        public StatusSiteService(UnitOfWork unitOfWork)
+        public PlatformStatusService(UnitOfWork unitOfWork)
              : base(unitOfWork.StatusSiteRepository, null)
         {
             _unitOfWork = unitOfWork;
@@ -43,7 +42,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="daoEntity"></param>
         /// <returns></returns>
-        protected override IStatusSiteModel ConvertTo(PlatformStatus daoEntity)
+        protected override IPlatformStatusModel ConvertTo(PlatformStatus daoEntity)
         {
             return daoEntity.ToModelEntity();
         }
@@ -53,7 +52,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="collection">коллекции Dao объектов</param>
         /// <returns></returns>
-        protected override IEnumerable<IStatusSiteModel> ConvertTo(IEnumerable<PlatformStatus> collection)
+        protected override IEnumerable<IPlatformStatusModel> ConvertTo(IEnumerable<PlatformStatus> collection)
         {
             return collection.ToModelEntityList();
         }

@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Validators.Editable
@@ -16,7 +17,7 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public async Task<ValidationResult> ValidateAsync(SubDivisionModel element)
+        public async Task<ValidationResult> ValidateAsync(ISubDivisionModel element)
         {
             if (string.IsNullOrEmpty(element.Name))
             {

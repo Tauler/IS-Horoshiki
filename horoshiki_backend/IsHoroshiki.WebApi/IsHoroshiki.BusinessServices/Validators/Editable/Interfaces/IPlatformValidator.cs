@@ -3,9 +3,9 @@
 namespace IsHoroshiki.BusinessServices.Validators.Editable.Interfaces
 {
     /// <summary>
-    /// Валидатор подразделений
+    /// Валидатор Платформа
     /// </summary>
-    public interface ISubDivisionValidator : IValidator<ISubDivisionModel>
+    public interface IPlatformValidator : IValidator<IPlatformModel>
     {
        
     }
