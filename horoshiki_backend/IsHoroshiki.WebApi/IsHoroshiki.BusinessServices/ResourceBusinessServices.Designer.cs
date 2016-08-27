@@ -167,5 +167,68 @@ namespace IsHoroshiki.BusinessServices {
                 return ResourceManager.GetString("AccountsController_UserUpdateError", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указан объект для сохранения!.
+        /// </summary>
+        internal static string BaseEditableService_EntityAddIsNull {
+            get {
+                return ResourceManager.GetString("BaseEditableService_EntityAddIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указан объект для обновления!.
+        /// </summary>
+        internal static string BaseEditableService_EntityUpdateIsNull {
+            get {
+                return ResourceManager.GetString("BaseEditableService_EntityUpdateIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Объекта с Id={0} не существует!.
+        /// </summary>
+        internal static string BaseEditableService_EntityUpdateNotFound {
+            get {
+                return ResourceManager.GetString("BaseEditableService_EntityUpdateNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не найден тип цены с Id={0}!.
+        /// </summary>
+        internal static string SubDivisionService_PriceTypeNotFound {
+            get {
+                return ResourceManager.GetString("SubDivisionService_PriceTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать тип цены!.
+        /// </summary>
+        internal static string SubDivisionValidator_PriceTypeMIsNullodel {
+            get {
+                return ResourceManager.GetString("SubDivisionValidator_PriceTypeMIsNullodel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать часовой пояс!.
+        /// </summary>
+        internal static string SubDivisionValidator_TimezoneIsNull {
+            get {
+                return ResourceManager.GetString("SubDivisionValidator_TimezoneIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать наименование!.
+        /// </summary>
+        internal static string Validator_NameIsNull {
+            get {
+                return ResourceManager.GetString("Validator_NameIsNull", resourceCulture);
+            }
+        }
     }
 }

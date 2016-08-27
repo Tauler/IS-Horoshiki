@@ -23,7 +23,7 @@ namespace IsHoroshiki.BusinessServices.Helpers
         }
 
         /// <summary>
-        /// Все сообщение об ошибки
+        /// Все сообщения об ошибках
         /// </summary>
         /// <param name="exception"></param>
         /// <returns></returns>
@@ -31,6 +31,18 @@ namespace IsHoroshiki.BusinessServices.Helpers
         {
             var messages = exception.FromHierarchy(ex => ex.InnerException)
                 .Select(ex => ex.Message);
+
+            return String.Join(Environment.NewLine, messages);
+        }
+
+        /// <summary>
+        /// Все сообщения об ошибках валидации
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static string GetAllMessages(this ModelEntityModifyResult result)
+        {
+            var messages = result.ValidationErrors;
 
             return String.Join(Environment.NewLine, messages);
         }

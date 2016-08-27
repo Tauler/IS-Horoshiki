@@ -5,6 +5,7 @@ using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.DAO;
 using IsHoroshiki.DAO.Repositories;
+using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -15,20 +16,37 @@ namespace IsHoroshiki.BusinessServices
        where TModelEntity : class, IBaseBusninessModel
        where TDaoEntity : BaseDaoEntity
     {
+        #region поля и свойства
+
+        /// <summary>
+        /// UnitOfWork
+        /// </summary>
+        protected readonly UnitOfWork _unitOfWork;
+
+        #endregion
+
         #region Конструктор
 
         /// <summary>
         /// Конструктор
         /// </summary>
+        /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="repository">Репозитарий сущности</param>
         /// <param name="validator">Валидатор сущности</param>
-        protected BaseEditableService(IBaseRepository<TDaoEntity> repository, IValidator<TModelEntity> validator)
+        protected BaseEditableService(UnitOfWork unitOfWork, IBaseRepository<TDaoEntity> repository, IValidator<TModelEntity> validator)
             : base(repository, validator)
         {
             if (validator == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("validator");
             }
+
+            if (unitOfWork == null)
+            {
+                throw new ArgumentNullException("unitOfWork");
+            }
+
+            _unitOfWork = unitOfWork;
         }
 
         #endregion
@@ -56,6 +74,11 @@ namespace IsHoroshiki.BusinessServices
         {
             try
             {
+                if (model == null)
+                {
+                    return new ModelEntityModifyResult(ResourceBusinessServices.BaseEditableService_EntityAddIsNull);
+                }
+
                 var validateResult = await _validator.ValidateAsync(model);
                 if (!validateResult.IsSucceeded)
                 {
@@ -71,6 +94,7 @@ namespace IsHoroshiki.BusinessServices
                 var daoEntity = CreateInternal(model);
 
                 _repository.Insert(daoEntity);
+                _unitOfWork.Save();
 
                 return new ModelEntityModifyResult();
             }
@@ -89,6 +113,11 @@ namespace IsHoroshiki.BusinessServices
         {
             try
             {
+                if (model == null)
+                {
+                    return new ModelEntityModifyResult(ResourceBusinessServices.BaseEditableService_EntityUpdateIsNull);
+                }
+
                 var validateResult = await _validator.ValidateAsync(model);
                 if (!validateResult.IsSucceeded)
                 {
@@ -104,10 +133,10 @@ namespace IsHoroshiki.BusinessServices
                 var daoEntity = await _repository.GetByIdAsync(model.Id);
                 if (daoEntity == null)
                 {
-                    return new ModelEntityModifyResult($"Объекта с Id={model.Id} не существует!"); 
+                    return new ModelEntityModifyResult(string.Format(ResourceBusinessServices.BaseEditableService_EntityUpdateNotFound, model.Id)); 
                 }
 
-                UpdateInternal(daoEntity, model);
+                UpdateDaoInternal(daoEntity, model);
                 
                 _repository.Update(daoEntity);
 
@@ -131,7 +160,7 @@ namespace IsHoroshiki.BusinessServices
                 var daoEntity = await _repository.GetByIdAsync(id);
                 if (daoEntity == null)
                 {
-                    return new ModelEntityModifyResult($"Объекта с Id={id} не существует!");
+                    return new ModelEntityModifyResult(string.Format(ResourceBusinessServices.BaseEditableService_EntityUpdateNotFound, id));
                 }
 
                  _repository.Delete(id);
@@ -171,7 +200,24 @@ namespace IsHoroshiki.BusinessServices
         /// <param name="model">Сущность</param>
         /// <param name="daoEntity">dao Сущность</param>
         /// <returns></returns>
-        public abstract TDaoEntity UpdateInternal(TDaoEntity daoEntity, TModelEntity model);
+        public abstract TDaoEntity UpdateDaoInternal(TDaoEntity daoEntity, TModelEntity model);
+
+        #endregion
+
+        #region IDisposable 
+
+        /// <summary>  
+        /// IDisposable
+        /// </summary>  
+        /// <param name="disposing"></param>  
+        protected override void Dispose(bool disposing)
+        {
+            if (!this._disposed && disposing)
+            {
+                _unitOfWork.Dispose();
+            }
+            this._disposed = true;
+        }
 
         #endregion
     }

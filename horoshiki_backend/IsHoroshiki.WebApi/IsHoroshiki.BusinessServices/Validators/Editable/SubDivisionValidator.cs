@@ -18,6 +18,21 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
         /// <returns></returns>
         public async Task<ValidationResult> ValidateAsync(SubDivisionModel element)
         {
+            if (string.IsNullOrEmpty(element.Name))
+            {
+                return new ValidationResult(ResourceBusinessServices.Validator_NameIsNull);
+            }
+
+            if (element.Timezone == 0)
+            {
+                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_TimezoneIsNull);
+            }
+
+            if (element.PriceTypeModel == null)
+            {
+                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_PriceTypeMIsNullodel);
+            }
+
             return new ValidationResult();
         }
 

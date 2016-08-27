@@ -8,6 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// Контроллер Подразделения
     /// </summary>
     [Authorize]
+    [RoutePrefix("api/SubDivisions")]
     public class SubDivisionsController : BaseEditableController<SubDivisionModel>
     {
         #region Конструктор

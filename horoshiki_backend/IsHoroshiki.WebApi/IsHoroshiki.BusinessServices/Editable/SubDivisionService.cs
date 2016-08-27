@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
-using IsHoroshiki.BusinessServices.Validators.Editable;
+using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.UnitOfWorks;
@@ -14,15 +15,6 @@ namespace IsHoroshiki.BusinessServices.Editable
     /// </summary>
     public class SubDivisionService : BaseEditableService<SubDivisionModel, SubDivision>, ISubDivisionService
     {
-        #region поля и свойства
-
-        /// <summary>
-        /// UnitOfWork
-        /// </summary>
-        private readonly UnitOfWork _unitOfWork;
-
-        #endregion
-
         #region Конструктор
 
         /// <summary>
@@ -31,14 +23,33 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="validator">Валидатор</param>
         public SubDivisionService(UnitOfWork unitOfWork, ISubDivisionValidator validator)
-            : base(unitOfWork.SubDivisionRepository, validator)
+            : base(unitOfWork, unitOfWork.SubDivisionRepository, validator)
         {
-            _unitOfWork = unitOfWork;
+            
         }
 
         #endregion
 
         #region protected override
+
+        /// <summary>
+        /// Валидация сущности
+        /// </summary>
+        /// <param name="model">Сущность</param>
+        /// <returns></returns>
+        protected async override Task<ValidationResult> ValidationInternal(SubDivisionModel model)
+        {
+            if (model.PriceTypeModel != null)
+            {
+                var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
+                if (daoPriceType == null)
+                {
+                    return new ValidationResult(string.Format(ResourceBusinessServices.SubDivisionService_PriceTypeNotFound, model.PriceTypeModel.Id));
+                }
+            }
+
+            return new ValidationResult();
+        }
 
         /// <summary>
         /// Метод конвертации Dao объектa в бизнес-модель 
@@ -76,7 +87,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="daoEntity">dao Сущность</param>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        public override SubDivision UpdateInternal(SubDivision daoEntity, SubDivisionModel model)
+        public override SubDivision UpdateDaoInternal(SubDivision daoEntity, SubDivisionModel model)
         {
             return daoEntity.Update(model);
         }

@@ -59,7 +59,19 @@ namespace IsHoroshiki.DAO.Repositories
         /// <param name="entity">Сущность DAO</param>  
         public virtual void Insert(TDaoEntity entity)
         {
+            BeforeInsert(entity);
             DbSet.Add(entity);
+        }
+
+        /// <summary>  
+        /// Обновить  
+        /// </summary>  
+        /// <param name="entity">Сущность DAO</param>  
+        public virtual void Update(TDaoEntity entity)
+        {
+            BeforeUpdate(entity);
+            DbSet.Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         /// <summary>  
@@ -83,16 +95,6 @@ namespace IsHoroshiki.DAO.Repositories
                 DbSet.Attach(entity);
             }
             DbSet.Remove(entity);
-        }
-
-        /// <summary>  
-        /// Обновить  
-        /// </summary>  
-        /// <param name="entity">Сущность DAO</param>  
-        public virtual void Update(TDaoEntity entity)
-        {
-            DbSet.Attach(entity);
-            Context.Entry(entity).State = EntityState.Modified;
         }
 
         /// <summary>  
@@ -165,6 +167,24 @@ namespace IsHoroshiki.DAO.Repositories
         public virtual async Task<bool> IsExistsAsync(int id)
         {
             return DbSet.Find(id) != null;
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед добавлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected virtual void BeforeInsert(TDaoEntity entity)
+        {
+            
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед обновлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected virtual void BeforeUpdate(TDaoEntity entity)
+        {
+
         }
 
         #endregion

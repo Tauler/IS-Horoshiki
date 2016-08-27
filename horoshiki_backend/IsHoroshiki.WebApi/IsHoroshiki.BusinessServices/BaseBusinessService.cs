@@ -49,6 +49,7 @@ namespace IsHoroshiki.BusinessServices
             }
 
             _repository = repository;
+            _validator = validator;
         }
 
         #endregion

@@ -1,5 +1,7 @@
 ﻿using System.Web.Http;
+using IsHoroshiki.WebApi.Controllers.Editable;
 using IsHoroshiki.WebApi.Handlers;
+using IsHoroshiki.WebApi.Providers;
 using Microsoft.Owin.Security.OAuth;
 
 namespace IsHoroshiki.WebApi
@@ -23,7 +25,7 @@ namespace IsHoroshiki.WebApi
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes(new CustomDirectRouteProvider());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

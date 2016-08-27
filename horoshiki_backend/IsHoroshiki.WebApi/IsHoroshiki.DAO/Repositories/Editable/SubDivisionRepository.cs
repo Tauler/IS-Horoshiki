@@ -21,5 +21,40 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         }
 
         #endregion
+
+        #region override
+
+        /// <summary>
+        /// Действие с сущностью перед добавлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected override void BeforeInsert(SubDivision entity)
+        {
+            SetChildNull(entity);
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед обновлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected override void BeforeUpdate(SubDivision entity)
+        {
+            SetChildNull(entity);
+        }
+
+        #endregion
+
+        #region private
+
+        /// <summary>
+        /// Действие с сущностью перед обновлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        private void SetChildNull(SubDivision entity)
+        {
+            entity.PriceType = null;
+        }
+
+        #endregion
     }
 }

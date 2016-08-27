@@ -62,6 +62,7 @@ namespace IsHoroshiki.BusinessServices
         public ModelEntityModifyResult()
         {
             IsSucceeded = true;
+            IsValidationSucceeded = true;
             ValidationErrors = new List<string>();
         }
     }

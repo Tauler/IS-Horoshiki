@@ -247,6 +247,7 @@
     <Compile Include="Controllers\BaseEditableController.cs" />
     <Compile Include="Controllers\BaseNotEditableController.cs" />
     <Compile Include="Controllers\Editable\AccountsController.cs" />
+    <Compile Include="Providers\CustomDirectRouteProvider.cs" />
     <Compile Include="Controllers\NotEditable\DeliveryTimesController.cs" />
     <Compile Include="Controllers\NotEditable\OrderPaysController.cs" />
     <Compile Include="Controllers\NotEditable\SubDepartmentsController.cs" />

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 using IsHoroshiki.BusinessEntities;
 using IsHoroshiki.BusinessServices;
 using IsHoroshiki.BusinessServices.Helpers;
@@ -61,6 +63,46 @@ namespace IsHoroshiki.WebApi.Controllers
             {
                 return BadRequest(e.GetAllMessages());
             }
+        }
+
+        #endregion
+
+        #region 
+
+        /// <summary>
+        /// Вернуть первую ошибку валидации модели
+        /// </summary>
+        /// <param name="modelState">Словарь ошибок</param>
+        /// <returns></returns>
+        protected IHttpActionResult GetErrorResult(ModelStateDictionary modelState)
+        {
+            if (modelState == null)
+            {
+                return InternalServerError();
+            }
+
+            if (!modelState.IsValid)
+            {
+                foreach (var modelStateError in modelState.Values)
+                {
+                    foreach (var error in modelStateError.Errors)
+                    {
+                        if (!string.IsNullOrEmpty(error.ErrorMessage))
+                        {
+                            return BadRequest(error.ErrorMessage);
+                        }
+
+                        if (error.Exception != null)
+                        {
+                            return BadRequest(error.Exception.Message);
+                        }
+                    }
+                }
+
+                return BadRequest(ModelState);
+            }
+
+            return null;
         }
 
         #endregion

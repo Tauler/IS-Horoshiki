@@ -153,4 +153,25 @@
   <data name="AccountsController_UserUpdateError" xml:space="preserve">
     <value>Ошибка при обновлении пользователя!</value>
   </data>
+  <data name="BaseEditableService_EntityAddIsNull" xml:space="preserve">
+    <value>Не указан объект для сохранения!</value>
+  </data>
+  <data name="BaseEditableService_EntityUpdateIsNull" xml:space="preserve">
+    <value>Не указан объект для обновления!</value>
+  </data>
+  <data name="BaseEditableService_EntityUpdateNotFound" xml:space="preserve">
+    <value>Объекта с Id={0} не существует!</value>
+  </data>
+  <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
+    <value>Не найден тип цены с Id={0}!</value>
+  </data>
+  <data name="SubDivisionValidator_PriceTypeMIsNullodel" xml:space="preserve">
+    <value>Необходимо указать тип цены!</value>
+  </data>
+  <data name="SubDivisionValidator_TimezoneIsNull" xml:space="preserve">
+    <value>Необходимо указать часовой пояс!</value>
+  </data>
+  <data name="Validator_NameIsNull" xml:space="preserve">
+    <value>Необходимо указать наименование!</value>
+  </data>
 </root>
