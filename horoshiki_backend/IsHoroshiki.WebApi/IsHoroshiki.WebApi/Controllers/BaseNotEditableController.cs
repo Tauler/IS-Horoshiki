@@ -29,6 +29,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// </summary>
         /// <param name="service">Сервис бизнес-логики</param>
         protected BaseNotEditableController(IBaseNotEditableService<TModelEnty> service)
+            : base(service)
         {
             _service = service;
         }
