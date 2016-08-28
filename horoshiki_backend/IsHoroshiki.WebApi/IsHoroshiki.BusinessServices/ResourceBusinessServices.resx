@@ -162,6 +162,33 @@
   <data name="BaseEditableService_EntityUpdateNotFound" xml:space="preserve">
     <value>Объекта с Id={0} не существует!</value>
   </data>
+  <data name="PlatformService_BuyProcessNotFound" xml:space="preserve">
+    <value>Способа покупки для указанного ID={0} не существует!</value>
+  </data>
+  <data name="PlatformService_PlatformStatusNotFound" xml:space="preserve">
+    <value>Статуса площадки для указанного ID={0} не существует!</value>
+  </data>
+  <data name="PlatformService_SubDivisionNotFound" xml:space="preserve">
+    <value>Подразделение для указанного ID={0} не существует!</value>
+  </data>
+  <data name="PlatformService_UserNotFound" xml:space="preserve">
+    <value>Пользователя для указанного ID={0} не существует!</value>
+  </data>
+  <data name="PlatformValidator_BuyProcessesIsNullModel" xml:space="preserve">
+    <value>Необходмио указать способы покупки!</value>
+  </data>
+  <data name="PlatformValidator_PlatformStatusIsNullModel" xml:space="preserve">
+    <value>Необходимо указать статус площадки!</value>
+  </data>
+  <data name="PlatformValidator_SubDivisionIsNullModel" xml:space="preserve">
+    <value>Необходимо указать подразделение!</value>
+  </data>
+  <data name="PlatformValidator_TimeEndIsNullModel" xml:space="preserve">
+    <value>Необходимо указать время окончания работы!</value>
+  </data>
+  <data name="PlatformValidator_TimeStartIsNullModel" xml:space="preserve">
+    <value>Необходимо указать время начала работы!</value>
+  </data>
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
     <value>Не найден тип цены с Id={0}!</value>
   </data>

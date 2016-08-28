@@ -123,7 +123,7 @@
     <Compile Include="Repositories\NotEditable\Interfaces\IOrderStatusRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IPositionRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IPriceTypeRepository.cs" />
-    <Compile Include="Repositories\NotEditable\Interfaces\IStatusSiteRepository.cs" />
+    <Compile Include="Repositories\NotEditable\Interfaces\IPlatformStatusRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISubDivisionRepository.cs" />
     <Compile Include="Repositories\NotEditable\PositionRepository.cs" />
     <Compile Include="Repositories\NotEditable\EmployeeStatusRepository.cs" />
@@ -131,7 +131,7 @@
     <Compile Include="Repositories\NotEditable\OrderStatusRepository.cs" />
     <Compile Include="Repositories\NotEditable\PriceTypeRepository.cs" />
     <Compile Include="Repositories\NotEditable\DeliveryZoneRepository.cs" />
-    <Compile Include="Repositories\NotEditable\StatusSiteRepository.cs" />
+    <Compile Include="Repositories\NotEditable\PlatformStatusRepository.cs" />
     <Compile Include="Repositories\NotEditable\BuyProcessRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IPlatformRepository.cs" />
     <Compile Include="Repositories\Editable\SubDivisionRepository.cs" />

@@ -99,6 +99,31 @@ namespace IsHoroshiki.BusinessServices
         /// <returns></returns>
         protected abstract IEnumerable<TModelEntity> ConvertTo(IEnumerable<TDaoEntity> collection);
 
+        /// <summary>
+        /// Проверка наличия записи в БД по ее Id
+        /// </summary>
+        /// <typeparam name="TDaoEntity"></typeparam>
+        /// <param name="repository">Репозитарий</param>
+        /// <param name="entity">Сущность</param>
+        /// <returns></returns>
+        protected virtual async Task<bool> IsExistDaoEntity<TEntity, TDaoEntity>(IBaseRepository<TDaoEntity> repository, TEntity entity)
+            where TEntity : IBaseBusninessModel
+            where TDaoEntity : BaseDaoEntity
+        {
+            if (entity == null)
+            {
+                return false;
+            }
+
+            var daoEntity = await repository.GetByIdAsync(entity.Id);
+            if (daoEntity == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         #endregion
 
         #region IDisposable 

@@ -35,7 +35,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>
         /// Репозиторий Статус площадки
         /// </summary>
-        private IStatusSiteRepository _statusSiteRepository;
+        private IPlatformStatusRepository _platformStatusRepository;
 
         /// <summary>
         /// Репозиторий Должности
@@ -131,15 +131,15 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// <summary>  
         /// Репозиторий Статус площадки  
         /// </summary>  
-        public IStatusSiteRepository StatusSiteRepository
+        public IPlatformStatusRepository PlatformStatusRepository
         {
             get
             {
-                if (this._statusSiteRepository == null)
+                if (this._platformStatusRepository == null)
                 {
-                    this._statusSiteRepository = new StatusSiteRepository(_context);
+                    this._platformStatusRepository = new PlatformStatusRepository(_context);
                 }
-                return _statusSiteRepository;
+                return _platformStatusRepository;
             }
         }
 

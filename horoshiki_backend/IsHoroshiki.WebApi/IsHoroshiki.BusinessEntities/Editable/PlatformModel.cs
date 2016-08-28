@@ -37,8 +37,8 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         ///  Пользователь - управляющий
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<ApplicationUserModel, IApplicationUserModel>))]
-        public IApplicationUserModel UserModel
+        [JsonConverter(typeof(EntityModelConverter<UserModel, IUserModel>))]
+        public IUserModel UserModel
         {
             get;
             set;
@@ -57,7 +57,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Способы покупки
         /// </summary>
-        [JsonConverter(typeof(CollectionEntityConverter<PlatformStatusModel, IPlatformStatusModel>))]
+        [JsonConverter(typeof(CollectionEntityConverter<BuyProcessModel, IBuyProcessModel>))]
         public ICollection<IBuyProcessModel> BuyProcessesModel
         {
             get;

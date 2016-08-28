@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using IsHoroshiki.BusinessEntities.Account.MappingDao;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
@@ -49,7 +50,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 Id = model.Id,
                 Name = model.Name,
                 SubDivisionModel = model.SubDivision != null ? model.SubDivision.ToModelEntity() : null,
-                UserModel = model.User != null ? model.User.ToModelEntity() : null,
+                UserModel = model.User != null ?model.User.ToUserModelEntity() : null,
                 PlatformStatusModel = model.PlatformStatus != null ? model.PlatformStatus.ToModelEntity() : null,
                 BuyProcessesModel = model.BuyProcesses != null ? model.BuyProcesses.ToModelEntityList() : null,
                 YandexMap = model.YandexMap,

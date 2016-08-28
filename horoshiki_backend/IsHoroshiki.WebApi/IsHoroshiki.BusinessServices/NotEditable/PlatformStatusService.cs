@@ -28,7 +28,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public PlatformStatusService(UnitOfWork unitOfWork)
-             : base(unitOfWork.StatusSiteRepository, null)
+             : base(unitOfWork.PlatformStatusRepository, null)
         {
             _unitOfWork = unitOfWork;
         }

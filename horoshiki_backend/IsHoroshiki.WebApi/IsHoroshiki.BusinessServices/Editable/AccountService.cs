@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.Account.MappingDao;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
@@ -69,7 +70,7 @@ namespace IsHoroshiki.BusinessServices.Editable
 
             var count = await _unitOfWork.AccountRepository.CountAsync();
             var list = await _unitOfWork.AccountRepository.GetAllAsync(pageNo, pageSize, sortField, isAscending);
-            return new PagedResult<IApplicationUserModel>(list.ToModelEntityList(), pageNo, pageSize, count);
+            return new PagedResult<IApplicationUserModel>(ApplicationUserModelMappingDao.ToModelEntityList(list), pageNo, pageSize, count);
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace IsHoroshiki.BusinessServices.Editable
             var user = await _unitOfWork.AccountRepository.GetByIdAsync(id);
             if (user != null)
             {
-                return user.ToModelEntity();
+                return ApplicationUserModelMappingDao.ToModelEntity(user);
             }
 
             return null;

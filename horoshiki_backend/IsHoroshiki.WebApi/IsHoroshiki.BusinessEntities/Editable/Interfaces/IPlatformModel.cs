@@ -31,7 +31,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         ///  Пользователь - управляющий
         /// </summary>
-        IApplicationUserModel UserModel
+        IUserModel UserModel
         {
             get;
             set;

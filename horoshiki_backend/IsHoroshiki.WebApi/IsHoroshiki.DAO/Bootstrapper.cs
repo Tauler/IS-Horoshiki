@@ -35,7 +35,7 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IOrderPayRepository, OrderPayRepository>();
             container.RegisterType<IPositionRepository, PositionRepository>();
             container.RegisterType<IPriceTypeRepository, PriceTypeRepository>();
-            container.RegisterType<IStatusSiteRepository, StatusSiteRepository>();
+            container.RegisterType<IPlatformStatusRepository, PlatformStatusRepository>();
             container.RegisterType<ISubDivisionRepository, SubDivisionRepository>();
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<IDeliveryTimeRepository, DeliveryTimeRepository>();

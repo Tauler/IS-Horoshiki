@@ -39,14 +39,38 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         protected async override Task<ValidationResult> ValidationInternal(IPlatformModel model)
         {
-            //if (model.PriceTypeModel != null)
-            //{
-            //    var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
-            //    if (daoPriceType == null)
-            //    {
-            //        return new ValidationResult(string.Format(ResourceBusinessServices.SubDivisionService_PriceTypeNotFound, model.PriceTypeModel.Id));
-            //    }
-            //}
+            var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatusModel);
+            if (!result)
+            {
+                return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_PlatformStatusNotFound, model.PlatformStatusModel?.Id ?? 0));
+            }
+
+            result = await IsExistDaoEntity(_unitOfWork.SubDivisionRepository, model.SubDivisionModel);
+            if (!result)
+            {
+                return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_SubDivisionNotFound, model.SubDivisionModel?.Id ?? 0));
+            }
+
+            if (model.UserModel != null && model.UserModel.Id > 0)
+            {
+                var user = await _unitOfWork.AccountRepository.GetByIdAsync(model.UserModel.Id);
+                if (user == null)
+                {
+                    return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_UserNotFound, model.UserModel?.Id));
+                }
+            }
+
+            if (model.BuyProcessesModel != null)
+            {
+                foreach (var buyProcessModel in model.BuyProcessesModel)
+                {
+                    result = await IsExistDaoEntity(_unitOfWork.BuyProcessPepository, buyProcessModel);
+                    if (!result)
+                    {
+                        return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_BuyProcessNotFound, buyProcessModel?.Id ?? 0));
+                    }
+                }
+            }
 
             return new ValidationResult();
         }

@@ -1,5 +1,4 @@
-﻿using System.Web.Http;
-using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
@@ -7,8 +6,8 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// <summary>
     /// Контроллер Подразделения
     /// </summary>
-    [Authorize]
-    [RoutePrefix("api/SubDivisions")]
+    [System.Web.Http.Authorize]
+    [System.Web.Http.RoutePrefix("api/SubDivisions")]
     public class SubDivisionsController : BaseEditableController<ISubDivisionModel>
     {
         #region Конструктор
@@ -20,9 +19,10 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         public SubDivisionsController(ISubDivisionService service)
             : base(service)
         {
-            
+
         }
 
         #endregion
     }
 }
+

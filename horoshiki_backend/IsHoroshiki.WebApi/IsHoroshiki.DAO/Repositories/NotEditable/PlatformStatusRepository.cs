@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Статус площадки
     /// </summary>
-    public class StatusSiteRepository : BaseNotEditableDictionaryRepository<PlatformStatus>, IStatusSiteRepository
+    public class PlatformStatusRepository : BaseNotEditableDictionaryRepository<PlatformStatus>, IPlatformStatusRepository
     {
         #region Конструктор
 
@@ -14,7 +14,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
         /// Конструктор  
         /// </summary>  
         /// <param name="context">Контекст выполнения БД</param>  
-        public StatusSiteRepository(ApplicationDbContext context)
+        public PlatformStatusRepository(ApplicationDbContext context)
             : base(context)
         {
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using IsHoroshiki.DAO.Identities;
-using IsHoroshiki.BusinessEntities.Account;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
+using IsHoroshiki.DAO.Identities;
 
-namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
+namespace IsHoroshiki.BusinessEntities.Account.MappingDao
 {
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
@@ -18,29 +18,15 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// <returns></returns>
         public static ApplicationUser ToDaoEntity(this IApplicationUserModel model)
         {
-            return new ApplicationUser()
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                MiddleName = model.MiddleName,
-                LastName = model.LastName,
-                Phone = model.Phone,
-                IsHaveMedicalBook = model.IsHaveMedicalBook,
-                MedicalBookEnd = model.MedicalBookEnd,
-                EmployeeStatusId = model.EmployeeStatus != null ? model.EmployeeStatus.Id : 0,
-                EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToDaoEntity() : null,
-                PositionId = model.Position != null ? model.Position.Id : 0,
-                Position = model.Position != null ? model.Position.ToDaoEntity() : null,
-                DateStart = model.DateStart,
-                DateEnd = model.DateEnd,
-                IsAccess = model.IsAccess,
-                UserName = model.UserName
-            };
+            var daoUser = new ApplicationUser();
+            Update(daoUser, model);
+            return daoUser;
         }
 
         /// <summary>
         /// Обновить поля в DAO модели
         /// </summary>
+        /// <param name="daoModel"></param>
         /// <param name="model"></param>
         /// <returns></returns>
         public static void Update(this ApplicationUser daoModel, IApplicationUserModel model)
@@ -104,7 +90,31 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// <returns></returns>
         public static IEnumerable<IApplicationUserModel> ToModelEntityList(this IEnumerable<ApplicationUser> models)
         {
-            return models.Select(model => model.ToModelEntity());
+            return models.Select(model => ToModelEntity(model));
+        }
+
+        /// <summary>
+        /// Модель в DAO
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static IUserModel ToUserModelEntity(this ApplicationUser model)
+        {
+            return new UserModel()
+            {
+                Id = model.Id,
+                UserName = model.UserName
+            };
+        }
+
+        /// <summary>
+        /// DAO в модель
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        public static IEnumerable<IUserModel> ToUserModelEntityList(this IEnumerable<ApplicationUser> models)
+        {
+            return models.Select(model => ToUserModelEntity(model));
         }
     }
 }
