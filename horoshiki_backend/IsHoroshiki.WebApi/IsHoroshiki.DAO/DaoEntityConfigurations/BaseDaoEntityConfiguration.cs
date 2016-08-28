@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using IsHoroshiki.DAO.Helpers;
 
 namespace IsHoroshiki.DAO.DaoEntityConfigurations
@@ -23,7 +24,8 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations
             HasKey(p => p.Id);
 
             Property(p => p.Id)
-                .IsRequired();
+                .IsRequired()
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
 
         #endregion

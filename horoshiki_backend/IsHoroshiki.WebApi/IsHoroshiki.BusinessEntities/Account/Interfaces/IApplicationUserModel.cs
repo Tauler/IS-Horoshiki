@@ -126,6 +126,15 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         }
 
         /// <summary>
+        /// Email
+        /// </summary>
+        string Email
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Пароль
         /// </summary>
         string Password

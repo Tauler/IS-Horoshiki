@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using IsHoroshiki.DAO.Identities;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using IsHoroshiki.DAO.DaoEntities.Accounts;

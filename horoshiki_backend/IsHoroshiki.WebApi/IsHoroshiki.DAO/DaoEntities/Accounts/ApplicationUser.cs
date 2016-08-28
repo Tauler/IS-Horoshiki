@@ -1,16 +1,25 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace IsHoroshiki.DAO.Identities
+namespace IsHoroshiki.DAO.DaoEntities.Accounts
 {
     /// <summary>
     /// Пользователь системы
     /// </summary>
     public class ApplicationUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public ApplicationUser()
+        {
+            Platforms = new HashSet<Platform>();
+        }
+
         /// <summary>
         /// Имя
         /// </summary>
@@ -129,6 +138,15 @@ namespace IsHoroshiki.DAO.Identities
         /// Доступ в систему
         /// </summary>
         public bool IsAccess
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Платформы
+        /// </summary>
+        public virtual ICollection<Platform> Platforms
         {
             get;
             set;

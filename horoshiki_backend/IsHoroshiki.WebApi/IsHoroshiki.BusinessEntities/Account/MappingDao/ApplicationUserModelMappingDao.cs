@@ -2,7 +2,7 @@
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
-using IsHoroshiki.DAO.Identities;
+using IsHoroshiki.DAO.DaoEntities.Accounts;
 
 namespace IsHoroshiki.BusinessEntities.Account.MappingDao
 {
@@ -46,6 +46,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.DateEnd = model.DateEnd;
             daoModel.IsAccess = model.IsAccess;
             daoModel.UserName = model.UserName;
+            daoModel.Email = model.Email;
         }
 
         /// <summary>
@@ -79,7 +80,8 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 DateStart = model.DateStart,
                 DateEnd = model.DateEnd,
                 IsAccess = model.IsAccess,
-                UserName = model.UserName
+                UserName = model.UserName,
+                Email = model.Email
             };
         }
 
@@ -90,7 +92,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// <returns></returns>
         public static IEnumerable<IApplicationUserModel> ToModelEntityList(this IEnumerable<ApplicationUser> models)
         {
-            return models.Select(model => ToModelEntity(model));
+            return models.Select(ToModelEntity);
         }
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// <returns></returns>
         public static IEnumerable<IUserModel> ToUserModelEntityList(this IEnumerable<ApplicationUser> models)
         {
-            return models.Select(model => ToUserModelEntity(model));
+            return models.Select(ToUserModelEntity);
         }
     }
 }

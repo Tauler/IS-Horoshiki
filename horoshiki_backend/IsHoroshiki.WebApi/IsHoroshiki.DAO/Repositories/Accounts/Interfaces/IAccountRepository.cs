@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IsHoroshiki.DAO.Identities;
+using IsHoroshiki.DAO.DaoEntities.Accounts;
 using Microsoft.AspNet.Identity;
 
 namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces

@@ -113,7 +113,11 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public override Platform UpdateDaoInternal(Platform daoEntity, IPlatformModel model)
         {
-            return daoEntity.Update(model);
+            var result = daoEntity.Update(model);
+            result.User = null;
+            result.PlatformStatus = null;
+            result.SubDivision = null;
+            return result;
         }
 
         #endregion

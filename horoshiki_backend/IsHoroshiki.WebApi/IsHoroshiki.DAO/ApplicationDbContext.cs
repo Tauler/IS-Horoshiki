@@ -1,10 +1,10 @@
 ﻿using System.Data.Entity;
+using IsHoroshiki.DAO.DaoEntities.Accounts;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.Editable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable;
 using Microsoft.AspNet.Identity.EntityFramework;
-using IsHoroshiki.DAO.Identities;
 
 namespace IsHoroshiki.DAO
 {
@@ -23,6 +23,16 @@ namespace IsHoroshiki.DAO
             get;
             set;
         }
+
+        /// <summary>
+        /// Список сущностей БД площадки
+        /// </summary>
+        public DbSet<Platform> Platform
+        {
+            get;
+            set;
+        }
+
 
         /// <summary>
         /// Список сущностей БД Статус площадки
@@ -72,7 +82,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Статус заказа
         /// </summary>
-        public DbSet<OrderStatus> OrderSettings
+        public DbSet<OrderStatus> OrderStatus
         {
             get;
             set;

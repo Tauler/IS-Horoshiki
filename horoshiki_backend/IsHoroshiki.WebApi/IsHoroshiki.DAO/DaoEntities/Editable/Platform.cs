@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using IsHoroshiki.DAO.DaoEntities.Accounts;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
-using IsHoroshiki.DAO.Identities;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
@@ -11,9 +12,17 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
     public class Platform : BaseDaoEntity
     {
         /// <summary>
+        /// Конструктор
+        /// </summary>
+        public Platform()
+        {
+            this.BuyProcesses = new HashSet<BuyProcess>();
+        }
+
+        /// <summary>
         /// Наименование
         /// </summary>
-        public virtual string Name
+        public string Name
         {
             get;
             set;
@@ -22,7 +31,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Подразделение
         /// </summary>
-        public virtual int SubDivisionId
+        public int SubDivisionId
         {
             get;
             set;
@@ -31,7 +40,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Подразделение
         /// </summary>
-        public virtual SubDivision SubDivision
+        public SubDivision SubDivision
         {
             get;
             set;
@@ -40,7 +49,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Пользователь - управляющий
         /// </summary>
-        public virtual int UserId
+        public int UserId
         {
             get;
             set;
@@ -49,7 +58,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         ///  Пользователь - управляющий
         /// </summary>
-        public virtual ApplicationUser User
+        public ApplicationUser User
         {
             get;
             set;
@@ -58,7 +67,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Статус площадки
         /// </summary>
-        public virtual int PlatformStatusId
+        public int PlatformStatusId
         {
             get;
             set;
@@ -67,7 +76,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Статус площадки
         /// </summary>
-        public virtual PlatformStatus PlatformStatus
+        public PlatformStatus PlatformStatus
         {
             get;
             set;
@@ -76,7 +85,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Способы покупки
         /// </summary>
-        public virtual ICollection<BuyProcess> BuyProcesses
+        public ICollection<BuyProcess> BuyProcesses
         {
             get;
             set;
@@ -85,7 +94,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Яндекс-карта координаты
         /// </summary>
-        public virtual string YandexMap
+        public string YandexMap
         {
             get;
             set;
@@ -94,7 +103,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Яндекс-карта координаты
         /// </summary>
-        public virtual string Address
+        public string Address
         {
             get;
             set;
@@ -103,7 +112,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Начало работы
         /// </summary>
-        public virtual TimeSpan TimeStart
+        public TimeSpan TimeStart
         {
             get;
             set;
@@ -121,7 +130,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Минимальный чек
         /// </summary>
-        public virtual decimal MinCheck
+        public decimal MinCheck
         {
             get;
             set;
