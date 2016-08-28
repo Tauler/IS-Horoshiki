@@ -12,8 +12,9 @@
             <div class="headline"><h2>Добавление пользователя</h2></div>
 
             <div class="row">
-                <div class="col-md-6">
-                    <form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">
+                <form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">
+
+                    <div class="col-md-6">
 
                         <section>
                             <label class="label"><strong>Логин:</strong></label>
@@ -74,17 +75,43 @@
                             <button class="btn-u ng-binding" type="button" ng-click="submitProfileForm()">Сохранить
                             </button>
                         </div>
-                        <br>
-                    </form>
-                </div>
-                <div class="col-md-6">
-                    Должность:
-                    <select class="form-control" ng-model="model.position">
-                        <option ng-repeat="option in model.positions" value="{{option.Id}}" >{{option.Value}}</option>
 
-                    </select>
+                    </div>
+                    <div class="col-md-6">
 
-                </div>
+                        <section>
+                            <label class="label"><strong>Дата приема:</strong></label>
+                            <label class="input">
+                                <input class="hasDatepicker" id="date" name="date"><i
+                                    class="icon-append fa fa-calendar"></i>
+                            </label>
+                        </section>
+
+
+                        <section>
+                            <label class="label"><strong>Должность:</strong></label>
+                            <label class="input">
+                                <select class="form-control" ng-model="model.position">
+                                    <option ng-repeat="option in model.positions" value="{{option.Id}}">
+                                        {{option.Value}}
+                                    </option>
+                                </select>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Статус:</strong></label>
+                            <label class="input">
+                                <select class="form-control" ng-model="model.employeeStatus.Id" ng-change="view()">
+                                    <option ng-repeat="status in model.employeeStatuses" value="{{status.Id}}">
+                                        {{status.Value}}
+                                    </option>
+                                </select>
+                            </label>
+                        </section>
+
+                    </div>
+                </form>
             </div>
 
 

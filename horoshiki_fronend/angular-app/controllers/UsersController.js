@@ -45,12 +45,13 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
 usersControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService', 'DictionaryService',
     function ($scope, $location, UsersService, DictionaryService) {
         $scope.model = {};
+        $scope.model.employeeStatus = {};
+        $scope.model.employeeStatus.Id = "1";
 
         $scope.getPositions = function () {
             DictionaryService.getPositions().success(function(result){
                 if(result.Success==1) {
                     $scope.model.positions = result.Data;
-                    console.log($scope.model.positions);
                 }else{
                     displayErrorMessage($scope.translation[result.reason]);
                 }
@@ -59,8 +60,24 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             })
         }
 
-        $scope.getPositions();
+        $scope.getEmployeeStatuses = function () {
+            DictionaryService.getEmployeeStatuses().success(function(result){
+                if(result.Success==1) {
+                    $scope.model.employeeStatuses = result.Data;
+                }else{
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function(result, status){
+                httpErrors($location.url(), status);
+            })
+        }
 
+        $scope.view = function () {
+            console.log($scope.model.employeeStatus);
+        }
+
+        $scope.getPositions();
+        $scope.getEmployeeStatuses();
 
     }
 
