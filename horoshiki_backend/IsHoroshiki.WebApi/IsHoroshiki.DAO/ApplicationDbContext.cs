@@ -27,7 +27,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Статус площадки
         /// </summary>
-        public DbSet<PlatformStatus> StatusSites
+        public DbSet<PlatformStatus> PlatformStatuses
         {
             get;
             set;

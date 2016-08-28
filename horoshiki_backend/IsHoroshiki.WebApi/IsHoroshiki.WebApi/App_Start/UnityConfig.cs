@@ -31,6 +31,7 @@ namespace IsHoroshiki.WebApi
         {
             var container = new UnityContainer();
 
+            BusinessEntities.Bootstrapper.BuildUnityContainer(container);
             BusinessServices.Bootstrapper.BuildUnityContainer(container);
 
             return container;

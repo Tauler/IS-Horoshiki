@@ -65,13 +65,13 @@ GO
 
 
 
-INSERT INTO [dbo].[StatusSites] ([Value]) VALUES ('Не работает')
+INSERT INTO [dbo].[PlatformStatuses] ([Value]) VALUES ('Не работает')
 GO
 
-INSERT INTO [dbo].[StatusSites] ([Value]) VALUES ('Работает')
+INSERT INTO [dbo].[PlatformStatuses] ([Value]) VALUES ('Работает')
 GO
 
-INSERT INTO [dbo].[StatusSites] ([Value]) VALUES ('Готовится к открытию')
+INSERT INTO [dbo].[PlatformStatuses] ([Value]) VALUES ('Готовится к открытию')
 GO
 
 

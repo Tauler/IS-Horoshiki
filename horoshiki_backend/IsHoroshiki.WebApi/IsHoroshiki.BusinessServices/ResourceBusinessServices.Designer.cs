@@ -196,6 +196,87 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Способа покупки для указанного ID={0} не существует!.
+        /// </summary>
+        internal static string PlatformService_BuyProcessNotFound {
+            get {
+                return ResourceManager.GetString("PlatformService_BuyProcessNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статуса площадки для указанного ID={0} не существует!.
+        /// </summary>
+        internal static string PlatformService_PlatformStatusNotFound {
+            get {
+                return ResourceManager.GetString("PlatformService_PlatformStatusNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подразделение для указанного ID={0} не существует!.
+        /// </summary>
+        internal static string PlatformService_SubDivisionNotFound {
+            get {
+                return ResourceManager.GetString("PlatformService_SubDivisionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пользователя для указанного ID={0} не существует!.
+        /// </summary>
+        internal static string PlatformService_UserNotFound {
+            get {
+                return ResourceManager.GetString("PlatformService_UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходмио указать способы покупки!.
+        /// </summary>
+        internal static string PlatformValidator_BuyProcessesIsNullModel {
+            get {
+                return ResourceManager.GetString("PlatformValidator_BuyProcessesIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать статус площадки!.
+        /// </summary>
+        internal static string PlatformValidator_PlatformStatusIsNullModel {
+            get {
+                return ResourceManager.GetString("PlatformValidator_PlatformStatusIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать подразделение!.
+        /// </summary>
+        internal static string PlatformValidator_SubDivisionIsNullModel {
+            get {
+                return ResourceManager.GetString("PlatformValidator_SubDivisionIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать время окончания работы!.
+        /// </summary>
+        internal static string PlatformValidator_TimeEndIsNullModel {
+            get {
+                return ResourceManager.GetString("PlatformValidator_TimeEndIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать время начала работы!.
+        /// </summary>
+        internal static string PlatformValidator_TimeStartIsNullModel {
+            get {
+                return ResourceManager.GetString("PlatformValidator_TimeStartIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не найден тип цены с Id={0}!.
         /// </summary>
         internal static string SubDivisionService_PriceTypeNotFound {

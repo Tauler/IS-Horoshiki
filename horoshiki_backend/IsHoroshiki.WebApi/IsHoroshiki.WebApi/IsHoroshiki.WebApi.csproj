@@ -214,6 +214,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\ControllerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Controllers\BaseNotEditableController.cs" />
     <Compile Include="Controllers\Editable\AccountsController.cs" />
     <Compile Include="Controllers\Editable\PlatformsController.cs" />
+    <Compile Include="Handlers\IocCustomCreationConverter.cs" />
     <Compile Include="Providers\CustomDirectRouteProvider.cs" />
     <Compile Include="Controllers\NotEditable\DeliveryTimesController.cs" />
     <Compile Include="Controllers\NotEditable\OrderPaysController.cs" />
