@@ -19,9 +19,9 @@
                         <section>
                             <label class="label"><strong>Логин:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorUserName();" maxlength="50" placeholder="Логин" ng-model="model.user.UserName" name="userName" id="userName" type="text">
-                                <code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким логином уже существует. </code>
-                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин", данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <input class="" disabled maxlength="50" placeholder="Логин" ng-model="model.user.UserName" name="userName" id="userName" type="text">
+                                <!--<code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким логином уже существует. </code>-->
+                                <!--<code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин", данное поле не может быть меньше 3 и больше 50 символов. </code>-->
                             </label>
                         </section>
 
@@ -84,7 +84,7 @@
                             </label>
                         </section>
 
-                        <hr/>
+                        <!--<hr/>-->
 
 
                         <section>
@@ -145,12 +145,15 @@
                             </label>
                         </section>
 
-                        <div style="text-align: right;">
-                            <button class="btn-u ng-binding" type="button" ng-click="saveUser()">Сохранить
-                            </button>
+                        <!--<hr/>-->
+                        <br/><br/>
+
+                        <div class="text-right col-9" >
+                            <a href="/users"><button class="btn-u btn-u-default" type="button" >Отменить</button></a>
+                            <a ng-click="saveUser()"><button class="btn-u ng-binding" type="button">Сохранить</button></a>
                         </div>
 
-
+                        <br/><br/>
                     </div>
                 </form>
             </div>

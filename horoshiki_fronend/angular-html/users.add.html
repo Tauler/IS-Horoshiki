@@ -19,25 +19,33 @@
                         <section>
                             <label class="label"><strong>Логин:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorUserName();" maxlength="50" placeholder="Логин" ng-model="model.user.UserName" name="userName" id="userName" type="text">
-                                <code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким логином уже существует. </code>
-                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин", данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <input class="" ng-blur="checkErrorUserName();" maxlength="50" placeholder="Логин"
+                                       ng-model="model.user.UserName" name="userName" id="userName" type="text">
+                                <code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким
+                                    логином уже существует. </code>
+                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин",
+                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
                             </label>
                         </section>
 
                         <section>
                             <label class="label"><strong>Пароль:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorPassword();" maxlength="50" placeholder="Пароль" ng-model="model.user.Password" name="password" id="password" type="password">
-                                <code class="ng-binding" ng-show="model.error.password">Не верный формат поля "Пароль", данное поле не может быть меньше 6 и больше 50 символов. </code>
+                                <input class="" ng-blur="checkErrorPassword();" maxlength="50" placeholder="Пароль"
+                                       ng-model="model.user.Password" name="password" id="password" type="password">
+                                <code class="ng-binding" ng-show="model.error.password">Не верный формат поля "Пароль",
+                                    данное поле не может быть меньше 6 и больше 50 символов. </code>
                             </label>
                         </section>
 
                         <section>
                             <label class="label"><strong>Подтверждение пароля:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorConfirmPassword();" maxlength="50" placeholder="Подтверждение пароля" ng-model="model.user.ConfirmPassword" name="confirmPassword" id="confirmPassword" type="password">
-                                <code class="ng-binding" ng-show="model.error.confirmPassword">Пароли не совпадают. </code>
+                                <input class="" ng-blur="checkErrorConfirmPassword();" maxlength="50"
+                                       placeholder="Подтверждение пароля" ng-model="model.user.ConfirmPassword"
+                                       name="confirmPassword" id="confirmPassword" type="password">
+                                <code class="ng-binding" ng-show="model.error.confirmPassword">Пароли не
+                                    совпадают. </code>
                             </label>
                         </section>
 
@@ -46,41 +54,50 @@
                         <section>
                             <label class="label"><strong class="ng-binding">Имя:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorFirstName();" maxlength="50" placeholder="Имя" ng-model="model.user.FirstName" name="firstName" id="firstName" type="text">
-                                <code class="ng-binding" ng-show="model.error.firstName">Не верный формат поля "Имя", данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <input class="" ng-blur="checkErrorFirstName();" maxlength="50" placeholder="Имя"
+                                       ng-model="model.user.FirstName" name="firstName" id="firstName" type="text">
+                                <code class="ng-binding" ng-show="model.error.firstName">Не верный формат поля "Имя",
+                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
                             </label>
                         </section>
 
                         <section>
                             <label class="label"><strong class="ng-binding">Фамилия:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorLastName();" maxlength="50" placeholder="Фамилия" ng-model="model.user.LastName" name="lastName" id="lastName" type="text">
-                                <code class="ng-binding" ng-show="model.error.lastName">Не верный формат поля "Фамилия", данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <input class="" ng-blur="checkErrorLastName();" maxlength="50" placeholder="Фамилия"
+                                       ng-model="model.user.LastName" name="lastName" id="lastName" type="text">
+                                <code class="ng-binding" ng-show="model.error.lastName">Не верный формат поля "Фамилия",
+                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
                             </label>
                         </section>
 
                         <section>
                             <label class="label"><strong class="ng-binding">Отчество:</strong></label>
                             <label class="input col-9">
-                                <input class="" ng-blur="checkErrorMiddleName();" maxlength="50" placeholder="Отчество" ng-model="model.user.MiddleName" name="middleName" id="middleName" type="text">
-                                <code class="ng-binding" ng-show="model.error.middleName">Не верный формат поля "Отчество", данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <input class="" ng-blur="checkErrorMiddleName();" maxlength="50" placeholder="Отчество"
+                                       ng-model="model.user.MiddleName" name="middleName" id="middleName" type="text">
+                                <code class="ng-binding" ng-show="model.error.middleName">Не верный формат поля
+                                    "Отчество", данное поле не может быть меньше 3 и больше 50 символов. </code>
                             </label>
                         </section>
 
                         <!--<section>-->
-                            <!--<label class="label"><strong class="ng-binding">Эллектронная почта:</strong></label>-->
-                            <!--<label class="input col-9">-->
-                                <!--<input class="" placeholder="Эллектронная почта" ng-model="model.user.Email" name="email" id="email" type="text">-->
-                            <!--</label>-->
+                        <!--<label class="label"><strong class="ng-binding">Эллектронная почта:</strong></label>-->
+                        <!--<label class="input col-9">-->
+                        <!--<input class="" placeholder="Эллектронная почта" ng-model="model.user.Email" name="email" id="email" type="text">-->
+                        <!--</label>-->
                         <!--</section>-->
-
 
 
                         <section>
                             <label class="label"><strong class="ng-binding">Телефон:</strong></label>
                             <label class="input col-9">
-                                <i class="icon-prepend">+7</i><input maxlength="10" class="" ng-blur="checkErrorPhone();" placeholder="Телефон" ng-model="model.user.Phone" name="phone" id="phone" type="text">
-                                <code class="ng-binding" ng-show="model.error.phone">Не верный формат поля "Телефон", данное поле должно состоять из 10 цифр. </code>
+                                <i class="icon-prepend">+7</i><input maxlength="10" class=""
+                                                                     ng-blur="checkErrorPhone();" placeholder="Телефон"
+                                                                     ng-model="model.user.Phone" name="phone" id="phone"
+                                                                     type="text">
+                                <code class="ng-binding" ng-show="model.error.phone">Не верный формат поля "Телефон",
+                                    данное поле должно состоять из 10 цифр. </code>
                             </label>
                         </section>
 
@@ -97,7 +114,7 @@
                         <section>
                             <label class="label"><strong>Статус:</strong></label>
                             <label class="input col-6">
-                                <select class="form-control" ng-model="model.EmployeeStatus" >
+                                <select class="form-control" ng-model="model.EmployeeStatus">
                                     <option ng-repeat="status in model.employeeStatuses" value="{{status}}">
                                         {{status.Value}}
                                     </option>
@@ -108,13 +125,15 @@
                         <section>
                             <label class="label"><strong>Должность:</strong></label>
                             <label class="input col-6">
-                                <select ng-change="checkErrorPosition();" class="form-control" ng-model="model.Position">
+                                <select ng-change="checkErrorPosition();" class="form-control"
+                                        ng-model="model.Position">
                                     <option value="">Не выбрано</option>
                                     <option ng-repeat="option in model.positions" value="{{option}}">
                                         {{option.Value}}
                                     </option>
                                 </select>
-                                <code class="ng-binding" ng-show="model.error.position">Поле "Должность" должно быть заполнено. </code>
+                                <code class="ng-binding" ng-show="model.error.position">Поле "Должность" должно быть
+                                    заполнено. </code>
                             </label>
                         </section>
 
@@ -131,7 +150,8 @@
                         <section>
                             <label title="Наличие мед. книжки" class="checkbox ng-binding"
                                    for="isHaveMedicalBook">
-                                <input class="ng-pristine ng-valid" ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"
+                                <input class="ng-pristine ng-valid" ng-model="model.user.IsHaveMedicalBook"
+                                       name="isHaveMedicalBook"
                                        id="isHaveMedicalBook" type="checkbox">
                                 <i></i>Наличие мед. книжки
                             </label>
@@ -145,11 +165,16 @@
                             </label>
                         </section>
 
-                        <div style="text-align: right;">
-                            <button class="btn-u ng-binding" type="button" ng-click="saveUser()">Сохранить
-                            </button>
+                        <br/><br/>
+                        <div class="text-right col-9">
+                            <a href="/users">
+                                <button class="btn-u btn-u-default" type="button">Отменить</button>
+                            </a>
+                            <a ng-click="saveUser()">
+                                <button class="btn-u ng-binding" type="button">Сохранить</button>
+                            </a>
                         </div>
-
+                        <br/><br/>
 
                     </div>
                 </form>

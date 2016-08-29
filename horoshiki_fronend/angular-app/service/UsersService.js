@@ -31,6 +31,16 @@ accountServices.service('UsersService', ['$http', function ($http) {
         return resp;
     };
 
+    this.setPassword = function (passwords) {
+        var resp = $http({
+            url: backendServerAddr+'/api/Accounts/SetPassword',
+            method: 'POST',
+            data: userPassword,
+            headers:  getToken(),
+        });
+        return resp;
+    };
+
     this.isExistUser = function (userName) {
         return $http.get(backendServerAddr+'api/Accounts/IsExist/'+userName, {timeout: backendTimeout, headers: getToken()});
     };

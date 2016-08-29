@@ -47,6 +47,12 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 pageId: 'usersEditPage',
                 title: 'Изменение пользователя'
             })
+            .when('/users/editPassword/:userId', {
+                templateUrl: '/angular-html/users.password.edit.html',
+                controller: 'UsersEditPasswordController',
+                pageId: 'usersEditPasswordPage',
+                title: 'Изменение пользователя'
+            })
             .when('/users', {
                 templateUrl: '/angular-html/users.view.html',
                 controller: 'UsersViewController',

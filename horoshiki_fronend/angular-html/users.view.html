@@ -11,7 +11,9 @@
 
             <div class="headline"><h2>Пользователи</h2></div>
             <div class="text-right">
-                <button class="btn-u btn-u-sm btn-u-dark-blue" ng-click="toAddUserPage();" type="button"><i class="fa fa-plus"></i>&nbsp;&nbsp;{{$parent.translation.user_list_button_add_user}}</button>
+                <button class="btn-u btn-u-sm btn-u-dark-blue" ng-click="toAddUserPage();" type="button"><i
+                        class="fa fa-plus"></i>&nbsp;&nbsp;{{$parent.translation.user_list_button_add_user}}
+                </button>
                 <p></p>
             </div>
             <table class="table table-striped">
@@ -115,7 +117,34 @@
                     <td ng-bind="user.Position.Value"></td>
                     <td ng-bind="user.EmployeeStatus.Value"></td>
                     <td>
-                        <button class="btn-u btn-u-xs btn-u-yellow" type="button"><i class="fa fa-edit"></i></button>
+
+                        <!--<div class="btn-group">-->
+                            <!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">-->
+                                <!--Action-->
+                                <!--<i class="fa fa-angle-down"></i>-->
+                                <!--<ul class="dropdown-menu" role="menu">-->
+                                    <!--<li><a href="/users/editPassword/{{user.Id}}"><i class="fa fa-eye"></i> Сбросить-->
+                                        <!--пароль</a></li>-->
+                                    <!--<li><a href="/users/edit/{{user.Id}}"><i class="fa fa-edit"></i> Редактировать</a>-->
+                                    <!--</li>-->
+                                    <!--<li><a href="#"><i class="fa fa-cloud"></i> Удалить</a></li>-->
+
+                                <!--</ul>-->
+                            <!--</button>-->
+                        <!--</div>-->
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-u btn-u-xs dropdown-toggle" data-toggle="dropdown">
+                                <!--Action-->
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/users/edit/{{user.Id}}"><i class="fa fa-edit"></i> Редактировать</a></li>
+                                <li><a href="/users/editPassword/{{user.Id}}"><i class="fa fa-eye"></i> Сбросить пароль</a></li>
+                                <li><a href="#"><i class="fa fa-cloud"></i> Удалить</a></li>
+                            </ul>
+                        </div>
+
                     </td>
                 </tr>
 

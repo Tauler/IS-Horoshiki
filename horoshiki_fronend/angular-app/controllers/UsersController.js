@@ -297,26 +297,6 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         //errors init
         $scope.model.error = {};
 
-        $scope.model.error.userNameExist = false;
-        $scope.model.error.userName = false;
-        $scope.checkErrorUserName = function () {
-            UsersService.isExistUser($scope.model.user.UserName).success(function (result) {
-                if (result.Success = 1) {
-                    $scope.model.error.userNameExist = result.Data;
-                } else {
-                    displayErrorMessage($scope.translation[result.reason]);
-                }
-            }).error(function (result, status) {
-                httpErrors($location.url(), status);
-            })
-
-            if ($scope.model.user.UserName.length < 3 || $scope.model.user.UserName.length > 50) {
-                $scope.model.error.userName = true;
-            } else {
-                $scope.model.error.userName = false;
-            }
-        }
-
         $scope.model.error.password = false;
         $scope.checkErrorPassword = function () {
             if ($scope.model.user.Password.length < 6 || $scope.model.user.Password.length > 50) {
@@ -426,8 +406,8 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
                     $scope.model.EmployeeStatus = JSON.stringify($scope.model.user.EmployeeStatus);
                     $scope.model.Position = JSON.stringify($scope.model.user.Position);
 
-                    $scope.model.user.Password = "";
-                    $scope.model.user.ConfirmPassword = "";
+                    $scope.model.user.Password = null;
+                    $scope.model.user.ConfirmPassword = null;
                 } else {
                     displayErrorMessage($scope.translation[result.reason]);
                 }
@@ -442,7 +422,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 
         $scope.saveUser = function () {
 
-            $scope.checkErrorUserName();
+            // $scope.checkErrorUserName();
             // $scope.checkErrorPassword();
             // $scope.checkErrorConfirmPassword();
             $scope.checkErrorFirstName();
@@ -477,8 +457,60 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
                     httpErrors($location.url(), status);
                 })
             }
+        }
+
+    }
+]);
+
+usersControllers.controller('UsersEditPasswordController', ['$scope', '$location', 'UsersService', 'DictionaryService', '$routeParams',
+    function ($scope, $location, UsersService, DictionaryService, $routeParams) {
+        $scope.model = {};
+        $scope.model.userPassword = {
+            "Id": "",
+            "NewPassword": "",
+            "ConfirmPassword": ""
+        }
 
 
+        //errors init
+        $scope.model.error = {};
+
+        $scope.model.error.password = false;
+        $scope.checkErrorPassword = function () {
+            if ($scope.model.userPassword.NewPassword.length < 6 || $scope.model.userPassword.NewPassword.length > 50) {
+                $scope.model.error.password = true;
+            } else {
+                $scope.model.error.password = false;
+            }
+        }
+
+        $scope.model.error.confirmPassword = false;
+        $scope.checkErrorConfirmPassword = function () {
+            if ($scope.model.userPassword.Password != $scope.model.userPassword.ConfirmPassword) {
+                $scope.model.error.confirmPassword = true;
+            } else {
+                $scope.model.error.confirmPassword = false;
+            }
+        }
+
+        $scope.changeUserPassword = function () {
+
+            $scope.checkErrorPassword();
+            $scope.checkErrorConfirmPassword();
+
+            $scope.model.userPassword.Id = $routeParams.userId;
+
+            if (!$scope.model.error.password && !$scope.model.error.confirmPassword) {
+                UsersService.setPassword($scope.model.userPassword).success(function (result) {
+                    if (result.Success = 1) {
+                        $location.url("/users");
+                    } else {
+                        displayErrorMessage($scope.translation[result.reason]);
+                    }
+                }).error(function (result, status) {
+                    httpErrors($location.url(), status);
+                })
+            }
         }
 
     }
