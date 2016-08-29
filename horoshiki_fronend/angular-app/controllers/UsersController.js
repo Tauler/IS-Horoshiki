@@ -465,10 +465,11 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 usersControllers.controller('UsersEditPasswordController', ['$scope', '$location', 'UsersService', 'DictionaryService', '$routeParams',
     function ($scope, $location, UsersService, DictionaryService, $routeParams) {
         $scope.model = {};
+        // $scope.model.userPassword = {}
         $scope.model.userPassword = {
-            "Id": "",
-            "NewPassword": "",
-            "ConfirmPassword": ""
+            UserId: "",
+            Password: "",
+            ConfirmPassword: ""
         }
 
 
@@ -477,7 +478,7 @@ usersControllers.controller('UsersEditPasswordController', ['$scope', '$location
 
         $scope.model.error.password = false;
         $scope.checkErrorPassword = function () {
-            if ($scope.model.userPassword.NewPassword.length < 6 || $scope.model.userPassword.NewPassword.length > 50) {
+            if ($scope.model.userPassword.Password.length < 6 || $scope.model.userPassword.Password.length > 50) {
                 $scope.model.error.password = true;
             } else {
                 $scope.model.error.password = false;
@@ -498,7 +499,9 @@ usersControllers.controller('UsersEditPasswordController', ['$scope', '$location
             $scope.checkErrorPassword();
             $scope.checkErrorConfirmPassword();
 
-            $scope.model.userPassword.Id = $routeParams.userId;
+            console.log($scope.model.userPassword | JSON);
+
+            $scope.model.userPassword.UserId = $routeParams.userId;
 
             if (!$scope.model.error.password && !$scope.model.error.confirmPassword) {
                 UsersService.setPassword($scope.model.userPassword).success(function (result) {

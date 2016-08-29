@@ -30,10 +30,11 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
 
         $routeProvider
             .when('/', {
-                templateUrl: '/angular-html/main.view.html',
-                controller: 'MainViewController',
-                pageId: 'mainViewPage',
-                title: 'Главная страница'
+                redirectTo: '/users'
+                // templateUrl: '/angular-html/main.view.html',
+                // controller: 'MainViewController',
+                // pageId: 'mainViewPage',
+                // title: 'Главная страница'
             })
             .when('/users/add', {
                 templateUrl: '/angular-html/users.add.html',

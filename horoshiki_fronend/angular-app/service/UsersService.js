@@ -33,9 +33,9 @@ accountServices.service('UsersService', ['$http', function ($http) {
 
     this.setPassword = function (passwords) {
         var resp = $http({
-            url: backendServerAddr+'/api/Accounts/SetPassword',
+            url: backendServerAddr+'/api/Accounts/ChangePasswordUser',
             method: 'POST',
-            data: userPassword,
+            data: passwords,
             headers:  getToken(),
         });
         return resp;
