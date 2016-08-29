@@ -101,6 +101,11 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new IdentityResult(error);
             }
 
+            var daoUser = userModel.ToDaoEntity();
+            daoUser.EmployeeStatus = null;
+            daoUser.Platforms = null;
+            daoUser.Position = null;
+
             return await _unitOfWork.AccountRepository.RegisterAsync(userModel.ToDaoEntity(), userModel.Password);
         }
 
@@ -119,17 +124,19 @@ namespace IsHoroshiki.BusinessServices.Editable
                     return new IdentityResult(error);
                 }
 
-                var user = await _unitOfWork.AccountRepository.GetByIdAsync(userModel.Id);
-                if (user == null)
+                var daoUser = await _unitOfWork.AccountRepository.GetByIdAsync(userModel.Id);
+                if (daoUser == null)
                 {
                     return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
                 }
 
-                user.Update(userModel);
+                daoUser.Update(userModel);
+                daoUser.EmployeeStatus = null;
+                daoUser.Position = null;
 
-                return await _unitOfWork.AccountRepository.UpdateAsync(user);
+                return await _unitOfWork.AccountRepository.UpdateAsync(daoUser);
             }
-            catch
+            catch (Exception e)
             {
                 return new IdentityResult(ResourceBusinessServices.AccountsController_UserUpdateError);
             }
