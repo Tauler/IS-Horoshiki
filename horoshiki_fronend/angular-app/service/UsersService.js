@@ -12,7 +12,6 @@ accountServices.service('UsersService', ['$http', function ($http) {
     };
 
     this.userAdd = function (user) {
-        console.log("save");
         var resp = $http({
             url: backendServerAddr+'/api/Accounts/Add',
             method: 'POST',
@@ -22,8 +21,22 @@ accountServices.service('UsersService', ['$http', function ($http) {
         return resp;
     };
 
+    this.userEdit = function (user) {
+        var resp = $http({
+            url: backendServerAddr+'/api/Accounts/Update',
+            method: 'POST',
+            data: user,
+            headers:  getToken(),
+        });
+        return resp;
+    };
+
     this.isExistUser = function (userName) {
         return $http.get(backendServerAddr+'api/Accounts/IsExist/'+userName, {timeout: backendTimeout, headers: getToken()});
+    };
+
+    this.getUser = function (id) {
+        return $http.get(backendServerAddr+'api/Accounts/'+id, {timeout: backendTimeout, headers: getToken()});
     };
 
 

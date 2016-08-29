@@ -41,6 +41,12 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 pageId: 'usersAddPage',
                 title: 'Добавление пользователя'
             })
+            .when('/users/edit/:userId', {
+                templateUrl: '/angular-html/users.edit.html',
+                controller: 'UsersEditController',
+                pageId: 'usersEditPage',
+                title: 'Изменение пользователя'
+            })
             .when('/users', {
                 templateUrl: '/angular-html/users.view.html',
                 controller: 'UsersViewController',

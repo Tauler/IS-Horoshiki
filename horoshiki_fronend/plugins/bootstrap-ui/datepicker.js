@@ -31,10 +31,15 @@ datepickerDirectives.directive('datepicker', function () {
             });
 
             if(scope.ngModel.select == undefined) {
-              var date = new Date();
+              // var date = new Date();
+              // element.find(".datepicker").val(dateFormatter(date));
+              // scope.ngModel.select = date;
+            }else{
+              var date = new Date(scope.ngModel.select);
               element.find(".datepicker").val(dateFormatter(date));
               scope.ngModel.select = date;
             }
+
           }
         }
       }, true);
