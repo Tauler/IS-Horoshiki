@@ -147,7 +147,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Пароль
         /// </summary>
-        [Required]
         [StringLength(100, ErrorMessage = "Пароль {0} должен быть не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
@@ -160,7 +159,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Потдверждение пароля
         /// </summary>
-        [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля не совпадают!")]
         public string ConfirmPassword

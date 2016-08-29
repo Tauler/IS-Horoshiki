@@ -93,6 +93,9 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// <returns></returns>
         public Task<IdentityResult> RegisterAsync(ApplicationUser user, string password)
         {
+            user.EmployeeStatus = _ctx.EmployeeStatuses.Find(user.EmployeeStatusId);
+            user.Position = _ctx.Positions.Find(user.PositionId);
+
             return _userManager.CreateAsync(user, password);
         }
 
@@ -103,6 +106,9 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// <returns></returns>
         public Task<IdentityResult> UpdateAsync(ApplicationUser user)
         {
+            user.EmployeeStatus = _ctx.EmployeeStatuses.Find(user.EmployeeStatusId);
+            user.Position = _ctx.Positions.Find(user.PositionId);
+
             return _userManager.UpdateAsync(user);
         }
 
