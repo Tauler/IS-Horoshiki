@@ -9,6 +9,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'ngCookies',
     'yaMap',
     'ui.bootstrap.pagination',
+    // 'ui.bootstrap.datepicker',
+    'datepickerDirectives',
     'layoutControllers',
     'errorControllers',
     'mainControllers',
@@ -17,7 +19,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'accountServices',
     'translationServices',
     'usersServices',
-    'dictionaryServices'
+    'dictionaryServices',
 
 ]);
 

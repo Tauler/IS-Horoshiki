@@ -61,6 +61,37 @@ function redirect(url){
     window.location.href=url;
 }
 
+function numb2(numb){
+    if (numb <= 9){
+        return "0" + numb;
+    }else{
+        return numb;
+    }
+}
+
+function timeFormatter(date){
+    var viewHour = date.getHours();
+    var viewMinutes = date.getMinutes();
+
+    return numb2(viewHour)+":"+numb2(viewMinutes);
+}
+
+function dateFormatter(date){
+    var dd = date.getDate();
+    var mm = date.getMonth()+1;
+    var yyyy = date.getFullYear();
+
+    return numb2(dd)+"."+numb2(mm)+"."+yyyy;
+}
+
+function dateFormatterBackend(date){
+    var dd = date.getDate();
+    var mm = date.getMonth()+1;
+    var yyyy = date.getFullYear();
+
+    return  yyyy+"-"+numb2(mm)+"."+numb2(dd);
+}
+
 function displayMess(elem, disable){
     if ($("#" + elem).css("display") == "none") {
         $("#" + disable).attr("disabled", "true");

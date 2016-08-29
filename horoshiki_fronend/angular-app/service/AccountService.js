@@ -21,4 +21,6 @@ accountServices.service('AccountService', ['$http', function($http) {
         return $http.get(backendServerAddr+'/api/Accounts/Current', {timeout: backendTimeout, headers: getToken()});
     }
 
+    
+
 }]);
