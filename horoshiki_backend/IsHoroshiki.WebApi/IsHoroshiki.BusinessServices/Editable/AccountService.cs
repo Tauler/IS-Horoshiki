@@ -207,6 +207,39 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="userId">Id пользователя</param>
         /// <param name="newPassword">Новый пароль</param>
+        /// <param name="confirmPassword">Подтверждение пароля</param>
+        /// <returns></returns>
+        public async Task<IdentityResult> ChangePasswordUserAsync(int userId, string newPassword, string confirmPassword)
+        {
+            if (string.IsNullOrEmpty(newPassword))
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_PasswordIsNull);
+            }
+
+            if (string.IsNullOrEmpty(confirmPassword))
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_ConfirmPasswordIsNull);
+            }
+
+            if (!string.Equals(newPassword, confirmPassword))
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_PasswordNotEquals);
+            }
+
+            var daoUser = await _unitOfWork.AccountRepository.GetByIdAsync(userId);
+            if (daoUser == null)
+            {
+                return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
+            }
+
+            return await _unitOfWork.AccountRepository.ChangePasswordAsync(daoUser.Id, newPassword);
+        }
+
+        /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="newPassword">Новый пароль</param>
         /// <returns></returns>
         public Task<IdentityResult> AddPasswordAsync(int userId, string newPassword)
         {

@@ -81,6 +81,15 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         Task<IdentityResult> ChangePasswordAsync(int userId, string oldPassword, string newPassword);
 
         /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="newPassword">Новый пароль</param>
+        /// <param name="confirmPassword">Подтверждение пароля</param>
+        /// <returns></returns>
+        Task<IdentityResult> ChangePasswordUserAsync(int userId, string newPassword, string confirmPassword);
+
+        /// <summary>
         /// Установить пароль
         /// </summary>
         /// <param name="userId">Id пользователя</param>

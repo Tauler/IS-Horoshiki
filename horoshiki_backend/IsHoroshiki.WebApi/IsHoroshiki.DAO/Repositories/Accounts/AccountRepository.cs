@@ -171,6 +171,22 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         }
 
         /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="newPassword">Новый пароль</param>
+        /// <returns></returns>
+        public async Task<IdentityResult> ChangePasswordAsync(int userId, string newPassword)
+        {
+            var removePasswordResult = await _userManager.RemovePasswordAsync(userId);
+            if (!removePasswordResult.Succeeded)
+            {
+                return removePasswordResult;
+            }
+            return await _userManager.AddPasswordAsync(userId, newPassword);
+        }
+
+        /// <summary>
         /// Установить пароль
         /// </summary>
         /// <param name="userId">Id пользователя</param>

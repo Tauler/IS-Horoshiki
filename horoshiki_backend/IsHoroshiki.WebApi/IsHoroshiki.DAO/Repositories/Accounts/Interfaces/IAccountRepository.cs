@@ -87,6 +87,15 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
         /// <returns></returns>
         Task<IdentityResult> ChangePasswordAsync(int userId, string oldPassword, string newPassword);
 
+
+        /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="newPassword">Новый пароль</param>
+        /// <returns></returns>
+        Task<IdentityResult> ChangePasswordAsync(int userId, string newPassword);
+
         /// <summary>
         /// Установить пароль
         /// </summary>
