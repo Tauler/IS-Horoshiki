@@ -1,11 +1,13 @@
-INSERT INTO [dbo].[Positions] ([Value]) VALUES ('Операционный директор');
+INSERT INTO [dbo].[BuyProcesses] ([Value]) VALUES ('Доставка');
 GO
 
-INSERT INTO [dbo].[Positions] ([Value]) VALUES ('Управляющий рестораном');
+INSERT INTO [dbo].[BuyProcesses] ([Value]) VALUES ('Самовывоз');
 GO
 
-INSERT INTO [dbo].[Positions] ([Value]) VALUES ('Менеджер смены');
+INSERT INTO [dbo].[BuyProcesses] ([Value]) VALUES ('Ресторан');
 GO
+
+
 
 INSERT INTO [dbo].[Positions] ([Value]) VALUES ('Администратор');
 GO
