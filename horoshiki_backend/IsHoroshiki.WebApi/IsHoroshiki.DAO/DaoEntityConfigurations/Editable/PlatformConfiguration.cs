@@ -39,9 +39,11 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
 
             HasRequired(s => s.PlatformStatus);
 
-            HasRequired(s => s.User)
-                .WithOptional();
+            Property(p => p.UserId)
+                .IsOptional();
 
+            HasOptional(s => s.User);
+                
             HasRequired(s => s.SubDivision);
 
             Property(i => i.MinCheck)

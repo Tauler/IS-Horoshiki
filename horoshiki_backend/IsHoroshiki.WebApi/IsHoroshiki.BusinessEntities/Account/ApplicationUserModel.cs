@@ -1,5 +1,4 @@
 ﻿using IsHoroshiki.BusinessEntities.NotEditable;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
@@ -131,6 +130,15 @@ namespace IsHoroshiki.BusinessEntities.Account
         [Required]
         [Display(Name = "UserName")]
         public string UserName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Email
+        /// </summary>
+        public string Email
         {
             get;
             set;

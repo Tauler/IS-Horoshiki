@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using IsHoroshiki.DAO.Identities;
 
 namespace IsHoroshiki.DAO.DaoEntities.Accounts
 {

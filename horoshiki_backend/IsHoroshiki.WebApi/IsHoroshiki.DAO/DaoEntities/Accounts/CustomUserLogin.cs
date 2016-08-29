@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace IsHoroshiki.DAO.Identities
+namespace IsHoroshiki.DAO.DaoEntities.Accounts
 {
     /// <summary>
     /// Логин пользователя фейсбук и т.п.

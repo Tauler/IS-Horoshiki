@@ -50,7 +50,12 @@ namespace IsHoroshiki.DAO.Repositories
         /// <returns></returns>  
         public virtual async Task<TDaoEntity> GetByIdAsync(int id)
         {
-            return DbSet.Find(id);
+            var daoEntity = DbSet.Find(id);
+            if (daoEntity != null)
+            {
+                LoadChildEntities(daoEntity);
+            }
+            return daoEntity;
         }
 
         /// <summary>  
@@ -104,7 +109,12 @@ namespace IsHoroshiki.DAO.Repositories
         /// <returns></returns>  
         public virtual async Task<IEnumerable<TDaoEntity>> GetManyAsync(Func<TDaoEntity, bool> where)
         {
-            return DbSet.Where(where).ToList();
+            var list = DbSet.Where(where).ToList();
+            foreach (var daoEntity in list)
+            {
+                LoadChildEntities(daoEntity);
+            }
+            return list;
         }
 
         /// <summary>  
@@ -114,7 +124,12 @@ namespace IsHoroshiki.DAO.Repositories
         /// <returns></returns>  
         public virtual async Task<TDaoEntity> GetAsync(Func<TDaoEntity, Boolean> where)
         {
-            return DbSet.Where(where).FirstOrDefault<TDaoEntity>();
+            var daoEntity = DbSet.Where(where).FirstOrDefault<TDaoEntity>();
+            if (daoEntity != null)
+            {
+                LoadChildEntities(daoEntity);
+            }
+            return daoEntity;
         }
 
         /// <summary>  
@@ -142,12 +157,18 @@ namespace IsHoroshiki.DAO.Repositories
         {
             int skip = (pageNo - 1) * pageSize;
 
-            return DbSet
-                .OrderByPropertyName(sortField, isAscending)
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList()
-                .AsEnumerable(); 
+            var list = DbSet.OrderByPropertyName(sortField, isAscending)
+                            .Skip(skip)
+                            .Take(pageSize)
+                            .ToList()
+                            .AsEnumerable();
+
+            foreach (var daoEntity in list)
+            {
+                LoadChildEntities(daoEntity);
+            }
+
+            return list;
         }
 
         /// <summary>  
@@ -169,13 +190,17 @@ namespace IsHoroshiki.DAO.Repositories
             return DbSet.Find(id) != null;
         }
 
+        #endregion
+
+        #region методы
+
         /// <summary>
         /// Действие с сущностью перед добавлением в БД
         /// </summary>
         /// <param name="entity"></param>
         protected virtual void BeforeInsert(TDaoEntity entity)
         {
-            
+
         }
 
         /// <summary>
@@ -183,6 +208,15 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>
         /// <param name="entity"></param>
         protected virtual void BeforeUpdate(TDaoEntity entity)
+        {
+
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед добавлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected virtual void LoadChildEntities(TDaoEntity entity)
         {
 
         }

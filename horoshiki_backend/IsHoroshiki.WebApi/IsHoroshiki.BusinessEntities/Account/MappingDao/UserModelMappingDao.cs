@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.DAO.Identities;
+using IsHoroshiki.DAO.DaoEntities.Accounts;
 
 namespace IsHoroshiki.BusinessEntities.Account.MappingDao
 {

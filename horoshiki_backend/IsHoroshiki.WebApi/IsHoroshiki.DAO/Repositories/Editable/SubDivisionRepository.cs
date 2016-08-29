@@ -42,6 +42,21 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             SetChildEntity(entity);
         }
 
+
+        /// <summary>
+        /// Действие с сущностью перед добавлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected override void LoadChildEntities(SubDivision entity)
+        {
+            if (entity == null)
+            {
+                return;
+            }
+
+            Context.Entry(entity).Reference(p => p.PriceType).Load();
+        }
+
         #endregion
 
         #region private
