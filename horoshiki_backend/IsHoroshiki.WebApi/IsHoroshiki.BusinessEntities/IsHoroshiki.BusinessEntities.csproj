@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\ApplicationUserModel.cs" />
+    <Compile Include="Account\ChangePasswordUserModel.cs" />
     <Compile Include="Account\ChangePasswordBindingModel.cs" />
     <Compile Include="Account\Interfaces\IApplicationUserModel.cs" />
     <Compile Include="Account\MappingDao\ApplicationUserModelMappingDao.cs" />

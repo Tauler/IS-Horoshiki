@@ -225,6 +225,29 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         }
 
         /// <summary>
+        /// Изменить пароль
+        /// </summary>
+        /// <param name="model">Данные</param>
+        /// <returns></returns>
+        [Route("ChangePasswordUser")]
+        public async Task<IHttpActionResult> ChangePasswordUser(ChangePasswordUserModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await _service.ChangePasswordUserAsync(model.UserId, model.Password, model.ConfirmPassword);
+
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
         /// Установить пароль
         /// </summary>
         /// <param name="model">Данные</param>
