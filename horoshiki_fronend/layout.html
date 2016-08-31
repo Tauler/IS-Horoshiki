@@ -57,37 +57,37 @@
                 <div class="collapse navbar-collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="/users"
-                            ng-style="{'border-bottom': pageId == 'mainViewPage' ? '2px solid #627DAD' : 'transparent'}">
+                            <a href="/"
+                            ng-style="{'border-bottom': groupId == 'metric' ? '2px solid #627DAD' : 'transparent'}">
                                 Метрики
                             </a>
                         </li>
                         <li>
-                            <a href="/users"
-                               ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
+                            <a href=""
+                               ng-style="{'border-bottom': groupId == 'main' ? '2px solid #627DAD' : 'transparent'}">
                                 Отчеты
                             </a>
                         </li>
                         <li>
-                            <a href="/users"
-                               ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
+                            <a href=""
+                               ng-style="{'border-bottom': groupId == 'main' ? '2px solid #627DAD' : 'transparent'}">
                                 Управление
                             </a>
                         </li>
                         <li>
                             <a href="/users"
-                               ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
+                               ng-style="{'border-bottom': groupId == 'settings' ? '2px solid #627DAD' : 'transparent'}">
                                 Настройки
                             </a>
                         </li>
                         <li>
-                            <a href="/users"
-                               ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
-                                Маркейтинг
+                            <a href=""
+                               ng-style="{'border-bottom': groupId == '' ? '2px solid #627DAD' : 'transparent'}">
+                                Маркетинг
                             </a>
                         </li>
                         <li>
-                            <a href="/users"
+                            <a href=""
                                ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
                                 Производство
                             </a>
@@ -196,6 +196,7 @@
 <script type="text/javascript" src="/angular-app/controllers/ErrorController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/MainController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/UsersController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/SubdivisionsController.js"></script>
 
 
 <!-- Angular services -->
@@ -204,6 +205,7 @@
 <script type="text/javascript" src="/angular-app/service/AccountService.js"></script>
 <script type="text/javascript" src="/angular-app/service/UsersService.js"></script>
 <script type="text/javascript" src="/angular-app/service/DictionaryService.js"></script>
+<script type="text/javascript" src="/angular-app/service/SubdivisionsService.js"></script>
 
 <!-- Angular directives -->
 <script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
