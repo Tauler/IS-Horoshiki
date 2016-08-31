@@ -97,6 +97,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Указано наличие мед. книжки, но не указана дата окончания мед. книжки!.
+        /// </summary>
+        internal static string AccountsController_IsHaveMedicalBookMedicalBookEnd {
+            get {
+                return ResourceManager.GetString("AccountsController_IsHaveMedicalBookMedicalBookEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать фамилию!.
         /// </summary>
         internal static string AccountsController_LastNameIsNull {

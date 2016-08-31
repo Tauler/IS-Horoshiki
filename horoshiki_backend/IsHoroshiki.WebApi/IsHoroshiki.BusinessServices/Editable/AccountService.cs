@@ -295,6 +295,11 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return ResourceBusinessServices.AccountsController_UserNameIsNull;
             }
 
+            if (userModel.IsHaveMedicalBook && userModel.MedicalBookEnd == null)
+            {
+                return ResourceBusinessServices.AccountsController_IsHaveMedicalBookMedicalBookEnd;
+            }
+
             if (isCheckPassword && string.IsNullOrEmpty(userModel.Password))
             {
                 return ResourceBusinessServices.AccountsController_PasswordIsNull;

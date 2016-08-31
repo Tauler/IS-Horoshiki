@@ -129,6 +129,9 @@
   <data name="AccountsController_FirstNameIsNull" xml:space="preserve">
     <value>Необходимо указать имя!</value>
   </data>
+  <data name="AccountsController_IsHaveMedicalBookMedicalBookEnd" xml:space="preserve">
+    <value>Указано наличие мед. книжки, но не указана дата окончания мед. книжки!</value>
+  </data>
   <data name="AccountsController_LastNameIsNull" xml:space="preserve">
     <value>Необходимо указать фамилию!</value>
   </data>
