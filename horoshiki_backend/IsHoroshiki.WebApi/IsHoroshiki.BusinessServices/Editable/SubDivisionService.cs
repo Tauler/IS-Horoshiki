@@ -8,6 +8,7 @@ using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.UnitOfWorks;
+using IsHoroshiki.BusinessEntities.Paging;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -34,11 +35,29 @@ namespace IsHoroshiki.BusinessServices.Editable
         #region protected override
 
         /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public override async Task<PagedResult<ISubDivisionModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        {
+            if (string.Equals(sortField, "PriceTypeModel"))
+            {
+                sortField = "PriceTypeId";
+            }
+
+            return await base.GetAllAsync(pageNo, pageSize, sortField, isAscending);
+        }
+
+        /// <summary>
         /// Валидация сущности
         /// </summary>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        protected async override Task<ValidationResult> ValidationInternal(ISubDivisionModel model)
+        protected override async Task<ValidationResult> ValidationInternal(ISubDivisionModel model)
         {
             if (model.PriceTypeModel != null)
             {
