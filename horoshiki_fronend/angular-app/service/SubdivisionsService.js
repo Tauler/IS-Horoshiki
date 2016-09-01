@@ -11,6 +11,10 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
         return $http.get(backendServerAddr+'/api/SubDivisions?pageNo='+currentPage+'&pageSize='+pageSize+'&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
     };
 
+    this.getSubdivision = function (id) {
+        return $http.get(backendServerAddr+'api/SubDivisions/'+id, {timeout: backendTimeout, headers: getToken()});
+    };
+
     this.subdivisionsAdd = function (subdivision) {
         var resp = $http({
             url: backendServerAddr+'/api/SubDivisions/Add',
@@ -30,24 +34,5 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
         });
         return resp;
     };
-    //
-    // this.setPassword = function (passwords) {
-    //     var resp = $http({
-    //         url: backendServerAddr+'/api/Accounts/ChangePasswordUser',
-    //         method: 'POST',
-    //         data: passwords,
-    //         headers:  getToken(),
-    //     });
-    //     return resp;
-    // };
-    //
-    // this.isExistUser = function (userName) {
-    //     return $http.get(backendServerAddr+'api/Accounts/IsExist/'+userName, {timeout: backendTimeout, headers: getToken()});
-    // };
-    //
-    // this.getUser = function (id) {
-    //     return $http.get(backendServerAddr+'api/Accounts/'+id, {timeout: backendTimeout, headers: getToken()});
-    // };
-
 
 }]);
