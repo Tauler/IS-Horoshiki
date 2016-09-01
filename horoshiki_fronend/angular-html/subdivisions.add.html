@@ -1,0 +1,92 @@
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Добавление подразделеня</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/subdivisions">Подразделения</a></li>
+            <li class="active">Добавление подразделения</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container content">
+    <div class="row">
+        <!-- Begin Sidebar Menu -->
+        <div class="col-md-3">
+            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
+        </div>
+        <!-- End Sidebar Menu -->
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+
+            <div class="row">
+                <form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">
+
+                    <div class="col-md-12">
+
+                        <section>
+                            <label class="label"><strong>Наименование:</strong></label>
+                            <label class="input col-9">
+                                <input class="" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"
+                                       ng-model="model.subdivision.Name" name=name" id="name" type="text">
+                                <code class="ng-binding" ng-show="model.error.name">Не верный формат поля "Наименование",
+                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Часовой пояс:</strong></label>
+                            <label class="input col-9">
+                                <input class="" ng-blur="checkErrorTimezone();" maxlength="50" placeholder="Часовой пояс"
+                                       ng-model="model.subdivision.Timezone" name="timezone" id="timezone" type="text">
+                                <code class="ng-binding" ng-show="model.error.timezone">Не верный формат поля "Часовой пояс",
+                                    данное поле должно содержать число от -12 до 13. </code>
+                            </label>
+                        </section>
+
+
+                        <section>
+                            <label class="label"><strong>Тип цен:</strong></label>
+                            <label class="input col-6">
+                                <select ng-change="checkErrorPriceType();" class="form-control"
+                                        ng-model="model.priceTypeModel">
+                                    <option value="">Не выбрано</option>
+                                    <option ng-repeat="option in model.priceType" value="{{option}}">
+                                        {{option.Value}}
+                                    </option>
+                                </select>
+                                <code class="ng-binding" ng-show="model.error.priceType">Поле "Тип цен" должно быть
+                                    заполнено. </code>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Заголовок на сайте:</strong></label>
+                            <label class="input col-9">
+                                <input class="" ng-blur="checkErrorSiteHeader();" maxlength="50" placeholder="Заголовок на сайте"
+                                       ng-model="model.subdivision.SiteHeader" name="siteHeader" id="siteHeader" type="text">
+                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Заголовок на сайте",
+                                    данное поле не может быть больше 50 символов.</code>
+                            </label>
+                        </section>
+
+
+                        <br/><br/>
+                        <div class="text-right col-9">
+                            <a href="/users">
+                                <button class="btn-u btn-u-default" type="button">Отменить</button>
+                            </a>
+                            <a ng-click="saveSubdivision()">
+                                <button class="btn-u ng-binding" type="button">Сохранить</button>
+                            </a>
+                        </div>
+                        <br/><br/>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

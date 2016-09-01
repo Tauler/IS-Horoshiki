@@ -21,7 +21,7 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
         $scope.$watch('model.paging.PageNo', function () {
             $scope.getDivisions();
         });
-        
+
 
         $scope.getDivisions = function () {
             SubdivisionService.getAllSubdivisions($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function (result) {
@@ -42,6 +42,99 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
             $scope.getDivisions();
         }
 
-        $scope.getDivisions();
+        // $scope.getDivisions();
+    }
+]);
+
+subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$location', 'SubdivisionService', 'DictionaryService',
+    function ($scope, $location, SubdivisionService, DictionaryService) {
+        $scope.model = {};
+
+        $scope.model.subdivision = {
+            Name: "",
+            Timezone: "",
+            PriceTypeModel: "",
+            SiteHeader: "",
+            Id: 1
+        }
+
+        $scope.model.priceTypeModel = "";
+
+
+        //errors init
+        $scope.model.error = {};
+
+        $scope.model.error.name = false;
+        $scope.checkErrorName = function () {
+            if ($scope.model.subdivision.Name.length < 3 || $scope.model.subdivision.Name.length > 50) {
+                $scope.model.error.name = true;
+            } else {
+                $scope.model.error.name = false;
+            }
+        }
+        $scope.model.error.timezone = false;
+        $scope.checkErrorTimezone = function () {
+            var timezone = /^[0-9-]{1,3}$/;
+            if (!$scope.model.subdivision.Timezone.match(timezone) ||  parseInt($scope.model.subdivision.Timezone) < -12 ||  parseInt($scope.model.subdivision.Timezone) > 13) {
+                $scope.model.error.timezone = true;
+            } else {
+                $scope.model.error.timezone = false;
+            }
+        }
+        $scope.model.error.priceType = false;
+        $scope.checkErrorPriceType = function () {
+            if ($scope.model.priceTypeModel == "" || $scope.model.priceTypeModel == undefined) {
+                $scope.model.error.priceType = true;
+            } else {
+                $scope.model.error.priceType = false;
+            }
+        }
+        $scope.model.error.siteHeader = false;
+        $scope.checkErrorSiteHeader = function () {
+            if ($scope.model.subdivision.SiteHeader.length > 50) {
+                $scope.model.error.siteHeader = true;
+            } else {
+                $scope.model.error.siteHeader = false;
+            }
+        }
+
+        $scope.getPriceType = function () {
+            DictionaryService.getPriceType().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.priceType = result.Data;
+                } else {
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+        }
+
+        $scope.saveSubdivision = function () {
+            $scope.checkErrorName();
+            $scope.checkErrorTimezone();
+            $scope.checkErrorPriceType();
+            $scope.checkErrorSiteHeader();
+
+            if(!$scope.model.error.name && !$scope.model.error.timezone && !$scope.model.error.priceType && !$scope.model.error.siteHeader){
+
+                if ($scope.model.priceTypeModel != "" && $scope.model.priceTypeModel != undefined) {
+                    $scope.model.subdivision.PriceTypeModel = JSON.parse($scope.model.priceTypeModel);
+                }
+
+                SubdivisionService.subdivisionsAdd($scope.model.subdivision).success(function (result) {
+                    if (result.Success == 1) {
+                        $location.url("/subdivisions");
+                    } else {
+                        displayErrorMessage($scope.translation[result.reason]);
+                    }
+                }).error(function (result, status) {
+                    httpErrors($location.url(), status);
+                });
+            }
+        }
+
+        $scope.getPriceType();
+
     }
 ]);

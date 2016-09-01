@@ -40,6 +40,14 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 subgroupId: 'main',
                 title: 'Главная страница'
             })
+            .when('/users', {
+                templateUrl: '/angular-html/users.view.html',
+                controller: 'UsersViewController',
+                pageId: 'usersViewPage',
+                groupId: 'settings',
+                subgroupId: 'users',
+                title: 'Просмотр пользователей'
+            })
             .when('/users/add', {
                 templateUrl: '/angular-html/users.add.html',
                 controller: 'UsersAddController',
@@ -64,14 +72,7 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 subgroupId: 'users',
                 title: 'Изменение пользователя'
             })
-            .when('/users', {
-                templateUrl: '/angular-html/users.view.html',
-                controller: 'UsersViewController',
-                pageId: 'usersViewPage',
-                groupId: 'settings',
-                subgroupId: 'users',
-                title: 'Просмотр пользователей'
-            })
+
             .when('/subdivisions', {
                 templateUrl: '/angular-html/subdivisions.view.html',
                 controller: 'SubdivisionViewController',
@@ -79,6 +80,14 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'subdivisions',
                 title: 'Просмотр подразделений'
+            })
+            .when('/subdivisions/add', {
+                templateUrl: '/angular-html/subdivisions.add.html',
+                controller: 'SubdivisionAddController',
+                pageId: 'subdivisionAddPage',
+                groupId: 'settings',
+                subgroupId: 'subdivisions',
+                title: 'Создание подразделения'
             })
 
             .when('/error', {
