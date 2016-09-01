@@ -90,7 +90,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public override SubDivision UpdateDaoInternal(SubDivision daoEntity, ISubDivisionModel model)
         {
-            return daoEntity.Update(model);
+            var result = daoEntity.Update(model);
+            result.PriceType = null;
+            return result;
         }
 
         #endregion

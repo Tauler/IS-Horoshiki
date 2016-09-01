@@ -7,6 +7,8 @@ namespace IsHoroshiki.BusinessServices
     /// </summary>
     public class ModelEntityModifyResult
     {
+        #region поля и свойства
+
         /// <summary>
         /// true - нет ошибок при добавлении\удалении в БД
         /// </summary>
@@ -33,6 +35,19 @@ namespace IsHoroshiki.BusinessServices
             get;
             private set;
         }
+
+        /// <summary>
+        /// Новый Id при сохранении объекта
+        /// </summary>
+        public int NewId
+        {
+            get;
+            private set;
+        }
+
+        #endregion
+
+        #region Конструктор
 
         /// <summary>
         /// Конструктор
@@ -65,5 +80,16 @@ namespace IsHoroshiki.BusinessServices
             IsValidationSucceeded = true;
             ValidationErrors = new List<string>();
         }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public ModelEntityModifyResult(int newId)
+            : this()
+        {
+            NewId = newId;
+        }
+
+        #endregion
     }
 }

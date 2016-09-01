@@ -96,7 +96,7 @@ namespace IsHoroshiki.BusinessServices
                 _repository.Insert(daoEntity);
                 _unitOfWork.Save();
 
-                return new ModelEntityModifyResult();
+                return new ModelEntityModifyResult(daoEntity.Id);
             }
             catch (Exception e)
             {
