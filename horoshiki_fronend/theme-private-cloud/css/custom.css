@@ -160,3 +160,7 @@ i.icon-1x {
 .login_page_logo{
     text-align: center;
 }
+
+.sidebar-nav-v1 ul li:hover a{
+    background: #eae9e9 !important;
+}

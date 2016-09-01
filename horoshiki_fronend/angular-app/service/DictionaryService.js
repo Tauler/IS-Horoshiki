@@ -13,4 +13,11 @@ dictionaryServices.service('DictionaryService', ['$http', function($http) {
     this.getPositions = function () {
         return $http.get(backendServerAddr+'/api/Positions', {timeout: backendTimeout, headers: getToken()});
     }
+
+    this.getPriceType = function () {
+        return $http.get(backendServerAddr+'/api/PriceTypes', {timeout: backendTimeout, headers: getToken()});
+    }
+
+
 }]);
+
