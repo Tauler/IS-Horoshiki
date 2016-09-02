@@ -80,13 +80,13 @@ namespace IsHoroshiki.WebApi.Controllers
                 {
                     return BadRequest(result.GetAllMessages());
                 }
+
+                return Ok(result.NewId);
             }
             catch (Exception e)
             {
                 return BadRequest(e.GetAllMessages());
             }
-
-            return Ok();
         }
 
         /// <summary>

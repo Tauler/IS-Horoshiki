@@ -1,19 +1,25 @@
 <ul class="list-group sidebar-nav-v1" id="sidebar-nav">
 
-    <li class="list-group-item list-toggle active">
+    <li class="list-group-item">
         <!--<a data-toggle="collapse" data-parent="#sidebar-nav" data-target="#collapse-nav1"-->
            <!--href="javascript:void(0);" data-toggle="collapse">Меню 1</a>-->
 
-        <ul id="collapse-nav1" class="collapse in">
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Основные показатели</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Финансы</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Клиетны</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Скорость</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Продукт</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Рейтинги: Финансы</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Рейтинги: Клиенты</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Рейтинги: Скорость</a></li>
-            <li><a href="/users"><i class="fa fa-dot-circle-o"></i> Рейтинги: Продукт</a></li>
+        <ul ng-if="groupId=='metric'" id="collapse-nav1" class="collapse in">
+            <li ng-class="subgroupId == 'main' ? 'active':''"><a href="/"> Основные показатели</a></li>
+            <li><a href=""> Финансы</a></li>
+            <li><a href=""> Клиетны</a></li>
+            <li><a href=""> Скорость</a></li>
+            <li><a href=""> Продукт</a></li>
+            <li><a href=""> Рейтинги: Финансы</a></li>
+            <li><a href=""> Рейтинги: Клиенты</a></li>
+            <li><a href=""> Рейтинги: Скорость</a></li>
+            <li><a href=""> Рейтинги: Продукт</a></li>
+        </ul>
+
+        <ul ng-if="groupId=='settings'" id="collapse-nav2" class="collapse in">
+            <li ng-class="subgroupId == 'users' ? 'active':''"><a href="/users"> Пользователи</a></li>
+            <li ng-class="subgroupId == 'subdivisions' ? 'active':''"><a href="/subdivisions"> Подразделения</a></li>
+            <li><a href=""> Площадки</a></li>
         </ul>
     </li>
 

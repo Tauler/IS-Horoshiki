@@ -15,11 +15,14 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'errorControllers',
     'mainControllers',
     'usersControllers',
+    'subdivisionsControllers',
+
     'backendServices',
     'accountServices',
     'translationServices',
     'usersServices',
     'dictionaryServices',
+    'subdivisionsServices'
 
 ]);
 
@@ -30,35 +33,69 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
 
         $routeProvider
             .when('/', {
-                redirectTo: '/users'
-                // templateUrl: '/angular-html/main.view.html',
-                // controller: 'MainViewController',
-                // pageId: 'mainViewPage',
-                // title: 'Главная страница'
+                templateUrl: '/angular-html/main.view.html',
+                controller: 'MainViewController',
+                pageId: 'mainViewPage',
+                groupId: 'metric',
+                subgroupId: 'main',
+                title: 'Главная страница'
+            })
+            .when('/users', {
+                templateUrl: '/angular-html/users.view.html',
+                controller: 'UsersViewController',
+                pageId: 'usersViewPage',
+                groupId: 'settings',
+                subgroupId: 'users',
+                title: 'Просмотр пользователей'
             })
             .when('/users/add', {
                 templateUrl: '/angular-html/users.add.html',
                 controller: 'UsersAddController',
                 pageId: 'usersAddPage',
+                groupId: 'settings',
+                subgroupId: 'users',
                 title: 'Добавление пользователя'
             })
             .when('/users/edit/:userId', {
                 templateUrl: '/angular-html/users.edit.html',
                 controller: 'UsersEditController',
                 pageId: 'usersEditPage',
+                groupId: 'settings',
+                subgroupId: 'users',
                 title: 'Изменение пользователя'
             })
             .when('/users/editPassword/:userId', {
                 templateUrl: '/angular-html/users.password.edit.html',
                 controller: 'UsersEditPasswordController',
                 pageId: 'usersEditPasswordPage',
+                groupId: 'settings',
+                subgroupId: 'users',
                 title: 'Изменение пользователя'
             })
-            .when('/users', {
-                templateUrl: '/angular-html/users.view.html',
-                controller: 'UsersViewController',
-                pageId: 'usersViewPage',
-                title: 'Просмотр пользователей'
+
+            .when('/subdivisions', {
+                templateUrl: '/angular-html/subdivisions.view.html',
+                controller: 'SubdivisionViewController',
+                pageId: 'subdivisionViewPage',
+                groupId: 'settings',
+                subgroupId: 'subdivisions',
+                title: 'Просмотр подразделений'
+            })
+            .when('/subdivisions/add', {
+                templateUrl: '/angular-html/subdivisions.add.html',
+                controller: 'SubdivisionAddController',
+                pageId: 'subdivisionAddPage',
+                groupId: 'settings',
+                subgroupId: 'subdivisions',
+                title: 'Создание подразделения'
+            })
+            .when('/subdivisions/edit/:subdivisionId', {
+                templateUrl: '/angular-html/subdivisions.edit.html',
+                controller: 'SubdivisionEditController',
+                pageId: 'subdivisionEditPage',
+                groupId: 'settings',
+                subgroupId: 'subdivisions',
+                title: 'Редактирование подразделения'
             })
 
             .when('/error', {

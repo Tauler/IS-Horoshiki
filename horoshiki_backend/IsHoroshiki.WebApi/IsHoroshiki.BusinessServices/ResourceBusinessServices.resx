@@ -180,6 +180,9 @@
   <data name="PlatformValidator_BuyProcessesIsNullModel" xml:space="preserve">
     <value>Необходмио указать способы покупки!</value>
   </data>
+  <data name="PlatformValidator_MinChecksIsNull" xml:space="preserve">
+    <value>Минимальный чек должен быть больше нуля!</value>
+  </data>
   <data name="PlatformValidator_PlatformStatusIsNullModel" xml:space="preserve">
     <value>Необходимо указать статус площадки!</value>
   </data>

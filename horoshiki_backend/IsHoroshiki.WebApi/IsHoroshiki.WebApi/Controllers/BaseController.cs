@@ -44,7 +44,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// </summary>  
         /// <param name="id">Id</param>  
         [Route("{id}")]
-        public virtual async Task<IHttpActionResult> Get(int id)
+        public virtual async Task<IHttpActionResult> GetById(int id)
         {
             try
             {

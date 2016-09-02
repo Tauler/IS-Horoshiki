@@ -1,6 +1,4 @@
 ﻿using System;
-using IsHoroshiki.BusinessEntities.Editable;
-using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Editable;
 using IsHoroshiki.BusinessServices.NotEditableDictionaries;
 using IsHoroshiki.DAO.UnitOfWorks;

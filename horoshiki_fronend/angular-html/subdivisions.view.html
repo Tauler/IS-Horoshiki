@@ -1,0 +1,166 @@
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Подразделеня</h1>
+        <ul class="pull-right breadcrumb">
+            <!--<li><a href="/users">Пользователи</a></li>-->
+            <li><a href="/">Главная</a></li>
+            <li class="active">Подразделеня</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container content">
+    <div class="row">
+        <!-- Begin Sidebar Menu -->
+        <div class="col-md-3">
+            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
+        </div>
+        <!-- End Sidebar Menu -->
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+
+            <!--<div class="headline"><h2>Пользователи</h2></div>-->
+            <div class="text-right">
+                <a href="/subdivisions/add">
+                    <button class="btn-u btn-u-sm btn-u-dark-blue" type="button"><i
+                            class="fa fa-plus"></i>&nbsp;&nbsp;Создать подразделение
+                    </button>
+                </a>
+                <p></p>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>
+                        <div ng-if="model.orderby.field!='Name'">
+                            <a ng-click="changeSort('Name',true)">Наименование<i
+                                    class="fa fa-sort padding-left-5"></i></a>
+                        </div>
+                        <div ng-if="model.orderby.field=='Name' && model.orderby.asc==true">
+                            <a ng-click="changeSort('Name',false)">Наименование</a><i
+                                class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                        <div ng-if="model.orderby.field=='Name' && model.orderby.asc==false">
+                            <a ng-click="changeSort('Name',true)">Наименование</a><i
+                                class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                    </th>
+
+
+                    <th>
+                        <div ng-if="model.orderby.field!='Timezone'">
+                            <a ng-click="changeSort('Timezone',true)">Временная зона<i
+                                    class="fa fa-sort padding-left-5"></i></a>
+                        </div>
+                        <div ng-if="model.orderby.field=='Timezone' && model.orderby.asc==true">
+                            <a ng-click="changeSort('Timezone',false)">Временная зона</a><i
+                                class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                        <div ng-if="model.orderby.field=='Timezone' && model.orderby.asc==false">
+                            <a ng-click="changeSort('Timezone',true)">Временная зона</a><i
+                                class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                    </th>
+
+                    <th>
+                        <div ng-if="model.orderby.field!='PriceTypeModel'">
+                            <a ng-click="changeSort('PriceTypeModel',true)">Тип цен<i
+                                    class="fa fa-sort padding-left-5"></i></a>
+                        </div>
+                        <div ng-if="model.orderby.field=='PriceTypeModel' && model.orderby.asc==true">
+                            <a ng-click="changeSort('PriceTypeModel',false)">Тип цен</a><i
+                                class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                        <div ng-if="model.orderby.field=='PriceTypeModel' && model.orderby.asc==false">
+                            <a ng-click="changeSort('PriceTypeModel',true)">Тип цен</a><i
+                                class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                    </th>
+
+                    <th>
+                        <div ng-if="model.orderby.field!='SiteHeader'">
+                            <a ng-click="changeSort('SiteHeader',true)">Заголовок на сайте<i
+                                    class="fa fa-sort padding-left-5"></i></a>
+                        </div>
+                        <div ng-if="model.orderby.field=='SiteHeader' && model.orderby.asc==true">
+                            <a ng-click="changeSort('SiteHeader',false)">Заголовок на сайте</a><i
+                                class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                        <div ng-if="model.orderby.field=='SiteHeader' && model.orderby.asc==false">
+                            <a ng-click="changeSort('SiteHeader',true)">Заголовок на сайте</a><i
+                                class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                    </th>
+                    <!--Действие-->
+                    <th>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="subdivision in model.subdivisions">
+                    <td ng-bind="subdivision.Name"><a href="link"></a></td>
+                    <td ng-bind="subdivision.Timezone"></td>
+                    <td ng-bind="subdivision.PriceTypeModel.Value"></td>
+                    <td ng-bind="subdivision.SiteHeader"></td>
+                    <td>
+
+                        <div class="btn-group">
+                            <button type="button" class="btn-u btn-u-xs dropdown-toggle" data-toggle="dropdown">
+                                <!--Action-->
+                                <i class="fa fa-angle-down"></i>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/subdivisions/edit/{{subdivision.Id}}"><i class="fa fa-edit"></i> Редактировать</a></li>
+                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteSubdivisionModal" ng-click="deleteSubdivisionModal(subdivision)"><i class="fa fa-cloud"></i> Удалить</a></li>
+                            </ul>
+                        </div>
+
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="text-center">
+                <uib-pagination template-url="/angular-html/directives/pagination.html"
+                                ng-if="model.subdivisions.length>0"
+                                ng-model="model.paging.PageNo"
+                                total-items="model.paging.TotalRecordCount"
+                                max-size="model.countPageButton"
+                                items-per-page="model.clientPageSize"
+                                boundary-links="true"
+                                first-text="{{$parent.translation.pagination_btn_first_page}}"
+                                last-text="{{$parent.translation.pagination_btn_last_page}}"
+                                previous-text="{{$parent.translation.pagination_btn_previous_page}}"
+                                next-text="{{$parent.translation.pagination_btn_next_page}}">
+                </uib-pagination>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Modal delete subdivision cam -->
+    <div class="modal fade" id="deleteSubdivisionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSubdivisionModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteSubdivisionModalLabel">Удаление подразделения </h4>
+                </div>
+                <div class="modal-body">
+                    Вы действительно хотите удалить подразделение "{{model.deleteSubdivisionModel.Name}}"
+                </div>
+                <div class="modal-footer">
+                    <a href="/subdivisions">
+                        <button class="btn-u btn-u-default" type="button" data-dismiss="modal">Отменить</button>
+                    </a>
+                    <a ng-click="deleteSubdivision()">
+                        <button class="btn-u ng-binding" type="button" data-dismiss="modal">Удалить</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

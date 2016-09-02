@@ -39,6 +39,12 @@ layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$loca
         $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $scope.pageId = current.pageId;
         });
+        $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+            $scope.groupId = current.groupId;
+        });
+        $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
+            $scope.subgroupId = current.subgroupId;
+        });
 
         //Подгружаем перевод на выбранный язык
         $scope.translate = function () {

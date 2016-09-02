@@ -250,6 +250,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Минимальный чек должен быть больше нуля!.
+        /// </summary>
+        internal static string PlatformValidator_MinChecksIsNull {
+            get {
+                return ResourceManager.GetString("PlatformValidator_MinChecksIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать статус площадки!.
         /// </summary>
         internal static string PlatformValidator_PlatformStatusIsNullModel {

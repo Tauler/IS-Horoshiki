@@ -42,7 +42,7 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
             $scope.model.orderby.asc = asc;
             $scope.getAllUsers();
         }
-        $scope.getAllUsers();
+        // $scope.getAllUsers();
     }
 ]);
 

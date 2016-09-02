@@ -552,7 +552,7 @@ h3.heading-xs {
 .sidebar-nav-v1 li ul a {
   color: #585f69;
   font-size: 12px;
-  /*border-top: solid 1px #ddd;*/
+  border-top: solid 1px #ddd;
   padding: 6px 30px 6px 17px; 
 }
 .sidebar-nav-v1 li ul span{
@@ -566,6 +566,9 @@ h3.heading-xs {
 .sidebar-nav-v1 ul li:hover a,
 .sidebar-nav-v1 ul li.active a {
   color: #2d883f;
+}
+.sidebar-nav-v1 ul li.active a {
+    background: #eae9e9;
 }
 
 /*Sidebar Badges*/
@@ -595,7 +598,7 @@ h3.heading-xs {
     right: 10px;
     color: #fff;
     font-size: 15px;
-    content: "\f105";
+    /*content: "\f105";*/
     position: absolute;
     font-weight: normal;
     display: inline-block;
