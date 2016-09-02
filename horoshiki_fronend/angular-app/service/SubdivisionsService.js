@@ -20,7 +20,7 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
             url: backendServerAddr+'/api/SubDivisions/Add',
             method: 'POST',
             data: subdivision,
-            headers:  getToken(),
+            headers:  getToken()
         });
         return resp;
     };
@@ -30,7 +30,17 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
             url: backendServerAddr+'/api/SubDivisions/Update',
             method: 'POST',
             data: user,
-            headers:  getToken(),
+            headers:  getToken()
+        });
+        return resp;
+    };
+
+    this.subdivisionsDelete = function (subdivision) {
+        var resp = $http({
+            url: backendServerAddr+'/api/SubDivisions/'+subdivision.Id,
+            method: 'DELETE',
+            data: subdivision,
+            headers:  getToken()
         });
         return resp;
     };
