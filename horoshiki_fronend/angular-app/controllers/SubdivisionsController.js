@@ -17,6 +17,8 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
         $scope.model.orderby = {};
         $scope.model.orderby.field = "Id";
         $scope.model.orderby.asc = true;
+        //Модель удаляемого объекта
+        $scope.model.deletSubdivisionModel = {};
 
         $scope.$watch('model.paging.PageNo', function () {
             $scope.getDivisions();
@@ -41,6 +43,25 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
             $scope.model.orderby.asc = asc;
             $scope.getDivisions();
         }
+
+        $scope.deleteSubdivisionModal = function (deleteObject) {
+            $scope.model.deleteSubdivisionModel = deleteObject;
+        }
+
+        $scope.deleteSubdivision = function () {
+            SubdivisionService.subdivisionsDelete($scope.model.deleteSubdivisionModel).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.getDivisions();
+                } else {
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
+            $scope.model.deleteSubdivisionModel = {};
+        }
+
 
         // $scope.getDivisions();
     }
@@ -221,9 +242,7 @@ subdivisionsControllers.controller('SubdivisionEditController', ['$scope', '$loc
                 httpErrors($location.url(), status);
             });
         }
-
-
-
+        
         $scope.saveSubdivision = function () {
             $scope.checkErrorName();
             $scope.checkErrorTimezone();

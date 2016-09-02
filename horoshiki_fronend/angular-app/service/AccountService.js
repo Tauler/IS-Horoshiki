@@ -13,6 +13,7 @@ accountServices.service('AccountService', ['$http', function($http) {
             method: 'POST',
             data: $.param({ grant_type: 'password', username: username, password: password }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            timeout: backendTimeout
         });
         return resp;
     };

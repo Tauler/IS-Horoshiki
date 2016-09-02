@@ -113,7 +113,7 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="/subdivisions/edit/{{subdivision.Id}}"><i class="fa fa-edit"></i> Редактировать</a></li>
-                                <li><a href="#"><i class="fa fa-cloud"></i> Удалить</a></li>
+                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteSubdivisionModal" ng-click="deleteSubdivisionModal(subdivision)"><i class="fa fa-cloud"></i> Удалить</a></li>
                             </ul>
                         </div>
 
@@ -137,6 +137,30 @@
                 </uib-pagination>
             </div>
 
+        </div>
+    </div>
+
+
+    <!-- Modal delete subdivision cam -->
+    <div class="modal fade" id="deleteSubdivisionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSubdivisionModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteSubdivisionModalLabel">Удаление подразделения </h4>
+                </div>
+                <div class="modal-body">
+                    Вы действительно хотите удалить подразделение "{{model.deleteSubdivisionModel.Name}}"
+                </div>
+                <div class="modal-footer">
+                    <a href="/subdivisions">
+                        <button class="btn-u btn-u-default" type="button" data-dismiss="modal">Отменить</button>
+                    </a>
+                    <a ng-click="deleteSubdivision()">
+                        <button class="btn-u ng-binding" type="button" data-dismiss="modal">Удалить</button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
