@@ -165,6 +165,9 @@
   <data name="BaseEditableService_EntityUpdateNotFound" xml:space="preserve">
     <value>Объекта с Id={0} не существует!</value>
   </data>
+  <data name="HolderCannotReplaceValue" xml:space="preserve">
+    <value>Значение для элемента с ключом "{0}" в холдере {1} не может быть заменено!</value>
+  </data>
   <data name="PlatformService_BuyProcessNotFound" xml:space="preserve">
     <value>Способа покупки для указанного ID={0} не существует!</value>
   </data>
@@ -202,7 +205,7 @@
     <value>Необходимо указать тип цены!</value>
   </data>
   <data name="SubDivisionValidator_TimezoneInvalidPeriod" xml:space="preserve">
-    <value>Некооректное значение часового пояса! Допустимый диапазон от -12 до +12!</value>
+    <value>Некорректное значение часового пояса! Допустимый диапазон от -12 до +12!</value>
   </data>
   <data name="SubDivisionValidator_TimezoneIsNull" xml:space="preserve">
     <value>Необходимо указать часовой пояс!</value>

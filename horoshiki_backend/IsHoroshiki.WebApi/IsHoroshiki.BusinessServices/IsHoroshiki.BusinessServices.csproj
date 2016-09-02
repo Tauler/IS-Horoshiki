@@ -59,6 +59,12 @@
     <Compile Include="Editable\Interfaces\IAccountService.cs" />
     <Compile Include="Editable\Interfaces\IPlatformService.cs" />
     <Compile Include="Editable\PlatformService.cs" />
+    <Compile Include="Errors\Enums\AccountErrors.cs" />
+    <Compile Include="Errors\Enums\PlatformErrors.cs" />
+    <Compile Include="Errors\Enums\SubDivisionErrors.cs" />
+    <Compile Include="Errors\GenericSimpleHolder.cs" />
+    <Compile Include="Errors\MessageHolder.cs" />
+    <Compile Include="Errors\MessageRegister.cs" />
     <Compile Include="IBaseEditableService.cs" />
     <Compile Include="BaseEditableService.cs" />
     <Compile Include="Bootstrapper.cs" />

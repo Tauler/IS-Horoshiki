@@ -205,6 +205,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Значение для элемента с ключом &quot;{0}&quot; в холдере {1} не может быть заменено!.
+        /// </summary>
+        internal static string HolderCannotReplaceValue {
+            get {
+                return ResourceManager.GetString("HolderCannotReplaceValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Способа покупки для указанного ID={0} не существует!.
         /// </summary>
         internal static string PlatformService_BuyProcessNotFound {
@@ -313,7 +322,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Некооректное значение часового пояса! Допустимый диапазон от -12 до +12!.
+        ///   Looks up a localized string similar to Некорректное значение часового пояса! Допустимый диапазон от -12 до +12!.
         /// </summary>
         internal static string SubDivisionValidator_TimezoneInvalidPeriod {
             get {
