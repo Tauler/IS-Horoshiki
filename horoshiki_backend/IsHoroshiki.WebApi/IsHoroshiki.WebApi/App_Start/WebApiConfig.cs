@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using IsHoroshiki.WebApi.ActionFilters;
 using IsHoroshiki.WebApi.Handlers;
 using IsHoroshiki.WebApi.Providers;
 using Microsoft.Owin.Security.OAuth;
@@ -22,6 +23,8 @@ namespace IsHoroshiki.WebApi
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            config.Filters.Add(new LoggingFilterAttribute());
+            config.Filters.Add(new GlobalExceptionAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes(new CustomDirectRouteProvider());

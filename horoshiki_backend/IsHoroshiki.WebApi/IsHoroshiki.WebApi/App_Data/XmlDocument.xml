@@ -4,6 +4,28 @@
         <name>IsHoroshiki.WebApi</name>
     </assembly>
     <members>
+        <member name="T:IsHoroshiki.WebApi.ActionFilters.GlobalExceptionAttribute">
+            <summary>
+            Глобальный обработчик ошибок
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.ActionFilters.GlobalExceptionAttribute.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>
+            Ошибка
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.ActionFilters.LoggingFilterAttribute">
+            <summary>
+            Аттрибут логиирование
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.ActionFilters.LoggingFilterAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
+            <summary>
+            На выполнение метода
+            </summary>
+            <param name="filterContext"></param>
+        </member>
         <member name="T:IsHoroshiki.WebApi.Startup">
             <summary>
             
@@ -985,6 +1007,53 @@
             <summary>
             Обработчик, возвращающий результ запроса, обернутый в объект ApiResponse
             </summary>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Helpers.JSONHelper">
+            <summary>
+            Хелпер json
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Helpers.JSONHelper.ToJSON(System.Object)">
+            <summary>  
+            Сериализовать в строку 
+            </summary>  
+            <param name="obj"></param>  
+            <returns></returns>  
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Helpers.NLoggerHelper">
+            <summary>
+            Логирование сообщений в файл
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Helpers.NLoggerHelper.ClassLogger">
+            <summary>
+            Логгер
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Helpers.NLoggerHelper.LoggingMap">
+            <summary>
+            Меппинг
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Helpers.NLoggerHelper.Logger">
+            <summary>
+            Меппинг
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Helpers.NLoggerHelper.Trace(System.Net.Http.HttpRequestMessage,System.String,System.Web.Http.Tracing.TraceLevel,System.Action{System.Web.Http.Tracing.TraceRecord})">
+            <summary>  
+            Логгирование в файл.  
+            </summary>  
+            <param name="request"></param>  
+            <param name="category"></param>  
+            <param name="level"></param>  
+            <param name="traceAction"></param>  
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Helpers.NLoggerHelper.Log(System.Web.Http.Tracing.TraceRecord)">
+            <summary>  
+            Логирование в файл
+            </summary>  
+            <param name="record"></param>  
         </member>
         <member name="T:IsHoroshiki.WebApi.Providers.CustomDirectRouteProvider">
             <summary>
