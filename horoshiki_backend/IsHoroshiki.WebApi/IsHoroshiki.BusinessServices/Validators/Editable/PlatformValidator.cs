@@ -49,6 +49,11 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(ResourceBusinessServices.PlatformValidator_TimeEndIsNullModel);
             }
 
+            if (element.MinCheck == 0)
+            {
+                return new ValidationResult(ResourceBusinessServices.PlatformValidator_MinChecksIsNull);
+            }
+
             return new ValidationResult();
         }
 

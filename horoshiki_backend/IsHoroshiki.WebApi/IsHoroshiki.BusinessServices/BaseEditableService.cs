@@ -137,9 +137,8 @@ namespace IsHoroshiki.BusinessServices
                 }
 
                 UpdateDaoInternal(daoEntity, model);
-                
-                _repository.Update(daoEntity);
 
+                _repository.Update(daoEntity);
                 _unitOfWork.Save();
 
                 return new ModelEntityModifyResult();

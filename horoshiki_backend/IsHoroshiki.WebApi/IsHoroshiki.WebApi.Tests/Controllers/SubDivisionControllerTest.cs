@@ -37,7 +37,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         #region добавление 
 
         /// <summary>
-        /// Добавление пользователя с пустым наименованием
+        /// Добавление  с пустым наименованием
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Add_NameIsNull()
@@ -51,7 +51,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавление пользователя c часовым поясов, выходящим за интервал
+        /// Добавление  c часовым поясов, выходящим за интервал
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Add_TimezoneRange()
@@ -65,7 +65,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавление пользователя c неуказанным типом цен
+        /// Добавление  c неуказанным типом цен
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Add_PriceTypeModelIsNull()
@@ -85,13 +85,22 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             result = await _controller.Add(model);
 
             Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+
+            model.PriceTypeModel = new PriceTypeModel
+            {
+                Id = 0
+            };
+
+            result = await _controller.Add(model);
+
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
         }
 
         /// <summary>
-        /// Добавление пользователя c указанниме типом цен и проверка его ID после сохранения
+        /// Добавление  c указанниме типом цен и проверка его ID после сохранения
         /// </summary>
         [TestMethod]
-        public async Task SubDivisionTest_Add_PriceTypeModelCheckId()
+        public async Task SubDivisionTest_Add()
         {
             var model = await AddSubDivisionModelAndGet();
            
@@ -104,7 +113,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         #region обновление 
 
         /// <summary>
-        /// Обновить пользователя с пустым наименованием
+        /// Обновить  с пустым наименованием
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Update_NameIsNull()
@@ -119,7 +128,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Обновить пользователя c часовым поясов, выходящим за интервал
+        /// Обновить  c часовым поясов, выходящим за интервал
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Update_TimezoneRange()
@@ -134,7 +143,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Обновить пользователя c не указанным типом цен
+        /// Обновить  c не указанным типом цен
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Update_PriceTypeModelIsNull()
@@ -152,7 +161,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавление пользователя c указанниме типом цен и проверка его ID после сохранения
+        /// Добавление  c указанниме типом цен и проверка его ID после сохранения
         /// </summary>
         [TestMethod]
         public async Task SubDivisionTest_Update_PriceTypeModelCheckId()
@@ -202,7 +211,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         #region private
 
         /// <summary>
-        /// Создание пользователя
+        /// Создание 
         /// </summary>
         private ISubDivisionModel GetModel()
         {
@@ -220,7 +229,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавить пользователя
+        /// Добавить 
         /// </summary>
         /// <returns></returns>
         private async Task<int> AddSubDivisionModel()
@@ -234,7 +243,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавить пользователя и вернуть его из БД
+        /// Добавить и вернуть его из БД
         /// </summary>
         /// <returns></returns>
         private async Task<ISubDivisionModel> AddSubDivisionModelAndGet()
