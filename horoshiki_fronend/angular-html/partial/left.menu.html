@@ -19,7 +19,7 @@
         <ul ng-if="groupId=='settings'" id="collapse-nav2" class="collapse in">
             <li ng-class="subgroupId == 'users' ? 'active':''"><a href="/users"> Пользователи</a></li>
             <li ng-class="subgroupId == 'subdivisions' ? 'active':''"><a href="/subdivisions"> Подразделения</a></li>
-            <li><a href=""> Площадки</a></li>
+            <li ng-class="subgroupId == 'platforms' ? 'active':''"><a href="/platforms"> Площадки</a></li>
         </ul>
     </li>
 
