@@ -13,16 +13,19 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'datepickerDirectives',
     'layoutControllers',
     'errorControllers',
+
     'mainControllers',
     'usersControllers',
     'subdivisionsControllers',
+    'platformsControllers',
 
     'backendServices',
     'accountServices',
     'translationServices',
     'usersServices',
     'dictionaryServices',
-    'subdivisionsServices'
+    'subdivisionsServices',
+    'platformsServices'
 
 ]);
 
@@ -96,6 +99,15 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'subdivisions',
                 title: 'Редактирование подразделения'
+            })
+
+            .when('/platforms', {
+                templateUrl: '/angular-html/platforms.view.html',
+                controller: 'PlatformsViewController',
+                pageId: 'platformsViewPage',
+                groupId: 'settings',
+                subgroupId: 'platforms',
+                title: 'Просмотр площадок'
             })
 
             .when('/error', {
