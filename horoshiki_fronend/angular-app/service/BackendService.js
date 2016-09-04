@@ -6,7 +6,7 @@ var backendServices = angular.module('backendServices', []);
 
 backendServices.service('BackendService', ['$http', function($http) {
     this.checkIsAvailable = function(){
-        return $http.get(backendServerAddr+'/web/isAvailableServer', {timeout: backendTimeout});
+        return $http.get(backendServerAddr+'/api/Utils/IsAvailableServer', {timeout: backendTimeout});
     }
 
 

@@ -22,19 +22,19 @@ layoutControllers.controller('LoginLayoutController', ['$scope', 'TranslationSer
         };
         $scope.translate();
 
-        //Проверка доступности бэкэнда
-        // BackendService.checkIsAvailable().success(function(result){
-        //     if(result.success != true){
-        //         redirectBackendError();
-        //     }
-        // }).error(function(result, status){
-        //     redirectBackendError();
-        // });
+        // Проверка доступности бэкэнда
+        BackendService.checkIsAvailable().success(function(result){
+            if(result.Success == 0){
+                redirectBackendError();
+            }
+        }).error(function(result, status){
+            redirectBackendError();
+        });
     }
 ]);
 
-layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$location', 'TranslationService', 'AccountService',
-    function ($scope, $rootScope, $location, TranslationService, AccountService) {
+layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$location', 'TranslationService', 'AccountService', 'BackendService',
+    function ($scope, $rootScope, $location, TranslationService, AccountService, BackendService) {
 
         $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $scope.pageId = current.pageId;
@@ -76,15 +76,15 @@ layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$loca
 
 
         // Проверка доступности бэкэнда
-        // BackendService.checkIsAvailable().success(function(result){
-        //     if(result.success == true){
-        $scope.getCurrentUser();
-        // }else{
-        //     redirectBackendError();
-        // }
-        // }).error(function(result, status){
-        //     httpErrors($location.url(), status);
-        // });
+        BackendService.checkIsAvailable().success(function(result){
+            if(result.Success == 1 && result.Data.Result == true){
+                $scope.getCurrentUser();
+        }else{
+            redirectBackendError();
+        }
+        }).error(function(result, status){
+            httpErrors($location.url(), status);
+        });
 
         //Выход
         $scope.logoutButton = function () {

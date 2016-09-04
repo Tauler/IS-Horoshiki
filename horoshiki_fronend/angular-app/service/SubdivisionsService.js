@@ -39,7 +39,6 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
         var resp = $http({
             url: backendServerAddr+'/api/SubDivisions/'+subdivision.Id,
             method: 'DELETE',
-            data: subdivision,
             headers:  getToken()
         });
         return resp;
