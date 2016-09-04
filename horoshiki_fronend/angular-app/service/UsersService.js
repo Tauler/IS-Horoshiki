@@ -30,6 +30,16 @@ accountServices.service('UsersService', ['$http', function ($http) {
         });
         return resp;
     };
+    
+    this.userDetete = function (user) {
+        var resp = $http({
+            url: backendServerAddr+'/api/Accounts/'+user.Id,
+            method: 'DELETE',
+            data: user,
+            headers:  getToken(),
+        });
+        return resp;
+    };
 
     this.setPassword = function (passwords) {
         var resp = $http({
