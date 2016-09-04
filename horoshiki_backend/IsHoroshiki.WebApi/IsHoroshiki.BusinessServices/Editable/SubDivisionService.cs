@@ -9,6 +9,7 @@ using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.UnitOfWorks;
 using IsHoroshiki.BusinessEntities.Paging;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -64,7 +65,7 @@ namespace IsHoroshiki.BusinessServices.Editable
                 var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
                 if (daoPriceType == null)
                 {
-                    return new ValidationResult(string.Format(ResourceBusinessServices.SubDivisionService_PriceTypeNotFound, model.PriceTypeModel.Id));
+                    return new ValidationResult(SubDivisionErrors.PriceTypeNotFound, model.PriceTypeModel.Id);
                 }
             }
 

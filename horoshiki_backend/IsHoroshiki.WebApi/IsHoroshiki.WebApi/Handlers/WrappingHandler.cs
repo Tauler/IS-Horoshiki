@@ -3,6 +3,9 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Errors.Enums;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 using IsHoroshiki.WebApi.Controllers;
 
 namespace IsHoroshiki.WebApi.Handlers
@@ -23,15 +26,22 @@ namespace IsHoroshiki.WebApi.Handlers
         {
             int status = 0;
             object content;
+            string errorCode = null;
             string errorMessage = null;
+
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                var errorData = new UnauthorizedErrorData();
+                return request.CreateResponse(HttpStatusCode.Unauthorized, new ApiResponse(status, null, errorData.Code, errorData.Message)); ;
+            }
 
             if (response.TryGetContentValue(out content) && !response.IsSuccessStatusCode)
             {
                 HttpError error = content as HttpError;
-
                 if (error != null)
                 {
                     content = null;
+                    errorCode = MessageHolder.Instance.GetCode(CommonErrors.Exception);
                     errorMessage = error.Message;
 
 #if DEBUG
@@ -39,18 +49,26 @@ namespace IsHoroshiki.WebApi.Handlers
 #endif
                     status = 0;
                 }
+                else
+                {
+                    var errorData = content as ErrorData;
+                    if (errorData != null)
+                    {
+                        content = null;
+                        errorCode = errorData.Code;
+                        errorMessage = errorData.Message;
+
+                        status = 0;
+                    }
+                }
+
             }
             else
             {
                 status = 1;
             }
 
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                return response;
-            }
-
-            var newResponse = request.CreateResponse(HttpStatusCode.OK, new ApiResponse(status, content, errorMessage));
+            var newResponse = request.CreateResponse(HttpStatusCode.OK, new ApiResponse(status, content, errorCode, errorMessage));
 
             foreach (var header in response.Headers)
             {

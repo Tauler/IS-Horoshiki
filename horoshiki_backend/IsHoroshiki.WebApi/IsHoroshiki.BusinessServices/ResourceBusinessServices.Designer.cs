@@ -205,6 +205,24 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to На сервере произошла ошибка!.
+        /// </summary>
+        internal static string Error_ExceptionUnknown {
+            get {
+                return ResourceManager.GetString("Error_ExceptionUnknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пользователь не авторизован!.
+        /// </summary>
+        internal static string Error_Unauthorized {
+            get {
+                return ResourceManager.GetString("Error_Unauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Значение для элемента с ключом &quot;{0}&quot; в холдере {1} не может быть заменено!.
         /// </summary>
         internal static string HolderCannotReplaceValue {

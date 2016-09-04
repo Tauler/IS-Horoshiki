@@ -22,8 +22,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Имя
         /// </summary>
-        [MaxLength(256, ErrorMessage = "Имя должно быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите имя!")]
         public string FirstName
         {
             get;
