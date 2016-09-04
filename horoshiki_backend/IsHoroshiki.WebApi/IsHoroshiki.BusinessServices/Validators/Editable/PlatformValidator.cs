@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Validators.Editable
@@ -21,37 +22,37 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
         {
             if (string.IsNullOrEmpty(element.Name))
             {
-                return new ValidationResult(ResourceBusinessServices.Validator_NameIsNull);
+                return new ValidationResult(PlatformErrors.NameIsNull);
             }
 
             if (element.SubDivisionModel == null)
             {
-                return new ValidationResult(ResourceBusinessServices.PlatformValidator_SubDivisionIsNullModel);
+                return new ValidationResult(PlatformErrors.SubDivisionIsNullModel);
             }
 
             if (element.BuyProcessesModel == null || element.BuyProcessesModel.Count == 0)
             {
-                return new ValidationResult(ResourceBusinessServices.PlatformValidator_BuyProcessesIsNullModel);
+                return new ValidationResult(PlatformErrors.BuyProcessesIsNullModel);
             }
 
             if (element.PlatformStatusModel == null)
             {
-                return new ValidationResult(ResourceBusinessServices.PlatformValidator_PlatformStatusIsNullModel);
+                return new ValidationResult(PlatformErrors.PlatformStatusIsNullModel);
             }
 
             if (element.TimeStart == TimeSpan.Zero || element.TimeStart == TimeSpan.MinValue)
             {
-                return new ValidationResult(ResourceBusinessServices.PlatformValidator_TimeStartIsNullModel);
+                return new ValidationResult(PlatformErrors.TimeStartIsNullModel);
             }
 
             if (element.TimeEnd == TimeSpan.Zero || element.TimeEnd == TimeSpan.MinValue)
             {
-                return new ValidationResult(ResourceBusinessServices.PlatformValidator_TimeEndIsNullModel);
+                return new ValidationResult(PlatformErrors.TimeEndIsNullModel);
             }
 
             if (element.MinCheck == 0)
             {
-                return new ValidationResult(ResourceBusinessServices.PlatformValidator_MinChecksIsNull);
+                return new ValidationResult(PlatformErrors.MinChecksIsNull);
             }
 
             return new ValidationResult();

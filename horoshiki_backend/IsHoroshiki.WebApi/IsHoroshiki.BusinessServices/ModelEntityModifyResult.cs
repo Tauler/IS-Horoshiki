@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -30,7 +33,7 @@ namespace IsHoroshiki.BusinessServices
         /// <summary>
         /// Ошибки валидации
         /// </summary>
-        public IEnumerable<string> ValidationErrors
+        public IEnumerable<ErrorData> ValidationErrors
         {
             get;
             private set;
@@ -53,7 +56,7 @@ namespace IsHoroshiki.BusinessServices
         /// Конструктор
         /// </summary>
         /// <param name="validationErrors">Ошибки валидации</param>
-        public ModelEntityModifyResult(IEnumerable<string> validationErrors)
+        public ModelEntityModifyResult(IEnumerable<ErrorData> validationErrors)
         {
             IsSucceeded = false;
             IsValidationSucceeded = true;
@@ -64,11 +67,22 @@ namespace IsHoroshiki.BusinessServices
         /// Конструктор
         /// </summary>
         /// <param name="validationError">Ошибкa валидации</param>
-        public ModelEntityModifyResult(string validationError)
+        public ModelEntityModifyResult(ErrorData validationError)
         {
             IsSucceeded = false;
             IsValidationSucceeded = true;
-            ValidationErrors = new List<string>() {validationError};
+            ValidationErrors = new List<ErrorData>() { validationError };
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="code">Код ошибки</param>
+        public ModelEntityModifyResult(Enum code)
+        {
+            IsSucceeded = false;
+            IsValidationSucceeded = true;
+            ValidationErrors = new List<ErrorData>() { new ErrorData(code) };
         }
 
         /// <summary>
@@ -78,7 +92,7 @@ namespace IsHoroshiki.BusinessServices
         {
             IsSucceeded = true;
             IsValidationSucceeded = true;
-            ValidationErrors = new List<string>();
+            ValidationErrors = new List<ErrorData>();
         }
 
         /// <summary>

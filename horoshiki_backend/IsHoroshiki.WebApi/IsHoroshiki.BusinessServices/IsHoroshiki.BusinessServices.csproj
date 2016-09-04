@@ -60,8 +60,11 @@
     <Compile Include="Editable\Interfaces\IPlatformService.cs" />
     <Compile Include="Editable\PlatformService.cs" />
     <Compile Include="Errors\Enums\AccountErrors.cs" />
+    <Compile Include="Errors\Enums\CommonErrors.cs" />
     <Compile Include="Errors\Enums\PlatformErrors.cs" />
     <Compile Include="Errors\Enums\SubDivisionErrors.cs" />
+    <Compile Include="Errors\ErrorDatas\UnauthorizedErrorData.cs" />
+    <Compile Include="Errors\ErrorDatas\ErrorData.cs" />
     <Compile Include="Errors\GenericSimpleHolder.cs" />
     <Compile Include="Errors\MessageHolder.cs" />
     <Compile Include="Errors\MessageRegister.cs" />
@@ -130,6 +133,7 @@
     <EmbeddedResource Include="ResourceBusinessServices.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceBusinessServices.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

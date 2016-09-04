@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
@@ -42,13 +43,13 @@ namespace IsHoroshiki.BusinessServices.Editable
             var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatusModel);
             if (!result)
             {
-                return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_PlatformStatusNotFound, model.PlatformStatusModel?.Id ?? 0));
+                return new ValidationResult(PlatformErrors.PlatformStatusNotFound, model.PlatformStatusModel?.Id ?? 0);
             }
 
             result = await IsExistDaoEntity(_unitOfWork.SubDivisionRepository, model.SubDivisionModel);
             if (!result)
             {
-                return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_SubDivisionNotFound, model.SubDivisionModel?.Id ?? 0));
+                return new ValidationResult(PlatformErrors.SubDivisionNotFound, model.SubDivisionModel?.Id ?? 0);
             }
 
             if (model.UserModel != null && model.UserModel.Id > 0)
@@ -56,7 +57,7 @@ namespace IsHoroshiki.BusinessServices.Editable
                 var user = await _unitOfWork.AccountRepository.GetByIdAsync(model.UserModel.Id);
                 if (user == null)
                 {
-                    return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_UserNotFound, model.UserModel?.Id));
+                    return new ValidationResult(PlatformErrors.UserNotFound, (int) model.UserModel?.Id);
                 }
             }
 
@@ -67,7 +68,7 @@ namespace IsHoroshiki.BusinessServices.Editable
                     result = await IsExistDaoEntity(_unitOfWork.BuyProcessPepository, buyProcessModel);
                     if (!result)
                     {
-                        return new ValidationResult(string.Format(ResourceBusinessServices.PlatformService_BuyProcessNotFound, buyProcessModel?.Id ?? 0));
+                        return new ValidationResult(PlatformErrors.BuyProcessNotFound, buyProcessModel?.Id ?? 0);
                     }
                 }
             }

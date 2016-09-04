@@ -9,6 +9,7 @@ using IsHoroshiki.BusinessEntities.Account;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Helpers;
+using IsHoroshiki.WebApi.Handlers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -80,7 +81,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
         }
 
@@ -106,7 +107,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-               return BadRequest(e.GetAllMessages());
+               return new ErrorMessageResult(e);
             }
                       
             return Ok();
@@ -135,7 +136,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
         }
 
@@ -161,7 +162,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
 
             return Ok();
@@ -184,7 +185,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
 
             return Ok();
@@ -317,7 +318,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
         }
 
@@ -338,7 +339,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
         }
 
@@ -364,7 +365,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                 {
                     foreach (string error in result.Errors)
                     {
-                        return BadRequest(error);
+                        return new ErrorMessageResult(error);
                     }
                 }
 

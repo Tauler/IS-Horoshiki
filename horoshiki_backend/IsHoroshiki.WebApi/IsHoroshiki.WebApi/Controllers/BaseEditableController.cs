@@ -2,9 +2,8 @@
 using System.Threading.Tasks;
 using System.Web.Http;
 using IsHoroshiki.BusinessEntities;
-using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices;
-using IsHoroshiki.BusinessServices.Helpers;
+using IsHoroshiki.WebApi.Handlers;
 
 namespace IsHoroshiki.WebApi.Controllers
 {
@@ -51,13 +50,12 @@ namespace IsHoroshiki.WebApi.Controllers
         {
             try
             {
-                var t = typeof(PagedResult<TModelEntity>);
                 var list = await _service.GetAllAsync(pageNo, pageSize, sortField, isAscending);
                 return Ok(list);
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
         }
 
@@ -78,14 +76,14 @@ namespace IsHoroshiki.WebApi.Controllers
                 ModelEntityModifyResult result = await _service.AddAsync(model);
                 if (!result.IsValidationSucceeded || !result.IsSucceeded)
                 {
-                    return BadRequest(result.GetAllMessages());
+                    return new ErrorMessageResult(result.ValidationErrors);
                 }
 
                 return Ok(result.NewId);
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
         }
 
@@ -106,12 +104,12 @@ namespace IsHoroshiki.WebApi.Controllers
                 ModelEntityModifyResult result = await _service.UpdateAsync(model);
                 if (!result.IsValidationSucceeded || !result.IsSucceeded)
                 {
-                    return BadRequest(result.GetAllMessages());
+                    return new ErrorMessageResult(result.ValidationErrors);
                 }
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
 
             return Ok();
@@ -129,12 +127,12 @@ namespace IsHoroshiki.WebApi.Controllers
                 ModelEntityModifyResult result = await _service.DeleteAsync(id);
                 if (!result.IsValidationSucceeded || !result.IsSucceeded)
                 {
-                    return BadRequest(result.GetAllMessages());
+                    return new ErrorMessageResult(result.ValidationErrors);
                 }
             }
             catch (Exception e)
             {
-                return BadRequest(e.GetAllMessages());
+                return new ErrorMessageResult(e);
             }
 
             return Ok();

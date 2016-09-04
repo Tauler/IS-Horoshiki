@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities;
 using IsHoroshiki.BusinessEntities.Paging;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Errors.Enums;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.DAO;
 using IsHoroshiki.DAO.Repositories;
@@ -76,7 +79,7 @@ namespace IsHoroshiki.BusinessServices
             {
                 if (model == null)
                 {
-                    return new ModelEntityModifyResult(ResourceBusinessServices.BaseEditableService_EntityAddIsNull);
+                    return new ModelEntityModifyResult(CommonErrors.EntityAddIsNull);
                 }
 
                 var validateResult = await _validator.ValidateAsync(model);
@@ -100,7 +103,8 @@ namespace IsHoroshiki.BusinessServices
             }
             catch (Exception e)
             {
-                return new ModelEntityModifyResult(e.Message);
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                return new ModelEntityModifyResult(errorData);
             }
         }
 
@@ -115,7 +119,7 @@ namespace IsHoroshiki.BusinessServices
             {
                 if (model == null)
                 {
-                    return new ModelEntityModifyResult(ResourceBusinessServices.BaseEditableService_EntityUpdateIsNull);
+                    return new ModelEntityModifyResult(CommonErrors.Exception);
                 }
 
                 var validateResult = await _validator.ValidateAsync(model);
@@ -133,7 +137,8 @@ namespace IsHoroshiki.BusinessServices
                 var daoEntity = await _repository.GetByIdAsync(model.Id);
                 if (daoEntity == null)
                 {
-                    return new ModelEntityModifyResult(string.Format(ResourceBusinessServices.BaseEditableService_EntityUpdateNotFound, model.Id)); 
+                    var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { model.Id});
+                    return new ModelEntityModifyResult(errorData); 
                 }
 
                 UpdateDaoInternal(daoEntity, model);
@@ -145,7 +150,8 @@ namespace IsHoroshiki.BusinessServices
             }
             catch (Exception e)
             {
-                return new ModelEntityModifyResult(e.Message);
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                return new ModelEntityModifyResult(errorData);
             }
         }
 
@@ -161,7 +167,8 @@ namespace IsHoroshiki.BusinessServices
                 var daoEntity = await _repository.GetByIdAsync(id);
                 if (daoEntity == null)
                 {
-                    return new ModelEntityModifyResult(string.Format(ResourceBusinessServices.BaseEditableService_EntityUpdateNotFound, id));
+                    var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { id });
+                    return new ModelEntityModifyResult(errorData);
                 }
 
                  _repository.Delete(id);
@@ -172,7 +179,8 @@ namespace IsHoroshiki.BusinessServices
             }
             catch (Exception e)
             {
-                return new ModelEntityModifyResult(e.Message);
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                return new ModelEntityModifyResult(errorData);
             }
         }
 

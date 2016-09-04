@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 
 namespace IsHoroshiki.BusinessServices.Validators
 {
@@ -22,7 +25,7 @@ namespace IsHoroshiki.BusinessServices.Validators
         /// <summary>
         /// Ошибки валидации
         /// </summary>
-        public IEnumerable<string> Errors
+        public IEnumerable<ErrorData> Errors
         {
             get;
             private set;
@@ -36,21 +39,38 @@ namespace IsHoroshiki.BusinessServices.Validators
         /// Конструктор
         /// </summary>
         /// <param name="errors">Ошибки</param>
-        public ValidationResult(IEnumerable<string> errors = null)
+        public ValidationResult(IEnumerable<ErrorData> errors = null)
         {
-            Errors = errors ?? new List<string>();
+            Errors = errors ?? new List<ErrorData>();
             IsSucceeded = (errors == null || !errors.Any());
         }
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="error">Ошибкa</param>
-        public ValidationResult(string error)
+        /// <param name="code">Код ошибки</param>
+        /// <param name="message">Расшифровка ошибки</param>
+        /// <param name="parameters">Параметры сообщения</param>
+        public ValidationResult(Enum code, string message = "", object[] parameters = null)
         {
-            var result = new List<string>()
+            var result = new List<ErrorData>()
             {
-                error
+                new ErrorData(code, message, parameters)
+            };
+            Errors = result;
+            IsSucceeded = !result.Any();
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="code">Код ошибки</param>
+        /// <param name="parameters">Параметры сообщения</param>
+        public ValidationResult(Enum code, int parameters)
+        {
+            var result = new List<ErrorData>()
+            {
+                new ErrorData(code, string.Empty, new object[] { parameters })
             };
             Errors = result;
             IsSucceeded = !result.Any();

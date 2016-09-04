@@ -28,17 +28,20 @@ namespace IsHoroshiki.BusinessServices.Errors
         /// <param name="message">Сообщение</param>
         public void AddMessage(Enum code, string message)
         {
-            this.SetValue(GetKey(code), message);
+            this.SetValue(GetCode(code), message);
         }
 
         /// <summary>
         /// Возвращает сообщение сервиса
         /// </summary>
         /// <param name="code">Код сообщения</param>
+        /// <param name="parameters">Параметры сообщения</param>
         /// <returns>Сообщение сервиса</returns>
-        public string GetMessage(Enum code)
+        public string GetMessage(Enum code, object[] parameters = null)
         {
-            return this.GetValue(GetKey(code));
+            var keyCode = GetCode(code);
+            var messageFormat = this.GetValue(keyCode);
+            return parameters == null ? messageFormat : string.Format(messageFormat, parameters);
         }
 
         /// <summary>
@@ -46,9 +49,9 @@ namespace IsHoroshiki.BusinessServices.Errors
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        private string GetKey(Enum code)
+        public string GetCode(Enum code)
         {
-            return string.Format("{0}_{1}", code.GetType().Name, code.ToString());
+            return $"{code.GetType().Name}_{code}";
         }
     }
 }

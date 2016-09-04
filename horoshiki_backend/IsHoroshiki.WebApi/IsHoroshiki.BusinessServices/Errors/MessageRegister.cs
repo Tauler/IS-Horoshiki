@@ -12,12 +12,26 @@ namespace IsHoroshiki.BusinessServices.Errors
         /// </summary>
         public static void FillMessageHolder()
         {
+            FillMessageCommonErrorHolder();
             FillMessageAccountHolder();
             FillMessageSubDivisionHolder();
             FillMessagePlatformHolder();
         }
 
         #region private
+
+
+        /// <summary>
+        /// Заполнение общих ошибок
+        /// </summary>
+        private static void FillMessageCommonErrorHolder()
+        {
+            MessageHolder.Instance.AddMessage(CommonErrors.Exception, ResourceBusinessServices.Error_ExceptionUnknown);
+            MessageHolder.Instance.AddMessage(CommonErrors.Unauthorized, ResourceBusinessServices.Error_Unauthorized);
+            MessageHolder.Instance.AddMessage(CommonErrors.EntityAddIsNull, ResourceBusinessServices.BaseEditableService_EntityAddIsNull);
+            MessageHolder.Instance.AddMessage(CommonErrors.EntityUpdateIsNull, ResourceBusinessServices.BaseEditableService_EntityUpdateIsNull);
+            MessageHolder.Instance.AddMessage(CommonErrors.EntityUpdateNotFound, ResourceBusinessServices.BaseEditableService_EntityUpdateNotFound);
+        }
 
         /// <summary>
         /// Заполнение ошибок для пользователя

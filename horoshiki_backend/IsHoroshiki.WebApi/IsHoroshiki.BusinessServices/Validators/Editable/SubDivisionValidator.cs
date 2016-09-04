@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Validators.Editable
@@ -20,22 +21,22 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
         {
             if (string.IsNullOrEmpty(element.Name))
             {
-                return new ValidationResult(ResourceBusinessServices.Validator_NameIsNull);
+                return new ValidationResult(SubDivisionErrors.NameIsNull);
             }
 
             if (element.Timezone == 0)
             {
-                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_TimezoneIsNull);
+                return new ValidationResult(SubDivisionErrors.TimezoneIsNull);
             }
 
             if (element.Timezone > 12 || element.Timezone < -12)
             {
-                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_TimezoneInvalidPeriod);
+                return new ValidationResult(SubDivisionErrors.TimezoneInvalidPeriod);
             }
 
             if (element.PriceTypeModel == null)
             {
-                return new ValidationResult(ResourceBusinessServices.SubDivisionValidator_PriceTypeIsNullModel);
+                return new ValidationResult(SubDivisionErrors.PriceTypeIsNullModel);
             }
 
             return new ValidationResult();
