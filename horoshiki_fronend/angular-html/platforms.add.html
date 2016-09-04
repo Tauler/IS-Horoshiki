@@ -1,0 +1,147 @@
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Добавление площадки</h1>
+        <ul class="pull-right breadcrumb">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/platforms">Площадки</a></li>
+            <li class="active">Добавдение площадки</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container content">
+    <div class="row">
+        <!-- Begin Sidebar Menu -->
+        <div class="col-md-3">
+            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
+        </div>
+        <!-- End Sidebar Menu -->
+
+        <!-- Begin Content -->
+        <div class="col-md-9">
+
+            <div class="row">
+                <form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">
+
+                    <div class="col-md-12">
+
+                        <section>
+                            <label class="label"><strong>Наименование:</strong></label>
+                            <label class="input col-9">
+                                <input class="" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"
+                                       ng-model="model.platform.Name" name="name" id="name" type="text">
+                                <code class="ng-binding" ng-show="model.error.name">Не верный формат поля
+                                    "Наименование",
+                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Адрес:</strong></label>
+                            <label class="input col-9">
+                                <input class="" ng-blur="checkErrorAddress();" maxlength="255" placeholder="Адрес"
+                                       ng-model="model.platform.Address" name="address" id="address" type="text">
+                                <code class="ng-binding" ng-show="model.error.address">Не верный формат поля "Адрес",
+                                    данное поле не может быть меньше 3 и больше 255 символов. </code>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Подразделение:</strong></label>
+                            <label class="input col-6">
+                                <select class="form-control" ng-model="model.subdivision">
+                                    <option value="">Не выбрано</option>
+                                    <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+                                        {{subdivision.Name}}
+                                    </option>
+                                </select>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Управляющий:</strong></label>
+                            <label class="input col-6">
+                                <select class="form-control" ng-model="model.user">
+                                    <option value="">Не выбрано</option>
+                                    <option ng-repeat="user in model.users" value="{{user}}">
+                                        {{user.UserName}}
+                                    </option>
+                                </select>
+                            </label>
+                        </section>
+
+                        <section>
+                            <label class="label"><strong>Статус площадки:</strong></label>
+                            <label class="input col-6">
+                                <select class="form-control" ng-model="model.statusSite">
+                                    <option value="">Не выбрано</option>
+                                    <option ng-repeat="status in model.statusSites" value="{{status}}">
+                                        {{status.Value}}
+                                    </option>
+                                </select>
+                            </label>
+                        </section>
+
+
+                        <section>
+                            <label class="label"><strong>Способы покупки:</strong></label>
+                            <label class="input col-6">
+                                <select multiple="multiple" class="form-control" ng-model="model.buyProcessesValue">
+                                    <option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">
+                                        {{buyProcess.Value}}
+                                    </option>
+                                </select>
+                            </label>
+                            <div class="note">Для выбора нескольких элементов нажмите клавишу Ctrl и выберите объекты.
+                            </div>
+                        </section>
+
+
+                        <label class="label"><strong>Время работы:</strong></label>
+                        <div class="row">
+                            <section class="col col-3">
+                                <label class="input">
+                                   с:  <input class="" ng-blur="checkErrorTimeStart();" maxlength="50"
+                                           placeholder="00:00:00"
+                                           ng-model="model.platform.TimeStart" name="start" id="start" type="text">
+                                </label>
+                            </section>
+                            <section class="col col-3">
+                                <label class="input">
+                                   по:  <input class="" ng-blur="checkErrorTimeEnd();" maxlength="50"
+                                           placeholder="12:30:00"
+                                           ng-model="model.platform.TimeEnd" name="name" id="end" type="text">
+                                </label>
+                            </section>
+                        </div>
+
+                        <section>
+                            <label class="label"><strong>Минимальный чек:</strong></label>
+                            <label class="input col-6">
+                                <input class="" ng-blur="checkErrorMinCheck();" maxlength="255" placeholder="Минимальный чек"
+                                       ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
+                                <code class="ng-binding" ng-show="model.error.address">Не верный формат поля "Минимальный чек",
+                                    данное поле только цифры. </code>
+                            </label>
+                        </section>
+
+
+                        <br/><br/>
+                        <div class="text-right col-9">
+                            <a href="/platforms">
+                                <button class="btn-u btn-u-default" type="button">Отменить</button>
+                            </a>
+                            <a ng-click="savePlatform()">
+                                <button class="btn-u ng-binding" type="button">Сохранить</button>
+                            </a>
+                        </div>
+                        <br/><br/>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+

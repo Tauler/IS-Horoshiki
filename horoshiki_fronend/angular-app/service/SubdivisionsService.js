@@ -11,6 +11,10 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
         return $http.get(backendServerAddr+'/api/SubDivisions?pageNo='+currentPage+'&pageSize='+pageSize+'&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
     };
 
+    this.getSubdivisionsWithoutPaginate = function (sortField, asc) {
+        return $http.get(backendServerAddr+'/api/SubDivisions?pageNo=1&pageSize=100&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
+    };
+
     this.getSubdivision = function (id) {
         return $http.get(backendServerAddr+'api/SubDivisions/'+id, {timeout: backendTimeout, headers: getToken()});
     };

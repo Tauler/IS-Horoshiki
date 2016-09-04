@@ -18,6 +18,12 @@ dictionaryServices.service('DictionaryService', ['$http', function($http) {
         return $http.get(backendServerAddr+'/api/PriceTypes', {timeout: backendTimeout, headers: getToken()});
     }
 
+    this.getStatusSites = function () {
+        return $http.get(backendServerAddr+'/api/StatusSites', {timeout: backendTimeout, headers: getToken()});
+    }
 
+    this.getBuyProcesses = function () {
+        return $http.get(backendServerAddr+'/api/BuyProcesses', {timeout: backendTimeout, headers: getToken()});
+    }
 }]);
 

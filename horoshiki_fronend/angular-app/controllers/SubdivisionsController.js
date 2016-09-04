@@ -61,9 +61,6 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
 
             $scope.model.deleteSubdivisionModel = {};
         }
-
-
-        // $scope.getDivisions();
     }
 ]);
 

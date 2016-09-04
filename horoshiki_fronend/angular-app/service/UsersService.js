@@ -10,6 +10,9 @@ accountServices.service('UsersService', ['$http', function ($http) {
     this.getAllUsers = function (currentPage, pageSize, sortField, asc) {
         return $http.get(backendServerAddr+'/api/Accounts?pageNo='+currentPage+'&pageSize='+pageSize+'&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
     };
+    this.getAllUsersWithoutPaginate = function (sortField, asc) {
+        return $http.get(backendServerAddr+'/api/Accounts?pageNo=1&pageSize=100&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
+    };
 
     this.userAdd = function (user) {
         var resp = $http({
