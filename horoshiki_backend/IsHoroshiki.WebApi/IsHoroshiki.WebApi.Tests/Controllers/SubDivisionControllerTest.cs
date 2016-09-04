@@ -8,6 +8,11 @@ using System;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using System.Web.Mvc;
+using IsHoroshiki.BusinessServices.Editable;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Validators.Editable;
+using IsHoroshiki.DAO.UnitOfWorks;
+using IsHoroshiki.WebApi.Handlers;
 
 namespace IsHoroshiki.WebApi.Tests.Controllers
 {
@@ -21,17 +26,22 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
         private const int defaultPrimeModelId = 1;
 
-        SubDivisionsController _controller;
+        /// <summary>
+        /// Тип результат при удачном добавлении объекта
+        /// </summary>
+        private readonly Type _okAddResult = typeof(OkNegotiatedContentResult<int>);
+
+        /// <summary>
+        /// Тип результат при не удачном добавлении\обновлении\удалении объекта
+        /// </summary>
+        private readonly Type _errrorResult = typeof(ErrorMessageResult);
 
         #endregion
 
         [TestInitialize]
         public void SetupContext()
         {
-            UnityConfig.RegisterComponents();
-
-            var service = DependencyResolver.Current.GetService<ISubDivisionService>();
-            _controller = new SubDivisionsController(service);
+            MessageRegister.FillMessageHolder();
         }
 
         #region добавление 
@@ -42,12 +52,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Add_NameIsNull()
         {
-            var model = GetModel();
-            model.Name = string.Empty;
+            using (var controller = GetController())
+            {
+                var model = GetModel();
+                model.Name = string.Empty;
 
-            var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -56,12 +69,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Add_TimezoneRange()
         {
-            var model = GetModel();
-            model.Timezone = Int32.MaxValue;
+            using (var controller = GetController())
+            {
+                var model = GetModel();
+                model.Timezone = Int32.MaxValue;
 
-            var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -70,30 +86,33 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Add_PriceTypeModelIsNull()
         {
-            var model = GetModel();
-            model.PriceTypeModel = null;
-
-            var result = await _controller.Add(model);
-
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
-
-            model.PriceTypeModel = new PriceTypeModel
+            using (var controller = GetController())
             {
-                Id = Int32.MaxValue
-            };
+                var model = GetModel();
+                model.PriceTypeModel = null;
 
-            result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
 
-            model.PriceTypeModel = new PriceTypeModel
-            {
-                Id = 0
-            };
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = Int32.MaxValue
+                };
 
-            result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = 0
+                };
+
+                result = await controller.Add(model);
+
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -118,13 +137,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Update_NameIsNull()
         {
-            var model = await AddSubDivisionModelAndGet();
+            using (var controller = GetController())
+            {
+                var model = await AddSubDivisionModelAndGet();
 
-            model.Name = string.Empty;
+                model.Name = string.Empty;
 
-            var updateResult = await _controller.Update(model);
+                var updateResult = await controller.Update(model);
 
-            Assert.IsInstanceOfType(updateResult, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(updateResult, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -133,13 +155,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Update_TimezoneRange()
         {
-            var model = await AddSubDivisionModelAndGet();
+            using (var controller = GetController())
+            {
+                var model = await AddSubDivisionModelAndGet();
 
-            model.Timezone = Int32.MaxValue;
+                model.Timezone = Int32.MaxValue;
 
-            var updateResult = await _controller.Update(model);
+                var updateResult = await controller.Update(model);
 
-            Assert.IsInstanceOfType(updateResult, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(updateResult, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -148,16 +173,19 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Update_PriceTypeModelIsNull()
         {
-            var model = await AddSubDivisionModelAndGet();
-
-            model.PriceTypeModel = new PriceTypeModel
+            using (var controller = GetController())
             {
-                Id = Int32.MaxValue
-            };
+                var model = await AddSubDivisionModelAndGet();
 
-            var result = await _controller.Update(model);
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = Int32.MaxValue
+                };
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                var result = await controller.Update(model);
+
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -166,16 +194,19 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task SubDivisionTest_Update_PriceTypeModelCheckId()
         {
-            var model = await AddSubDivisionModelAndGet();
-
-            model.PriceTypeModel = new PriceTypeModel
+            using (var controller = GetController())
             {
-                Id = defaultPrimeModelId
-            };
+                var model = await AddSubDivisionModelAndGet();
 
-            var result = await _controller.Update(model);
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = defaultPrimeModelId
+                };
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                var result = await controller.Update(model);
+
+                Assert.IsInstanceOfType(result, typeof(OkResult));
+            }
         }
 
         #endregion
@@ -188,9 +219,12 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Delete_UserNotExist()
         {
-            var result = await _controller.Delete(Int32.MaxValue);
+            using (var controller = GetController())
+            {
+                var result = await controller.Delete(Int32.MaxValue);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+            }
         }
 
         /// <summary>
@@ -199,11 +233,14 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Delete()
         {
-            int id = await AddSubDivisionModel();
+            using (var controller = GetController())
+            {
+                int id = await AddSubDivisionModel();
 
-            var result = await _controller.Delete(id);
+                var result = await controller.Delete(id);
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                Assert.IsInstanceOfType(result, typeof(OkResult));
+            }
         }
 
         #endregion
@@ -234,12 +271,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         /// <returns></returns>
         private async Task<int> AddSubDivisionModel()
         {
-            var model = GetModel();
-            var result = await _controller.Add(model);
+            using (var controller = GetController())
+            {
+                var model = GetModel();
+                var result = await controller.Add(model);
 
-            Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<int>));
+                Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<int>));
 
-            return (result as OkNegotiatedContentResult<int>).Content;
+                return (result as OkNegotiatedContentResult<int>).Content;
+            }
         }
 
         /// <summary>
@@ -248,13 +288,29 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         /// <returns></returns>
         private async Task<ISubDivisionModel> AddSubDivisionModelAndGet()
         {
-            var id = await AddSubDivisionModel();
+            using (var controller = GetController())
+            {
+                var id = await AddSubDivisionModel();
 
-            var getResult = await _controller.GetById(id);
+                var getResult = await controller.GetById(id);
 
-            Assert.IsInstanceOfType(getResult, typeof(OkNegotiatedContentResult<ISubDivisionModel>));
+                Assert.IsInstanceOfType(getResult, typeof(OkNegotiatedContentResult<ISubDivisionModel>));
 
-            return (getResult as OkNegotiatedContentResult<ISubDivisionModel>).Content;
+                return (getResult as OkNegotiatedContentResult<ISubDivisionModel>).Content;
+            }
+        }
+
+        /// <summary>
+        /// Создание контроллера
+        /// </summary>
+        /// <returns></returns>
+        private SubDivisionsController GetController()
+        {
+            lock (_okAddResult)
+            {
+                var service = new SubDivisionService(new UnitOfWork(), new SubDivisionValidator());
+                return new SubDivisionsController(service);
+            }
         }
 
         #endregion

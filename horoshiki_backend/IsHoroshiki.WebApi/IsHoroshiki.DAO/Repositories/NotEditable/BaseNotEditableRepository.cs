@@ -5,7 +5,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Базовый репозиатрий нередактируемых справочников
     /// </summary>
-    public abstract class BaseNotEditableDictionaryRepository<TDaoEntity> : BaseRepository<TDaoEntity>
+    public abstract class BaseNotEditableRepository<TDaoEntity> : BaseRepository<TDaoEntity>
         where TDaoEntity : BaseNotEditableDaoEntity
     {
         #region Конструктор
@@ -14,7 +14,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
         /// Конструктор  
         /// </summary>  
         /// <param name="context">Контекст выполнения БД</param>  
-        protected BaseNotEditableDictionaryRepository(ApplicationDbContext context)
+        protected BaseNotEditableRepository(ApplicationDbContext context)
             : base(context)
         {
            

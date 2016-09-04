@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Статус заказа
     /// </summary>
-    public class OrderStatusRepository : BaseNotEditableDictionaryRepository<OrderStatus>, IOrderStatusRepository
+    public class OrderStatusRepository : BaseNotEditableRepository<OrderStatus>, IOrderStatusRepository
     {
         #region Конструктор
 

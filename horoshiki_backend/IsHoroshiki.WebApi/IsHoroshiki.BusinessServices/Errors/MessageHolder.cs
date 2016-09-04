@@ -41,6 +41,10 @@ namespace IsHoroshiki.BusinessServices.Errors
         {
             var keyCode = GetCode(code);
             var messageFormat = this.GetValue(keyCode);
+            if (string.IsNullOrEmpty(messageFormat))
+            {
+                throw new NotImplementedException(string.Format(ResourceBusinessServices.MessageNotRegister, keyCode));
+            }
             return parameters == null ? messageFormat : string.Format(messageFormat, parameters);
         }
 

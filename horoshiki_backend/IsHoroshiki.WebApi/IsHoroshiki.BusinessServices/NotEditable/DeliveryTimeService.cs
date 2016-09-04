@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -10,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Время доставки
     /// </summary>
-    public class DeliveryTimeService : BaseNotEditableService<IDeliveryTimeModel, DeliveryTime>, IDeliveryTimeService
+    public class DeliveryTimeService : BaseNotEditableService<IDeliveryTimeModel, DeliveryTime, IDeliveryTimeRepository>, IDeliveryTimeService
     {
         #region поля и свойства
 
@@ -28,7 +29,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public DeliveryTimeService(UnitOfWork unitOfWork)
-             : base(unitOfWork.DeliveryTimeRepository, null)
+             : base(unitOfWork.DeliveryTimeRepository)
         {
             _unitOfWork = unitOfWork;
         }

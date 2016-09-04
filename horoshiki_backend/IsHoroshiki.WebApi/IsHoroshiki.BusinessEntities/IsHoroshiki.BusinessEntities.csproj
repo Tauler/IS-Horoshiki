@@ -83,7 +83,6 @@
     <Compile Include="Account\Interfaces\IApplicationUserModel.cs" />
     <Compile Include="Account\MappingDao\ApplicationUserModelMappingDao.cs" />
     <Compile Include="Account\RegisterBindingModel.cs" />
-    <Compile Include="Account\RemoveLoginBindingModel.cs" />
     <Compile Include="Account\SetPasswordBindingModel.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />

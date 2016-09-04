@@ -13,6 +13,11 @@ using System.Collections.ObjectModel;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Paging;
+using IsHoroshiki.BusinessServices.Editable;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Validators.Editable;
+using IsHoroshiki.DAO.UnitOfWorks;
+using IsHoroshiki.WebApi.Handlers;
 
 namespace IsHoroshiki.WebApi.Tests.Controllers
 {
@@ -32,18 +37,28 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         private ISubDivisionService subDivisionService;
         private IAccountService accountService;
 
+        /// <summary>
+        /// Тип результат при удачном добавлении объекта
+        /// </summary>
+        private readonly Type _okAddResult = typeof(OkNegotiatedContentResult<int>);
+
+        /// <summary>
+        /// Тип результат при не удачном добавлении\обновлении\удалении объекта
+        /// </summary>
+        private readonly Type _errrorResult = typeof(ErrorMessageResult);
+
         #endregion
 
         [TestInitialize]
         public void SetupContext()
         {
-            UnityConfig.RegisterComponents();
+            MessageRegister.FillMessageHolder();
 
-            subDivisionService = DependencyResolver.Current.GetService<ISubDivisionService>();
-            accountService = DependencyResolver.Current.GetService<IAccountService>();
+            subDivisionService = new SubDivisionService(new UnitOfWork(), new SubDivisionValidator());
+            accountService = new AccountService(new UnitOfWork(), new AccountValidator());
 
 
-            var pageUser = accountService.GetAll(1, 1).Result;
+            var pageUser = accountService.GetAllAsync(1, 1).Result;
             if (pageUser.Data.Count == 0)
             {
                 Assert.Fail("Не создан пользователь!");
@@ -60,14 +75,14 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_NameIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.Name = string.Empty;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -77,14 +92,14 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_MinCheckIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.MinCheck = 0;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -94,14 +109,14 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_TimeStartIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.TimeStart = TimeSpan.Zero;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -111,14 +126,14 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_TimeEndIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.TimeEnd = TimeSpan.Zero;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -128,14 +143,14 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_BuyProcessesIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.BuyProcessesModel = null;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.BuyProcessesModel = new Collection<IBuyProcessModel>()
                 {
@@ -143,18 +158,18 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                     new BuyProcessModel { Id = Int32.MaxValue }
                 };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.BuyProcessesModel = new Collection<IBuyProcessModel>()
                 {
                     new BuyProcessModel { Id = 0 },
                 };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -164,26 +179,26 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_PlatformStatusIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.PlatformStatusModel = null;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.PlatformStatusModel = new PlatformStatusModel { Id = Int32.MaxValue };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.PlatformStatusModel = new PlatformStatusModel { Id = 0 };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -193,26 +208,26 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_SubDivisionIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.SubDivisionModel = null;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.SubDivisionModel = new SubDivisionModel { Id = Int32.MaxValue };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.SubDivisionModel = new SubDivisionModel { Id = 0 };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -222,26 +237,26 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Add_UserModelIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
                 model.UserModel = null;
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.UserModel = new UserModel { Id = Int32.MaxValue };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.UserModel = new UserModel { Id = 0 };
 
-                result = await _controller.Add(model);
+                result = await controller.Add(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -251,7 +266,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task<int> PlatformTest_Add()
         {
-            var _controller = GetPlatformsController();
+            var controller = GetController();
 
             var model = GetModel();
 
@@ -270,7 +285,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             var savedDivision = pageDivision.Data.First();
             model.SubDivisionModel = savedDivision;
 
-            var pageUser = await accountService.GetAll(1, 1);
+            var pageUser = await accountService.GetAllAsync(1, 1);
             if (pageUser.Data.Count == 0)
             {
                 Assert.Fail("Не создан пользователь!");
@@ -281,13 +296,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 Id = pageUser.Data.First().Id
             };
 
-            var result = await _controller.Add(model);
+            var result = await controller.Add(model);
 
             Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<int>));
 
             var id = (result as OkNegotiatedContentResult<int>).Content;
 
-            var getResult = await _controller.GetById(id);
+            var getResult = await controller.GetById(id);
 
             Assert.IsInstanceOfType(getResult, typeof(OkNegotiatedContentResult<IPlatformModel>));
 
@@ -312,15 +327,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_NameIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.Name = string.Empty;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -330,15 +345,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_MinCheckIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.MinCheck = 0;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -348,15 +363,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_UpdateTimeStartIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.TimeStart = TimeSpan.Zero;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -366,15 +381,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_TimeEndIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.TimeEnd = TimeSpan.Zero;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -384,15 +399,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_BuyProcessesIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.BuyProcessesModel = null;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.BuyProcessesModel = new Collection<IBuyProcessModel>()
                 {
@@ -400,18 +415,18 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                     new BuyProcessModel { Id = Int32.MaxValue }
                 };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.BuyProcessesModel = new Collection<IBuyProcessModel>()
                 {
                     new BuyProcessModel { Id = 0 },
                 };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -421,27 +436,27 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_PlatformStatusIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.PlatformStatusModel = null;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.PlatformStatusModel = new PlatformStatusModel { Id = Int32.MaxValue };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.PlatformStatusModel = new PlatformStatusModel { Id = 0 };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -451,27 +466,27 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_SubDivisionIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.SubDivisionModel = null;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.SubDivisionModel = new SubDivisionModel { Id = Int32.MaxValue };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.SubDivisionModel = new SubDivisionModel { Id = 0 };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -481,27 +496,27 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update_UserModelIsNull()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
                 model.UserModel = null;
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.UserModel = new UserModel { Id = Int32.MaxValue };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.UserModel = new UserModel { Id = 0 };
 
-                result = await _controller.Update(model);
+                result = await controller.Update(model);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -511,7 +526,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Update()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = await PlatformTest_AddAndGet();
 
@@ -529,11 +544,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                     Id = defaultUserModelId
                 };
 
-                var result = await _controller.Update(model);
+                var result = await controller.Update(model);
 
                 Assert.IsInstanceOfType(result, typeof(OkResult));
 
-                var getResult = await _controller.GetById(model.Id);
+                var getResult = await controller.GetById(model.Id);
 
                 Assert.IsInstanceOfType(getResult, typeof(OkNegotiatedContentResult<IPlatformModel>));
 
@@ -557,11 +572,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Delete_NotExist()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
-                var result = await _controller.Delete(Int32.MaxValue);
+                var result = await controller.Delete(Int32.MaxValue);
 
-                Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 
@@ -571,9 +586,9 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task PlatformTest_Delete()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
-                var getAllResult = await _controller.Get(1, 1);
+                var getAllResult = await controller.Get(1, 1);
 
                 Assert.IsInstanceOfType(getAllResult, typeof(OkNegotiatedContentResult<PagedResult<IPlatformModel>>));
 
@@ -586,7 +601,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
                 var model = pageAllResult.Data.First();
 
-                var result = await _controller.Delete(model.Id);
+                var result = await controller.Delete(model.Id);
 
                 Assert.IsInstanceOfType(result, typeof(OkResult));
             }
@@ -622,7 +637,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task<int> PlatformTest_AddInternal()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
                 var model = GetModel();
 
@@ -646,7 +661,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                     Id = defaultUserModelId
                 };
 
-                var result = await _controller.Add(model);
+                var result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<int>));
 
@@ -662,12 +677,12 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         /// <returns></returns>
         private async Task<IPlatformModel> PlatformTest_AddAndGet()
         {
-            using (var _controller = GetPlatformsController())
+            using (var controller = GetController())
             {
 
                 var id = await PlatformTest_AddInternal();
 
-                var getResult = await _controller.GetById(id);
+                var getResult = await controller.GetById(id);
 
                 Assert.IsInstanceOfType(getResult, typeof(OkNegotiatedContentResult<IPlatformModel>));
 
@@ -690,10 +705,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         /// Создание контроллера
         /// </summary>
         /// <returns></returns>
-        private PlatformsController GetPlatformsController()
+        private PlatformsController GetController()
         {
-            var service = DependencyResolver.Current.GetService<IPlatformService>();
-            return new PlatformsController(service);
+            lock (_okAddResult)
+            {
+                var service = new PlatformService(new UnitOfWork(), new PlatformValidator());
+                return new PlatformsController(service);
+            }
         }
 
         #endregion

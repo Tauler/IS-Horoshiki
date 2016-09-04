@@ -12,7 +12,7 @@ namespace IsHoroshiki.DAO.Repositories
     /// </summary>  
     /// <typeparam name="TDaoEntity">Тип сущности Dao</typeparam> 
     public abstract class BaseRepository<TDaoEntity> : IBaseRepository<TDaoEntity>
-        where TDaoEntity : BaseDaoEntity
+        where TDaoEntity : class, IBaseDaoEntity
     {
         #region поля и свойства
 

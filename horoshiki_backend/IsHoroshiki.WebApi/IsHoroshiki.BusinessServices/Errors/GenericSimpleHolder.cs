@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IsHoroshiki.BusinessServices.Errors
 {
-    // <summary>
+    /// <summary>
     /// Базовый класс простого хранилища типа "словарь"
     /// </summary>
     /// <typeparam name="KEY">Тип ключа словаря</typeparam>

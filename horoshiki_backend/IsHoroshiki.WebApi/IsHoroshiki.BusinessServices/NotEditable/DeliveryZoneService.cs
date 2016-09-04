@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -10,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Типы зон доставки
     /// </summary>
-    public class DeliveryZoneService : BaseNotEditableService<IDeliveryZoneModel, DeliveryZone>, IDeliveryZoneService
+    public class DeliveryZoneService : BaseNotEditableService<IDeliveryZoneModel, DeliveryZone, IDeliveryZoneRepository>, IDeliveryZoneService
     {
         #region поля и свойства
 
@@ -28,7 +29,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public DeliveryZoneService(UnitOfWork unitOfWork)
-            : base(unitOfWork.DeliveryZoneRepository, null)
+            : base(unitOfWork.DeliveryZoneRepository)
         {
             _unitOfWork = unitOfWork;
         }

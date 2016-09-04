@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable;
 using IsHoroshiki.DAO.UnitOfWorks;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
 {
     /// <summary>
     /// Сервис Должности
     /// </summary>
-    public class PositionService : BaseNotEditableService<IPositionModel, Position>, IPositionService
+    public class PositionService : BaseNotEditableService<IPositionModel, Position, IPositionRepository>, IPositionService
     {
         #region поля и свойства
 
@@ -29,7 +30,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public PositionService(UnitOfWork unitOfWork)
-            : base(unitOfWork.PositionRepository, null)
+            : base(unitOfWork.PositionRepository)
         {
             _unitOfWork = unitOfWork;
         }

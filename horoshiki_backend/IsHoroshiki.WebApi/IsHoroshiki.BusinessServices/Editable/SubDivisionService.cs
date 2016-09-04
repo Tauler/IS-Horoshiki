@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using IsHoroshiki.BusinessEntities.Editable;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
@@ -10,13 +9,14 @@ using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.UnitOfWorks;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Errors.Enums;
+using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
     /// <summary>
     /// Сервис Подразделения
     /// </summary>
-    public class SubDivisionService : BaseEditableService<ISubDivisionModel, SubDivision>, ISubDivisionService
+    public class SubDivisionService : BaseEditableService<ISubDivisionModel, ISubDivisionValidator, SubDivision, ISubDivisionRepository>, ISubDivisionService
     {
         #region Конструктор
 
@@ -36,7 +36,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         #region protected override
 
         /// <summary>
-        /// Получить всех пользователей
+        /// Получить всех
         /// </summary>
         /// <param name="pageNo">Номер страницы</param>
         /// <param name="pageSize">Размер страницы</param>
@@ -47,7 +47,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             if (string.Equals(sortField, "PriceTypeModel"))
             {
-                sortField = "PriceTypeId";
+                sortField = "PriceTypeModellId";
             }
 
             return await base.GetAllAsync(pageNo, pageSize, sortField, isAscending);

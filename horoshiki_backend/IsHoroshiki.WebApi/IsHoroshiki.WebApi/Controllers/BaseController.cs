@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
@@ -16,6 +15,11 @@ namespace IsHoroshiki.WebApi.Controllers
         where TModelEntity : IBaseBusninessModel
     {
         #region поля и свойства
+
+        /// <summary>
+        /// true - если был вызван Dispose
+        /// </summary>
+        private bool _disposed;
 
         /// <summary>
         /// Сервис бизнес-логики
@@ -67,7 +71,7 @@ namespace IsHoroshiki.WebApi.Controllers
 
         #endregion
 
-        #region 
+        #region protected
 
         /// <summary>
         /// Вернуть первую ошибку валидации модели
@@ -103,6 +107,24 @@ namespace IsHoroshiki.WebApi.Controllers
             }
 
             return null;
+        }
+
+        #endregion
+
+        #region IDisposable 
+
+        /// <summary>  
+        /// IDisposable
+        /// </summary>  
+        /// <param name="disposing"></param>  
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (!this._disposed && disposing)
+            {
+                _service.Dispose();
+            }
+            this._disposed = true;
         }
 
         #endregion

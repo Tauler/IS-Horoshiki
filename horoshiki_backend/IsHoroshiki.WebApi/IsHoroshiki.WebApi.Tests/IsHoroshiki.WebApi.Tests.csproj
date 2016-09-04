@@ -121,6 +121,10 @@
       <Project>{76ccee72-2781-4502-a5d8-2f71a6d1cd11}</Project>
       <Name>IsHoroshiki.BusinessServices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IsHoroshiki.DAO\IsHoroshiki.DAO.csproj">
+      <Project>{EFC9DAF6-3B76-49AA-9D1B-D6658C2C3CFF}</Project>
+      <Name>IsHoroshiki.DAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IsHoroshiki.WebApi\IsHoroshiki.WebApi.csproj">
       <Project>{FA9339E6-9A4B-40C9-AD2D-22C30B0E3AC3}</Project>
       <Name>IsHoroshiki.WebApi</Name>

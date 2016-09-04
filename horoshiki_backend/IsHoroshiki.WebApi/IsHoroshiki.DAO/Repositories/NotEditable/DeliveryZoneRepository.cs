@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Типы зон доставки
     /// </summary>
-    public class DeliveryZoneRepository : BaseNotEditableDictionaryRepository<DeliveryZone>, IDeliveryZoneRepository
+    public class DeliveryZoneRepository : BaseNotEditableRepository<DeliveryZone>, IDeliveryZoneRepository
     {
         #region Конструктор
 

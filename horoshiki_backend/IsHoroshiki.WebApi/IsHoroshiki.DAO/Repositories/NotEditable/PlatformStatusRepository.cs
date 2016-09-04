@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Статус площадки
     /// </summary>
-    public class PlatformStatusRepository : BaseNotEditableDictionaryRepository<PlatformStatus>, IPlatformStatusRepository
+    public class PlatformStatusRepository : BaseNotEditableRepository<PlatformStatus>, IPlatformStatusRepository
     {
         #region Конструктор
 

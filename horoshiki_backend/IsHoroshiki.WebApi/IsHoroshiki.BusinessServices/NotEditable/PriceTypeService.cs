@@ -4,6 +4,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -11,7 +12,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Типы цен
     /// </summary>
-    public class PriceTypeService : BaseNotEditableService<IPriceTypeModel, PriceType>, IPriceTypeService
+    public class PriceTypeService : BaseNotEditableService<IPriceTypeModel, PriceType, IPriceTypeRepository>, IPriceTypeService
     {
         #region поля и свойства
 
@@ -29,7 +30,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public PriceTypeService(UnitOfWork unitOfWork)
-            : base(unitOfWork.PriceTypeRepository, null)
+            : base(unitOfWork.PriceTypeRepository)
         {
             _unitOfWork = unitOfWork;
         }

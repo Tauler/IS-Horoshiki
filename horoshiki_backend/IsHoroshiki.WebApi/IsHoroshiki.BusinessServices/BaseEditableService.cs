@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities;
 using IsHoroshiki.BusinessEntities.Paging;
-using IsHoroshiki.BusinessServices.Errors;
 using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 using IsHoroshiki.BusinessServices.Validators;
@@ -15,9 +14,11 @@ namespace IsHoroshiki.BusinessServices
     /// <summary>
     /// Базовый сервис для редактируемого типа
     /// </summary>
-    public abstract class BaseEditableService<TModelEntity, TDaoEntity> : BaseBusinessService<TModelEntity, TDaoEntity>, IBaseEditableService<TModelEntity>
+    public abstract class BaseEditableService<TModelEntity, TModelEntityValidator, TDaoEntity, TDaoEntityRepository> : BaseBusinessService<TModelEntity, TDaoEntity>, IBaseEditableService<TModelEntity>
        where TModelEntity : class, IBaseBusninessModel
-       where TDaoEntity : BaseDaoEntity
+       where TModelEntityValidator : class, IValidator<TModelEntity>
+       where TDaoEntity : class, IBaseDaoEntity
+       where TDaoEntityRepository : class, IBaseRepository<TDaoEntity>
     {
         #region поля и свойства
 
@@ -25,6 +26,16 @@ namespace IsHoroshiki.BusinessServices
         /// UnitOfWork
         /// </summary>
         protected readonly UnitOfWork _unitOfWork;
+
+        /// <summary>
+        /// Валидатор сущности
+        /// </summary>
+        protected readonly TModelEntityValidator _validator;
+
+        /// <summary>
+        /// Репозитарий сущности
+        /// </summary>
+        protected readonly TDaoEntityRepository _repository;
 
         #endregion
 
@@ -36,8 +47,8 @@ namespace IsHoroshiki.BusinessServices
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="repository">Репозитарий сущности</param>
         /// <param name="validator">Валидатор сущности</param>
-        protected BaseEditableService(UnitOfWork unitOfWork, IBaseRepository<TDaoEntity> repository, IValidator<TModelEntity> validator)
-            : base(repository, validator)
+        protected BaseEditableService(UnitOfWork unitOfWork, TDaoEntityRepository repository, TModelEntityValidator validator)
+            : base(repository)
         {
             if (validator == null)
             {
@@ -50,6 +61,8 @@ namespace IsHoroshiki.BusinessServices
             }
 
             _unitOfWork = unitOfWork;
+            _repository = repository;
+            _validator = validator;
         }
 
         #endregion
@@ -109,7 +122,7 @@ namespace IsHoroshiki.BusinessServices
         }
 
         /// <summary>
-        /// Добавить в БД
+        /// ОБновить в БД
         /// </summary>
         /// <param name="model">Модель</param>
         /// <returns></returns>
@@ -193,7 +206,7 @@ namespace IsHoroshiki.BusinessServices
         /// </summary>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        protected async virtual Task<ValidationResult> ValidationInternal(TModelEntity model)
+        protected virtual async Task<ValidationResult> ValidationInternal(TModelEntity model)
         {
             return new ValidationResult();
         }

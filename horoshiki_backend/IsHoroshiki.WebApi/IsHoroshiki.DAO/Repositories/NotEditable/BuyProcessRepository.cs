@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Способы покупки
     /// </summary>
-    public class BuyProcessRepository : BaseNotEditableDictionaryRepository<BuyProcess>, IBuyProcessRepository
+    public class BuyProcessRepository : BaseNotEditableRepository<BuyProcess>, IBuyProcessRepository
     {
         #region Конструктор
 

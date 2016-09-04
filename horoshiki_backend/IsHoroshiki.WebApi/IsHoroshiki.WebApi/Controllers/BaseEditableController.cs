@@ -10,15 +10,16 @@ namespace IsHoroshiki.WebApi.Controllers
     /// <summary>
     /// Абстрактный класс редактируемого контроллера
     /// </summary>
-    public class BaseEditableController<TModelEntity> : BaseController<TModelEntity>
+    public abstract class BaseEditableController<TModelEntity, TModelEntityService> : BaseController<TModelEntity>
         where TModelEntity : class, IBaseBusninessModel
+        where TModelEntityService : IBaseEditableService<TModelEntity>
     {
         #region поля и свойства
 
         /// <summary>
         /// Сервис бизнес-логики
         /// </summary>
-        protected readonly IBaseEditableService<TModelEntity> _service;
+        protected readonly TModelEntityService _service;
 
         #endregion
 
@@ -28,7 +29,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// Конструктор
         /// </summary>
         /// <param name="service">Сервис бизнес-логики</param>
-        protected BaseEditableController(IBaseEditableService<TModelEntity> service)
+        protected BaseEditableController(TModelEntityService service)
             : base(service)
         {
             _service = service;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.DAO;
 using IsHoroshiki.DAO.Repositories;
 
@@ -11,21 +10,30 @@ namespace IsHoroshiki.BusinessServices
     /// <summary>
     /// Базовый сервис не редактируемого типа
     /// </summary>
-    public abstract class BaseNotEditableService<TModelEntity, TDaoEntity> : BaseBusinessService<TModelEntity, TDaoEntity>, IBaseNotEditableService<TModelEntity>
+    public abstract class BaseNotEditableService<TModelEntity, TDaoEntity, TDaoEntityRepository> : BaseBusinessService<TModelEntity, TDaoEntity>, IBaseNotEditableService<TModelEntity>
         where TModelEntity : class, IBaseNotEditableModel
         where TDaoEntity : BaseDaoEntity
+        where TDaoEntityRepository : class, IBaseRepository<TDaoEntity>
     {
+        #region поля и свойства
+
+        /// <summary>
+        /// Репозитарий сущности
+        /// </summary>
+        protected TDaoEntityRepository _repository;
+
+        #endregion
+
         #region Конструктор
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="repository">Репозитарий сущности</param>
-        /// <param name="validator">Валидатор сущности</param>
-        protected BaseNotEditableService(IBaseRepository<TDaoEntity> repository, IValidator<TModelEntity> validator)
-            : base(repository, validator)
+        protected BaseNotEditableService(TDaoEntityRepository repository)
+            : base(repository)
         {
-            
+            _repository = repository;
         }
 
         #endregion

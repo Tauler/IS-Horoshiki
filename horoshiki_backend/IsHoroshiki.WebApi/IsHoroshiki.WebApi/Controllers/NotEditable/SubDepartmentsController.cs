@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер ПодОтделы
     /// </summary>
     [Authorize]
-    public class SubDepartmentsController : BaseNotEditableController<ISubDepartmentModel>
+    public class SubDepartmentsController : BaseNotEditableController<ISubDepartmentModel, ISubDepartmentService>
     {
         #region Конструктор
 

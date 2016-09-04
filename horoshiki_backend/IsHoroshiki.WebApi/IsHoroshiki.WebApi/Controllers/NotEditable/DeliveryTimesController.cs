@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Время доставки
     /// </summary>
     [Authorize]
-    public class DeliveryTimesController :  BaseNotEditableController<IDeliveryTimeModel>
+    public class DeliveryTimesController :  BaseNotEditableController<IDeliveryTimeModel, IDeliveryTimeService>
     {
         #region Конструктор
 

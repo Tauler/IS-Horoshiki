@@ -1,22 +1,13 @@
 ﻿using System;
-using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.Account.Interfaces
 {
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public interface IApplicationUserModel
+    public interface IApplicationUserModel : IBaseBusninessModel
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        int Id
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Имя
         /// </summary>
@@ -74,7 +65,7 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        EmployeeStatusModel EmployeeStatus
+        IEmployeeStatusModel EmployeeStatus
         {
             get;
             set;
@@ -83,7 +74,7 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// <summary>
         /// Должности
         /// </summary>
-        PositionModel Position
+        IPositionModel Position
         {
             get;
             set;

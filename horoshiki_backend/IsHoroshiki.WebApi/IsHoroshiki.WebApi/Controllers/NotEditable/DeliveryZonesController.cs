@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Типы зон доставки
     /// </summary>
     [Authorize]
-    public class DeliveryZonesController : BaseNotEditableController<IDeliveryZoneModel>
+    public class DeliveryZonesController : BaseNotEditableController<IDeliveryZoneModel, IDeliveryZoneService>
     {
         #region Конструктор
 

@@ -9,7 +9,7 @@ namespace IsHoroshiki.BusinessServices
     /// Базовый сервис для редактируемого типа
     /// </summary>
     public interface IBaseEditableService<TModelEntity> : IBaseBusinessService<TModelEntity>
-       where TModelEntity : class, IBaseBusninessModel
+       where TModelEntity : IBaseBusninessModel
     {
         /// <summary>
         /// Получить всех пользователей

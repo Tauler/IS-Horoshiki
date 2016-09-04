@@ -8,7 +8,7 @@ namespace IsHoroshiki.DAO.Repositories
     /// Базовый репозиторий
     /// </summary>  
     /// <typeparam name="TDaoEntity">Тип сущности Dao</typeparam> 
-    public interface IBaseRepository<TDaoEntity> where TDaoEntity : BaseDaoEntity
+    public interface IBaseRepository<TDaoEntity> where TDaoEntity : IBaseDaoEntity
     {
         #region методы
 

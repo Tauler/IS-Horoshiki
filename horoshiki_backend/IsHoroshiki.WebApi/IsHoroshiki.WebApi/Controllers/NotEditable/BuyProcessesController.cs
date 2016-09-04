@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Способы покупки
     /// </summary>
     [Authorize]
-    public class BuyProcessesController : BaseNotEditableController<IBuyProcessModel>
+    public class BuyProcessesController : BaseNotEditableController<IBuyProcessModel, IBuyProcessService>
     {
         #region Конструктор
 

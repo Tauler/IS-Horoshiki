@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Статус площадки
     /// </summary>
     [Authorize]
-    public class PriceTypesController : BaseNotEditableController<IPriceTypeModel>
+    public class PriceTypesController : BaseNotEditableController<IPriceTypeModel, IPriceTypeService>
     {
         #region Конструктор
 

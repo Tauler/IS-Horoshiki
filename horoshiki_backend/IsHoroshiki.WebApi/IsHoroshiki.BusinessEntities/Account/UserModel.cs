@@ -16,5 +16,23 @@ namespace IsHoroshiki.BusinessEntities.Account
             get;
             set;
         }
+
+        /// <summary>
+        /// Имя
+        /// </summary>
+        public string FirstName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        public string LastName
+        {
+            get;
+            set;
+        }
     }
 }

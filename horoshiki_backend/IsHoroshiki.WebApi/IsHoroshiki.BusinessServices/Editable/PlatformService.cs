@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
+using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Validators;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.Editable
@@ -14,7 +16,7 @@ namespace IsHoroshiki.BusinessServices.Editable
     /// <summary>
     /// Сервис Платформа
     /// </summary>
-    public class PlatformService : BaseEditableService<IPlatformModel, Platform>, IPlatformService
+    public class PlatformService : BaseEditableService<IPlatformModel, IPlatformValidator, Platform, IPlatformRepository>, IPlatformService
     {
         #region Конструктор
 
@@ -34,11 +36,31 @@ namespace IsHoroshiki.BusinessServices.Editable
         #region protected override
 
         /// <summary>
+        /// Получить всех
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public override async Task<PagedResult<IPlatformModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        {
+            if (string.Equals(sortField, "SubDivisionModel") 
+                || string.Equals(sortField, "UserModel")
+                || string.Equals(sortField, "PlatformStatusModel"))
+            {
+                sortField += "Id";
+            }
+            
+            return await base.GetAllAsync(pageNo, pageSize, sortField, isAscending);
+        }
+
+        /// <summary>
         /// Валидация сущности
         /// </summary>
         /// <param name="model">Сущность</param>
         /// <returns></returns>
-        protected async override Task<ValidationResult> ValidationInternal(IPlatformModel model)
+        protected override async Task<ValidationResult> ValidationInternal(IPlatformModel model)
         {
             var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatusModel);
             if (!result)

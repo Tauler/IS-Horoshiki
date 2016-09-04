@@ -10,50 +10,15 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
     /// <summary>
     /// Репозитарий авторизации
     /// </summary>
-    public interface IAccountRepository : IDisposable
+    public interface IAccountRepository : IBaseRepository<ApplicationUser>
     {
-        /// <summary>
-        /// Получить всех пользователей
-        /// </summary>
-        /// <param name="pageNo">Номер страницы</param>
-        /// <param name="pageSize">Размер страницы</param>
-        /// <param name="sortField">Поле для сортировки</param>
-        /// <param name="isAscending">true - сортировать по возрастанию</param>
-        /// <returns></returns>
-        Task<IEnumerable<ApplicationUser>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
-
-        /// <summary>
-        /// Получить пользователя по Id
-        /// </summary>
-        /// <returns></returns>
-        Task<ApplicationUser> GetByIdAsync(int id);
-
-        /// <summary>
-        /// Количество всех пользователей
-        /// </summary>
-        /// <returns></returns>
-        Task<int> CountAsync();
-
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="user">Пользователь</param>
+        /// <param name="entity">Пользователь</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        Task<IdentityResult> RegisterAsync(ApplicationUser user, string password);
-
-        /// <summary>
-        /// Обновить пользователя
-        /// </summary>
-        /// <param name="user">Пользователь</param>
-        /// <returns></returns>
-        Task<IdentityResult> UpdateAsync(ApplicationUser user);
-
-        /// <summary>
-        /// Удалить пользователя по Id
-        /// </summary>
-        /// <param name="user">Пользователь</param>
-        Task<IdentityResult> DeleteAsync(ApplicationUser user);
+        Task<IdentityResult> InsertAsync(ApplicationUser entity, string password);
 
         /// <summary>
         /// Найти пользоватея

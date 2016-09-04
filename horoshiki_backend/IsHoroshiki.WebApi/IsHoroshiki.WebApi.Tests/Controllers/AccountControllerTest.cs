@@ -4,22 +4,38 @@ using System.Threading.Tasks;
 using System.Web.Http.Results;
 using System;
 using IsHoroshiki.BusinessEntities.NotEditable;
-using IsHoroshiki.BusinessServices.Editable;
 using IsHoroshiki.WebApi.Controllers.Editable;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessServices.Editable;
+using IsHoroshiki.BusinessServices.Errors;
+using IsHoroshiki.BusinessServices.Validators.Editable;
+using IsHoroshiki.WebApi.Handlers;
+using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.WebApi.Tests.Controllers
 {
     [TestClass]
     public class AccountControllerTest
     {
-        AccountsController _controller;
+        #region поля и свойства
+
+        /// <summary>
+        /// Тип результат при удачном добавлении объекта
+        /// </summary>
+        private readonly Type _okAddResult = typeof(OkNegotiatedContentResult<int>);
+
+        /// <summary>
+        /// Тип результат при не удачном добавлении\обновлении\удалении объекта
+        /// </summary>
+        private readonly Type _errrorResult = typeof(ErrorMessageResult);
+
+        #endregion
 
         [TestInitialize]
         public void SetupContext()
         {
-            _controller = new AccountsController(new AccountService());
+            MessageRegister.FillMessageHolder();
         }
 
         #region Добавление пользователя 
@@ -30,12 +46,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_FirstNameIsNull()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.FirstName = string.Empty;
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.FirstName = string.Empty;
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -44,12 +63,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_LastNameIsNull()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.LastName = string.Empty;
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.LastName = string.Empty;
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -58,12 +80,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_PasswordIsNull()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.Password = string.Empty;
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.Password = string.Empty;
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -72,12 +97,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_PasswordNotConfirm()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.ConfirmPassword += "111";
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.ConfirmPassword += "111";
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -86,21 +114,24 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_PositionNotExist()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.Position = new PositionModel()
+            using (var controller = GetController())
             {
-                Id = Int32.MaxValue
-            };
-            
-            var result = await _controller.Add(userModel);
+                var userModel = GetApplicationUserModel();
+                userModel.Position = new PositionModel()
+                {
+                    Id = Int32.MaxValue
+                };
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                var result = await controller.Add(userModel);
 
-            userModel.Position = null;
+                Assert.IsInstanceOfType(result, _errrorResult);
 
-            result = await _controller.Add(userModel);
+                userModel.Position = null;
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                result = await controller.Add(userModel);
+
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -109,15 +140,18 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_PositionExist()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.Position = new PositionModel()
+            using (var controller = GetController())
             {
-                Id = 1
-            };
+                var userModel = GetApplicationUserModel();
+                userModel.Position = new PositionModel()
+                {
+                    Id = 1
+                };
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                Assert.IsInstanceOfType(result, _okAddResult);
+            }
         }
 
         /// <summary>
@@ -126,21 +160,24 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_EmployeeStatusNotExist()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.EmployeeStatus = new EmployeeStatusModel()
+            using (var controller = GetController())
             {
-                Id = Int32.MaxValue
-            };
+                var userModel = GetApplicationUserModel();
+                userModel.EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id = Int32.MaxValue
+                };
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
 
-            userModel.EmployeeStatus = null;
+                userModel.EmployeeStatus = null;
 
-            result = await _controller.Add(userModel);
+                result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -149,15 +186,18 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_EmployeeStatusExist()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.EmployeeStatus = new EmployeeStatusModel()
+            using (var controller = GetController())
             {
-                Id = 1
-            };
+                var userModel = GetApplicationUserModel();
+                userModel.EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id = 1
+                };
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                Assert.IsInstanceOfType(result, _okAddResult);
+            }
         }
 
         /// <summary>
@@ -166,13 +206,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_MedicalBookEndNotNullIfIsHaveMedicalBook()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.IsHaveMedicalBook = true;
-            userModel.MedicalBookEnd = null;
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.IsHaveMedicalBook = true;
+                userModel.MedicalBookEnd = null;
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -181,17 +224,20 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_User()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                Assert.IsInstanceOfType(result, _okAddResult);
 
-            var isExistResult = await _controller.IsExistUserName(userModel.UserName);
+                var isExistResult = await controller.IsExistUserName(userModel.UserName);
 
-            var res = isExistResult as OkNegotiatedContentResult<bool>;
+                var res = isExistResult as OkNegotiatedContentResult<bool>;
 
-            Assert.IsTrue(res.Content);
+                Assert.IsTrue(res.Content);
+            }
         }
 
         /// <summary>
@@ -200,15 +246,18 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Add_UserWithDuplicateUserName()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var result = await _controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                Assert.IsInstanceOfType(result, _okAddResult);
 
-            var result2 = await _controller.Add(userModel);
+                var result2 = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result2, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result2, _errrorResult);
+            }
         }
 
         #endregion
@@ -221,17 +270,20 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_FirstNameIsNull()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            userModel.FirstName = string.Empty;
+                userModel.FirstName = string.Empty;
 
-            var result = await _controller.Update(userModel);
+                var result = await controller.Update(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -240,17 +292,20 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_LastNameIsNull()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            userModel.LastName = string.Empty;
+                userModel.LastName = string.Empty;
 
-            var result = await _controller.Update(userModel);
+                var result = await controller.Update(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -259,17 +314,20 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_PasswordIsNull()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            userModel.Password = string.Empty;
+                userModel.Password = string.Empty;
 
-            var result = await _controller.Update(userModel);
+                var result = await controller.Update(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -278,12 +336,15 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_PasswordNotConfirm()
         {
-            var userModel = GetApplicationUserModel();
-            userModel.ConfirmPassword += "111";
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.ConfirmPassword += "111";
 
-            var result = await _controller.Update(userModel);
+                var result = await controller.Update(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -292,20 +353,23 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_PositionNotExist()
         {
-            var userModel = GetApplicationUserModel();
-
-            var addResult = await _controller.Add(userModel);
-
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
-
-            userModel.Position = new PositionModel()
+            using (var controller = GetController())
             {
-                Id = Int32.MaxValue
-            };
+                var userModel = GetApplicationUserModel();
 
-            var result = await _controller.Update(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
+
+                userModel.Position = new PositionModel()
+                {
+                    Id = Int32.MaxValue
+                };
+
+                var result = await controller.Update(userModel);
+
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -314,20 +378,23 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_EmployeeStatusNotExist()
         {
-            var userModel = GetApplicationUserModel();
-
-            var addResult = await _controller.Add(userModel);
-
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
-
-            userModel.EmployeeStatus = new EmployeeStatusModel()
+            using (var controller = GetController())
             {
-                Id = Int32.MaxValue
-            };
+                var userModel = GetApplicationUserModel();
 
-            var result = await _controller.Update(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
+
+                userModel.EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id = Int32.MaxValue
+                };
+
+                var result = await controller.Update(userModel);
+
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -336,18 +403,21 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_MedicalBookEndNotNullIfIsHaveMedicalBook()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            userModel.IsHaveMedicalBook = true;
-            userModel.MedicalBookEnd = null;
+                userModel.IsHaveMedicalBook = true;
+                userModel.MedicalBookEnd = null;
 
-            var result = await _controller.Update(userModel);
+                var result = await controller.Update(userModel);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -356,19 +426,24 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_User()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
+                var addResult = await controller.Add(userModel);
 
-            userModel = await GetApplicationUser(userModel.UserName);
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            Assert.IsNotNull(userModel);
+                userModel.Id = (addResult as OkNegotiatedContentResult<int>).Content;
 
-            userModel.LastName = Guid.NewGuid().ToString().Replace("-", "");
+                Assert.IsNotNull(userModel);
 
-            var result = await _controller.Update(userModel);
+                userModel.LastName = Guid.NewGuid().ToString().Replace("-", "");
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                var result = await controller.Update(userModel);
+
+                Assert.IsInstanceOfType(result, typeof(OkResult));
+            }
         }
 
         /// <summary>
@@ -377,21 +452,25 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Update_UserWithDuplicateUserName()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
-           
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
+                var addResult = await controller.Add(userModel);
 
-            var allResult = await _controller.Get(1, 10);
-            var allUsers = allResult as OkNegotiatedContentResult<PagedResult<IApplicationUserModel>>;
-            var userModel2 = allUsers.Content.Data.Find(u => u.UserName != userModel.UserName) as ApplicationUserModel;
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            userModel2.UserName = userModel.UserName;
+                var allResult = await controller.Get(1, 10);
+                var allUsers = allResult as OkNegotiatedContentResult<PagedResult<IApplicationUserModel>>;
+                var userModel2 =
+                    allUsers.Content.Data.Find(u => u.UserName != userModel.UserName) as ApplicationUserModel;
 
-            var result = await _controller.Add(userModel);
+                userModel2.UserName = userModel.UserName;
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                var result = await controller.Add(userModel);
+
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         #endregion
@@ -404,9 +483,12 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Delete_UserNotExist()
         {
-            var result = await _controller.Delete(Int32.MaxValue);
+            using (var controller = GetController())
+            {
+                var result = await controller.Delete(Int32.MaxValue);
 
-            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
         }
 
         /// <summary>
@@ -415,17 +497,20 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         [TestMethod]
         public async Task AccountTest_Delete()
         {
-            var userModel = GetApplicationUserModel();
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
 
-            var addResult = await _controller.Add(userModel);
+                var addResult = await controller.Add(userModel);
 
-            Assert.IsInstanceOfType(addResult, typeof(OkResult));
+                Assert.IsInstanceOfType(addResult, _okAddResult);
 
-            userModel = await GetApplicationUser(userModel.UserName);
+                var id = (addResult as OkNegotiatedContentResult<int>).Content;
 
-            var result = await _controller.Delete(userModel.Id);
+                var result = await controller.Delete(id);
 
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+                Assert.IsInstanceOfType(result, typeof(OkResult));
+            }
         }
 
         #endregion
@@ -459,15 +544,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Создание пользователя
+        /// Создание контроллера
         /// </summary>
-        private async Task<ApplicationUserModel> GetApplicationUser(string userName)
+        /// <returns></returns>
+        private AccountsController GetController()
         {
-            var allResult = await _controller.Get(1, Int32.MaxValue);
-
-            var allUsers = allResult as OkNegotiatedContentResult<PagedResult<IApplicationUserModel>>;
-
-            return  allUsers.Content.Data.Find(u => u.UserName == userName) as ApplicationUserModel;
+            lock (_okAddResult)
+            {
+                var service = new AccountService(new UnitOfWork(), new AccountValidator());
+                return new AccountsController(service);
+            }
         }
 
         #endregion

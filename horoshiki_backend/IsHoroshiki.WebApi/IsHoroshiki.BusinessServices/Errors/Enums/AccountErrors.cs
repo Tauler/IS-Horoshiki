@@ -12,6 +12,11 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
     public enum AccountErrors
     {
         /// <summary>
+        /// Ошибка при добалении пользователя!
+        /// </summary>
+        AddException,
+
+        /// <summary>
         /// Необходимо указать имя!
         /// </summary>
         FirstNameIsNull,

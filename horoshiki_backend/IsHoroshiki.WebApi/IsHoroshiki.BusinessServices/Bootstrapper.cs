@@ -31,6 +31,7 @@ namespace IsHoroshiki.BusinessServices
 
             DAO.Bootstrapper.BuildUnityContainer(container);
 
+            container.RegisterType<IAccountValidator, AccountValidator>();
             container.RegisterType<ISubDivisionValidator, SubDivisionValidator>();
             container.RegisterType<IPlatformValidator, PlatformValidator>();
 

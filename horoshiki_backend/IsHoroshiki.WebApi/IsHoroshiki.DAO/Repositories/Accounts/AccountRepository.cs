@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 using System.Linq;
-using System.Collections.Generic;
-using IsHoroshiki.DAO.Helpers;
 using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
 
 namespace IsHoroshiki.DAO.Repositories.Accounts
@@ -12,65 +11,39 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
     /// <summary>
     /// Репозитарий авторизации
     /// </summary>
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : BaseRepository<ApplicationUser>, IAccountRepository
     {
         #region поля и свойства
 
         /// <summary>
-        /// Контекст БД
-        /// </summary>
-        private ApplicationDbContext _ctx;
-
-        /// <summary>
         /// Конфигурация хранилища пользователя
         /// </summary>
-        private ApplicationUserManager _userManager;
+        private readonly ApplicationUserManager _userManager;
 
         #endregion
 
         #region Конструктор
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public AccountRepository(ApplicationDbContext ctx)
+        /// <summary>  
+        /// Конструктор  
+        /// </summary>  
+        /// <param name="context">Контекст выполнения БД</param>  
+        public AccountRepository(ApplicationDbContext context)
+            : base(context)
         {
-            _ctx = ctx;
-            var userStore = new CustomUserStore(_ctx);
+            var userStore = new CustomUserStore(context);
             _userManager = new ApplicationUserManager(userStore);
         }
 
         #endregion
-
+        
         #region методы
-
-        /// <summary>
-        /// Получить всех пользователей
-        /// </summary>
-        /// <param name="pageNo">Номер страницы</param>
-        /// <param name="pageSize">Размер страницы</param>
-        /// <param name="sortField">Поле для сортировки</param>
-        /// <param name="isAscending">true - сортировать по возрастанию</param>
-        /// <returns></returns>
-        public Task<IEnumerable<ApplicationUser>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
-        {
-            int skip = (pageNo - 1) * pageSize;
-
-            var list = _ctx.Users
-                .OrderByPropertyName(sortField, isAscending)
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList()
-                .AsEnumerable();
-
-            return Task.FromResult(list);
-        }
 
         /// <summary>
         /// Получить пользователя по Id
         /// </summary>
         /// <returns></returns>
-        public async Task<ApplicationUser> GetByIdAsync(int id)
+        public override async Task<ApplicationUser> GetByIdAsync(int id)
         {
             return await _userManager.FindByIdAsync(id);
         }
@@ -79,24 +52,31 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// Количество всех пользователей
         /// </summary>
         /// <returns></returns>
-        public Task<int> CountAsync()
+        public override async Task<int> CountAsync()
         {
-            var result = _userManager.Users.Count();
-            return Task.FromResult<int>(result);
+            return _userManager.Users.Count();
+        }
+
+        /// <summary>
+        /// Добавить пользователя
+        /// </summary>
+        /// <param name="entity"></param>
+        public override void Insert(ApplicationUser entity)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="user">Пользователь</param>
+        /// <param name="entity">Пользователь</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        public Task<IdentityResult> RegisterAsync(ApplicationUser user, string password)
+        public Task<IdentityResult> InsertAsync(ApplicationUser entity, string password)
         {
-            user.EmployeeStatus = _ctx.EmployeeStatuses.Find(user.EmployeeStatusId);
-            user.Position = _ctx.Positions.Find(user.PositionId);
+            SetChildEntity(entity);
 
-            return _userManager.CreateAsync(user, password);
+            return _userManager.CreateAsync(entity, password);
         }
 
         /// <summary>
@@ -106,8 +86,8 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// <returns></returns>
         public Task<IdentityResult> UpdateAsync(ApplicationUser user)
         {
-            user.EmployeeStatus = _ctx.EmployeeStatuses.Find(user.EmployeeStatusId);
-            user.Position = _ctx.Positions.Find(user.PositionId);
+            user.EmployeeStatus = Context.EmployeeStatuses.Find(user.EmployeeStatusId);
+            user.Position = Context.Positions.Find(user.PositionId);
 
             return _userManager.UpdateAsync(user);
         }
@@ -221,15 +201,49 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
 
         #endregion
 
-        #region IDisposable
+        #region override
 
         /// <summary>
-        /// IDisposable
+        /// Действие с сущностью перед добавлением в БД
         /// </summary>
-        public void Dispose()
+        /// <param name="entity"></param>
+        protected override void BeforeInsert(ApplicationUser entity)
         {
-            _ctx.Dispose();
-            _userManager.Dispose();
+            SetChildEntity(entity);
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед обновлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected override void BeforeUpdate(ApplicationUser entity)
+        {
+            SetChildEntity(entity);
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед обновлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        private void SetChildEntity(ApplicationUser entity)
+        {
+            entity.EmployeeStatus = Context.EmployeeStatuses.Find(entity.EmployeeStatusId);
+            entity.Position = Context.Positions.Find(entity.PositionId);
+        }
+
+        /// <summary>
+        /// Действие с сущностью перед добавлением в БД
+        /// </summary>
+        /// <param name="entity"></param>
+        protected override void LoadChildEntities(ApplicationUser entity)
+        {
+            if (entity == null)
+            {
+                return;
+            }
+
+            Context.Entry(entity).Reference(p => p.EmployeeStatus).Load();
+            Context.Entry(entity).Reference(p => p.Position).Load();
         }
 
         #endregion

@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Оплата заказа
     /// </summary>
-    public class OrderPayRepository : BaseNotEditableDictionaryRepository<OrderPay>, IOrderPayRepository
+    public class OrderPayRepository : BaseNotEditableRepository<OrderPay>, IOrderPayRepository
     {
         #region Конструктор
 

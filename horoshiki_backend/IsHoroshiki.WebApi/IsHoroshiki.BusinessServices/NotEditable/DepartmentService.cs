@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -11,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Отделы
     /// </summary>
-    public class DepartmentService : BaseNotEditableService<IDepartmentModel, Department>, IDepartmentService
+    public class DepartmentService : BaseNotEditableService<IDepartmentModel, Department, IDepartmentRepository>, IDepartmentService
     {
         #region поля и свойства
 
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public DepartmentService(UnitOfWork unitOfWork)
-            : base(unitOfWork.DepartmentRepository, null)
+            : base(unitOfWork.DepartmentRepository)
         {
             _unitOfWork = unitOfWork;
         }

@@ -3,12 +3,12 @@
     /// <summary>
     /// Базовая сущность для всех сущностей БД
     /// </summary>
-    public abstract class BaseDaoEntity : IBaseDaoEntity
+    public interface IBaseDaoEntity
     {
         /// <summary>
         /// Id в БД
         /// </summary>
-        public int Id
+        int Id
         {
             get;
             set;

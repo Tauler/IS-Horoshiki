@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Оплата заказа
     /// </summary>
     [Authorize]
-    public class OrderPaysController : BaseNotEditableController<IOrderPayModel>
+    public class OrderPaysController : BaseNotEditableController<IOrderPayModel, IOrderPayService>
     {
         #region Конструктор
 

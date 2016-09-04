@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Статус заказа
     /// </summary>
     [Authorize]
-    public class OrderStatusesController : BaseNotEditableController<IOrderStatusModel>
+    public class OrderStatusesController : BaseNotEditableController<IOrderStatusModel, IOrderStatusService>
     {
         #region Конструктор
 

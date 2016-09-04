@@ -5,6 +5,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
+using System.Web.Mvc;
 using IsHoroshiki.BusinessServices.Editable;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using Microsoft.Owin.Security.Cookies;
@@ -44,7 +45,7 @@ namespace IsHoroshiki.WebApi.Providers
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (IAccountService accountService = new AccountService())
+            using (IAccountService accountService = DependencyResolver.Current.GetService<IAccountService>())
             {
                 IUser<int> user = await accountService.FindAsync(context.UserName, context.Password);
 

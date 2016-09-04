@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Должности
     /// </summary>
     [Authorize]
-    public class PositionsController : BaseNotEditableController<IPositionModel>
+    public class PositionsController : BaseNotEditableController<IPositionModel, IPositionService>
     {
         #region Конструктор
 

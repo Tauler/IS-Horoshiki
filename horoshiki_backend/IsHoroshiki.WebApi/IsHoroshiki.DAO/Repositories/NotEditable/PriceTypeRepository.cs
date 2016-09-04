@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Типы цен
     /// </summary>
-    public class PriceTypeRepository : BaseNotEditableDictionaryRepository<PriceType>, IPriceTypeRepository
+    public class PriceTypeRepository : BaseNotEditableRepository<PriceType>, IPriceTypeRepository
     {
         #region Конструктор
 

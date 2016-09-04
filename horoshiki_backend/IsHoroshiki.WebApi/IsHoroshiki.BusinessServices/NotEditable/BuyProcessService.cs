@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -10,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Способы покупки
     /// </summary>
-    public class BuyProcessService : BaseNotEditableService<IBuyProcessModel, BuyProcess>, IBuyProcessService
+    public class BuyProcessService : BaseNotEditableService<IBuyProcessModel, BuyProcess, IBuyProcessRepository>, IBuyProcessService
     {
         #region поля и свойства
 
@@ -28,7 +29,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public BuyProcessService(UnitOfWork unitOfWork)
-            : base(unitOfWork.BuyProcessPepository, null)
+            : base(unitOfWork.BuyProcessPepository)
          {
             _unitOfWork = unitOfWork;
         }

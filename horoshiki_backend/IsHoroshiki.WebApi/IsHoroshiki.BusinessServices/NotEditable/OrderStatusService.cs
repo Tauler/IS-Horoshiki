@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -10,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Статус заказа
     /// </summary>
-    public class OrderStatusService : BaseNotEditableService<IOrderStatusModel, OrderStatus>, IOrderStatusService
+    public class OrderStatusService : BaseNotEditableService<IOrderStatusModel, OrderStatus, IOrderStatusRepository>, IOrderStatusService
     {
         #region поля и свойства
 
@@ -28,7 +29,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public OrderStatusService(UnitOfWork unitOfWork)
-            : base(unitOfWork.OrderStatusRepository, null)
+            : base(unitOfWork.OrderStatusRepository)
         {
             _unitOfWork = unitOfWork;
         }

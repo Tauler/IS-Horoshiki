@@ -49,59 +49,5 @@ namespace IsHoroshiki.WebApi
 
             return container;
         }
-
-        ///// <summary>
-        ///// Кастомная реализация DependencyResolver для тестов
-        ///// </summary>
-        //private class UnityDependencyResolver : IDependencyResolver
-        //{
-        //    /// <summary>
-        //    /// Контейнер
-        //    /// </summary>
-        //    private readonly IUnityContainer _container;
-
-        //    /// <summary>
-        //    /// Констурктор
-        //    /// </summary>
-        //    /// <param name="container"></param>
-        //    public UnityDependencyResolver(IUnityContainer container)
-        //    {
-        //        _container = container;
-        //    }
-
-        //    /// <summary>
-        //    /// Получить сервис
-        //    /// </summary>
-        //    /// <param name="serviceType">Тип</param>
-        //    /// <returns></returns>
-        //    public object GetService(Type serviceType)
-        //    {
-        //        try
-        //        {
-        //            return _container.Resolve(serviceType);
-        //        }
-        //        catch
-        //        {
-        //            return null;
-        //        }
-        //    }
-
-        //    /// <summary>
-        //    /// Получить сервис
-        //    /// </summary>
-        //    /// <param name="serviceType">Тип</param>
-        //    /// <returns></returns>
-        //    public IEnumerable<object> GetServices(Type serviceType)
-        //    {
-        //        try
-        //        {
-        //            return _container.ResolveAll(serviceType);
-        //        }
-        //        catch
-        //        {
-        //            return new List<object>();
-        //        }
-        //    }
-        //}
     }
 }

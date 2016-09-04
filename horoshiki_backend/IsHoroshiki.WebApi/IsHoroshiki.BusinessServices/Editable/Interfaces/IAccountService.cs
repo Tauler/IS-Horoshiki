@@ -1,8 +1,6 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.Paging;
 using Microsoft.AspNet.Identity;
 
 namespace IsHoroshiki.BusinessServices.Editable.Interfaces
@@ -10,44 +8,8 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
     /// <summary>
     ///  Сервис аккаунтов
     /// </summary>
-    public interface IAccountService : IDisposable
+    public interface IAccountService : IBaseEditableService<IApplicationUserModel>
     {
-        /// <summary>
-        /// Получить всех пользователей
-        /// </summary>
-        /// <param name="pageNo">Номер страницы</param>
-        /// <param name="pageSize">Размер страницы</param>
-        /// <param name="sortField">Поле для сортировки</param>
-        /// <param name="isAscending">true - сортировать по возрастанию</param>
-        /// <returns></returns>
-        Task<PagedResult<IApplicationUserModel>> GetAll(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
-
-        /// <summary>
-        /// Получить пользователя по Id
-        /// </summary>
-        /// <returns></returns>
-        Task<IApplicationUserModel> GetByIdAsync(int id);
-
-        /// <summary>
-        /// Зарегистрировать пользователя
-        /// </summary>
-        /// <param name="userModel">Пользователь</param>
-        /// <returns></returns>
-        Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel);
-
-        /// <summary>
-        /// Обновить пользователя
-        /// </summary>
-        /// <param name="userModel">Пользователь</param>
-        /// <returns></returns>
-        Task<IdentityResult> UpdateAsync(IApplicationUserModel userModel);
-
-        /// <summary>
-        /// Удалить пользователя по Id
-        /// </summary>
-        /// <param name="id">Id пользователя</param>
-        Task<IdentityResult> DeleteAsync(int id);
-
         /// <summary>
         /// Проверка существования логина для пользователя
         /// </summary>
@@ -103,14 +65,5 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <param name="userId">Id пользователя</param>
         /// <returns></returns>
         Task<IdentityResult> RemovePasswordAsync(int userId);
-
-        /// <summary>
-        /// Удалить логин
-        /// </summary>
-        /// <param name="userId">Id пользователя</param>
-        /// <param name="loginProvider"></param>
-        /// <param name="providerKey"></param>
-        /// <returns></returns>
-        Task<IdentityResult> RemoveLoginAsync(int userId, string loginProvider, string providerKey);
     }
 }

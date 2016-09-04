@@ -8,10 +8,21 @@ namespace IsHoroshiki.BusinessServices.Errors
     public class MessageRegister
     {
         /// <summary>
+        /// true - если зарегистрированo
+        /// </summary>
+        private static bool _isRegistered;
+
+        /// <summary>
         /// Регистрация кодов ошибок
         /// </summary>
         public static void FillMessageHolder()
         {
+            if (_isRegistered)
+            {
+                return;
+            }
+            _isRegistered = true;
+
             FillMessageCommonErrorHolder();
             FillMessageAccountHolder();
             FillMessageSubDivisionHolder();
@@ -38,6 +49,7 @@ namespace IsHoroshiki.BusinessServices.Errors
         /// </summary>
         private static void FillMessageAccountHolder()
         {
+            MessageHolder.Instance.AddMessage(AccountErrors.AddException, ResourceBusinessServices.AccountsController_AddException);
             MessageHolder.Instance.AddMessage(AccountErrors.FirstNameIsNull, ResourceBusinessServices.AccountsController_FirstNameIsNull);
             MessageHolder.Instance.AddMessage(AccountErrors.LastNameIsNull, ResourceBusinessServices.AccountsController_LastNameIsNull);
             MessageHolder.Instance.AddMessage(AccountErrors.UserNameIsNull, ResourceBusinessServices.AccountsController_UserNameIsNull);

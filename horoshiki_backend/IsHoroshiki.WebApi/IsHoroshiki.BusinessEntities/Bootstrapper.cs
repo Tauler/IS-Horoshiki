@@ -1,4 +1,6 @@
 ﻿using System;
+using IsHoroshiki.BusinessEntities.Account;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using Microsoft.Practices.Unity;
@@ -24,6 +26,8 @@ namespace IsHoroshiki.BusinessEntities
 
             DAO.Bootstrapper.BuildUnityContainer(container);
 
+            container.RegisterType<IApplicationUserModel, ApplicationUserModel>();
+            container.RegisterType<IUserModel, UserModel>();
             container.RegisterType<ISubDivisionModel, SubDivisionModel>();
             container.RegisterType<IPlatformModel, PlatformModel>();
 

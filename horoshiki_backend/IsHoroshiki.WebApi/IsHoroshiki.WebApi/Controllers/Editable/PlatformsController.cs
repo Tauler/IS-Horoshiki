@@ -9,7 +9,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// </summary>
     [Authorize]
     [RoutePrefix("api/Platforms")]
-    public class PlatformsController : BaseEditableController<IPlatformModel>
+    public class PlatformsController : BaseEditableController<IPlatformModel, IPlatformService>
     {
         #region Конструктор
 

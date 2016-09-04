@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Статус сотрудника
     /// </summary>
     [Authorize]
-    public class EmployeeStatusesController : BaseNotEditableController<IEmployeeStatusModel>
+    public class EmployeeStatusesController : BaseNotEditableController<IEmployeeStatusModel, IEmployeeStatusService>
     {
         #region Конструктор
 

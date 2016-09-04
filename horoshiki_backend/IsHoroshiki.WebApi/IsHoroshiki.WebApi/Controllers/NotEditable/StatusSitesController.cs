@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Статус площадки
     /// </summary>
     [Authorize]
-    public class StatusSitesController : BaseNotEditableController<IPlatformStatusModel>
+    public class StatusSitesController : BaseNotEditableController<IPlatformStatusModel, IPlatformStatusService>
     {
         #region Конструктор
 

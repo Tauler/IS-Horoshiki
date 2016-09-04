@@ -4,7 +4,6 @@ using IsHoroshiki.DAO.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using IsHoroshiki.BusinessServices.Validators;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -12,8 +11,8 @@ namespace IsHoroshiki.BusinessServices
     /// Базовый класс для всей бизнес-логики сервисов
     /// </summary>
     public abstract class BaseBusinessService<TModelEntity, TDaoEntity> : IBaseBusinessService<TModelEntity> 
-        where TModelEntity : class, IBaseBusninessModel
-        where TDaoEntity : BaseDaoEntity
+        where TModelEntity : IBaseBusninessModel
+        where TDaoEntity : IBaseDaoEntity
     {
         #region поля и свойства 
 
@@ -25,13 +24,8 @@ namespace IsHoroshiki.BusinessServices
         /// <summary>
         /// Репозитарий сущности
         /// </summary>
-        protected IBaseRepository<TDaoEntity> _repository;
-
-        /// <summary>
-        /// Репозитарий сущности
-        /// </summary>
-        protected IValidator<TModelEntity> _validator;
-
+        private readonly IBaseRepository<TDaoEntity> _repository;
+        
         #endregion
 
         #region Конструктор
@@ -40,8 +34,7 @@ namespace IsHoroshiki.BusinessServices
         /// Конструктор
         /// </summary>
         /// <param name="repository">Репозитарий сущности</param>
-        /// <param name="validator">Валидатор сущности</param>
-        protected BaseBusinessService(IBaseRepository<TDaoEntity> repository, IValidator<TModelEntity> validator)
+        protected BaseBusinessService(IBaseRepository<TDaoEntity> repository)
         {
             if (repository == null)
             {
@@ -49,7 +42,6 @@ namespace IsHoroshiki.BusinessServices
             }
 
             _repository = repository;
-            _validator = validator;
         }
 
         #endregion
@@ -68,7 +60,7 @@ namespace IsHoroshiki.BusinessServices
             {
                 return ConvertTo(result);
             }
-            return null;
+            return default(TModelEntity);
         }
 
         /// <summary>  

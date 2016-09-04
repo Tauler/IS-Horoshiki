@@ -10,7 +10,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public class ApplicationUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+    public class ApplicationUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>, IBaseDaoEntity
     {
         /// <summary>
         /// Конструктор

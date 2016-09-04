@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.MappingDao;
+using IsHoroshiki.BusinessEntities.Account.MappingDao.User;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.Editable;

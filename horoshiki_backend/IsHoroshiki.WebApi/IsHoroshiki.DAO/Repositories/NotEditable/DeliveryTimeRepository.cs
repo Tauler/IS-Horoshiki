@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Время доставки
     /// </summary>
-    public class DeliveryTimeRepository : BaseNotEditableDictionaryRepository<DeliveryTime>, IDeliveryTimeRepository
+    public class DeliveryTimeRepository : BaseNotEditableRepository<DeliveryTime>, IDeliveryTimeRepository
     {
         #region Конструктор
 

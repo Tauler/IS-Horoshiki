@@ -109,8 +109,10 @@
     </Compile>
     <Compile Include="Utils\UtilService.cs" />
     <Compile Include="Utils\Interfaces\IUtilService.cs" />
+    <Compile Include="Validators\Editable\Interfaces\IAccountValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IPlatformValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\ISubDivisionValidator.cs" />
+    <Compile Include="Validators\Editable\AccountValidator.cs" />
     <Compile Include="Validators\Editable\PlatformValidator.cs" />
     <Compile Include="Validators\Editable\SubDivisionValidator.cs" />
     <Compile Include="Validators\ValidationResult.cs" />

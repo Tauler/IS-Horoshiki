@@ -3,7 +3,7 @@ using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 
-namespace IsHoroshiki.BusinessEntities.Account.MappingDao
+namespace IsHoroshiki.BusinessEntities.Account.MappingDao.User
 {
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
@@ -20,7 +20,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             return new ApplicationUser()
             {
                 Id = model.Id,
-                UserName = model.UserName
+                UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
             };
         }
 
@@ -54,7 +56,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             return new UserModel()
             {
                 Id = model.Id,
-                UserName = model.UserName
+                UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
             };
         }
 

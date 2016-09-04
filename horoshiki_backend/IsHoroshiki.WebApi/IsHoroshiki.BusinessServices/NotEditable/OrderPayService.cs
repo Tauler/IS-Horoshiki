@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
@@ -10,7 +11,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
     /// <summary>
     /// Сервис Оплата заказа
     /// </summary>
-    public class OrderPayService : BaseNotEditableService<IOrderPayModel, OrderPay>, IOrderPayService
+    public class OrderPayService : BaseNotEditableService<IOrderPayModel, OrderPay, IOrderPayRepository>, IOrderPayService
     {
         #region поля и свойства
 
@@ -28,7 +29,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
         public OrderPayService(UnitOfWork unitOfWork)
-             : base(unitOfWork.OrderPayRepository, null)
+             : base(unitOfWork.OrderPayRepository)
         {
             _unitOfWork = unitOfWork;
         }

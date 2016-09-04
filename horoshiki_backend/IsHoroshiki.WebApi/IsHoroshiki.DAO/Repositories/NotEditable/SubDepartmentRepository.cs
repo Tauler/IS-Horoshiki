@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Подотделы
     /// </summary>
-    public class SubDepartmentRepository : BaseNotEditableDictionaryRepository<SubDepartment>, ISubDepartmentRepository
+    public class SubDepartmentRepository : BaseNotEditableRepository<SubDepartment>, ISubDepartmentRepository
     {
         #region Конструктор
 

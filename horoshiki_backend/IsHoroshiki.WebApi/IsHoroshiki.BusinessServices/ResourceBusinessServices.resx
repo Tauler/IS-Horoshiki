@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountsController_AddException" xml:space="preserve">
+    <value>Ошибка при добавлении пользователя!</value>
+  </data>
   <data name="AccountsController_ConfirmPasswordIsNull" xml:space="preserve">
     <value>Необходимо указать подтверждение пароля!</value>
   </data>
@@ -124,7 +127,7 @@
     <value>Необходимо указать статус сотрудника!</value>
   </data>
   <data name="AccountsController_EmployeeStatusRepositoryIsNull" xml:space="preserve">
-    <value>Статуса сотрудника для указанного ID={0} не существует!</value>
+    <value>Статуса сотрудника для указанного ID="{0}" не существует!</value>
   </data>
   <data name="AccountsController_FirstNameIsNull" xml:space="preserve">
     <value>Необходимо указать имя!</value>
@@ -145,7 +148,7 @@
     <value>Необходимо указать должность!</value>
   </data>
   <data name="AccountsController_PositionRepositoryIsNull" xml:space="preserve">
-    <value>Должности для указанного ID={0} не существует!</value>
+    <value>Должности для указанного ID="{0}" не существует!</value>
   </data>
   <data name="AccountsController_UserNameIsNull" xml:space="preserve">
     <value>Необходимо указать логин!</value>
@@ -163,7 +166,7 @@
     <value>Не указан объект для обновления!</value>
   </data>
   <data name="BaseEditableService_EntityUpdateNotFound" xml:space="preserve">
-    <value>Объекта с Id={0} не существует!</value>
+    <value>Объекта с Id="{0}" не существует!</value>
   </data>
   <data name="Error_ExceptionUnknown" xml:space="preserve">
     <value>На сервере произошла ошибка!</value>
@@ -172,19 +175,22 @@
     <value>Пользователь не авторизован!</value>
   </data>
   <data name="HolderCannotReplaceValue" xml:space="preserve">
-    <value>Значение для элемента с ключом "{0}" в холдере {1} не может быть заменено!</value>
+    <value>Значение для элемента с ключом "{0}" в холдере "{1}" не может быть заменено!</value>
+  </data>
+  <data name="MessageNotRegister" xml:space="preserve">
+    <value>Не зарегистрировано сообщение об ошибке для кода: "{0}"!</value>
   </data>
   <data name="PlatformService_BuyProcessNotFound" xml:space="preserve">
-    <value>Способа покупки для указанного ID={0} не существует!</value>
+    <value>Способа покупки для указанного ID="{0}" не существует!</value>
   </data>
   <data name="PlatformService_PlatformStatusNotFound" xml:space="preserve">
-    <value>Статуса площадки для указанного ID={0} не существует!</value>
+    <value>Статуса площадки для указанного ID="{0}" не существует!</value>
   </data>
   <data name="PlatformService_SubDivisionNotFound" xml:space="preserve">
-    <value>Подразделение для указанного ID={0} не существует!</value>
+    <value>Подразделение для указанного ID="{0}" не существует!</value>
   </data>
   <data name="PlatformService_UserNotFound" xml:space="preserve">
-    <value>Пользователя для указанного ID={0} не существует!</value>
+    <value>Пользователя для указанного ID="{0}" не существует!</value>
   </data>
   <data name="PlatformValidator_BuyProcessesIsNullModel" xml:space="preserve">
     <value>Необходмио указать способы покупки!</value>
@@ -205,7 +211,7 @@
     <value>Необходимо указать время начала работы!</value>
   </data>
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
-    <value>Не найден тип цены с Id={0}!</value>
+    <value>Не найден тип цены с Id="{0}"!</value>
   </data>
   <data name="SubDivisionValidator_PriceTypeIsNullModel" xml:space="preserve">
     <value>Необходимо указать тип цены!</value>

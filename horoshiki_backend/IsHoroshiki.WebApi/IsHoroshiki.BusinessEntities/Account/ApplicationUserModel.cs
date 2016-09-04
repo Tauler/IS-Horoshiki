@@ -2,6 +2,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.Converters;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+using Newtonsoft.Json;
 
 namespace IsHoroshiki.BusinessEntities.Account
 {
@@ -80,7 +83,8 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        public EmployeeStatusModel EmployeeStatus
+        [JsonConverter(typeof(EntityModelConverter<EmployeeStatusModel, IEmployeeStatusModel>))]
+        public IEmployeeStatusModel EmployeeStatus
         {
             get;
             set;
@@ -89,7 +93,8 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Должности
         /// </summary>
-        public PositionModel Position
+        [JsonConverter(typeof(EntityModelConverter<PositionModel, IPositionModel>))]
+        public IPositionModel Position
         {
             get;
             set;

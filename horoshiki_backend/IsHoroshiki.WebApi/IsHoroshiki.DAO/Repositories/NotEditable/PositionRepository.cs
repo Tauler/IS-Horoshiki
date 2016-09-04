@@ -6,7 +6,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
     /// <summary>
     /// Репозиторий Должности
     /// </summary>
-    public class PositionRepository : BaseNotEditableDictionaryRepository<Position>, IPositionRepository
+    public class PositionRepository : BaseNotEditableRepository<Position>, IPositionRepository
     {
         #region Конструктор
 

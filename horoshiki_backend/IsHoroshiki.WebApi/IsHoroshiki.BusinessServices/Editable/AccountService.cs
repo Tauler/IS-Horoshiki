@@ -1,10 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Account.MappingDao;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.Errors.Enums;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
+using IsHoroshiki.BusinessServices.Validators;
+using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
+using IsHoroshiki.DAO.DaoEntities.Accounts;
+using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.AspNet.Identity;
 
@@ -13,43 +21,23 @@ namespace IsHoroshiki.BusinessServices.Editable
     /// <summary>
     /// Сервис аккаунтов
     /// </summary>
-    public class AccountService :  IAccountService
+    public class AccountService : BaseEditableService<IApplicationUserModel, IAccountValidator, ApplicationUser, IAccountRepository>, IAccountService
     {
-        #region поля и свойства
-
-        /// <summary>
-        /// true - если был вызван Dispose
-        /// </summary>
-        protected bool _disposed;
-
-        /// <summary>
-        /// UnitOfWork
-        /// </summary>
-        private readonly UnitOfWork _unitOfWork;
-
-        #endregion
-
         #region Конструктор
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
-        public AccountService(UnitOfWork unitOfWork)
+        /// <param name="validator">Валидатор</param>
+        public AccountService(UnitOfWork unitOfWork, IAccountValidator validator)
+            : base(unitOfWork, unitOfWork.AccountRepository, validator)
         {
-            _unitOfWork = unitOfWork;
-        }
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public AccountService()
-        {
-            _unitOfWork = new UnitOfWork();
         }
 
         #endregion
-
+       
         #region IAccountService
 
         /// <summary>
@@ -60,100 +48,107 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="sortField">Поле для сортировки</param>
         /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <returns></returns>
-        public async Task<PagedResult<IApplicationUserModel>> GetAll(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        public override async Task<PagedResult<IApplicationUserModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
         {
             if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
             {
                 sortField += "Id";
             }
 
-            var count = await _unitOfWork.AccountRepository.CountAsync();
-            var list = await _unitOfWork.AccountRepository.GetAllAsync(pageNo, pageSize, sortField, isAscending);
-            return new PagedResult<IApplicationUserModel>(ApplicationUserModelMappingDao.ToModelEntityList(list), pageNo, pageSize, count);
-        }
-
-        /// <summary>
-        /// Получить пользователя по Id
-        /// </summary>
-        /// <returns></returns>
-        public async Task<IApplicationUserModel> GetByIdAsync(int id)
-        {
-            var user = await _unitOfWork.AccountRepository.GetByIdAsync(id);
-            if (user != null)
-            {
-                return ApplicationUserModelMappingDao.ToModelEntity(user);
-            }
-
-            return null;
+            return await base.GetAllAsync(pageNo, pageSize, sortField, isAscending);
         }
 
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
-        /// <param name="userModel">пользователь</param>
+        /// <param name="model">пользователь</param>
         /// <returns></returns>
-        public async Task<IdentityResult> RegisterAsync(IApplicationUserModel userModel)
-        {
-            var error = await Validation(userModel, true);
-            if (!string.IsNullOrEmpty(error))
-            {
-                return new IdentityResult(error);
-            }
-
-            var daoUser = userModel.ToDaoEntity();
-            daoUser.EmployeeStatus = null;
-            daoUser.Platforms = null;
-            daoUser.Position = null;
-
-            return await _unitOfWork.AccountRepository.RegisterAsync(userModel.ToDaoEntity(), userModel.Password);
-        }
-
-        /// <summary>
-        /// Обновить пользователя
-        /// </summary>
-        /// <param name="userModel">Пользователь</param>
-        /// <returns></returns>
-        public async Task<IdentityResult> UpdateAsync(IApplicationUserModel userModel)
+        public override async Task<ModelEntityModifyResult> AddAsync(IApplicationUserModel model)
         {
             try
             {
-                var error = await Validation(userModel, false);
-                if (!string.IsNullOrEmpty(error))
+                if (model == null)
                 {
-                    return new IdentityResult(error);
+                    return new ModelEntityModifyResult(CommonErrors.EntityAddIsNull);
                 }
 
-                var daoUser = await _unitOfWork.AccountRepository.GetByIdAsync(userModel.Id);
-                if (daoUser == null)
+                var validateResult = await _validator.ValidateAsync(model);
+                if (!validateResult.IsSucceeded)
                 {
-                    return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
+                    return new ModelEntityModifyResult(validateResult.Errors);
                 }
 
-                daoUser.Update(userModel);
-                daoUser.EmployeeStatus = null;
-                daoUser.Position = null;
+                var customValidateResult = await ValidationInternal(model);
+                if (!customValidateResult.IsSucceeded)
+                {
+                    return new ModelEntityModifyResult(customValidateResult.Errors);
+                }
 
-                return await _unitOfWork.AccountRepository.UpdateAsync(daoUser);
+                var daoEntity = CreateInternal(model);
+
+                var result = await _repository.InsertAsync(daoEntity, model.Password);
+                if (!result.Succeeded)
+                {
+                    var errorData = new ErrorData(AccountErrors.AddException, result.Errors.FirstOrDefault());
+                    return new ModelEntityModifyResult(errorData);
+                }
+
+                _unitOfWork.Save();
+
+                return new ModelEntityModifyResult(daoEntity.Id);
             }
             catch (Exception e)
             {
-                return new IdentityResult(ResourceBusinessServices.AccountsController_UserUpdateError);
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                return new ModelEntityModifyResult(errorData);
             }
         }
 
         /// <summary>
-        /// Удалить пользователя по Id
+        /// ОБновить в БД
         /// </summary>
-        /// <param name="id">Id пользователя</param>
-        public async Task<IdentityResult> DeleteAsync(int id)
+        /// <param name="model">Модель</param>
+        /// <returns></returns>
+        public override async Task<ModelEntityModifyResult> UpdateAsync(IApplicationUserModel model)
         {
-            var user = await _unitOfWork.AccountRepository.GetByIdAsync(id);
-            if (user == null)
+            try
             {
-                return new IdentityResult(ResourceBusinessServices.AccountsController_UserNotFound);
-            }
+                if (model == null)
+                {
+                    return new ModelEntityModifyResult(CommonErrors.Exception);
+                }
 
-            return await _unitOfWork.AccountRepository.DeleteAsync(user);
+                var validateResult = await _validator.ValidateWithoutPasswordAsync(model);
+                if (!validateResult.IsSucceeded)
+                {
+                    return new ModelEntityModifyResult(validateResult.Errors);
+                }
+
+                var customValidateResult = await ValidationInternal(model);
+                if (!customValidateResult.IsSucceeded)
+                {
+                    return new ModelEntityModifyResult(customValidateResult.Errors);
+                }
+
+                var daoEntity = await _repository.GetByIdAsync(model.Id);
+                if (daoEntity == null)
+                {
+                    var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { model.Id });
+                    return new ModelEntityModifyResult(errorData);
+                }
+
+                UpdateDaoInternal(daoEntity, model);
+
+                _repository.Update(daoEntity);
+                _unitOfWork.Save();
+
+                return new ModelEntityModifyResult();
+            }
+            catch (Exception e)
+            {
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                return new ModelEntityModifyResult(errorData);
+            }
         }
 
         /// <summary>
@@ -255,116 +250,78 @@ namespace IsHoroshiki.BusinessServices.Editable
             return _unitOfWork.AccountRepository.RemovePasswordAsync(userId);
         }
 
-        /// <summary>
-        /// Удалить логин
-        /// </summary>
-        /// <param name="userId">Id пользователя</param>
-        /// <param name="loginProvider"></param>
-        /// <param name="providerKey"></param>
-        /// <returns></returns>
-        public Task<IdentityResult> RemoveLoginAsync(int userId, string loginProvider, string providerKey)
-        {
-            return _unitOfWork.AccountRepository.RemoveLoginAsync(userId, loginProvider, providerKey);
-        }
-
         #endregion
 
-        #region private
+        #region protected override
 
         /// <summary>
-        /// Валидация
+        /// Валидация сущности
         /// </summary>
-        /// <param name="userModel">Пользователь</param>
-        /// <param name="isCheckPassword">true - проверять пароль</param>
+        /// <param name="model">Сущность</param>
         /// <returns></returns>
-        private async Task<string> Validation(IApplicationUserModel userModel, bool isCheckPassword)
+        protected override async Task<ValidationResult> ValidationInternal(IApplicationUserModel model)
         {
-            if (string.IsNullOrEmpty(userModel.FirstName))
-            {
-                return ResourceBusinessServices.AccountsController_FirstNameIsNull;
-            }
-
-            if (string.IsNullOrEmpty(userModel.LastName))
-            {
-                return ResourceBusinessServices.AccountsController_LastNameIsNull;
-            }
-
-            if (string.IsNullOrEmpty(userModel.UserName))
-            {
-                return ResourceBusinessServices.AccountsController_UserNameIsNull;
-            }
-
-            if (userModel.IsHaveMedicalBook && userModel.MedicalBookEnd == null)
-            {
-                return ResourceBusinessServices.AccountsController_IsHaveMedicalBookMedicalBookEnd;
-            }
-
-            if (isCheckPassword && string.IsNullOrEmpty(userModel.Password))
-            {
-                return ResourceBusinessServices.AccountsController_PasswordIsNull;
-            }
-
-            if (isCheckPassword && string.IsNullOrEmpty(userModel.ConfirmPassword))
-            {
-                return ResourceBusinessServices.AccountsController_ConfirmPasswordIsNull;
-            }
-
-            if (isCheckPassword && !string.Equals(userModel.Password, userModel.ConfirmPassword))
-            {
-                return ResourceBusinessServices.AccountsController_PasswordNotEquals;
-            }
-
-            if (userModel.Position == null)
-            {
-                return ResourceBusinessServices.AccountsController_PositionIsNull;
-            }
-
-            if (userModel.EmployeeStatus == null)
-            {
-                return ResourceBusinessServices.AccountsController_EmployeeStatusIsNull;
-            }
-
-            var position = await _unitOfWork.PositionRepository.GetByIdAsync(userModel.Position.Id);
+            var position = await _unitOfWork.PositionRepository.GetByIdAsync(model.Position.Id);
             if (position == null)
             {
-                return string.Format(ResourceBusinessServices.AccountsController_PositionRepositoryIsNull, userModel.Position.Id);
+                return new ValidationResult(AccountErrors.PositionRepositoryIsNull, model.Position.Id);
             }
 
-            var employeeStatus = await _unitOfWork.EmployeeStatusRepository.GetByIdAsync(userModel.EmployeeStatus.Id);
+            var employeeStatus = await _unitOfWork.EmployeeStatusRepository.GetByIdAsync(model.EmployeeStatus.Id);
             if (employeeStatus == null)
             {
-                return string.Format(ResourceBusinessServices.AccountsController_EmployeeStatusRepositoryIsNull, userModel.EmployeeStatus.Id);
+                return new ValidationResult(AccountErrors.EmployeeStatusRepositoryIsNull, model.EmployeeStatus.Id);
             }
 
-            return string.Empty;
+            return new ValidationResult();
+        }
+
+        /// <summary>
+        /// Метод конвертации Dao объектa в бизнес-модель 
+        /// </summary>
+        /// <param name="daoEntity"></param>
+        /// <returns></returns>
+        protected override IApplicationUserModel ConvertTo(ApplicationUser daoEntity)
+        {
+            return daoEntity.ToModelEntity();
+        }
+
+        /// <summary>
+        /// Метод конвертации коллекции Dao объектов в коллекцию бизнес-модели 
+        /// </summary>
+        /// <param name="collection">коллекции Dao объектов</param>
+        /// <returns></returns>
+        protected override IEnumerable<IApplicationUserModel> ConvertTo(IEnumerable<ApplicationUser> collection)
+        {
+            return collection.ToModelEntityList();
+        }
+
+        /// <summary>
+        /// Создание DAO сущности
+        /// </summary>
+        /// <param name="model">Сущность</param>
+        /// <returns></returns>
+        public override ApplicationUser CreateInternal(IApplicationUserModel model)
+        {
+            return model.ToDaoEntity();
+        }
+
+        /// <summary>
+        /// Обновление сущности
+        /// </summary>
+        /// <param name="daoEntity">dao Сущность</param>
+        /// <param name="model">Сущность</param>
+        /// <returns></returns>
+        public override ApplicationUser UpdateDaoInternal(ApplicationUser daoEntity, IApplicationUserModel model)
+        {
+            daoEntity.Update(model);
+            daoEntity.EmployeeStatus = null;
+            daoEntity.Platforms = null;
+            daoEntity.Position = null;
+            return daoEntity;
         }
 
         #endregion
 
-        #region IDisposable
-
-        /// <summary>  
-        /// Dispose  
-        /// </summary>  
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        /// <summary>  
-        /// IDisposable
-        /// </summary>  
-        /// <param name="disposing"></param>  
-        protected void Dispose(bool disposing)
-        {
-            if (!this._disposed && disposing)
-            {
-                _unitOfWork.Dispose();
-            }
-            this._disposed = true;
-        }
-
-        #endregion
     }
 }

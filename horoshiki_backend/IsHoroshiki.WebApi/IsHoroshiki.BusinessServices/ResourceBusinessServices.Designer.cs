@@ -61,6 +61,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ошибка при добавлении пользователя!.
+        /// </summary>
+        internal static string AccountsController_AddException {
+            get {
+                return ResourceManager.GetString("AccountsController_AddException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать подтверждение пароля!.
         /// </summary>
         internal static string AccountsController_ConfirmPasswordIsNull {
@@ -79,7 +88,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Статуса сотрудника для указанного ID={0} не существует!.
+        ///   Looks up a localized string similar to Статуса сотрудника для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string AccountsController_EmployeeStatusRepositoryIsNull {
             get {
@@ -142,7 +151,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Должности для указанного ID={0} не существует!.
+        ///   Looks up a localized string similar to Должности для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string AccountsController_PositionRepositoryIsNull {
             get {
@@ -196,7 +205,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Объекта с Id={0} не существует!.
+        ///   Looks up a localized string similar to Объекта с Id=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string BaseEditableService_EntityUpdateNotFound {
             get {
@@ -223,7 +232,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Значение для элемента с ключом &quot;{0}&quot; в холдере {1} не может быть заменено!.
+        ///   Looks up a localized string similar to Значение для элемента с ключом &quot;{0}&quot; в холдере &quot;{1}&quot; не может быть заменено!.
         /// </summary>
         internal static string HolderCannotReplaceValue {
             get {
@@ -232,7 +241,16 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Способа покупки для указанного ID={0} не существует!.
+        ///   Looks up a localized string similar to Не зарегистрировано сообщение об ошибке для кода: &quot;{0}&quot;!.
+        /// </summary>
+        internal static string MessageNotRegister {
+            get {
+                return ResourceManager.GetString("MessageNotRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Способа покупки для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string PlatformService_BuyProcessNotFound {
             get {
@@ -241,7 +259,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Статуса площадки для указанного ID={0} не существует!.
+        ///   Looks up a localized string similar to Статуса площадки для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string PlatformService_PlatformStatusNotFound {
             get {
@@ -250,7 +268,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Подразделение для указанного ID={0} не существует!.
+        ///   Looks up a localized string similar to Подразделение для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string PlatformService_SubDivisionNotFound {
             get {
@@ -259,7 +277,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Пользователя для указанного ID={0} не существует!.
+        ///   Looks up a localized string similar to Пользователя для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string PlatformService_UserNotFound {
             get {
@@ -322,7 +340,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Не найден тип цены с Id={0}!.
+        ///   Looks up a localized string similar to Не найден тип цены с Id=&quot;{0}&quot;!.
         /// </summary>
         internal static string SubDivisionService_PriceTypeNotFound {
             get {

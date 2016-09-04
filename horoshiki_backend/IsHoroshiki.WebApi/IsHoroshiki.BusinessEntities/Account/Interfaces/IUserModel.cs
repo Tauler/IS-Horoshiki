@@ -13,5 +13,23 @@
             get;
             set;
         }
+
+        /// <summary>
+        /// Имя
+        /// </summary>
+        string FirstName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        string LastName
+        {
+            get;
+            set;
+        }
     }
 }
