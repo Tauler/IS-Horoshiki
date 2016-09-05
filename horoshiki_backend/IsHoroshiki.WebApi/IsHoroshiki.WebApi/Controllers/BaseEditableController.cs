@@ -61,6 +61,26 @@ namespace IsHoroshiki.WebApi.Controllers
         }
 
         /// <summary>
+        /// Получить все записи
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        [Route("All")]
+        public async Task<IHttpActionResult> GetAll(string sortField = "", bool isAscending = true)
+        {
+            try
+            {
+                var list = await _service.GetAllAsync(1, Int32.MaxValue, sortField, isAscending);
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
         /// Добавить в БД
         /// </summary>
         /// <param name="model">Данные</param>
@@ -114,6 +134,25 @@ namespace IsHoroshiki.WebApi.Controllers
             }
 
             return Ok();
+        }
+
+        /// <summary>
+        /// true - если можно удалить из БД
+        /// </summary>
+        /// <param name="id">Id объекта</param>
+        [Route("CanDelete/{id}")]
+        [HttpGet]
+        public async Task<IHttpActionResult> IsCanDelete(int id)
+        {
+            try
+            {
+                bool result = await _service.IsCanDeleteAsync(id);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
         }
 
         /// <summary>

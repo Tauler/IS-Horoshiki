@@ -250,6 +250,30 @@ namespace IsHoroshiki.BusinessServices.Editable
             return _unitOfWork.AccountRepository.RemovePasswordAsync(userId);
         }
 
+        /// <summary>
+        /// true - если можно удалить из БД
+        /// </summary>
+        /// <param name="id">Id объекта</param>
+        /// <returns></returns>
+        public override async Task<bool> IsCanDeleteAsync(int id)
+        {
+            try
+            {
+                var daoEntity = await _repository.GetByIdAsync(id);
+                if (daoEntity == null)
+                {
+                    return false;
+                }
+
+                bool result = _unitOfWork.PlatformRepository.IsExistForUser(id);
+                return !result;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
 
         #region protected override
@@ -322,6 +346,5 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         #endregion
-
     }
 }

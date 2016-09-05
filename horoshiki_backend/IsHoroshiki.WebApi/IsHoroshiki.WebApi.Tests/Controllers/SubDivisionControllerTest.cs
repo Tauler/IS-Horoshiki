@@ -36,12 +36,19 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         /// </summary>
         private readonly Type _errrorResult = typeof(ErrorMessageResult);
 
+        /// <summary>
+        /// Сервис площадки
+        /// </summary>
+        private PlatformService _platformService;
+
         #endregion
 
         [TestInitialize]
         public void SetupContext()
         {
             MessageRegister.FillMessageHolder();
+
+            _platformService = new PlatformService(new UnitOfWork(), new PlatformValidator());
         }
 
         #region добавление 
@@ -226,6 +233,32 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
             }
         }
+
+
+        /// <summary>
+        /// Удаление пользователя запрещено, если есть площадка с этим пользователм
+        /// </summary>
+        [TestMethod]
+        public async Task AccountTest_Delete_ForExistPlatform()
+        {
+            using (var controller = GetController())
+            {
+                var platformTest = new PlatformControllerTest();
+                platformTest.SetupContext();
+
+                var platformId = platformTest.PlatformTest_Add().Result;
+                var platformModel = await _platformService.GetByIdAsync(platformId);
+
+                var result = await controller.IsCanDelete(platformModel.UserModel.Id);
+
+                Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<bool>));
+
+                var res = (result as OkNegotiatedContentResult<bool>).Content;
+
+                Assert.IsFalse(res);
+            }
+        }
+
 
         /// <summary>
         /// Удаление

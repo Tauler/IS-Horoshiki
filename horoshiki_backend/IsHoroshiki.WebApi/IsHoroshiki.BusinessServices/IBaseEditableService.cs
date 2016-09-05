@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities;
 using IsHoroshiki.BusinessEntities.Paging;
 
@@ -34,6 +33,13 @@ namespace IsHoroshiki.BusinessServices
         /// <param name="model">Модель</param>
         /// <returns></returns>
         Task<ModelEntityModifyResult> UpdateAsync(TModelEntity model);
+
+        /// <summary>
+        /// true - если можно удалить из БД
+        /// </summary>
+        /// <param name="id">Id объекта</param>
+        /// <returns></returns>
+        Task<bool> IsCanDeleteAsync(int id);
 
         /// <summary>
         /// Удалить из БД

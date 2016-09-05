@@ -2,6 +2,7 @@
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
+using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
 {
@@ -22,6 +23,29 @@ namespace IsHoroshiki.DAO.Repositories.Editable
 
         }
 
+        #endregion
+
+        #region 
+
+        /// <summary>
+        /// true - если существует площака, для которой указан пользователь с Id
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <returns></returns>
+        public bool IsExistForUser(int userId)
+        {
+            return Context.Platform.Any(p => p.UserId == userId);
+        }
+
+        /// <summary>
+        /// true - если существует площадка, для которой указано подразделение с Id
+        /// </summary>
+        /// <param name="subDivisionId">Id подразделения</param>
+        public bool IsExistForSubDivision(int subDivisionId)
+        {
+            return Context.Platform.Any(p => p.SubDivisionId == subDivisionId);
+        }
+       
         #endregion
 
         #region override

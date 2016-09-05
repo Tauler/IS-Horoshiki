@@ -169,6 +169,13 @@ namespace IsHoroshiki.BusinessServices
         }
 
         /// <summary>
+        /// true - если можно удалить из БД
+        /// </summary>
+        /// <param name="id">Id объекта</param>
+        /// <returns></returns>
+        public abstract Task<bool> IsCanDeleteAsync(int id);
+
+        /// <summary>
         /// Удалить из БД
         /// </summary>
         /// <param name="id">Id объекта</param>

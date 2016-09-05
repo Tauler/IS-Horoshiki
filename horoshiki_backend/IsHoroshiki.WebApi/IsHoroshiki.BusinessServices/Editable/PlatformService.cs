@@ -56,6 +56,16 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
+        /// true - если можно удалить из БД
+        /// </summary>
+        /// <param name="id">Id объекта</param>
+        /// <returns></returns>
+        public override async Task<bool> IsCanDeleteAsync(int id)
+        {
+            return true;
+        }
+
+        /// <summary>
         /// Валидация сущности
         /// </summary>
         /// <param name="model">Сущность</param>
