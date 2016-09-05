@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="DaoEntities\NotEditable\EmployeeReasonDismissal.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditable\EmployeeReasonDismissalConfiguration.cs" />
     <Compile Include="IBaseDaoEntity.cs" />
     <Compile Include="BaseDaoEntity.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -111,7 +113,9 @@
     <Compile Include="Repositories\Accounts\Interfaces\IAccountRepository.cs" />
     <Compile Include="Repositories\NotEditable\BaseNotEditableRepository.cs" />
     <Compile Include="Repositories\NotEditable\DeliveryTimeRepository.cs" />
+    <Compile Include="Repositories\NotEditable\EmployeeReasonDismissalRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IDeliveryTimeRepository.cs" />
+    <Compile Include="Repositories\NotEditable\Interfaces\IEmployeeReasonDismissalRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IOrderPayRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\ISubDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditable\OrderPayRepository.cs" />

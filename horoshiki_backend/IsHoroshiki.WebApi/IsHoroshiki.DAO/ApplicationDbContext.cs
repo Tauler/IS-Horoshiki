@@ -154,6 +154,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new PlatformConfiguration());
             modelBuilder.Configurations.Add(new PositionConfiguration());
             modelBuilder.Configurations.Add(new EmployeeStatusConfiguration());
+            modelBuilder.Configurations.Add(new EmployeeReasonDismissalConfiguration());
             modelBuilder.Configurations.Add(new DepartmentConfiguration());
             modelBuilder.Configurations.Add(new OrderStatusConfiguration());
             modelBuilder.Configurations.Add(new OrderPayConfiguration());

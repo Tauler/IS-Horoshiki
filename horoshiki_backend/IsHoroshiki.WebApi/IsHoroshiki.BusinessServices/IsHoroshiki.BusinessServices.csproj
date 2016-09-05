@@ -78,7 +78,9 @@
     <Compile Include="IBaseNotEditableService.cs" />
     <Compile Include="ModelEntityModifyResult.cs" />
     <Compile Include="NotEditable\DeliveryTimeService.cs" />
+    <Compile Include="NotEditable\EmployeeReasonDismissalService.cs" />
     <Compile Include="NotEditable\Interfaces\IDeliveryTimeService.cs" />
+    <Compile Include="NotEditable\Interfaces\IEmployeeReasonDismissalService.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayService.cs" />
     <Compile Include="NotEditable\OrderPayService.cs" />
     <Compile Include="NotEditable\SubDepartmentService.cs" />

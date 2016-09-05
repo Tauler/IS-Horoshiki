@@ -96,6 +96,8 @@
     <Compile Include="Account\UserModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
+    <Compile Include="NotEditable\EmployeeReasonDismissalModel.cs" />
+    <Compile Include="NotEditable\Interfaces\IEmployeeReasonDismissalModel.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayModel.cs" />
     <Compile Include="NotEditable\BaseNotEditableModel.cs" />
     <Compile Include="NotEditable\BuyProcessModel.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="NotEditable\Interfaces\IDeliveryTimeModel.cs" />
     <Compile Include="NotEditable\Interfaces\ISubDepartmentModel.cs" />
     <Compile Include="NotEditable\MappingDao\DeliveryTimeTypeModelMappingDao.cs" />
+    <Compile Include="NotEditable\MappingDao\EmployeeReasonDismissalModelMappingDao.cs" />
     <Compile Include="NotEditable\MappingDao\OrderPayModelMappingDao.cs" />
     <Compile Include="NotEditable\MappingDao\SubDepartmentModelMappingDao.cs" />
     <Compile Include="NotEditable\OrderPayModel.cs" />

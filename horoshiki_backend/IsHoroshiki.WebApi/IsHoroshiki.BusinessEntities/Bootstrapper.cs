@@ -4,6 +4,8 @@ using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using Microsoft.Practices.Unity;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable;
 
 namespace IsHoroshiki.BusinessEntities
 {
@@ -29,7 +31,7 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<IApplicationUserModel, ApplicationUserModel>();
             container.RegisterType<IUserModel, UserModel>();
             container.RegisterType<ISubDivisionModel, SubDivisionModel>();
-            container.RegisterType<IPlatformModel, PlatformModel>();
+            container.RegisterType<IEmployeeReasonDismissalModel, EmployeeReasonDismissalModel>();
 
             return container;
         }

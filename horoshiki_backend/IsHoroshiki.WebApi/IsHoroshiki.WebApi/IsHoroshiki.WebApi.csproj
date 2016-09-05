@@ -256,6 +256,7 @@
     <Compile Include="Controllers\BaseNotEditableController.cs" />
     <Compile Include="Controllers\Editable\AccountsController.cs" />
     <Compile Include="Controllers\Editable\PlatformsController.cs" />
+    <Compile Include="Controllers\NotEditable\EmployeeReasonDismissalsController.cs" />
     <Compile Include="Handlers\ErrorMessageResult.cs" />
     <Compile Include="Handlers\IocCustomCreationConverter.cs" />
     <Compile Include="Helpers\JSONHelper.cs" />

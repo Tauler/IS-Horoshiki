@@ -179,7 +179,7 @@ INSERT INTO [dbo].[AspNetUsers]
            'LastName',
            '',
            1,
-           '2099-12-31 00:00:00.000',
+           '2099-01-01 00:00:00.000',
            2,
            1,
            getdate(),

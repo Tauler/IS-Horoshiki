@@ -30,6 +30,7 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IDeliveryZoneRepository, DeliveryZoneRepository>();
             container.RegisterType<IDepartmentRepository, DepartmentRepository>();
             container.RegisterType<ISubDepartmentRepository, SubDepartmentRepository>();
+            container.RegisterType<IEmployeeReasonDismissalRepository, EmployeeReasonDismissalRepository>();
             container.RegisterType<IEmployeeStatusRepository, EmployeeStatusRepository>();
             container.RegisterType<IOrderStatusRepository, OrderStatusRepository>();
             container.RegisterType<IOrderPayRepository, OrderPayRepository>();

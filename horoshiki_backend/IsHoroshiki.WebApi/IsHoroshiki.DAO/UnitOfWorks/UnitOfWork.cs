@@ -48,6 +48,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private IEmployeeStatusRepository _employeeStatusRepository;
 
         /// <summary>
+        /// Репозиторий Причины увольнения сотрудника
+        /// </summary>
+        private EmployeeReasonDismissalRepository _employeeReasonDismissalRepository;
+
+        /// <summary>
         /// Репозиторий Отделы
         /// </summary>
         private IDepartmentRepository _departmentRepository;
@@ -170,6 +175,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._employeeStatusRepository = new EmployeeStatusRepository(_context);
                 }
                 return _employeeStatusRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Причины увольнения сотрудника
+        /// </summary>  
+        public IEmployeeReasonDismissalRepository EmployeeReasonDismissalRepository
+        {
+            get
+            {
+                if (this._employeeReasonDismissalRepository == null)
+                {
+                    this._employeeReasonDismissalRepository = new EmployeeReasonDismissalRepository(_context);
+                }
+                return _employeeReasonDismissalRepository;
             }
         }
 
