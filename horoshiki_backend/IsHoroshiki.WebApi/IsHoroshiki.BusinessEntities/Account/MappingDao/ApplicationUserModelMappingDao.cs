@@ -105,7 +105,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             return new UserModel()
             {
                 Id = model.Id,
-                UserName = model.UserName
+                UserName = model.UserName,
+                FirstName = model.FirstName,
+                LastName = model.LastName
             };
         }
 
