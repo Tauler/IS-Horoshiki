@@ -49,12 +49,16 @@
                         <section>
                             <label class="label"><strong>Подразделение:</strong></label>
                             <label class="input col-6">
-                                <select class="form-control" ng-model="model.subdivision">
+                                <select ng-change="checkErrorSubdivisions();" class="form-control"
+                                        ng-model="model.subdivision">
                                     <option value="">Не выбрано</option>
                                     <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
                                         {{subdivision.Name}}
                                     </option>
                                 </select>
+                                <code class="ng-binding" ng-show="model.error.subdivision">Поле "Подразделение" должно
+                                    быть
+                                    заполнено. </code>
                             </label>
                         </section>
 
@@ -73,12 +77,15 @@
                         <section>
                             <label class="label"><strong>Статус площадки:</strong></label>
                             <label class="input col-6">
-                                <select class="form-control" ng-model="model.statusSite">
+                                <select ng-change="checkErrorStatusSite();" class="form-control"
+                                        ng-model="model.statusSite">
                                     <option value="">Не выбрано</option>
                                     <option ng-repeat="status in model.statusSites" value="{{status}}">
                                         {{status.Value}}
                                     </option>
                                 </select>
+                                <code class="ng-binding" ng-show="model.error.statusSite">Поле "Статус площадки" должно
+                                    быть заполнено. </code>
                             </label>
                         </section>
 
@@ -86,7 +93,8 @@
                         <section>
                             <label class="label"><strong>Способы покупки:</strong></label>
                             <label class="input col-6">
-                                <select multiple="multiple" class="form-control" ng-model="model.buyProcessesValue">
+                                <select ng-change="checkErrorBuyProcess();" multiple="multiple" class="form-control"
+                                        ng-model="model.buyProcessesValue">
                                     <option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">
                                         {{buyProcess.Value}}
                                     </option>
@@ -94,34 +102,41 @@
                             </label>
                             <div class="note">Для выбора нескольких элементов нажмите клавишу Ctrl и выберите объекты.
                             </div>
+                            <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть
+                                заполнено. </code>
                         </section>
 
+                        <section>
+                            <label class="label"><strong>Время работы:</strong></label>
+                            <div class="row">
+                                <section class="col col-3" style="margin-bottom: 0px;">
+                                    <label class="input">
+                                        с: <input class="" ng-blur="checkErrorTimeStart();" maxlength="8"
+                                                  placeholder="00:00:00"
+                                                  ng-model="model.platform.TimeStart" name="start" id="start"
+                                                  type="text">
+                                    </label>
+                                </section>
+                                <section class="col col-3" style="margin-bottom: 0px;">
+                                    <label class="input">
+                                        по: <input class="" ng-blur="checkErrorTimeEnd();" ng-model="model.platform.TimeEnd" maxlength="8" placeholder="12:30:00"  name="end" id="end" type="text">
+                                    </label>
+                                </section>
 
-                        <label class="label"><strong>Время работы:</strong></label>
-                        <div class="row">
-                            <section class="col col-3">
-                                <label class="input">
-                                   с:  <input class="" ng-blur="checkErrorTimeStart();" maxlength="50"
-                                           placeholder="00:00:00"
-                                           ng-model="model.platform.TimeStart" name="start" id="start" type="text">
-                                </label>
-                            </section>
-                            <section class="col col-3">
-                                <label class="input">
-                                   по:  <input class="" ng-blur="checkErrorTimeEnd();" maxlength="50"
-                                           placeholder="12:30:00"
-                                           ng-model="model.platform.TimeEnd" name="name" id="end" type="text">
-                                </label>
-                            </section>
-                        </div>
+                            </div>
+                            <!--<code class="ng-binding">Не верный формат поля "Минимальный чек",-->
+                                <!--данное поле только цифры. </code>-->
+                        </section>
+
 
                         <section>
                             <label class="label"><strong>Минимальный чек:</strong></label>
                             <label class="input col-6">
-                                <input class="" ng-blur="checkErrorMinCheck();" maxlength="255" placeholder="Минимальный чек"
+                                <input class="" ng-blur="checkErrorMinCheck();" maxlength="255"
+                                       placeholder="Минимальный чек"
                                        ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
-                                <code class="ng-binding" ng-show="model.error.address">Не верный формат поля "Минимальный чек",
-                                    данное поле только цифры. </code>
+                                <code class="ng-binding" ng-show="model.error.minCheck">Не верный формат поля
+                                    "Минимальный чек", данное поле только цифры. </code>
                             </label>
                         </section>
 
