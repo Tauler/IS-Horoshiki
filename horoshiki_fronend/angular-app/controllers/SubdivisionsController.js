@@ -93,7 +93,7 @@ subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$loca
         $scope.model.error.timezone = false;
         $scope.checkErrorTimezone = function () {
             var timezone = /^[0-9-]{1,3}$/;
-            if (!$scope.model.subdivision.Timezone.match(timezone) ||  parseInt($scope.model.subdivision.Timezone) < -12 ||  parseInt($scope.model.subdivision.Timezone) > 13) {
+            if (!$scope.model.subdivision.Timezone.match(timezone) ||  parseInt($scope.model.subdivision.Timezone) < -12 ||  parseInt($scope.model.subdivision.Timezone) > 12) {
                 $scope.model.error.timezone = true;
             } else {
                 $scope.model.error.timezone = false;
