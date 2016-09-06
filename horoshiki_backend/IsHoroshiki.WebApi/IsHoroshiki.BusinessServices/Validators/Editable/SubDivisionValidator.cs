@@ -34,7 +34,7 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(SubDivisionErrors.TimezoneInvalidPeriod);
             }
 
-            if (element.PriceTypeId == 0)
+            if (element.PriceTypeModel == null)
             {
                 return new ValidationResult(SubDivisionErrors.PriceTypeIsNullModel);
             }

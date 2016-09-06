@@ -1,4 +1,8 @@
-﻿using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.Converters;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+using Newtonsoft.Json;
 
 namespace IsHoroshiki.BusinessEntities.Editable
 {
@@ -28,7 +32,8 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Типы цен
         /// </summary>
-        public int PriceTypeId
+        [JsonConverter(typeof(EntityModelConverter<PriceTypeModel, IPriceTypeModel>))]
+        public IPriceTypeModel PriceTypeModel
         {
             get;
             set;

@@ -84,15 +84,6 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Способы покупки
         /// </summary>
-        public ICollection<int> BuyProcessesIds
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Способы покупки
-        /// </summary>
         public ICollection<BuyProcess> BuyProcesses
         {
             get;

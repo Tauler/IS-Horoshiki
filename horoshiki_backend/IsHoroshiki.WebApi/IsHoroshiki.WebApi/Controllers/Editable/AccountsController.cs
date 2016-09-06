@@ -10,7 +10,6 @@ using IsHoroshiki.WebApi.Handlers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using IsHoroshiki.BusinessEntities.Account.MappingDao;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
@@ -45,27 +44,6 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         #endregion
 
         #region методы контроллера
-
-        /// <summary>
-        /// Получить все записи
-        /// </summary>
-        /// <param name="sortField">Поле для сортировки</param>
-        /// <param name="isAscending">true - сортировать по возрастанию</param>
-        /// <returns></returns>
-        
-        public override async Task<IHttpActionResult> GetAll(string sortField = "", bool isAscending = true)
-        {
-            try
-            {
-                var list = await _service.GetAllAsync(sortField, isAscending);
-                var result = list.ToSmallModelEntityList();
-                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return new ErrorMessageResult(e);
-            }
-        }
 
         /// <summary>
         /// Выход из системы

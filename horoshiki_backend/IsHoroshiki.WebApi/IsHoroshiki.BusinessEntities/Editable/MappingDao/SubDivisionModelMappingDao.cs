@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 
 namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
@@ -22,7 +23,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 Id = model.Id,
                 Name = model.Name,
                 Timezone = model.Timezone,
-                PriceTypeId = model.PriceTypeId,
+                PriceType = model.PriceTypeModel != null ? model.PriceTypeModel.ToDaoEntity() : null,
+                PriceTypeId = model.PriceTypeModel != null ? model.PriceTypeModel.Id : 0,
                 SiteHeader = model.SiteHeader
             };
         }
@@ -49,7 +51,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 Id = model.Id,
                 Name = model.Name,
                 Timezone = model.Timezone,
-                PriceTypeId = model.PriceTypeId,
+                PriceTypeModel = model.PriceType != null ? model.PriceType.ToModelEntity() : null,
                 SiteHeader = model.SiteHeader
             };
         }
@@ -75,7 +77,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             daoModel.Id = model.Id;
             daoModel.Name = model.Name;
             daoModel.Timezone = model.Timezone;
-            daoModel.PriceTypeId = model.PriceTypeId;
+            daoModel.PriceTypeId = model.PriceTypeModel?.Id ?? 0;
+            daoModel.PriceType = model.PriceTypeModel?.ToDaoEntity();
             daoModel.SiteHeader = model.SiteHeader;
 
             return daoModel;

@@ -1,16 +1,35 @@
 ﻿using System;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.Account.Interfaces
 {
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public interface IApplicationUserModel : IApplicationUserSmallModel
+    public interface IApplicationUserModel : IBaseBusninessModel
     {
+        /// <summary>
+        /// Имя
+        /// </summary>
+        string FirstName
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Отчество
         /// </summary>
         string MiddleName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        string LastName
         {
             get;
             set;
@@ -46,7 +65,7 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        int EmployeeStatusId
+        IEmployeeStatusModel EmployeeStatus
         {
             get;
             set;
@@ -55,7 +74,7 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// <summary>
         /// Должности
         /// </summary>
-        int PositionId
+        IPositionModel Position
         {
             get;
             set;
@@ -83,6 +102,15 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// Доступ в систему
         /// </summary>
         bool IsAccess
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Логин
+        /// </summary>
+        string UserName
         {
             get;
             set;

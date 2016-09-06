@@ -1,14 +1,17 @@
-﻿namespace IsHoroshiki.BusinessEntities.Account.Interfaces
+﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+
+namespace IsHoroshiki.BusinessEntities.Account
 {
     /// <summary>
     /// Лайт-версия пользователя
     /// </summary>
-    public interface IApplicationUserSmallModel : IBaseBusninessModel
+    public class UserModel : BaseBusninessModel, IUserModel
     {
         /// <summary>
         /// Логин
         /// </summary>
-        string UserName
+        public string UserName
         {
             get;
             set;
@@ -17,7 +20,7 @@
         /// <summary>
         /// Имя
         /// </summary>
-        string FirstName
+        public string FirstName
         {
             get;
             set;
@@ -26,7 +29,7 @@
         /// <summary>
         /// Фамилия
         /// </summary>
-        string LastName
+        public string LastName
         {
             get;
             set;

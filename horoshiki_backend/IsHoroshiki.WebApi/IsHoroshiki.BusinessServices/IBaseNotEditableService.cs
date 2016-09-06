@@ -10,6 +10,10 @@ namespace IsHoroshiki.BusinessServices
     public interface IBaseNotEditableService<TBaseBusninessModel> : IBaseBusinessService<TBaseBusninessModel>
         where TBaseBusninessModel : IBaseNotEditableModel
     {
-        
+        /// <summary>  
+        /// Получить все записи
+        /// </summary>  
+        /// <returns></returns>  
+        Task<IEnumerable<TBaseBusninessModel>> GetAllAsync();
     }
 }

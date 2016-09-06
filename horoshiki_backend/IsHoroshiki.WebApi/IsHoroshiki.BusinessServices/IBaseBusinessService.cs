@@ -1,6 +1,5 @@
 ﻿using IsHoroshiki.BusinessEntities;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IsHoroshiki.BusinessServices
@@ -11,13 +10,6 @@ namespace IsHoroshiki.BusinessServices
     public interface IBaseBusinessService<TModelEntity> : IDisposable 
         where TModelEntity : IBaseBusninessModel
     {
-        /// <summary>
-        /// Получить всех пользователей без пейджинга
-        /// </summary>
-        /// <param name="sortField">Поле для сортировки</param>
-        /// <param name="isAscending">true - сортировать по возрастанию</param>
-        Task<IEnumerable<TModelEntity>> GetAllAsync(string sortField = "", bool isAscending = true);
-
         /// <summary>  
         /// Найти по Id 
         /// </summary>  

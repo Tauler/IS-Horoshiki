@@ -48,16 +48,6 @@ namespace IsHoroshiki.BusinessServices
 
         #region IBaseBusinessService
 
-        /// <summary>
-        /// Получить всех пользователей без пейджинга
-        /// </summary>
-        /// <returns></returns>
-        public virtual async Task<IEnumerable<TModelEntity>> GetAllAsync(string sortField = "", bool isAscending = true)
-        {
-            var list = await _repository.GetAllAsync(1, Int32.MaxValue, sortField, isAscending, false);
-            return ConvertTo(list);
-        }
-
         /// <summary>  
         /// Найти по Id 
         /// </summary>  
@@ -108,15 +98,16 @@ namespace IsHoroshiki.BusinessServices
         /// <param name="repository">Репозитарий</param>
         /// <param name="entity">Сущность</param>
         /// <returns></returns>
-        protected virtual async Task<bool> IsExistDaoEntity<TDao>(IBaseRepository<TDao> repository, int entityId)
-            where TDao : IBaseDaoEntity
+        protected virtual async Task<bool> IsExistDaoEntity<TEntity, TDaoEntity>(IBaseRepository<TDaoEntity> repository, TEntity entity)
+            where TEntity : IBaseBusninessModel
+            where TDaoEntity : BaseDaoEntity
         {
-            if (entityId == 0)
+            if (entity == null)
             {
                 return false;
             }
 
-            var daoEntity = await repository.GetByIdAsync(entityId);
+            var daoEntity = await repository.GetByIdAsync(entity.Id);
             if (daoEntity == null)
             {
                 return false;

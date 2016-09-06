@@ -47,7 +47,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// <param name="sortField">Поле для сортировки</param>
         /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <returns></returns>
-        public virtual async Task<IHttpActionResult> Get(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        public async Task<IHttpActionResult> Get(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
         {
             try
             {
@@ -66,12 +66,12 @@ namespace IsHoroshiki.WebApi.Controllers
         /// <param name="sortField">Поле для сортировки</param>
         /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <returns></returns>
-        [Route("Small")]
-        public virtual async Task<IHttpActionResult> GetAll(string sortField = "", bool isAscending = true)
+        [Route("All")]
+        public async Task<IHttpActionResult> GetAll(string sortField = "", bool isAscending = true)
         {
             try
             {
-                var list = await _service.GetAllAsync(sortField, isAscending);
+                var list = await _service.GetAllAsync(1, Int32.MaxValue, sortField, isAscending);
                 return Ok(list);
             }
             catch (Exception e)
@@ -113,7 +113,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// </summary>
         /// <param name="model">Данные</param>
         [Route("Update")]
-        public virtual async Task<IHttpActionResult> Update(TModelEntity model)
+        public async Task<IHttpActionResult> Update(TModelEntity model)
         {
             if (!ModelState.IsValid)
             {
@@ -142,7 +142,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// <param name="id">Id объекта</param>
         [Route("CanDelete/{id}")]
         [HttpGet]
-        public virtual async Task<IHttpActionResult> IsCanDelete(int id)
+        public async Task<IHttpActionResult> IsCanDelete(int id)
         {
             try
             {
@@ -160,7 +160,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// </summary>
         /// <param name="id">Id объекта</param>
         [Route("{id}")]
-        public virtual async Task<IHttpActionResult> Delete(int id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
             try
             {

@@ -40,6 +40,7 @@ namespace IsHoroshiki.WebApi.Controllers
         /// <summary>
         /// Получить все записи
         /// </summary>
+        //[ResponseType(typeof(IEnumerable<TModelEnty>))]
         public virtual async Task<IHttpActionResult> Get()
         {
             try

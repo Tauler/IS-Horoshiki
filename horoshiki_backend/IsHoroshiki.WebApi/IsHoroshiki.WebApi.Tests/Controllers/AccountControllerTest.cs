@@ -124,13 +124,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var userModel = GetApplicationUserModel();
-                userModel.PositionId = Int32.MaxValue;
+                userModel.Position = new PositionModel()
+                {
+                    Id = Int32.MaxValue
+                };
 
                 var result = await controller.Add(userModel);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                userModel.PositionId = 0;
+                userModel.Position = null;
 
                 result = await controller.Add(userModel);
 
@@ -147,7 +150,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var userModel = GetApplicationUserModel();
-                userModel.PositionId = 1;
+                userModel.Position = new PositionModel()
+                {
+                    Id = 1
+                };
 
                 var result = await controller.Add(userModel);
 
@@ -164,13 +170,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var userModel = GetApplicationUserModel();
-                userModel.EmployeeStatusId = Int32.MaxValue;
+                userModel.EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id = Int32.MaxValue
+                };
 
                 var result = await controller.Add(userModel);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                userModel.EmployeeStatusId = 0;
+                userModel.EmployeeStatus = null;
 
                 result = await controller.Add(userModel);
 
@@ -187,7 +196,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var userModel = GetApplicationUserModel();
-                userModel.EmployeeStatusId = 1;
+                userModel.EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id = 1
+                };
 
                 var result = await controller.Add(userModel);
 
@@ -356,7 +368,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
                 Assert.IsInstanceOfType(addResult, _okAddResult);
 
-                userModel.PositionId = Int32.MaxValue;
+                userModel.Position = new PositionModel()
+                {
+                    Id = Int32.MaxValue
+                };
 
                 var result = await controller.Update(userModel);
 
@@ -378,7 +393,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
                 Assert.IsInstanceOfType(addResult, _okAddResult);
 
-                userModel.EmployeeStatusId = Int32.MaxValue;
+                userModel.EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id = Int32.MaxValue
+                };
 
                 var result = await controller.Update(userModel);
 
@@ -494,7 +512,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 var platformId = platformTest.PlatformTest_Add().Result;
                 var platformModel = await _platformService.GetByIdAsync(platformId);
 
-                var result = await controller.IsCanDelete(platformModel.AccountId);
+                var result = await controller.IsCanDelete(platformModel.UserModel.Id);
 
                 Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<bool>));
 
@@ -539,8 +557,16 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 FirstName = "FirstName" + Guid.NewGuid(),
                 LastName = "LastName" + Guid.NewGuid(),
-                EmployeeStatusId = 1,
-                PositionId = 1,
+                EmployeeStatus = new EmployeeStatusModel()
+                {
+                    Id= 1,
+                    Value = "Новый статус"
+                },
+                Position = new PositionModel
+                {
+                    Id = 1,
+                    Value = "PositionModel"
+                },
                 DateStart = DateTime.Now,
                 UserName = "login" + Guid.NewGuid().ToString().Replace("-", ""),
                 Password = "_Aa123456",

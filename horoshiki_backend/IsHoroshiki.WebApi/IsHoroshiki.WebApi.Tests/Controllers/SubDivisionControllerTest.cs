@@ -96,13 +96,25 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var model = GetModel();
-                model.PriceTypeId = 0;
+                model.PriceTypeModel = null;
 
                 var result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
 
-                model.PriceTypeId = Int32.MaxValue;
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = Int32.MaxValue
+                };
+
+                result = await controller.Add(model);
+
+                Assert.IsInstanceOfType(result, typeof(ErrorMessageResult));
+
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = 0
+                };
 
                 result = await controller.Add(model);
 
@@ -118,7 +130,8 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         {
             var model = await AddSubDivisionModelAndGet();
            
-            Assert.IsTrue(model.PriceTypeId == defaultPrimeModelId);
+            Assert.IsNotNull(model.PriceTypeModel);
+            Assert.IsTrue(model.PriceTypeModel.Id == defaultPrimeModelId);
         }
 
         #endregion
@@ -171,7 +184,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 var model = await AddSubDivisionModelAndGet();
 
-                model.PriceTypeId = Int32.MaxValue;
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = Int32.MaxValue
+                };
 
                 var result = await controller.Update(model);
 
@@ -189,7 +205,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 var model = await AddSubDivisionModelAndGet();
 
-                model.PriceTypeId = defaultPrimeModelId;
+                model.PriceTypeModel = new PriceTypeModel
+                {
+                    Id = defaultPrimeModelId
+                };
 
                 var result = await controller.Update(model);
 
@@ -230,7 +249,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 var platformId = platformTest.PlatformTest_Add().Result;
                 var platformModel = await _platformService.GetByIdAsync(platformId);
 
-                var result = await controller.IsCanDelete(platformModel.AccountId);
+                var result = await controller.IsCanDelete(platformModel.UserModel.Id);
 
                 Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<bool>));
 
@@ -271,7 +290,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 Name = "Name" + Guid.NewGuid().ToString().Replace("-", ""),
                 SiteHeader = "SiteHeader" + Guid.NewGuid().ToString().Replace("-", ""),
                 Timezone = 3,
-                PriceTypeId = defaultPrimeModelId
+                PriceTypeModel = new PriceTypeModel
+                {
+                    Id = defaultPrimeModelId,
+                    Value = "Value" + Guid.NewGuid().ToString().Replace("-", "")
+                }
             };
         }
 

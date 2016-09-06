@@ -285,16 +285,16 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         protected override async Task<ValidationResult> ValidationInternal(IApplicationUserModel model)
         {
-            var position = await _unitOfWork.PositionRepository.GetByIdAsync(model.PositionId);
+            var position = await _unitOfWork.PositionRepository.GetByIdAsync(model.Position.Id);
             if (position == null)
             {
-                return new ValidationResult(AccountErrors.PositionRepositoryIsNull, model.PositionId);
+                return new ValidationResult(AccountErrors.PositionRepositoryIsNull, model.Position.Id);
             }
 
-            var employeeStatus = await _unitOfWork.EmployeeStatusRepository.GetByIdAsync(model.EmployeeStatusId);
+            var employeeStatus = await _unitOfWork.EmployeeStatusRepository.GetByIdAsync(model.EmployeeStatus.Id);
             if (employeeStatus == null)
             {
-                return new ValidationResult(AccountErrors.EmployeeStatusRepositoryIsNull, model.EmployeeStatusId);
+                return new ValidationResult(AccountErrors.EmployeeStatusRepositoryIsNull, model.EmployeeStatus.Id);
             }
 
             return new ValidationResult();
