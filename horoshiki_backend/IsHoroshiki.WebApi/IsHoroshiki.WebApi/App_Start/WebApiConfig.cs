@@ -3,6 +3,8 @@ using IsHoroshiki.WebApi.ActionFilters;
 using IsHoroshiki.WebApi.Handlers;
 using IsHoroshiki.WebApi.Providers;
 using Microsoft.Owin.Security.OAuth;
+using System.Web.Http.Routing;
+using System.Net.Http;
 
 namespace IsHoroshiki.WebApi
 {
@@ -29,11 +31,12 @@ namespace IsHoroshiki.WebApi
             // Web API routes
             config.MapHttpAttributeRoutes(new CustomDirectRouteProvider());
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            config.Routes.MapHttpRoute("DefaultApiWithId", "api/{controller}/{id}", new { id = RouteParameter.Optional }, new { id = @"\d+" });
+            config.Routes.MapHttpRoute("DefaultApiWithAction", "api/{controller}/{action}");
+            config.Routes.MapHttpRoute("DefaultApiGet", "api/{controller}", new { action = "Get" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+            config.Routes.MapHttpRoute("DefaultApiPost", "api/{controller}", new { action = "Post" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
+            config.Routes.MapHttpRoute("DefaultApiPut", "api/{controller}", new { action = "Put" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Put) });
+            config.Routes.MapHttpRoute("DefaultApiDelete", "api/{controller}", new { action = "Delete" }, new { httpMethod = new HttpMethodConstraint(HttpMethod.Delete) });
         }
     }
 }
