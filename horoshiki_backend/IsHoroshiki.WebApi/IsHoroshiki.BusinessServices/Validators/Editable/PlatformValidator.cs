@@ -40,7 +40,7 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(PlatformErrors.PlatformStatusIsNullModel);
             }
 
-            if (element.TimeStart == TimeSpan.Zero || element.TimeStart == TimeSpan.MinValue)
+            if (element.TimeStart == TimeSpan.MinValue)
             {
                 return new ValidationResult(PlatformErrors.TimeStartIsNullModel);
             }
