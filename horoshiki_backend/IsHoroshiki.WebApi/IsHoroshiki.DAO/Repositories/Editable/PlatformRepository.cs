@@ -103,16 +103,11 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             }
 
             var list = new List<BuyProcess>();
-            if (entity.BuyProcesses != null)
+            if (entity.BuyProcessesIds != null)
             {
-                foreach (var buyProcess in entity.BuyProcesses)
+                foreach (var buyProcessId in entity.BuyProcessesIds)
                 {
-                    if (buyProcess == null)
-                    {
-                        continue;
-                    }
-
-                    var daoByProccess = Context.BuyProcesses.Find(buyProcess.Id);
+                    var daoByProccess = Context.BuyProcesses.Find(buyProcessId);
                     if (!list.Contains(daoByProccess))
                     {
                         list.Add(daoByProccess);

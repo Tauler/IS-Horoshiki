@@ -82,12 +82,12 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 }
             }
 
-            if (element.Position == null)
+            if (element.PositionId == 0)
             {
                 return new ValidationResult(AccountErrors.PositionIsNull);
             }
 
-            if (element.EmployeeStatus == null)
+            if (element.PositionId == 0)
             {
                 return new ValidationResult(AccountErrors.EmployeeStatusIsNull);
             }

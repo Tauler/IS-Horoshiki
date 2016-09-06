@@ -72,6 +72,10 @@ namespace IsHoroshiki.BusinessServices
         /// <summary>  
         /// Получить все записи
         /// </summary>  
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <returns></returns>  
         public virtual async Task<PagedResult<TModelEntity>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
         {

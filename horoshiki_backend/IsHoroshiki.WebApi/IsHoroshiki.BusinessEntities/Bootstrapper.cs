@@ -30,7 +30,7 @@ namespace IsHoroshiki.BusinessEntities
 
             container.RegisterType<IApplicationUserModel, ApplicationUserModel>();
             container.RegisterType<IPlatformModel, PlatformModel>();
-            container.RegisterType<IUserModel, UserModel>();
+            container.RegisterType<IApplicationUserSmallModel, ApplicationUserSmallModel>();
             container.RegisterType<ISubDivisionModel, SubDivisionModel>();
             container.RegisterType<IEmployeeReasonDismissalModel, EmployeeReasonDismissalModel>();
 

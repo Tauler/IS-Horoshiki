@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using IsHoroshiki.BusinessEntities.Account;
-using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.Converters;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using Newtonsoft.Json;
 
 namespace IsHoroshiki.BusinessEntities.Editable
 {
@@ -27,18 +21,16 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Подразделение
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<SubDivisionModel, ISubDivisionModel>))]
-        public ISubDivisionModel SubDivisionModel
+        public int SubDivisionId
         {
             get;
             set;
         }
 
         /// <summary>
-        ///  Пользователь - управляющий
+        ///  Пользователь
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<UserModel, IUserModel>))]
-        public IUserModel UserModel
+        public int AccountId
         {
             get;
             set;
@@ -47,8 +39,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Статус площадки
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<PlatformStatusModel, IPlatformStatusModel>))]
-        public IPlatformStatusModel PlatformStatusModel
+        public int PlatformStatusId
         {
             get;
             set;
@@ -57,8 +48,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Способы покупки
         /// </summary>
-        [JsonConverter(typeof(CollectionEntityConverter<BuyProcessModel, IBuyProcessModel>))]
-        public ICollection<IBuyProcessModel> BuyProcessesModel
+        public ICollection<int> BuyProcessesIds
         {
             get;
             set;

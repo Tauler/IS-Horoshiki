@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
 {
@@ -22,16 +20,16 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Подразделение
         /// </summary>
-        ISubDivisionModel SubDivisionModel
+        int SubDivisionId
         {
             get;
             set;
         }
 
         /// <summary>
-        ///  Пользователь - управляющий
+        ///  Пользователь
         /// </summary>
-        IUserModel UserModel
+        int AccountId
         {
             get;
             set;
@@ -40,7 +38,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Статус площадки
         /// </summary>
-        IPlatformStatusModel PlatformStatusModel
+        int PlatformStatusId
         {
             get;
             set;
@@ -49,7 +47,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Способы покупки
         /// </summary>
-        ICollection<IBuyProcessModel> BuyProcessesModel
+        ICollection<int> BuyProcessesIds
         {
             get;
             set;

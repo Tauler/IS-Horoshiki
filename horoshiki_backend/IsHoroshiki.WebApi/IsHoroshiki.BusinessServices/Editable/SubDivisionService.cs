@@ -84,13 +84,10 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         protected override async Task<ValidationResult> ValidationInternal(ISubDivisionModel model)
         {
-            if (model.PriceTypeModel != null)
+            var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeId);
+            if (daoPriceType == null)
             {
-                var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
-                if (daoPriceType == null)
-                {
-                    return new ValidationResult(SubDivisionErrors.PriceTypeNotFound, model.PriceTypeModel.Id);
-                }
+                return new ValidationResult(SubDivisionErrors.PriceTypeNotFound, model.PriceTypeId);
             }
 
             return new ValidationResult();

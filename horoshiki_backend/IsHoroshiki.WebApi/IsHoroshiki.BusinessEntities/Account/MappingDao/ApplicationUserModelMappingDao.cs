@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 
 namespace IsHoroshiki.BusinessEntities.Account.MappingDao
@@ -38,10 +37,8 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.Phone = model.Phone;
             daoModel.IsHaveMedicalBook = model.IsHaveMedicalBook;
             daoModel.MedicalBookEnd = model.MedicalBookEnd;
-            daoModel.EmployeeStatusId = model.EmployeeStatus != null ? model.EmployeeStatus.Id : 0;
-            daoModel.EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToDaoEntity() : null;
-            daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
-            daoModel.Position = model.Position != null ? model.Position.ToDaoEntity() : null;
+            daoModel.EmployeeStatusId = model.EmployeeStatusId;
+            daoModel.PositionId = model.PositionId;
             daoModel.DateStart = model.DateStart;
             daoModel.DateEnd = model.DateEnd;
             daoModel.IsAccess = model.IsAccess;
@@ -75,14 +72,40 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 Phone = model.Phone,
                 IsHaveMedicalBook = model.IsHaveMedicalBook,
                 MedicalBookEnd = model.MedicalBookEnd,
-                EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToModelEntity() : null,
-                Position = model.Position != null ? model.Position.ToModelEntity() : null,
+                EmployeeStatusId = model.EmployeeStatusId,
+                PositionId = model.PositionId,
                 DateStart = model.DateStart,
                 DateEnd = model.DateEnd,
                 IsAccess = model.IsAccess,
                 UserName = model.UserName,
                 Email = model.Email
             };
+        }
+
+        /// <summary>
+        /// Модель в DAO
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static IApplicationUserSmallModel ToSmallModelEntity(this IApplicationUserModel model)
+        {
+            return new ApplicationUserSmallModel()
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.UserName,
+            };
+        }
+
+        /// <summary>
+        /// DAO в модель
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        public static IEnumerable<IApplicationUserSmallModel> ToSmallModelEntityList(this IEnumerable<IApplicationUserModel> models)
+        {
+            return models.Select(ToSmallModelEntity);
         }
 
         /// <summary>
@@ -100,9 +123,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IUserModel ToUserModelEntity(this ApplicationUser model)
+        public static IApplicationUserSmallModel ToUserModelEntity(this ApplicationUser model)
         {
-            return new UserModel()
+            return new ApplicationUserSmallModel()
             {
                 Id = model.Id,
                 UserName = model.UserName,
@@ -116,7 +139,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IUserModel> ToUserModelEntityList(this IEnumerable<ApplicationUser> models)
+        public static IEnumerable<IApplicationUserSmallModel> ToUserModelEntityList(this IEnumerable<ApplicationUser> models)
         {
             return models.Select(ToUserModelEntity);
         }

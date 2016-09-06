@@ -72,35 +72,35 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         protected override async Task<ValidationResult> ValidationInternal(IPlatformModel model)
         {
-            var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatusModel);
+            var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatusId);
             if (!result)
             {
-                return new ValidationResult(PlatformErrors.PlatformStatusNotFound, model.PlatformStatusModel?.Id ?? 0);
+                return new ValidationResult(PlatformErrors.PlatformStatusNotFound, model.PlatformStatusId);
             }
 
-            result = await IsExistDaoEntity(_unitOfWork.SubDivisionRepository, model.SubDivisionModel);
+            result = await IsExistDaoEntity(_unitOfWork.SubDivisionRepository, model.SubDivisionId);
             if (!result)
             {
-                return new ValidationResult(PlatformErrors.SubDivisionNotFound, model.SubDivisionModel?.Id ?? 0);
+                return new ValidationResult(PlatformErrors.SubDivisionNotFound, model.SubDivisionId);
             }
 
-            if (model.UserModel != null && model.UserModel.Id > 0)
+            if (model.AccountId > 0)
             {
-                var user = await _unitOfWork.AccountRepository.GetByIdAsync(model.UserModel.Id);
+                var user = await _unitOfWork.AccountRepository.GetByIdAsync(model.AccountId);
                 if (user == null)
                 {
-                    return new ValidationResult(PlatformErrors.UserNotFound, (int) model.UserModel?.Id);
+                    return new ValidationResult(PlatformErrors.UserNotFound, (int) model.AccountId);
                 }
             }
 
-            if (model.BuyProcessesModel != null)
+            if (model.BuyProcessesIds != null)
             {
-                foreach (var buyProcessModel in model.BuyProcessesModel)
+                foreach (var buyProcessModelId in model.BuyProcessesIds)
                 {
-                    result = await IsExistDaoEntity(_unitOfWork.BuyProcessPepository, buyProcessModel);
+                    result = await IsExistDaoEntity(_unitOfWork.BuyProcessPepository, buyProcessModelId);
                     if (!result)
                     {
-                        return new ValidationResult(PlatformErrors.BuyProcessNotFound, buyProcessModel?.Id ?? 0);
+                        return new ValidationResult(PlatformErrors.BuyProcessNotFound, buyProcessModelId);
                     }
                 }
             }

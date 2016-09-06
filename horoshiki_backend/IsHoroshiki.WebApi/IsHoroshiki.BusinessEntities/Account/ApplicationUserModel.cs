@@ -1,52 +1,19 @@
-﻿using IsHoroshiki.BusinessEntities.NotEditable;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.Converters;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using Newtonsoft.Json;
 
 namespace IsHoroshiki.BusinessEntities.Account
 {
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public class ApplicationUserModel : IApplicationUserModel 
+    public class ApplicationUserModel : ApplicationUserSmallModel, IApplicationUserModel
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        public int Id
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string FirstName
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Отчество
         /// </summary>
         [MaxLength(256, ErrorMessage = "Отчество должно быть не более {1} символов.")]
         public string MiddleName
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        [MaxLength(256, ErrorMessage = "Фамилия должна быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите файмилию!")]
-        public string LastName
         {
             get;
             set;
@@ -83,8 +50,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Статус сотрудника
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<EmployeeStatusModel, IEmployeeStatusModel>))]
-        public IEmployeeStatusModel EmployeeStatus
+        public int EmployeeStatusId
         {
             get;
             set;
@@ -93,8 +59,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Должности
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<PositionModel, IPositionModel>))]
-        public IPositionModel Position
+        public int PositionId
         {
             get;
             set;
@@ -122,17 +87,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// Доступ в систему
         /// </summary>
         public bool IsAccess
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Логин
-        /// </summary>
-        [Required]
-        [Display(Name = "UserName")]
-        public string UserName
         {
             get;
             set;

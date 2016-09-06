@@ -89,11 +89,10 @@
     <Compile Include="Converters\EntityModelConverter.cs" />
     <Compile Include="Editable\Interfaces\IPlatformModel.cs" />
     <Compile Include="Editable\Interfaces\ISubDivisionModel.cs" />
-    <Compile Include="Account\Interfaces\IUserModel.cs" />
+    <Compile Include="Account\Interfaces\IApplicationUserSmallModel.cs" />
     <Compile Include="Editable\MappingDao\PlatformMappingDao.cs" />
     <Compile Include="Editable\PlatformModel.cs" />
-    <Compile Include="Account\MappingDao\UserModelMappingDao.cs" />
-    <Compile Include="Account\UserModel.cs" />
+    <Compile Include="Account\ApplicationUserSmallModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="NotEditable\EmployeeReasonDismissalModel.cs" />

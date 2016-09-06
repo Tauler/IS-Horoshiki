@@ -103,23 +103,6 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавление с пустым временем начала открытия
-        /// </summary>
-        [TestMethod]
-        public async Task PlatformTest_Add_TimeStartIsNull()
-        {
-            using (var controller = GetController())
-            {
-                var model = GetModel();
-                model.TimeStart = TimeSpan.Zero;
-
-                var result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-            }
-        }
-
-        /// <summary>
         /// Добавление с пустым временем закрытия
         /// </summary>
         [TestMethod]
@@ -145,25 +128,25 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var model = GetModel();
-                model.BuyProcessesModel = null;
+                model.BuyProcessesIds = null;
 
                 var result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.BuyProcessesModel = new Collection<IBuyProcessModel>()
+                model.BuyProcessesIds = new Collection<int>()
                 {
-                    new BuyProcessModel { Id = 1 },
-                    new BuyProcessModel { Id = Int32.MaxValue }
+                     1,
+                     Int32.MaxValue
                 };
 
                 result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.BuyProcessesModel = new Collection<IBuyProcessModel>()
+                model.BuyProcessesIds = new Collection<int>()
                 {
-                    new BuyProcessModel { Id = 0 },
+                     0,
                 };
 
                 result = await controller.Add(model);
@@ -181,19 +164,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var model = GetModel();
-                model.PlatformStatusModel = null;
+                model.PlatformStatusId = 0;
 
                 var result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.PlatformStatusModel = new PlatformStatusModel { Id = Int32.MaxValue };
-
-                result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.PlatformStatusModel = new PlatformStatusModel { Id = 0 };
+                model.PlatformStatusId = Int32.MaxValue;
 
                 result = await controller.Add(model);
 
@@ -210,19 +187,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var model = GetModel();
-                model.SubDivisionModel = null;
+                model.SubDivisionId = 0;
 
                 var result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.SubDivisionModel = new SubDivisionModel { Id = Int32.MaxValue };
-
-                result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.SubDivisionModel = new SubDivisionModel { Id = 0 };
+                model.SubDivisionId = Int32.MaxValue;
 
                 result = await controller.Add(model);
 
@@ -239,19 +210,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             using (var controller = GetController())
             {
                 var model = GetModel();
-                model.UserModel = null;
+                model.AccountId = 0;
 
                 var result = await controller.Add(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.UserModel = new UserModel { Id = Int32.MaxValue };
-
-                result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.UserModel = new UserModel { Id = 0 };
+                model.AccountId = Int32.MaxValue;
 
                 result = await controller.Add(model);
 
@@ -282,7 +247,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             }
 
             var savedDivision = pageDivision.Data.First();
-            model.SubDivisionModel = savedDivision;
+            model.SubDivisionId = savedDivision.Id;
 
             var pageUser = await accountService.GetAllAsync(1, 1);
             if (pageUser.Data.Count == 0)
@@ -290,10 +255,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 Assert.Fail("Не создан пользователь!");
             }
 
-            model.UserModel = new UserModel
-            {
-                Id = pageUser.Data.First().Id
-            };
+            model.AccountId = pageUser.Data.First().Id;
 
             var result = await controller.Add(model);
 
@@ -307,11 +269,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
             var savedModel = (getResult as OkNegotiatedContentResult<IPlatformModel>).Content;
 
-            Assert.IsTrue(savedModel.PlatformStatusModel.Id == defaultPlatformStatusModelId);
-            Assert.IsTrue(savedModel.SubDivisionModel.Id == savedDivision.Id);
-            Assert.IsTrue(savedModel.UserModel.Id == defaultUserModelId);
-            Assert.IsTrue(savedModel.BuyProcessesModel.Count == 2);
-            Assert.IsTrue(savedModel.BuyProcessesModel.ToList().Any(s => s.Id == defaultBuyProcessModelModelId1 || s.Id == defaultBuyProcessModelModelId2));
+            Assert.IsTrue(savedModel.PlatformStatusId == defaultPlatformStatusModelId);
+            Assert.IsTrue(savedModel.SubDivisionId == savedDivision.Id);
+            Assert.IsTrue(savedModel.AccountId == defaultUserModelId);
+            Assert.IsTrue(savedModel.BuyProcessesIds.Count == 2);
+            Assert.IsTrue(savedModel.BuyProcessesIds.Any(ids => ids == defaultBuyProcessModelModelId1 || ids == defaultBuyProcessModelModelId2));
 
             return id;
         }
@@ -357,24 +319,6 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Обновление с пустым временем начала открытия
-        /// </summary>
-        [TestMethod]
-        public async Task PlatformTest_UpdateTimeStartIsNull()
-        {
-            using (var controller = GetController())
-            {
-                var model = await PlatformTest_AddAndGet();
-
-                model.TimeStart = TimeSpan.Zero;
-
-                var result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-            }
-        }
-
-        /// <summary>
         /// Обновление с пустым временем закрытия
         /// </summary>
         [TestMethod]
@@ -402,25 +346,25 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 var model = await PlatformTest_AddAndGet();
 
-                model.BuyProcessesModel = null;
+                model.BuyProcessesIds = null;
 
                 var result = await controller.Update(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.BuyProcessesModel = new Collection<IBuyProcessModel>()
+                model.BuyProcessesIds = new Collection<int>()
                 {
-                    new BuyProcessModel { Id = 1 },
-                    new BuyProcessModel { Id = Int32.MaxValue }
+                    1,
+                    Int32.MaxValue
                 };
 
                 result = await controller.Update(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.BuyProcessesModel = new Collection<IBuyProcessModel>()
+                model.BuyProcessesIds = new Collection<int>()
                 {
-                    new BuyProcessModel { Id = 0 },
+                    0,
                 };
 
                 result = await controller.Update(model);
@@ -439,19 +383,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 var model = await PlatformTest_AddAndGet();
 
-                model.PlatformStatusModel = null;
+                model.PlatformStatusId = 0;
 
                 var result = await controller.Update(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.PlatformStatusModel = new PlatformStatusModel { Id = Int32.MaxValue };
-
-                result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.PlatformStatusModel = new PlatformStatusModel { Id = 0 };
+                model.PlatformStatusId = Int32.MaxValue;
 
                 result = await controller.Update(model);
 
@@ -469,19 +407,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 var model = await PlatformTest_AddAndGet();
 
-                model.SubDivisionModel = null;
+                model.SubDivisionId = 0;
 
                 var result = await controller.Update(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.SubDivisionModel = new SubDivisionModel { Id = Int32.MaxValue };
-
-                result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.SubDivisionModel = new SubDivisionModel { Id = 0 };
+                model.SubDivisionId = Int32.MaxValue;
 
                 result = await controller.Update(model);
 
@@ -499,19 +431,13 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
             {
                 var model = await PlatformTest_AddAndGet();
 
-                model.UserModel = null;
+                model.AccountId = 0;
 
                 var result = await controller.Update(model);
 
                 Assert.IsInstanceOfType(result, _errrorResult);
 
-                model.UserModel = new UserModel { Id = Int32.MaxValue };
-
-                result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.UserModel = new UserModel { Id = 0 };
+                model.AccountId = Int32.MaxValue;
 
                 result = await controller.Update(model);
 
@@ -536,12 +462,9 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 }
 
                 var savedDivision = pageDivision.Data.First();
-                model.SubDivisionModel = savedDivision;
+                model.SubDivisionId = savedDivision.Id;
 
-                model.UserModel = new UserModel
-                {
-                    Id = defaultUserModelId
-                };
+                model.AccountId = defaultUserModelId;
 
                 var result = await controller.Update(model);
 
@@ -553,11 +476,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
                 var savedModel = (getResult as OkNegotiatedContentResult<IPlatformModel>).Content;
 
-                Assert.IsTrue(savedModel.PlatformStatusModel.Id == defaultPlatformStatusModelId);
-                Assert.IsTrue(savedModel.SubDivisionModel.Id == savedDivision.Id);
-                Assert.IsTrue(savedModel.UserModel.Id == defaultUserModelId);
-                Assert.IsTrue(savedModel.BuyProcessesModel.Count == 2);
-                Assert.IsTrue(savedModel.BuyProcessesModel.ToList().Any(s => s.Id == defaultBuyProcessModelModelId1 || s.Id == defaultBuyProcessModelModelId2));
+                Assert.IsTrue(savedModel.PlatformStatusId == defaultPlatformStatusModelId);
+                Assert.IsTrue(savedModel.SubDivisionId == savedDivision.Id);
+                Assert.IsTrue(savedModel.AccountId == defaultUserModelId);
+                Assert.IsTrue(savedModel.BuyProcessesIds.Count == 2);
+                Assert.IsTrue(savedModel.BuyProcessesIds.Any(s => s == defaultBuyProcessModelModelId1 || s == defaultBuyProcessModelModelId2));
             }
         }
 
@@ -623,10 +546,10 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 TimeStart = new TimeSpan(8, 0, 0),
                 TimeEnd = new TimeSpan(20, 0, 0),
                 YandexMap = string.Empty,
-                BuyProcessesModel = new Collection<IBuyProcessModel> { new BuyProcessModel { Id = defaultBuyProcessModelModelId1 }, new BuyProcessModel { Id = defaultBuyProcessModelModelId2 } },
-                PlatformStatusModel = new PlatformStatusModel { Id = defaultPlatformStatusModelId },
-                SubDivisionModel = new SubDivisionModel { Id = 1 },
-                UserModel = new UserModel { Id = defaultUserModelId, UserName = "testtesttest" }
+                BuyProcessesIds = new Collection<int> { defaultBuyProcessModelModelId1 , defaultBuyProcessModelModelId2 },
+                PlatformStatusId = defaultPlatformStatusModelId,
+                SubDivisionId = 1,
+                AccountId = defaultUserModelId
             };
         }
 
@@ -653,12 +576,9 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 }
 
                 var savedDivision = pageDivision.Data.First();
-                model.SubDivisionModel = savedDivision;
+                model.SubDivisionId = savedDivision.Id;
 
-                model.UserModel = new UserModel
-                {
-                    Id = defaultUserModelId
-                };
+                model.AccountId = defaultUserModelId;
 
                 var result = await controller.Add(model);
 
