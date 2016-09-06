@@ -71,7 +71,8 @@ namespace IsHoroshiki.DAO.Repositories
         /// <param name="pageSize">Размер страницы</param>
         /// <param name="sortField">Поле для сортировки</param>
         /// <param name="isAscending">true - сортировать по возрастанию</param>
-        Task<IEnumerable<TDaoEntity>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true);
+        /// <param name="isLoadChild">true - если нужно загрузить дочерние объекты</param>
+        Task<IEnumerable<TDaoEntity>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true, bool isLoadChild = true);
 
         /// <summary>  
         /// Получить количество записей

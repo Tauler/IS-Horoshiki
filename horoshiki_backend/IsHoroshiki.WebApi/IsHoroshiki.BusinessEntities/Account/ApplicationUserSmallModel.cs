@@ -6,7 +6,7 @@ namespace IsHoroshiki.BusinessEntities.Account
     /// <summary>
     /// Лайт-версия пользователя
     /// </summary>
-    public class UserModel : BaseBusninessModel, IUserModel
+    public class ApplicationUserSmallModel : BaseBusninessModel, IApplicationUserSmallModel
     {
         /// <summary>
         /// Логин

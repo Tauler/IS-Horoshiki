@@ -33,7 +33,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// Типы цен
         /// </summary>
         [JsonConverter(typeof(EntityModelConverter<PriceTypeModel, IPriceTypeModel>))]
-        public IPriceTypeModel PriceTypeModel
+        public IPriceTypeModel PriceType
         {
             get;
             set;

@@ -25,17 +25,17 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(PlatformErrors.NameIsNull);
             }
 
-            if (element.SubDivisionModel == null)
+            if (element.SubDivision == null)
             {
                 return new ValidationResult(PlatformErrors.SubDivisionIsNullModel);
             }
 
-            if (element.BuyProcessesModel == null || element.BuyProcessesModel.Count == 0)
+            if (element.BuyProcesses == null || element.BuyProcesses.Count == 0)
             {
                 return new ValidationResult(PlatformErrors.BuyProcessesIsNullModel);
             }
 
-            if (element.PlatformStatusModel == null)
+            if (element.PlatformStatus == null)
             {
                 return new ValidationResult(PlatformErrors.PlatformStatusIsNullModel);
             }

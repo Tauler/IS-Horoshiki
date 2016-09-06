@@ -3,7 +3,7 @@
     /// <summary>
     /// Лайт-версия пользователя
     /// </summary>
-    public interface IUserModel : IBaseBusninessModel
+    public interface IApplicationUserSmallModel : IBaseBusninessModel
     {
         /// <summary>
         /// Логин

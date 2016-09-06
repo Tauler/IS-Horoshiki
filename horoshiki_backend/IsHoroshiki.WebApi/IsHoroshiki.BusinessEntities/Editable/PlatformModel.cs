@@ -28,7 +28,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// Подразделение
         /// </summary>
         [JsonConverter(typeof(EntityModelConverter<SubDivisionModel, ISubDivisionModel>))]
-        public ISubDivisionModel SubDivisionModel
+        public ISubDivisionModel SubDivision
         {
             get;
             set;
@@ -37,8 +37,8 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         ///  Пользователь - управляющий
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<UserModel, IUserModel>))]
-        public IUserModel UserModel
+        [JsonConverter(typeof(EntityModelConverter<ApplicationUserSmallModel, IApplicationUserSmallModel>))]
+        public IApplicationUserModel User
         {
             get;
             set;
@@ -48,7 +48,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// Статус площадки
         /// </summary>
         [JsonConverter(typeof(EntityModelConverter<PlatformStatusModel, IPlatformStatusModel>))]
-        public IPlatformStatusModel PlatformStatusModel
+        public IPlatformStatusModel PlatformStatus
         {
             get;
             set;
@@ -58,7 +58,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// Способы покупки
         /// </summary>
         [JsonConverter(typeof(CollectionEntityConverter<BuyProcessModel, IBuyProcessModel>))]
-        public ICollection<IBuyProcessModel> BuyProcessesModel
+        public ICollection<IBuyProcessModel> BuyProcesses
         {
             get;
             set;

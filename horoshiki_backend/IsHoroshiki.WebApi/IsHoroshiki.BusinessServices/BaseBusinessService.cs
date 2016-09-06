@@ -48,6 +48,16 @@ namespace IsHoroshiki.BusinessServices
 
         #region IBaseBusinessService
 
+        /// <summary>
+        /// Получить всех пользователей без пейджинга
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task<IEnumerable<TModelEntity>> GetAllAsync(string sortField = "", bool isAscending = true)
+        {
+            var list = await _repository.GetAllAsync(1, Int32.MaxValue, sortField, isAscending, false);
+            return ConvertTo(list);
+        }
+
         /// <summary>  
         /// Найти по Id 
         /// </summary>  

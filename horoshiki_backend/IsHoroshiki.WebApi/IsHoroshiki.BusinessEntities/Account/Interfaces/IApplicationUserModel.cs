@@ -6,30 +6,12 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public interface IApplicationUserModel : IBaseBusninessModel
+    public interface IApplicationUserModel : IApplicationUserSmallModel
     {
-        /// <summary>
-        /// Имя
-        /// </summary>
-        string FirstName
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Отчество
         /// </summary>
         string MiddleName
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        string LastName
         {
             get;
             set;
@@ -102,15 +84,6 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// Доступ в систему
         /// </summary>
         bool IsAccess
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Логин
-        /// </summary>
-        string UserName
         {
             get;
             set;

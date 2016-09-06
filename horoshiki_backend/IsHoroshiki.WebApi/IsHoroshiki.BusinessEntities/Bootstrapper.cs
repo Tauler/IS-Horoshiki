@@ -29,8 +29,8 @@ namespace IsHoroshiki.BusinessEntities
             DAO.Bootstrapper.BuildUnityContainer(container);
 
             container.RegisterType<IApplicationUserModel, ApplicationUserModel>();
+            container.RegisterType<IApplicationUserSmallModel, ApplicationUserSmallModel>();
             container.RegisterType<IPlatformModel, PlatformModel>();
-            container.RegisterType<IUserModel, UserModel>();
             container.RegisterType<ISubDivisionModel, SubDivisionModel>();
             container.RegisterType<IEmployeeReasonDismissalModel, EmployeeReasonDismissalModel>();
 

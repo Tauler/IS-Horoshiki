@@ -59,6 +59,23 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
+        /// Получить все записи
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<IApplicationUserSmallModel>> GetAllSmall(string sortField = "", bool isAscending = true)
+        {
+            if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
+            {
+                sortField += "Id";
+            }
+
+            var list = await _repository.GetAllAsync(1, Int32.MaxValue, sortField, isAscending, false);
+            return list.ToUserSmallModelEntityList();
+        }
+
+        /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
         /// <param name="model">пользователь</param>

@@ -45,7 +45,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public override async Task<PagedResult<ISubDivisionModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
         {
-            if (string.Equals(sortField, "PriceTypeModel"))
+            if (string.Equals(sortField, "PriceType"))
             {
                 sortField = "PriceTypeModellId";
             }
@@ -84,12 +84,12 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         protected override async Task<ValidationResult> ValidationInternal(ISubDivisionModel model)
         {
-            if (model.PriceTypeModel != null)
+            if (model.PriceType != null)
             {
-                var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceTypeModel.Id);
+                var daoPriceType = await _unitOfWork.PriceTypeRepository.GetByIdAsync(model.PriceType.Id);
                 if (daoPriceType == null)
                 {
-                    return new ValidationResult(SubDivisionErrors.PriceTypeNotFound, model.PriceTypeModel.Id);
+                    return new ValidationResult(SubDivisionErrors.PriceTypeNotFound, model.PriceType.Id);
                 }
             }
 

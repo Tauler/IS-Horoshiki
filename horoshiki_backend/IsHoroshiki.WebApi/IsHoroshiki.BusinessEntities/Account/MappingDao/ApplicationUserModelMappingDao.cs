@@ -100,9 +100,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IUserModel ToUserModelEntity(this ApplicationUser model)
+        public static IApplicationUserSmallModel ToUserSmallModelEntity(this ApplicationUser model)
         {
-            return new UserModel()
+            return new ApplicationUserSmallModel()
             {
                 Id = model.Id,
                 UserName = model.UserName,
@@ -116,9 +116,35 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IUserModel> ToUserModelEntityList(this IEnumerable<ApplicationUser> models)
+        public static IEnumerable<IApplicationUserSmallModel> ToUserSmallModelEntityList(this IEnumerable<ApplicationUser> models)
         {
-            return models.Select(ToUserModelEntity);
+            return models.Select(ToUserSmallModelEntity);
+        }
+
+        /// <summary>
+        /// Модель в DAO
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static IApplicationUserSmallModel ToUserSmallModelEntity(this IApplicationUserModel model)
+        {
+            return new ApplicationUserSmallModel()
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.UserName,
+            };
+        }
+
+        /// <summary>
+        /// DAO в модель
+        /// </summary>
+        /// <param name="models"></param>
+        /// <returns></returns>
+        public static IEnumerable<IApplicationUserSmallModel> ToUserSmallModelEntityList(this IEnumerable<IApplicationUserModel> models)
+        {
+            return models.Select(ToUserSmallModelEntity);
         }
     }
 }

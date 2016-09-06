@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace IsHoroshiki.BusinessServices.Editable.Interfaces
 {
@@ -10,6 +11,14 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
     /// </summary>
     public interface IAccountService : IBaseEditableService<IApplicationUserModel>
     {
+        /// <summary>
+        /// Получить все записи
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        Task<IEnumerable<IApplicationUserSmallModel>> GetAllSmall(string sortField = "", bool isAscending = true);
+
         /// <summary>
         /// Проверка существования логина для пользователя
         /// </summary>

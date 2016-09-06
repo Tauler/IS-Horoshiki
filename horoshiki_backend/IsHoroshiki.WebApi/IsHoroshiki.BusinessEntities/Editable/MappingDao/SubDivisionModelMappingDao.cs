@@ -23,8 +23,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 Id = model.Id,
                 Name = model.Name,
                 Timezone = model.Timezone,
-                PriceType = model.PriceTypeModel != null ? model.PriceTypeModel.ToDaoEntity() : null,
-                PriceTypeId = model.PriceTypeModel != null ? model.PriceTypeModel.Id : 0,
+                PriceType = model.PriceType != null ? model.PriceType.ToDaoEntity() : null,
+                PriceTypeId = model.PriceType != null ? model.PriceType.Id : 0,
                 SiteHeader = model.SiteHeader
             };
         }
@@ -51,7 +51,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 Id = model.Id,
                 Name = model.Name,
                 Timezone = model.Timezone,
-                PriceTypeModel = model.PriceType != null ? model.PriceType.ToModelEntity() : null,
+                PriceType = model.PriceType != null ? model.PriceType.ToModelEntity() : null,
                 SiteHeader = model.SiteHeader
             };
         }
@@ -77,8 +77,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             daoModel.Id = model.Id;
             daoModel.Name = model.Name;
             daoModel.Timezone = model.Timezone;
-            daoModel.PriceTypeId = model.PriceTypeModel?.Id ?? 0;
-            daoModel.PriceType = model.PriceTypeModel?.ToDaoEntity();
+            daoModel.PriceTypeId = model.PriceType?.Id ?? 0;
+            daoModel.PriceType = model.PriceType?.ToDaoEntity();
             daoModel.SiteHeader = model.SiteHeader;
 
             return daoModel;

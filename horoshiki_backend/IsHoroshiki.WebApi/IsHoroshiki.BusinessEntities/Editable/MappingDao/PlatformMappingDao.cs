@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.MappingDao;
-using IsHoroshiki.BusinessEntities.Account.MappingDao.User;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.Editable;
@@ -46,10 +45,10 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 Name = model.Name,
-                SubDivisionModel = model.SubDivision != null ? model.SubDivision.ToModelEntity() : null,
-                UserModel = model.User != null ? model.User.ToUserModelEntity() : null,
-                PlatformStatusModel = model.PlatformStatus != null ? model.PlatformStatus.ToModelEntity() : null,
-                BuyProcessesModel = model.BuyProcesses != null ? model.BuyProcesses.ToModelEntityList() : null,
+                SubDivision = model.SubDivision != null ? model.SubDivision.ToModelEntity() : null,
+                User = model.User != null ? model.User.ToModelEntity() : null,
+                PlatformStatus = model.PlatformStatus != null ? model.PlatformStatus.ToModelEntity() : null,
+                BuyProcesses = model.BuyProcesses != null ? model.BuyProcesses.ToModelEntityList() : null,
                 YandexMap = model.YandexMap,
                 Address = model.Address,
                 TimeStart = model.TimeStart,
@@ -78,13 +77,13 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         {
             daoModel.Id = model.Id;
             daoModel.Name = model.Name;
-            daoModel.SubDivision = model.SubDivisionModel != null ? model.SubDivisionModel.ToDaoEntity() : null;
-            daoModel.SubDivisionId = model.SubDivisionModel != null ? model.SubDivisionModel.Id : 0;
-            daoModel.User = model.UserModel != null ? model.UserModel.ToDaoEntity() : null;
-            daoModel.UserId = model.UserModel != null ? model.UserModel.Id : 0;
-            daoModel.PlatformStatus = model.PlatformStatusModel != null ? model.PlatformStatusModel.ToDaoEntity() : null;
-            daoModel.PlatformStatusId = model.PlatformStatusModel != null ? model.PlatformStatusModel.Id : 0;
-            daoModel.BuyProcesses = model.BuyProcessesModel != null ? model.BuyProcessesModel.ToDaoEntityList() : null;
+            daoModel.SubDivision = model.SubDivision != null ? model.SubDivision.ToDaoEntity() : null;
+            daoModel.SubDivisionId = model.SubDivision != null ? model.SubDivision.Id : 0;
+            daoModel.User = model.User != null ? model.User.ToDaoEntity() : null;
+            daoModel.UserId = model.User != null ? model.User.Id : 0;
+            daoModel.PlatformStatus = model.PlatformStatus != null ? model.PlatformStatus.ToDaoEntity() : null;
+            daoModel.PlatformStatusId = model.PlatformStatus != null ? model.PlatformStatus.Id : 0;
+            daoModel.BuyProcesses = model.BuyProcesses != null ? model.BuyProcesses.ToDaoEntityList() : null;
             daoModel.YandexMap = model.YandexMap;
             daoModel.Address = model.Address;
             daoModel.TimeStart = model.TimeStart;

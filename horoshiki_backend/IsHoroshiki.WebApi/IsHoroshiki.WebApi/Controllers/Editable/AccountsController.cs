@@ -10,6 +10,7 @@ using IsHoroshiki.WebApi.Handlers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
+using IsHoroshiki.BusinessEntities.Account.MappingDao;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
@@ -44,6 +45,25 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         #endregion
 
         #region методы контроллера
+
+        /// <summary>
+        /// Получить все записи
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public override async Task<IHttpActionResult> GetAll(string sortField = "", bool isAscending = true)
+        {
+            try
+            {
+                var list = await _service.GetAllSmall(sortField, isAscending);
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
 
         /// <summary>
         /// Выход из системы
@@ -107,7 +127,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// </summary>
         /// <param name="model">Данные</param>
         /// <returns></returns>
-        // POST api/Account/SetPassword
+        // POST api/User/SetPassword
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {

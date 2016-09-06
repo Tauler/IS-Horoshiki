@@ -11,42 +11,12 @@ namespace IsHoroshiki.BusinessEntities.Account
     /// <summary>
     /// Пользователь системы
     /// </summary>
-    public class ApplicationUserModel : IApplicationUserModel 
+    public class ApplicationUserModel : ApplicationUserSmallModel, IApplicationUserModel
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        public int Id
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Имя
-        /// </summary>
-        public string FirstName
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Отчество
         /// </summary>
-        [MaxLength(256, ErrorMessage = "Отчество должно быть не более {1} символов.")]
         public string MiddleName
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Фамилия
-        /// </summary>
-        [MaxLength(256, ErrorMessage = "Фамилия должна быть не более {1} символов.")]
-        [Required(ErrorMessage = "Пожалуйста, введите файмилию!")]
-        public string LastName
         {
             get;
             set;
@@ -55,7 +25,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Телефон
         /// </summary>
-        [MaxLength(50, ErrorMessage = "Телефон должен быть не более {1} символов.")]
         public string Phone
         {
             get;
@@ -128,17 +97,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         }
 
         /// <summary>
-        /// Логин
-        /// </summary>
-        [Required]
-        [Display(Name = "UserName")]
-        public string UserName
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Email
         /// </summary>
         public string Email
@@ -150,9 +108,7 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Пароль
         /// </summary>
-        [StringLength(100, ErrorMessage = "Пароль {0} должен быть не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password
         {
             get;
@@ -162,8 +118,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// <summary>
         /// Потдверждение пароля
         /// </summary>
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "Пароль и подтверждение пароля не совпадают!")]
         public string ConfirmPassword
         {
             get;

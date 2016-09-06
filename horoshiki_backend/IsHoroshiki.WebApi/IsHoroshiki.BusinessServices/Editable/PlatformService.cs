@@ -45,9 +45,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public override async Task<PagedResult<IPlatformModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
         {
-            if (string.Equals(sortField, "SubDivisionModel") 
-                || string.Equals(sortField, "UserModel")
-                || string.Equals(sortField, "PlatformStatusModel"))
+            if (string.Equals(sortField, "SubDivision") 
+                || string.Equals(sortField, "User")
+                || string.Equals(sortField, "PlatformStatus"))
             {
                 sortField += "Id";
             }
@@ -72,30 +72,30 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         protected override async Task<ValidationResult> ValidationInternal(IPlatformModel model)
         {
-            var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatusModel);
+            var result = await IsExistDaoEntity(_unitOfWork.PlatformStatusRepository, model.PlatformStatus);
             if (!result)
             {
-                return new ValidationResult(PlatformErrors.PlatformStatusNotFound, model.PlatformStatusModel?.Id ?? 0);
+                return new ValidationResult(PlatformErrors.PlatformStatusNotFound, model.PlatformStatus?.Id ?? 0);
             }
 
-            result = await IsExistDaoEntity(_unitOfWork.SubDivisionRepository, model.SubDivisionModel);
+            result = await IsExistDaoEntity(_unitOfWork.SubDivisionRepository, model.SubDivision);
             if (!result)
             {
-                return new ValidationResult(PlatformErrors.SubDivisionNotFound, model.SubDivisionModel?.Id ?? 0);
+                return new ValidationResult(PlatformErrors.SubDivisionNotFound, model.SubDivision?.Id ?? 0);
             }
 
-            if (model.UserModel != null && model.UserModel.Id > 0)
+            if (model.User != null && model.User.Id > 0)
             {
-                var user = await _unitOfWork.AccountRepository.GetByIdAsync(model.UserModel.Id);
+                var user = await _unitOfWork.AccountRepository.GetByIdAsync(model.User.Id);
                 if (user == null)
                 {
-                    return new ValidationResult(PlatformErrors.UserNotFound, (int) model.UserModel?.Id);
+                    return new ValidationResult(PlatformErrors.UserNotFound, (int) model.User?.Id);
                 }
             }
 
-            if (model.BuyProcessesModel != null)
+            if (model.BuyProcesses != null)
             {
-                foreach (var buyProcessModel in model.BuyProcessesModel)
+                foreach (var buyProcessModel in model.BuyProcesses)
                 {
                     result = await IsExistDaoEntity(_unitOfWork.BuyProcessPepository, buyProcessModel);
                     if (!result)

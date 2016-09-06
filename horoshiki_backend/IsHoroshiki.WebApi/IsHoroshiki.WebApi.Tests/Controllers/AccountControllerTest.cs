@@ -512,7 +512,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 var platformId = platformTest.PlatformTest_Add().Result;
                 var platformModel = await _platformService.GetByIdAsync(platformId);
 
-                var result = await controller.IsCanDelete(platformModel.UserModel.Id);
+                var result = await controller.IsCanDelete(platformModel.User.Id);
 
                 Assert.IsInstanceOfType(result, typeof(OkNegotiatedContentResult<bool>));
 

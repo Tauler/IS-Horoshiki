@@ -22,16 +22,16 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Подразделение
         /// </summary>
-        ISubDivisionModel SubDivisionModel
+        ISubDivisionModel SubDivision
         {
             get;
             set;
         }
 
         /// <summary>
-        ///  Пользователь - управляющий
+        ///  Пользователь
         /// </summary>
-        IUserModel UserModel
+        IApplicationUserModel User
         {
             get;
             set;
@@ -40,7 +40,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Статус площадки
         /// </summary>
-        IPlatformStatusModel PlatformStatusModel
+        IPlatformStatusModel PlatformStatus
         {
             get;
             set;
@@ -49,7 +49,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Способы покупки
         /// </summary>
-        ICollection<IBuyProcessModel> BuyProcessesModel
+        ICollection<IBuyProcessModel> BuyProcesses
         {
             get;
             set;

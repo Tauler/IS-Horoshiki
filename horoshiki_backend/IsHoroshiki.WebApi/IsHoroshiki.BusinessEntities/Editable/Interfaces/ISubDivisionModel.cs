@@ -28,7 +28,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Типы цен
         /// </summary>
-        IPriceTypeModel PriceTypeModel
+        IPriceTypeModel PriceType
         {
             get;
             set;
