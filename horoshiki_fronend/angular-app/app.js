@@ -117,6 +117,14 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 subgroupId: 'platforms',
                 title: 'Добавление площадки'
             })
+            .when('/platforms/edit/:id', {
+                templateUrl: '/angular-html/platforms.add.html',
+                controller: 'PlatformsAddController',
+                pageId: 'platformsEditPage',
+                groupId: 'settings',
+                subgroupId: 'platforms',
+                title: 'Редактирование площадки'
+            })
 
             .when('/error', {
                 templateUrl: '/angular-html/error.view.html',

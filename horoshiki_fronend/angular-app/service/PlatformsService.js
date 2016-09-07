@@ -12,7 +12,7 @@ platformsServices.service('PlatformsService', ['$http', function($http) {
     };
 
     this.get = function (id) {
-        return $http.get(backendServerAddr+'api/Platforms/'+id, {timeout: backendTimeout, headers: getToken()});
+        return $http.get(backendServerAddr+'/api/Platforms/'+id, {timeout: backendTimeout, headers: getToken()});
     };
 
     this.add = function (subdivision) {
