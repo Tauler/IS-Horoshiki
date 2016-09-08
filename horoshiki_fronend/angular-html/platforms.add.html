@@ -1,10 +1,12 @@
 <div class="breadcrumbs">
     <div class="container">
-        <h1 class="pull-left">Добавление площадки</h1>
+        <h1 ng-if="!isEdit()" class="pull-left">Добавление площадки</h1>
+        <h1 ng-if="isEdit()" class="pull-left">Редактирование площадки</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="/">Главная</a></li>
             <li><a href="/platforms">Площадки</a></li>
-            <li class="active">Добавдение площадки</li>
+            <li ng-if="!isEdit()" class="active">Добавдение площадки</li>
+            <li ng-if="isEdit()" class="active">Редактирование площадки</li>
         </ul>
     </div>
 </div>
@@ -50,9 +52,9 @@
                             <label class="label"><strong>Подразделение:</strong></label>
                             <label class="input col-6">
                                 <select ng-change="checkErrorSubdivisions();" class="form-control"
-                                        ng-model="model.subdivision">
+                                        ng-model="model.subdivision.Id">
                                     <option value="">Не выбрано</option>
-                                    <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+                                    <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision.Id}}">
                                         {{subdivision.Name}}
                                     </option>
                                 </select>
@@ -61,6 +63,7 @@
                                     заполнено. </code>
                             </label>
                         </section>
+                        {{model.subdivision}}
 
                         <section>
                             <label class="label"><strong>Управляющий:</strong></label>
@@ -73,6 +76,7 @@
                                 </select>
                             </label>
                         </section>
+                        {{model.user}}
 
                         <section>
                             <label class="label"><strong>Статус площадки:</strong></label>

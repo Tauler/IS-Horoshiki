@@ -19,21 +19,6 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
         $scope.model.orderby.field = 'Id';
         $scope.model.orderby.asc = true;
 
-
-        // {
-        //     Name:"Новая платформа",
-        //     SubDivisionModel:{Name:"Москва","Timezone":2,"PriceTypeModel":null,"SiteHeader":"Москва","Id":2},
-        //     UserModel:{"UserName":"test","Id":1},
-        //     PlatformStatusModel:{"Value":"Не работает","Id":1},
-        //     BuyProcessesModel:[], 
-        //     YandexMap:null,
-        //     Address:"выаыаыва",
-        //     TimeStart:"00:00:00",
-        //     TimeEnd:"08:00:00",
-        //     MinCheck:342.0000,
-        //     Id:4
-        // }
-
         // Пагинация
         $scope.$watch('model.paging.PageNo', function () {
             $scope.getAllPlatforms();
@@ -41,14 +26,13 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
 
         $scope.getAllPlatforms = function () {
             PlatformsService.getAll($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function (result) {
-                if(result.Success == 1){
+                if (result.Success == 1) {
                     $scope.model.platforms = result.Data.Data;
                     $scope.model.paging = result.Data.Paging;
-                }else{
+                } else {
                     // displayErrorMessage($scope.translation[result.reason]);
                     displayErrorMessage(result.Reason);
                 }
-
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
             })
@@ -62,26 +46,22 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
     }
 ]);
 
-platformsControllers.controller('PlatformsAddController', ['$scope', '$location', 'PlatformsService', 'SubdivisionService', 'UsersService', 'DictionaryService',
-    function ($scope, $location, PlatformsService, SubdivisionService, UsersService, DictionaryService) {
+platformsControllers.controller('PlatformsAddController', ['$scope', '$location', 'PlatformsService', 'SubdivisionService', 'UsersService', 'DictionaryService','$routeParams',
+    function ($scope, $location, PlatformsService, SubdivisionService, UsersService, DictionaryService, $routeParams) {
         $scope.model = {};
 
-        $scope.model.orderby = {};
-        $scope.model.orderby.field = "Id";
-        $scope.model.orderby.asc = "True";
-
         $scope.model.platform = {
-                Name:"",
-                SubDivisionModel:{},
-                UserModel:{},
-                PlatformStatusModel:{},
-                BuyProcessesModel:[],
-                YandexMap:"",
-                Address:"",
-                TimeStart:"",
-                TimeEnd:"",
-                MinCheck:"",
-                Id:"1"
+            Name: "",
+            SubDivisionModel: {},
+            UserModel: {},
+            PlatformStatusModel: {},
+            BuyProcessesModel: [],
+            YandexMap: "",
+            Address: "",
+            TimeStart: "",
+            TimeEnd: "",
+            MinCheck: "",
+            Id: "1"
         }
 
         $scope.model.error = {};
@@ -100,7 +80,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             } else {
                 $scope.model.error.address = false;
             }
-            
+
         }
         $scope.model.error.subdivision = false;
         $scope.checkErrorSubdivisions = function () {
@@ -138,13 +118,13 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 console.log("false");
             }
         }
-        
+
 
         $scope.getSubdivisions = function () {
             SubdivisionService.getSubdivisionsWithoutPaginate("Id", "True").success(function (result) {
-                if(result.Success == 1){
+                if (result.Success == 1) {
                     $scope.model.subdivisions = result.Data.Data;
-                }else{
+                } else {
                     displayErrorMessage(result.Reason);
                 }
             }).error(function (result, status) {
@@ -154,9 +134,9 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
         $scope.getUsers = function () {
             UsersService.getAllUsersWithoutPaginate("Id", "True").success(function (result) {
-                if(result.Success == 1){
+                if (result.Success == 1) {
                     $scope.model.users = result.Data.Data;
-                }else{
+                } else {
                     displayErrorMessage(result.Reason);
                 }
             }).error(function (result, status) {
@@ -166,9 +146,9 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
         $scope.getStatusSites = function () {
             DictionaryService.getStatusSites().success(function (result) {
-                if(result.Success == 1){
+                if (result.Success == 1) {
                     $scope.model.statusSites = result.Data;
-                }else{
+                } else {
                     displayErrorMessage(result.Reason);
                 }
             }).error(function (result, status) {
@@ -178,9 +158,9 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
         $scope.getBuyProcesses = function () {
             DictionaryService.getBuyProcesses().success(function (result) {
-                if(result.Success == 1){
+                if (result.Success == 1) {
                     $scope.model.buyProcesses = result.Data;
-                }else{
+                } else {
                     displayErrorMessage(result.Reason);
                 }
             }).error(function (result, status) {
@@ -193,33 +173,33 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             $scope.checkErrorName();
             $scope.checkErrorAddress();
             $scope.checkErrorSubdivisions();
-            $scope.checkErrorBuyProcess();
+            $scope.checkErrorStatusSite();
             $scope.checkErrorBuyProcess();
             $scope.checkErrorMinCheck();
 
-            if($scope.model.subdivision != null && $scope.model.subdivision != undefined){
+            if ($scope.model.subdivision != null && $scope.model.subdivision != undefined) {
                 $scope.model.platform.SubDivisionModel = JSON.parse($scope.model.subdivision);
             }
-            if($scope.model.user != null && $scope.model.user != undefined){
+            if ($scope.model.user != null && $scope.model.user != undefined) {
                 $scope.model.platform.UserModel = JSON.parse($scope.model.user);
             }
-            if($scope.model.statusSite != null && $scope.model.statusSite != undefined){
+            if ($scope.model.statusSite != null && $scope.model.statusSite != undefined) {
                 $scope.model.platform.PlatformStatusModel = JSON.parse($scope.model.statusSite);
             }
 
             console.log($scope.model.buyProcessesValue);
-            if($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined){
-                for(var i = 0; i < $scope.model.buyProcessesValue.length; i++){
+            if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
+                for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
                     $scope.model.platform.BuyProcessesModel[i] = JSON.parse($scope.model.buyProcessesValue[i]);
                 }
             }
 
 
-            if(!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision &&  !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck){
+            if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck) {
                 PlatformsService.add($scope.model.platform).success(function (result) {
-                    if(result.Success == 1){
+                    if (result.Success == 1) {
                         $location.url("/platforms");
-                    }else{
+                    } else {
                         displayErrorMessage(result.Reason);
                     }
 
@@ -230,12 +210,72 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
 
         }
+
+        $scope.isEdit = function () {
+           return $scope.pageId!=undefined && $scope.pageId=='platformsEditPage';
+        }
         
+        $scope.getPlatform = function () {
+            var currentPlatform = {
+                Name: "",
+                SubDivisionModel: {},
+                UserModel: {},
+                PlatformStatusModel: {},
+                BuyProcessesModel: [],
+                YandexMap: "",
+                Address: "",
+                TimeStart: "",
+                TimeEnd: "",
+                MinCheck: "",
+                Id: "1"
+            }
+
+            if($scope.isEdit()) {
+                PlatformsService.get($routeParams.id).success(function (result) {
+                    if (result.Success == 1) {
+                        $scope.model.platform = result.Data;
+
+                        if($scope.model.platform.SubDivisionModel != null && $scope.model.platform.SubDivisionModel!=''){
+                            console.log($scope.model.platform.SubDivisionModel);
+                            $scope.model.subdivision = JSON.stringify($scope.model.platform.SubDivisionModel);
+                            console.log($scope.model.statusSite);
+                        }
+                        if($scope.model.platform.UserModel != null && $scope.model.platform.UserModel != ''){
+                            console.log($scope.model.platform.UserModel);
+                            $scope.model.user = JSON.stringify($scope.model.platform.UserModel);
+                            console.log($scope.model.user)
+                        }
+                        if($scope.model.platform.PlatformStatusModel!=null && $scope.model.platform.PlatformStatusModel!=""){
+                            console.log($scope.model.platform.PlatformStatusModel);
+                            $scope.model.statusSite = JSON.stringify($scope.model.platform.PlatformStatusModel);
+                            console.log($scope.model.statusSite)
+                        }
+                    } else {
+                        displayErrorMessage(result.Reason);
+                    }
+                }).error(function (result, status) {
+                    httpErrors($location.url(), status);
+                })
+
+
+
+
+                // console.log($scope.model.buyProcessesValue);
+                // if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
+                //     for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
+                //         $scope.model.platform.BuyProcessesModel[i] = JSON.parse($scope.model.buyProcessesValue[i]);
+                //     }
+                // }
+
+            }
+
+        }
 
 
         $scope.getSubdivisions();
         $scope.getUsers();
         $scope.getStatusSites();
         $scope.getBuyProcesses();
+        $scope.getPlatform();
     }
 ]);

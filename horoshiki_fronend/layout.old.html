@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="horoshikiApp" xmlns="http://www.w3.org/1999/xhtml">
+<head ng-controller="HeaderController">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/theme-private-cloud/img/favicon.ico" type="image/x-icon"/>
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/theme-private-cloud/css/pages/page_404_error.css"/>
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/theme-private-cloud/css/style.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme-private-cloud/css/angular-timezone-selector.css">
+    <link rel="stylesheet" href="/theme-private-cloud/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
+    <link rel="stylesheet" href="/theme-private-cloud/css/pages/portfolio-v1.css">
+
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/theme-private-cloud/css/custom.css">
+
+    <link rel="stylesheet" href="/theme-private-cloud/css/themes/dark-blue.css" id="style_color">
+
+    <base href="/" />
+
+    <title>{{title}} | IS Horoshiki</title>
+</head>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        resizeFooter();
+    });
+    $(window).resize(function(){
+        resizeFooter();
+    });
+</script>
+
+<body>
+<div class="wrapper" ng-controller="LayoutController">
+
+    <div class="header">
+        <div class="topbar"></div>
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">{{translation.template_header_navigation}}</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        <img id="logo-header" src="/theme-private-cloud/img/logo_mini_linex.png" alt="Logo">
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/"
+                            ng-style="{'border-bottom': groupId == 'metric' ? '2px solid #627DAD' : 'transparent'}">
+                                Метрики
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                               ng-style="{'border-bottom': groupId == 'main' ? '2px solid #627DAD' : 'transparent'}">
+                                Отчеты
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                               ng-style="{'border-bottom': groupId == 'main' ? '2px solid #627DAD' : 'transparent'}">
+                                Управление
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/users"
+                               ng-style="{'border-bottom': groupId == 'settings' ? '2px solid #627DAD' : 'transparent'}">
+                                Настройки
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                               ng-style="{'border-bottom': groupId == '' ? '2px solid #627DAD' : 'transparent'}">
+                                Маркетинг
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""
+                               ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
+                                Производство
+                            </a>
+                        </li>
+                        <!--<li class="dropdown">-->
+                            <!--<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"-->
+                            <!--ng-style="{'border-bottom': pageId == 'vpnConfigurationsList' || pageId == 'vpnServerList' ? '2px solid #1BA0E2' : 'transparent'}">-->
+                                <!--{{translation.template_header_tab_vpn}}-->
+                            <!--</a>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--<li ng-class="{active: pageId == 'vpnConfigurationsList'}">-->
+                                    <!--<a href="/vpnconfig/list">{{translation.template_header_tab_vpn_config}}</a>-->
+                                <!--</li>-->
+                                <!--<li ng-class="{active: pageId == 'vpnServerList'}">-->
+                                    <!--<a href="/vpnserver/list">{{translation.template_header_tab_vpn_server}}</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                            ng-style="{'border-bottom': pageId == 'profilePage' ? '2px solid #627DAD' : 'transparent'}">
+                                <span class="icon-custom icon-sm rounded-x icon-color-u icon-line icon-user" aria-hidden="true"></span> <span style='text-transform: lowercase !important;'>{{currentUser.UserName}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="javascript:void(0);" ng-click="logoutButton()">
+                                        {{translation.template_header_tab_exit}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-container">
+        <div ng-view></div>
+    </div>
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        {{translation.template_footer_year}} &copy; <a href="http://{{translation.template_footer_url}}" >{{translation.template_footer_url}}</a> {{translation.template_footer_copyright}}
+                    </p>
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                    <p>
+                        <small style="color: #666d76">Revision #</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal errror -->
+    <div class="modal fade" id="serverErrorModal" tabindex="-1" role="dialog" aria-labelledby="serverErrorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="serverErrorModalLabel">{{translation.lk_error_modal_title}}</h4>
+                </div>
+                <div class="modal-body" id="serverErrorModalBody">
+                    {{translation.lk_error_modal_description}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- JS lib -->
+<script type="text/javascript" src="/theme-private-cloud/plugins/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/theme-private-cloud/plugins/sky-forms/version-2.0.1/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/theme-private-cloud/js/plugins/datepicker.js"></script>
+<script type="text/javascript" src="/theme-private-cloud/js/plugins/datepicker-ru.js"></script>
+<script type="text/javascript" src="/theme-private-cloud/plugins/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/theme-private-cloud/plugins/back-to-top.js"></script>
+<script type="text/javascript" src="/theme-private-cloud/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+<!-- Angular lib -->
+<!--<script type="text/javascript" src="/plugins/angular/lib/angular.min.js"></script>-->
+<script type="text/javascript" src="/plugins/angular/angular.js"></script>
+<script type="text/javascript" src="/plugins/angular/angular-route.min.js"></script>
+<script type="text/javascript" src="/plugins/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="/plugins/angular/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="/plugins/angular/angular-resource.min.js"></script>
+
+<script type="text/javascript" src="/plugins/bootstrap-ui/angular-ui.bootstrap.pagination.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-ui/datepicker.js"></script>
+
+<!-- Angular app -->
+<script type="text/javascript" src="/angular-app/app.js"></script>
+<script type="text/javascript" src="/angular-app/custom.js"></script>
+
+<!-- Angular controllers -->
+<script type="text/javascript" src="/angular-app/controllers/LayoutController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/ErrorController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/MainController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/UsersController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/SubdivisionsController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/PlatformsController.js"></script>
+
+
+<!-- Angular services -->
+<script type="text/javascript" src="/angular-app/service/TranslationService.js"></script>
+<script type="text/javascript" src="/angular-app/service/BackendService.js"></script>
+<script type="text/javascript" src="/angular-app/service/AccountService.js"></script>
+<script type="text/javascript" src="/angular-app/service/UsersService.js"></script>
+<script type="text/javascript" src="/angular-app/service/DictionaryService.js"></script>
+<script type="text/javascript" src="/angular-app/service/SubdivisionsService.js"></script>
+<script type="text/javascript" src="/angular-app/service/PlatformsService.js"></script>
+
+<!-- Angular directives -->
+<script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
+
+</body>
+</html>

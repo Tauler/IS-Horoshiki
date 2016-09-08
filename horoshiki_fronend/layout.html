@@ -1,179 +1,374 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html ng-app="horoshikiApp" xmlns="http://www.w3.org/1999/xhtml">
 <head ng-controller="HeaderController">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="shortcut icon" href="/theme-private-cloud/img/favicon.ico" type="image/x-icon"/>
-
-    <!-- CSS Global Compulsory -->
-    <link rel="stylesheet" href="/theme-private-cloud/css/pages/page_404_error.css"/>
-    <link rel="stylesheet" href="/theme-private-cloud/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/theme-private-cloud/css/style.css">
-
-    <!-- CSS Implementing Plugins -->
-    <link rel="stylesheet" href="/theme-private-cloud/plugins/line-icons/line-icons.css">
-    <link rel="stylesheet" href="/theme-private-cloud/plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/theme-private-cloud/css/angular-timezone-selector.css">
-    <link rel="stylesheet" href="/theme-private-cloud/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css">
-    <link rel="stylesheet" href="/theme-private-cloud/css/pages/portfolio-v1.css">
-
-
-    <!-- CSS Customization -->
-    <link rel="stylesheet" href="/theme-private-cloud/css/custom.css">
-
-    <link rel="stylesheet" href="/theme-private-cloud/css/themes/dark-blue.css" id="style_color">
-
-    <base href="/" />
-
+    <meta charset="utf-8"/>
     <title>{{title}} | IS Horoshiki</title>
+
+    <meta name="description" content="Dashboard"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" href="/theme/assets/img/favicon.png" type="image/x-icon">
+
+
+    <!--Basic Styles-->
+    <link href="/theme/assets/css/bootstrap.min.css" rel="stylesheet"/>
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet"/>
+    <link href="/theme/assets/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/theme/assets/css/weather-icons.min.css" rel="stylesheet"/>
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
+          rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <!--Beyond styles-->
+    <link href="/theme/assets/css/beyond.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/theme/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="/theme/assets/css/demo.min.css" rel="stylesheet" />-->
+    <link href="/theme/assets/css/typicons.min.css" rel="stylesheet"/>
+    <link href="/theme/assets/css/animate.min.css" rel="stylesheet"/>
+    <link id="skin-link" href="" rel="stylesheet" type="text/css"/>
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="/theme/assets/js/skins.min.js"></script>
+    <base href="/"/>
 </head>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        resizeFooter();
-    });
-    $(window).resize(function(){
-        resizeFooter();
-    });
-</script>
-
-<body>
-<div class="wrapper" ng-controller="LayoutController">
-
-    <div class="header">
-        <div class="topbar"></div>
-        <div class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-                        <span class="sr-only">{{translation.template_header_navigation}}</span>
-                        <span class="fa fa-bars"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">
-                        <img id="logo-header" src="/theme-private-cloud/img/logo_mini_linex.png" alt="Logo">
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse navbar-responsive-collapse">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="/"
-                            ng-style="{'border-bottom': groupId == 'metric' ? '2px solid #627DAD' : 'transparent'}">
-                                Метрики
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                               ng-style="{'border-bottom': groupId == 'main' ? '2px solid #627DAD' : 'transparent'}">
-                                Отчеты
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                               ng-style="{'border-bottom': groupId == 'main' ? '2px solid #627DAD' : 'transparent'}">
-                                Управление
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/users"
-                               ng-style="{'border-bottom': groupId == 'settings' ? '2px solid #627DAD' : 'transparent'}">
-                                Настройки
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                               ng-style="{'border-bottom': groupId == '' ? '2px solid #627DAD' : 'transparent'}">
-                                Маркетинг
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                               ng-style="{'border-bottom': pageId == 'main' ? '2px solid #627DAD' : 'transparent'}">
-                                Производство
-                            </a>
-                        </li>
-                        <!--<li class="dropdown">-->
-                            <!--<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"-->
-                            <!--ng-style="{'border-bottom': pageId == 'vpnConfigurationsList' || pageId == 'vpnServerList' ? '2px solid #1BA0E2' : 'transparent'}">-->
-                                <!--{{translation.template_header_tab_vpn}}-->
-                            <!--</a>-->
-                            <!--<ul class="dropdown-menu">-->
-                                <!--<li ng-class="{active: pageId == 'vpnConfigurationsList'}">-->
-                                    <!--<a href="/vpnconfig/list">{{translation.template_header_tab_vpn_config}}</a>-->
-                                <!--</li>-->
-                                <!--<li ng-class="{active: pageId == 'vpnServerList'}">-->
-                                    <!--<a href="/vpnserver/list">{{translation.template_header_tab_vpn_server}}</a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
+<!-- /Head -->
+<!-- Body -->
+<body ng-controller="LayoutController">
+<!-- Loading Container -->
+<div class="loading-container">
+    <div class="loader"></div>
+</div>
+<!--  /Loading Container -->
+<!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
+            <!-- Navbar Barnd -->
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <img src="assets/img/logo.png" alt=""/>
+                    </small>
+                </a>
+            </div>
+            <!-- /Navbar Barnd -->
+            <!-- Sidebar Collapse -->
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="collapse-icon fa fa-bars"></i>
+            </div>
+            <!-- /Sidebar Collapse -->
+            <!-- Account Area and Settings --->
+            <div class="navbar-header pull-right">
+                <div class="navbar-account">
+                    <ul class="account-area top-navbar-font-size-17">
+                        <!--<li class="open">-->
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" title="Notifications" href="#">-->
+                        <!--<i class="icon fa fa-warning"></i>-->
+                        <!--</a>-->
                         <!--</li>-->
+                        <!--<li>-->
+                        <!--&lt;!&ndash;Messages Dropdown&ndash;&gt;-->
+                        <!--<ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">-->
+                        <!--<li>-->
+                        <!--<a href="#">-->
+                        <!--<img src="assets/img/avatars/bing.png" class="message-avatar"-->
+                        <!--alt="Microsoft Bing">-->
+                        <!--<div class="message">-->
+                        <!--<span class="message-sender">-->
+                        <!--Bing.com-->
+                        <!--</span>-->
+                        <!--<span class="message-time">-->
+                        <!--Yesterday-->
+                        <!--</span>-->
+                        <!--<span class="message-subject">-->
+                        <!--Bing Newsletter: The January Issue‏-->
+                        <!--</span>-->
+                        <!--<span class="message-body">-->
+                        <!--Discover new music just in time for the Grammy® Awards.-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a href="#">-->
+                        <!--<img src="assets/img/avatars/adam-jansen.jpg" class="message-avatar"-->
+                        <!--alt="Divyia Austin">-->
+                        <!--<div class="message">-->
+                        <!--<span class="message-sender">-->
+                        <!--Nicolas-->
+                        <!--</span>-->
+                        <!--<span class="message-time">-->
+                        <!--Friday, September 22-->
+                        <!--</span>-->
+                        <!--<span class="message-subject">-->
+                        <!--New 4K Cameras-->
+                        <!--</span>-->
+                        <!--<span class="message-body">-->
+                        <!--The 4K revolution has come over the horizon and is reaching the general populous-->
+                        <!--</span>-->
+                        <!--</div>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--&lt;!&ndash;/Messages Dropdown&ndash;&gt;-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">-->
+                        <!--<i class="icon fa fa-tasks"></i>-->
+                        <!--<span class="badge">4</span>-->
+                        <!--</a>-->
+                        <!--&lt;!&ndash;Tasks Dropdown&ndash;&gt;-->
+                        <!--<ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">-->
+                        <!--<li class="dropdown-header bordered-darkorange">-->
+                        <!--<i class="fa fa-tasks"></i>-->
+                        <!--4 Tasks In Progress-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a href="#">-->
+                        <!--<div class="clearfix">-->
+                        <!--<span class="pull-left">Account Creation</span>-->
+                        <!--<span class="pull-right">65%</span>-->
+                        <!--</div>-->
 
-                        <li class="dropdown">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                            ng-style="{'border-bottom': pageId == 'profilePage' ? '2px solid #627DAD' : 'transparent'}">
-                                <span class="icon-custom icon-sm rounded-x icon-color-u icon-line icon-user" aria-hidden="true"></span> <span style='text-transform: lowercase !important;'>{{currentUser.UserName}}</span>
+                        <!--<div class="progress progress-xs">-->
+                        <!--<div style="width:65%" class="progress-bar"></div>-->
+                        <!--</div>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a href="#">-->
+                        <!--<div class="clearfix">-->
+                        <!--<span class="pull-left">Profile Data</span>-->
+                        <!--<span class="pull-right">35%</span>-->
+                        <!--</div>-->
+
+                        <!--<div class="progress progress-xs">-->
+                        <!--<div style="width:35%" class="progress-bar progress-bar-success"></div>-->
+                        <!--</div>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a href="#">-->
+                        <!--<div class="clearfix">-->
+                        <!--<span class="pull-left">Updating Resume</span>-->
+                        <!--<span class="pull-right">75%</span>-->
+                        <!--</div>-->
+
+                        <!--<div class="progress progress-xs">-->
+                        <!--<div style="width:75%" class="progress-bar progress-bar-darkorange"></div>-->
+                        <!--</div>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a href="#">-->
+                        <!--<div class="clearfix">-->
+                        <!--<span class="pull-left">Adding Contacts</span>-->
+                        <!--<span class="pull-right">10%</span>-->
+                        <!--</div>-->
+
+                        <!--<div class="progress progress-xs">-->
+                        <!--<div style="width:10%" class="progress-bar progress-bar-warning"></div>-->
+                        <!--</div>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <!--<li class="dropdown-footer">-->
+                        <!--<a href="#">-->
+                        <!--See All Tasks-->
+                        <!--</a>-->
+                        <!--<button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i-->
+                        <!--class="fa fa-check"></i></button>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--&lt;!&ndash;/Tasks Dropdown&ndash;&gt;-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<a class="wave in" id="chat-link" title="Chat" href="#">-->
+                        <!--<i class="icon glyphicon glyphicon-comment"></i>-->
+                        <!--</a>-->
+                        <!--</li>-->
+                        <li ng-class="groupId == 'metric' ? 'open':''">
+                            <a class="login-area" href="/">
+                                <section>
+                                    <h2><span class="profile"><span>Мтрики</span></span></h2>
+                                </section>
                             </a>
-                            <ul class="dropdown-menu">
+                        </li>
+                        <li ng-class="groupId == '' ? 'open':''">
+                            <a class="login-area">
+                                <section>
+                                    <h2><span class="profile"><span>Отчеты</span></span></h2>
+                                </section>
+                            </a>
+                        </li>
+
+                        <li ng-class="groupId == '' ? 'open':''">
+                            <a class="login-area">
+                                <section>
+                                    <h2><span class="profile"><span>Управление</span></span></h2>
+                                </section>
+                            </a>
+                        </li>
+
+                        <li ng-class="groupId == 'settings' ? 'open':''">
+                            <a class="login-area" href="/users">
+                                <section>
+                                    <h2><span class="profile"><span>Настройки</span></span></h2>
+                                </section>
+                            </a>
+                        </li>
+                        <li ng-class="groupId == '' ? 'open':''">
+                            <a class="login-area">
+                                <section>
+                                    <h2><span class="profile"><span>Маркетинг</span></span></h2>
+                                </section>
+                            </a>
+                        </li>
+                        <li ng-class="groupId == '' ? 'open':''">
+                            <a class="login-area">
+                                <section>
+                                    <h2><span class="profile"><span>Производство</span></span></h2>
+                                </section>
+                            </a>
+                        </li>
+                        <li><div class="top-navbar-delimiter">|</div></li>
+                        <li>
+                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                <section>
+                                    <h2><span> <i class="menu-icon fa fa-user"></i> &nbsp;&nbsp;David</span></h2>
+                                </section>
+                            </a>
+                            <ul style="width: 200px;" class="dropdown-menu pull-right">
                                 <li>
-                                    <a href="javascript:void(0);" ng-click="logoutButton()">
-                                        {{translation.template_header_tab_exit}}
-                                    </a>
+                                    <div class="padding-5">Профиль</div>
+                                </li>
+                                <li>
+                                    <div class="padding-5">Выйти</div>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
+            <!-- /Account Area and Settings -->
         </div>
     </div>
+</div>
+<!-- /Navbar -->
+<!-- Main Container -->
+<div class="main-container container-fluid">
+    <!-- Page Container -->
+    <div class="page-container">
 
-    <!-- CONTENT -->
-    <div class="content-container">
-        <div ng-view></div>
-    </div>
+        <!-- Page Sidebar -->
+        <div class="page-sidebar" id="sidebar">
 
-    <div class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        {{translation.template_footer_year}} &copy; <a href="http://{{translation.template_footer_url}}" >{{translation.template_footer_url}}</a> {{translation.template_footer_copyright}}
-                    </p>
-                </div>
-                <div class="col-md-6" style="text-align: right;">
-                    <p>
-                        <small style="color: #666d76">Revision #</small>
-                    </p>
-                </div>
-            </div>
+            <!--Меню Метрики-->
+            <ul ng-if="groupId=='metric'" class="nav sidebar-menu">
+                <li ng-class="subgroupId == 'main' ? 'active':''">
+                    <a href="index.html">
+                        <i class="menu-icon fa fa-bar-chart-o"></i>
+                        <span class="menu-text"> Основные показатели </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="menu-icon fa fa-calculator"></i>
+                        <span class="menu-text"> Финансы </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="databoxes.html">
+                        <i class="menu-icon fa fa-users"></i>
+                        <span class="menu-text"> Клиенты </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-fighter-jet"></i>
+                        <span class="menu-text"> Скорость </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-ship"></i>
+                        <span class="menu-text"> Продукт </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Рейтинги: Финансы </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Рейтинги: Клиенты </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Рейтинги: Скорость </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Рейтинги: Продукт </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul ng-if="groupId=='settings'" class="nav sidebar-menu">
+                <!--Dashboard-->
+                <li ng-class="subgroupId == 'users' ? 'active':''">
+                    <a href="/users">
+                        <i class="menu-icon fa fa-group"></i>
+                        <span class="menu-text"> Пользователи </span>
+                    </a>
+                </li>
+                <!--Databoxes-->
+                <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
+                    <a href="/subdivisions">
+                        <i class="menu-icon fa fa-share-alt"></i>
+                        <span class="menu-text"> Подразделения </span>
+                    </a>
+                </li>
+                <!--Widgets-->
+                <li ng-class="subgroupId == 'platforms' ? 'active':''">
+                    <a href="/platforms">
+                        <i class="menu-icon fa fa-share-alt-square"></i>
+                        <span class="menu-text"> Площадки </span>
+                    </a>
+                </li>
+            </ul>
+            <!-- /Sidebar Menu -->
         </div>
-    </div>
+        <!-- /Page Sidebar -->
 
-    <!-- Modal errror -->
-    <div class="modal fade" id="serverErrorModal" tabindex="-1" role="dialog" aria-labelledby="serverErrorModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="serverErrorModalLabel">{{translation.lk_error_modal_title}}</h4>
-                </div>
-                <div class="modal-body" id="serverErrorModalBody">
-                    {{translation.lk_error_modal_description}}
-                </div>
-            </div>
+        <!-- Page Content -->
+        <div class="page-content">
+
+            <div ng-view></div>
         </div>
+        <!-- /Page Content -->
+
     </div>
+    <!-- /Page Container -->
+    <!-- Main Container -->
 
 </div>
 
-<!-- JS lib -->
-<script type="text/javascript" src="/theme-private-cloud/plugins/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="/theme-private-cloud/plugins/sky-forms/version-2.0.1/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/theme-private-cloud/js/plugins/datepicker.js"></script>
-<script type="text/javascript" src="/theme-private-cloud/js/plugins/datepicker-ru.js"></script>
-<script type="text/javascript" src="/theme-private-cloud/plugins/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="/theme-private-cloud/plugins/back-to-top.js"></script>
-<script type="text/javascript" src="/theme-private-cloud/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!--Basic Scripts-->
+<script src="/theme/assets/js/jquery.min.js"></script>
+<script src="/theme/assets/js/bootstrap.min.js"></script>
+<script src="/theme/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
 
+<!--Beyond Scripts-->
+<script src="/theme/assets/js/beyond.js"></script>
 
 
 <!-- Angular lib -->
@@ -212,5 +407,7 @@
 <!-- Angular directives -->
 <script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
 
+
 </body>
+<!--  /Body -->
 </html>
