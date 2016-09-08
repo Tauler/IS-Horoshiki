@@ -95,6 +95,10 @@
     <Compile Include="Account\ApplicationUserSmallModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
+    <Compile Include="Kladr\Enums\ContentType.cs" />
+    <Compile Include="Kladr\KladrResultModel.cs" />
+    <Compile Include="Kladr\KladrSearchModel.cs" />
+    <Compile Include="Kladr\MappingDao\KladrResultModelMappingDao.cs" />
     <Compile Include="NotEditable\EmployeeReasonDismissalModel.cs" />
     <Compile Include="NotEditable\Interfaces\IEmployeeReasonDismissalModel.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayModel.cs" />
@@ -139,6 +143,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IsHoroshiki.DAO.Kladr\IsHoroshiki.DAO.Kladr.csproj">
+      <Project>{804ff4a4-b0d8-4d7a-8157-b8bb3eb43e93}</Project>
+      <Name>IsHoroshiki.DAO.Kladr</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IsHoroshiki.DAO\IsHoroshiki.DAO.csproj">
       <Project>{EFC9DAF6-3B76-49AA-9D1B-D6658C2C3CFF}</Project>
       <Name>IsHoroshiki.DAO</Name>
@@ -148,6 +156,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
