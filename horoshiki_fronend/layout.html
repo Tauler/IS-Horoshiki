@@ -63,131 +63,6 @@
             <div class="navbar-header pull-right">
                 <div class="navbar-account">
                     <ul class="account-area top-navbar-font-size-17">
-                        <!--<li class="open">-->
-                        <!--<a class="dropdown-toggle" data-toggle="dropdown" title="Notifications" href="#">-->
-                        <!--<i class="icon fa fa-warning"></i>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--&lt;!&ndash;Messages Dropdown&ndash;&gt;-->
-                        <!--<ul class="pull-right dropdown-menu dropdown-arrow dropdown-messages">-->
-                        <!--<li>-->
-                        <!--<a href="#">-->
-                        <!--<img src="assets/img/avatars/bing.png" class="message-avatar"-->
-                        <!--alt="Microsoft Bing">-->
-                        <!--<div class="message">-->
-                        <!--<span class="message-sender">-->
-                        <!--Bing.com-->
-                        <!--</span>-->
-                        <!--<span class="message-time">-->
-                        <!--Yesterday-->
-                        <!--</span>-->
-                        <!--<span class="message-subject">-->
-                        <!--Bing Newsletter: The January Issue‏-->
-                        <!--</span>-->
-                        <!--<span class="message-body">-->
-                        <!--Discover new music just in time for the Grammy® Awards.-->
-                        <!--</span>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a href="#">-->
-                        <!--<img src="assets/img/avatars/adam-jansen.jpg" class="message-avatar"-->
-                        <!--alt="Divyia Austin">-->
-                        <!--<div class="message">-->
-                        <!--<span class="message-sender">-->
-                        <!--Nicolas-->
-                        <!--</span>-->
-                        <!--<span class="message-time">-->
-                        <!--Friday, September 22-->
-                        <!--</span>-->
-                        <!--<span class="message-subject">-->
-                        <!--New 4K Cameras-->
-                        <!--</span>-->
-                        <!--<span class="message-body">-->
-                        <!--The 4K revolution has come over the horizon and is reaching the general populous-->
-                        <!--</span>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--</ul>-->
-                        <!--&lt;!&ndash;/Messages Dropdown&ndash;&gt;-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="dropdown-toggle" data-toggle="dropdown" title="Tasks" href="#">-->
-                        <!--<i class="icon fa fa-tasks"></i>-->
-                        <!--<span class="badge">4</span>-->
-                        <!--</a>-->
-                        <!--&lt;!&ndash;Tasks Dropdown&ndash;&gt;-->
-                        <!--<ul class="pull-right dropdown-menu dropdown-tasks dropdown-arrow ">-->
-                        <!--<li class="dropdown-header bordered-darkorange">-->
-                        <!--<i class="fa fa-tasks"></i>-->
-                        <!--4 Tasks In Progress-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a href="#">-->
-                        <!--<div class="clearfix">-->
-                        <!--<span class="pull-left">Account Creation</span>-->
-                        <!--<span class="pull-right">65%</span>-->
-                        <!--</div>-->
-
-                        <!--<div class="progress progress-xs">-->
-                        <!--<div style="width:65%" class="progress-bar"></div>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a href="#">-->
-                        <!--<div class="clearfix">-->
-                        <!--<span class="pull-left">Profile Data</span>-->
-                        <!--<span class="pull-right">35%</span>-->
-                        <!--</div>-->
-
-                        <!--<div class="progress progress-xs">-->
-                        <!--<div style="width:35%" class="progress-bar progress-bar-success"></div>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a href="#">-->
-                        <!--<div class="clearfix">-->
-                        <!--<span class="pull-left">Updating Resume</span>-->
-                        <!--<span class="pull-right">75%</span>-->
-                        <!--</div>-->
-
-                        <!--<div class="progress progress-xs">-->
-                        <!--<div style="width:75%" class="progress-bar progress-bar-darkorange"></div>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a href="#">-->
-                        <!--<div class="clearfix">-->
-                        <!--<span class="pull-left">Adding Contacts</span>-->
-                        <!--<span class="pull-right">10%</span>-->
-                        <!--</div>-->
-
-                        <!--<div class="progress progress-xs">-->
-                        <!--<div style="width:10%" class="progress-bar progress-bar-warning"></div>-->
-                        <!--</div>-->
-                        <!--</a>-->
-                        <!--</li>-->
-                        <!--<li class="dropdown-footer">-->
-                        <!--<a href="#">-->
-                        <!--See All Tasks-->
-                        <!--</a>-->
-                        <!--<button class="btn btn-xs btn-default shiny darkorange icon-only pull-right"><i-->
-                        <!--class="fa fa-check"></i></button>-->
-                        <!--</li>-->
-                        <!--</ul>-->
-                        <!--&lt;!&ndash;/Tasks Dropdown&ndash;&gt;-->
-                        <!--</li>-->
-                        <!--<li>-->
-                        <!--<a class="wave in" id="chat-link" title="Chat" href="#">-->
-                        <!--<i class="icon glyphicon glyphicon-comment"></i>-->
-                        <!--</a>-->
-                        <!--</li>-->
                         <li ng-class="groupId == 'metric' ? 'open':''">
                             <a class="login-area" href="/">
                                 <section>
@@ -236,15 +111,15 @@
                         <li>
                             <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                 <section>
-                                    <h2><span> <i class="menu-icon fa fa-user"></i> &nbsp;&nbsp;David</span></h2>
+                                    <h2><span> <i class="menu-icon fa fa-user"></i> &nbsp;&nbsp;{{currentUser.UserName}}</span></h2>
                                 </section>
                             </a>
                             <ul style="width: 200px;" class="dropdown-menu pull-right">
                                 <li>
-                                    <div class="padding-5">Профиль</div>
+                                    <div class="padding-5 button-div" >Профиль</div>
                                 </li>
                                 <li>
-                                    <div class="padding-5">Выйти</div>
+                                    <div class="padding-5 button-div" ng-click="logoutButton()">{{translation.template_header_tab_exit}}</div>
                                 </li>
                             </ul>
                         </li>
@@ -263,6 +138,11 @@
 
         <!-- Page Sidebar -->
         <div class="page-sidebar" id="sidebar">
+            <div class="sidebar-header-wrapper">
+                <!--<input class="searchinput" type="text">-->
+                <!--<i class="searchicon fa fa-search"></i>-->
+                <!--<div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>-->
+            </div>
 
             <!--Меню Метрики-->
             <ul ng-if="groupId=='metric'" class="nav sidebar-menu">
@@ -369,6 +249,9 @@
 
 <!--Beyond Scripts-->
 <script src="/theme/assets/js/beyond.js"></script>
+
+<script src="/theme/assets/js/datetime/bootstrap-datepicker.js"></script>
+<script src="/theme/assets/js/datetime/daterangepicker.js"></script>
 
 
 <!-- Angular lib -->

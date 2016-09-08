@@ -10,15 +10,14 @@ datepickerDirectives.directive('datepicker', function () {
     scope: {
       ngModel: '='
     },
-    template: '' +
-    '<input class="datepicker"><i class="icon-append fa fa-calendar"></i>',
+    templateUrl: '/angular-html/directives/datepicker-single.html',
 
     link: function(scope, element){
       scope.$watch('ngModel', function(){
         if(scope.ngModel != undefined){
           var data = scope.ngModel.minMax;
           if(data != undefined && data.length == 2){
-            element.find(".datepicker").datepicker({
+            element.find(".date-picker").datepicker({
               dateFormat: 'dd.mm.yy',
               minDate: data[0],
               maxDate: data[1],
@@ -26,7 +25,7 @@ datepickerDirectives.directive('datepicker', function () {
                 var d = date.split(".");
                 scope.ngModel.select = new Date(d[2], d[1]-1, d[0]);
                 element.blur();
-                element.find(".datepicker").val(date);
+                element.find(".date-picker").val(date);
               }
             });
 
@@ -36,7 +35,7 @@ datepickerDirectives.directive('datepicker', function () {
               // scope.ngModel.select = date;
             }else{
               var date = new Date(scope.ngModel.select);
-              element.find(".datepicker").val(dateFormatter(date));
+              element.find(".date-picker").val(dateFormatter(date));
               scope.ngModel.select = date;
             }
 
