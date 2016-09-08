@@ -256,6 +256,7 @@
     <Compile Include="Controllers\BaseNotEditableController.cs" />
     <Compile Include="Controllers\Editable\AccountsController.cs" />
     <Compile Include="Controllers\Editable\PlatformsController.cs" />
+    <Compile Include="Controllers\Kladr\KladrController.cs" />
     <Compile Include="Controllers\NotEditable\EmployeeReasonDismissalsController.cs" />
     <Compile Include="Handlers\ErrorMessageResult.cs" />
     <Compile Include="Handlers\IocCustomCreationConverter.cs" />
@@ -351,6 +352,17 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="connections.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="connections.Debug.config">
+      <DependentUpon>connections.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="connections.Release.config">
+      <DependentUpon>connections.config</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -367,7 +367,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                         outputLines.Add(string.Format("- Property: \"{0}\", Error: \"{1}\"", ve.PropertyName, ve.ErrorMessage));
                     }
                 }
-                System.IO.File.AppendAllLines(@"C:\errors.txt", outputLines);
+                //System.IO.File.AppendAllLines(@"C:\errors.txt", outputLines);
 
                 throw e;
             }

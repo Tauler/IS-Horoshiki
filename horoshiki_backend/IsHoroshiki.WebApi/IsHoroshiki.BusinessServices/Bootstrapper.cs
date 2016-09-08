@@ -9,6 +9,7 @@ using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.BusinessServices.Utils.Interfaces;
 using IsHoroshiki.BusinessServices.Validators.Editable;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.Kladr;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -51,6 +52,13 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IDeliveryTimeService, DeliveryTimeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IUtilService, UtilService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+
+            container.RegisterType<IAltNameService, AltNameService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IDomaService, DomaService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IFlatService, FlatService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IKladrService, KladrService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISocrbaseService, SocrbaseService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IStreetService, StreetService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
 
             return container;
         }
