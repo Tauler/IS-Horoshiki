@@ -97,7 +97,6 @@
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="Kladr\Enums\ContentType.cs" />
     <Compile Include="Kladr\KladrResultModel.cs" />
-    <Compile Include="Kladr\KladrSearchModel.cs" />
     <Compile Include="Kladr\MappingDao\KladrResultModelMappingDao.cs" />
     <Compile Include="NotEditable\EmployeeReasonDismissalModel.cs" />
     <Compile Include="NotEditable\Interfaces\IEmployeeReasonDismissalModel.cs" />

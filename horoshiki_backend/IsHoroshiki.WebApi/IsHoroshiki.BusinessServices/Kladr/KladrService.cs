@@ -58,14 +58,16 @@ namespace IsHoroshiki.BusinessServices.Kladr
                 var citys = await this._unitOfWork.KladrRepository.GetCityAllAsync(query, regionId, withParent, limit);
                 return citys.ToModelEntityList(ContentType.City);
             }
-            //else if (IsMatchContentType(contentType, ContentType.Street))
-            //{
-            //    var streets = await this._unitOfWork.StreetRepository.GetAllAsync(query, regionId, withParent, limit);
-            //}
-            //else if (IsMatchContentType(contentType, ContentType.House))
-            //{
-            //    var houses = await this._unitOfWork.DomaRepository.GetAllAsync(query, regionId, withParent, limit);
-            //}
+            else if (IsMatchContentType(contentType, ContentType.Street))
+            {
+                var streets = await this._unitOfWork.StreetRepository.GetAllAsync(query, regionId, withParent, limit);
+                return streets.ToModelEntityList(ContentType.Street);
+            }
+            else if (IsMatchContentType(contentType, ContentType.House))
+            {
+                var houses = await this._unitOfWork.DomaRepository.GetAllAsync(query, regionId, withParent, limit);
+                return houses.ToModelEntityList(ContentType.House);
+            }
             else
             {
                 throw new NotImplementedException();

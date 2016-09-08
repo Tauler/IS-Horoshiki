@@ -1,4 +1,7 @@
-﻿using IsHoroshiki.DAO.Kladr.DaoEntities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using IsHoroshiki.DAO.Kladr.DaoEntities;
 using IsHoroshiki.DAO.Kladr.Repositories.Interfaces;
 
 namespace IsHoroshiki.DAO.Kladr.Repositories
@@ -18,6 +21,34 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
             : base(context)
         {
             this.Context = context;
+        }
+
+        #endregion
+
+        #region IStreetRepository
+
+        /// <summary>
+        /// Получить все районы
+        /// </summary>
+        /// <param name="query">Наименование объекта в запросе</param>
+        /// <param name="regionId">Id объекта в запросе</param>
+        /// <param name="withParent">true - если необходимо вернуть родительскте записи для данного объекта</param>
+        /// <param name="limit">Максимальное количество записей в ответе</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Street>> GetAllAsync(string query, string regionId, bool withParent = false,
+            int limit = 10)
+        {
+            var codeId = regionId.Substring(0, 11);
+
+            var list = DbSet.Where(p => p.Name.StartsWith(query))
+                .Where(p => p.Code.StartsWith(codeId))
+                .Where(p => p.Code.EndsWith("000"))
+                .OrderBy(p => p.Name)
+                .Take(limit)
+                .ToList()
+                .AsEnumerable();
+
+            return list;
         }
 
         #endregion
