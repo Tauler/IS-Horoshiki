@@ -5,3 +5,7 @@
 .top-navbar-delimiter{
     color: white; padding-left: 10px; padding-right: 10px; padding-top: 11px;
 }
+
+.button-div{
+    cursor: pointer;
+}
