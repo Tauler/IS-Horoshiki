@@ -37,7 +37,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         ///  Пользователь - управляющий
         /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<ApplicationUserSmallModel, IApplicationUserSmallModel>))]
+        [JsonConverter(typeof(EntityModelConverter<ApplicationUserModel, IApplicationUserModel>))]
         public IApplicationUserModel User
         {
             get;

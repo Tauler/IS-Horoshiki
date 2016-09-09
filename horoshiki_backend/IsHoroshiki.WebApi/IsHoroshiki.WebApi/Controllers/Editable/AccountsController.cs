@@ -10,7 +10,6 @@ using IsHoroshiki.WebApi.Handlers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
-using IsHoroshiki.BusinessEntities.Account.MappingDao;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {

@@ -47,7 +47,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             if (string.Equals(sortField, "PriceType"))
             {
-                sortField = "PriceTypeModellId";
+                sortField += "Id";
             }
 
             return await base.GetAllAsync(pageNo, pageSize, sortField, isAscending);
