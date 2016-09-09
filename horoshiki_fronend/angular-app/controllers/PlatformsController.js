@@ -60,7 +60,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             Name: "",
             SubDivision: {},
             User: {},
-            PlatformStatus: {},
+            PlatformStatus: {Id: "1"},
             BuyProcesses: [],
             YandexMap: "",
             Address: "",
@@ -100,16 +100,20 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
         }
         $scope.model.error.subdivision = false;
+        $scope.model.error.statusDisabled = true;
         $scope.checkErrorSubdivisions = function () {
-            if ($scope.model.platform.User == "" || $scope.model.platform.User == undefined) {
+            if ($scope.model.platform.SubDivision.Id == "" || $scope.model.platform.SubDivision.Id == undefined) {
                 $scope.model.error.subdivision = true;
+                $scope.model.error.statusDisabled = true;
+                $scope.model.platform.PlatformStatus.Id ="1";
             } else {
                 $scope.model.error.subdivision = false;
+                $scope.model.error.statusDisabled = false;
             }
         }
         $scope.model.error.statusSite = false;
         $scope.checkErrorStatusSite = function () {
-            if ($scope.model.platform.PlatformStatus == "" || $scope.model.platform.PlatformStatus == undefined) {
+            if ($scope.model.platform.PlatformStatus.Id == "" || $scope.model.platform.PlatformStatus.Id == undefined) {
                 $scope.model.error.statusSite = true;
             } else {
                 $scope.model.error.statusSite = false;
@@ -193,28 +197,6 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
 
             if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck) {
-
-
-             // var user = {
-             //        Id: $scope.model.platform.User.Id,
-             //        FirstName: "",
-             //        MiddleName: "",
-             //        LastName: "",
-             //        Phone: "",
-             //        IsHaveMedicalBook: false,
-             //        MedicalBookEnd: "",
-             //        EmployeeStatus: "",
-             //        Position: "",
-             //        DateStart: "",
-             //        DateEnd: "",
-             //        IsAccess: false,
-             //        UserName: "",
-             //        Password: "",
-             //        ConfirmPassword: ""
-             //    }
-
-                // $scope.model.platform.User = user;
-
                 $scope.model.platform.TimeStart = $scope.model.localTime.start+":00";
                 $scope.model.platform.TimeEnd = $scope.model.localTime.end+":00";
 
@@ -224,16 +206,29 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                     }
                 }
 
-                PlatformsService.add($scope.model.platform).success(function (result) {
-                    if (result.Success == 1) {
-                        $location.url("/platforms");
-                    } else {
-                        displayErrorMessage(result.Reason);
-                    }
+                if(!$scope.isEdit()) {
+                    PlatformsService.add($scope.model.platform).success(function (result) {
+                        if (result.Success == 1) {
+                            $location.url("/platforms");
+                        } else {
+                            displayErrorMessage(result.Reason);
+                        }
 
-                }).error(function (result, status) {
-                    httpErrors($location.url(), status);
-                })
+                    }).error(function (result, status) {
+                        httpErrors($location.url(), status);
+                    })
+                }else{
+                    PlatformsService.edit($scope.model.platform).success(function (result) {
+                        if (result.Success == 1) {
+                            $location.url("/platforms");
+                        } else {
+                            displayErrorMessage(result.Reason);
+                        }
+
+                    }).error(function (result, status) {
+                        httpErrors($location.url(), status);
+                    })
+                }
             }
 
         }
@@ -243,7 +238,6 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
 
         $scope.getPlatform = function () {
-
             if($scope.isEdit()) {
                 PlatformsService.get($routeParams.id).success(function (result) {
                     if (result.Success == 1) {
@@ -253,37 +247,26 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                         $scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
                         $scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
 
-                        // if($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses!=''){
-                        //     // console.log($scope.model.platform.SubDivision);
-                        //     $scope.model.buyProcessesValue = JSON.stringify($scope.model.platform.BuyProcesses);
-                        //     // console.log($scope.model.statusSite);
-                        // }
+                        if($scope.model.platform.TimeStart!="" && $scope.model.platform.TimeStart!=undefined) {
+                            var startTimeArr = $scope.model.platform.TimeStart.split(':');
+                            $scope.model.localTime.start = startTimeArr[0]+":"+startTimeArr[1];
+                        }
+                        if($scope.model.platform.TimeEnd!="" && $scope.model.platform.TimeEnd!=undefined) {
+                            var endTimeArr = $scope.model.platform.TimeEnd.split(':');
+                            $scope.model.localTime.end = endTimeArr[0]+":"+endTimeArr[1];
+                        }
 
                         if ($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses != undefined) {
                                 for (var i = 0; i < $scope.model.platform.BuyProcesses.length; i++) {
                                     $scope.model.buyProcessesValue[i] = JSON.stringify($scope.model.platform.BuyProcesses[i]);
                                 }
                             }
-
-                        console.log($scope.model.buyProcessesValue);
-
-
                     } else {
                         displayErrorMessage(result.Reason);
                     }
                 }).error(function (result, status) {
                     httpErrors($location.url(), status);
                 })
-
-
-
-
-                // console.log($scope.model.buyProcessesValue);
-                // if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
-                //     for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
-                //         $scope.model.platform.BuyProcesses[i] = JSON.parse($scope.model.buyProcessesValue[i]);
-                //     }
-                // }
 
             }
 
