@@ -35,5 +35,15 @@ namespace IsHoroshiki.DAO.Kladr.Repositories.Interfaces
         /// <param name="limit">Максимальное количество записей в ответе</param>
         /// <returns></returns>
         Task<IEnumerable<DaoEntities.Kladr>> GetCityAllAsync(string query, string regionId, bool withParent = false, int limit = 10);
+
+        /// <summary>
+        /// Получить все поселки
+        /// </summary>
+        /// <param name="query">Наименование объекта в запросе</param>
+        /// <param name="regionId">Id объекта в запросе</param>
+        /// <param name="withParent">true - если необходимо вернуть родительскте записи для данного объекта</param>
+        /// <param name="limit">Максимальное количество записей в ответе</param>
+        /// <returns></returns>
+        Task<IEnumerable<DaoEntities.Kladr>> GetLocationAllAsync(string query, string regionId, bool withParent = false, int limit = 10);
     }
 }

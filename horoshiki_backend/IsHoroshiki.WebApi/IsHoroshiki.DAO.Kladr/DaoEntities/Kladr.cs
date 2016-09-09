@@ -83,5 +83,41 @@ namespace IsHoroshiki.DAO.Kladr.DaoEntities
             get;
             set;
         }
+
+        /// <summary>
+        /// Доп поле. Код региона
+        /// </summary>
+        public string CodeRegion
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Доп поле. Код района
+        /// </summary>
+        public string CodeDistrict
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Доп поле. Код города
+        /// </summary>
+        public string CodeCity
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Доп поле. Код населенного пункта
+        /// </summary>
+        public string CodeLocality
+        {
+            get;
+            set;
+        }
     }
 }

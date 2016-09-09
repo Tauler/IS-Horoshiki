@@ -54,8 +54,24 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations
              .HasColumnName("OCATD");
 
             this.Property(p => p.Status)
-            .HasMaxLength(1)
-            .HasColumnName("STATUS");
+                .HasMaxLength(1)
+                .HasColumnName("STATUS");
+
+            this.Property(p => p.CodeRegion)
+                .HasMaxLength(2)
+                .HasColumnName("CODE_REGION");
+
+            this.Property(p => p.CodeDistrict)
+                .HasMaxLength(5)
+                .HasColumnName("CODE_DISTRICT");
+
+            this.Property(p => p.CodeCity)
+                .HasMaxLength(8)
+                .HasColumnName("CODE_CITY");
+
+            this.Property(p => p.CodeLocality)
+                .HasMaxLength(11)
+                .HasColumnName("CODE_LOCALITY");
         }
 
         #endregion

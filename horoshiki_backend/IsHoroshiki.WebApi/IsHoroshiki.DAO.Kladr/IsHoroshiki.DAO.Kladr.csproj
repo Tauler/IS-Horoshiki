@@ -104,7 +104,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Script\2016-09-08 индексы БД.sql" />
+    <Content Include="Script\2016-09-09 2. Поиск домов.sql" />
+    <Content Include="Script\2016-09-09 1. Обновление БД.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

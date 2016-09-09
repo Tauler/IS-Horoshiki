@@ -55,8 +55,16 @@ namespace IsHoroshiki.BusinessServices.Kladr
             }
             else if (IsMatchContentType(contentType, ContentType.City))
             {
-                var citys = await this._unitOfWork.KladrRepository.GetCityAllAsync(query, regionId, withParent, limit);
-                return citys.ToModelEntityList(ContentType.City);
+                if (regionId.EndsWith("00000000000"))
+                {
+                    var citys = await this._unitOfWork.KladrRepository.GetLocationAllAsync(query, regionId, withParent, limit);
+                    return citys.ToModelEntityList(ContentType.City);
+                }
+                else
+                {
+                    var citys = await this._unitOfWork.KladrRepository.GetCityAllAsync(query, regionId, withParent, limit);
+                    return citys.ToModelEntityList(ContentType.City);
+                }
             }
             else if (IsMatchContentType(contentType, ContentType.Street))
             {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -66,5 +68,21 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         }
 
         #endregion
+
+        #region protected
+
+        /// <summary>
+        /// Добавление параметра
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected DbParameter GetParameter(string name, object value)
+        {
+            return new SqlParameter(name, value);
+        }
+
+        #endregion
+
     }
 }
