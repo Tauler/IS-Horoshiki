@@ -82,14 +82,5 @@ namespace IsHoroshiki.DAO.Kladr.DaoEntities
             get;
             set;
         }
-
-        /// <summary>
-        /// Статус объекта 
-        /// </summary>
-        public string STATUS
-        {
-            get;
-            set;
-        }
     }
 }

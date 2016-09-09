@@ -7,6 +7,8 @@ namespace IsHoroshiki.BusinessEntities.Kladr
     /// </summary>
     public class KladrResultModel
     {
+        #region поля и свойства
+
         /// <summary>
         /// Тип искомого объекта (область, район и т.п.)
         /// </summary>
@@ -44,15 +46,6 @@ namespace IsHoroshiki.BusinessEntities.Kladr
         }
 
         /// <summary>
-        /// Тип объекта
-        /// </summary>
-        public string Type
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Тип объекта в сокращенной форме
         /// </summary>
         public string TypeShort
@@ -78,5 +71,35 @@ namespace IsHoroshiki.BusinessEntities.Kladr
             get;
             set;
         }
+
+        #endregion
+
+        #region Конструктор
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="contentType">Тип искомого объекта (область, район и т.п.)</param>
+        /// <param name="id">Id объекта в запросе</param>
+        /// <param name="name">Наименование</param>
+        /// <param name="okato">OKATO</param>
+        /// <param name="typeShort">Тип объекта в сокращенной форме</param>
+        /// <param name="index">Индекс объекта</param>
+        public KladrResultModel(string contentType, 
+            string id,
+            string index,
+            string name, 
+            string okato, 
+            string typeShort)
+        {
+            ContentType = contentType;
+            Id = id;
+            Name = name;
+            OKATO = okato;
+            TypeShort = typeShort;
+            Index = index;
+        }
+
+        #endregion
     }
 }
