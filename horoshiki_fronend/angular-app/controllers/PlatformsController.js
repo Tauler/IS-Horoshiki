@@ -49,13 +49,19 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
 platformsControllers.controller('PlatformsAddController', ['$scope', '$location', 'PlatformsService', 'SubdivisionService', 'UsersService', 'DictionaryService','$routeParams',
     function ($scope, $location, PlatformsService, SubdivisionService, UsersService, DictionaryService, $routeParams) {
         $scope.model = {};
+        $scope.model.buyProcessesValue = [];
+        
+        $scope.model.localTime = {
+            start : '08:00',
+            end: '17:00'
+        }
 
         $scope.model.platform = {
             Name: "",
-            SubDivisionModel: {},
-            UserModel: {},
-            PlatformStatusModel: {},
-            BuyProcessesModel: [],
+            SubDivision: {},
+            User: {},
+            PlatformStatus: {},
+            BuyProcesses: [],
             YandexMap: "",
             Address: "",
             TimeStart: "",
@@ -65,6 +71,17 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
 
         $scope.model.error = {};
+        $scope.model.error.localTime = false;
+        $scope.checkLocalTime = function () {
+            var regexpTime = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/mg;
+            if($scope.model.localTime.start==undefined || $scope.model.localTime.start=="" || !$scope.model.localTime.start.match(regexpTime) ||
+                $scope.model.localTime.end==undefined || $scope.model.localTime.end=="" || !$scope.model.localTime.end.match(regexpTime)){
+                $scope.model.error.localTime = true;
+            }else{
+                $scope.model.error.localTime = false;
+            }
+        }
+
         $scope.model.error.name = false;
         $scope.checkErrorName = function () {
             if ($scope.model.platform.Name.length < 3 || $scope.model.platform.Name.length > 50) {
@@ -84,7 +101,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
         $scope.model.error.subdivision = false;
         $scope.checkErrorSubdivisions = function () {
-            if ($scope.model.subdivision == "" || $scope.model.subdivision == undefined) {
+            if ($scope.model.platform.User == "" || $scope.model.platform.User == undefined) {
                 $scope.model.error.subdivision = true;
             } else {
                 $scope.model.error.subdivision = false;
@@ -92,7 +109,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
         $scope.model.error.statusSite = false;
         $scope.checkErrorStatusSite = function () {
-            if ($scope.model.statusSite == "" || $scope.model.statusSite == undefined) {
+            if ($scope.model.platform.PlatformStatus == "" || $scope.model.platform.PlatformStatus == undefined) {
                 $scope.model.error.statusSite = true;
             } else {
                 $scope.model.error.statusSite = false;
@@ -108,14 +125,11 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
         $scope.model.error.minCheck = false;
         $scope.checkErrorMinCheck = function () {
-            console.log("checkErrorMinCheck");
             var regexpFloat = /^(?!0\d)\d*(\.\d+)?$/mg;
-            if (!$scope.model.platform.MinCheck.match(regexpFloat)) {
+            if ($scope.model.platform.MinCheck==undefined || $scope.model.platform.MinCheck=="" || !$scope.model.platform.MinCheck.toString().match(regexpFloat) ||  parseInt($scope.model.platform.MinCheck) < 1) {
                 $scope.model.error.minCheck = true;
-                console.log("true");
             } else {
                 $scope.model.error.minCheck = false;
-                console.log("false");
             }
         }
 
@@ -177,25 +191,39 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             $scope.checkErrorBuyProcess();
             $scope.checkErrorMinCheck();
 
-            if ($scope.model.subdivision != null && $scope.model.subdivision != undefined) {
-                $scope.model.platform.SubDivisionModel = JSON.parse($scope.model.subdivision);
-            }
-            if ($scope.model.user != null && $scope.model.user != undefined) {
-                $scope.model.platform.UserModel = JSON.parse($scope.model.user);
-            }
-            if ($scope.model.statusSite != null && $scope.model.statusSite != undefined) {
-                $scope.model.platform.PlatformStatusModel = JSON.parse($scope.model.statusSite);
-            }
-
-            console.log($scope.model.buyProcessesValue);
-            if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
-                for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
-                    $scope.model.platform.BuyProcessesModel[i] = JSON.parse($scope.model.buyProcessesValue[i]);
-                }
-            }
-
 
             if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck) {
+
+
+             // var user = {
+             //        Id: $scope.model.platform.User.Id,
+             //        FirstName: "",
+             //        MiddleName: "",
+             //        LastName: "",
+             //        Phone: "",
+             //        IsHaveMedicalBook: false,
+             //        MedicalBookEnd: "",
+             //        EmployeeStatus: "",
+             //        Position: "",
+             //        DateStart: "",
+             //        DateEnd: "",
+             //        IsAccess: false,
+             //        UserName: "",
+             //        Password: "",
+             //        ConfirmPassword: ""
+             //    }
+
+                // $scope.model.platform.User = user;
+
+                $scope.model.platform.TimeStart = $scope.model.localTime.start+":00";
+                $scope.model.platform.TimeEnd = $scope.model.localTime.end+":00";
+
+                if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
+                    for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
+                        $scope.model.platform.BuyProcesses[i] = JSON.parse($scope.model.buyProcessesValue[i]);
+                    }
+                }
+
                 PlatformsService.add($scope.model.platform).success(function (result) {
                     if (result.Success == 1) {
                         $location.url("/platforms");
@@ -208,48 +236,38 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 })
             }
 
-
         }
 
         $scope.isEdit = function () {
            return $scope.pageId!=undefined && $scope.pageId=='platformsEditPage';
         }
-        
+
         $scope.getPlatform = function () {
-            var currentPlatform = {
-                Name: "",
-                SubDivisionModel: {},
-                UserModel: {},
-                PlatformStatusModel: {},
-                BuyProcessesModel: [],
-                YandexMap: "",
-                Address: "",
-                TimeStart: "",
-                TimeEnd: "",
-                MinCheck: "",
-                Id: "1"
-            }
 
             if($scope.isEdit()) {
                 PlatformsService.get($routeParams.id).success(function (result) {
                     if (result.Success == 1) {
                         $scope.model.platform = result.Data;
 
-                        if($scope.model.platform.SubDivisionModel != null && $scope.model.platform.SubDivisionModel!=''){
-                            console.log($scope.model.platform.SubDivisionModel);
-                            $scope.model.subdivision = JSON.stringify($scope.model.platform.SubDivisionModel);
-                            console.log($scope.model.statusSite);
-                        }
-                        if($scope.model.platform.UserModel != null && $scope.model.platform.UserModel != ''){
-                            console.log($scope.model.platform.UserModel);
-                            $scope.model.user = JSON.stringify($scope.model.platform.UserModel);
-                            console.log($scope.model.user)
-                        }
-                        if($scope.model.platform.PlatformStatusModel!=null && $scope.model.platform.PlatformStatusModel!=""){
-                            console.log($scope.model.platform.PlatformStatusModel);
-                            $scope.model.statusSite = JSON.stringify($scope.model.platform.PlatformStatusModel);
-                            console.log($scope.model.statusSite)
-                        }
+                        $scope.model.platform.SubDivision.Id = $scope.model.platform.SubDivision.Id.toString();
+                        $scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
+                        $scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
+
+                        // if($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses!=''){
+                        //     // console.log($scope.model.platform.SubDivision);
+                        //     $scope.model.buyProcessesValue = JSON.stringify($scope.model.platform.BuyProcesses);
+                        //     // console.log($scope.model.statusSite);
+                        // }
+
+                        if ($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses != undefined) {
+                                for (var i = 0; i < $scope.model.platform.BuyProcesses.length; i++) {
+                                    $scope.model.buyProcessesValue[i] = JSON.stringify($scope.model.platform.BuyProcesses[i]);
+                                }
+                            }
+
+                        console.log($scope.model.buyProcessesValue);
+
+
                     } else {
                         displayErrorMessage(result.Reason);
                     }
@@ -263,7 +281,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 // console.log($scope.model.buyProcessesValue);
                 // if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
                 //     for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
-                //         $scope.model.platform.BuyProcessesModel[i] = JSON.parse($scope.model.buyProcessesValue[i]);
+                //         $scope.model.platform.BuyProcesses[i] = JSON.parse($scope.model.buyProcessesValue[i]);
                 //     }
                 // }
 

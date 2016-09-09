@@ -1,166 +1,365 @@
-<div class="breadcrumbs">
-    <div class="container">
-        <h1 ng-if="!isEdit()" class="pull-left">Добавление площадки</h1>
-        <h1 ng-if="isEdit()" class="pull-left">Редактирование площадки</h1>
-        <ul class="pull-right breadcrumb">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/platforms">Площадки</a></li>
-            <li ng-if="!isEdit()" class="active">Добавдение площадки</li>
-            <li ng-if="isEdit()" class="active">Редактирование площадки</li>
-        </ul>
-    </div>
+<!--<div class="breadcrumbs">-->
+<!--<div class="container">-->
+<!--<h1 ng-if="!isEdit()" class="pull-left">Добавление площадки</h1>-->
+<!--<h1 ng-if="isEdit()" class="pull-left">Редактирование площадки</h1>-->
+<!--<ul class="pull-right breadcrumb">-->
+<!--<li><a href="/">Главная</a></li>-->
+<!--<li><a href="/platforms">Площадки</a></li>-->
+<!--<li ng-if="!isEdit()" class="active">Добавдение площадки</li>-->
+<!--<li ng-if="isEdit()" class="active">Редактирование площадки</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="container content">-->
+<!--<div class="row">-->
+<!--&lt;!&ndash; Begin Sidebar Menu &ndash;&gt;-->
+<!--<div class="col-md-3">-->
+<!--<ng-include src="'angular-html/partial/left.menu.html'"></ng-include>-->
+<!--</div>-->
+<!--&lt;!&ndash; End Sidebar Menu &ndash;&gt;-->
+
+<!--&lt;!&ndash; Begin Content &ndash;&gt;-->
+<!--<div class="col-md-9">-->
+
+<!--<div class="row">-->
+<!--<form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">-->
+
+<!--<div class="col-md-12">-->
+
+<!--<section>-->
+<!--<label class="label"><strong>Наименование:</strong></label>-->
+<!--<label class="input col-9">-->
+<!--<input class="" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"-->
+<!--ng-model="model.platform.Name" name="name" id="name" type="text">-->
+<!--<code class="ng-binding" ng-show="model.error.name">Не верный формат поля-->
+<!--"Наименование",-->
+<!--данное поле не может быть меньше 3 и больше 50 символов. </code>-->
+<!--</label>-->
+<!--</section>-->
+
+<!--<section>-->
+<!--<label class="label"><strong>Адрес:</strong></label>-->
+<!--<label class="input col-9">-->
+<!--<input class="" ng-blur="checkErrorAddress();" maxlength="255" placeholder="Адрес"-->
+<!--ng-model="model.platform.Address" name="address" id="address" type="text">-->
+<!--<code class="ng-binding" ng-show="model.error.address">Не верный формат поля "Адрес",-->
+<!--данное поле не может быть меньше 3 и больше 255 символов. </code>-->
+<!--</label>-->
+<!--</section>-->
+
+<!--<section>-->
+<!--<label class="label"><strong>Подразделение:</strong></label>-->
+<!--<label class="input col-6">-->
+<!--<select ng-change="checkErrorSubdivisions();" class="form-control"-->
+<!--ng-model="model.subdivision.Id">-->
+<!--<option value="">Не выбрано</option>-->
+<!--<option ng-repeat="subdivision in model.subdivisions" value="{{subdivision.Id}}">-->
+<!--{{subdivision.Name}}-->
+<!--</option>-->
+<!--</select>-->
+<!--<code class="ng-binding" ng-show="model.error.subdivision">Поле "Подразделение" должно-->
+<!--быть-->
+<!--заполнено. </code>-->
+<!--</label>-->
+<!--</section>-->
+<!--{{model.subdivision}}-->
+
+<!--<section>-->
+<!--<label class="label"><strong>Управляющий:</strong></label>-->
+<!--<label class="input col-6">-->
+<!--<select class="form-control" ng-model="model.user">-->
+<!--<option value="">Не выбрано</option>-->
+<!--<option ng-repeat="user in model.users" value="{{user}}">-->
+<!--{{user.UserName}}-->
+<!--</option>-->
+<!--</select>-->
+<!--</label>-->
+<!--</section>-->
+<!--{{model.user}}-->
+
+<!--<section>-->
+<!--<label class="label"><strong>Статус площадки:</strong></label>-->
+<!--<label class="input col-6">-->
+<!--<select ng-change="checkErrorStatusSite();" class="form-control"-->
+<!--ng-model="model.statusSite">-->
+<!--<option value="">Не выбрано</option>-->
+<!--<option ng-repeat="status in model.statusSites" value="{{status}}">-->
+<!--{{status.Value}}-->
+<!--</option>-->
+<!--</select>-->
+<!--<code class="ng-binding" ng-show="model.error.statusSite">Поле "Статус площадки" должно-->
+<!--быть заполнено. </code>-->
+<!--</label>-->
+<!--</section>-->
+
+
+<!--<section>-->
+<!--<label class="label"><strong>Способы покупки:</strong></label>-->
+<!--<label class="input col-6">-->
+<!--<select ng-change="checkErrorBuyProcess();" multiple="multiple" class="form-control"-->
+<!--ng-model="model.buyProcessesValue">-->
+<!--<option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">-->
+<!--{{buyProcess.Value}}-->
+<!--</option>-->
+<!--</select>-->
+<!--</label>-->
+<!--<div class="note">Для выбора нескольких элементов нажмите клавишу Ctrl и выберите объекты.-->
+<!--</div>-->
+<!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
+<!--заполнено. </code>-->
+<!--</section>-->
+
+<!--<section>-->
+<!--<label class="label"><strong>Время работы:</strong></label>-->
+<!--<div class="row">-->
+<!--<section class="col col-3" style="margin-bottom: 0px;">-->
+<!--<label class="input">-->
+<!--с: <input class="" ng-blur="checkErrorTimeStart();" maxlength="8"-->
+<!--placeholder="00:00:00"-->
+<!--ng-model="model.platform.TimeStart" name="start" id="start"-->
+<!--type="text">-->
+<!--</label>-->
+<!--</section>-->
+<!--<section class="col col-3" style="margin-bottom: 0px;">-->
+<!--<label class="input">-->
+<!--по: <input class="" ng-blur="checkErrorTimeEnd();"-->
+<!--ng-model="model.platform.TimeEnd" maxlength="8"-->
+<!--placeholder="12:30:00" name="end" id="end" type="text">-->
+<!--</label>-->
+<!--</section>-->
+
+<!--</div>-->
+<!--&lt;!&ndash;<code class="ng-binding">Не верный формат поля "Минимальный чек",&ndash;&gt;-->
+<!--&lt;!&ndash;данное поле только цифры. </code>&ndash;&gt;-->
+<!--</section>-->
+
+
+<!--<section>-->
+<!--<label class="label"><strong>Минимальный чек:</strong></label>-->
+<!--<label class="input col-6">-->
+<!--<input class="" ng-blur="checkErrorMinCheck();" maxlength="255"-->
+<!--placeholder="Минимальный чек"-->
+<!--ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">-->
+<!--<code class="ng-binding" ng-show="model.error.minCheck">Не верный формат поля-->
+<!--"Минимальный чек", данное поле только цифры. </code>-->
+<!--</label>-->
+<!--</section>-->
+
+
+<!--<br/><br/>-->
+<!--<div class="text-right col-9">-->
+<!--<a href="/platforms">-->
+<!--<button class="btn-u btn-u-default" type="button">Отменить</button>-->
+<!--</a>-->
+<!--<a ng-click="savePlatform()">-->
+<!--<button class="btn-u ng-binding" type="button">Сохранить</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--<br/><br/>-->
+
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/">Главная</a>
+        </li>
+        <li>
+            <a href="/users">Подразделения</a>
+        </li>
+        <li ng-if="!isEdit()" class="active">Создание площадки</li>
+        <li ng-if="isEdit()" class="active">Редактирование площадки</li>
+    </ul>
 </div>
 
-<div class="container content">
-    <div class="row">
-        <!-- Begin Sidebar Menu -->
-        <div class="col-md-3">
-            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
-        </div>
-        <!-- End Sidebar Menu -->
-
-        <!-- Begin Content -->
-        <div class="col-md-9">
-
-            <div class="row">
-                <form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">
-
-                    <div class="col-md-12">
-
-                        <section>
-                            <label class="label"><strong>Наименование:</strong></label>
-                            <label class="input col-9">
-                                <input class="" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"
+<div class="page-body">
+    <div class="col-xs-12 col-md-12">
+        <div class="widget">
+            <div class="widget-header  with-footer">
+                <span ng-show="!isEdit()" class="widget-caption">Создание площадки</span>
+                <span ng-show="isEdit()" class="widget-caption">Редактирование площадки</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" class="margin-10">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="name">Наименование:</label>
+                                <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
+                                       placeholder="Наименование"
                                        ng-model="model.platform.Name" name="name" id="name" type="text">
                                 <code class="ng-binding" ng-show="model.error.name">Не верный формат поля
                                     "Наименование",
                                     данное поле не может быть меньше 3 и больше 50 символов. </code>
-                            </label>
-                        </section>
+                            </div>
+                        </div>
+                    </div>
 
-                        <section>
-                            <label class="label"><strong>Адрес:</strong></label>
-                            <label class="input col-9">
-                                <input class="" ng-blur="checkErrorAddress();" maxlength="255" placeholder="Адрес"
-                                       ng-model="model.platform.Address" name="address" id="address" type="text">
+
+                    <div class="row margin-top-10">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="address">Адрес:</label>
+                                <textarea class="form-control" ng-blur="checkErrorAddress();" maxlength="255"
+                                          placeholder="Адрес"
+                                          ng-model="model.platform.Address" name="address" id="address"></textarea>
                                 <code class="ng-binding" ng-show="model.error.address">Не верный формат поля "Адрес",
                                     данное поле не может быть меньше 3 и больше 255 символов. </code>
-                            </label>
-                        </section>
-
-                        <section>
-                            <label class="label"><strong>Подразделение:</strong></label>
-                            <label class="input col-6">
-                                <select ng-change="checkErrorSubdivisions();" class="form-control"
-                                        ng-model="model.subdivision.Id">
-                                    <option value="">Не выбрано</option>
-                                    <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision.Id}}">
-                                        {{subdivision.Name}}
-                                    </option>
-                                </select>
-                                <code class="ng-binding" ng-show="model.error.subdivision">Поле "Подразделение" должно
-                                    быть
-                                    заполнено. </code>
-                            </label>
-                        </section>
-                        {{model.subdivision}}
-
-                        <section>
-                            <label class="label"><strong>Управляющий:</strong></label>
-                            <label class="input col-6">
-                                <select class="form-control" ng-model="model.user">
-                                    <option value="">Не выбрано</option>
-                                    <option ng-repeat="user in model.users" value="{{user}}">
-                                        {{user.UserName}}
-                                    </option>
-                                </select>
-                            </label>
-                        </section>
-                        {{model.user}}
-
-                        <section>
-                            <label class="label"><strong>Статус площадки:</strong></label>
-                            <label class="input col-6">
-                                <select ng-change="checkErrorStatusSite();" class="form-control"
-                                        ng-model="model.statusSite">
-                                    <option value="">Не выбрано</option>
-                                    <option ng-repeat="status in model.statusSites" value="{{status}}">
-                                        {{status.Value}}
-                                    </option>
-                                </select>
-                                <code class="ng-binding" ng-show="model.error.statusSite">Поле "Статус площадки" должно
-                                    быть заполнено. </code>
-                            </label>
-                        </section>
-
-
-                        <section>
-                            <label class="label"><strong>Способы покупки:</strong></label>
-                            <label class="input col-6">
-                                <select ng-change="checkErrorBuyProcess();" multiple="multiple" class="form-control"
-                                        ng-model="model.buyProcessesValue">
-                                    <option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">
-                                        {{buyProcess.Value}}
-                                    </option>
-                                </select>
-                            </label>
-                            <div class="note">Для выбора нескольких элементов нажмите клавишу Ctrl и выберите объекты.
                             </div>
-                            <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть
-                                заполнено. </code>
-                        </section>
+                        </div>
+                    </div>
 
-                        <section>
-                            <label class="label"><strong>Время работы:</strong></label>
-                            <div class="row">
-                                <section class="col col-3" style="margin-bottom: 0px;">
-                                    <label class="input">
-                                        с: <input class="" ng-blur="checkErrorTimeStart();" maxlength="8"
-                                                  placeholder="00:00:00"
-                                                  ng-model="model.platform.TimeStart" name="start" id="start"
-                                                  type="text">
-                                    </label>
-                                </section>
-                                <section class="col col-3" style="margin-bottom: 0px;">
-                                    <label class="input">
-                                        по: <input class="" ng-blur="checkErrorTimeEnd();" ng-model="model.platform.TimeEnd" maxlength="8" placeholder="12:30:00"  name="end" id="end" type="text">
-                                    </label>
-                                </section>
-
+                    <div class="row margin-top-30">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdivisions">Подразделение:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select ng-change="checkErrorSubdivisions();" id="subdivisions" class="form-control"
+                                            ng-model="model.platform.SubDivision.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="subdivision in model.subdivisions"
+                                                value="{{subdivision.Id}}">
+                                            {{subdivision.Name}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.subdivision">Поле "Подразделение"
+                                        должно быть заполнено. </code>
+                                </div>
                             </div>
-                            <!--<code class="ng-binding">Не верный формат поля "Минимальный чек",-->
-                                <!--данное поле только цифры. </code>-->
-                        </section>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdivisions">Управляющий:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select class="form-control" ng-model="model.platform.User.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="user in model.users" value="{{user.Id}}">
+                                            {{user.UserName}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdivisions">Статус площадки:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select ng-change="checkErrorStatusSite();" class="form-control"
+                                            ng-model="model.platform.PlatformStatus.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="status in model.statusSites" value="{{status.Id}}">
+                                            {{status.Value}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.statusSite">Поле "Статус площадки"
+                                        должно
+                                        быть заполнено. </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row margin-top-30">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="buyProcess">Способы покупки:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select ng-change="checkErrorBuyProcess();" multiple="multiple" id="buyProcess"
+                                            class="form-control "
+                                            ng-model="model.buyProcessesValue">
+                                        <option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">
+                                            {{buyProcess.Value}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть
+                                        заполнено. </code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="subdivisions">Время работы:</label>
 
 
-                        <section>
-                            <label class="label"><strong>Минимальный чек:</strong></label>
-                            <label class="input col-6">
-                                <input class="" ng-blur="checkErrorMinCheck();" maxlength="255"
+                                <div class="input-group" style="width: 100%">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">c</span>
+                                                <input class="form-control timepicker" ng-blur="checkLocalTime();"
+                                                       maxlength="5"
+                                                       ng-model="model.localTime.start" name="start" id="start"
+                                                       type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">до</span>
+                                                <input class="form-control timepicker" ng-blur="checkLocalTime();"
+                                                       ng-model="model.localTime.end" maxlength="5"
+                                                       name="end" id="end" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <code class="ng-binding" ng-show="model.error.localTime">
+                                    Поле "Время работы" должно быть заполнено.
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row margin-top-30">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="name">Минимальный чек:</label>
+                                <input class="form-control" ng-blur="checkErrorMinCheck();" maxlength="50"
                                        placeholder="Минимальный чек"
                                        ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
-                                <code class="ng-binding" ng-show="model.error.minCheck">Не верный формат поля
-                                    "Минимальный чек", данное поле только цифры. </code>
-                            </label>
-                        </section>
-
-
-                        <br/><br/>
-                        <div class="text-right col-9">
-                            <a href="/platforms">
-                                <button class="btn-u btn-u-default" type="button">Отменить</button>
-                            </a>
-                            <a ng-click="savePlatform()">
-                                <button class="btn-u ng-binding" type="button">Сохранить</button>
-                            </a>
+                                <code class="ng-binding" ng-show="model.error.minCheck">Поле
+                                    "Минимальный чек", должно содержать только цифры и быть больше 0. </code>
+                            </div>
                         </div>
-                        <br/><br/>
+                    </div>
 
+
+                    <div class="margin-top-30 text-align-right">
+                        <a href="/platforms" class="btn btn-default">Отменить</a>
+
+                        <a ng-show="!isEdit()" href="javascript:void(0);" ng-click="savePlatform()"
+                           class="btn btn-blue">Создать</a>
+                        <a ng-show="isEdit()" href="javascript:void(0);" ng-click="savePlatform()"
+                           class="btn btn-blue">Изменить</a>
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
 
+<script>
+//    var $exampleMulti = $(".select_m").select2({
+//        placeholder: "Выберите элемент",
+//        allowClear: true
+//    });
+//
+//    $exampleMulti.val([ '{"Value":"Доставка","Id":1}', '{"Value":"Самовывоз","Id":2}' ]).trigger("change");
+
+
+    $('.timepicker').timepicker({
+        showMeridian: false,
+        minuteStep: 5,
+    });
+</script>

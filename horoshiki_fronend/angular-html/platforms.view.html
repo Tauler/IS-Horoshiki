@@ -1,189 +1,376 @@
-<div class="breadcrumbs">
-    <div class="container">
-        <h1 class="pull-left">Платформы</h1>
-        <ul class="pull-right breadcrumb">
-            <!--<li><a href="/users">Пользователи</a></li>-->
-            <li><a href="/">Главная</a></li>
-            <li class="active">Платформы</li>
-        </ul>
+<!--<div class="breadcrumbs">-->
+    <!--<div class="container">-->
+        <!--<h1 class="pull-left">Платформы</h1>-->
+        <!--<ul class="pull-right breadcrumb">-->
+            <!--&lt;!&ndash;<li><a href="/users">Пользователи</a></li>&ndash;&gt;-->
+            <!--<li><a href="/">Главная</a></li>-->
+            <!--<li class="active">Платформы</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<div class="container content">-->
+    <!--<div class="row">-->
+        <!--&lt;!&ndash; Begin Sidebar Menu &ndash;&gt;-->
+        <!--<div class="col-md-3">-->
+            <!--<ng-include src="'angular-html/partial/left.menu.html'"></ng-include>-->
+        <!--</div>-->
+        <!--&lt;!&ndash; End Sidebar Menu &ndash;&gt;-->
+
+        <!--&lt;!&ndash; Begin Content &ndash;&gt;-->
+        <!--<div class="col-md-9">-->
+
+            <!--&lt;!&ndash;<div class="headline"><h2>Пользователи</h2></div>&ndash;&gt;-->
+            <!--<div class="text-right">-->
+                <!--<a href="/platforms/add">-->
+                    <!--<button class="btn-u btn-u-sm btn-u-dark-blue" type="button"><i-->
+                            <!--class="fa fa-plus"></i>&nbsp;&nbsp;Создать площадку-->
+                    <!--</button>-->
+                <!--</a>-->
+                <!--<p></p>-->
+            <!--</div>-->
+            <!--<table class="table table-striped">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>-->
+                        <!--<div ng-if="model.orderby.field!='Name'">-->
+                            <!--<a ng-click="changeSort('Name',true)">Наименование<i-->
+                                    <!--class="fa fa-sort padding-left-5"></i></a>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='Name' && model.orderby.asc==true">-->
+                            <!--<a ng-click="changeSort('Name',false)">Наименование</a><i-->
+                                <!--class="fa fa-sort-asc padding-left-5"></i>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='Name' && model.orderby.asc==false">-->
+                            <!--<a ng-click="changeSort('Name',true)">Наименование</a><i-->
+                                <!--class="fa fa-sort-desc padding-left-5"></i>-->
+                        <!--</div>-->
+                    <!--</th>-->
+
+
+                    <!--<th>-->
+                        <!--<div ng-if="model.orderby.field!='SubDivisionModel'">-->
+                            <!--<a ng-click="changeSort('SubDivisionModel',true)">Подразделение<i-->
+                                    <!--class="fa fa-sort padding-left-5"></i></a>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='SubDivisionModel' && model.orderby.asc==true">-->
+                            <!--<a ng-click="changeSort('SubDivisionModel',false)">Подразделение</a><i-->
+                                <!--class="fa fa-sort-asc padding-left-5"></i>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='SubDivisionModel' && model.orderby.asc==false">-->
+                            <!--<a ng-click="changeSort('SubDivisionModel',true)">Подразделение</a><i-->
+                                <!--class="fa fa-sort-desc padding-left-5"></i>-->
+                        <!--</div>-->
+                    <!--</th>-->
+
+                    <!--<th>-->
+                        <!--<div ng-if="model.orderby.field!='UserModel'">-->
+                            <!--<a ng-click="changeSort('UserModel',true)">Управляющий<i-->
+                                    <!--class="fa fa-sort padding-left-5"></i></a>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='UserModel' && model.orderby.asc==true">-->
+                            <!--<a ng-click="changeSort('UserModel',false)">Управляющий</a><i-->
+                                <!--class="fa fa-sort-asc padding-left-5"></i>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='UserModel' && model.orderby.asc==false">-->
+                            <!--<a ng-click="changeSort('UserModel',true)">Управляющий</a><i-->
+                                <!--class="fa fa-sort-desc padding-left-5"></i>-->
+                        <!--</div>-->
+                    <!--</th>-->
+
+                    <!--<th>-->
+                        <!--<div ng-if="model.orderby.field!='PlatformStatusModel'">-->
+                            <!--<a ng-click="changeSort('PlatformStatusModel',true)">Статус<i-->
+                                    <!--class="fa fa-sort padding-left-5"></i></a>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='PlatformStatusModel' && model.orderby.asc==true">-->
+                            <!--<a ng-click="changeSort('PlatformStatusModel',false)">Статус</a><i-->
+                                <!--class="fa fa-sort-asc padding-left-5"></i>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='PlatformStatusModel' && model.orderby.asc==false">-->
+                            <!--<a ng-click="changeSort('PlatformStatusModel',true)">Статус</a><i-->
+                                <!--class="fa fa-sort-desc padding-left-5"></i>-->
+                        <!--</div>-->
+                    <!--</th>-->
+
+                    <!--<th>-->
+                        <!--<div>-->
+                            <!--Время работы-->
+                        <!--</div>-->
+                    <!--</th>-->
+
+                    <!--<th>-->
+                        <!--<div ng-if="model.orderby.field!='MinCheck'">-->
+                            <!--<a ng-click="changeSort('MinCheck',true)">Минимальный чек<i-->
+                                    <!--class="fa fa-sort padding-left-5"></i></a>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==true">-->
+                            <!--<a ng-click="changeSort('MinCheck',false)">Минимальный чек</a><i-->
+                                <!--class="fa fa-sort-asc padding-left-5"></i>-->
+                        <!--</div>-->
+                        <!--<div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==false">-->
+                            <!--<a ng-click="changeSort('MinCheck',true)">Минимальный чек</a><i-->
+                                <!--class="fa fa-sort-desc padding-left-5"></i>-->
+                        <!--</div>-->
+                    <!--</th>-->
+                    <!--&lt;!&ndash;Действие&ndash;&gt;-->
+                    <!--<th>-->
+                    <!--</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+
+                <!--<tr ng-repeat="platform in model.platforms">-->
+                    <!--<td ng-bind="platform.Name"><a href="link"></a></td>-->
+                    <!--<td ng-bind="platform.SubDivisionModel.Name"></td>-->
+                    <!--<td ng-bind="platform.UserModel.UserName"></td>-->
+                    <!--<td ng-bind="platform.PlatformStatusModel.Value"></td>-->
+                    <!--<td ng-bind="platform.TimeStart + ' - ' + platform.TimeEnd"></td>-->
+                    <!--<td ng-bind="platform.MinCheck"></td>-->
+                    <!--<td>-->
+
+                        <!--<div class="btn-group">-->
+                            <!--<button type="button" class="btn-u btn-u-xs dropdown-toggle" data-toggle="dropdown">-->
+                                <!--&lt;!&ndash;Action&ndash;&gt;-->
+                                <!--<i class="fa fa-angle-down"></i>-->
+                            <!--</button>-->
+                            <!--<ul class="dropdown-menu" role="menu">-->
+                                <!--<li><a href="/platforms/edit/{{platform.Id}}"><i class="fa fa-edit"></i> Редактировать</a></li>-->
+                                <!--<li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteSubdivisionModal" ng-click="deleteSubdivisionModal(platform)"><i class="fa fa-cloud"></i> Удалить</a></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+
+                    <!--</td>-->
+                <!--</tr>-->
+
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--<div class="text-center">-->
+                <!--<uib-pagination template-url="/angular-html/directives/pagination.html"-->
+                                <!--ng-if="model.platforms.length>0"-->
+                                <!--ng-model="model.paging.PageNo"-->
+                                <!--total-items="model.paging.TotalRecordCount"-->
+                                <!--max-size="model.countPageButton"-->
+                                <!--items-per-page="model.clientPageSize"-->
+                                <!--boundary-links="true"-->
+                                <!--first-text="{{$parent.translation.pagination_btn_first_page}}"-->
+                                <!--last-text="{{$parent.translation.pagination_btn_last_page}}"-->
+                                <!--previous-text="{{$parent.translation.pagination_btn_previous_page}}"-->
+                                <!--next-text="{{$parent.translation.pagination_btn_next_page}}">-->
+                <!--</uib-pagination>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--&lt;!&ndash; Modal delete subdivision cam &ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="modal fade" id="deleteSubdivisionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSubdivisionModalLabel"&ndash;&gt;-->
+         <!--&lt;!&ndash;aria-hidden="true">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="modal-dialog">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="modal-content">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<h4 class="modal-title" id="deleteSubdivisionModalLabel">Удаление подразделения </h4>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+                    <!--&lt;!&ndash;Вы действительно хотите удалить подразделение "{{model.deleteSubdivisionModel.Name}}"&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="modal-footer">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a href="/subdivisions">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button class="btn-u btn-u-default" type="button" data-dismiss="modal">Отменить</button>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<a ng-click="deleteSubdivision()">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button class="btn-u ng-binding" type="button" data-dismiss="modal">Удалить</button>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--</div>-->
+
+
+
+
+
+
+
+
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/">Главная</a>
+        </li>
+        <!--<li>-->
+        <!--<a href="/users">Настройки</a>-->
+        <!--</li>-->
+        <li class="active">Площадки</li>
+    </ul>
+</div>
+
+
+<div class="page-body">
+    <div class="col-xs-12 col-md-12">
+        <div class="widget">
+            <div class="widget-header  with-footer">
+                <span class="widget-caption">Площадки</span>
+            </div>
+            <div class="widget-body">
+
+                <div class="padding-bottom-10 text-align-right">
+                    <a href="/platforms/add" class="btn btn-success">Создать площадку</a>
+                </div>
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="bordered-blueberry">
+                    <tr>
+                    <tr>
+                        <th>
+                            <div ng-if="model.orderby.field!='Name'">
+                                <a ng-click="changeSort('Name',true)">Наименование<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='Name' && model.orderby.asc==true">
+                                <a ng-click="changeSort('Name',false)">Наименование</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='Name' && model.orderby.asc==false">
+                                <a ng-click="changeSort('Name',true)">Наименование</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+
+
+                        <th>
+                            <div ng-if="model.orderby.field!='SubDivision'">
+                                <a ng-click="changeSort('SubDivision',true)">Подразделение<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='SubDivision' && model.orderby.asc==true">
+                                <a ng-click="changeSort('SubDivision',false)">Подразделение</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='SubDivision' && model.orderby.asc==false">
+                                <a ng-click="changeSort('SubDivision',true)">Подразделение</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div ng-if="model.orderby.field!='User'">
+                                <a ng-click="changeSort('User',true)">Управляющий<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='User' && model.orderby.asc==true">
+                                <a ng-click="changeSort('User',false)">Управляющий</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='User' && model.orderby.asc==false">
+                                <a ng-click="changeSort('User',true)">Управляющий</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div ng-if="model.orderby.field!='PlatformStatus'">
+                                <a ng-click="changeSort('PlatformStatus',true)">Статус<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='PlatformStatus' && model.orderby.asc==true">
+                                <a ng-click="changeSort('PlatformStatus',false)">Статус</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='PlatformStatus' && model.orderby.asc==false">
+                                <a ng-click="changeSort('PlatformStatus',true)">Статус</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+
+                        <th>
+                            <div>
+                                Время работы
+                            </div>
+                        </th>
+
+                        <th>
+                            <div ng-if="model.orderby.field!='MinCheck'">
+                                <a ng-click="changeSort('MinCheck',true)">Минимальный чек<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==true">
+                                <a ng-click="changeSort('MinCheck',false)">Минимальный чек</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==false">
+                                <a ng-click="changeSort('MinCheck',true)">Минимальный чек</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+                        <!--Действие-->
+                        <th>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="platform in model.platforms">
+
+
+                        <td ng-bind="platform.Name"><a href="link"></a></td>
+                        <td ng-bind="platform.SubDivision.Name"></td>
+                        <td ng-bind="platform.User.FirstName+' '+platform.User.LastName"></td>
+                        <td ng-bind="platform.PlatformStatus.Value"></td>
+                        <td ng-bind="platform.TimeStart + ' - ' + platform.TimeEnd"></td>
+                        <td ng-bind="platform.MinCheck"></td>
+                        <td>
+
+                            <div class="btn-group">
+                                <a aria-expanded="false" href="javascript:void(0);" class="btn btn-blue btn-xs"
+                                   data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu dropdown-blue">
+                                    <li><a href="/platforms/edit/{{platform.Id}}"><i class="fa fa-edit"></i>
+                                        Редактировать</a></li>
+                                    <li><a href="javascript:void(0);" data-toggle="modal"
+                                           data-target="#"
+                                           ng-click=""><i
+                                            class="fa fa-cloud"></i> Удалить</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="text-center margin-top-10 margin-bottom-20">
+                    <uib-pagination template-url="/angular-html/directives/pagination.html"
+                                    ng-if="model.platforms.length>0"
+                                    ng-model="model.paging.PageNo"
+                                    total-items="model.paging.TotalRecordCount"
+                                    max-size="model.countPageButton"
+                                    items-per-page="model.clientPageSize"
+                                    boundary-links="true"
+                                    first-text="{{$parent.translation.pagination_btn_first_page}}"
+                                    last-text="{{$parent.translation.pagination_btn_last_page}}"
+                                    previous-text="{{$parent.translation.pagination_btn_previous_page}}"
+                                    next-text="{{$parent.translation.pagination_btn_next_page}}">
+                    </uib-pagination>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="container content">
-    <div class="row">
-        <!-- Begin Sidebar Menu -->
-        <div class="col-md-3">
-            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
-        </div>
-        <!-- End Sidebar Menu -->
-
-        <!-- Begin Content -->
-        <div class="col-md-9">
-
-            <!--<div class="headline"><h2>Пользователи</h2></div>-->
-            <div class="text-right">
-                <a href="/platforms/add">
-                    <button class="btn-u btn-u-sm btn-u-dark-blue" type="button"><i
-                            class="fa fa-plus"></i>&nbsp;&nbsp;Создать площадку
-                    </button>
-                </a>
-                <p></p>
+<div id="deleteIserModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Удаление подразделения</h4>
             </div>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>
-                        <div ng-if="model.orderby.field!='Name'">
-                            <a ng-click="changeSort('Name',true)">Наименование<i
-                                    class="fa fa-sort padding-left-5"></i></a>
-                        </div>
-                        <div ng-if="model.orderby.field=='Name' && model.orderby.asc==true">
-                            <a ng-click="changeSort('Name',false)">Наименование</a><i
-                                class="fa fa-sort-asc padding-left-5"></i>
-                        </div>
-                        <div ng-if="model.orderby.field=='Name' && model.orderby.asc==false">
-                            <a ng-click="changeSort('Name',true)">Наименование</a><i
-                                class="fa fa-sort-desc padding-left-5"></i>
-                        </div>
-                    </th>
-
-
-                    <th>
-                        <div ng-if="model.orderby.field!='SubDivisionModel'">
-                            <a ng-click="changeSort('SubDivisionModel',true)">Подразделение<i
-                                    class="fa fa-sort padding-left-5"></i></a>
-                        </div>
-                        <div ng-if="model.orderby.field=='SubDivisionModel' && model.orderby.asc==true">
-                            <a ng-click="changeSort('SubDivisionModel',false)">Подразделение</a><i
-                                class="fa fa-sort-asc padding-left-5"></i>
-                        </div>
-                        <div ng-if="model.orderby.field=='SubDivisionModel' && model.orderby.asc==false">
-                            <a ng-click="changeSort('SubDivisionModel',true)">Подразделение</a><i
-                                class="fa fa-sort-desc padding-left-5"></i>
-                        </div>
-                    </th>
-
-                    <th>
-                        <div ng-if="model.orderby.field!='UserModel'">
-                            <a ng-click="changeSort('UserModel',true)">Управляющий<i
-                                    class="fa fa-sort padding-left-5"></i></a>
-                        </div>
-                        <div ng-if="model.orderby.field=='UserModel' && model.orderby.asc==true">
-                            <a ng-click="changeSort('UserModel',false)">Управляющий</a><i
-                                class="fa fa-sort-asc padding-left-5"></i>
-                        </div>
-                        <div ng-if="model.orderby.field=='UserModel' && model.orderby.asc==false">
-                            <a ng-click="changeSort('UserModel',true)">Управляющий</a><i
-                                class="fa fa-sort-desc padding-left-5"></i>
-                        </div>
-                    </th>
-
-                    <th>
-                        <div ng-if="model.orderby.field!='PlatformStatusModel'">
-                            <a ng-click="changeSort('PlatformStatusModel',true)">Статус<i
-                                    class="fa fa-sort padding-left-5"></i></a>
-                        </div>
-                        <div ng-if="model.orderby.field=='PlatformStatusModel' && model.orderby.asc==true">
-                            <a ng-click="changeSort('PlatformStatusModel',false)">Статус</a><i
-                                class="fa fa-sort-asc padding-left-5"></i>
-                        </div>
-                        <div ng-if="model.orderby.field=='PlatformStatusModel' && model.orderby.asc==false">
-                            <a ng-click="changeSort('PlatformStatusModel',true)">Статус</a><i
-                                class="fa fa-sort-desc padding-left-5"></i>
-                        </div>
-                    </th>
-
-                    <th>
-                        <div>
-                            Время работы
-                        </div>
-                    </th>
-
-                    <th>
-                        <div ng-if="model.orderby.field!='MinCheck'">
-                            <a ng-click="changeSort('MinCheck',true)">Минимальный чек<i
-                                    class="fa fa-sort padding-left-5"></i></a>
-                        </div>
-                        <div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==true">
-                            <a ng-click="changeSort('MinCheck',false)">Минимальный чек</a><i
-                                class="fa fa-sort-asc padding-left-5"></i>
-                        </div>
-                        <div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==false">
-                            <a ng-click="changeSort('MinCheck',true)">Минимальный чек</a><i
-                                class="fa fa-sort-desc padding-left-5"></i>
-                        </div>
-                    </th>
-                    <!--Действие-->
-                    <th>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr ng-repeat="platform in model.platforms">
-                    <td ng-bind="platform.Name"><a href="link"></a></td>
-                    <td ng-bind="platform.SubDivisionModel.Name"></td>
-                    <td ng-bind="platform.UserModel.UserName"></td>
-                    <td ng-bind="platform.PlatformStatusModel.Value"></td>
-                    <td ng-bind="platform.TimeStart + ' - ' + platform.TimeEnd"></td>
-                    <td ng-bind="platform.MinCheck"></td>
-                    <td>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn-u btn-u-xs dropdown-toggle" data-toggle="dropdown">
-                                <!--Action-->
-                                <i class="fa fa-angle-down"></i>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="/platforms/edit/{{platform.Id}}"><i class="fa fa-edit"></i> Редактировать</a></li>
-                                <li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteSubdivisionModal" ng-click="deleteSubdivisionModal(platform)"><i class="fa fa-cloud"></i> Удалить</a></li>
-                            </ul>
-                        </div>
-
-                    </td>
-                </tr>
-
-                </tbody>
-            </table>
-            <div class="text-center">
-                <uib-pagination template-url="/angular-html/directives/pagination.html"
-                                ng-if="model.platforms.length>0"
-                                ng-model="model.paging.PageNo"
-                                total-items="model.paging.TotalRecordCount"
-                                max-size="model.countPageButton"
-                                items-per-page="model.clientPageSize"
-                                boundary-links="true"
-                                first-text="{{$parent.translation.pagination_btn_first_page}}"
-                                last-text="{{$parent.translation.pagination_btn_last_page}}"
-                                previous-text="{{$parent.translation.pagination_btn_previous_page}}"
-                                next-text="{{$parent.translation.pagination_btn_next_page}}">
-                </uib-pagination>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить подразделение {{model.deleteSubdivisionModel.Name}}?</p>
             </div>
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="deleteSubdivisionClose();" data-dismiss="modal">Отменить</button>
+                <button type="button" class="btn btn-primary" ng-click="deleteSubdivision();">Удалить</button>
+            </div>
         </div>
-    </div>
-
-
-    <!-- Modal delete subdivision cam -->
-    <!--<div class="modal fade" id="deleteSubdivisionModal" tabindex="-1" role="dialog" aria-labelledby="deleteSubdivisionModalLabel"-->
-         <!--aria-hidden="true">-->
-        <!--<div class="modal-dialog">-->
-            <!--<div class="modal-content">-->
-                <!--<div class="modal-header">-->
-                    <!--<h4 class="modal-title" id="deleteSubdivisionModalLabel">Удаление подразделения </h4>-->
-                <!--</div>-->
-                <!--<div class="modal-body">-->
-                    <!--Вы действительно хотите удалить подразделение "{{model.deleteSubdivisionModel.Name}}"-->
-                <!--</div>-->
-                <!--<div class="modal-footer">-->
-                    <!--<a href="/subdivisions">-->
-                        <!--<button class="btn-u btn-u-default" type="button" data-dismiss="modal">Отменить</button>-->
-                    <!--</a>-->
-                    <!--<a ng-click="deleteSubdivision()">-->
-                        <!--<button class="btn-u ng-binding" type="button" data-dismiss="modal">Удалить</button>-->
-                    <!--</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    </div> <!-- / .modal-dialog -->
 </div>
