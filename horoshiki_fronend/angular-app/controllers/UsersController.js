@@ -206,6 +206,10 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
                 httpErrors($location.url(), status);
             })
         }
+        
+        $scope.phoneToLogin = function () {
+            $scope.model.user.UserName = $scope.model.user.Phone;
+        }
 
         $scope.getPositions();
         $scope.getEmployeeStatuses();
@@ -233,6 +237,8 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
                 if ($scope.model.datepickerStartDate.select != "" && $scope.model.datepickerStartDate.select != undefined) {
                     $scope.model.user.DateStart = dateFormatterBackend($scope.model.datepickerStartDate.select);
                 }
+
+                console.log($scope.model.datepickerMedicalBook.select);
                 if ($scope.model.datepickerMedicalBook.select != "" && $scope.model.datepickerMedicalBook.select != undefined) {
                     $scope.model.user.MedicalBookEnd = dateFormatterBackend($scope.model.datepickerMedicalBook.select);
                 }
@@ -414,6 +420,10 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
             })
+        }
+
+        $scope.phoneToLogin = function () {
+            $scope.model.user.UserName = $scope.model.user.Phone;
         }
 
         $scope.getPositions();

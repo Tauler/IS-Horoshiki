@@ -66,7 +66,13 @@
                                     поле должно состоять из 10 цифр. </code>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div style="margin-top: 23px">
+                                <a href="javascript:void(0);" name="phoneToLogin" ng-click="phoneToLogin();"
+                                   class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве логина</a>
+
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row margin-top-30">
@@ -107,7 +113,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Дата приема:</label>
-                                <datepicker ng-model="model.datepickerStartDate"></datepicker>
+                                <datepicker ng-model="model.datepickerStartDate"></datepicker>{{model.datepickerStartDate}}
                             </div>
                         </div>
                         <div class="col-md-4"></div>
@@ -127,7 +133,7 @@
 
                             <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
                                 <!--<label>Срок окончания мед. книжки:</label>-->
-                                <datepicker ng-model="model.datepickerMedicalBook"></datepicker>
+                                <datepicker ng-model="model.datepickerMedicalBook"></datepicker>{{model.datepickerMedicalBook}}
                             </div>
 
 
