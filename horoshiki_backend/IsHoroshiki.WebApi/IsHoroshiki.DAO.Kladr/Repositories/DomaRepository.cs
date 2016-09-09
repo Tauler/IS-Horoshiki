@@ -37,18 +37,128 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         /// <returns></returns>
         public async Task<IEnumerable<Doma>> GetAllAsync(string query, string regionId, bool withParent = false, int limit = 10)
         {
-            var codeId = regionId.Substring(0, 15);
+            var regionIdParam = GetParameter("regionId", regionId);
+            var queryParam = GetParameter("query", query);
+            var limitParam = GetParameter("limit", limit);
 
-            var list = DbSet.Where(p => p.Code.StartsWith(codeId))
-                .Where(p => p.Name.Contains(query))
-                .OrderBy(p => p.Name)
-                .Take(limit)
-                .ToList()
-                .AsEnumerable();
+            var result = Context.Database.SqlQuery<DomaProcedureResult>("usp_get_build @regionId, @query, @limit", regionIdParam, queryParam, limitParam);
 
-            return list;
+            return result != null ? result.Select(r => r.ConvertTo()).ToList().AsEnumerable() : new List<Doma>();
         }
 
         #endregion
+
+        /// <summary>
+        /// Результат выполнения ХП процедуры по поиску домов
+        /// </summary>
+        private class DomaProcedureResult : BaseDaoEntity
+        {
+            #region поля и свойства
+
+            /// <summary>
+            /// Сокращенное наименование типа объекта
+            /// </summary>
+            public string Socr
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Код
+            /// </summary>
+            public string Code
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Почтовый индекс
+            /// </summary>
+            public string Index
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Код ИФНС
+            /// </summary>
+            public string GNINMB
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Код территориального участка ИФНС
+            /// </summary>
+            public string UNO
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Код ОКАТО 
+            /// </summary>
+            public string OCATD
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Номер дома
+            /// </summary>
+            public string Building
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Корпус
+            /// </summary>
+            public string Corpus
+            {
+                get;
+                set;
+            }
+
+            /// <summary>
+            /// Строение
+            /// </summary>
+            public string Construction
+            {
+                get;
+                set;
+            }
+
+            #endregion
+
+            #region методы
+
+            /// <summary>
+            /// Конфверитрование в объект ДАО
+            /// </summary>
+            /// <returns></returns>
+            public Doma ConvertTo()
+            {
+                return new Doma
+                {
+                    Name = this.Building + this.Corpus + this.Construction,
+                    Socr = this.Socr,
+                    Code = this.Code,
+                    Index = this.Index,
+                    GNINMB = this.GNINMB,
+                    UNO = this.UNO,
+                    OCATD = this.OCATD
+                };
+            }
+
+            #endregion
+        }
     }
 }

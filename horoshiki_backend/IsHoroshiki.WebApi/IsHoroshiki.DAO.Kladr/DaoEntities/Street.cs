@@ -73,5 +73,23 @@ namespace IsHoroshiki.DAO.Kladr.DaoEntities
             get;
             set;
         }
+
+        /// <summary>
+        /// Доп поле. Код быстрого поиска региона
+        /// </summary>
+        public string CodeRegion
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Доп поле. Код быстрого поиска по городу\населенному пункту
+        /// </summary>
+        public string CodeQuick
+        {
+            get;
+            set;
+        }
     }
 }

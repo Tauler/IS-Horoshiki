@@ -35,20 +35,26 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         /// <param name="withParent">true - если необходимо вернуть родительскте записи для данного объекта</param>
         /// <param name="limit">Максимальное количество записей в ответе</param>
         /// <returns></returns>
-        public async Task<IEnumerable<Street>> GetAllAsync(string query, string regionId, bool withParent = false,
-            int limit = 10)
+        public async Task<IEnumerable<Street>> GetAllAsync(string query, string regionId, bool withParent = false, int limit = 10)
         {
+            var codeRegionId = regionId.Substring(0, 2);
             var codeId = regionId.Substring(0, 11);
 
-            var list = DbSet.Where(p => p.Name.StartsWith(query))
-                .Where(p => p.Code.StartsWith(codeId))
-                .Where(p => p.Code.EndsWith("000"))
-                .OrderBy(p => p.Name)
-                .Take(limit)
-                .ToList()
-                .AsEnumerable();
+            IQueryable<Street> queryResult;
+            if (!string.IsNullOrEmpty(query))
+            {
+                queryResult = DbSet.Where(p => p.CodeRegion == codeRegionId && p.CodeQuick == codeId && p.Name.StartsWith(query));
+            }
+            else
+            {
+                queryResult = DbSet.Where(p => p.CodeRegion == codeRegionId && p.CodeQuick == codeId);
+            }
 
-            return list;
+            queryResult = queryResult.OrderBy(p => p.Name)
+                   .Take(limit);
+
+            return queryResult.ToList()
+                .AsEnumerable();            
         }
 
         #endregion

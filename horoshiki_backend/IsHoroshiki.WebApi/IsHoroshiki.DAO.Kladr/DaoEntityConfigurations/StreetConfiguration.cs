@@ -44,6 +44,14 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations
             this.Property(p => p.OCATD)
              .HasMaxLength(11)
              .HasColumnName("OCATD");
+
+            this.Property(p => p.CodeRegion)
+                .HasMaxLength(2)
+                .HasColumnName("CODE_REGION");
+
+            this.Property(p => p.CodeQuick)
+                .HasMaxLength(11)
+                .HasColumnName("CODE_QUICK");
         }
 
         #endregion
