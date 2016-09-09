@@ -31,7 +31,7 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
                     $scope.model.subdivisions = result.Data.Data;
                     $scope.model.paging = result.Data.Paging;
                 } else {
-                    displayErrorMessage($scope.translation[result.reason]);
+                    displayErrorMessage($scope.translation[result.ReasonMessage]);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -61,11 +61,15 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
 
             $scope.model.deleteSubdivisionModel = {};
         }
+
+        $scope.deleteSubdivisionClose = function () {
+            $scope.model.deleteSubdivisionModel = {};
+        }
     }
 ]);
 
-subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$location', 'SubdivisionService', 'DictionaryService',
-    function ($scope, $location, SubdivisionService, DictionaryService) {
+subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$location', 'SubdivisionService', 'DictionaryService','$routeParams',
+    function ($scope, $location, SubdivisionService, DictionaryService, $routeParams) {
         $scope.model = {};
 
         $scope.model.subdivision = {
@@ -93,106 +97,7 @@ subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$loca
         $scope.model.error.timezone = false;
         $scope.checkErrorTimezone = function () {
             var timezone = /^[0-9-]{1,3}$/;
-            if (!$scope.model.subdivision.Timezone.match(timezone) ||  parseInt($scope.model.subdivision.Timezone) < -12 ||  parseInt($scope.model.subdivision.Timezone) > 12) {
-                $scope.model.error.timezone = true;
-            } else {
-                $scope.model.error.timezone = false;
-            }
-        }
-        $scope.model.error.priceType = false;
-        $scope.checkErrorPriceType = function () {
-            if ($scope.model.priceTypeModel == "" || $scope.model.priceTypeModel == undefined) {
-                $scope.model.error.priceType = true;
-            } else {
-                $scope.model.error.priceType = false;
-            }
-        }
-        $scope.model.error.siteHeader = false;
-        $scope.checkErrorSiteHeader = function () {
-            if ($scope.model.subdivision.SiteHeader.length > 50) {
-                $scope.model.error.siteHeader = true;
-            } else {
-                $scope.model.error.siteHeader = false;
-            }
-        }
-
-        $scope.getPriceType = function () {
-            DictionaryService.getPriceType().success(function (result) {
-                if (result.Success == 1) {
-                    $scope.model.priceType = result.Data;
-                } else {
-                    displayErrorMessage($scope.translation[result.reason]);
-                }
-            }).error(function (result, status) {
-                httpErrors($location.url(), status);
-            });
-        }
-
-        $scope.saveSubdivision = function () {
-            $scope.checkErrorName();
-            $scope.checkErrorTimezone();
-            $scope.checkErrorPriceType();
-            $scope.checkErrorSiteHeader();
-
-            if(!$scope.model.error.name && !$scope.model.error.timezone && !$scope.model.error.priceType && !$scope.model.error.siteHeader){
-
-                if ($scope.model.priceTypeModel != "" && $scope.model.priceTypeModel != undefined) {
-                    $scope.model.subdivision.PriceTypeModel = JSON.parse($scope.model.priceTypeModel);
-                }
-
-                SubdivisionService.subdivisionsAdd($scope.model.subdivision).success(function (result) {
-                    if (result.Success == 1) {
-                        $location.url("/subdivisions");
-                    } else {
-                        displayErrorMessage($scope.translation[result.reason]);
-                    }
-                }).error(function (result, status) {
-                    httpErrors($location.url(), status);
-                });
-            }
-        }
-
-        $scope.getPriceType();
-
-    }
-]);
-
-subdivisionsControllers.controller('SubdivisionEditController', ['$scope', '$location', 'SubdivisionService', 'DictionaryService','$routeParams',
-    function ($scope, $location, SubdivisionService, DictionaryService, $routeParams) {
-        $scope.model = {};
-
-        $scope.model.subdivision = {
-            Name: "",
-            Timezone: "",
-            PriceTypeModel: "",
-            SiteHeader: "",
-            Id: 1
-        }
-        //
-        // $scope.model.priceTypeModel = "";
-        //
-        //
-
-
-
-
-
-
-        //errors init
-        $scope.model.error = {};
-
-        $scope.model.error.name = false;
-        $scope.checkErrorName = function () {
-            if ($scope.model.subdivision.Name.length < 3 || $scope.model.subdivision.Name.length > 50) {
-                $scope.model.error.name = true;
-            } else {
-                $scope.model.error.name = false;
-            }
-        }
-        $scope.model.error.timezone = false;
-        $scope.checkErrorTimezone = function () {
-            var timezone = /^[0-9-]{1,3}$/;
-            if (!$scope.model.subdivision.Timezone.toString().match(timezone) ||  parseInt($scope.model.subdivision.Timezone) < -12 ||  parseInt($scope.model.subdivision.Timezone) > 13) {
+            if (!$scope.model.subdivision.Timezone.toString().match(timezone) ||  parseInt($scope.model.subdivision.Timezone) < -12 ||  parseInt($scope.model.subdivision.Timezone) > 12) {
                 $scope.model.error.timezone = true;
             } else {
                 $scope.model.error.timezone = false;
@@ -231,7 +136,7 @@ subdivisionsControllers.controller('SubdivisionEditController', ['$scope', '$loc
             SubdivisionService.getSubdivision($routeParams.subdivisionId).success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.subdivision = result.Data;
-                    $scope.model.priceTypeModel = JSON.stringify($scope.model.subdivision.PriceTypeModel);
+                    $scope.model.priceTypeModel = JSON.stringify($scope.model.subdivision.PriceType);
                 } else {
                     displayErrorMessage($scope.translation[result.reason]);
                 }
@@ -239,7 +144,11 @@ subdivisionsControllers.controller('SubdivisionEditController', ['$scope', '$loc
                 httpErrors($location.url(), status);
             });
         }
-        
+
+        $scope.isEdit = function () {
+            return $scope.pageId!=undefined && $scope.pageId=='subdivisionEditPage';
+        }
+
         $scope.saveSubdivision = function () {
             $scope.checkErrorName();
             $scope.checkErrorTimezone();
@@ -249,10 +158,10 @@ subdivisionsControllers.controller('SubdivisionEditController', ['$scope', '$loc
             if(!$scope.model.error.name && !$scope.model.error.timezone && !$scope.model.error.priceType && !$scope.model.error.siteHeader){
 
                 if ($scope.model.priceTypeModel != "" && $scope.model.priceTypeModel != undefined) {
-                    $scope.model.subdivision.PriceTypeModel = JSON.parse($scope.model.priceTypeModel);
+                    $scope.model.subdivision.PriceType = JSON.parse($scope.model.priceTypeModel);
                 }
 
-                SubdivisionService.subdivisionsEdit($scope.model.subdivision).success(function (result) {
+                SubdivisionService.subdivisionsAdd($scope.model.subdivision).success(function (result) {
                     if (result.Success == 1) {
                         $location.url("/subdivisions");
                     } else {
@@ -265,7 +174,9 @@ subdivisionsControllers.controller('SubdivisionEditController', ['$scope', '$loc
         }
 
         $scope.getPriceType();
-        $scope.getSubdivision();
 
+        if($scope.isEdit()){
+            $scope.getSubdivision()
+        }
     }
 ]);

@@ -208,7 +208,10 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
         }
         
         $scope.phoneToLogin = function () {
-            $scope.model.user.UserName = $scope.model.user.Phone;
+            $scope.checkErrorPhone();
+            if(!$scope.model.error.phone) {
+                $scope.model.user.UserName = $scope.model.user.Phone;
+            }
         }
 
         $scope.getPositions();

@@ -1,92 +1,99 @@
-<div class="breadcrumbs">
-    <div class="container">
-        <h1 class="pull-left">Добавление подразделеня</h1>
-        <ul class="pull-right breadcrumb">
-            <li><a href="/">Главная</a></li>
-            <li><a href="/subdivisions">Подразделения</a></li>
-            <li class="active">Добавление подразделения</li>
-        </ul>
-    </div>
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/">Главная</a>
+        </li>
+        <li>
+            <a href="/users">Подразделения</a>
+        </li>
+        <li ng-if="!isEdit()" class="active" >Добавление подразделения</li>
+        <li ng-if="isEdit()" class="active" >Редактирование подразделения</li>
+    </ul>
 </div>
 
-<div class="container content">
-    <div class="row">
-        <!-- Begin Sidebar Menu -->
-        <div class="col-md-3">
-            <ng-include src="'angular-html/partial/left.menu.html'"></ng-include>
-        </div>
-        <!-- End Sidebar Menu -->
-
-        <!-- Begin Content -->
-        <div class="col-md-9">
-
-            <div class="row">
-                <form class="sky-form" id="contact_info_form" action="javascript://" novalidate="novalidate">
-
-                    <div class="col-md-12">
-
-                        <section>
-                            <label class="label"><strong>Наименование:</strong></label>
-                            <label class="input col-9">
-                                <input class="" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"
+<div class="page-body">
+    <div class="col-xs-12 col-md-6">
+        <div class="widget">
+            <div class="widget-header  with-footer">
+                <span ng-show="!isEdit()" class="widget-caption">Добавление подразделения</span>
+                <span ng-show="isEdit()" class="widget-caption">Редактирование подразделения</span>
+            </div>
+            <div class="widget-body">
+                <form role="form" class="margin-10">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Наименование:</label>
+                                <input class="form-control" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"
                                        ng-model="model.subdivision.Name" name=name" id="name" type="text">
                                 <code class="ng-binding" ng-show="model.error.name">Не верный формат поля "Наименование",
                                     данное поле не может быть меньше 3 и больше 50 символов. </code>
-                            </label>
-                        </section>
+                            </div>
+                        </div>
 
-                        <section>
-                            <label class="label"><strong>Часовой пояс:</strong></label>
-                            <label class="input col-9">
-                                <input class="" ng-blur="checkErrorTimezone();" maxlength="50" placeholder="Часовой пояс"
+
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+
+
+                    <div class="row margin-top-30">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="priceType">Тип цен:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select ng-change="checkErrorPriceType();" name="priceType" id="priceType" class="form-control"
+                                            ng-model="model.priceTypeModel">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="option in model.priceType" value="{{option}}">
+                                            {{option.Value}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.priceType">Поле "Тип цен" должно быть
+                                        заполнено. </code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="timezone">Часовой пояс:</label>
+                                <input class="form-control" ng-blur="checkErrorTimezone();" maxlength="50" placeholder="Часовой пояс"
                                        ng-model="model.subdivision.Timezone" name="timezone" id="timezone" type="text">
                                 <code class="ng-binding" ng-show="model.error.timezone">Не верный формат поля "Часовой пояс",
                                     данное поле должно содержать число от -12 до 13. </code>
-                            </label>
-                        </section>
+                            </div>
+                        </div>
+                    </div>
 
-
-                        <section>
-                            <label class="label"><strong>Тип цен:</strong></label>
-                            <label class="input col-6">
-                                <select ng-change="checkErrorPriceType();" class="form-control"
-                                        ng-model="model.priceTypeModel">
-                                    <option value="">Не выбрано</option>
-                                    <option ng-repeat="option in model.priceType" value="{{option}}">
-                                        {{option.Value}}
-                                    </option>
-                                </select>
-                                <code class="ng-binding" ng-show="model.error.priceType">Поле "Тип цен" должно быть
-                                    заполнено. </code>
-                            </label>
-                        </section>
-
-                        <section>
-                            <label class="label"><strong>Заголовок на сайте:</strong></label>
-                            <label class="input col-9">
-                                <input class="" ng-blur="checkErrorSiteHeader();" maxlength="50" placeholder="Заголовок на сайте"
+                    <div class="row margin-top-30">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="siteHeader">Заголовок на сайте:</label>
+                                <input class="form-control" ng-blur="checkErrorSiteHeader();" maxlength="50" placeholder="Заголовок на сайте"
                                        ng-model="model.subdivision.SiteHeader" name="siteHeader" id="siteHeader" type="text">
                                 <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Заголовок на сайте",
                                     данное поле не может быть больше 50 символов.</code>
-                            </label>
-                        </section>
-
-
-                        <br/><br/>
-                        <div class="text-right col-9">
-                            <a href="/subdivisions">
-                                <button class="btn-u btn-u-default" type="button">Отменить</button>
-                            </a>
-                            <a ng-click="saveSubdivision()">
-                                <button class="btn-u ng-binding" type="button">Сохранить</button>
-                            </a>
+                            </div>
                         </div>
-                        <br/><br/>
+
+
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+
+
+                    <div class="margin-top-30 text-align-right">
+                        <a href="/subdivisions" class="btn btn-default">Отменить</a>
+
+                        <a ng-show="!isEdit()" href="javascript:void(0);" ng-click="saveSubdivision()"
+                           class="btn btn-blue">Создать</a>
+                        <a ng-show="isEdit()" href="javascript:void(0);" ng-click="saveSubdivision()"
+                           class="btn btn-blue">Изменить</a>
                     </div>
                 </form>
+
             </div>
-
-
         </div>
     </div>
 </div>

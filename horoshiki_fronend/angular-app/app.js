@@ -93,8 +93,8 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 title: 'Создание подразделения'
             })
             .when('/subdivisions/edit/:subdivisionId', {
-                templateUrl: '/angular-html/subdivisions.edit.html',
-                controller: 'SubdivisionEditController',
+                templateUrl: '/angular-html/subdivisions.add.html',
+                controller: 'SubdivisionAddController',
                 pageId: 'subdivisionEditPage',
                 groupId: 'settings',
                 subgroupId: 'subdivisions',
