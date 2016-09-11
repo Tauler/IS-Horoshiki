@@ -286,6 +286,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невозможно удалить платформу, т.к. он привязана к пользователю!.
+        /// </summary>
+        internal static string PlatformService_CanNotDeleteExistUser {
+            get {
+                return ResourceManager.GetString("PlatformService_CanNotDeleteExistUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Статуса площадки для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string PlatformService_PlatformStatusNotFound {

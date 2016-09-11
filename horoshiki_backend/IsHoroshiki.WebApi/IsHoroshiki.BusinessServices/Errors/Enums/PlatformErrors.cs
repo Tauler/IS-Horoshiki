@@ -65,5 +65,10 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// Способа покупки для указанного ID={0} не существует!
         /// </summary>
         BuyProcessNotFound,
+
+        /// <summary>
+        /// Невозможно удалить платформу, т.к. он привязана к пользователю!
+        /// </summary>
+        CanNotDeleteExistUser,
     }
 }

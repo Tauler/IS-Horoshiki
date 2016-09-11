@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
 using System.Security.Claims;
@@ -198,6 +199,16 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         public async Task<IdentityResult> RemoveLoginAsync(int userId, string loginProvider, string providerKey)
         {
             return await _userManager.RemoveLoginAsync(userId, new UserLoginInfo(loginProvider, providerKey));
+        }
+
+        /// <summary>
+        /// true - если существует площадка для пользователя
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <returns></returns>
+        public bool IsExistForPlatform(int platformId)
+        {
+            return DbSet.Any(p => p.PlatformId == platformId);
         }
 
         #endregion

@@ -173,9 +173,23 @@ namespace IsHoroshiki.BusinessServices
         /// </summary>
         /// <param name="id">Id объекта</param>
         /// <returns></returns>
-        public virtual Task<bool> IsCanDeleteAsync(int id)
+        public virtual async Task<bool> IsCanDeleteAsync(int id)
         {
-            return Task.FromResult(true);
+            try
+            {
+                var daoEntity = await _repository.GetByIdAsync(id);
+                if (daoEntity == null)
+                {
+                    return false;
+                }
+
+                var result = CanDeleteInternal(daoEntity);
+                return result.IsSucceeded;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>

@@ -84,5 +84,12 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
         /// <param name="providerKey"></param>
         /// <returns></returns>
         Task<IdentityResult> RemoveLoginAsync(int userId, string loginProvider, string providerKey);
+
+        /// <summary>
+        /// true - если существует площадка для пользователя
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <returns></returns>
+        bool IsExistForPlatform(int platformId);
     }
 }

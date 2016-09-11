@@ -268,37 +268,13 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
-        /// true - если можно удалить из БД
-        /// </summary>
-        /// <param name="id">Id объекта</param>
-        /// <returns></returns>
-        public override async Task<bool> IsCanDeleteAsync(int id)
-        {
-            try
-            {
-                var daoEntity = await _repository.GetByIdAsync(id);
-                if (daoEntity == null)
-                {
-                    return false;
-                }
-
-                bool result = _unitOfWork.PlatformRepository.IsExistForUser(id);
-                return !result;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Валидация сущности при удалении
         /// </summary>
-        /// <param name="daoModel">Сущность</param>
+        /// <param name="daoEntity">Сущность</param>
         /// <returns></returns>
-        protected override ValidationResult CanDeleteInternal(ApplicationUser daoModel)
+        protected override ValidationResult CanDeleteInternal(ApplicationUser daoEntity)
         {
-            bool result = _unitOfWork.PlatformRepository.IsExistForUser(daoModel.Id);
+            bool result = _unitOfWork.PlatformRepository.IsExistForUser(daoEntity.Id);
             if (result)
             {
                 return new ValidationResult(AccountErrors.CanNotDeleteExistPlatform);

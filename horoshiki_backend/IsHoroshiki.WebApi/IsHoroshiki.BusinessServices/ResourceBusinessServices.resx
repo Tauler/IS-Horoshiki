@@ -192,6 +192,9 @@
   <data name="PlatformService_BuyProcessNotFound" xml:space="preserve">
     <value>Способа покупки для указанного ID="{0}" не существует!</value>
   </data>
+  <data name="PlatformService_CanNotDeleteExistUser" xml:space="preserve">
+    <value>Невозможно удалить платформу, т.к. он привязана к пользователю!</value>
+  </data>
   <data name="PlatformService_PlatformStatusNotFound" xml:space="preserve">
     <value>Статуса площадки для указанного ID="{0}" не существует!</value>
   </data>

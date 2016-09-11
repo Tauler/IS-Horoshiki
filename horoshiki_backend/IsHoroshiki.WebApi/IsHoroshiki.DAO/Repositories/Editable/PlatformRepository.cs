@@ -34,7 +34,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <returns></returns>
         public bool IsExistForUser(int userId)
         {
-            return Context.Platform.Any(p => p.UserId == userId);
+            return DbSet.Any(p => p.UserId == userId);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <param name="subDivisionId">Id подразделения</param>
         public bool IsExistForSubDivision(int subDivisionId)
         {
-            return Context.Platform.Any(p => p.SubDivisionId == subDivisionId);
+            return DbSet.Any(p => p.SubDivisionId == subDivisionId);
         }
        
         #endregion
