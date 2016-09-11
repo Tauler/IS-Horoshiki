@@ -376,6 +376,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невозможно удалить подразделение, т.к. оно прикреплено к площадке!.
+        /// </summary>
+        internal static string SubDivisionValidator_CanNotDeleteExistPlatform {
+            get {
+                return ResourceManager.GetString("SubDivisionValidator_CanNotDeleteExistPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать тип цены!.
         /// </summary>
         internal static string SubDivisionValidator_PriceTypeIsNullModel {

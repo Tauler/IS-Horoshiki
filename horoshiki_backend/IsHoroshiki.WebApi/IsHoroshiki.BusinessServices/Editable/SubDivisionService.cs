@@ -97,6 +97,22 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
+        /// Валидация сущности при удалении
+        /// </summary>
+        /// <param name="daoModel">Сущность</param>
+        /// <returns></returns>
+        protected override ValidationResult CanDeleteInternal(SubDivision daoModel)
+        {
+            bool result = _unitOfWork.PlatformRepository.IsExistForSubDivision(daoModel.Id);
+            if (result)
+            {
+                return new ValidationResult(SubDivisionErrors.CanNotDeleteExistPlatform);
+            }
+
+            return new ValidationResult();
+        }
+
+        /// <summary>
         /// Метод конвертации Dao объектa в бизнес-модель 
         /// </summary>
         /// <param name="daoEntity"></param>

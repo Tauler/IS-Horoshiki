@@ -77,6 +77,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(SubDivisionErrors.PriceTypeNotFound, ResourceBusinessServices.SubDivisionService_PriceTypeNotFound);
             MessageHolder.Instance.AddMessage(SubDivisionErrors.TimezoneInvalidPeriod, ResourceBusinessServices.SubDivisionValidator_TimezoneInvalidPeriod);
             MessageHolder.Instance.AddMessage(SubDivisionErrors.TimezoneIsNull, ResourceBusinessServices.SubDivisionValidator_TimezoneIsNull);
+            MessageHolder.Instance.AddMessage(SubDivisionErrors.CanNotDeleteExistPlatform, ResourceBusinessServices.SubDivisionValidator_CanNotDeleteExistPlatform);
         }
 
         /// <summary>

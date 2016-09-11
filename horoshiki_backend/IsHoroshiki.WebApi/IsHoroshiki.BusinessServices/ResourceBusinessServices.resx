@@ -222,6 +222,9 @@
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
     <value>Не найден тип цены с Id="{0}"!</value>
   </data>
+  <data name="SubDivisionValidator_CanNotDeleteExistPlatform" xml:space="preserve">
+    <value>Невозможно удалить подразделение, т.к. оно прикреплено к площадке!</value>
+  </data>
   <data name="SubDivisionValidator_PriceTypeIsNullModel" xml:space="preserve">
     <value>Необходимо указать тип цены!</value>
   </data>

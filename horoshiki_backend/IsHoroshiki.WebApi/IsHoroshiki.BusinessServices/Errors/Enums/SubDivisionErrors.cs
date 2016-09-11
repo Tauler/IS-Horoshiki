@@ -34,6 +34,11 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// <summary>
         /// Не найден тип цены с Id={0}!
         /// </summary>
-        PriceTypeNotFound
+        PriceTypeNotFound,
+
+        /// <summary>
+        /// Невозможно удалить подразделение, т.к. оно прикреплено к площадке!
+        /// </summary>
+        CanNotDeleteExistPlatform
     }
 }
