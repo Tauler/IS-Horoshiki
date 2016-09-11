@@ -3,6 +3,8 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Converters;
+using IsHoroshiki.BusinessEntities.Editable;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using Newtonsoft.Json;
 
@@ -70,6 +72,16 @@ namespace IsHoroshiki.BusinessEntities.Account
         }
 
         /// <summary>
+        /// Площадка
+        /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<PlatformModel, IPlatformModel>))]
+        public IPlatformModel Platform
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата приема
         /// </summary>
         public DateTime DateStart
@@ -91,15 +103,6 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// Доступ в систему
         /// </summary>
         public bool IsAccess
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Email
-        /// </summary>
-        public string Email
         {
             get;
             set;

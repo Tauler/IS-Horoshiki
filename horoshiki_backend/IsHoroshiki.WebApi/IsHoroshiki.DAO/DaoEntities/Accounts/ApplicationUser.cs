@@ -17,7 +17,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         /// </summary>
         public ApplicationUser()
         {
-            Platforms = new HashSet<Platform>();
+            this.Platforms = new HashSet<Platform>();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         /// <summary>
         /// Телефон
         /// </summary>
-        [MaxLength(50)]
+        [MaxLength(25)]
         public string Phone
         {
             get;
@@ -117,6 +117,24 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         }
 
         /// <summary>
+        /// Площадка
+        /// </summary>
+        public virtual int? PlatformId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public virtual Platform Platform
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата приема
         /// </summary>
         public DateTime DateStart
@@ -144,12 +162,8 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         }
 
         /// <summary>
-        /// Платформы
+        /// Площадки
         /// </summary>
-        public virtual ICollection<Platform> Platforms
-        {
-            get;
-            set;
-        }
+        public virtual ICollection<Platform> Platforms { get; set; }
     }
 }

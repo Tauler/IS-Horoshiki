@@ -88,6 +88,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         {
             user.EmployeeStatus = Context.EmployeeStatuses.Find(user.EmployeeStatusId);
             user.Position = Context.Positions.Find(user.PositionId);
+            user.Platform = Context.Platform.Find(user.PlatformId);
 
             return _userManager.UpdateAsync(user);
         }
@@ -229,6 +230,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         {
             entity.EmployeeStatus = Context.EmployeeStatuses.Find(entity.EmployeeStatusId);
             entity.Position = Context.Positions.Find(entity.PositionId);
+            entity.Platform = Context.Platform.Find(entity.PlatformId);
         }
 
         /// <summary>
@@ -244,6 +246,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
 
             Context.Entry(entity).Reference(p => p.EmployeeStatus).Load();
             Context.Entry(entity).Reference(p => p.Position).Load();
+            Context.Entry(entity).Reference(p => p.Platform).Load();
         }
 
         #endregion

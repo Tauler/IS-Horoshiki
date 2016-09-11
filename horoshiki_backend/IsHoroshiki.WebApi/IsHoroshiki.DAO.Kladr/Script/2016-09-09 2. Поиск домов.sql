@@ -145,11 +145,18 @@ BEGIN
 	--находим все дома для указанного региона
 	INSERT INTO #Doma
 	SELECT
-		*
+		[NAME],
+		[KORP],
+		[SOCR],
+		[CODE],
+		[INDEX],
+		[GNINMB],
+		[UNO],
+		[OCATD]
 	FROM
 		[dbo].DOMA
 	WHERE 
-		LEFT(CODE, 15) = @regionId
+		CODE_QUICK = @regionId
 
 
 	DECLARE @NAME VARCHAR (40)

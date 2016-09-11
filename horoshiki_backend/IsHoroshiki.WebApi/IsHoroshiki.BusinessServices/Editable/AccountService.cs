@@ -291,6 +291,22 @@ namespace IsHoroshiki.BusinessServices.Editable
             }
         }
 
+        /// <summary>
+        /// Валидация сущности при удалении
+        /// </summary>
+        /// <param name="daoModel">Сущность</param>
+        /// <returns></returns>
+        protected override ValidationResult CanDeleteInternal(ApplicationUser daoModel)
+        {
+            bool result = _unitOfWork.PlatformRepository.IsExistForUser(daoModel.Id);
+            if (result)
+            {
+                return new ValidationResult(AccountErrors.CanNotDeleteExistPlatform);
+            }
+
+            return new ValidationResult();
+        }
+
         #endregion
 
         #region protected override
@@ -312,6 +328,15 @@ namespace IsHoroshiki.BusinessServices.Editable
             if (employeeStatus == null)
             {
                 return new ValidationResult(AccountErrors.EmployeeStatusRepositoryIsNull, model.EmployeeStatus.Id);
+            }
+
+            if (model.Platform != null && model.Platform.Id > 0)
+            {
+                var platform = await _unitOfWork.PlatformRepository.GetByIdAsync(model.Platform.Id);
+                if (platform == null)
+                {
+                    return new ValidationResult(AccountErrors.PlatformRepositoryIsNull, model.Platform.Id);
+                }
             }
 
             return new ValidationResult();
@@ -357,7 +382,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             daoEntity.Update(model);
             daoEntity.EmployeeStatus = null;
-            daoEntity.Platforms = null;
+            daoEntity.Platform = null;
             daoEntity.Position = null;
             return daoEntity;
         }

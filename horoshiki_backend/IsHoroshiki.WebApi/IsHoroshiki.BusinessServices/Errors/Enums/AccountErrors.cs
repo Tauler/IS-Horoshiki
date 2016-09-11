@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IsHoroshiki.BusinessServices.Errors.Enums
+﻿namespace IsHoroshiki.BusinessServices.Errors.Enums
 {
     /// <summary>
     /// Список ошибок для пользователя
@@ -74,6 +68,21 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// <summary>
         /// Статуса сотрудника для указанного ID={0} не существует!
         /// </summary>
-        EmployeeStatusRepositoryIsNull
+        EmployeeStatusRepositoryIsNull,
+
+        /// <summary>
+        /// Необходимо указать площадку!
+        /// </summary>
+        PlatformIsNull,
+
+        /// <summary>
+        /// Площадки для указанного ID={0} не существует!
+        /// </summary>
+        PlatformRepositoryIsNull,
+
+        /// <summary>
+        /// Невозможно удалить пользователя, т.к. он привязан к платформе!
+        /// </summary>
+        CanNotDeleteExistPlatform
     }
 }

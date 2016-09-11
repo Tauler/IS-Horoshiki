@@ -70,6 +70,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невозможно удалить пользователя, т.к. он привязан к платформе!.
+        /// </summary>
+        internal static string AccountsController_CanNotDeleteExistPlatform {
+            get {
+                return ResourceManager.GetString("AccountsController_CanNotDeleteExistPlatform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать подтверждение пароля!.
         /// </summary>
         internal static string AccountsController_ConfirmPasswordIsNull {
@@ -138,6 +147,24 @@ namespace IsHoroshiki.BusinessServices {
         internal static string AccountsController_PasswordNotEquals {
             get {
                 return ResourceManager.GetString("AccountsController_PasswordNotEquals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать площадку!.
+        /// </summary>
+        internal static string AccountsController_PlatformIsNull {
+            get {
+                return ResourceManager.GetString("AccountsController_PlatformIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Площадки для указанного ID=&quot;{0}&quot; не существует!.
+        /// </summary>
+        internal static string AccountsController_PlatformRepositoryIsNull {
+            get {
+                return ResourceManager.GetString("AccountsController_PlatformRepositoryIsNull", resourceCulture);
             }
         }
         

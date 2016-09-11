@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
@@ -48,7 +49,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Пользователь - управляющий
         /// </summary>
-        public int UserId
+        public int? UserId
         {
             get;
             set;

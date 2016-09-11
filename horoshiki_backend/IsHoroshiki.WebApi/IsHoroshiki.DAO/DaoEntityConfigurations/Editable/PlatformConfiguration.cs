@@ -39,11 +39,11 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
 
             HasRequired(s => s.PlatformStatus);
 
-            Property(p => p.UserId)
-                .IsOptional();
+            HasOptional(s => s.User)
+                .WithMany(s => s.Platforms)
+                .HasForeignKey(x => x.UserId)
+                .WillCascadeOnDelete(false);
 
-            HasOptional(s => s.User);
-                
             HasRequired(s => s.SubDivision);
 
             Property(i => i.MinCheck)

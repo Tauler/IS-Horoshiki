@@ -103,23 +103,6 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавление с пустым временем начала открытия
-        /// </summary>
-        [TestMethod]
-        public async Task PlatformTest_Add_TimeStartIsNull()
-        {
-            using (var controller = GetController())
-            {
-                var model = GetModel();
-                model.TimeStart = TimeSpan.Zero;
-
-                var result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-            }
-        }
-
-        /// <summary>
         /// Добавление с пустым временем закрытия
         /// </summary>
         [TestMethod]
@@ -231,35 +214,6 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
-        /// Добавление без пользователя
-        /// </summary>
-        [TestMethod]
-        public async Task PlatformTest_Add_UserModelIsNull()
-        {
-            using (var controller = GetController())
-            {
-                var model = GetModel();
-                model.User = null;
-
-                var result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.User = new ApplicationUserModel { Id = Int32.MaxValue };
-
-                result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.User = new ApplicationUserModel { Id = 0 };
-
-                result = await controller.Add(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-            }
-        }
-
-        /// <summary>
         /// Добавление
         /// </summary>
         [TestMethod]
@@ -349,24 +303,6 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 var model = await PlatformTest_AddAndGet();
 
                 model.MinCheck = 0;
-
-                var result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-            }
-        }
-
-        /// <summary>
-        /// Обновление с пустым временем начала открытия
-        /// </summary>
-        [TestMethod]
-        public async Task PlatformTest_UpdateTimeStartIsNull()
-        {
-            using (var controller = GetController())
-            {
-                var model = await PlatformTest_AddAndGet();
-
-                model.TimeStart = TimeSpan.Zero;
 
                 var result = await controller.Update(model);
 
@@ -482,36 +418,6 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 Assert.IsInstanceOfType(result, _errrorResult);
 
                 model.SubDivision = new SubDivisionModel { Id = 0 };
-
-                result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-            }
-        }
-
-        /// <summary>
-        /// Обновление без пользователя
-        /// </summary>
-        [TestMethod]
-        public async Task PlatformTest_Update_UserModelIsNull()
-        {
-            using (var controller = GetController())
-            {
-                var model = await PlatformTest_AddAndGet();
-
-                model.User = null;
-
-                var result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.User = new ApplicationUserModel { Id = Int32.MaxValue };
-
-                result = await controller.Update(model);
-
-                Assert.IsInstanceOfType(result, _errrorResult);
-
-                model.User = new ApplicationUserModel { Id = 0 };
 
                 result = await controller.Update(model);
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.Account.Interfaces
@@ -57,6 +58,15 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         /// Должности
         /// </summary>
         IPositionModel Position
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        IPlatformModel Platform
         {
             get;
             set;

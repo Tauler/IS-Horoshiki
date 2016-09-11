@@ -173,7 +173,10 @@ namespace IsHoroshiki.BusinessServices
         /// </summary>
         /// <param name="id">Id объекта</param>
         /// <returns></returns>
-        public abstract Task<bool> IsCanDeleteAsync(int id);
+        public virtual Task<bool> IsCanDeleteAsync(int id)
+        {
+            return Task.FromResult(true);
+        }
 
         /// <summary>
         /// Удалить из БД
@@ -189,6 +192,12 @@ namespace IsHoroshiki.BusinessServices
                 {
                     var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { id });
                     return new ModelEntityModifyResult(errorData);
+                }
+
+                var canDeleteResult = CanDeleteInternal(daoEntity);
+                if (!canDeleteResult.IsSucceeded)
+                {
+                    return new ModelEntityModifyResult(canDeleteResult.Errors);
                 }
 
                  _repository.Delete(id);
@@ -214,6 +223,16 @@ namespace IsHoroshiki.BusinessServices
         /// <param name="model">Сущность</param>
         /// <returns></returns>
         protected virtual async Task<ValidationResult> ValidationInternal(TModelEntity model)
+        {
+            return new ValidationResult();
+        }
+
+        /// <summary>
+        /// Валидация сущности при удалении
+        /// </summary>
+        /// <param name="model">Сущность</param>
+        /// <returns></returns>
+        protected virtual ValidationResult CanDeleteInternal(TDaoEntity model)
         {
             return new ValidationResult();
         }

@@ -7,6 +7,7 @@ using IsHoroshiki.BusinessEntities.NotEditable;
 using IsHoroshiki.WebApi.Controllers.Editable;
 using IsHoroshiki.BusinessEntities.Paging;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessServices;
 using IsHoroshiki.BusinessServices.Editable;
 using IsHoroshiki.BusinessServices.Errors;
 using IsHoroshiki.BusinessServices.Validators.Editable;
@@ -519,6 +520,26 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 var res = (result as OkNegotiatedContentResult<bool>).Content;
 
                 Assert.IsFalse(res);
+            }
+        }
+
+        /// <summary>
+        /// Удаление пользователя запрещено, если есть площадка с этим пользователм
+        /// </summary>
+        [TestMethod]
+        public async Task AccountTest_Delete_ForExistPlatform2()
+        {
+            using (var controller = GetController())
+            {
+                var platformTest = new PlatformControllerTest();
+                platformTest.SetupContext();
+
+                var platformId = platformTest.PlatformTest_Add().Result;
+                var platformModel = await _platformService.GetByIdAsync(platformId);
+
+                var result = await controller.Delete(platformModel.User.Id);
+
+                Assert.IsInstanceOfType(result, _errrorResult);
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 
@@ -42,6 +43,11 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToDaoEntity() : null;
             daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
             daoModel.Position = model.Position != null ? model.Position.ToDaoEntity() : null;
+            if (model.Platform != null)
+            {
+                daoModel.PlatformId = model.Platform.Id;
+            }
+            daoModel.Platform = model.Platform != null ? model.Platform.ToDaoEntity() : null;
             daoModel.DateStart = model.DateStart;
             daoModel.DateEnd = model.DateEnd;
             daoModel.IsAccess = model.IsAccess;
@@ -77,6 +83,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 MedicalBookEnd = model.MedicalBookEnd,
                 EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToModelEntity() : null,
                 Position = model.Position != null ? model.Position.ToModelEntity() : null,
+                Platform = model.Platform != null ? model.Platform.ToModelEntity() : null,
                 DateStart = model.DateStart,
                 DateEnd = model.DateEnd,
                 IsAccess = model.IsAccess,
@@ -107,7 +114,8 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 Id = model.Id,
                 UserName = model.UserName,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                Email = model.Email
             };
         }
 
@@ -134,6 +142,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserName = model.UserName,
+                Email = model.Email
             };
         }
 

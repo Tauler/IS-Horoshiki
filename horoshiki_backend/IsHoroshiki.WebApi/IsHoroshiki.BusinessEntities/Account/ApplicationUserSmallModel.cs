@@ -1,5 +1,4 @@
 ﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessEntities.Account
 {
@@ -12,6 +11,15 @@ namespace IsHoroshiki.BusinessEntities.Account
         /// Логин
         /// </summary>
         public string UserName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Email
+        /// </summary>
+        public string Email
         {
             get;
             set;

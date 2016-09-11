@@ -120,6 +120,9 @@
   <data name="AccountsController_AddException" xml:space="preserve">
     <value>Ошибка при добавлении пользователя!</value>
   </data>
+  <data name="AccountsController_CanNotDeleteExistPlatform" xml:space="preserve">
+    <value>Невозможно удалить пользователя, т.к. он привязан к платформе!</value>
+  </data>
   <data name="AccountsController_ConfirmPasswordIsNull" xml:space="preserve">
     <value>Необходимо указать подтверждение пароля!</value>
   </data>
@@ -143,6 +146,12 @@
   </data>
   <data name="AccountsController_PasswordNotEquals" xml:space="preserve">
     <value>Пароль и подтверждение пароля не совпадают!</value>
+  </data>
+  <data name="AccountsController_PlatformIsNull" xml:space="preserve">
+    <value>Необходимо указать площадку!</value>
+  </data>
+  <data name="AccountsController_PlatformRepositoryIsNull" xml:space="preserve">
+    <value>Площадки для указанного ID="{0}" не существует!</value>
   </data>
   <data name="AccountsController_PositionIsNull" xml:space="preserve">
     <value>Необходимо указать должность!</value>
