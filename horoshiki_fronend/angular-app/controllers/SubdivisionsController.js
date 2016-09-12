@@ -31,7 +31,7 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
                     $scope.model.subdivisions = result.Data.Data;
                     $scope.model.paging = result.Data.Paging;
                 } else {
-                    displayErrorMessage($scope.translation[result.ReasonMessage]);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -125,7 +125,7 @@ subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$loca
                 if (result.Success == 1) {
                     $scope.model.priceType = result.Data;
                 } else {
-                    displayErrorMessage($scope.translation[result.reason]);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -138,7 +138,7 @@ subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$loca
                     $scope.model.subdivision = result.Data;
                     $scope.model.priceTypeModel = JSON.stringify($scope.model.subdivision.PriceType);
                 } else {
-                    displayErrorMessage($scope.translation[result.reason]);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -165,7 +165,7 @@ subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$loca
                     if (result.Success == 1) {
                         $location.url("/subdivisions");
                     } else {
-                        displayErrorMessage($scope.translation[result.reason]);
+                        displayErrorMessage(result.ReasonMessage);
                     }
                 }).error(function (result, status) {
                     httpErrors($location.url(), status);

@@ -95,32 +95,52 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <param name="entity"></param>
         private void SetChildEntity(Platform entity)
         {
-            if (entity.UserId > 0)
-            {
-                entity.User = Context.Users.Find(entity.UserId);
-            }
+            //if (entity.UserId > 0)
+            //{
+            //    entity.User = Context.Users.Find(entity.UserId);
+            //}
 
-            entity.PlatformStatus = Context.PlatformStatuses.Find(entity.PlatformStatusId);
-            entity.SubDivision = Context.SubDivisions.Find(entity.SubDivisionId);
+            //entity.PlatformStatus = Context.PlatformStatuses.Find(entity.PlatformStatusId);
+            //entity.SubDivision = Context.SubDivisions.Find(entity.SubDivisionId);
 
-            var list = new List<BuyProcess>();
-            if (entity.BuyProcesses != null)
-            {
-                foreach (var buyProcess in entity.BuyProcesses)
-                {
-                    if (buyProcess == null)
-                    {
-                        continue;
-                    }
+            //var list = new List<BuyProcess>();
+            //if (entity.BuyProcesses != null)
+            //{
+            //    foreach (var buyProcess in entity.BuyProcesses)
+            //    {
+            //        if (buyProcess == null)
+            //        {
+            //            continue;
+            //        }
 
-                    var daoByProccess = Context.BuyProcesses.Find(buyProcess.Id);
-                    if (!list.Contains(daoByProccess))
-                    {
-                        list.Add(daoByProccess);
-                    }
-                }
-            }
-            entity.BuyProcesses = list;
+            //        var daoByProccess = Context.BuyProcesses.Find(buyProcess.Id);
+            //        if (!list.Contains(daoByProccess))
+            //        {
+            //            daoByProccess.Platforms = null;
+            //            list.Add(daoByProccess);
+            //        }
+            //    }
+            //}
+            //entity.BuyProcesses = list;
+
+            //var list = new List<BuyProcess>();
+            //if (entity.BuyProcesses != null)
+            //{
+            //    foreach (var buyProcess in entity.BuyProcesses)
+            //    {
+            //        if (buyProcess == null)
+            //        {
+            //            continue;
+            //        }
+
+            //        var daoByProccess = Context.BuyProcesses.Find(buyProcess.Id);
+            //        if (!list.Contains(daoByProccess))
+            //        {
+            //            list.Add(daoByProccess);
+            //        }
+            //    }
+            //}
+            //entity.BuyProcesses = list;
         }
 
         #endregion

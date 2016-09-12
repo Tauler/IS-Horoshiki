@@ -19,6 +19,9 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
         $scope.model.orderby.field = 'Id';
         $scope.model.orderby.asc = true;
 
+        //Модель удаляемого объекта
+        $scope.model.deletePlatformModel = {};
+        
         // Пагинация
         $scope.$watch('model.paging.PageNo', function () {
             $scope.getAllPlatforms();
@@ -31,7 +34,7 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
                     $scope.model.paging = result.Data.Paging;
                 } else {
                     // displayErrorMessage($scope.translation[result.reason]);
-                    displayErrorMessage(result.Reason);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -42,6 +45,29 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
             $scope.model.orderby.field = fieldName;
             $scope.model.orderby.asc = asc;
             $scope.getAllPlatforms();
+        }
+
+        $scope.deletePlatformModal = function (deleteObject) {
+            $scope.model.deletePlatformModel = deleteObject;
+            console.log($scope.model.deletePlatformModel);
+        }
+
+        $scope.deletePlatform = function () {
+            PlatformsService.delete($scope.model.deletePlatformModel).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.getAllPlatforms();
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
+            $scope.model.deleteSubdivisionModel = {};
+        }
+
+        $scope.deleteSubdivisionClose = function () {
+            $scope.model.deleteSubdivisionModel = {};
         }
     }
 ]);
@@ -143,7 +169,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 if (result.Success == 1) {
                     $scope.model.subdivisions = result.Data.Data;
                 } else {
-                    displayErrorMessage(result.Reason);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -167,7 +193,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 if (result.Success == 1) {
                     $scope.model.statusSites = result.Data;
                 } else {
-                    displayErrorMessage(result.Reason);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -179,7 +205,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 if (result.Success == 1) {
                     $scope.model.buyProcesses = result.Data;
                 } else {
-                    displayErrorMessage(result.Reason);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -201,9 +227,14 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 $scope.model.platform.TimeEnd = $scope.model.localTime.end+":00";
 
                 if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
+                    $scope.model.platform.BuyProcesses = [];
                     for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
                         $scope.model.platform.BuyProcesses[i] = JSON.parse($scope.model.buyProcessesValue[i]);
                     }
+                }
+
+                if($scope.model.platform.User == undefined || $scope.model.platform.User.Id == undefined || $scope.model.platform.User.Id == ""){
+                    $scope.model.platform.User = null;
                 }
 
                 if(!$scope.isEdit()) {
@@ -211,7 +242,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                         if (result.Success == 1) {
                             $location.url("/platforms");
                         } else {
-                            displayErrorMessage(result.Reason);
+                            displayErrorMessage(result.ReasonMessage);
                         }
 
                     }).error(function (result, status) {
@@ -222,7 +253,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                         if (result.Success == 1) {
                             $location.url("/platforms");
                         } else {
-                            displayErrorMessage(result.Reason);
+                            displayErrorMessage(result.ReasonMessage);
                         }
 
                     }).error(function (result, status) {
@@ -239,11 +270,18 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
         $scope.getPlatform = function () {
             if($scope.isEdit()) {
+
                 PlatformsService.get($routeParams.id).success(function (result) {
                     if (result.Success == 1) {
                         $scope.model.platform = result.Data;
 
                         $scope.model.platform.SubDivision.Id = $scope.model.platform.SubDivision.Id.toString();
+                        if ($scope.model.platform.SubDivision.Id == "" || $scope.model.platform.SubDivision.Id == undefined) {
+                            $scope.model.error.statusDisabled = true;
+                        }else {
+                            $scope.model.error.statusDisabled = false;
+                        }
+
                         $scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
                         $scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
 
@@ -262,7 +300,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                                 }
                             }
                     } else {
-                        displayErrorMessage(result.Reason);
+                        displayErrorMessage(result.ReasonMessage);
                     }
                 }).error(function (result, status) {
                     httpErrors($location.url(), status);

@@ -19,29 +19,29 @@ platformsServices.service('PlatformsService', ['$http', function($http) {
         return $http.get(backendServerAddr+'/api/Platforms/Small?sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
     };
 
-    this.add = function (subdivision) {
+    this.add = function (object) {
         var resp = $http({
             url: backendServerAddr+'/api/Platforms/Add',
             method: 'POST',
-            data: subdivision,
+            data: object,
             headers:  getToken()
         });
         return resp;
     };
 
-    this.edit = function (user) {
+    this.edit = function (object) {
         var resp = $http({
             url: backendServerAddr+'/api/Platforms/Update',
             method: 'POST',
-            data: user,
+            data: object,
             headers:  getToken()
         });
         return resp;
     };
 
-    this.delete = function (subdivision) {
+    this.delete = function (object) {
         var resp = $http({
-            url: backendServerAddr+'/api/Platforms/'+subdivision.Id,
+            url: backendServerAddr+'/api/Platforms/'+object.Id,
             method: 'DELETE',
             headers:  getToken()
         });
