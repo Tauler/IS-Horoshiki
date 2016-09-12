@@ -44,7 +44,7 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
                 queryResult = DbSet.Where(p => p.CodeRegion != null);
             }
 
-            queryResult.OrderBy(p => p.Name)
+            queryResult = queryResult.OrderBy(p => p.Name)
                    .Take(limit);
 
             return queryResult.ToList()
@@ -78,7 +78,7 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
                                                         && p.CodeDistrict != null);
             }
 
-            queryResult.OrderBy(p => p.Name)
+            queryResult = queryResult.OrderBy(p => p.Name)
                    .Take(limit);
 
             return queryResult.ToList()
@@ -86,33 +86,37 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         }
 
         /// <summary>
-        /// Получить все районы
+        /// Получить все поселки\города по региону
         /// </summary>
         /// <param name="query">Наименование объекта в запросе</param>
         /// <param name="regionId">Id объекта в запросе</param>
         /// <param name="withParent">true - если необходимо вернуть родительскте записи для данного объекта</param>
         /// <param name="limit">Максимальное количество записей в ответе</param>
         /// <returns></returns>
-        public async Task<IEnumerable<DaoEntities.Kladr>> GetCityAllAsync(string query, string regionId, bool withParent = false, int limit = 10)
+        public async Task<IEnumerable<DaoEntities.Kladr>> GetCityAllByRegionAsync(string query, string regionId, bool withParent = false, int limit = 10)
         {
-            var codeId = regionId.Substring(0, 5);
-
             IQueryable<DaoEntities.Kladr> queryResult;
+
+            var codeId = regionId.Substring(0, 2);
+
             if (!string.IsNullOrEmpty(query))
             {
-                queryResult = DbSet.Where(p => p.CodeDistrict != null 
-                                                    && p.CodeDistrict == codeId 
-                                                    && p.CodeCity != null 
-                                                    && p.Name.StartsWith(query));
+                //если название разделено пробелом
+                string subName = " " + query;
+
+                queryResult = DbSet.Where(p => p.CodeRegion != null
+                                                    && p.CodeRegion == codeId
+                                                    && p.CodeLocality != null
+                                                    && (p.Name.StartsWith(query) || p.Name.Contains(subName)));
             }
             else
             {
-                queryResult = DbSet.Where(p => p.CodeDistrict != null 
-                                                    && p.CodeDistrict == codeId
-                                                    && p.CodeCity != null);
+                queryResult = DbSet.Where(p => p.CodeRegion != null
+                                                    && p.CodeRegion == codeId
+                                                    && p.CodeLocality != null);
             }
 
-            queryResult.OrderBy(p => p.Name)
+            queryResult = queryResult.OrderBy(p => p.Name)
                    .Take(limit);
 
             return queryResult.ToList()
@@ -120,24 +124,28 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         }
 
         /// <summary>
-        /// Получить все поселки
+        /// Получить все поселки\города по району
         /// </summary>
         /// <param name="query">Наименование объекта в запросе</param>
         /// <param name="regionId">Id объекта в запросе</param>
         /// <param name="withParent">true - если необходимо вернуть родительскте записи для данного объекта</param>
         /// <param name="limit">Максимальное количество записей в ответе</param>
         /// <returns></returns>
-        public async Task<IEnumerable<DaoEntities.Kladr>> GetLocationAllAsync(string query, string regionId, bool withParent = false, int limit = 10)
+        public async Task<IEnumerable<DaoEntities.Kladr>> GetCityAllByDistrictAsync(string query, string regionId, bool withParent = false, int limit = 10)
         {
+            IQueryable<DaoEntities.Kladr> queryResult;
+
             var codeId = regionId.Substring(0, 5);
 
-            IQueryable<DaoEntities.Kladr> queryResult;
             if (!string.IsNullOrEmpty(query))
             {
+                //если название разделено пробелом
+                string subName = " " + query;
+
                 queryResult = DbSet.Where(p => p.CodeDistrict != null
                                                     && p.CodeDistrict == codeId
                                                     && p.CodeLocality != null
-                                                    && p.Name.StartsWith(query));
+                                                    && (p.Name.StartsWith(query) || p.Name.Contains(subName)));
             }
             else
             {
@@ -146,7 +154,7 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
                                                     && p.CodeLocality != null);
             }
 
-            queryResult.OrderBy(p => p.Name)
+            queryResult = queryResult.OrderBy(p => p.Name)
                    .Take(limit);
 
             return queryResult.ToList()
