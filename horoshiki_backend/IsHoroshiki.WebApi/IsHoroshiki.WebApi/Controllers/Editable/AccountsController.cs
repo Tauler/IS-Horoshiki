@@ -170,7 +170,6 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// </summary>
         /// <param name="userName">Логин пользователя</param>
         /// <returns></returns>
-        [HttpGet]
         [Route("IsExist/{userName}")]
         [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> IsExistUserName(string userName)
