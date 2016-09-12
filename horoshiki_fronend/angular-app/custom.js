@@ -3,6 +3,8 @@ var defaultLang = 'ru';
 var backendServerAddr = "/backend";
 var backendTimeout = 5000;
 
+var mailRegexp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+
 function resizeFooter(){
     var contentHeight = $(window).height() - 123;
     $(".content-container").css("min-height", contentHeight + "px");

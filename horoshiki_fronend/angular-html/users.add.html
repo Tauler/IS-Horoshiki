@@ -69,7 +69,29 @@
                         <div class="col-md-4">
                             <div style="margin-top: 23px">
                                 <a href="javascript:void(0);" name="phoneToLogin" ng-click="phoneToLogin();"
-                                   class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве логина</a>
+                                   class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве
+                                    логина</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="email">Электронная почта:</label>
+                                <input maxlength="255" class="form-control" ng-blur="checkErrorEmail();"
+                                       placeholder="Электронная почта" ng-model="model.user.Email" name="email" id="email"
+                                       type="text">
+                                <code class="ng-binding" ng-show="model.error.email">Не верный формат поля "Электронная
+                                    почта". </code>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div style="margin-top: 23px">
+                                <a href="javascript:void(0);" name="mailToLogin" ng-click="mailToLogin();"
+                                   class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве
+                                    логина</a>
 
                             </div>
                         </div>
@@ -92,7 +114,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="platform">Площадка:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select class="form-control" id="platform" ng-change="checkErrorPlatform();"
+                                            class="form-control"
+                                            ng-model="model.Platform.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="option in model.platforms" value="{{option.Id}}">
+                                            {{option.Name}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.platform">Поле "Площадка" должно быть
+                                        заполнено. </code>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-4"></div>
                     </div>
 

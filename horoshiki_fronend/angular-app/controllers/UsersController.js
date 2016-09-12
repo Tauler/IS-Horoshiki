@@ -46,8 +46,8 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
     }
 ]);
 
-usersControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService', 'DictionaryService',
-    function ($scope, $location, UsersService, DictionaryService) {
+usersControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService', 'DictionaryService', 'PlatformsService',
+    function ($scope, $location, UsersService, DictionaryService,PlatformsService) {
         $scope.model = {};
         $scope.model.user = {
             "Id": "6",
@@ -167,6 +167,16 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             }
         }
 
+        $scope.model.error.email = false;
+        $scope.checkErrorEmail = function () {
+            if ($scope.model.user.Email==undefined || !$scope.model.user.Email.match(mailRegexp)) {
+                // if($scope.model.user.Phone.length != 11 || isInteger($scope.model.user.Phone)){
+                $scope.model.error.email = true;
+            } else {
+                $scope.model.error.email = false;
+            }
+        }
+
         $scope.model.error.position = false;
         $scope.checkErrorPosition = function () {
             if ($scope.model.Position == "" || $scope.model.Position == undefined) {
@@ -176,11 +186,33 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             }
         }
 
+        $scope.model.error.platform = false;
+        $scope.checkErrorPlatform = function () {
+            if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
+                $scope.model.error.platform = true;
+            } else {
+                $scope.model.error.platform = false;
+            }
+        }
+
 
         $scope.getPositions = function () {
             DictionaryService.getPositions().success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.positions = result.Data;
+                } else {
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+
+        $scope.getPlatformsSmall = function () {
+            PlatformsService.getAllSmall("Id", "True").success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.platforms = result.Data;
                 } else {
                     displayErrorMessage($scope.translation[result.reason]);
                 }
@@ -214,8 +246,16 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             }
         }
 
+        $scope.mailToLogin = function () {
+            $scope.checkErrorEmail();
+            if(!$scope.model.error.email) {
+                $scope.model.user.UserName = $scope.model.user.Email;
+            }
+        }
+
         $scope.getPositions();
         $scope.getEmployeeStatuses();
+        $scope.getPlatformsSmall()
 
         $scope.saveUser = function () {
 
@@ -227,13 +267,22 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             $scope.checkErrorMiddleName();
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
+            $scope.checkErrorPlatform();
+            $scope.checkErrorEmail();
 
-            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.userNameExist
+
+            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
                     $scope.model.user.Position = JSON.parse($scope.model.Position);
                 }
+
+                if ($scope.model.Platform != "" && $scope.model.Platform != undefined) {
+                    $scope.model.user.Platform = {};
+                    $scope.model.user.Platform.Id = parseInt($scope.model.Platform.Id);
+                }
+
                 if ($scope.model.EmployeeStatus != "" && $scope.model.EmployeeStatus != undefined) {
                     $scope.model.user.EmployeeStatus = JSON.parse($scope.model.EmployeeStatus);
                 }
@@ -241,7 +290,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
                     $scope.model.user.DateStart = dateFormatterBackend($scope.model.datepickerStartDate.select);
                 }
 
-                console.log($scope.model.datepickerMedicalBook.select);
+                // console.log($scope.model.datepickerMedicalBook.select);
                 if ($scope.model.datepickerMedicalBook.select != "" && $scope.model.datepickerMedicalBook.select != undefined) {
                     $scope.model.user.MedicalBookEnd = dateFormatterBackend($scope.model.datepickerMedicalBook.select);
                 }
@@ -263,8 +312,8 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
     }
 ]);
 
-usersControllers.controller('UsersEditController', ['$scope', '$location', 'UsersService', 'DictionaryService', '$routeParams',
-    function ($scope, $location, UsersService, DictionaryService, $routeParams) {
+usersControllers.controller('UsersEditController', ['$scope', '$location', 'UsersService', 'DictionaryService', '$routeParams', 'PlatformsService',
+    function ($scope, $location, UsersService, DictionaryService, $routeParams, PlatformsService) {
         $scope.model = {};
         $scope.model.user = {
             "Id": "6",
@@ -283,6 +332,8 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             "Password": "",
             "ConfirmPassword": ""
         }
+
+        $scope.model.Platform = {};
 
 
         //datepicker startDate init
@@ -362,6 +413,16 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             }
         }
 
+        $scope.model.error.email = false;
+        $scope.checkErrorEmail = function () {
+            if ($scope.model.user.Email==undefined || !$scope.model.user.Email.match(mailRegexp)) {
+                // if($scope.model.user.Phone.length != 11 || isInteger($scope.model.user.Phone)){
+                $scope.model.error.email = true;
+            } else {
+                $scope.model.error.email = false;
+            }
+        }
+
         $scope.model.error.position = false;
         $scope.checkErrorPosition = function () {
             if ($scope.model.Position == "" || $scope.model.Position == undefined) {
@@ -371,11 +432,31 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             }
         }
 
+        $scope.model.error.platform = false;
+        $scope.checkErrorPlatform = function () {
+            if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
+                $scope.model.error.platform = true;
+            } else {
+                $scope.model.error.platform = false;
+            }
+        }
 
         $scope.getPositions = function () {
             DictionaryService.getPositions().success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.positions = result.Data;
+                } else {
+                    displayErrorMessage($scope.translation[result.reason]);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPlatformsSmall = function () {
+            PlatformsService.getAllSmall("Id", "True").success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.platforms = result.Data;
                 } else {
                     displayErrorMessage($scope.translation[result.reason]);
                 }
@@ -414,6 +495,10 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 
                     $scope.model.EmployeeStatus = JSON.stringify($scope.model.user.EmployeeStatus);
                     $scope.model.Position = JSON.stringify($scope.model.user.Position);
+                    // $scope.model.Platform = JSON.stringify($scope.model.user.Platform);
+                    if($scope.model.user.Platform!=undefined && $scope.model.user.Platform.Id!='') {
+                        $scope.model.Platform.Id = $scope.model.user.Platform.Id.toString();
+                    }
 
                     $scope.model.user.Password = null;
                     $scope.model.user.ConfirmPassword = null;
@@ -426,10 +511,22 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         }
 
         $scope.phoneToLogin = function () {
-            $scope.model.user.UserName = $scope.model.user.Phone;
+            $scope.checkErrorPhone();
+            if(!$scope.model.error.phone) {
+                $scope.model.user.UserName = $scope.model.user.Phone;
+            }
+        }
+
+
+        $scope.mailToLogin = function () {
+            $scope.checkErrorEmail();
+            if(!$scope.model.error.email) {
+                $scope.model.user.UserName = $scope.model.user.Email;
+            }
         }
 
         $scope.getPositions();
+        $scope.getPlatformsSmall();
         $scope.getEmployeeStatuses();
         $scope.getUser();
 
@@ -438,18 +535,26 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             // $scope.checkErrorUserName();
             // $scope.checkErrorPassword();
             // $scope.checkErrorConfirmPassword();
+            $scope.checkErrorPlatform()
             $scope.checkErrorFirstName();
             $scope.checkErrorLastName();
             $scope.checkErrorMiddleName();
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
+            $scope.checkErrorEmail();
 
-            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.userNameExist
+            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
                     $scope.model.user.Position = JSON.parse($scope.model.Position);
                 }
+
+                if ($scope.model.Platform != "" && $scope.model.Platform != undefined) {
+                    $scope.model.user.Platform = {};
+                    $scope.model.user.Platform.Id = parseInt($scope.model.Platform.Id);
+                }
+
                 if ($scope.model.EmployeeStatus != "" && $scope.model.EmployeeStatus != undefined) {
                     $scope.model.user.EmployeeStatus = JSON.parse($scope.model.EmployeeStatus);
                 }

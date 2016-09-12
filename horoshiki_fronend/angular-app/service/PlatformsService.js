@@ -15,6 +15,10 @@ platformsServices.service('PlatformsService', ['$http', function($http) {
         return $http.get(backendServerAddr+'/api/Platforms/'+id, {timeout: backendTimeout, headers: getToken()});
     };
 
+    this.getAllSmall = function (sortField, asc) {
+        return $http.get(backendServerAddr+'/api/Platforms/Small?sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
+    };
+
     this.add = function (subdivision) {
         var resp = $http({
             url: backendServerAddr+'/api/Platforms/Add',
