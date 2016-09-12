@@ -43,11 +43,18 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToDaoEntity() : null;
             daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
             daoModel.Position = model.Position != null ? model.Position.ToDaoEntity() : null;
-            if (model.Platform != null)
+
+            if (model.Platform != null && model.Platform.Id > 0)
             {
+                daoModel.Platform = model.Platform.ToDaoEntity();
                 daoModel.PlatformId = model.Platform.Id;
             }
-            daoModel.Platform = model.Platform != null ? model.Platform.ToDaoEntity() : null;
+            else
+            {
+                daoModel.PlatformId = null;
+                daoModel.Platform = null;
+            }
+
             daoModel.DateStart = model.DateStart;
             daoModel.DateEnd = model.DateEnd;
             daoModel.IsAccess = model.IsAccess;

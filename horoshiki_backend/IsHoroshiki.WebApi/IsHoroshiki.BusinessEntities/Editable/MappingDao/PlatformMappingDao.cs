@@ -81,11 +81,18 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             daoModel.Name = model.Name;
             daoModel.SubDivision = model.SubDivision != null ? model.SubDivision.ToDaoEntity() : null;
             daoModel.SubDivisionId = model.SubDivision != null ? model.SubDivision.Id : 0;
-            daoModel.User = model.User != null ? model.User.ToDaoEntity() : null;
-            if (model.User != null)
+
+            if (model.User != null && model.User.Id > 0)
             {
-                daoModel.UserId =model.User.Id;
+                daoModel.User = model.User.ToDaoEntity();
+                daoModel.UserId = model.User.Id;
             }
+            else
+            {
+                daoModel.User = null;
+                daoModel.UserId = null;
+            }
+
             daoModel.PlatformStatus = model.PlatformStatus != null ? model.PlatformStatus.ToDaoEntity() : null;
             daoModel.PlatformStatusId = model.PlatformStatus != null ? model.PlatformStatus.Id : 0;
             daoModel.BuyProcesses = model.BuyProcesses != null ? model.BuyProcesses.ToDaoEntityList() : null;
