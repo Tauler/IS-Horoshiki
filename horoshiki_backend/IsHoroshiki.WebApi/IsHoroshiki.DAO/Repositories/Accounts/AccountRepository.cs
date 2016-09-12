@@ -239,9 +239,9 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// <param name="entity"></param>
         private void SetChildEntity(ApplicationUser entity)
         {
+            entity.Platform = Context.Platform.Find(entity.PlatformId);
             entity.EmployeeStatus = Context.EmployeeStatuses.Find(entity.EmployeeStatusId);
             entity.Position = Context.Positions.Find(entity.PositionId);
-            entity.Platform = Context.Platform.Find(entity.PlatformId);
         }
 
         /// <summary>
