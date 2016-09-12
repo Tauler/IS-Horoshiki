@@ -38,15 +38,16 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
+        /// <param name="isLoadChild">Конвертировать дочерние объекты</param>
         /// <returns></returns>
-        public static PlatformModel ToModelEntity(this Platform model)
+        public static PlatformModel ToModelEntity(this Platform model, bool isLoadChild = true)
         {
             return new PlatformModel()
             {
                 Id = model.Id,
                 Name = model.Name,
                 SubDivision = model.SubDivision != null ? model.SubDivision.ToModelEntity() : null,
-                User = model.User != null ? model.User.ToModelEntity() : null,
+                User = isLoadChild && model.User != null ? model.User.ToModelEntity(false) : null,
                 PlatformStatus = model.PlatformStatus != null ? model.PlatformStatus.ToModelEntity() : null,
                 BuyProcesses = model.BuyProcesses != null ? model.BuyProcesses.ToModelEntityList() : null,
                 YandexMap = model.YandexMap,
@@ -61,10 +62,11 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         /// DAO в модель
         /// </summary>
         /// <param name="models"></param>
+        /// <param name="isLoadChild">Конвертировать дочерние объекты</param>
         /// <returns></returns>
-        public static IEnumerable<IPlatformModel> ToModelEntityList(this IEnumerable<Platform> models)
+        public static IEnumerable<IPlatformModel> ToModelEntityList(this IEnumerable<Platform> models, bool isLoadChild = true)
         {
-            return models.Select(model => model.ToModelEntity());
+            return models.Select(m => ToModelEntity(m, isLoadChild));
         }
 
         /// <summary>

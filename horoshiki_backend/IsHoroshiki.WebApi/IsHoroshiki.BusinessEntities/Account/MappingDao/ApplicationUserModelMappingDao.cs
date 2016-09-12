@@ -69,8 +69,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// Модель в DAO
         /// </summary>
         /// <param name="model"></param>
+        /// <param name="isLoadChild">Конвертировать дочерние объекты</param>
         /// <returns></returns>
-        public static IApplicationUserModel ToModelEntity(this ApplicationUser model)
+        public static IApplicationUserModel ToModelEntity(this ApplicationUser model, bool isLoadChild = true)
         {
             return new ApplicationUserModel()
             {
@@ -83,7 +84,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 MedicalBookEnd = model.MedicalBookEnd,
                 EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToModelEntity() : null,
                 Position = model.Position != null ? model.Position.ToModelEntity() : null,
-                Platform = model.Platform != null ? model.Platform.ToModelEntity() : null,
+                Platform = isLoadChild && model.Platform != null ? model.Platform.ToModelEntity(false) : null,
                 DateStart = model.DateStart,
                 DateEnd = model.DateEnd,
                 IsAccess = model.IsAccess,
@@ -97,9 +98,9 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IApplicationUserModel> ToModelEntityList(this IEnumerable<ApplicationUser> models)
+        public static IEnumerable<IApplicationUserModel> ToModelEntityList(this IEnumerable<ApplicationUser> models, bool isLoadChild = true)
         {
-            return models.Select(ToModelEntity);
+            return models.Select(m => ToModelEntity(m, isLoadChild));
         }
 
         /// <summary>
