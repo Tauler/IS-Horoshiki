@@ -168,15 +168,15 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// <summary>
         /// Проверка существования логина для пользователя
         /// </summary>
-        /// <param name="userName">Логин пользователя</param>
+        /// <param name="model">Модель проверки существования пользователя</param>
         /// <returns></returns>
-        [Route("IsExist/{userName}")]
+        [Route("IsExist")]
         [ResponseType(typeof(bool))]
-        public async Task<IHttpActionResult> IsExistUserName(string userName)
+        public async Task<IHttpActionResult> IsExistUserName(CheckExistUserName model)
         {
             try
             {
-                var result = await _service.IsExistUserName(userName);
+                var result = await _service.IsExistUserName(model.UserName);
                 return Ok(result);
             }
             catch (Exception e)
