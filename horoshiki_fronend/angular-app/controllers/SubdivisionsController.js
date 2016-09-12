@@ -53,7 +53,7 @@ subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$loc
                 if (result.Success == 1) {
                     $scope.getDivisions();
                 } else {
-                    displayErrorMessage($scope.translation[result.reason]);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
