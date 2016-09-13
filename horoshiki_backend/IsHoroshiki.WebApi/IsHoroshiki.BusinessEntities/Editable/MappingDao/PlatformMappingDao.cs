@@ -79,12 +79,12 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         {
             daoModel.Id = model.Id;
             daoModel.Name = model.Name;
-            daoModel.SubDivision = model.SubDivision != null ? model.SubDivision.ToDaoEntity() : null;
+          //  daoModel.SubDivision = model.SubDivision != null ? model.SubDivision.ToDaoEntity() : null;
             daoModel.SubDivisionId = model.SubDivision != null ? model.SubDivision.Id : 0;
 
             if (model.User != null && model.User.Id > 0)
             {
-                daoModel.User = model.User.ToDaoEntity();
+                //daoModel.User = model.User.ToDaoEntity();
                 daoModel.UserId = model.User.Id;
             }
             else
@@ -93,9 +93,9 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 daoModel.UserId = null;
             }
 
-            daoModel.PlatformStatus = model.PlatformStatus != null ? model.PlatformStatus.ToDaoEntity() : null;
+          //  daoModel.PlatformStatus = model.PlatformStatus != null ? model.PlatformStatus.ToDaoEntity() : null;
             daoModel.PlatformStatusId = model.PlatformStatus != null ? model.PlatformStatus.Id : 0;
-            daoModel.BuyProcesses = model.BuyProcesses != null ? model.BuyProcesses.ToDaoEntityList() : null;
+           // daoModel.BuyProcesses = model.BuyProcesses != null ? model.BuyProcesses.ToDaoEntityList() : null;
             daoModel.YandexMap = model.YandexMap;
             daoModel.Address = model.Address;
             daoModel.TimeStart = model.TimeStart;

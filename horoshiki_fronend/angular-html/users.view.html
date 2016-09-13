@@ -19,7 +19,7 @@
             </div>
             <div class="widget-body">
 
-                <div class="padding-bottom-10 text-align-right">
+                <div class="padding-bottom-10 text-align-left">
                     <a href="javascript:void(0);" ng-click="toAddUserPage();" class="btn btn-success">{{$parent.translation.user_list_button_add_user}}</a>
                 </div>
                 <table class="table table-hover table-striped table-bordered">
@@ -130,7 +130,8 @@
                                     <li><a href="/users/edit/{{user.Id}}"><i class="fa fa-edit"></i> Редактировать</a>
                                     </li>
                                     <li><a href="/users/editPassword/{{user.Id}}"><i class="fa fa-eye"></i> Изменить пароль</a></li>
-                                    <li><a href="#"><i class="fa fa-cloud"></i> Удалить</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#deleteUserModal"
+                                           ng-click="deleteUserModal(user);"><i class="fa fa-cloud"></i> Удалить</a></li>
                                 </ul>
                             </div>
                         </td>
@@ -154,4 +155,22 @@
             </div>
         </div>
     </div>
+</div>
+
+<div id="deleteUserModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Удаление Пользователя</h4>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить пользователя {{model.deleteUserModel.FirstName+' '+model.deleteUserModel.LastName}}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="deleteUserClose();" data-dismiss="modal">Отменить</button>
+                <button type="button" class="btn btn-primary" ng-click="deleteUser();" data-dismiss="modal">Удалить</button>
+            </div>
+        </div>
+    </div> <!-- / .modal-dialog -->
 </div>

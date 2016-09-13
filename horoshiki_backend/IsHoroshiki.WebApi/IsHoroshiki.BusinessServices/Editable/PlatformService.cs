@@ -141,7 +141,11 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public override Platform CreateInternal(IPlatformModel model)
         {
-            return model.ToDaoEntity();
+            var result = model.ToDaoEntity();
+
+            UpdateDaoInternal(result, model);
+
+            return result;
         }
 
         /// <summary>
@@ -153,9 +157,30 @@ namespace IsHoroshiki.BusinessServices.Editable
         public override Platform UpdateDaoInternal(Platform daoEntity, IPlatformModel model)
         {
             var result = daoEntity.Update(model);
-            result.User = null;
-            result.PlatformStatus = null;
-            result.SubDivision = null;
+
+            if (daoEntity.UserId > 0)
+            {
+                daoEntity.User = _unitOfWork.AccountRepository.GetByIdAsync(result.UserId.Value).Result;
+            }
+
+            daoEntity.PlatformStatus = _unitOfWork.PlatformStatusRepository.GetByIdAsync(result.PlatformStatusId).Result;
+            daoEntity.SubDivision = _unitOfWork.SubDivisionRepository.GetByIdAsync(result.SubDivisionId).Result;
+
+            if (model.BuyProcesses != null)
+            {
+                foreach (var bp in model.BuyProcesses)
+                {
+                    var daoBp = _unitOfWork.BuyProcessPepository.GetByIdAsync(bp.Id).Result;
+                    if (daoBp != null)
+                    {
+                        result.BuyProcesses.Add(daoBp);
+                    }
+                }
+            }
+
+            //result.User = null;
+            //result.PlatformStatus = null;
+            //result.SubDivision = null;
             return result;
         }
 

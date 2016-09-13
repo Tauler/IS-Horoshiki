@@ -55,11 +55,19 @@ accountServices.service('UsersService', ['$http', function ($http) {
     };
 
     this.isExistUser = function (userName) {
-        return $http.get(backendServerAddr+'api/Accounts/IsExist/'+userName, {timeout: backendTimeout, headers: getToken()});
+        var resp = $http({
+            url: backendServerAddr+'/api/Accounts/IsExist',
+            method: 'POST',
+            data: {
+                "UserName": userName
+            },
+            headers:  getToken(),
+        });
+        return resp;
     };
 
     this.getUser = function (id) {
-        return $http.get(backendServerAddr+'api/Accounts/'+id, {timeout: backendTimeout, headers: getToken()});
+        return $http.get(backendServerAddr+'/api/Accounts/'+id, {timeout: backendTimeout, headers: getToken()});
     };
 
 
