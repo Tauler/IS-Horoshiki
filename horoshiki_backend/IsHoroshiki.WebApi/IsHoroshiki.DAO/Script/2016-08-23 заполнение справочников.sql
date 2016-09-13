@@ -8,6 +8,14 @@ INSERT INTO [dbo].[BuyProcesses] ([Value]) VALUES ('–есторан');
 GO
 
 
+INSERT INTO [dbo].[Positions] ([Value]) VALUES ('ќперационный директор');
+GO
+
+INSERT INTO [dbo].[Positions] ([Value]) VALUES ('”правл€ющий рестораном');
+GO
+
+INSERT INTO [dbo].[Positions] ([Value]) VALUES ('ћенеджер смены');
+GO
 
 INSERT INTO [dbo].[Positions] ([Value]) VALUES ('јдминистратор');
 GO
