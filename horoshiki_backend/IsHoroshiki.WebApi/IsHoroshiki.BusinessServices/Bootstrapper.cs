@@ -35,6 +35,7 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IAccountValidator, AccountValidator>();
             container.RegisterType<ISubDivisionValidator, SubDivisionValidator>();
             container.RegisterType<IPlatformValidator, PlatformValidator>();
+            container.RegisterType<IEmployeeReasonDismissalValidator, EmployeeReasonDismissalValidator>();
 
             container.RegisterType<IBuyProcessService, BuyProcessService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IPlatformStatusService, PlatformStatusService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());

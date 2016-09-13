@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using IsHoroshiki.DAO.DaoEntities.Editable;
-using IsHoroshiki.DAO.DaoEntities.NotEditable;
+﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using System.Linq;
 

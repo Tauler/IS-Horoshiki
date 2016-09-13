@@ -1,14 +1,15 @@
 ﻿using System.Web.Http;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using IsHoroshiki.BusinessServices.Editable.Interfaces;
 
-namespace IsHoroshiki.WebApi.Controllers.NotEditable
+namespace IsHoroshiki.WebApi.Controllers.Editable
 {
     /// <summary>
     /// Контроллер Причины увольнения сотрудника
     /// </summary>
     [Authorize]
-    public class EmployeeReasonDismissalsController : BaseNotEditableController<IEmployeeReasonDismissalModel, IEmployeeReasonDismissalService>
+    [RoutePrefix("api/EmployeeReasonDismissals")]
+    public class EmployeeReasonDismissalsController : BaseEditableController<IEmployeeReasonDismissalModel, IEmployeeReasonDismissalService>
     {
         #region Конструктор
 

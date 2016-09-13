@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 
-namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
+namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
 {
     /// <summary>
     /// Меппинг полей сущности DAO на бизнес-сущность
@@ -20,7 +20,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new EmployeeReasonDismissal()
             {
                 Id = model.Id,
-                Value = model.Value
+                Name = model.Name
             };
         }
 
@@ -44,7 +44,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new EmployeeReasonDismissalModel()
             {
                 Id = model.Id,
-                Value = model.Value
+                Name = model.Name
             };
         }
 
@@ -56,6 +56,19 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         public static IEnumerable<IEmployeeReasonDismissalModel> ToModelEntityList(this IEnumerable<EmployeeReasonDismissal> models)
         {
             return models.Select(model => model.ToModelEntity());
+        }
+
+        /// <summary>
+        /// Модель в DAO
+        /// </summary>
+        /// <param name="daoModel"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static EmployeeReasonDismissal Update(this EmployeeReasonDismissal daoModel, IEmployeeReasonDismissalModel model)
+        {
+            daoModel.Id = model.Id;
+            daoModel.Name = model.Name;
+            return daoModel;
         }
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Controllers\AccountControllerTest.cs" />
     <Compile Include="Controllers\SubDivisionControllerTest.cs" />
     <Compile Include="Controllers\PlatformControllerTest.cs" />
+    <Compile Include="Controllers\EmployeeReasonDismissalServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

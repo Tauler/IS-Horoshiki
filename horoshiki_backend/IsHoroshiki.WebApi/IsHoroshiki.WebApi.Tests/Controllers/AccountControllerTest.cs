@@ -234,17 +234,17 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         {
             using (var controller = GetController())
             {
-                //var userModel = GetApplicationUserModel();
+                var userModel = GetApplicationUserModel();
 
-                //var result = await controller.Add(userModel);
+                var result = await controller.Add(userModel);
 
-                //Assert.IsInstanceOfType(result, _okAddResult);
+                Assert.IsInstanceOfType(result, _okAddResult);
 
                 var isExistResult = await controller.IsExistUserName(new CheckExistUserName() { UserName = userModel.UserName });
 
-                //var res = isExistResult as OkNegotiatedContentResult<bool>;
+                var res = isExistResult as OkNegotiatedContentResult<bool>;
 
-                //Assert.IsTrue(res.Content);
+                Assert.IsTrue(res.Content);
             }
         }
 

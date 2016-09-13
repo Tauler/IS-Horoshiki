@@ -177,6 +177,9 @@
   <data name="BaseEditableService_EntityUpdateNotFound" xml:space="preserve">
     <value>Объекта с Id="{0}" не существует!</value>
   </data>
+  <data name="EmployeeReasonDismissalValidator_NameIsNull" xml:space="preserve">
+    <value>Необходимо указать наименование!</value>
+  </data>
   <data name="Error_ExceptionUnknown" xml:space="preserve">
     <value>На сервере произошла ошибка!</value>
   </data>

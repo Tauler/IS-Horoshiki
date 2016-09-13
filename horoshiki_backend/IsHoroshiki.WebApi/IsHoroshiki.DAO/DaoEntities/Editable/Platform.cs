@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 

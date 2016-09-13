@@ -61,6 +61,7 @@
     <Compile Include="Editable\PlatformService.cs" />
     <Compile Include="Errors\Enums\AccountErrors.cs" />
     <Compile Include="Errors\Enums\CommonErrors.cs" />
+    <Compile Include="Errors\Enums\EmployeeReasonDismissalErrors.cs" />
     <Compile Include="Errors\Enums\PlatformErrors.cs" />
     <Compile Include="Errors\Enums\SubDivisionErrors.cs" />
     <Compile Include="Errors\ErrorDatas\UnauthorizedErrorData.cs" />
@@ -82,9 +83,9 @@
     <Compile Include="Kladr\KladrService.cs" />
     <Compile Include="ModelEntityModifyResult.cs" />
     <Compile Include="NotEditable\DeliveryTimeService.cs" />
-    <Compile Include="NotEditable\EmployeeReasonDismissalService.cs" />
+    <Compile Include="Editable\EmployeeReasonDismissalService.cs" />
     <Compile Include="NotEditable\Interfaces\IDeliveryTimeService.cs" />
-    <Compile Include="NotEditable\Interfaces\IEmployeeReasonDismissalService.cs" />
+    <Compile Include="Editable\Interfaces\IEmployeeReasonDismissalService.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayService.cs" />
     <Compile Include="NotEditable\OrderPayService.cs" />
     <Compile Include="NotEditable\SubDepartmentService.cs" />
@@ -115,7 +116,9 @@
     </Compile>
     <Compile Include="Utils\UtilService.cs" />
     <Compile Include="Utils\Interfaces\IUtilService.cs" />
+    <Compile Include="Validators\Editable\EmployeeReasonDismissalValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IAccountValidator.cs" />
+    <Compile Include="Validators\Editable\Interfaces\IEmployeeReasonDismissalValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IPlatformValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\ISubDivisionValidator.cs" />
     <Compile Include="Validators\Editable\AccountValidator.cs" />

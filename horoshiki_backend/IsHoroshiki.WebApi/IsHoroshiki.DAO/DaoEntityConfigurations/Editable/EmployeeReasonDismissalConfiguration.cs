@@ -1,11 +1,11 @@
-﻿using IsHoroshiki.DAO.DaoEntities.NotEditable;
+﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 
-namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable
+namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
 {
     /// <summary>
     /// Конфигурация Причины увольнения сотрудника
     /// </summary>
-    public class EmployeeReasonDismissalConfiguration : BaseNotEditableDaoEntityConfiguration<EmployeeReasonDismissal>
+    public class EmployeeReasonDismissalConfiguration : BaseDaoEntityConfiguration<EmployeeReasonDismissal>
     {
         #region Конструктор
 
@@ -15,7 +15,9 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable
         public EmployeeReasonDismissalConfiguration() 
             : base("EmployeeReasonDismissals")
         {
-
+            Property(p => p.Name)
+                .IsRequired()
+                .HasMaxLength(256);
         }
 
         #endregion

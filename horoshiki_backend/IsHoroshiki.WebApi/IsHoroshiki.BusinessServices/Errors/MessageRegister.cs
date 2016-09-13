@@ -27,6 +27,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             FillMessageAccountHolder();
             FillMessageSubDivisionHolder();
             FillMessagePlatformHolder();
+            FillMessageEmployeeReasonDismissalHolder();
         }
 
         #region private
@@ -97,6 +98,14 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(PlatformErrors.UserNotFound, ResourceBusinessServices.PlatformService_UserNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.BuyProcessNotFound, ResourceBusinessServices.PlatformService_BuyProcessNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.CanNotDeleteExistUser, ResourceBusinessServices.PlatformService_CanNotDeleteExistUser);
+        }
+
+        /// <summary>
+        /// Заполнение ошибок для причин увольнения
+        /// </summary>
+        private static void FillMessageEmployeeReasonDismissalHolder()
+        {
+            MessageHolder.Instance.AddMessage(EmployeeReasonDismissalErrors.NameIsNull, ResourceBusinessServices.EmployeeReasonDismissalValidator_NameIsNull);
         }
 
         #endregion

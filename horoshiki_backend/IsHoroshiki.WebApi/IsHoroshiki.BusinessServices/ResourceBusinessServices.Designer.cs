@@ -241,6 +241,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать наименование!.
+        /// </summary>
+        internal static string EmployeeReasonDismissalValidator_NameIsNull {
+            get {
+                return ResourceManager.GetString("EmployeeReasonDismissalValidator_NameIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to На сервере произошла ошибка!.
         /// </summary>
         internal static string Error_ExceptionUnknown {
