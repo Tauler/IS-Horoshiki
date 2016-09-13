@@ -9,6 +9,13 @@ namespace IsHoroshiki.DAO.Kladr.Repositories.Interfaces
     public interface IKladrRepository : IBaseRepository<DaoEntities.Kladr>
     {
         /// <summary>
+        /// Получить объект КЛАДРа по коду
+        /// </summary>
+        /// <param name="code">Код</param>
+        /// <returns></returns>
+        Task<DaoEntities.Kladr> GetByCode(string code);
+
+        /// <summary>
         /// Получить все регионы
         /// </summary>
         /// <param name="query">Наименование объекта в запросе</param>

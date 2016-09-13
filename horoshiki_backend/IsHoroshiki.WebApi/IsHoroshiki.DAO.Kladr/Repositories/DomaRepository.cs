@@ -28,6 +28,16 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         #region IDomaRepository
 
         /// <summary>
+        /// Поиск дома по коду
+        /// </summary>
+        /// <param name="code">Код дома</param>
+        /// <returns></returns>
+        public async Task<Doma> GetByCode(string code)
+        {
+            return DbSet.FirstOrDefault(d => d.Code == code);
+        }
+
+        /// <summary>
         /// Получить все дома
         /// </summary>
         /// <param name="query">Наименование объекта в запросе</param>

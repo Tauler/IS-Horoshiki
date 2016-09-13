@@ -27,6 +27,17 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         #region IKladrRepository
 
         /// <summary>
+        /// Получить объект КЛАДРа по коду
+        /// </summary>
+        /// <param name="code">Код</param>
+        /// <returns></returns>
+        public async Task<DaoEntities.Kladr> GetByCode(string code)
+        {
+            return DbSet.FirstOrDefault(s => s.Code == code);
+        }
+
+
+        /// <summary>
         /// Получить все регионы
         /// </summary>
         /// <param name="query">Наименование объекта в запросе</param>

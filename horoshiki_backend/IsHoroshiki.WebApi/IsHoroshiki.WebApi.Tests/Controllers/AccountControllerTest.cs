@@ -240,7 +240,7 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
                 Assert.IsInstanceOfType(result, _okAddResult);
 
-                var isExistResult = await controller.IsExistUserName(userModel.UserName);
+                var isExistResult = await controller.IsExistUserName(new CheckExistUserName() { UserName = userModel.UserName });
 
                 var res = isExistResult as OkNegotiatedContentResult<bool>;
 

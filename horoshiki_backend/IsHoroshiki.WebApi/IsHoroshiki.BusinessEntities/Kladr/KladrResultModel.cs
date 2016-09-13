@@ -66,7 +66,7 @@ namespace IsHoroshiki.BusinessEntities.Kladr
         /// <summary>
         /// Родельские записи, если необходимы
         /// </summary>
-        public IEnumerable<KladrResultModel> Parents
+        public List<KladrResultModel> Parents
         {
             get;
             set;
@@ -98,6 +98,7 @@ namespace IsHoroshiki.BusinessEntities.Kladr
             OKATO = okato;
             TypeShort = typeShort;
             Index = index;
+            Parents = new List<KladrResultModel>();
         }
 
         #endregion

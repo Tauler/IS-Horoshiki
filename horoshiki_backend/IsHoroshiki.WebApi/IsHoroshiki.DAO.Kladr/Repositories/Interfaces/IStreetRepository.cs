@@ -18,5 +18,11 @@ namespace IsHoroshiki.DAO.Kladr.Repositories.Interfaces
         /// <param name="limit">Максимальное количество записей в ответе</param>
         /// <returns></returns>
         Task<IEnumerable<Street>> GetAllAsync(string query, string regionId, bool withParent = false, int limit = 10);
+
+        /// <summary>
+        /// Получить улицу по коду КЛАДР
+        /// </summary>
+        /// <param name="regionId">Код кладра</param>
+        Task<Street> GetByCode(string code);
     }
 }

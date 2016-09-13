@@ -28,6 +28,15 @@ namespace IsHoroshiki.DAO.Kladr.Repositories
         #region IStreetRepository
 
         /// <summary>
+        /// Получить улицу по коду КЛАДР
+        /// </summary>
+        /// <param name="regionId">Код кладра</param>
+        public async Task<Street> GetByCode(string code)
+        {
+            return DbSet.FirstOrDefault(s => s.Code == code);
+        }
+
+        /// <summary>
         /// Получить все районы
         /// </summary>
         /// <param name="query">Наименование объекта в запросе</param>
