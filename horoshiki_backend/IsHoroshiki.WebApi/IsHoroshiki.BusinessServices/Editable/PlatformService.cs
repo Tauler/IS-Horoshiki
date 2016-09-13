@@ -158,13 +158,15 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             var result = daoEntity.Update(model);
 
-            if (daoEntity.UserId > 0)
+            if (result.UserId > 0)
             {
-                daoEntity.User = _unitOfWork.AccountRepository.GetByIdAsync(result.UserId.Value).Result;
+                result.User = _unitOfWork.AccountRepository.GetByIdAsync(result.UserId.Value).Result;
             }
 
-            daoEntity.PlatformStatus = _unitOfWork.PlatformStatusRepository.GetByIdAsync(result.PlatformStatusId).Result;
-            daoEntity.SubDivision = _unitOfWork.SubDivisionRepository.GetByIdAsync(result.SubDivisionId).Result;
+            result.PlatformStatus = _unitOfWork.PlatformStatusRepository.GetByIdAsync(result.PlatformStatusId).Result;
+            result.SubDivision = _unitOfWork.SubDivisionRepository.GetByIdAsync(result.SubDivisionId).Result;
+
+            result.BuyProcesses.Clear();
 
             if (model.BuyProcesses != null)
             {
