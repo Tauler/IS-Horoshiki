@@ -84,7 +84,8 @@
                             <div class="form-group">
                                 <label for="subdivisions">Статус площадки:</label>
                                 <div class="input-group" style="width: 100%">
-                                    <select ng-disabled="model.error.statusDisabled" ng-change="checkErrorStatusSite();" class="form-control"
+                                    <select ng-disabled="model.error.statusDisabled" ng-change="checkErrorStatusSite();"
+                                            class="form-control"
                                             ng-model="model.platform.PlatformStatus.Id">
                                         <!--<option value="">Не выбрано</option>-->
                                         <option ng-repeat="status in model.statusSites" value="{{status.Id}}">
@@ -101,37 +102,37 @@
 
                     <div class="row margin-top-30">
                         <!--<div class="col-md-4">-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="buyProcess">Способы покупки:</label>-->
-                                <!--<div class="input-group" style="width: 100%">-->
-                                    <!--<select ng-change="checkErrorBuyProcess();" multiple="multiple" id="buyProcess"-->
-                                            <!--class="form-control "-->
-                                            <!--ng-model="model.buyProcessesValue">-->
-                                        <!--<option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">-->
-                                            <!--{{buyProcess.Value}}-->
-                                        <!--</option>-->
-                                    <!--</select>-->
-                                    <!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
-                                        <!--заполнено. </code>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label for="buyProcess">Способы покупки:</label>-->
+                        <!--<div class="input-group" style="width: 100%">-->
+                        <!--<select ng-change="checkErrorBuyProcess();" multiple="multiple" id="buyProcess"-->
+                        <!--class="form-control "-->
+                        <!--ng-model="model.buyProcessesValue">-->
+                        <!--<option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">-->
+                        <!--{{buyProcess.Value}}-->
+                        <!--</option>-->
+                        <!--</select>-->
+                        <!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
+                        <!--заполнено. </code>-->
+                        <!--</div>-->
+                        <!--</div>-->
                         <!--</div>-->
 
 
                         <!--<div class="col-md-4">-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="buyProcess">Способы покупки:</label>-->
-                                <!--<div class="input-group" style="width: 100%">-->
-                                    <!--<ui-select ng-change="checkErrorBuyProcess();" id="buyProcess" multiple ng-model="model.buyProcessesValue" theme="select2" ng-disabled="disabled" style="width: 300px;">-->
-                                        <!--<ui-select-match class="ui-select-match" placeholder="Select colors...">{{$item.Value}}</ui-select-match>-->
-                                        <!--<ui-select-choices class="ui-select-choices" repeat="buyProcess in model.buyProcesses | filter:$select.search">-->
-                                            <!--{{buyProcess.Value}}-->
-                                        <!--</ui-select-choices>-->
-                                    <!--</ui-select>-->
-                                    <!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
-                                        <!--заполнено. </code>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label for="buyProcess">Способы покупки:</label>-->
+                        <!--<div class="input-group" style="width: 100%">-->
+                        <!--<ui-select ng-change="checkErrorBuyProcess();" id="buyProcess" multiple ng-model="model.buyProcessesValue" theme="select2" ng-disabled="disabled" style="width: 300px;">-->
+                        <!--<ui-select-match class="ui-select-match" placeholder="Select colors...">{{$item.Value}}</ui-select-match>-->
+                        <!--<ui-select-choices class="ui-select-choices" repeat="buyProcess in model.buyProcesses | filter:$select.search">-->
+                        <!--{{buyProcess.Value}}-->
+                        <!--</ui-select-choices>-->
+                        <!--</ui-select>-->
+                        <!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
+                        <!--заполнено. </code>-->
+                        <!--</div>-->
+                        <!--</div>-->
                         <!--</div>-->
 
                         <div class="col-md-4">
@@ -145,7 +146,8 @@
                                         </label>
                                         {{buyProcess}}
                                     </div>
-                                    <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть
+                                    <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки"
+                                        должно быть
                                         заполнено. </code>
                                 </div>
                             </div>
@@ -244,16 +246,17 @@
 </div>
 
 <script>
-//    var $exampleMulti = $(".select_m").select2({
-//        placeholder: "Выберите элемент",
-//        allowClear: true
-//    });
-////
-//    $exampleMulti.val([ '{"Value":"Доставка","Id":1}', '{"Value":"Самовывоз","Id":2}' ]).trigger("change");
+    //    var $exampleMulti = $(".select_m").select2({
+    //        placeholder: "Выберите элемент",
+    //        allowClear: true
+    //    });
+    ////
+    //    $exampleMulti.val([ '{"Value":"Доставка","Id":1}', '{"Value":"Самовывоз","Id":2}' ]).trigger("change");
 
 
-//    $('.timepicker').timepicker({
-//        showMeridian: false,
-//        minuteStep: 5,
-//    });
+    $('.timepicker').timepicker({
+        showMeridian: false,
+        minuteStep: 5,
+    });
+
 </script>
