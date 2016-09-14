@@ -81,6 +81,10 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             start : '08:00',
             end: '17:00'
         }
+        $scope.model.orderTime = {
+            start : '08:00',
+            end: '17:00'
+        }
 
         $scope.model.platform = {
             Name: "",
@@ -105,6 +109,17 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 $scope.model.error.localTime = true;
             }else{
                 $scope.model.error.localTime = false;
+            }
+        }
+
+        $scope.model.error.orderTime = false;
+        $scope.checkOrderTime = function () {
+            var regexpTime = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/mg;
+            if($scope.model.orderTime.start==undefined || $scope.model.orderTime.start=="" || !$scope.model.orderTime.start.match(regexpTime) ||
+                $scope.model.orderTime.end==undefined || $scope.model.orderTime.end=="" || !$scope.model.orderTime.end.match(regexpTime)){
+                $scope.model.error.orderTime = true;
+            }else{
+                $scope.model.error.orderTime = false;
             }
         }
 
@@ -226,6 +241,9 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                 $scope.model.platform.TimeStart = $scope.model.localTime.start+":00";
                 $scope.model.platform.TimeEnd = $scope.model.localTime.end+":00";
 
+                $scope.model.platform.OrderTimeStart = $scope.model.orderTime.start+":00";
+                $scope.model.platform.OrderTimeEnd = $scope.model.orderTime.end+":00";
+
                 if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
                     $scope.model.platform.BuyProcesses = [];
                     for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
@@ -292,6 +310,15 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                         if($scope.model.platform.TimeEnd!="" && $scope.model.platform.TimeEnd!=undefined) {
                             var endTimeArr = $scope.model.platform.TimeEnd.split(':');
                             $scope.model.localTime.end = endTimeArr[0]+":"+endTimeArr[1];
+                        }
+
+                        if($scope.model.platform.OrderTimeStart!="" && $scope.model.platform.OrderTimeStart!=undefined) {
+                            var startTimeArr = $scope.model.platform.OrderTimeStart.split(':');
+                            $scope.model.orderTime.start = startTimeArr[0]+":"+startTimeArr[1];
+                        }
+                        if($scope.model.platform.OrderTimeEnd!="" && $scope.model.platform.OrderTimeEnd!=undefined) {
+                            var endTimeArr = $scope.model.platform.OrderTimeEnd.split(':');
+                            $scope.model.orderTime.end = endTimeArr[0]+":"+endTimeArr[1];
                         }
 
                         if ($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses != undefined) {
