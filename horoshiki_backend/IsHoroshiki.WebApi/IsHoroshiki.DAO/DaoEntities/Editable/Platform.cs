@@ -120,7 +120,25 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Окончание работы
         /// </summary>
-        public virtual TimeSpan TimeEnd
+        public TimeSpan TimeEnd
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Время начала приема заказов
+        /// </summary>
+        public TimeSpan OrderTimeStart
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Время окончания приема заказов
+        /// </summary>
+        public TimeSpan OrderTimeEnd
         {
             get;
             set;

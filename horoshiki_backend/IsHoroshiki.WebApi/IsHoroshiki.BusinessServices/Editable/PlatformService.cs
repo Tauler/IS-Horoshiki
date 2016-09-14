@@ -179,10 +179,7 @@ namespace IsHoroshiki.BusinessServices.Editable
                     }
                 }
             }
-
-            //result.User = null;
-            //result.PlatformStatus = null;
-            //result.SubDivision = null;
+            
             return result;
         }
 

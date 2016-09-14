@@ -92,6 +92,24 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         }
 
         /// <summary>
+        /// Время начала приема заказов
+        /// </summary>
+        TimeSpan OrderTimeStart
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Время окончания приема заказов
+        /// </summary>
+        TimeSpan OrderTimeEnd
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Минимальный чек
         /// </summary>
         decimal MinCheck
