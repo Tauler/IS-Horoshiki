@@ -40,7 +40,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="address">Адрес:</label>
-                                <textarea class="form-control" ng-blur="checkErrorAddress();" maxlength="255"
+                                <textarea rows="1" class="form-control" ng-blur="checkErrorAddress();" maxlength="255"
                                           placeholder="Адрес"
                                           ng-model="model.platform.Address" name="address" id="address"></textarea>
                                 <code class="ng-binding" ng-show="model.error.address">Не верный формат поля "Адрес",
@@ -100,22 +100,57 @@
                     </div>
 
                     <div class="row margin-top-30">
+                        <!--<div class="col-md-4">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="buyProcess">Способы покупки:</label>-->
+                                <!--<div class="input-group" style="width: 100%">-->
+                                    <!--<select ng-change="checkErrorBuyProcess();" multiple="multiple" id="buyProcess"-->
+                                            <!--class="form-control "-->
+                                            <!--ng-model="model.buyProcessesValue">-->
+                                        <!--<option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">-->
+                                            <!--{{buyProcess.Value}}-->
+                                        <!--</option>-->
+                                    <!--</select>-->
+                                    <!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
+                                        <!--заполнено. </code>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+
+                        <!--<div class="col-md-4">-->
+                            <!--<div class="form-group">-->
+                                <!--<label for="buyProcess">Способы покупки:</label>-->
+                                <!--<div class="input-group" style="width: 100%">-->
+                                    <!--<ui-select ng-change="checkErrorBuyProcess();" id="buyProcess" multiple ng-model="model.buyProcessesValue" theme="select2" ng-disabled="disabled" style="width: 300px;">-->
+                                        <!--<ui-select-match class="ui-select-match" placeholder="Select colors...">{{$item.Value}}</ui-select-match>-->
+                                        <!--<ui-select-choices class="ui-select-choices" repeat="buyProcess in model.buyProcesses | filter:$select.search">-->
+                                            <!--{{buyProcess.Value}}-->
+                                        <!--</ui-select-choices>-->
+                                    <!--</ui-select>-->
+                                    <!--<code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть-->
+                                        <!--заполнено. </code>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="buyProcess">Способы покупки:</label>
+                                <label>Способы покупки:</label>
                                 <div class="input-group" style="width: 100%">
-                                    <select ng-change="checkErrorBuyProcess();" multiple="multiple" id="buyProcess"
-                                            class="form-control "
-                                            ng-model="model.buyProcessesValue">
-                                        <option ng-repeat="buyProcess in model.buyProcesses" value="{{buyProcess}}">
-                                            {{buyProcess.Value}}
-                                        </option>
-                                    </select>
+                                    <div ng-repeat="buyProcess in model.buyProcessesValue" class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="model.buyProcessesValue[$index].checked">
+                                            <span class="text">{{buyProcess.Value}}</span>
+                                        </label>
+                                        {{buyProcess}}
+                                    </div>
                                     <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки" должно быть
                                         заполнено. </code>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -209,16 +244,16 @@
 </div>
 
 <script>
-    var $exampleMulti = $(".select_m").select2({
-        placeholder: "Выберите элемент",
-        allowClear: true
-    });
-//
+//    var $exampleMulti = $(".select_m").select2({
+//        placeholder: "Выберите элемент",
+//        allowClear: true
+//    });
+////
 //    $exampleMulti.val([ '{"Value":"Доставка","Id":1}', '{"Value":"Самовывоз","Id":2}' ]).trigger("change");
 
 
-    $('.timepicker').timepicker({
-        showMeridian: false,
-        minuteStep: 5,
-    });
+//    $('.timepicker').timepicker({
+//        showMeridian: false,
+//        minuteStep: 5,
+//    });
 </script>

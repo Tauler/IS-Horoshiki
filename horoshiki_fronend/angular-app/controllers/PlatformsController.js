@@ -21,7 +21,7 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
 
         //Модель удаляемого объекта
         $scope.model.deletePlatformModel = {};
-        
+
         // Пагинация
         $scope.$watch('model.paging.PageNo', function () {
             $scope.getAllPlatforms();
@@ -72,17 +72,17 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
     }
 ]);
 
-platformsControllers.controller('PlatformsAddController', ['$scope', '$location', 'PlatformsService', 'SubdivisionService', 'UsersService', 'DictionaryService','$routeParams',
+platformsControllers.controller('PlatformsAddController', ['$scope', '$location', 'PlatformsService', 'SubdivisionService', 'UsersService', 'DictionaryService', '$routeParams',
     function ($scope, $location, PlatformsService, SubdivisionService, UsersService, DictionaryService, $routeParams) {
         $scope.model = {};
         $scope.model.buyProcessesValue = [];
-        
+
         $scope.model.localTime = {
-            start : '08:00',
+            start: '08:00',
             end: '17:00'
         }
         $scope.model.orderTime = {
-            start : '08:00',
+            start: '08:00',
             end: '17:00'
         }
 
@@ -104,10 +104,10 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         $scope.model.error.localTime = false;
         $scope.checkLocalTime = function () {
             var regexpTime = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/mg;
-            if($scope.model.localTime.start==undefined || $scope.model.localTime.start=="" || !$scope.model.localTime.start.match(regexpTime) ||
-                $scope.model.localTime.end==undefined || $scope.model.localTime.end=="" || !$scope.model.localTime.end.match(regexpTime)){
+            if ($scope.model.localTime.start == undefined || $scope.model.localTime.start == "" || !$scope.model.localTime.start.match(regexpTime) ||
+                $scope.model.localTime.end == undefined || $scope.model.localTime.end == "" || !$scope.model.localTime.end.match(regexpTime)) {
                 $scope.model.error.localTime = true;
-            }else{
+            } else {
                 $scope.model.error.localTime = false;
             }
         }
@@ -115,10 +115,10 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         $scope.model.error.orderTime = false;
         $scope.checkOrderTime = function () {
             var regexpTime = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/mg;
-            if($scope.model.orderTime.start==undefined || $scope.model.orderTime.start=="" || !$scope.model.orderTime.start.match(regexpTime) ||
-                $scope.model.orderTime.end==undefined || $scope.model.orderTime.end=="" || !$scope.model.orderTime.end.match(regexpTime)){
+            if ($scope.model.orderTime.start == undefined || $scope.model.orderTime.start == "" || !$scope.model.orderTime.start.match(regexpTime) ||
+                $scope.model.orderTime.end == undefined || $scope.model.orderTime.end == "" || !$scope.model.orderTime.end.match(regexpTime)) {
                 $scope.model.error.orderTime = true;
-            }else{
+            } else {
                 $scope.model.error.orderTime = false;
             }
         }
@@ -146,7 +146,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             if ($scope.model.platform.SubDivision.Id == "" || $scope.model.platform.SubDivision.Id == undefined) {
                 $scope.model.error.subdivision = true;
                 $scope.model.error.statusDisabled = true;
-                $scope.model.platform.PlatformStatus.Id ="1";
+                $scope.model.platform.PlatformStatus.Id = "1";
             } else {
                 $scope.model.error.subdivision = false;
                 $scope.model.error.statusDisabled = false;
@@ -171,7 +171,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         $scope.model.error.minCheck = false;
         $scope.checkErrorMinCheck = function () {
             var regexpFloat = /^(?!0\d)\d*(\.\d+)?$/mg;
-            if ($scope.model.platform.MinCheck==undefined || $scope.model.platform.MinCheck=="" || !$scope.model.platform.MinCheck.toString().match(regexpFloat) ||  parseInt($scope.model.platform.MinCheck) < 1) {
+            if ($scope.model.platform.MinCheck == undefined || $scope.model.platform.MinCheck == "" || !$scope.model.platform.MinCheck.toString().match(regexpFloat) || parseInt($scope.model.platform.MinCheck) < 1) {
                 $scope.model.error.minCheck = true;
             } else {
                 $scope.model.error.minCheck = false;
@@ -215,18 +215,6 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             })
         }
 
-        $scope.getBuyProcesses = function () {
-            DictionaryService.getBuyProcesses().success(function (result) {
-                if (result.Success == 1) {
-                    $scope.model.buyProcesses = result.Data;
-                } else {
-                    displayErrorMessage(result.ReasonMessage);
-                }
-            }).error(function (result, status) {
-                httpErrors($location.url(), status);
-            })
-        }
-
 
         $scope.savePlatform = function () {
             $scope.checkErrorName();
@@ -238,24 +226,19 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
 
             if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck) {
-                $scope.model.platform.TimeStart = $scope.model.localTime.start+":00";
-                $scope.model.platform.TimeEnd = $scope.model.localTime.end+":00";
+                $scope.model.platform.TimeStart = $scope.model.localTime.start + ":00";
+                $scope.model.platform.TimeEnd = $scope.model.localTime.end + ":00";
 
-                $scope.model.platform.OrderTimeStart = $scope.model.orderTime.start+":00";
-                $scope.model.platform.OrderTimeEnd = $scope.model.orderTime.end+":00";
+                $scope.model.platform.OrderTimeStart = $scope.model.orderTime.start + ":00";
+                $scope.model.platform.OrderTimeEnd = $scope.model.orderTime.end + ":00";
 
-                if ($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined) {
-                    $scope.model.platform.BuyProcesses = [];
-                    for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
-                        $scope.model.platform.BuyProcesses[i] = JSON.parse($scope.model.buyProcessesValue[i]);
-                    }
-                }
+                $scope.checkboxes.setBuyProcesses();
 
-                if($scope.model.platform.User == undefined || $scope.model.platform.User.Id == undefined || $scope.model.platform.User.Id == ""){
+                if ($scope.model.platform.User == undefined || $scope.model.platform.User.Id == undefined || $scope.model.platform.User.Id == "") {
                     $scope.model.platform.User = null;
                 }
 
-                if(!$scope.isEdit()) {
+                if (!$scope.isEdit()) {
                     PlatformsService.add($scope.model.platform).success(function (result) {
                         if (result.Success == 1) {
                             $location.url("/platforms");
@@ -266,7 +249,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                     }).error(function (result, status) {
                         httpErrors($location.url(), status);
                     })
-                }else{
+                } else {
                     PlatformsService.edit($scope.model.platform).success(function (result) {
                         if (result.Success == 1) {
                             $location.url("/platforms");
@@ -283,11 +266,50 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
 
         $scope.isEdit = function () {
-           return $scope.pageId!=undefined && $scope.pageId=='platformsEditPage';
+            return $scope.pageId != undefined && $scope.pageId == 'platformsEditPage';
+        }
+
+
+        $scope.checkboxes = {};
+        $scope.checkboxes.getBuyProcesses = function () {
+            DictionaryService.getBuyProcesses().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.buyProcessesValue = result.Data;
+                    for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
+                        $scope.model.buyProcessesValue[i].checked = false;
+                        if ($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses != undefined) {
+                            for (var j = 0; j < $scope.model.platform.BuyProcesses.length; j++) {
+                                if ($scope.model.platform.BuyProcesses[j].Id == $scope.model.buyProcessesValue[j].Id) {
+                                    $scope.model.buyProcessesValue[j].checked = true;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.checkboxes.setBuyProcesses = function () {
+            if($scope.model.buyProcessesValue != null && $scope.model.buyProcessesValue != undefined)
+                $scope.model.platform.BuyProcesses = [];
+            for (var i = 0, j = 0; i < $scope.model.buyProcessesValue.length; i++) {
+                if($scope.model.buyProcessesValue[i].checked){
+                    var process = $scope.model.buyProcessesValue[i];
+                    $scope.model.platform.BuyProcesses[j]={
+                        Id: process.Id,
+                        Value: process.Value
+                    };
+                    j++;
+                }
+            }
         }
 
         $scope.getPlatform = function () {
-            if($scope.isEdit()) {
+            if ($scope.isEdit()) {
 
                 PlatformsService.get($routeParams.id).success(function (result) {
                     if (result.Success == 1) {
@@ -296,36 +318,33 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                         $scope.model.platform.SubDivision.Id = $scope.model.platform.SubDivision.Id.toString();
                         if ($scope.model.platform.SubDivision.Id == "" || $scope.model.platform.SubDivision.Id == undefined) {
                             $scope.model.error.statusDisabled = true;
-                        }else {
+                        } else {
                             $scope.model.error.statusDisabled = false;
                         }
 
                         $scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
                         $scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
 
-                        if($scope.model.platform.TimeStart!="" && $scope.model.platform.TimeStart!=undefined) {
+                        if ($scope.model.platform.TimeStart != "" && $scope.model.platform.TimeStart != undefined) {
                             var startTimeArr = $scope.model.platform.TimeStart.split(':');
-                            $scope.model.localTime.start = startTimeArr[0]+":"+startTimeArr[1];
+                            $scope.model.localTime.start = startTimeArr[0] + ":" + startTimeArr[1];
                         }
-                        if($scope.model.platform.TimeEnd!="" && $scope.model.platform.TimeEnd!=undefined) {
+                        if ($scope.model.platform.TimeEnd != "" && $scope.model.platform.TimeEnd != undefined) {
                             var endTimeArr = $scope.model.platform.TimeEnd.split(':');
-                            $scope.model.localTime.end = endTimeArr[0]+":"+endTimeArr[1];
+                            $scope.model.localTime.end = endTimeArr[0] + ":" + endTimeArr[1];
                         }
 
-                        if($scope.model.platform.OrderTimeStart!="" && $scope.model.platform.OrderTimeStart!=undefined) {
+                        if ($scope.model.platform.OrderTimeStart != "" && $scope.model.platform.OrderTimeStart != undefined) {
                             var startTimeArr = $scope.model.platform.OrderTimeStart.split(':');
-                            $scope.model.orderTime.start = startTimeArr[0]+":"+startTimeArr[1];
+                            $scope.model.orderTime.start = startTimeArr[0] + ":" + startTimeArr[1];
                         }
-                        if($scope.model.platform.OrderTimeEnd!="" && $scope.model.platform.OrderTimeEnd!=undefined) {
+                        if ($scope.model.platform.OrderTimeEnd != "" && $scope.model.platform.OrderTimeEnd != undefined) {
                             var endTimeArr = $scope.model.platform.OrderTimeEnd.split(':');
-                            $scope.model.orderTime.end = endTimeArr[0]+":"+endTimeArr[1];
+                            $scope.model.orderTime.end = endTimeArr[0] + ":" + endTimeArr[1];
                         }
 
-                        if ($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses != undefined) {
-                                for (var i = 0; i < $scope.model.platform.BuyProcesses.length; i++) {
-                                    $scope.model.buyProcessesValue[i] = JSON.stringify($scope.model.platform.BuyProcesses[i]);
-                                }
-                            }
+                        $scope.checkboxes.getBuyProcesses();
+
                     } else {
                         displayErrorMessage(result.ReasonMessage);
                     }
@@ -333,15 +352,16 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                     httpErrors($location.url(), status);
                 })
 
+            }else{
+                $scope.checkboxes.getBuyProcesses();
             }
-
         }
 
 
         $scope.getSubdivisions();
         $scope.getUsers();
         $scope.getStatusSites();
-        $scope.getBuyProcesses();
         $scope.getPlatform();
+
     }
 ]);
