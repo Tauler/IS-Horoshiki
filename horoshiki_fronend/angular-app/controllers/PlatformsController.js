@@ -49,7 +49,7 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
 
         $scope.deletePlatformModal = function (deleteObject) {
             $scope.model.deletePlatformModel = deleteObject;
-            console.log($scope.model.deletePlatformModel);
+            // console.log($scope.model.deletePlatformModel);
         }
 
         $scope.deletePlatform = function () {
@@ -100,9 +100,25 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             Id: "1"
         }
 
+
+
+        // $scope.$watch('model.time', function () {
+        //     console.log($scope.model.time);
+        // });
+
+
+        
+
         $scope.model.error = {};
         $scope.model.error.localTime = false;
         $scope.checkLocalTime = function () {
+
+            console.log("change = "+$scope.model.localTime.start+'--'+$scope.model.localTime.end);
+
+            // if($scope.model.localTime.start==''){
+                // console.log($scope.model.localTime.start+"!");
+                // $scope.model.error.localTime = true;
+            // }
             var regexpTime = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/mg;
             if ($scope.model.localTime.start == undefined || $scope.model.localTime.start == "" || !$scope.model.localTime.start.match(regexpTime) ||
                 $scope.model.localTime.end == undefined || $scope.model.localTime.end == "" || !$scope.model.localTime.end.match(regexpTime)) {
