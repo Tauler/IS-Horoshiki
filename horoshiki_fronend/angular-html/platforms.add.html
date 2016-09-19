@@ -144,7 +144,6 @@
                                             <input type="checkbox" ng-model="model.buyProcessesValue[$index].checked">
                                             <span class="text">{{buyProcess.Value}}</span>
                                         </label>
-                                        {{buyProcess}}
                                     </div>
                                     <code class="ng-binding" ng-show="model.error.buyProcess">Поле "Способы покупки"
                                         должно быть
@@ -157,25 +156,18 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="subdivisions">Время работы:</label>
-
-
                                 <div class="input-group" style="width: 100%">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon">c</span>
-                                                <input class="form-control timepicker" ng-blur="checkLocalTime();"
-                                                       maxlength="5"
-                                                       ng-model="model.localTime.start" name="start" id="start"
-                                                       type="text">
+                                                <timepicker ng-change="checkLocalTime();" ng-model="model.localTime.start"></timepicker>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon">до</span>
-                                                <input class="form-control timepicker" ng-blur="checkLocalTime();"
-                                                       ng-model="model.localTime.end" maxlength="5"
-                                                       name="end" id="end" type="text">
+                                                <timepicker ng-change="checkLocalTime();" ng-model="model.localTime.end"></timepicker>
                                             </div>
                                         </div>
                                     </div>
@@ -194,18 +186,13 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon">c</span>
-                                                <input class="form-control timepicker" ng-blur="checkOrderTime();"
-                                                       maxlength="5"
-                                                       ng-model="model.orderTime.start" name="start"
-                                                       type="text">
+                                                <timepicker ng-change="checkOrderTime();" ng-model="model.orderTime.start"></timepicker>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon">до</span>
-                                                <input class="form-control timepicker" ng-blur="checkOrderTime();"
-                                                       ng-model="model.orderTime.end" maxlength="5"
-                                                       name="end" type="text">
+                                                <timepicker ng-change="checkOrderTime();" ng-model="model.orderTime.end"></timepicker>
                                             </div>
                                         </div>
                                     </div>
@@ -254,9 +241,9 @@
     //    $exampleMulti.val([ '{"Value":"Доставка","Id":1}', '{"Value":"Самовывоз","Id":2}' ]).trigger("change");
 
 
-    $('.timepicker').timepicker({
-        showMeridian: false,
-        minuteStep: 5,
-    });
+//    $('.timepicker').timepicker({
+//        showMeridian: false,
+//        minuteStep: 5,
+//    });
 
 </script>

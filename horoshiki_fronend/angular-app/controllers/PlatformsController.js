@@ -49,7 +49,7 @@ platformsControllers.controller('PlatformsViewController', ['$scope', '$location
 
         $scope.deletePlatformModal = function (deleteObject) {
             $scope.model.deletePlatformModel = deleteObject;
-            console.log($scope.model.deletePlatformModel);
+            // console.log($scope.model.deletePlatformModel);
         }
 
         $scope.deletePlatform = function () {
@@ -99,6 +99,15 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             MinCheck: "",
             Id: "1"
         }
+
+
+
+        // $scope.$watch('model.time', function () {
+        //     console.log($scope.model.time);
+        // });
+
+
+        
 
         $scope.model.error = {};
         $scope.model.error.localTime = false;

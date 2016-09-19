@@ -10,6 +10,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'yaMap',
     'ui.bootstrap.pagination',
     // 'ui.bootstrap.datepicker',
+    'timepickerDirectives',
     'datepickerDirectives',
     'layoutControllers',
     'errorControllers',
