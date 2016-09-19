@@ -100,15 +100,6 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             Id: "1"
         }
 
-
-
-        // $scope.$watch('model.time', function () {
-        //     console.log($scope.model.time);
-        // });
-
-
-        
-
         $scope.model.error = {};
         $scope.model.error.localTime = false;
         $scope.checkLocalTime = function () {
