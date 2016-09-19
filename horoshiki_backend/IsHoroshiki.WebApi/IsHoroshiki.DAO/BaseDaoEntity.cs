@@ -15,14 +15,5 @@ namespace IsHoroshiki.DAO
             get;
             set;
         }
-
-        /// <summary>
-        /// Уникальный идентификатор объекта
-        /// </summary>
-        public Guid Guid
-        {
-            get;
-            set;
-        }
     }
 }

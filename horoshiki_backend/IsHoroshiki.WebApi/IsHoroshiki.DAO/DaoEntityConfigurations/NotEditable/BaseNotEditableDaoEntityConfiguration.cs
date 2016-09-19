@@ -19,7 +19,12 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable
         {
             Property(p => p.Value)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(255);
+
+
+            Property(p => p.Guid)
+                .IsRequired()
+                .HasColumnOrder(1);
         }
 
         #endregion
