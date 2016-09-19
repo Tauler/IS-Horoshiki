@@ -20,6 +20,14 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         Task<IEnumerable<IApplicationUserSmallModel>> GetAllSmall(string sortField = "", bool isAscending = true);
 
         /// <summary>
+        /// Получить всех управляющих
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        Task<IEnumerable<IApplicationUserSmallModel>> GetAllSmallManager(string sortField = "", bool isAscending = true);
+
+        /// <summary>
         /// Проверка существования логина для пользователя
         /// </summary>
         /// <param name="userName">Имя пользователя</param>

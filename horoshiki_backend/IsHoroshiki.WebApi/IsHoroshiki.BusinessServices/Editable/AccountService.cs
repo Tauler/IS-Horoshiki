@@ -50,11 +50,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public override async Task<PagedResult<IApplicationUserModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
         {
-            if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
-            {
-                sortField += "Id";
-            }
-
+            sortField = GetSortField(sortField);
             return await base.GetAllAsync(pageNo, pageSize, sortField, isAscending);
         }
 
@@ -66,12 +62,21 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public async Task<IEnumerable<IApplicationUserSmallModel>> GetAllSmall(string sortField = "", bool isAscending = true)
         {
-            if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
-            {
-                sortField += "Id";
-            }
-
+            sortField = GetSortField(sortField);
             var list = await _repository.GetAllAsync(1, Int32.MaxValue, sortField, isAscending, false);
+            return list.ToUserSmallModelEntityList();
+        }
+
+        /// <summary>
+        /// Получить всех управляющих
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<IApplicationUserSmallModel>> GetAllSmallManager(string sortField = "", bool isAscending = true)
+        {
+            sortField = GetSortField(sortField);
+            var list = await _repository.GetAllSmallManager(sortField, isAscending);
             return list.ToUserSmallModelEntityList();
         }
 
@@ -361,6 +366,30 @@ namespace IsHoroshiki.BusinessServices.Editable
             daoEntity.Platform = null;
             daoEntity.Position = null;
             return daoEntity;
+        }
+
+        #endregion
+
+        #region private 
+
+        /// <summary>
+        /// Добавить сортировку по Id
+        /// </summary>
+        /// <param name="sortField"></param>
+        /// <returns></returns>
+        private string GetSortField(string sortField)
+        {
+            if (string.IsNullOrEmpty(sortField))
+            {
+                return string.Empty;
+            }
+
+            if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
+            {
+                sortField += "Id";
+            }
+
+            return sortField;
         }
 
         #endregion

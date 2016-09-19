@@ -185,6 +185,26 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
         }
 
+
+        /// <summary>
+        /// Получить всех управляющих
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        [Route("allManager")]
+        public async Task<IHttpActionResult> GetAllSmallManager(string sortField = "", bool isAscending = true)
+        {
+            try
+            {
+                var list = await _service.GetAllSmallManager(sortField, isAscending);
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
         #endregion
 
         #region методы

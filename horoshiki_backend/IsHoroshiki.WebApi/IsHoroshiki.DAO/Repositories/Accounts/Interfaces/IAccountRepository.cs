@@ -52,7 +52,6 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
         /// <returns></returns>
         Task<IdentityResult> ChangePasswordAsync(int userId, string oldPassword, string newPassword);
 
-
         /// <summary>
         /// Изменить пароль
         /// </summary>
@@ -91,5 +90,13 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
         /// <param name="platformId">Id площадки</param>
         /// <returns></returns>
         bool IsExistForPlatform(int platformId);
+
+        /// <summary>
+        /// Получить всех управляющих
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        Task<IEnumerable<ApplicationUser>> GetAllSmallManager(string sortField = "", bool isAscending = true);
     }
 }

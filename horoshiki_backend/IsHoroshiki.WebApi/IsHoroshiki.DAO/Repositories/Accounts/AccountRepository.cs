@@ -6,6 +6,8 @@ using System.Security.Claims;
 using IsHoroshiki.DAO.DaoEntities.Accounts;
 using System.Linq;
 using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
+using System.Collections.Generic;
+using IsHoroshiki.DAO.Helpers;
 
 namespace IsHoroshiki.DAO.Repositories.Accounts
 {
@@ -209,6 +211,30 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         public bool IsExistForPlatform(int platformId)
         {
             return DbSet.Any(p => p.PlatformId == platformId);
+        }
+
+        /// <summary>
+        /// Получить всех управляющих
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<ApplicationUser>> GetAllSmallManager(string sortField = "", bool isAscending = true)
+        {
+            var list = DbSet.Where(u => u.EmployeeStatus != null
+                                        && u.EmployeeStatus.Guid != DatabaseConstant.EmployeeStatusDismissal 
+                                        && u.Position != null 
+                                        && u.Position.Guid == DatabaseConstant.PositionManager)
+                           .OrderByPropertyName(sortField, isAscending)                        
+                           .ToList()
+                           .AsEnumerable();
+
+            foreach (var daoEntity in list)
+            {
+                LoadChildEntities(daoEntity);
+            }
+
+            return list;
         }
 
         #endregion

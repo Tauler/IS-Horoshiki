@@ -63,6 +63,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\EmployeeReasonDismissalConfiguration.cs" />
+    <Compile Include="DatabaseConstant.cs" />
     <Compile Include="IBaseDaoEntity.cs" />
     <Compile Include="BaseDaoEntity.cs" />
     <Compile Include="Bootstrapper.cs" />

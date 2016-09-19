@@ -25,7 +25,12 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations
 
             Property(p => p.Id)
                 .IsRequired()
+                .HasColumnOrder(0)
                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            Property(p => p.Guid)
+                .IsRequired()
+                .HasColumnOrder(1);
         }
 
         #endregion

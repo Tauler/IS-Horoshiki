@@ -1,4 +1,6 @@
-﻿namespace IsHoroshiki.DAO
+﻿using System;
+
+namespace IsHoroshiki.DAO
 {
     /// <summary>
     /// Базовая сущность для всех сущностей БД
@@ -9,6 +11,15 @@
         /// Id в БД
         /// </summary>
         public int Id
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Уникальный идентификатор объекта
+        /// </summary>
+        public Guid Guid
         {
             get;
             set;
