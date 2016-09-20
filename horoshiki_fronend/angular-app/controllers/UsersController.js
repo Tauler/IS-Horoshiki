@@ -88,7 +88,8 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             "IsAccess": false,
             "UserName": "",
             "Password": "",
-            "ConfirmPassword": ""
+            "ConfirmPassword": "",
+            "Department":""
         }
         $scope.model.user.IsAccess = true;
 
@@ -235,6 +236,17 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             })
         }
 
+        $scope.getDepartments = function () {
+            DictionaryService.getDepartments().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.departments = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
 
         $scope.getPlatformsSmall = function () {
             PlatformsService.getAllSmall("Id", "True").success(function (result) {
@@ -281,6 +293,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
         }
 
         $scope.getPositions();
+        $scope.getDepartments();
         $scope.getEmployeeStatuses();
         $scope.getPlatformsSmall()
 
@@ -303,6 +316,9 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
                     $scope.model.user.Position = JSON.parse($scope.model.Position);
+                }
+                if ($scope.model.Department != "" && $scope.model.Department != undefined) {
+                    $scope.model.user.Department = JSON.parse($scope.model.Department);
                 }
 
                 if ($scope.model.Platform != "" && $scope.model.Platform != undefined) {
@@ -363,7 +379,8 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             "IsAccess": false,
             "UserName": "",
             "Password": "",
-            "ConfirmPassword": ""
+            "ConfirmPassword": "",
+            "Department":""
         }
 
         $scope.model.Platform = {};
@@ -486,6 +503,18 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             })
         }
 
+        $scope.getDepartments = function () {
+            DictionaryService.getDepartments().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.departments = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
         $scope.getPlatformsSmall = function () {
             PlatformsService.getAllSmall("Id", "True").success(function (result) {
                 if (result.Success == 1) {
@@ -528,6 +557,10 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 
                     $scope.model.EmployeeStatus = JSON.stringify($scope.model.user.EmployeeStatus);
                     $scope.model.Position = JSON.stringify($scope.model.user.Position);
+
+                    if ($scope.model.user.Department != undefined && $scope.model.user.Department.Id != '') {
+                        $scope.model.Department = JSON.stringify($scope.model.user.Department);
+                    }
                     // $scope.model.Platform = JSON.stringify($scope.model.user.Platform);
                     if ($scope.model.user.Platform != undefined && $scope.model.user.Platform.Id != '') {
                         $scope.model.Platform.Id = $scope.model.user.Platform.Id.toString();
@@ -559,6 +592,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         }
 
         $scope.getPositions();
+        $scope.getDepartments();
         $scope.getPlatformsSmall();
         $scope.getEmployeeStatuses();
         $scope.getUser();
@@ -581,6 +615,10 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
                     $scope.model.user.Position = JSON.parse($scope.model.Position);
+                }
+
+                if ($scope.model.Department != "" && $scope.model.Department != undefined) {
+                    $scope.model.user.Department = JSON.parse($scope.model.Department);
                 }
 
                 if ($scope.model.Platform != "" && $scope.model.Platform != undefined) {

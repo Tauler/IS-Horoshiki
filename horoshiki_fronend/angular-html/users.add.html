@@ -114,6 +114,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="platform">Отдел:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select class="form-control" id="department"
+                                            class="form-control"
+                                            ng-model="model.department.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="department in model.departments" value="{{department.Id}}">
+                                            {{department.Value}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="platform">Площадка:</label>
@@ -131,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
+
                     </div>
 
                     <div class="row">
