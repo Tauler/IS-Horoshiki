@@ -89,7 +89,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             "UserName": "",
             "Password": "",
             "ConfirmPassword": "",
-            "Department":""
+            "Department": ""
         }
         $scope.model.user.IsAccess = true;
 
@@ -264,10 +264,16 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
         $scope.getEmployeeStatuses = function () {
             DictionaryService.getEmployeeStatuses().success(function (result) {
                 if (result.Success == 1) {
-                    $scope.model.employeeStatuses = result.Data;
+                    $scope.model.employeeStatuses = [];
+
+                    for (var index in result.Data) {
+                        if ( result.Data[index].Guid != employeeStatus.dismissed) {
+                            $scope.model.employeeStatuses[index] = result.Data[index];
+                        }
+                    }
 
                     for (var index in $scope.model.employeeStatuses) {
-                        if ($scope.model.employeeStatuses[index].Id == 1) {
+                        if ($scope.model.employeeStatuses[index].Guid == employeeStatus.worked) {
                             $scope.model.EmployeeStatus = JSON.stringify($scope.model.employeeStatuses[index]);
                         }
                     }
@@ -388,12 +394,13 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             "UserName": "",
             "Password": "",
             "ConfirmPassword": "",
-            "Department":"",
-            "EmployeeReasonDismissal":""
+            "Department": "",
+            "EmployeeReasonDismissal": ""
         }
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
+        $scope.model.ReasonDismissal = {};
 
 
         //datepicker startDate init
@@ -503,6 +510,20 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             }
         }
 
+        $scope.model.error.reasonDismissal = false;
+        $scope.checkErrorReasonDismissal = function () {
+
+            console.log($scope.model.ReasonDismissal.Id);
+
+            if (($scope.model.ReasonDismissal.Id == undefined || $scope.model.ReasonDismissal.Id == "") && $scope.model.isDismissed) {
+                $scope.model.error.reasonDismissal = true;
+            } else {
+                $scope.model.error.reasonDismissal = false;
+            }
+
+            console.log($scope.model.error.reasonDismissal);
+        }
+
         $scope.model.error.platform = false;
         $scope.checkErrorPlatform = function () {
             // if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
@@ -513,18 +534,22 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         }
 
         // проверка уволен ли пользователь
-        $scope.isDismissed = function () {
-            if($scope.model.user.EmployeeStatus==undefined || $scope.model.user.EmployeeStatus=='' || $scope.model.user.EmployeeStatus.Guid != employeeStatus.dismissed){
-                return false;
-            }else{
-                return true;
+        $scope.model.isDismissed = false;
+        $scope.$watch('model.EmployeeStatus', function () {
+            if ($scope.model.EmployeeStatus == undefined || $scope.model.EmployeeStatus == '' || JSON.parse($scope.model.EmployeeStatus).Guid != employeeStatus.dismissed) {
+                $scope.model.isDismissed = false;
+            } else {
+                $scope.model.isDismissed = true;
+                $scope.model.datepickerEndDate.select = new Date();
             }
-        }
+        });
+
+
         // проверка происходит ли сейчас увольнение
         $scope.isDismissal = function () {
-            if($routeParams.dismissal != undefined && $routeParams.dismissal!= '' && $routeParams.dismissal=='true' ){
+            if ($routeParams.dismissal != undefined && $routeParams.dismissal != '' && $routeParams.dismissal == 'true') {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
@@ -601,20 +626,23 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             UsersService.getUser($routeParams.userId).success(function (result) {
                 if (result.Success = 1) {
 
+                    $scope.model.user = result.Data;
 
                     DictionaryService.getEmployeeStatuses().success(function (result) {
                         if (result.Success == 1) {
                             $scope.model.employeeStatuses = result.Data;
-                            if($scope.isDismissal()){
+                            if ($scope.isDismissal()) {
                                 $scope.model.datepickerEndDate.select = new Date();
                                 for (var index in $scope.model.employeeStatuses) {
                                     if ($scope.model.employeeStatuses[index].Guid == employeeStatus.dismissed) {
                                         $scope.model.EmployeeStatus = JSON.stringify($scope.model.employeeStatuses[index]);
                                     }
                                 }
-                            }else {
+
+                            } else {
                                 $scope.model.EmployeeStatus = JSON.stringify($scope.model.user.EmployeeStatus);
                             }
+
                         } else {
                             displayErrorMessage(result.ReasonMessage);
                         }
@@ -622,13 +650,10 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
                         httpErrors($location.url(), status);
                     });
 
-                    if($scope.isDismissal() || $scope.isDismissed()){
-                        if ($scope.model.user.EmployeeReasonDismissal != undefined && $scope.model.user.EmployeeReasonDismissal.Id != '') {
-                            $scope.model.ReasonDismissal.Id = $scope.model.user.EmployeeReasonDismissal.Id.toString();
-                        }
+                    if ($scope.model.user.EmployeeReasonDismissal != undefined && $scope.model.user.EmployeeReasonDismissal.Id != undefined && $scope.model.user.EmployeeReasonDismissal.Id != '') {
+                        $scope.ReasonDismissal = {};
+                        $scope.model.ReasonDismissal.Id = $scope.model.user.EmployeeReasonDismissal.Id.toString();
                     }
-
-                    $scope.model.user = result.Data;
 
                     $scope.model.datepickerStartDate.select = $scope.model.user.DateStart;
                     $scope.model.datepickerMedicalBook.select = $scope.model.user.MedicalBookEnd;
@@ -646,7 +671,6 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 
                     $scope.model.user.Password = null;
                     $scope.model.user.ConfirmPassword = null;
-
 
 
                 } else {
@@ -672,10 +696,10 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             }
         }
 
+        $scope.getEmployeeReasonDismissal();
         $scope.getPositions();
         $scope.getDepartments();
         $scope.getPlatformsSmall();
-        $scope.getEmployeeReasonDismissal();
         $scope.getUser();
 
         $scope.saveUser = function () {
@@ -683,15 +707,17 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             // $scope.checkErrorUserName();
             // $scope.checkErrorPassword();
             // $scope.checkErrorConfirmPassword();
-            $scope.checkErrorPlatform()
+            $scope.checkErrorPlatform();
             $scope.checkErrorFirstName();
             $scope.checkErrorLastName();
             $scope.checkErrorMiddleName();
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
+            $scope.checkErrorReasonDismissal();
+
             // $scope.checkErrorEmail();
 
-            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
+            if (!$scope.model.error.reasonDismissal && !$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
@@ -699,18 +725,17 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
                 }
 
 
-
-                if($scope.isDismissal() || $scope.isDismissed()) {
-                    if ($scope.model.ReasonDismissal != "" && $scope.model.ReasonDismissal != undefined) {
-                        $scope.model.user.EmployeeReasonDismissal = {};
-                        if ($scope.model.ReasonDismissal.Id != undefined && $scope.model.ReasonDismissal.Id != '') {
-                            $scope.model.user.EmployeeReasonDismissal.Id = parseInt($scope.model.ReasonDismissal.Id);
-                        }
-                    }
-                    if ($scope.model.user.EmployeeReasonDismissal.Id == null && $scope.model.user.EmployeeReasonDismissal.Id == '') {
-                        $scope.model.user.EmployeeReasonDismissal = null;
+                // if($scope.isDismissal() || $scope.isDismissed()) {
+                if ($scope.model.ReasonDismissal != "" && $scope.model.ReasonDismissal != undefined) {
+                    $scope.model.user.EmployeeReasonDismissal = {};
+                    if ($scope.model.ReasonDismissal.Id != undefined && $scope.model.ReasonDismissal.Id != '') {
+                        $scope.model.user.EmployeeReasonDismissal.Id = parseInt($scope.model.ReasonDismissal.Id);
                     }
                 }
+                if ($scope.model.user.EmployeeReasonDismissal == null || $scope.model.user.EmployeeReasonDismissal.Id == null || $scope.model.user.EmployeeReasonDismissal.Id == '') {
+                    $scope.model.user.EmployeeReasonDismissal = null;
+                }
+                // }
 
                 if ($scope.model.Department != "" && $scope.model.Department != undefined) {
                     $scope.model.user.Department = {};

@@ -129,6 +129,7 @@
                                 <ul class="dropdown-menu dropdown-blue">
                                     <li><a href="/users/edit/{{user.Id}}"><i class="fa fa-edit"></i> Редактировать</a>
                                     </li>
+                                    <li><a href="/users/edit/{{user.Id}}?dismissal=true"><i class="fa fa-minus"></i> Уволить</a></li>
                                     <li><a href="/users/editPassword/{{user.Id}}"><i class="fa fa-eye"></i> Изменить пароль</a></li>
                                     <li><a href="#" data-toggle="modal" data-target="#deleteUserModal"
                                            ng-click="deleteUserModal(user);"><i class="fa fa-cloud"></i> Удалить</a></li>

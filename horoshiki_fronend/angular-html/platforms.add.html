@@ -74,7 +74,7 @@
                                     <select class="form-control" ng-model="model.platform.User.Id">
                                         <option value="">Не выбрано</option>
                                         <option ng-repeat="user in model.users" value="{{user.Id}}">
-                                            {{user.UserName}}
+                                            {{user.FirstName +' '+ user.LastName}}
                                         </option>
                                     </select>
                                 </div>

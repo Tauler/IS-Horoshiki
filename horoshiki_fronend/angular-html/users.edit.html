@@ -168,7 +168,7 @@
                                 <datepicker ng-model="model.datepickerStartDate"></datepicker>
                             </div>
                         </div>
-                        <div ng-show="isDismissed() || isDismissal()" class="col-md-2">
+                        <div ng-show="model.isDismissed" class="col-md-2">
                             <div class="form-group">
                                 <label>Дата увольнения:</label>
                                 <datepicker ng-model="model.datepickerEndDate"></datepicker>
@@ -176,10 +176,10 @@
                         </div>
 
                         <div class="col-md-4">
-                            <div ng-show="isDismissed() || isDismissal()" class="form-group">
+                            <div ng-show="model.isDismissed" class="form-group">
                                 <label for="reasonDismissal">Причина увольнения:</label>
                                 <div class="input-group" style="width: 100%">
-                                    <select class="form-control" id="reasonDismissal"
+                                    <select ng-change="checkErrorReasonDismissal();" class="form-control" id="reasonDismissal"
                                             class="form-control"
                                             ng-model="model.ReasonDismissal.Id">
                                         <option value="">Не выбрано</option>
@@ -187,6 +187,8 @@
                                             {{reasonDismissal.Name}}
                                         </option>
                                     </select>
+                                    <code class="ng-binding" ng-show="model.error.reasonDismissal">Поле "Причина увольнения" должно быть
+                                        заполнено. </code>
                                 </div>
                             </div>
                         </div>
@@ -267,13 +269,37 @@
 
 
                     <div class="margin-top-30 text-align-right">
-                        <a href="/users" class="btn btn-default">Отменить</a> <a href="javascript:void(0);"
-                                                                                 ng-click="saveUser()"
-                                                                                 class="btn btn-blue">Изменить</a>
+                        <a href="/users" class="btn btn-default">Отменить</a>
+                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()" class="btn btn-blue">Изменить</a>
+                        <a ng-show="model.isDismissed" href="javascript:void(0);" data-toggle="modal"
+                           data-target="#dismissalModal"
+                           ng-click="" class="btn btn-blue">Уволить</a>
                     </div>
                 </form>
 
             </div>
         </div>
     </div>
+</div>
+
+<div id="dismissalModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Увольнение пользователя</h4>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите уволить пользователя {{model.user.FirstName+' '+model.user.FirstName}}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Отменить
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="saveUser();" data-dismiss="modal">
+                    Уволить
+                </button>
+            </div>
+        </div>
+    </div> <!-- / .modal-dialog -->
 </div>
