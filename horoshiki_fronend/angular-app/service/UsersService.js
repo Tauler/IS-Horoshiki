@@ -14,6 +14,10 @@ accountServices.service('UsersService', ['$http', function ($http) {
         return $http.get(backendServerAddr+'/api/Accounts?pageNo=1&pageSize=100&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
     };
 
+    this.getAllManagers = function (sortField, asc) {
+        return $http.get(backendServerAddr+'/api/Accounts/allManager?pageNo=1&pageSize=100&sortField='+sortField+'&isAscending='+asc, {timeout: backendTimeout, headers: getToken()});
+    };
+
     this.userAdd = function (user) {
         var resp = $http({
             url: backendServerAddr+'/api/Accounts/Add',

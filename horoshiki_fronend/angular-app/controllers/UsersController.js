@@ -295,7 +295,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
             $scope.checkErrorPlatform();
-            $scope.checkErrorEmail();
+            // $scope.checkErrorEmail();
 
 
             if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
@@ -574,7 +574,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             $scope.checkErrorMiddleName();
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
-            $scope.checkErrorEmail();
+            // $scope.checkErrorEmail();
 
             if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
             ) {
