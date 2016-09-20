@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Дата приема:</label>
                                 <datepicker ng-model="model.datepickerStartDate"></datepicker>
@@ -174,41 +174,24 @@
                         <div class="col-md-4"></div>
                     </div>
 
-                    <div class="row margin-top-30">
-                        <div class="col-md-4">
-
-
-                            <div class="checkbox">
-                                <label>
-                                    <input ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"
-                                           id="isHaveMedicalBook" type="checkbox">
-                                    <span class="text">Наличие мед. книжки</span>
-                                </label>
-                            </div>
-
-                            <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
-                                <datepicker ng-model="model.datepickerMedicalBook"></datepicker>
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input ng-model="model.user.IsAccess" name="isAccess"
-                                           id="isAccess" type="checkbox">
-                                    <span class="text">Доступ в IS</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-4"></div>
-                    </div>
-
 
                     <div class="row margin-top-30">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="userName">Логин:</label>
+                                <div class="col-md-12 padding-left-0">
+                                    <div class="padding-top-20 padding-left-0 col-md-6 text-align-left">
+                                    <label for="userName">Логин:</label>
+                                    </div>
+                                    <div class="col-md-6 text-align-right">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input ng-model="model.user.IsAccess" name="isAccess"
+                                                       id="isAccess" type="checkbox">
+                                                <span class="text">Доступ в IS</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <input class="form-control" ng-blur="checkErrorUserName();" maxlength="50"
                                        placeholder="Логин"
                                        ng-model="model.user.UserName" name="userName" id="userName" type="text">
@@ -233,6 +216,19 @@
                                        name="confirmPassword" id="confirmPassword" type="password">
                                 <code class="ng-binding" ng-show="model.error.confirmPassword">Пароли не
                                     совпадают. </code>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                <label>
+                                    <input ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"
+                                           id="isHaveMedicalBook" type="checkbox">
+                                    <span class="text">Наличие мед. книжки</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
+                                <datepicker ng-model="model.datepickerMedicalBook"></datepicker>
                             </div>
                         </div>
                     </div>
