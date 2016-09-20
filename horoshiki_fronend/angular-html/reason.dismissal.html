@@ -1,0 +1,141 @@
+<div class="page-breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="/">Главная</a>
+        </li>
+        <!--<li>-->
+        <!--<a href="/users">Настройки</a>-->
+        <!--</li>-->
+        <li class="active">Причины увольнения</li>
+    </ul>
+</div>
+
+
+<div class="page-body">
+    <div class="col-xs-6 col-md-6">
+        <div class="widget">
+            <div class="widget-header  with-footer">
+                <span class="widget-caption">Причины увольнения</span>
+            </div>
+            <div class="widget-body">
+
+                <div class="padding-bottom-10 text-align-left">
+                    <a class="btn btn-success" href="javascript:void(0);" data-toggle="modal"
+                       data-target="#editModal"
+                       ng-click="editModelDefValue();"> Создать причину увольнения</a>
+                </div>
+                <table class="table table-hover table-striped table-bordered">
+                    <thead class="bordered-blueberry">
+                    <tr>
+                    <tr>
+                        <th>
+                            <div ng-if="model.orderby.field!='Name'">
+                                <a ng-click="changeSort('Name',true)">Наименование<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='Name' && model.orderby.asc==true">
+                                <a ng-click="changeSort('Name',false)">Наименование</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='Name' && model.orderby.asc==false">
+                                <a ng-click="changeSort('Name',true)">Наименование</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+                        <!--Действие-->
+                        <th>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="reasonDismissal in model.reasonDismissals">
+                        <td ng-bind="reasonDismissal.Name"><a href="link"></a></td>
+                        <td>
+
+                            <div class="btn-group">
+                                <a aria-expanded="false" href="javascript:void(0);" class="btn btn-blue btn-xs"
+                                   data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu dropdown-blue">
+                                    <li><a href="javascript:void(0);" data-toggle="modal"
+                                           data-target="#editModal"
+                                           ng-click="editModalOpen(reasonDismissal);">
+                                        <i class="fa fa-edit"></i> Редактировать</a>
+                                    </li>
+                                    <li><a href="javascript:void(0);" data-toggle="modal"
+                                           data-target="#deleteModal"
+                                           ng-click="deleteModalOpen(reasonDismissal)"><i
+                                            class="fa fa-remove"></i> Удалить</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="deleteModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Удаление причины увольнения</h4>
+            </div>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить причину увольнения {{model.deleteModel.Name}}?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="deleteModalClose();" data-dismiss="modal">
+                    Отменить
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="delete();" data-dismiss="modal">
+                    Удалить
+                </button>
+            </div>
+        </div>
+    </div> <!-- / .modal-dialog -->
+</div>
+
+<div id="editModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 ng-show="!model.editModel.edit" class="modal-title">Добавление причины увольнения</h4>
+                <h4 ng-show="model.editModel.edit" class="modal-title">Редактирование причины увольнения</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="margin-10">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="name">Наименование:</label>
+                                <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
+                                       placeholder="Наименование"
+                                       ng-model="model.editModel.data.Name" name="name" id="name" type="text">
+                                <code class="ng-binding" ng-show="model.error.name">Не верный формат поля "Наименование",
+                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="editModelDefValue();" data-dismiss="modal">
+                    Отменить
+                </button>
+                <button ng-show="!model.editModel.edit" type="button" class="btn btn-primary" ng-click="editModalSave();">
+                    Создать
+                </button>
+                <button ng-show="model.editModel.edit" type="button" class="btn btn-primary" ng-click="editModalSave();">
+                    Изменить
+                </button>
+            </div>
+        </div>
+    </div> <!-- / .modal-dialog -->
+</div>
