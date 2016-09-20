@@ -44,7 +44,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
             daoModel.Position = model.Position != null ? model.Position.ToDaoEntity() : null;
 
-            if (model.Department != null)
+            if (model.Department != null && model.Department.Id > 0)
             {
                // daoModel.Department = model.Department.ToDaoEntity();
                 daoModel.DepartmentId = model.Department.Id;

@@ -268,6 +268,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             entity.Platform = Context.Platform.Find(entity.PlatformId);
             entity.EmployeeStatus = Context.EmployeeStatuses.Find(entity.EmployeeStatusId);
             entity.Position = Context.Positions.Find(entity.PositionId);
+            entity.Department = Context.Departments.Find(entity.DepartmentId);
         }
 
         /// <summary>
@@ -284,6 +285,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             Context.Entry(entity).Reference(p => p.EmployeeStatus).Load();
             Context.Entry(entity).Reference(p => p.Position).Load();
             Context.Entry(entity).Reference(p => p.Platform).Load();
+            Context.Entry(entity).Reference(p => p.Department).Load();
         }
 
         #endregion
