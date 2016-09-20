@@ -21,6 +21,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new DeliveryZone()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Time = model.Time,
                 Value = model.Value
             };
@@ -46,6 +47,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new DeliveryZoneModel()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Time = model.Time,
                 Value = model.Value
             };

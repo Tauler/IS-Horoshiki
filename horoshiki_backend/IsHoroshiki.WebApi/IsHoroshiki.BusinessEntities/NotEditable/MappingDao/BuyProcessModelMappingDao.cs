@@ -20,6 +20,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new BuyProcess()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }
@@ -54,6 +55,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new BuyProcessModel()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }

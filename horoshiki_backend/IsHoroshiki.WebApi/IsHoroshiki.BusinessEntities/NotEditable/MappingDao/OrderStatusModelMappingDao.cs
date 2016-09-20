@@ -20,6 +20,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new OrderStatus()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }
@@ -44,6 +45,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new OrderStatusModel()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }

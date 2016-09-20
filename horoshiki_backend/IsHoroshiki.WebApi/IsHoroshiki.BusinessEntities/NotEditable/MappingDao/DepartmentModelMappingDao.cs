@@ -21,6 +21,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new Department()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }
@@ -45,6 +46,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new DepartmentModel()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }

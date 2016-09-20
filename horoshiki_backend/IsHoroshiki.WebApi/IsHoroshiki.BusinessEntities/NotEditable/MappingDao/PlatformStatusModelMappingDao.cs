@@ -21,6 +21,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new PlatformStatus()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }
@@ -45,6 +46,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
             return new PlatformStatusModel()
             {
                 Id = model.Id,
+                Guid = model.Guid,
                 Value = model.Value
             };
         }
