@@ -265,10 +265,18 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         /// <param name="entity"></param>
         private void SetChildEntity(ApplicationUser entity)
         {
-            entity.Platform = Context.Platform.Find(entity.PlatformId);
+            if (entity.PlatformId.HasValue && entity.PlatformId.Value > 0)
+            {
+                entity.Platform = Context.Platform.Find(entity.PlatformId);
+            }
+           
             entity.EmployeeStatus = Context.EmployeeStatuses.Find(entity.EmployeeStatusId);
             entity.Position = Context.Positions.Find(entity.PositionId);
-            entity.Department = Context.Departments.Find(entity.DepartmentId);
+
+            if (entity.DepartmentId.HasValue && entity.DepartmentId.Value > 0)
+            {
+                entity.Department = Context.Departments.Find(entity.DepartmentId);
+            }
         }
 
         /// <summary>

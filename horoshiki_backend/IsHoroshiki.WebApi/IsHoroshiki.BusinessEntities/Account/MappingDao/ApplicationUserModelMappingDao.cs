@@ -40,30 +40,24 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.IsHaveMedicalBook = model.IsHaveMedicalBook;
             daoModel.MedicalBookEnd = model.MedicalBookEnd;
             daoModel.EmployeeStatusId = model.EmployeeStatus != null ? model.EmployeeStatus.Id : 0;
-            daoModel.EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToDaoEntity() : null;
             daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
-            daoModel.Position = model.Position != null ? model.Position.ToDaoEntity() : null;
 
             if (model.Department != null && model.Department.Id > 0)
             {
-               // daoModel.Department = model.Department.ToDaoEntity();
                 daoModel.DepartmentId = model.Department.Id;
             }
             else
             {
-                daoModel.Department = null;
                 daoModel.DepartmentId = null;
             }
 
             if (model.Platform != null && model.Platform.Id > 0)
             {
-                daoModel.Platform = model.Platform.ToDaoEntity();
                 daoModel.PlatformId = model.Platform.Id;
             }
             else
             {
                 daoModel.PlatformId = null;
-                daoModel.Platform = null;
             }
 
             daoModel.DateStart = model.DateStart;

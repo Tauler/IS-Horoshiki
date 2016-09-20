@@ -371,10 +371,6 @@ namespace IsHoroshiki.BusinessServices.Editable
         public override ApplicationUser UpdateDaoInternal(ApplicationUser daoEntity, IApplicationUserModel model)
         {
             daoEntity.Update(model);
-            daoEntity.EmployeeStatus = null;
-            daoEntity.Platform = null;
-            daoEntity.Department = null;
-            daoEntity.Position = null;
             return daoEntity;
         }
 
