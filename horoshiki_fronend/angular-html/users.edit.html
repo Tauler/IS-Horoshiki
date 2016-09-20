@@ -162,13 +162,34 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Дата приема:</label>
                                 <datepicker ng-model="model.datepickerStartDate"></datepicker>
                             </div>
                         </div>
-                        <div class="col-md-4"></div>
+                        <div ng-show="isDismissed() || isDismissal()" class="col-md-2">
+                            <div class="form-group">
+                                <label>Дата увольнения:</label>
+                                <datepicker ng-model="model.datepickerEndDate"></datepicker>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div ng-show="isDismissed() || isDismissal()" class="form-group">
+                                <label for="reasonDismissal">Причина увольнения:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select class="form-control" id="reasonDismissal"
+                                            class="form-control"
+                                            ng-model="model.ReasonDismissal.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="reasonDismissal in model.reasonDismissals" value="{{reasonDismissal.Id}}">
+                                            {{reasonDismissal.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!--<div class="row margin-top-30">-->

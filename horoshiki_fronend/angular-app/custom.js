@@ -5,6 +5,13 @@ var backendTimeout = 5000;
 
 var mailRegexp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
 
+
+//Константы
+var employeeStatus = {
+    dismissed: '104688a6-9cd2-4fb9-ab03-9da1b5474be0'
+};
+
+
 function resizeFooter(){
     var contentHeight = $(window).height() - 123;
     $(".content-container").css("min-height", contentHeight + "px");
@@ -91,7 +98,7 @@ function dateFormatterBackend(date){
     var mm = date.getMonth()+1;
     var yyyy = date.getFullYear();
 
-    return  yyyy+"-"+numb2(mm)+"."+numb2(dd);
+    return  yyyy+"-"+numb2(mm)+"-"+numb2(dd);
 }
 
 function displayMess(elem, disable){
