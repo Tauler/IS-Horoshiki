@@ -94,6 +94,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
         $scope.model.user.IsAccess = true;
 
         $scope.model.Platform = {};
+        $scope.model.Department = {};
 
 
         //datepicker startDate init
@@ -317,8 +318,15 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
                     $scope.model.user.Position = JSON.parse($scope.model.Position);
                 }
+                
                 if ($scope.model.Department != "" && $scope.model.Department != undefined) {
-                    $scope.model.user.Department = JSON.parse($scope.model.Department);
+                    $scope.model.user.Department = {};
+                    if ($scope.model.Department.Id != undefined && $scope.model.Department.Id != '') {
+                        $scope.model.user.Department.Id = parseInt($scope.model.Department.Id);
+                    }
+                }
+                if ($scope.model.user.Department.Id == null && $scope.model.user.Department.Id == '') {
+                    $scope.model.user.Department = null;
                 }
 
                 if ($scope.model.Platform != "" && $scope.model.Platform != undefined) {
@@ -384,6 +392,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         }
 
         $scope.model.Platform = {};
+        $scope.model.Department = {};
 
 
         //datepicker startDate init
@@ -559,7 +568,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
                     $scope.model.Position = JSON.stringify($scope.model.user.Position);
 
                     if ($scope.model.user.Department != undefined && $scope.model.user.Department.Id != '') {
-                        $scope.model.Department = JSON.stringify($scope.model.user.Department);
+                        $scope.model.Department.Id = $scope.model.user.Department.Id.toString();
                     }
                     // $scope.model.Platform = JSON.stringify($scope.model.user.Platform);
                     if ($scope.model.user.Platform != undefined && $scope.model.user.Platform.Id != '') {
@@ -618,7 +627,13 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
                 }
 
                 if ($scope.model.Department != "" && $scope.model.Department != undefined) {
-                    $scope.model.user.Department = JSON.parse($scope.model.Department);
+                    $scope.model.user.Department = {};
+                    if ($scope.model.Department.Id != undefined && $scope.model.Department.Id != '') {
+                        $scope.model.user.Department.Id = parseInt($scope.model.Department.Id);
+                    }
+                }
+                if ($scope.model.user.Department.Id == null && $scope.model.user.Department.Id == '') {
+                    $scope.model.user.Department = null;
                 }
 
                 if ($scope.model.Platform != "" && $scope.model.Platform != undefined) {
