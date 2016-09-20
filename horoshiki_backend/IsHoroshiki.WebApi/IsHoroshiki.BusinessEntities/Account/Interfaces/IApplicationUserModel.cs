@@ -71,6 +71,15 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
             get;
             set;
         }
+        
+        /// <summary>
+        /// Отдел
+        /// </summary>
+        IDepartmentModel Department
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Дата приема

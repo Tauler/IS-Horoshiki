@@ -34,6 +34,7 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<IEmployeeStatusModel, EmployeeStatusModel>();
             container.RegisterType<ISubDivisionModel, SubDivisionModel>();
             container.RegisterType<IEmployeeReasonDismissalModel, EmployeeReasonDismissalModel>();
+            container.RegisterType<IDepartmentModel, DepartmentModel>();
 
             return container;
         }
