@@ -7,18 +7,19 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'ngSanitize',
     'ngResource',
     'ngCookies',
+
     'yaMap',
     'ui.bootstrap.pagination',
-    // 'ui.bootstrap.datepicker',
     'timepickerDirectives',
     'datepickerDirectives',
+
     'layoutControllers',
     'errorControllers',
-
     'mainControllers',
     'usersControllers',
     'subdivisionsControllers',
     'platformsControllers',
+    'reasonDismissalControllers',
 
     'backendServices',
     'accountServices',
@@ -26,7 +27,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'usersServices',
     'dictionaryServices',
     'subdivisionsServices',
-    'platformsServices'
+    'platformsServices',
+    'reasonDismissalServices'
 
 ]);
 
@@ -125,6 +127,15 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'platforms',
                 title: 'Редактирование площадки'
+            })
+
+            .when('/reasonDismissals', {
+                templateUrl: '/angular-html/reason.dismissal.html',
+                controller: 'ReasonDismissalViewController',
+                pageId: 'reasonDismissalViewPage',
+                groupId: 'settings',
+                subgroupId: 'reasonDismissal',
+                title: 'Просмотр причин увольнения'
             })
 
             .when('/error', {

@@ -161,15 +161,27 @@ subdivisionsControllers.controller('SubdivisionAddController', ['$scope', '$loca
                     $scope.model.subdivision.PriceType = JSON.parse($scope.model.priceTypeModel);
                 }
 
-                SubdivisionService.subdivisionsAdd($scope.model.subdivision).success(function (result) {
-                    if (result.Success == 1) {
-                        $location.url("/subdivisions");
-                    } else {
-                        displayErrorMessage(result.ReasonMessage);
-                    }
-                }).error(function (result, status) {
-                    httpErrors($location.url(), status);
-                });
+                if(!$scope.isEdit()) {
+                    SubdivisionService.subdivisionsAdd($scope.model.subdivision).success(function (result) {
+                        if (result.Success == 1) {
+                            $location.url("/subdivisions");
+                        } else {
+                            displayErrorMessage(result.ReasonMessage);
+                        }
+                    }).error(function (result, status) {
+                        httpErrors($location.url(), status);
+                    });
+                }else{
+                    SubdivisionService.subdivisionsEdit($scope.model.subdivision).success(function (result) {
+                        if (result.Success == 1) {
+                            $location.url("/subdivisions");
+                        } else {
+                            displayErrorMessage(result.ReasonMessage);
+                        }
+                    }).error(function (result, status) {
+                        httpErrors($location.url(), status);
+                    });
+                }
             }
         }
 

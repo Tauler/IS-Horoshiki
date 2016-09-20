@@ -100,15 +100,6 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             Id: "1"
         }
 
-
-
-        // $scope.$watch('model.time', function () {
-        //     console.log($scope.model.time);
-        // });
-
-
-        
-
         $scope.model.error = {};
         $scope.model.error.localTime = false;
         $scope.checkLocalTime = function () {
@@ -201,9 +192,9 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
 
         $scope.getUsers = function () {
-            UsersService.getAllUsersWithoutPaginate("Id", "True").success(function (result) {
+            UsersService.getAllManagers("Id", "True").success(function (result) {
                 if (result.Success == 1) {
-                    $scope.model.users = result.Data.Data;
+                    $scope.model.users = result.Data;
                 } else {
                     displayErrorMessage(result.Reason);
                 }
@@ -331,8 +322,12 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
                             $scope.model.error.statusDisabled = false;
                         }
 
-                        $scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
-                        $scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
+                        if($scope.model.platform.User!=undefined && $scope.model.platform.User!=null){
+                            $scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
+                        }
+                        if($scope.model.platform.PlatformStatus!=undefined && $scope.model.platform.PlatformStatus!=null) {
+                            $scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
+                        }
 
                         if ($scope.model.platform.TimeStart != "" && $scope.model.platform.TimeStart != undefined) {
                             var startTimeArr = $scope.model.platform.TimeStart.split(':');
