@@ -126,6 +126,9 @@
   <data name="AccountsController_ConfirmPasswordIsNull" xml:space="preserve">
     <value>Необходимо указать подтверждение пароля!</value>
   </data>
+  <data name="AccountsController_DepartmentRepositoryIsNull" xml:space="preserve">
+    <value>Департамента для указанного ID={0} не существует!</value>
+  </data>
   <data name="AccountsController_EmployeeStatusIsNull" xml:space="preserve">
     <value>Необходимо указать статус сотрудника!</value>
   </data>

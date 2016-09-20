@@ -135,6 +135,24 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         }
 
         /// <summary>
+        /// Отдел
+        /// </summary>
+        public virtual int? DepartmentId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Отдел
+        /// </summary>
+        public virtual Department Department
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата приема
         /// </summary>
         public DateTime DateStart

@@ -83,6 +83,11 @@
         /// <summary>
         /// Невозможно удалить пользователя, т.к. он привязан к платформе!
         /// </summary>
-        CanNotDeleteExistPlatform
+        CanNotDeleteExistPlatform,
+
+        /// <summary>
+        /// Департамента для указанного ID={0} не существует!
+        /// </summary>
+        DepartmentRepositoryIsNull
     }
 }

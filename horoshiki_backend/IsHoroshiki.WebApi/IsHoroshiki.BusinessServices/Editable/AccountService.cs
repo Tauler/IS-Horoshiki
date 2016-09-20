@@ -320,6 +320,15 @@ namespace IsHoroshiki.BusinessServices.Editable
                 }
             }
 
+            if (model.Department != null && model.Department.Id > 0)
+            {
+                var department = await _unitOfWork.DepartmentRepository.GetByIdAsync(model.Department.Id);
+                if (department == null)
+                {
+                    return new ValidationResult(AccountErrors.DepartmentRepositoryIsNull, model.Department.Id);
+                }
+            }
+
             return new ValidationResult();
         }
 
@@ -364,6 +373,7 @@ namespace IsHoroshiki.BusinessServices.Editable
             daoEntity.Update(model);
             daoEntity.EmployeeStatus = null;
             daoEntity.Platform = null;
+            daoEntity.Department = null;
             daoEntity.Position = null;
             return daoEntity;
         }

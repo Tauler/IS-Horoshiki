@@ -2,6 +2,7 @@
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.WebApi.Handlers;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.WebApi
 {
@@ -19,6 +20,7 @@ namespace IsHoroshiki.WebApi
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISubDivisionModel>());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IPlatformModel>());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IEmployeeReasonDismissalModel>());
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IDepartmentModel>());
         }
     }
 }
