@@ -104,6 +104,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 IsHaveMedicalBook = model.IsHaveMedicalBook,
                 MedicalBookEnd = model.MedicalBookEnd,
                 EmployeeStatus = model.EmployeeStatus != null ? model.EmployeeStatus.ToModelEntity() : null,
+                EmployeeReasonDismissal = model.EmployeeReasonDismissal != null ? model.EmployeeReasonDismissal.ToModelEntity() : null,
                 Position = model.Position != null ? model.Position.ToModelEntity() : null,
                 Platform = isLoadChild && model.Platform != null ? model.Platform.ToModelEntity(false) : null,
                 Department = isLoadChild && model.Department != null ? model.Department.ToModelEntity() : null,
