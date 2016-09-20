@@ -163,6 +163,26 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
         }
 
         /// <summary>
+        /// Добавление пользователя с не существующим Id отдела
+        /// </summary>
+        [TestMethod]
+        public async Task AccountTest_Add_DepartmentNotExist()
+        {
+            using (var controller = GetController())
+            {
+                var userModel = GetApplicationUserModel();
+                userModel.Department = new DepartmentModel()
+                {
+                    Id = Int32.MaxValue
+                };
+
+                var result = await controller.Add(userModel);
+
+                Assert.IsInstanceOfType(result, _errrorResult);
+            }
+        }
+
+        /// <summary>
         /// Добавление пользователя с не существующим Id статуса
         /// </summary>
         [TestMethod]
@@ -240,11 +260,22 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
 
                 Assert.IsInstanceOfType(result, _okAddResult);
 
+                var id = (result as OkNegotiatedContentResult<int>).Content;
+
+                var getByIdResult = await controller.GetById(id);
+
+                var addUserModel = (getByIdResult as OkNegotiatedContentResult<IApplicationUserModel>).Content;
+
+                Assert.IsNotNull(addUserModel);
+                Assert.IsTrue(addUserModel.EmployeeStatus.Id == 1);
+                Assert.IsTrue(addUserModel.Position.Id == 1);
+                Assert.IsTrue(addUserModel.Department.Id == 1);
+
                 var isExistResult = await controller.IsExistUserName(new CheckExistUserName() { UserName = userModel.UserName });
 
                 var res = isExistResult as OkNegotiatedContentResult<bool>;
 
-                Assert.IsTrue(res.Content);
+                Assert.IsTrue(res.Content);                
             }
         }
 
@@ -587,6 +618,11 @@ namespace IsHoroshiki.WebApi.Tests.Controllers
                 {
                     Id = 1,
                     Value = "PositionModel"
+                },
+                Department = new DepartmentModel()
+                {
+                    Id = 1,
+                    Value = "DepartmentModel"
                 },
                 DateStart = DateTime.Now,
                 UserName = "login" + Guid.NewGuid().ToString().Replace("-", ""),
