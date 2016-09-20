@@ -55,6 +55,15 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         }
 
         /// <summary>
+        /// Причины увольнения сотрудника
+        /// </summary>
+        IEmployeeReasonDismissalModel EmployeeReasonDismissal
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Должности
         /// </summary>
         IPositionModel Position

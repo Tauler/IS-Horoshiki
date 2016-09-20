@@ -62,6 +62,16 @@ namespace IsHoroshiki.BusinessEntities.Account
         }
 
         /// <summary>
+        /// Причины увольнения сотрудника
+        /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<EmployeeReasonDismissalModel, IEmployeeReasonDismissalModel>))]
+        public IEmployeeReasonDismissalModel EmployeeReasonDismissal
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Должности
         /// </summary>
         [JsonConverter(typeof(EntityModelConverter<PositionModel, IPositionModel>))]

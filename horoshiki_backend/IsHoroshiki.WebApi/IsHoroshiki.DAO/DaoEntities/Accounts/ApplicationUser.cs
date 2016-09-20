@@ -99,6 +99,24 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         }
 
         /// <summary>
+        /// Причины увольнения сотрудника
+        /// </summary>
+        public int? EmployeeReasonDismissalId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Причины увольнения сотрудника
+        /// </summary>
+        public virtual EmployeeReasonDismissal EmployeeReasonDismissal
+        {
+            get;
+            set;
+        }
+       
+        /// <summary>
         /// Должности
         /// </summary>
         public int PositionId

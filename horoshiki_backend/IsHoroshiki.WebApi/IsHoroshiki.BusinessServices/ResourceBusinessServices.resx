@@ -129,6 +129,9 @@
   <data name="AccountsController_DepartmentRepositoryIsNull" xml:space="preserve">
     <value>Департамента для указанного ID={0} не существует!</value>
   </data>
+  <data name="AccountsController_EmployeeReasonDismissalRepositoryIsNull" xml:space="preserve">
+    <value>Причины увольнения для указанного ID={0} не существует!</value>
+  </data>
   <data name="AccountsController_EmployeeStatusIsNull" xml:space="preserve">
     <value>Необходимо указать статус сотрудника!</value>
   </data>

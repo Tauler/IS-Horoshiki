@@ -67,6 +67,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(AccountErrors.PlatformRepositoryIsNull, ResourceBusinessServices.AccountsController_PlatformRepositoryIsNull);
             MessageHolder.Instance.AddMessage(AccountErrors.CanNotDeleteExistPlatform, ResourceBusinessServices.AccountsController_CanNotDeleteExistPlatform);
             MessageHolder.Instance.AddMessage(AccountErrors.DepartmentRepositoryIsNull, ResourceBusinessServices.AccountsController_DepartmentRepositoryIsNull);
+            MessageHolder.Instance.AddMessage(AccountErrors.EmployeeReasonDismissalRepositoryIsNull, ResourceBusinessServices.AccountsController_EmployeeReasonDismissalRepositoryIsNull);
         }
 
         /// <summary>

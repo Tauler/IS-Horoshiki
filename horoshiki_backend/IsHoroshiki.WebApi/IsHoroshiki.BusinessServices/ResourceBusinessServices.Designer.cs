@@ -97,6 +97,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Причины увольнения для указанного ID={0} не существует!.
+        /// </summary>
+        internal static string AccountsController_EmployeeReasonDismissalRepositoryIsNull {
+            get {
+                return ResourceManager.GetString("AccountsController_EmployeeReasonDismissalRepositoryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать статус сотрудника!.
         /// </summary>
         internal static string AccountsController_EmployeeStatusIsNull {

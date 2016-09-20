@@ -42,6 +42,15 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.EmployeeStatusId = model.EmployeeStatus != null ? model.EmployeeStatus.Id : 0;
             daoModel.PositionId = model.Position != null ? model.Position.Id : 0;
 
+            if (model.EmployeeReasonDismissal != null && model.EmployeeReasonDismissal.Id > 0)
+            {
+                daoModel.EmployeeReasonDismissalId = model.EmployeeReasonDismissal.Id;
+            }
+            else
+            {
+                daoModel.EmployeeReasonDismissalId = null;
+            }
+
             if (model.Department != null && model.Department.Id > 0)
             {
                 daoModel.DepartmentId = model.Department.Id;

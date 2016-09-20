@@ -329,6 +329,15 @@ namespace IsHoroshiki.BusinessServices.Editable
                 }
             }
 
+            if (model.EmployeeReasonDismissal != null && model.EmployeeReasonDismissal.Id > 0)
+            {
+                var employeeReasonDismissal = await _unitOfWork.EmployeeReasonDismissalRepository.GetByIdAsync(model.EmployeeReasonDismissal.Id);
+                if (employeeReasonDismissal == null)
+                {
+                    return new ValidationResult(AccountErrors.EmployeeReasonDismissalRepositoryIsNull, model.EmployeeReasonDismissal.Id);
+                }
+            }
+
             return new ValidationResult();
         }
 

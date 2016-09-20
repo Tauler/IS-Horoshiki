@@ -88,6 +88,11 @@
         /// <summary>
         /// Департамента для указанного ID={0} не существует!
         /// </summary>
-        DepartmentRepositoryIsNull
+        DepartmentRepositoryIsNull,
+
+        /// <summary>
+        /// Причины увольнения для указанного ID={0} не существует!
+        /// </summary>
+        EmployeeReasonDismissalRepositoryIsNull
     }
 }

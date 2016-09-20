@@ -123,6 +123,15 @@ namespace IsHoroshiki.DAO
             get;
             set;
         }
+
+        /// <summary>
+        /// Список сущностей БД Причины увольнения сотрудника
+        /// </summary>
+        public DbSet<EmployeeReasonDismissal> EmployeeReasonDismissals
+        {
+            get;
+            set;
+        }
         
         #endregion
 

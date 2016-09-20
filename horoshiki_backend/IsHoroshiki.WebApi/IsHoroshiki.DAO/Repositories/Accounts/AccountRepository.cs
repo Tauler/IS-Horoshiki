@@ -277,6 +277,11 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             {
                 entity.Department = Context.Departments.Find(entity.DepartmentId);
             }
+
+            if (entity.EmployeeReasonDismissalId.HasValue && entity.EmployeeReasonDismissalId.Value > 0)
+            {
+                entity.EmployeeReasonDismissal = Context.EmployeeReasonDismissals.Find(entity.EmployeeReasonDismissalId);
+            }
         }
 
         /// <summary>
@@ -294,6 +299,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             Context.Entry(entity).Reference(p => p.Position).Load();
             Context.Entry(entity).Reference(p => p.Platform).Load();
             Context.Entry(entity).Reference(p => p.Department).Load();
+            Context.Entry(entity).Reference(p => p.EmployeeReasonDismissal).Load();
         }
 
         #endregion
