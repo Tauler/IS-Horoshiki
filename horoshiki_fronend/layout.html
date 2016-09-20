@@ -205,25 +205,28 @@
             </ul>
 
             <ul ng-if="groupId=='settings'" class="nav sidebar-menu">
-                <!--Dashboard-->
                 <li ng-class="subgroupId == 'users' ? 'active':''">
                     <a href="/users">
                         <i class="menu-icon fa fa-group"></i>
                         <span class="menu-text"> Пользователи </span>
                     </a>
                 </li>
-                <!--Databoxes-->
                 <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
                     <a href="/subdivisions">
                         <i class="menu-icon fa fa-share-alt"></i>
                         <span class="menu-text"> Подразделения </span>
                     </a>
                 </li>
-                <!--Widgets-->
                 <li ng-class="subgroupId == 'platforms' ? 'active':''">
                     <a href="/platforms">
                         <i class="menu-icon fa fa-share-alt-square"></i>
                         <span class="menu-text"> Площадки </span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
+                    <a href="/reasonDismissals">
+                        <i class="menu-icon fa fa-user-times"></i>
+                        <span class="menu-text"> Причины увольнения </span>
                     </a>
                 </li>
             </ul>
