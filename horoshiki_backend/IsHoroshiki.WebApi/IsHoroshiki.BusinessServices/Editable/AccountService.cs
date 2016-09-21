@@ -427,7 +427,11 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return string.Empty;
             }
 
-            if (string.Equals(sortField, "EmployeeStatus") || string.Equals(sortField, "Position"))
+            if (string.Equals(sortField, "EmployeeStatus") 
+                || string.Equals(sortField, "Position")
+                || string.Equals(sortField, "Platform")
+                || string.Equals(sortField, "EmployeeReasonDismissal")
+                || string.Equals(sortField, "Department"))
             {
                 sortField += "Id";
             }
