@@ -48,6 +48,60 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// <summary>
         /// Получить все записи
         /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <param name="filterLastName">Фильтр по фамилии</param>
+        /// <param name="filterIsAccess">Фильтр Доступ в систему</param>
+        /// <param name="filterEmployeeStatusId">Фильтр Статус сотрудника</param>
+        /// <param name="filterPositionId">Фильтр Должности</param>
+        /// <param name="filterDepartmentId">Фильтр Отдел</param>
+        /// <param name="filterPlatformId">Фильтр Площадка</param>
+        /// <param name="filterIsHaveMedicalBook">Фильтр Наличие мед книжки</param>
+        /// <returns></returns>
+        public async Task<IHttpActionResult> Get(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true,
+            string filterLastName = "", bool? filterIsAccess = null, int filterEmployeeStatusId = 0, int filterPositionId = 0, int filterDepartmentId = 0,
+            int filterPlatformId = 0, bool? filterIsHaveMedicalBook = null)
+        {
+            try
+            {
+                var list = await _service.GetAllAsync(pageNo, pageSize, sortField, isAscending,
+                    filterLastName, filterIsAccess, filterEmployeeStatusId, filterPositionId, filterDepartmentId, filterPlatformId, filterIsHaveMedicalBook);
+               
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все записи
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        [Route("GetWithoutFilter")]
+        public override async Task<IHttpActionResult> Get(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true)
+        {
+            try
+            {
+                var list = await _service.GetAllAsync(pageNo, pageSize, sortField, isAscending);
+                return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Получить все записи
+        /// </summary>
         /// <param name="sortField">Поле для сортировки</param>
         /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <returns></returns>
