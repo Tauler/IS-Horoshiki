@@ -4,8 +4,8 @@
 
 var usersControllers = angular.module('usersControllers', []);
 
-usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService',
-    function ($scope, $location, UsersService) {
+usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService','DictionaryService','PlatformsService',
+    function ($scope, $location, UsersService, DictionaryService, PlatformsService) {
         $scope.model = {};
         $scope.model.users = [];
         $scope.model.paging = {};
@@ -30,6 +30,54 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
             UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function (result) {
                 $scope.model.users = result.Data.Data;
                 $scope.model.paging = result.Data.Paging;
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getEmployeeStatuses = function () {
+            DictionaryService.getEmployeeStatuses().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.employeeStatuses = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPositions = function () {
+            DictionaryService.getPositions().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.positions = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getDepartments = function () {
+            DictionaryService.getDepartments().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.departments = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPlatformsSmall = function () {
+            PlatformsService.getAllSmall("Id", "True").success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.platforms = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
             })
@@ -67,6 +115,11 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
         $scope.deleteUserClose = function () {
             $scope.model.deleteUserModel = {};
         }
+
+        $scope.getEmployeeStatuses();
+        $scope.getPositions();
+        $scope.getDepartments();
+        $scope.getPlatformsSmall();
     }
 ]);
 

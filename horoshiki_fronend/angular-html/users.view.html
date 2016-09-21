@@ -24,6 +24,70 @@
                 </div>
                 <table class="table table-hover table-striped table-bordered">
                     <thead class="bordered-blueberry">
+
+                    <tr>
+                        <td>
+                            <!--<div class="form-group margin-bottom-0 margin-right-5">-->
+
+                                <!--<div class="col-sm-10 padding-left-5">-->
+                                    <input class="form-control" id="inputEmail3" placeholder="Введите фамилию для поиска" type="text">
+                                <!--</div>-->
+                                <!--<a href="javascript:void(0);" class="btn btn-default"><i class="fa fa-search"></i></a>-->
+                            <!--</div>-->
+                        </td>
+                        <td>
+                            <div class="input-group" style="width: 100%">
+                                <select style="width: 100%" class="form-control" ng-model="model.filter.isAccess">
+                                    <option value="">Все</option>
+                                    <option>С доступом</option>
+                                    <option>Без доступа</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group" style="width: 100%">
+                                <select style="width: 100%" class="form-control" ng-model="model.filter.employeeStatusId">
+                                    <option value="">Все</option>
+                                    <option ng-repeat="status in model.employeeStatuses" value="{{status.Id}}">{{status.Value}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group" style="width: 100%">
+                                <select style="width: 100%" class="form-control" ng-model="model.filter.positionId">
+                                    <option value="">Все</option>
+                                    <option ng-repeat="position in model.positions" value="{{position.Id}}">{{position.Value}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group" style="width: 100%">
+                                <select style="width: 100%" class="form-control" ng-model="model.filter.departmentId">
+                                    <option value="">Все</option>
+                                    <option ng-repeat="department in model.departments" value="{{department.Id}}">{{department.Value}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group" style="width: 100%">
+                                <select style="width: 100%" class="form-control" ng-model="model.filter.platformId">
+                                    <option value="">Все</option>
+                                    <option ng-repeat="platform in model.platforms" value="{{platform.Id}}">{{platform.Name}}</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group" style="width: 100%">
+                                <select style="width: 100%" class="form-control" ng-model="model.filter.medicalBookId">
+                                    <option value="">Все</option>
+                                    <option value="true">C книжкой</option>
+                                    <option value="false">Без книжки</option>
+                                </select>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+
                     <tr>
                         <!--Фамилия имя-->
                         <th>
@@ -186,7 +250,9 @@
                 </table>
                 <div class="row margin-top-10 margin-bottom-20">
                     <div class="col-md-6 text-align-left">
-                        Показано <span ng-show="model.users.length>0">1</span><span ng-show="model.users.length<1">0</span> - {{model.users.length}} записи. (Всего: {{model.paging.TotalRecordCount}})
+                        Показано <span ng-show="model.users.length>0">1</span><span
+                            ng-show="model.users.length<1">0</span> - {{model.users.length}} записи. (Всего:
+                        {{model.paging.TotalRecordCount}})
                     </div>
                     <div class="col-md-6 text-align-right">
                         <uib-pagination template-url="/angular-html/directives/pagination.html"
@@ -216,7 +282,8 @@
                 <h4 class="modal-title">Удаление Пользователя</h4>
             </div>
             <div class="modal-body">
-                <p>Вы действительно хотите удалить пользователя {{model.deleteUserModel.FirstName+''+model.deleteUserModel.LastName}}?</p>
+                <p>Вы действительно хотите удалить пользователя
+                    {{model.deleteUserModel.FirstName+''+model.deleteUserModel.LastName}}?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" ng-click="deleteUser();" data-dismiss="modal">Удалить
