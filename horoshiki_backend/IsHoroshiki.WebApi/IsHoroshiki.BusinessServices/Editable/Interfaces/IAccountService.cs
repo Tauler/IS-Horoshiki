@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using IsHoroshiki.BusinessEntities.Paging;
 
 namespace IsHoroshiki.BusinessServices.Editable.Interfaces
 {
@@ -11,6 +12,25 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
     /// </summary>
     public interface IAccountService : IBaseEditableService<IApplicationUserModel>
     {
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <param name="filterLastName">Фильтр по фамилии</param>
+        /// <param name="filterIsAccess">Фильтр Доступ в систему</param>
+        /// <param name="filterEmployeeStatusId">Фильтр Статус сотрудника</param>
+        /// <param name="filterPositionId">Фильтр Должности</param>
+        /// <param name="filterDepartmentId">Фильтр Отдел</param>
+        /// <param name="filterPlatformId">Фильтр Площадка</param>
+        /// <param name="filterIsHaveMedicalBook">Фильтр Наличие мед книжки</param>
+        /// <returns></returns>
+        Task<PagedResult<IApplicationUserModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true,
+            string filterLastName = "", bool? filterIsAccess = null, int filterEmployeeStatusId = 0, int filterPositionId = 0, int filterDepartmentId = 0,
+            int filterPlatformId = 0, bool? filterIsHaveMedicalBook = null);
+
         /// <summary>
         /// Получить все записи
         /// </summary>

@@ -55,6 +55,34 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <param name="filterLastName">Фильтр по фамилии</param>
+        /// <param name="filterIsAccess">Фильтр Доступ в систему</param>
+        /// <param name="filterEmployeeStatusId">Фильтр Статус сотрудника</param>
+        /// <param name="filterPositionId">Фильтр Должности</param>
+        /// <param name="filterDepartmentId">Фильтр Отдел</param>
+        /// <param name="filterPlatformId">Фильтр Площадка</param>
+        /// <param name="filterIsHaveMedicalBook">Фильтр Наличие мед книжки</param>
+        /// <returns></returns>
+        public async Task<PagedResult<IApplicationUserModel>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true,
+            string filterLastName = "", bool? filterIsAccess = null, int filterEmployeeStatusId = 0, int filterPositionId = 0, int filterDepartmentId = 0,
+            int filterPlatformId = 0, bool? filterIsHaveMedicalBook = null)
+        {
+            sortField = GetSortField(sortField);
+
+            var list = await _repository.GetAllAsync(pageNo, pageSize, sortField, isAscending, true, filterLastName, filterIsAccess, filterEmployeeStatusId, filterPositionId,
+                filterDepartmentId, filterPlatformId, filterIsHaveMedicalBook);
+            var count = list.Count();
+            var result = ConvertTo(list);
+            return new PagedResult<IApplicationUserModel>(result, pageNo, pageSize, count);
+        }
+
+        /// <summary>
         /// Получить все записи
         /// </summary>
         /// <param name="sortField">Поле для сортировки</param>

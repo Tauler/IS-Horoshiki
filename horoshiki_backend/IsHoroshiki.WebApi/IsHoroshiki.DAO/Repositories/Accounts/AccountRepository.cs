@@ -39,8 +39,84 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
         }
 
         #endregion
-        
+
         #region методы
+
+        /// <summary>  
+        /// Получить все записи
+        /// </summary>  
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <param name="isLoadChild">true - если нужно загрузить дочерние объекты</param>
+        /// <param name="filterLastName">Фильтр по фамилии</param>
+        /// <param name="filterIsAccess">Фильтр Доступ в систему</param>
+        /// <param name="filterEmployeeStatusId">Фильтр Статус сотрудника</param>
+        /// <param name="filterPositionId">Фильтр Должности</param>
+        /// <param name="filterDepartmentId">Фильтр Отдел</param>
+        /// <param name="filterPlatformId">Фильтр Площадка</param>
+        /// <param name="filterIsHaveMedicalBook">Фильтр Наличие мед книжки</param>
+        public async Task<IEnumerable<ApplicationUser>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true, bool isLoadChild = true,
+            string filterLastName = "", bool? filterIsAccess = null, int filterEmployeeStatusId = 0, int filterPositionId = 0, int filterDepartmentId = 0,
+            int filterPlatformId = 0, bool? filterIsHaveMedicalBook = null)
+        {
+            var query = DbSet.AsQueryable();
+
+            if (!string.IsNullOrEmpty(filterLastName))
+            {
+                filterLastName = filterLastName.ToUpper();               
+                query = query.Where(u => u.LastName.ToUpper().Contains(filterLastName));
+            }
+
+            if (filterIsAccess.HasValue)
+            {
+                query = query.Where(u => u.IsAccess == filterIsAccess.Value);
+            }
+
+            if (filterEmployeeStatusId > 0)
+            {
+                query = query.Where(u => u.EmployeeStatusId == filterEmployeeStatusId);
+            }
+
+            if (filterPositionId > 0)
+            {
+                query = query.Where(u => u.PositionId == filterPositionId);
+            }
+
+            if (filterDepartmentId > 0)
+            {
+                query = query.Where(u => u.DepartmentId == filterDepartmentId);
+            }
+
+            if (filterPlatformId > 0)
+            {
+                query = query.Where(u => u.PlatformId == filterPlatformId);
+            }
+
+            if (filterIsHaveMedicalBook.HasValue)
+            {
+                query = query.Where(u => u.IsHaveMedicalBook == filterIsHaveMedicalBook.Value);
+            }
+
+            int skip = (pageNo - 1) * pageSize;
+
+            var list = query.OrderByPropertyName(sortField, isAscending)
+                            .Skip(skip)
+                            .Take(pageSize)
+                            .ToList()
+                            .AsEnumerable();
+
+            if (isLoadChild)
+            {
+                foreach (var daoEntity in list)
+                {
+                    LoadChildEntities(daoEntity);
+                }
+            }
+
+            return list;
+        }
 
         /// <summary>
         /// Получить пользователя по Id

@@ -12,6 +12,25 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
     /// </summary>
     public interface IAccountRepository : IBaseRepository<ApplicationUser>
     {
+        /// <summary>  
+        /// Получить все записи
+        /// </summary>  
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <param name="isLoadChild">true - если нужно загрузить дочерние объекты</param>
+        /// <param name="filterLastName">Фильтр по фамилии</param>
+        /// <param name="filterIsAccess">Фильтр Доступ в систему</param>
+        /// <param name="filterEmployeeStatusId">Фильтр Статус сотрудника</param>
+        /// <param name="filterPositionId">Фильтр Должности</param>
+        /// <param name="filterDepartmentId">Фильтр Отдел</param>
+        /// <param name="filterPlatformId">Фильтр Площадка</param>
+        /// <param name="filterIsHaveMedicalBook">Фильтр Наличие мед книжки</param>
+        Task<IEnumerable<ApplicationUser>> GetAllAsync(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true, bool isLoadChild = true,
+            string filterLastName = "", bool? filterIsAccess = null, int filterEmployeeStatusId = 0, int filterPositionId = 0, int filterDepartmentId = 0,
+            int filterPlatformId = 0, bool? filterIsHaveMedicalBook = null);
+
         /// <summary>
         /// Зарегистрировать пользователя
         /// </summary>
