@@ -236,7 +236,7 @@
                                     <div class="col-md-6 text-align-right">
                                         <div class="checkbox">
                                             <label>
-                                                <input ng-model="model.user.IsAccess" name="isAccess"
+                                                <input ng-disabled="model.isDismissed" ng-model="model.user.IsAccess" name="isAccess"
                                                        id="isAccess" type="checkbox">
                                                 <span class="text">Доступ в IS</span>
                                             </label>
@@ -269,7 +269,7 @@
 
 
                     <div class="margin-top-30 text-align-right">
-                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()" class="btn bbtn-success">Сохранить</a>
+                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()" class="btn btn-success">Сохранить</a>
                         <a ng-show="model.isDismissed" href="javascript:void(0);" data-toggle="modal"
                            data-target="#dismissalModal"
                            ng-click="" class="btn btn-success">Уволить</a>
