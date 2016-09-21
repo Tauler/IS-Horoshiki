@@ -23,7 +23,7 @@
                 <div class="padding-bottom-10 text-align-left">
                     <a class="btn btn-success" href="javascript:void(0);" data-toggle="modal"
                        data-target="#editModal"
-                       ng-click="editModelDefValue();"> Создать причину увольнения</a>
+                       ng-click="editModelDefValue();"> Добавить причину</a>
                 </div>
                 <table class="table table-hover table-striped table-bordered">
                     <thead class="bordered-blueberry">
@@ -50,7 +50,9 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="reasonDismissal in model.reasonDismissals">
-                        <td ng-bind="reasonDismissal.Name"><a href="link"></a></td>
+                        <td>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#editModal"
+                                                              ng-click="editModalOpen(reasonDismissal);">{{reasonDismissal.Name}}</a></td>
                         <td>
 
                             <div class="btn-group">
@@ -90,11 +92,11 @@
                 <p>Вы действительно хотите удалить причину увольнения {{model.deleteModel.Name}}?</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="delete();" data-dismiss="modal">
+                    Удалить
+                </button>
                 <button type="button" class="btn btn-default" ng-click="deleteModalClose();" data-dismiss="modal">
                     Отменить
-                </button>
-                <button type="button" class="btn btn-primary" ng-click="delete();" data-dismiss="modal">
-                    Удалить
                 </button>
             </div>
         </div>
@@ -114,7 +116,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="name">Наименование:</label>
+                                <label for="name">Наименование*:</label>
                                 <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
                                        placeholder="Наименование"
                                        ng-model="model.editModel.data.Name" name="name" id="name" type="text">
@@ -126,14 +128,14 @@
                 </form>
             </div>
             <div class="modal-footer">
+                <button ng-show="!model.editModel.edit" type="button" class="btn btn-success" ng-click="editModalSave();">
+                    Добавить
+                </button>
+                <button ng-show="model.editModel.edit" type="button" class="btn btn-success" ng-click="editModalSave();">
+                    Изменить
+                </button>
                 <button type="button" class="btn btn-default" ng-click="editModelDefValue();" data-dismiss="modal">
                     Отменить
-                </button>
-                <button ng-show="!model.editModel.edit" type="button" class="btn btn-primary" ng-click="editModalSave();">
-                    Создать
-                </button>
-                <button ng-show="model.editModel.edit" type="button" class="btn btn-primary" ng-click="editModalSave();">
-                    Изменить
                 </button>
             </div>
         </div>

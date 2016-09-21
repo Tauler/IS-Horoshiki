@@ -94,7 +94,7 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="subdivision in model.subdivisions">
-                        <td ng-bind="subdivision.Name"><a href="link"></a></td>
+                        <td><a href="/subdivisions/edit/{{subdivision.Id}}"> {{subdivision.Name}}</a></td>
                         <td ng-bind="subdivision.Timezone"></td>
                         <td ng-bind="subdivision.PriceType.Value"></td>
                         <td ng-bind="subdivision.SiteHeader"></td>
@@ -145,8 +145,8 @@
                 <p>Вы действительно хотите удалить подразделение {{model.deleteSubdivisionModel.Name}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="deleteSubdivisionClose();" data-dismiss="modal">Отменить</button>
-                <button type="button" class="btn btn-primary" ng-click="deleteSubdivision();" data-dismiss="modal">Удалить</button>
+                <button type="button" class="btn btn-success" ng-click="deleteSubdivision();" data-dismiss="modal">Удалить</button>
+                <button type="button" class="btn btn-default" ng-click="deleteSubdivisionClose();" data-dismiss="modal">Отмена</button>
             </div>
         </div>
     </div> <!-- / .modal-dialog -->

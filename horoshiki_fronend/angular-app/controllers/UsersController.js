@@ -538,9 +538,11 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         $scope.$watch('model.EmployeeStatus', function () {
             if ($scope.model.EmployeeStatus == undefined || $scope.model.EmployeeStatus == '' || JSON.parse($scope.model.EmployeeStatus).Guid != employeeStatus.dismissed) {
                 $scope.model.isDismissed = false;
+                $scope.model.user.IsAccess = true;
             } else {
                 $scope.model.isDismissed = true;
                 $scope.model.datepickerEndDate.select = new Date();
+                $scope.model.user.IsAccess = false;
             }
         });
 

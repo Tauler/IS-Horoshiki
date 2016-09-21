@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="lastName">Фамилия:</label>
+                                <label for="lastName">Фамилия*:</label>
                                 <input class="form-control" ng-blur="checkErrorLastName();" maxlength="50"
                                        placeholder="Фамилия"
                                        ng-model="model.user.LastName" name="lastName" id="lastName" type="text">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="firstName">Имя:</label>
+                                <label for="firstName">Имя*:</label>
                                 <input class="form-control" ng-blur="checkErrorFirstName();" maxlength="50"
                                        placeholder="Имя"
                                        ng-model="model.user.FirstName" name="firstName" id="firstName" type="text">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="middleName">Отчество:</label>
+                                <label for="middleName">Отчество*:</label>
                                 <input class="form-control" ng-blur="checkErrorMiddleName();" maxlength="50"
                                        placeholder="Отчество"
                                        ng-model="model.user.MiddleName" name="middleName" id="middleName" type="text">
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="phone">Телефон:</label>
+                                <label for="phone">Телефон*:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">+7</span>
                                     <input maxlength="10" class="form-control" ng-blur="checkErrorPhone();"
@@ -100,7 +100,7 @@
                     <div class="row margin-top-30">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="status">Должность:</label>
+                                <label for="status">Должность*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select class="form-control" ng-change="checkErrorPosition();" class="form-control"
                                             ng-model="model.Position">
@@ -154,7 +154,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="status">Статус:</label>
+                                <label for="status">Статус*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select style="width: 100%" class="form-control" name="status" id="status"
                                             ng-model="model.EmployeeStatus">
@@ -167,7 +167,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Дата приема:</label>
+                                <label>Дата приема*:</label>
                                 <datepicker ng-model="model.datepickerStartDate"></datepicker>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
                             <div class="form-group">
                                 <div class="col-md-12 padding-left-0">
                                     <div class="padding-top-20 padding-left-0 col-md-6 text-align-left">
-                                    <label for="userName">Логин:</label>
+                                    <label for="userName">Логин*:</label>
                                     </div>
                                     <div class="col-md-6 text-align-right">
                                         <div class="checkbox">
@@ -201,7 +201,7 @@
                                     данное поле не может быть меньше 3 и больше 50 символов. </code>
                             </div>
                             <div class="form-group">
-                                <label for="password">Пароль:</label>
+                                <label for="password">Пароль*:</label>
                                 <input class="form-control" ng-blur="checkErrorPassword();" maxlength="50"
                                        placeholder="Пароль"
                                        ng-model="model.user.Password" name="password" id="password" type="password">
@@ -210,7 +210,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="confirmPassword">Подтверждение пароля:</label>
+                                <label for="confirmPassword">Подтверждение пароля*:</label>
                                 <input class="form-control" ng-blur="checkErrorConfirmPassword();" maxlength="50"
                                        placeholder="Подтверждение пароля" ng-model="model.user.ConfirmPassword"
                                        name="confirmPassword" id="confirmPassword" type="password">
@@ -235,9 +235,8 @@
 
 
                     <div class="margin-top-30 text-align-right">
-                        <a href="/users" class="btn btn-default">Отменить</a> <a href="javascript:void(0);"
-                                                                                 ng-click="saveUser()"
-                                                                                 class="btn btn-blue">Создать</a>
+                        <a href="javascript:void(0);" ng-click="saveUser()" class="btn btn-success">Сохранить</a>
+                        <a href="/users" class="btn btn-default">Отмена</a>
                     </div>
                 </form>
 

@@ -13,7 +13,7 @@
 </div>
 
 <div class="page-body">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-12">
         <div class="widget">
             <div class="widget-header  with-footer">
                 <span ng-show="!isEdit()" class="widget-caption">Создание подразделения</span>
@@ -22,18 +22,25 @@
             <div class="widget-body">
                 <form role="form" class="margin-10">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Наименование:</label>
+                                <label for="name">Название*:</label>
                                 <input class="form-control" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование"
                                        ng-model="model.subdivision.Name" name=name" id="name" type="text">
-                                <code class="ng-binding" ng-show="model.error.name">Не верный формат поля "Наименование",
+                                <code class="ng-binding" ng-show="model.error.name">Не верный формат поля "Название",
                                     данное поле не может быть меньше 3 и больше 50 символов. </code>
                             </div>
                         </div>
 
 
                         <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="siteHeader">Заголовок на сайте:</label>
+                                <input class="form-control" ng-blur="checkErrorSiteHeader();" maxlength="50" placeholder="Заголовок на сайте"
+                                       ng-model="model.subdivision.SiteHeader" name="siteHeader" id="siteHeader" type="text">
+                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Заголовок на сайте",
+                                    данное поле не может быть больше 50 символов.</code>
+                            </div>
                         </div>
                     </div>
 
@@ -41,7 +48,7 @@
                     <div class="row margin-top-30">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="priceType">Тип цен:</label>
+                                <label for="priceType">Тип цен*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select ng-change="checkErrorPriceType();" name="priceType" id="priceType" class="form-control"
                                             ng-model="model.priceTypeModel">
@@ -57,7 +64,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="timezone">Часовой пояс:</label>
+                                <label for="timezone">Часовой пояс*:</label>
                                 <input class="form-control" ng-blur="checkErrorTimezone();" maxlength="50" placeholder="Часовой пояс"
                                        ng-model="model.subdivision.Timezone" name="timezone" id="timezone" type="text">
                                 <code class="ng-binding" ng-show="model.error.timezone">Не верный формат поля "Часовой пояс",
@@ -66,30 +73,19 @@
                         </div>
                     </div>
 
-                    <div class="row margin-top-30">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="siteHeader">Заголовок на сайте:</label>
-                                <input class="form-control" ng-blur="checkErrorSiteHeader();" maxlength="50" placeholder="Заголовок на сайте"
-                                       ng-model="model.subdivision.SiteHeader" name="siteHeader" id="siteHeader" type="text">
-                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Заголовок на сайте",
-                                    данное поле не может быть больше 50 символов.</code>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                        </div>
-                    </div>
+                    <!--<div class="row margin-top-30">-->
+                        <!---->
+                        <!--<div class="col-md-6">-->
+                        <!--</div>-->
+                    <!--</div>-->
 
 
                     <div class="margin-top-30 text-align-right">
-                        <a href="/subdivisions" class="btn btn-default">Отменить</a>
-
                         <a ng-show="!isEdit()" href="javascript:void(0);" ng-click="saveSubdivision()"
-                           class="btn btn-blue">Создать</a>
+                           class="btn btn-success">Сохранить</a>
                         <a ng-show="isEdit()" href="javascript:void(0);" ng-click="saveSubdivision()"
-                           class="btn btn-blue">Изменить</a>
+                           class="btn btn-success">Изменить</a>
+                        <a href="/subdivisions" class="btn btn-default">Отмена</a>
                     </div>
                 </form>
 
