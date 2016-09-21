@@ -205,12 +205,7 @@
             </ul>
 
             <ul ng-if="groupId=='settings'" class="nav sidebar-menu">
-                <li ng-class="subgroupId == 'users' ? 'active':''">
-                    <a href="/users">
-                        <i class="menu-icon fa fa-group"></i>
-                        <span class="menu-text"> Пользователи </span>
-                    </a>
-                </li>
+
                 <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
                     <a href="/subdivisions">
                         <i class="menu-icon fa fa-share-alt"></i>
@@ -221,6 +216,12 @@
                     <a href="/platforms">
                         <i class="menu-icon fa fa-share-alt-square"></i>
                         <span class="menu-text"> Площадки </span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == 'users' ? 'active':''">
+                    <a href="/users">
+                        <i class="menu-icon fa fa-group"></i>
+                        <span class="menu-text"> Пользователи </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
@@ -268,9 +269,9 @@
 <script src="/theme/assets/js/jquery.min.js"></script>
 
 <script src="/theme/assets/js/bootstrap.min.js"></script>
-<script src="/theme/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+<!--<script src="/theme/assets/js/slimscroll/jquery.slimscroll.min.js"></script>-->
 
-<script src="/theme/assets/js/select2/select2.js"></script>
+<!--<script src="/theme/assets/js/select2/select2.js"></script>-->
 
 <script src="/theme/assets/js/datetime/datepicker-jquery-ui.min.js"></script>
 <script type="text/javascript" src="/theme/assets/js/datetime/datepicker.js"></script>
@@ -278,13 +279,13 @@
 <script type="text/javascript" src="/theme/assets/js/datetime/bootstrap-timepicker.js"></script>
 
 <!--Beyond Scripts-->
-<script src="/theme/assets/js/beyond.js"></script>
+<script src="/theme/assets/js/beyond.min.js"></script>
 
 
 
 <!-- Angular lib -->
 <!--<script type="text/javascript" src="/plugins/angular/lib/angular.min.js"></script>-->
-<script type="text/javascript" src="/plugins/angular/angular.js"></script>
+<script type="text/javascript" src="/plugins/angular/angular.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-route.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-cookies.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-sanitize.min.js"></script>
@@ -295,7 +296,7 @@
 
 <script type="text/javascript" src="/plugins/bootstrap-ui/timepicker.js"></script>
 
-<script type="text/javascript" src="/plugins/angular-ui-select/select.min.js"></script>
+<!--<script type="text/javascript" src="/plugins/angular-ui-select/select.min.js"></script>-->
 
 <!-- Angular app -->
 <script type="text/javascript" src="/angular-app/app.js"></script>
