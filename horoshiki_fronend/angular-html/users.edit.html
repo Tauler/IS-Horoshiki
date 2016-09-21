@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="lastName">Фамилия:</label>
+                                <label for="lastName">Фамилия*:</label>
                                 <input class="form-control" ng-blur="checkErrorLastName();" maxlength="50"
                                        placeholder="Фамилия"
                                        ng-model="model.user.LastName" name="lastName" id="lastName" type="text">
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="firstName">Имя:</label>
+                                <label for="firstName">Имя*:</label>
                                 <input class="form-control" ng-blur="checkErrorFirstName();" maxlength="50"
                                        placeholder="Имя"
                                        ng-model="model.user.FirstName" name="firstName" id="firstName" type="text">
@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="middleName">Отчество:</label>
+                                <label for="middleName">Отчество*:</label>
                                 <input class="form-control" ng-blur="checkErrorMiddleName();" maxlength="50"
                                        placeholder="Отчество"
                                        ng-model="model.user.MiddleName" name="middleName" id="middleName" type="text">
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="phone">Телефон:</label>
+                                <label for="phone">Телефон*:</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">+7</span>
                                     <input maxlength="10" class="form-control" ng-blur="checkErrorPhone();"
@@ -100,7 +100,7 @@
                     <div class="row margin-top-30">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="status">Должность:</label>
+                                <label for="status">Должность*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select class="form-control" ng-change="checkErrorPosition();" class="form-control"
                                             ng-model="model.Position">
@@ -151,7 +151,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="status">Статус:</label>
+                                <label for="status">Статус*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select style="width: 100%" class="form-control" name="status" id="status"
                                             ng-model="model.EmployeeStatus">
@@ -164,7 +164,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Дата приема:</label>
+                                <label>Дата приема*:</label>
                                 <datepicker ng-model="model.datepickerStartDate"></datepicker>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
 
                         <div class="col-md-4">
                             <div ng-show="model.isDismissed" class="form-group">
-                                <label for="reasonDismissal">Причина увольнения:</label>
+                                <label for="reasonDismissal">Причина увольнения*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select ng-change="checkErrorReasonDismissal();" class="form-control" id="reasonDismissal"
                                             class="form-control"
@@ -269,11 +269,11 @@
 
 
                     <div class="margin-top-30 text-align-right">
-                        <a href="/users" class="btn btn-default">Отменить</a>
-                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()" class="btn btn-blue">Изменить</a>
+                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()" class="btn bbtn-success">Сохранить</a>
                         <a ng-show="model.isDismissed" href="javascript:void(0);" data-toggle="modal"
                            data-target="#dismissalModal"
-                           ng-click="" class="btn btn-blue">Уволить</a>
+                           ng-click="" class="btn btn-success">Уволить</a>
+                        <a href="/users" class="btn btn-default">Отмена</a>
                     </div>
                 </form>
 
@@ -293,11 +293,11 @@
                 <p>Вы действительно хотите уволить пользователя {{model.user.FirstName+' '+model.user.FirstName}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
-                    Отменить
-                </button>
-                <button type="button" class="btn btn-primary" ng-click="saveUser();" data-dismiss="modal">
+                <button type="button" class="btn btn-success" ng-click="saveUser();" data-dismiss="modal">
                     Уволить
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Отмена
                 </button>
             </div>
         </div>

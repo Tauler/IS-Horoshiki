@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">Наименование:</label>
+                                <label for="name">Наименование*:</label>
                                 <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
                                        placeholder="Наименование"
                                        ng-model="model.platform.Name" name="name" id="name" type="text">
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="subdivisions">Подразделение:</label>
+                                <label for="subdivisions">Подразделение*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select ng-change="checkErrorSubdivisions();" id="subdivisions" class="form-control"
                                             ng-model="model.platform.SubDivision.Id">
@@ -56,7 +56,7 @@
                     <div class="row margin-top-10">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="address">Адрес:</label>
+                                <label for="address">Адрес*:</label>
                                 <input type="text" class="form-control" ng-blur="checkErrorAddress();" maxlength="255"
                                           placeholder="Адрес"
                                           ng-model="model.platform.Address" name="address" id="address">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="subdivisions">Время работы:</label>
+                                <label for="subdivisions">Время работы*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -129,7 +129,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Способы покупки:</label>
+                                <label>Способы покупки*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <div ng-repeat="buyProcess in model.buyProcessesValue" class="checkbox">
                                         <label>
@@ -146,7 +146,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="name">Минимальный чек:</label>
+                                <label for="name">Минимальный чек*:</label>
                                 <input class="form-control" ng-blur="checkErrorMinCheck();" maxlength="50"
                                        placeholder="Минимальный чек"
                                        ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
@@ -158,7 +158,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="subdivisions">Время приема заказов:</label>
+                                <label for="subdivisions">Время приема заказов*:</label>
                                 <div class="input-group" style="width: 100%">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -184,12 +184,14 @@
 
 
                     <div class="margin-top-30 text-align-right">
-                        <a href="/platforms" class="btn btn-default">Отменить</a>
+
 
                         <a ng-show="!isEdit()" href="javascript:void(0);" ng-click="savePlatform()"
-                           class="btn btn-blue">Создать</a>
+                           class="btn btn-success">Сохранить</a>
                         <a ng-show="isEdit()" href="javascript:void(0);" ng-click="savePlatform()"
-                           class="btn btn-blue">Изменить</a>
+                           class="btn btn-success">Изменить</a>
+
+                        <a href="/platforms" class="btn btn-default">Отмена</a>
                     </div>
                 </form>
             </div>

@@ -118,7 +118,7 @@
                     <tr ng-repeat="platform in model.platforms">
 
 
-                        <td ng-bind="platform.Name"><a href="link"></a></td>
+                        <td><a href="/platforms/edit/{{platform.Id}}">{{platform.Name}}</a></td>
                         <td ng-bind="platform.SubDivision.Name"></td>
                         <td ng-bind="platform.User.FirstName+' '+platform.User.LastName"></td>
                         <td ng-bind="platform.PlatformStatus.Value"></td>
@@ -172,8 +172,8 @@
                 <p>Вы действительно хотите удалить площадку {{model.deletePlatformModel.Name}}?</p>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="deletePlatform();" data-dismiss="modal">Удалить</button>
                 <button type="button" class="btn btn-default" ng-click="deletePlatformClose();" data-dismiss="modal">Отменить</button>
-                <button type="button" class="btn btn-primary" ng-click="deletePlatform();" data-dismiss="modal">Удалить</button>
             </div>
         </div>
     </div> <!-- / .modal-dialog -->

@@ -107,10 +107,10 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="user in model.users">
-                        <td><a href="link">{{user.FirstName+' '+user.LastName}}</a></td>
+                        <td><a href="/users/edit/{{user.Id}}">{{user.FirstName+' '+user.LastName}}</a></td>
                         <td ng-show="user.IsAccess==true"><i class="fa green fa-check-circle"></i>
                         </td>
-                        </a>
+
                         <td ng-show="user.IsAccess==false"><i class="fa red fa-minus-circle "></i>
                         </td>
                         <td ng-show="user.IsHaveMedicalBook"
@@ -169,8 +169,8 @@
                 <p>Вы действительно хотите удалить пользователя {{model.deleteUserModel.FirstName+' '+model.deleteUserModel.LastName}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="deleteUserClose();" data-dismiss="modal">Отменить</button>
-                <button type="button" class="btn btn-primary" ng-click="deleteUser();" data-dismiss="modal">Удалить</button>
+                <button type="button" class="btn btn-success" ng-click="deleteUser();" data-dismiss="modal">Удалить</button>
+                <button type="button" class="btn btn-default" ng-click="deleteUserClose();" data-dismiss="modal">Отмена</button>
             </div>
         </div>
     </div> <!-- / .modal-dialog -->
