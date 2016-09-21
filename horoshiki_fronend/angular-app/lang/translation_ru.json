@@ -17,10 +17,7 @@
   "template_header_tab_exit" : "Выход",
 
 
-
   "error" : "Неизвестная ошибка",
-
-
 
 
   "auth_login_title" : "IS Horoshiki Авторизация",
@@ -38,9 +35,9 @@
   "user_list_is_have_medical_book": "Мед. книжка",
   "user_list_position": "Должность",
   "user_list_employee_status": "Статус",
+  "user_list_department": "Отдел",
+  "user_list_platform": "Площадка",
   "user_list_button_add_user": "Добавить пользователя",
-
-
 
   "pagination_btn_first_page" : "Первая",
   "pagination_btn_last_page" : "Последняя",

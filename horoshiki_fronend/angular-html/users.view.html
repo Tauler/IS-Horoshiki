@@ -5,7 +5,7 @@
             <a href="/">Главная</a>
         </li>
         <!--<li>-->
-            <!--<a href="/users">Настройки</a>-->
+        <!--<a href="/users">Настройки</a>-->
         <!--</li>-->
         <li class="active">Пользователи</li>
     </ul>
@@ -55,18 +55,18 @@
                                     class="fa fa-sort-desc padding-left-5"></i>
                             </div>
                         </th>
-                        <!--Наличеие мед книжки-->
+                        <!--Статус-->
                         <th>
-                            <div ng-if="model.orderby.field!='IsHaveMedicalBook'">
-                                <a ng-click="changeSort('IsHaveMedicalBook',true)">{{$parent.translation.user_list_is_have_medical_book}}<i
+                            <div ng-if="model.orderby.field!='EmployeeStatus'">
+                                <a ng-click="changeSort('EmployeeStatus',true)">{{$parent.translation.user_list_employee_status}}<i
                                         class="fa fa-sort padding-left-5"></i></a>
                             </div>
-                            <div ng-if="model.orderby.field=='IsHaveMedicalBook' && model.orderby.asc==true">
-                                <a ng-click="changeSort('IsHaveMedicalBook',false)">{{$parent.translation.user_list_is_have_medical_book}}</a><i
+                            <div ng-if="model.orderby.field=='EmployeeStatus' && model.orderby.asc==true">
+                                <a ng-click="changeSort('EmployeeStatus',false)">{{$parent.translation.user_list_employee_status}}</a><i
                                     class="fa fa-sort-asc padding-left-5"></i>
                             </div>
-                            <div ng-if="model.orderby.field=='IsHaveMedicalBook' && model.orderby.asc==false">
-                                <a ng-click="changeSort('IsHaveMedicalBook',true)">{{$parent.translation.user_list_is_have_medical_book}}</a><i
+                            <div ng-if="model.orderby.field=='EmployeeStatus' && model.orderby.asc==false">
+                                <a ng-click="changeSort('EmployeeStatus',true)">{{$parent.translation.user_list_employee_status}}</a><i
                                     class="fa fa-sort-desc padding-left-5"></i>
                             </div>
                         </th>
@@ -85,21 +85,55 @@
                                     class="fa fa-sort-desc padding-left-5"></i>
                             </div>
                         </th>
-                        <!--Статус-->
+
+                        <!--Отдел-->
                         <th>
-                            <div ng-if="model.orderby.field!='EmployeeStatus'">
-                                <a ng-click="changeSort('EmployeeStatus',true)">{{$parent.translation.user_list_employee_status}}<i
+                            <div ng-if="model.orderby.field!='Department'">
+                                <a ng-click="changeSort('Department',true)">{{$parent.translation.user_list_department}}<i
                                         class="fa fa-sort padding-left-5"></i></a>
                             </div>
-                            <div ng-if="model.orderby.field=='EmployeeStatus' && model.orderby.asc==true">
-                                <a ng-click="changeSort('EmployeeStatus',false)">{{$parent.translation.user_list_employee_status}}</a><i
+                            <div ng-if="model.orderby.field=='Department' && model.orderby.asc==true">
+                                <a ng-click="changeSort('Department',false)">{{$parent.translation.user_list_department}}</a><i
                                     class="fa fa-sort-asc padding-left-5"></i>
                             </div>
-                            <div ng-if="model.orderby.field=='EmployeeStatus' && model.orderby.asc==false">
-                                <a ng-click="changeSort('EmployeeStatus',true)">{{$parent.translation.user_list_employee_status}}</a><i
+                            <div ng-if="model.orderby.field=='Department' && model.orderby.asc==false">
+                                <a ng-click="changeSort('Department',true)">{{$parent.translation.user_list_department}}</a><i
                                     class="fa fa-sort-desc padding-left-5"></i>
                             </div>
                         </th>
+                        <!--Площадка-->
+                        <th>
+                            <div ng-if="model.orderby.field!='Platform'">
+                                <a ng-click="changeSort('Platform',true)">{{$parent.translation.user_list_platform}}<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='Platform' && model.orderby.asc==true">
+                                <a ng-click="changeSort('Platform',false)">{{$parent.translation.user_list_platform}}</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='Platform' && model.orderby.asc==false">
+                                <a ng-click="changeSort('Platform',true)">{{$parent.translation.user_list_platform}}</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+
+                        <!--Наличеие мед книжки-->
+                        <th>
+                            <div ng-if="model.orderby.field!='IsHaveMedicalBook'">
+                                <a ng-click="changeSort('IsHaveMedicalBook',true)">{{$parent.translation.user_list_is_have_medical_book}}<i
+                                        class="fa fa-sort padding-left-5"></i></a>
+                            </div>
+                            <div ng-if="model.orderby.field=='IsHaveMedicalBook' && model.orderby.asc==true">
+                                <a ng-click="changeSort('IsHaveMedicalBook',false)">{{$parent.translation.user_list_is_have_medical_book}}</a><i
+                                    class="fa fa-sort-asc padding-left-5"></i>
+                            </div>
+                            <div ng-if="model.orderby.field=='IsHaveMedicalBook' && model.orderby.asc==false">
+                                <a ng-click="changeSort('IsHaveMedicalBook',true)">{{$parent.translation.user_list_is_have_medical_book}}</a><i
+                                    class="fa fa-sort-desc padding-left-5"></i>
+                            </div>
+                        </th>
+
+
                         <!--Действие-->
                         <th>
                         </th>
@@ -107,20 +141,28 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="user in model.users">
+                        <!--ФИ-->
                         <td><a href="/users/edit/{{user.Id}}">{{user.FirstName+' '+user.LastName}}</a></td>
-                        <td ng-show="user.IsAccess==true"><i class="fa green fa-check-circle"></i>
-                        </td>
+                        <!--Доступ в ИС-->
+                        <td ng-show="user.IsAccess==true"><i class="fa green fa-check-circle"></i></td>
+                        <td ng-show="user.IsAccess==false"><i class="fa red fa-minus-circle "></i></td>
+                        <!--Статус-->
+                        <td ng-bind="user.EmployeeStatus.Value"></td>
+                        <!--Должность-->
+                        <td ng-bind="user.Position.Value"></td>
 
-                        <td ng-show="user.IsAccess==false"><i class="fa red fa-minus-circle "></i>
-                        </td>
+                        <!--Отдел-->
+                        <td ng-bind="user.Department.Value"></td>
+                        <!--Площадка-->
+                        <td ng-bind="user.Platform.Name"></td>
+
+                        <!--Мед книжка-->
                         <td ng-show="user.IsHaveMedicalBook"
                             title="Дата окончания: {{user.MedicalBookEnd | date : 'dd.MM.yyyy'}}"><i
                                 class="fa fa-book green"></i></td>
                         <td ng-show="!user.IsHaveMedicalBook"
                             title="Дата окончания: {{user.MedicalBookEnd | date : 'dd.MM.yyyy'}}"><i
                                 class="fa fa-book red"></i></td>
-                        <td ng-bind="user.Position.Value"></td>
-                        <td ng-bind="user.EmployeeStatus.Value"></td>
                         <td>
 
                             <div class="btn-group">
@@ -129,29 +171,37 @@
                                 <ul class="dropdown-menu dropdown-blue">
                                     <li><a href="/users/edit/{{user.Id}}"><i class="fa fa-edit"></i> Редактировать</a>
                                     </li>
-                                    <li><a href="/users/edit/{{user.Id}}?dismissal=true"><i class="fa fa-minus"></i> Уволить</a></li>
-                                    <li><a href="/users/editPassword/{{user.Id}}"><i class="fa fa-eye"></i> Изменить пароль</a></li>
+                                    <li><a href="/users/edit/{{user.Id}}?dismissal=true"><i class="fa fa-minus"></i>
+                                        Уволить</a></li>
+                                    <li><a href="/users/editPassword/{{user.Id}}"><i class="fa fa-eye"></i> Изменить
+                                        пароль</a></li>
                                     <li><a href="#" data-toggle="modal" data-target="#deleteUserModal"
-                                           ng-click="deleteUserModal(user);"><i class="fa fa-cloud"></i> Удалить</a></li>
+                                           ng-click="deleteUserModal(user);"><i class="fa fa-cloud"></i> Удалить</a>
+                                    </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <div class="text-center margin-top-10 margin-bottom-20">
-                    <uib-pagination template-url="/angular-html/directives/pagination.html"
-                                    ng-if="model.users.length>0"
-                                    ng-model="model.paging.PageNo"
-                                    total-items="model.paging.TotalRecordCount"
-                                    max-size="model.countPageButton"
-                                    items-per-page="model.clientPageSize"
-                                    boundary-links="true"
-                                    first-text="{{$parent.translation.pagination_btn_first_page}}"
-                                    last-text="{{$parent.translation.pagination_btn_last_page}}"
-                                    previous-text="{{$parent.translation.pagination_btn_previous_page}}"
-                                    next-text="{{$parent.translation.pagination_btn_next_page}}">
-                    </uib-pagination>
+                <div class="row margin-top-10 margin-bottom-20">
+                    <div class="col-md-6 text-align-left">
+                        Показано <span ng-show="model.users.length>0">1</span><span ng-show="model.users.length<1">0</span> - {{model.users.length}} записи. (Всего: {{model.paging.TotalRecordCount}})
+                    </div>
+                    <div class="col-md-6 text-align-right">
+                        <uib-pagination template-url="/angular-html/directives/pagination.html"
+                                        ng-if="model.users.length>0"
+                                        ng-model="model.paging.PageNo"
+                                        total-items="model.paging.TotalRecordCount"
+                                        max-size="model.countPageButton"
+                                        items-per-page="model.clientPageSize"
+                                        boundary-links="true"
+                                        first-text="{{$parent.translation.pagination_btn_first_page}}"
+                                        last-text="{{$parent.translation.pagination_btn_last_page}}"
+                                        previous-text="{{$parent.translation.pagination_btn_previous_page}}"
+                                        next-text="{{$parent.translation.pagination_btn_next_page}}">
+                        </uib-pagination>
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,11 +216,14 @@
                 <h4 class="modal-title">Удаление Пользователя</h4>
             </div>
             <div class="modal-body">
-                <p>Вы действительно хотите удалить пользователя {{model.deleteUserModel.FirstName+' '+model.deleteUserModel.LastName}}?</p>
+                <p>Вы действительно хотите удалить пользователя {{model.deleteUserModel.FirstName+''+model.deleteUserModel.LastName}}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="deleteUser();" data-dismiss="modal">Удалить</button>
-                <button type="button" class="btn btn-default" ng-click="deleteUserClose();" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-success" ng-click="deleteUser();" data-dismiss="modal">Удалить
+                </button>
+                <button type="button" class="btn btn-default" ng-click="deleteUserClose();" data-dismiss="modal">
+                    Отмена
+                </button>
             </div>
         </div>
     </div> <!-- / .modal-dialog -->
