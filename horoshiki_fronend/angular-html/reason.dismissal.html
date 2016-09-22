@@ -96,7 +96,7 @@
                     Удалить
                 </button>
                 <button type="button" class="btn btn-default" ng-click="deleteModalClose();" data-dismiss="modal">
-                    Отменить
+                    Отмена
                 </button>
             </div>
         </div>
@@ -120,8 +120,7 @@
                                 <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
                                        placeholder="Наименование"
                                        ng-model="model.editModel.data.Name" name="name" id="name" type="text">
-                                <code class="ng-binding" ng-show="model.error.name">Не верный формат поля "Наименование",
-                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <code class="ng-binding" ng-show="model.error.name">Необходимо указать наименование. Значение должно быть от 3 до 50 символов </code>
                             </div>
                         </div>
                     </div>

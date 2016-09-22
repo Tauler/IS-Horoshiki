@@ -356,7 +356,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
                     }
 
                     for (var index in $scope.model.employeeStatuses) {
-                        if ($scope.model.employeeStatuses[index].Guid == employeeStatus.worked) {
+                        if ($scope.model.employeeStatuses[index].Guid == employeeStatus.trainee) {
                             $scope.model.EmployeeStatus = JSON.stringify($scope.model.employeeStatuses[index]);
                         }
                     }
