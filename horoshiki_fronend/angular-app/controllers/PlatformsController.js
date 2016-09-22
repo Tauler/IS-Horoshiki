@@ -133,7 +133,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
         $scope.model.error.address = false;
         $scope.checkErrorAddress = function () {
-            if ($scope.model.platform.Address.length < 3 || $scope.model.platform.Address.length > 255) {
+            if ($scope.model.platform.Address.length < 3 || $scope.model.platform.Address.length > 250) {
                 $scope.model.error.address = true;
             } else {
                 $scope.model.error.address = false;
@@ -224,8 +224,11 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
             $scope.checkErrorBuyProcess();
             $scope.checkErrorMinCheck();
 
+            $scope.checkOrderTime();
+            $scope.checkLocalTime();
 
-            if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck) {
+
+            if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck && !$scope.model.error.localTime && $scope.model.error.orderTime) {
                 $scope.model.platform.TimeStart = $scope.model.localTime.start + ":00";
                 $scope.model.platform.TimeEnd = $scope.model.localTime.end + ":00";
 

@@ -4,8 +4,8 @@
 
 var usersControllers = angular.module('usersControllers', []);
 
-usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService',
-    function ($scope, $location, UsersService) {
+usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService', 'DictionaryService', 'PlatformsService',
+    function ($scope, $location, UsersService, DictionaryService, PlatformsService) {
         $scope.model = {};
         $scope.model.users = [];
         $scope.model.paging = {};
@@ -19,6 +19,8 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
         $scope.model.orderby.field = 'Id';
         $scope.model.orderby.asc = true;
 
+        $scope.model.filter = {};
+
         $scope.model.deleteUserModel = {};
 
         // Пагинация
@@ -27,9 +29,59 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
         });
 
         $scope.getAllUsers = function () {
-            UsersService.getAllUsers($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc).success(function (result) {
+            var params = $scope.search();
+
+            UsersService.getAllUsersParams($scope.model.paging.PageNo, $scope.model.clientPageSize, $scope.model.orderby.field, $scope.model.orderby.asc, params).success(function (result) {
                 $scope.model.users = result.Data.Data;
                 $scope.model.paging = result.Data.Paging;
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getEmployeeStatuses = function () {
+            DictionaryService.getEmployeeStatuses().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.employeeStatuses = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPositions = function () {
+            DictionaryService.getPositions().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.positions = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getDepartments = function () {
+            DictionaryService.getDepartments().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.departments = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPlatformsSmall = function () {
+            PlatformsService.getAllSmall("Id", "True").success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.platforms = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
             })
@@ -67,6 +119,37 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
         $scope.deleteUserClose = function () {
             $scope.model.deleteUserModel = {};
         }
+
+        $scope.search = function () {
+            var params = '';
+            if ($scope.model.filter.firstName != undefined && $scope.model.filter.firstName != '') {
+                params += '&filterLastName=' + $scope.model.filter.firstName;
+            }
+            if ($scope.model.filter.isAccess != undefined && $scope.model.filter.isAccess != '') {
+                params += '&filterIsAccess=' + $scope.model.filter.isAccess;
+            }
+            if ($scope.model.filter.employeeStatusId != undefined && $scope.model.filter.employeeStatusId != '') {
+                params += '&filterEmployeeStatusId=' + $scope.model.filter.employeeStatusId;
+            }
+            if ($scope.model.filter.positionId != undefined && $scope.model.filter.positionId != ''){
+                params += '&filterPositionId=' + $scope.model.filter.positionId;
+            }
+            if ($scope.model.filter.departmentId != undefined && $scope.model.filter.departmentId != ''){
+                params += '&filterDepartmentId=' + $scope.model.filter.departmentId;
+            }
+            if ($scope.model.filter.platformId != undefined && $scope.model.filter.platformId != ''){
+                params += '&filterPlatformId=' + $scope.model.filter.platformId;
+            }
+            if ($scope.model.filter.medicalBook != undefined && $scope.model.filter.medicalBook != ''){
+                params += '&filterIsHaveMedicalBook=' + $scope.model.filter.medicalBook;
+            }
+            return params;
+        }
+
+        $scope.getEmployeeStatuses();
+        $scope.getPositions();
+        $scope.getDepartments();
+        $scope.getPlatformsSmall();
     }
 ]);
 
@@ -267,13 +350,13 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
                     $scope.model.employeeStatuses = [];
 
                     for (var index in result.Data) {
-                        if ( result.Data[index].Guid != employeeStatus.dismissed) {
+                        if (result.Data[index].Guid != employeeStatus.dismissed) {
                             $scope.model.employeeStatuses[index] = result.Data[index];
                         }
                     }
 
                     for (var index in $scope.model.employeeStatuses) {
-                        if ($scope.model.employeeStatuses[index].Guid == employeeStatus.worked) {
+                        if ($scope.model.employeeStatuses[index].Guid == employeeStatus.trainee) {
                             $scope.model.EmployeeStatus = JSON.stringify($scope.model.employeeStatuses[index]);
                         }
                     }

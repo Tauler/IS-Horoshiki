@@ -9,7 +9,8 @@ var mailRegexp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-
 //Константы
 var employeeStatus = {
     dismissed: '104688a6-9cd2-4fb9-ab03-9da1b5474be0',
-    worked: 'b725328d-922a-4c21-9652-1108db0c8bd3'
+    worked: 'b725328d-922a-4c21-9652-1108db0c8bd3',
+    trainee: 'f64423dc-fb22-41f3-8faa-da9b38ea671d'
 };
 
 
