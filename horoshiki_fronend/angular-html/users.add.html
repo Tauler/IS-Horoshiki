@@ -161,8 +161,9 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label>Дата приема*:</label>
-                                <datepicker ng-model="model.datepickerStartDate"></datepicker>
+                                <datepicker ng-change="checkErrorDatepickerStartDate();" ng-model="model.datepickerStartDate"></datepicker>
                             </div>
+                            <code class="ng-binding"  ng-show="model.error.datepickerStartDate">Необходимо указать дату приема </code>
                         </div>
                         <div class="col-md-4"></div>
                     </div>
@@ -219,8 +220,8 @@
 
 
                             <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
-                                <datepicker ng-model="model.datepickerMedicalBook"></datepicker>
-                                <!--<code class="ng-binding" ng-show="model.error.datepickerMedicalBook">Необходимо указать срок действия медкнижки </code>-->
+                                <datepicker ng-change="checkErrorDatepickerMedicalBook();" ng-model="model.datepickerMedicalBook"></datepicker>
+                                <code class="ng-binding" ng-show="model.error.datepickerMedicalBook">Необходимо указать срок действия медкнижки </code>
                             </div>
                         </div>
                     </div>
