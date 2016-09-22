@@ -101,7 +101,8 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
 
             int skip = (pageNo - 1) * pageSize;
 
-            var list = query.OrderByPropertyName(sortField, isAscending)
+            var list = query.Where(u => u.Position != null && u.Position.Guid != DatabaseConstant.PositionOperationDirector)
+                            .OrderByPropertyName(sortField, isAscending)
                             .Skip(skip)
                             .Take(pageSize)
                             .ToList()
