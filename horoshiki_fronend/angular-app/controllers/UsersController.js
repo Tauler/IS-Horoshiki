@@ -178,7 +178,6 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
-        $scope.model.isManager = false;
 
         //datepicker startDate init
         $scope.model.datepickerStartDate = {};
@@ -307,16 +306,41 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             }
         }
 
+        $scope.model.isUserManager = function () {
+            if($scope.model.Position!=undefined || $scope.model.Position!=''){
+                if(JSON.parse($scope.model.Position).Guid==enumPositions.manager){
+                    return true;
+                }
+            }
+            return false;
+        }
+
         $scope.model.error.isHaveMedicalBook = false;
         $scope.checkErrorIsHaveMedicalBook = function () {
-            if (!$scope.model.user.IsHaveMedicalBook && !$scope.model.isManager) {
+            if (!$scope.model.user.IsHaveMedicalBook && !$scope.model.isUserManager()) {
                 $scope.model.error.isHaveMedicalBook = true;
             } else {
                 $scope.model.error.isHaveMedicalBook = false;
             }
         }
 
+        $scope.model.error.datepickerMedicalBook = false;
+        $scope.checkErrorDatepickerMedicalBook = function () {
+            if (($scope.model.datepickerMedicalBook.select==undefined || $scope.model.datepickerMedicalBook.select=='') && !$scope.model.isUserManager()) {
+                $scope.model.error.datepickerMedicalBook = true;
+            } else {
+                $scope.model.error.datepickerMedicalBook = false;
+            }
+        }
 
+        $scope.model.error.datepickerStartDate = false;
+        $scope.checkErrorDatepickerStartDate = function () {
+            if ($scope.model.datepickerStartDate.select==undefined || $scope.model.datepickerStartDate.select=='') {
+                $scope.model.error.datepickerStartDate = true;
+            } else {
+                $scope.model.error.datepickerStartDate = false;
+            }
+        }
 
 
         $scope.getPositions = function () {
@@ -421,15 +445,13 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             if($rootScope.currentUserLoaded == true){
                 $scope.getPositions();
                 $scope.getPlatformsSmall();
-
-                if($rootScope.currentUser.Position.Guid==enumPositions.manager) {
-                    $scope.model.isManager = true;
-                }
             }
         });
 
         $scope.getDepartments();
         $scope.getEmployeeStatuses();
+
+
 
 
         $scope.saveUser = function () {
@@ -443,10 +465,12 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             $scope.checkErrorPosition();
             $scope.checkErrorPlatform();
             $scope.checkErrorIsHaveMedicalBook();
+            $scope.checkErrorDatepickerMedicalBook();
             // $scope.checkErrorEmail();
 
 
-            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook
+
+            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook && !$scope.model.error.datepickerMedicalBook
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
@@ -482,7 +506,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
                 }
 
                 // console.log($scope.model.datepickerMedicalBook.select);
-                if ($scope.model.datepickerMedicalBook.select != "" && $scope.model.datepickerMedicalBook.select != undefined) {
+                if ($scope.model.datepickerMedicalBook.select != '' && $scope.model.datepickerMedicalBook.select != undefined) {
                     $scope.model.user.MedicalBookEnd = dateFormatterBackend($scope.model.datepickerMedicalBook.select);
                 }
 
@@ -525,6 +549,8 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
             "Department": "",
             "EmployeeReasonDismissal": ""
         }
+
+        $scope.model.user.IsAccess = true;
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
@@ -631,6 +657,8 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
         $scope.model.error.position = false;
         $scope.checkErrorPosition = function () {
+            $scope.checkErrorIsHaveMedicalBook();
+            $scope.checkErrorDatepickerMedicalBook();
             if ($scope.model.Position == "" || $scope.model.Position == undefined) {
                 $scope.model.error.position = true;
             } else {
@@ -640,16 +668,11 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
         $scope.model.error.reasonDismissal = false;
         $scope.checkErrorReasonDismissal = function () {
-
-            console.log($scope.model.ReasonDismissal.Id);
-
             if (($scope.model.ReasonDismissal.Id == undefined || $scope.model.ReasonDismissal.Id == "") && $scope.model.isDismissed) {
                 $scope.model.error.reasonDismissal = true;
             } else {
                 $scope.model.error.reasonDismissal = false;
             }
-
-            console.log($scope.model.error.reasonDismissal);
         }
 
         $scope.model.error.platform = false;
@@ -674,6 +697,53 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
             }
         });
 
+        $scope.model.error.isHaveMedicalBook = false;
+        $scope.checkErrorIsHaveMedicalBook = function () {
+            console.log(!$scope.model.isUserManager);
+            if (!$scope.model.user.IsHaveMedicalBook && !$scope.model.isUserManager()) {
+                $scope.model.error.isHaveMedicalBook = true;
+            } else {
+                $scope.model.error.isHaveMedicalBook = false;
+            }
+        }
+
+        $scope.model.error.datepickerMedicalBook = false;
+        $scope.checkErrorDatepickerMedicalBook = function () {
+            if (($scope.model.datepickerMedicalBook.select==undefined || $scope.model.datepickerMedicalBook.select=='') && !$scope.model.isUserManager()) {
+                $scope.model.error.datepickerMedicalBook = true;
+            } else {
+                $scope.model.error.datepickerMedicalBook = false;
+            }
+        }
+
+        $scope.model.error.datepickerStartDate = false;
+        $scope.checkErrorDatepickerStartDate = function () {
+            if ($scope.model.datepickerStartDate.select==undefined || $scope.model.datepickerStartDate.select=='') {
+                $scope.model.error.datepickerStartDate = true;
+            } else {
+                $scope.model.error.datepickerStartDate = false;
+            }
+        }
+
+        $scope.model.error.datepickerEndDate = false;
+        $scope.checkErrorDatepickerEndDate = function () {
+            if (($scope.model.datepickerEndDate.select==undefined || $scope.model.datepickerEndDate.select=='') && $scope.model.isDismissed) {
+                $scope.model.error.datepickerEndDate = true;
+            } else {
+                $scope.model.error.datepickerEndDate = false;
+            }
+        }
+
+
+
+        $scope.model.isUserManager = function () {
+            if($scope.model.Position!=undefined || $scope.model.Position!=''){
+                if(JSON.parse($scope.model.Position).Guid==enumPositions.manager){
+                    return true;
+                }
+            }
+            return false;
+        }
 
         // проверка происходит ли сейчас увольнение
         $scope.isDismissal = function () {
@@ -879,10 +949,11 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
             $scope.checkErrorReasonDismissal();
+            $scope.checkErrorDatepickerEndDate();
 
             // $scope.checkErrorEmail();
 
-            if (!$scope.model.error.reasonDismissal && !$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
+            if (!$scope.model.error.reasonDismissal && !$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook && !$scope.model.error.datepickerMedicalBook && !$scope.model.error.datepickerEndDate
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {

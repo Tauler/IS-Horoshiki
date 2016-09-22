@@ -226,8 +226,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
 
             $scope.checkOrderTime();
             $scope.checkLocalTime();
-
-
+            
             if (!$scope.model.error.name && !$scope.model.error.address && !$scope.model.error.subdivision && !$scope.model.error.statusSite && !$scope.model.error.buyProcess && !$scope.model.error.minCheck && !$scope.model.error.localTime && !$scope.model.error.orderTime) {
                 $scope.model.platform.TimeStart = $scope.model.localTime.start + ":00";
                 $scope.model.platform.TimeEnd = $scope.model.localTime.end + ":00";
