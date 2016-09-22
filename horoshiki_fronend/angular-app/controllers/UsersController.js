@@ -153,8 +153,8 @@ usersControllers.controller('UsersViewController', ['$scope', '$location', 'User
     }
 ]);
 
-usersControllers.controller('UsersAddController', ['$scope', '$location', 'UsersService', 'DictionaryService', 'PlatformsService',
-    function ($scope, $location, UsersService, DictionaryService, PlatformsService) {
+usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$location', 'UsersService', 'DictionaryService', 'PlatformsService',
+    function ($scope, $rootScope, $location, UsersService, DictionaryService, PlatformsService) {
         $scope.model = {};
         $scope.model.user = {
             "Id": "6",
@@ -178,7 +178,6 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
-
 
         //datepicker startDate init
         $scope.model.datepickerStartDate = {};
@@ -300,18 +299,35 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
 
         $scope.model.error.platform = false;
         $scope.checkErrorPlatform = function () {
-            // if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
-            //     $scope.model.error.platform = true;
-            // } else {
-            //     $scope.model.error.platform = false;
-            // }
+            if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
+                $scope.model.error.platform = true;
+            } else {
+                $scope.model.error.platform = false;
+            }
         }
 
 
         $scope.getPositions = function () {
             DictionaryService.getPositions().success(function (result) {
                 if (result.Success == 1) {
-                    $scope.model.positions = result.Data;
+                    $scope.model.positions = [];
+
+                    if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer){
+                        for (var i = 0, j = 0; i < result.Data.length; i++) {
+                            if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer) {
+                                $scope.model.positions[j] = result.Data[i];
+                                j++;
+                            }
+                        }
+                    }
+                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                        for (var i = 0, j = 0; i < result.Data.length; i++) {
+                            if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer && result.Data[i].Guid != enumPositions.manager) {
+                                $scope.model.positions[j] = result.Data[i];
+                                j++;
+                            }
+                        }
+                    }
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -335,7 +351,14 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
         $scope.getPlatformsSmall = function () {
             PlatformsService.getAllSmall("Id", "True").success(function (result) {
                 if (result.Success == 1) {
-                    $scope.model.platforms = result.Data;
+
+                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                        $scope.model.platforms=[];
+                        $scope.model.platforms[0] = $rootScope.currentUser.Platform;
+                        $scope.model.Platform.Id = $rootScope.currentUser.Platform.Id.toString();
+                    }else{
+                        $scope.model.platforms = result.Data;
+                    }
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -382,13 +405,18 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
             }
         }
 
-        $scope.getPositions();
+        $rootScope.$watch('currentUserLoaded', function(){
+            if($rootScope.currentUserLoaded == true){
+                $scope.getPositions();
+                $scope.getPlatformsSmall();
+            }
+        });
+
         $scope.getDepartments();
         $scope.getEmployeeStatuses();
-        $scope.getPlatformsSmall()
+
 
         $scope.saveUser = function () {
-
             $scope.checkErrorUserName();
             $scope.checkErrorPassword();
             $scope.checkErrorConfirmPassword();
@@ -458,8 +486,8 @@ usersControllers.controller('UsersAddController', ['$scope', '$location', 'Users
     }
 ]);
 
-usersControllers.controller('UsersEditController', ['$scope', '$location', 'UsersService', 'DictionaryService', '$routeParams', 'PlatformsService', 'ReasonDismissalService',
-    function ($scope, $location, UsersService, DictionaryService, $routeParams, PlatformsService, ReasonDismissalService) {
+usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$location', 'UsersService', 'DictionaryService', '$routeParams', 'PlatformsService', 'ReasonDismissalService',
+    function ($scope, $rootScope, $location, UsersService, DictionaryService, $routeParams, PlatformsService, ReasonDismissalService) {
         $scope.model = {};
         $scope.model.user = {
             "Id": "6",
@@ -609,11 +637,11 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
 
         $scope.model.error.platform = false;
         $scope.checkErrorPlatform = function () {
-            // if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
-            //     $scope.model.error.platform = true;
-            // } else {
-            //     $scope.model.error.platform = false;
-            // }
+            if ($scope.model.Platform.Id == "" || $scope.model.Platform.Id == undefined) {
+                $scope.model.error.platform = true;
+            } else {
+                $scope.model.error.platform = false;
+            }
         }
 
         // проверка уволен ли пользователь
@@ -642,7 +670,29 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         $scope.getPositions = function () {
             DictionaryService.getPositions().success(function (result) {
                 if (result.Success == 1) {
-                    $scope.model.positions = result.Data;
+                    $scope.model.positions = [];
+
+                    if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer){
+                        for (var i = 0, j = 0; i < result.Data.length; i++) {
+                            if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer) {
+                                $scope.model.positions[j] = result.Data[i];
+                                j++;
+                            }
+                        }
+                    }
+                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                        for (var i = 0, j = 0; i < result.Data.length; i++) {
+                            if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer && result.Data[i].Guid != enumPositions.manager) {
+                                $scope.model.positions[j] = result.Data[i];
+                                j++;
+                            }
+                            if(result.Data[i].Guid == enumPositions.manager && $rootScope.currentUser.Id == $scope.model.user.Id){
+                                $scope.model.positions[j] = result.Data[i];
+                                j++;
+                            }
+
+                        }
+                    }
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -678,9 +728,16 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
         $scope.getPlatformsSmall = function () {
             PlatformsService.getAllSmall("Id", "True").success(function (result) {
                 if (result.Success == 1) {
-                    $scope.model.platforms = result.Data;
+
+                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                        $scope.model.platforms=[];
+                        $scope.model.platforms[0] = $rootScope.currentUser.Platform;
+                        $scope.model.Platform.Id = $rootScope.currentUser.Platform.Id.toString();
+                    }else{
+                        $scope.model.platforms = result.Data;
+                    }
                 } else {
-                    displayErrorMessage($scope.translation[result.reason]);
+                    displayErrorMessage(result.ReasonMessage);
                 }
             }).error(function (result, status) {
                 httpErrors($location.url(), status);
@@ -781,10 +838,16 @@ usersControllers.controller('UsersEditController', ['$scope', '$location', 'User
             }
         }
 
+
+        $rootScope.$watch('currentUserLoaded', function(){
+            if($rootScope.currentUserLoaded == true){
+                $scope.getPositions();
+                $scope.getPlatformsSmall();
+            }
+        });
+
         $scope.getEmployeeReasonDismissal();
-        $scope.getPositions();
         $scope.getDepartments();
-        $scope.getPlatformsSmall();
         $scope.getUser();
 
         $scope.saveUser = function () {

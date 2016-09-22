@@ -13,6 +13,12 @@ var employeeStatus = {
     trainee: 'f64423dc-fb22-41f3-8faa-da9b38ea671d'
 };
 
+var enumPositions = {
+
+    chiefOperatingOfficer: '449f1830-172a-4aec-bc29-6bb446cf8861',
+    manager: '27c9376b-47b6-4eca-8920-e8a0e63f267c'
+}
+
 
 function resizeFooter(){
     var contentHeight = $(window).height() - 123;
