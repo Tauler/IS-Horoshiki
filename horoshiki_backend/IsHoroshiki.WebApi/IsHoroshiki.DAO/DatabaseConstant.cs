@@ -19,6 +19,17 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
+        /// Должность - Операционный директор
+        /// </summary>
+        public static Guid PositionOperationDirector
+        {
+            get
+            {
+                return Guid.Parse("449F1830-172A-4AEC-BC29-6BB446CF8861");
+            }
+        }
+
+        /// <summary>
         /// Должность - управлющий
         /// </summary>
         public static Guid PositionManager
