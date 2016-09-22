@@ -15,6 +15,7 @@ using IsHoroshiki.DAO.DaoEntities.Accounts;
 using IsHoroshiki.DAO.Repositories.Accounts.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using Microsoft.AspNet.Identity;
+using IsHoroshiki.DAO;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -408,6 +409,20 @@ namespace IsHoroshiki.BusinessServices.Editable
         public override ApplicationUser UpdateDaoInternal(ApplicationUser daoEntity, IApplicationUserModel model)
         {
             daoEntity.Update(model);
+
+            if (daoEntity.EmployeeStatusId > 0)
+            {
+                var task = _unitOfWork.EmployeeStatusRepository.GetByIdAsync(daoEntity.EmployeeStatusId);
+                task.Wait();
+                var status = task.Result;
+
+                if (status != null && status.Guid != DatabaseConstant.EmployeeStatusDismissal)
+                {
+                    daoEntity.DateEnd = null;
+                    daoEntity.EmployeeReasonDismissalId = null;
+                }
+            }
+
             return daoEntity;
         }
 
