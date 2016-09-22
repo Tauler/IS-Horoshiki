@@ -178,6 +178,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
+        $scope.model.isManager = false;
 
         //datepicker startDate init
         $scope.model.datepickerStartDate = {};
@@ -306,6 +307,17 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             }
         }
 
+        $scope.model.error.isHaveMedicalBook = false;
+        $scope.checkErrorIsHaveMedicalBook = function () {
+            if (!$scope.model.user.IsHaveMedicalBook && !$scope.model.isManager) {
+                $scope.model.error.isHaveMedicalBook = true;
+            } else {
+                $scope.model.error.isHaveMedicalBook = false;
+            }
+        }
+
+
+
 
         $scope.getPositions = function () {
             DictionaryService.getPositions().success(function (result) {
@@ -409,6 +421,10 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             if($rootScope.currentUserLoaded == true){
                 $scope.getPositions();
                 $scope.getPlatformsSmall();
+
+                if($rootScope.currentUser.Position.Guid==enumPositions.manager) {
+                    $scope.model.isManager = true;
+                }
             }
         });
 
@@ -426,10 +442,11 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             $scope.checkErrorPhone();
             $scope.checkErrorPosition();
             $scope.checkErrorPlatform();
+            $scope.checkErrorIsHaveMedicalBook();
             // $scope.checkErrorEmail();
 
 
-            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist
+            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {

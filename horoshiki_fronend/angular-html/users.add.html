@@ -210,14 +210,17 @@
                         <div class="col-md-4">
                             <div class="checkbox">
                                 <label>
-                                    <input ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"
+                                    <input ng-change="checkErrorIsHaveMedicalBook();" ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"
                                            id="isHaveMedicalBook" type="checkbox">
                                     <span class="text">Наличие мед. книжки</span>
                                 </label>
                             </div>
+                            <code class="ng-binding" ng-show="model.error.isHaveMedicalBook">Необходимо указать наличие медкнижки </code>
+
 
                             <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
                                 <datepicker ng-model="model.datepickerMedicalBook"></datepicker>
+                                <!--<code class="ng-binding" ng-show="model.error.datepickerMedicalBook">Необходимо указать срок действия медкнижки </code>-->
                             </div>
                         </div>
                     </div>
