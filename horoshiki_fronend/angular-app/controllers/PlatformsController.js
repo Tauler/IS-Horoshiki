@@ -133,7 +133,7 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         }
         $scope.model.error.address = false;
         $scope.checkErrorAddress = function () {
-            if ($scope.model.platform.Address.length < 3 || $scope.model.platform.Address.length > 255) {
+            if ($scope.model.platform.Address.length < 3 || $scope.model.platform.Address.length > 250) {
                 $scope.model.error.address = true;
             } else {
                 $scope.model.error.address = false;

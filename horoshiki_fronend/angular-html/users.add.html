@@ -26,8 +26,7 @@
                                 <input class="form-control" ng-blur="checkErrorLastName();" maxlength="50"
                                        placeholder="Фамилия"
                                        ng-model="model.user.LastName" name="lastName" id="lastName" type="text">
-                                <code class="ng-binding" ng-show="model.error.lastName">Не верный формат поля "Фамилия",
-                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <code class="ng-binding" ng-show="model.error.lastName">Необходимо указать фамилию пользователя. Значение должно быть от 3 до 50 символов </code>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -36,8 +35,7 @@
                                 <input class="form-control" ng-blur="checkErrorFirstName();" maxlength="50"
                                        placeholder="Имя"
                                        ng-model="model.user.FirstName" name="firstName" id="firstName" type="text">
-                                <code class="ng-binding" ng-show="model.error.firstName">Не верный формат поля "Имя",
-                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <code class="ng-binding" ng-show="model.error.firstName">Необходимо указать имя пользователя. Значение должно быть от 3 до 50 символов </code>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -46,8 +44,7 @@
                                 <input class="form-control" ng-blur="checkErrorMiddleName();" maxlength="50"
                                        placeholder="Отчество"
                                        ng-model="model.user.MiddleName" name="middleName" id="middleName" type="text">
-                                <code class="ng-binding" ng-show="model.error.middleName">Не верный формат поля
-                                    "Отчество", данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <code class="ng-binding" ng-show="model.error.middleName">Необходимо указать отчество пользователя. Значение должно быть от 3 до 50 символов </code>
                             </div>
                         </div>
                     </div>
@@ -61,9 +58,7 @@
                                            placeholder="Телефон" ng-model="model.user.Phone" name="phone" id="phone"
                                            type="text">
                                 </div>
-                                <code class="ng-binding" ng-show="model.error.phone">Не верный формат поля "Телефон",
-                                    данное
-                                    поле должно состоять из 10 цифр. </code>
+                                <code class="ng-binding" ng-show="model.error.phone">Необходимо указать телефон пользователя. Значение должно состоять из 10 цифр </code>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -109,8 +104,7 @@
                                             {{option.Value}}
                                         </option>
                                     </select>
-                                    <code class="ng-binding" ng-show="model.error.position">Поле "Должность" должно быть
-                                        заполнено. </code>
+                                    <code class="ng-binding" ng-show="model.error.position">Необходимо указать должность</code>
                                 </div>
                             </div>
                         </div>
@@ -143,8 +137,7 @@
                                             {{option.Name}}
                                         </option>
                                     </select>
-                                    <code class="ng-binding" ng-show="model.error.platform">Поле "Площадка" должно быть
-                                        заполнено. </code>
+                                    <code class="ng-binding" ng-show="model.error.platform">Необходимо указать площадку</code>
                                 </div>
                             </div>
                         </div>
@@ -195,18 +188,15 @@
                                 <input class="form-control" ng-blur="checkErrorUserName();" maxlength="50"
                                        placeholder="Логин"
                                        ng-model="model.user.UserName" name="userName" id="userName" type="text">
-                                <code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким
-                                    логином уже существует. </code>
-                                <code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин",
-                                    данное поле не может быть меньше 3 и больше 50 символов. </code>
+                                <code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с указанным логином уже существует </code>
+                                <code class="ng-binding" ng-show="model.error.userName">Необходимо указать логин пользователя. Значение должно быть от 3 до 50 символов </code>
                             </div>
                             <div class="form-group">
                                 <label for="password">Пароль*:</label>
                                 <input class="form-control" ng-blur="checkErrorPassword();" maxlength="50"
                                        placeholder="Пароль"
                                        ng-model="model.user.Password" name="password" id="password" type="password">
-                                <code class="ng-binding" ng-show="model.error.password">Не верный формат поля "Пароль",
-                                    данное поле не может быть меньше 6 и больше 50 символов. </code>
+                                <code class="ng-binding" ng-show="model.error.password">Необходимо указать пароль пользователя. Значение должно быть от 6 до 50 символов </code>
                             </div>
 
                             <div class="form-group">
@@ -214,8 +204,7 @@
                                 <input class="form-control" ng-blur="checkErrorConfirmPassword();" maxlength="50"
                                        placeholder="Подтверждение пароля" ng-model="model.user.ConfirmPassword"
                                        name="confirmPassword" id="confirmPassword" type="password">
-                                <code class="ng-binding" ng-show="model.error.confirmPassword">Пароли не
-                                    совпадают. </code>
+                                <code class="ng-binding" ng-show="model.error.confirmPassword">Подверждение пароля не совпадает с указанным паролем </code>
                             </div>
                         </div>
                         <div class="col-md-4">
