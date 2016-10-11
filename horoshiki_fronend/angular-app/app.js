@@ -20,6 +20,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'subdivisionsControllers',
     'platformsControllers',
     'reasonDismissalControllers',
+    'zonesControllers',
 
     'backendServices',
     'accountServices',
@@ -28,7 +29,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'dictionaryServices',
     'subdivisionsServices',
     'platformsServices',
-    'reasonDismissalServices'
+    'reasonDismissalServices',
+    'zonesServices'
 
 ]);
 
@@ -136,6 +138,15 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'reasonDismissal',
                 title: 'Просмотр причин увольнения'
+            })
+
+            .when('/zones', {
+                templateUrl: '/angular-html/zones.view.html',
+                controller: 'ZonesViewController',
+                pageId: 'zonesViewPage',
+                groupId: 'settings',
+                subgroupId: 'zones',
+                title: 'Просмотр площадок'
             })
 
             .when('/error', {
