@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
@@ -16,13 +15,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static DeliveryZone ToDaoEntity(this IDeliveryZoneModel model)
+        public static DeliveryZoneType ToDaoEntity(this IDeliveryZoneTypeModel model)
         {
-            return new DeliveryZone()
+            return new DeliveryZoneType()
             {
                 Id = model.Id,
                 Guid = model.Guid,
                 Time = model.Time,
+                Background = model.Background,
+                BorderColor = model.BorderColor,
+                Opacity = model.Opacity,
                 Value = model.Value
             };
         }
@@ -32,7 +34,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<DeliveryZone> ToDaoEntityList(this IEnumerable<IDeliveryZoneModel> models)
+        public static IEnumerable<DeliveryZoneType> ToDaoEntityList(this IEnumerable<IDeliveryZoneTypeModel> models)
         {
             return models.Select(model => model.ToDaoEntity());
         }
@@ -42,13 +44,16 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static IDeliveryZoneModel ToModelEntity(this DeliveryZone model)
+        public static IDeliveryZoneTypeModel ToModelEntity(this DeliveryZoneType model)
         {
-            return new DeliveryZoneModel()
+            return new DeliveryZoneTypeModel()
             {
                 Id = model.Id,
                 Guid = model.Guid,
                 Time = model.Time,
+                Background = model.Background,
+                BorderColor = model.BorderColor,
+                Opacity = model.Opacity,
                 Value = model.Value
             };
         }
@@ -58,7 +63,7 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public static IEnumerable<IDeliveryZoneModel> ToModelEntityList(this IEnumerable<DeliveryZone> models)
+        public static IEnumerable<IDeliveryZoneTypeModel> ToModelEntityList(this IEnumerable<DeliveryZoneType> models)
         {
             return models.Select(model => model.ToModelEntity());
         }

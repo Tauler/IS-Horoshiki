@@ -1,14 +1,14 @@
-﻿namespace IsHoroshiki.BusinessEntities.NotEditable.Interfaces
+﻿namespace IsHoroshiki.DAO.DaoEntities.NotEditable
 {
     /// <summary>
     /// Типы зон доставки
     /// </summary>
-    public interface IDeliveryZoneTypeModel : IBaseNotEditableModel
+    public class DeliveryZoneType : BaseNotEditableDaoEntity
     {
         /// <summary>
         /// Время доставки в указанную зону в минутах
         /// </summary>
-        int Time
+        public int Time
         {
             get;
             set;
@@ -17,7 +17,7 @@
         /// <summary>
         /// Цвет заливки 
         /// </summary>
-        string Background
+        public string Background
         {
             get;
             set;
@@ -26,7 +26,7 @@
         /// <summary>
         /// Прозрачность заливки 
         /// </summary>
-        float Opacity
+        public float Opacity
         {
             get;
             set;
@@ -35,7 +35,7 @@
         /// <summary>
         /// Цвет контура 
         /// </summary>
-        string BorderColor
+        public string BorderColor
         {
             get;
             set;

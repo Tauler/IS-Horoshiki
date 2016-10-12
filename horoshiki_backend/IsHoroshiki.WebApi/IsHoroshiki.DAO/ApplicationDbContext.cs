@@ -118,7 +118,7 @@ namespace IsHoroshiki.DAO
         /// <summary>
         /// Список сущностей БД Типы зон доставки
         /// </summary>
-        public DbSet<DeliveryZone> DeliveryZones
+        public DbSet<DeliveryZoneType> DeliveryZones
         {
             get;
             set;
@@ -170,6 +170,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new SubDivisionConfiguration());
             modelBuilder.Configurations.Add(new PriceTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryZoneConfiguration());
+            modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryTimeConfiguration());
         }
 

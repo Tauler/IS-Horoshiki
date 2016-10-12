@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
 {
     /// <summary>
     /// Сервис Типы зон доставки
     /// </summary>
-    public class DeliveryZoneService : BaseNotEditableService<IDeliveryZoneModel, DeliveryZone, IDeliveryZoneRepository>, IDeliveryZoneService
+    public class DeliveryZoneTypeService : BaseNotEditableService<IDeliveryZoneTypeModel, DeliveryZoneType, IDeliveryZoneTypeRepository>, IDeliveryZoneTypeService
     {
         #region поля и свойства
 
@@ -28,8 +28,8 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// Конструктор
         /// </summary>
         /// <param name="unitOfWork">UnitOfWork</param>
-        public DeliveryZoneService(UnitOfWork unitOfWork)
-            : base(unitOfWork.DeliveryZoneRepository)
+        public DeliveryZoneTypeService(UnitOfWork unitOfWork)
+            : base(unitOfWork.DeliveryZoneTypeRepository)
         {
             _unitOfWork = unitOfWork;
         }
@@ -43,7 +43,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="daoEntity"></param>
         /// <returns></returns>
-        protected override IDeliveryZoneModel ConvertTo(DeliveryZone daoEntity)
+        protected override IDeliveryZoneTypeModel ConvertTo(DeliveryZoneType daoEntity)
         {
             return daoEntity.ToModelEntity();
         }
@@ -53,7 +53,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable
         /// </summary>
         /// <param name="collection">коллекции Dao объектов</param>
         /// <returns></returns>
-        protected override IEnumerable<IDeliveryZoneModel> ConvertTo(IEnumerable<DeliveryZone> collection)
+        protected override IEnumerable<IDeliveryZoneTypeModel> ConvertTo(IEnumerable<DeliveryZoneType> collection)
         {
             return collection.ToModelEntityList();
         }

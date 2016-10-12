@@ -183,6 +183,15 @@
   <data name="BaseEditableService_EntityUpdateNotFound" xml:space="preserve">
     <value>Объекта с Id="{0}" не существует!</value>
   </data>
+  <data name="DeliveryZoneValidator_DeliveryZoneTypeIsNull" xml:space="preserve">
+    <value>Необходимо указать тип зоны доставки!</value>
+  </data>
+  <data name="DeliveryZoneValidator_NameIsNull" xml:space="preserve">
+    <value>Необходимо указать наименование!</value>
+  </data>
+  <data name="DeliveryZoneValidator_СoordinatesIsNull" xml:space="preserve">
+    <value>Необходимо указать координаты зоны доставки!</value>
+  </data>
   <data name="EmployeeReasonDismissalValidator_NameIsNull" xml:space="preserve">
     <value>Необходимо указать наименование!</value>
   </data>

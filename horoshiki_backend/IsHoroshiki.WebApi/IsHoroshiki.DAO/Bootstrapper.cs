@@ -27,7 +27,9 @@ namespace IsHoroshiki.DAO
             }
 
             container.RegisterType<IBuyProcessRepository, BuyProcessRepository>();
+            container.RegisterType<IDeliveryTimeRepository, DeliveryTimeRepository>();
             container.RegisterType<IDeliveryZoneRepository, DeliveryZoneRepository>();
+            container.RegisterType<IDeliveryZoneTypeRepository, DeliveryZoneTypeRepository>();
             container.RegisterType<IDepartmentRepository, DepartmentRepository>();
             container.RegisterType<ISubDepartmentRepository, SubDepartmentRepository>();
             container.RegisterType<IEmployeeReasonDismissalRepository, EmployeeReasonDismissalRepository>();
@@ -39,7 +41,6 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IPlatformStatusRepository, PlatformStatusRepository>();
             container.RegisterType<ISubDivisionRepository, SubDivisionRepository>();
             container.RegisterType<IAccountRepository, AccountRepository>();
-            container.RegisterType<IDeliveryTimeRepository, DeliveryTimeRepository>();
             container.RegisterType<IPlatformRepository, PlatformRepository>();
 
             return container;

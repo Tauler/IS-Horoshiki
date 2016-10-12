@@ -69,6 +69,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,10 +89,13 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
+    <Compile Include="Editable\DeliveryZoneModel.cs" />
+    <Compile Include="Editable\Interfaces\IDeliveryZoneModel.cs" />
     <Compile Include="Editable\Interfaces\IPlatformModel.cs" />
     <Compile Include="Editable\Interfaces\ISubDivisionModel.cs" />
     <Compile Include="Account\Interfaces\IApplicationUserSmallModel.cs" />
     <Compile Include="Editable\MappingDao\PlatformMappingDao.cs" />
+    <Compile Include="Editable\MappingDao\DeliveryZoneModelMappingDao.cs" />
     <Compile Include="Editable\PlatformModel.cs" />
     <Compile Include="Account\ApplicationUserSmallModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
@@ -101,11 +105,12 @@
     <Compile Include="Kladr\MappingDao\KladrResultModelMappingDao.cs" />
     <Compile Include="Editable\EmployeeReasonDismissalModel.cs" />
     <Compile Include="Editable\Interfaces\IEmployeeReasonDismissalModel.cs" />
+    <Compile Include="NotEditable\Interfaces\IDeliveryZoneTypeModel.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayModel.cs" />
     <Compile Include="NotEditable\BaseNotEditableModel.cs" />
     <Compile Include="NotEditable\BuyProcessModel.cs" />
     <Compile Include="NotEditable\DeliveryTimeModel.cs" />
-    <Compile Include="NotEditable\DeliveryZoneModel.cs" />
+    <Compile Include="NotEditable\DeliveryZoneTypeModel.cs" />
     <Compile Include="NotEditable\Interfaces\IDeliveryTimeModel.cs" />
     <Compile Include="NotEditable\Interfaces\ISubDepartmentModel.cs" />
     <Compile Include="NotEditable\MappingDao\DeliveryTimeTypeModelMappingDao.cs" />
@@ -116,7 +121,6 @@
     <Compile Include="NotEditable\SubDepartmentModel.cs" />
     <Compile Include="NotEditable\DepartmentModel.cs" />
     <Compile Include="NotEditable\EmployeeStatusModel.cs" />
-    <Compile Include="NotEditable\Interfaces\IDeliveryZoneModel.cs" />
     <Compile Include="NotEditable\Interfaces\IDepartmentModel.cs" />
     <Compile Include="NotEditable\Interfaces\IEmployeeStatusModel.cs" />
     <Compile Include="NotEditable\Interfaces\IBuyProcessModel.cs" />

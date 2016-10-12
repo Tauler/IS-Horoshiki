@@ -110,6 +110,16 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(EmployeeReasonDismissalErrors.NameIsNull, ResourceBusinessServices.EmployeeReasonDismissalValidator_NameIsNull);
         }
 
+        /// <summary>
+        /// Заполнение ошибок для зон доставки
+        /// </summary>
+        private static void FillMessageDeliveryZoneHolder()
+        {
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.NameIsNull, ResourceBusinessServices.DeliveryZoneValidator_NameIsNull);
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.DeliveryZoneTypeIsNull, ResourceBusinessServices.DeliveryZoneValidator_DeliveryZoneTypeIsNull);
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.СoordinatesIsNull, ResourceBusinessServices.DeliveryZoneValidator_СoordinatesIsNull);
+        }
+
         #endregion
     }
 }

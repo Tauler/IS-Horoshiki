@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.WebApi.Controllers.NotEditable
 {
@@ -8,7 +8,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
     /// Контроллер Типы зон доставки
     /// </summary>
     [Authorize]
-    public class DeliveryZonesController : BaseNotEditableController<IDeliveryZoneModel, IDeliveryZoneService>
+    public class DeliveryZoneTypesController : BaseNotEditableController<IDeliveryZoneTypeModel, IDeliveryZoneTypeService>
     {
         #region Конструктор
 
@@ -16,7 +16,7 @@ namespace IsHoroshiki.WebApi.Controllers.NotEditable
         /// Конструктор
         /// </summary>
         /// <param name="service">Cервис Типы зон доставки</param>
-        public DeliveryZonesController(IDeliveryZoneService service)
+        public DeliveryZoneTypesController(IDeliveryZoneTypeService service)
             : base(service)
         {
             

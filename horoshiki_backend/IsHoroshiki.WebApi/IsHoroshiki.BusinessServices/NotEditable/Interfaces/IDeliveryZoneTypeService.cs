@@ -5,7 +5,7 @@ namespace IsHoroshiki.BusinessServices.NotEditable.Interfaces
     /// <summary>
     /// Cервис Типы зон доставки
     /// </summary>
-    public interface IDeliveryZoneService : IBaseNotEditableService<IDeliveryZoneModel>
+    public interface IDeliveryZoneTypeService : IBaseNotEditableService<IDeliveryZoneTypeModel>
     {
        
     }

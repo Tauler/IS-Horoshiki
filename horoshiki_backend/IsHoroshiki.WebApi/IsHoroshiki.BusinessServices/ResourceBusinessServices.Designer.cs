@@ -259,6 +259,33 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать тип зоны доставки!.
+        /// </summary>
+        internal static string DeliveryZoneValidator_DeliveryZoneTypeIsNull {
+            get {
+                return ResourceManager.GetString("DeliveryZoneValidator_DeliveryZoneTypeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать наименование!.
+        /// </summary>
+        internal static string DeliveryZoneValidator_NameIsNull {
+            get {
+                return ResourceManager.GetString("DeliveryZoneValidator_NameIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать координаты зоны доставки!.
+        /// </summary>
+        internal static string DeliveryZoneValidator_СoordinatesIsNull {
+            get {
+                return ResourceManager.GetString("DeliveryZoneValidator_СoordinatesIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать наименование!.
         /// </summary>
         internal static string EmployeeReasonDismissalValidator_NameIsNull {

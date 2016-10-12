@@ -83,9 +83,14 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private IPriceTypeRepository _priceTypeRepository;
 
         /// <summary>
-        /// Репозиторий Типы зон доставки
+        /// Репозиторий зон доставки
         /// </summary>
         private IDeliveryZoneRepository _deliveryZoneRepository;
+
+        /// <summary>
+        /// Репозиторий Типы зон доставки
+        /// </summary>
+        private IDeliveryZoneTypeRepository _deliveryZoneTypeRepository;
 
         /// <summary>
         /// Репозиторий Время доставки
@@ -284,7 +289,7 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         }
 
         /// <summary>  
-        /// Репозиторий Типы зон доставки  
+        /// Репозиторий зон доставки  
         /// </summary>  
         public IDeliveryZoneRepository DeliveryZoneRepository
         {
@@ -295,6 +300,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._deliveryZoneRepository = new DeliveryZoneRepository(_context);
                 }
                 return _deliveryZoneRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Типы зон доставки  
+        /// </summary>  
+        public IDeliveryZoneTypeRepository DeliveryZoneTypeRepository
+        {
+            get
+            {
+                if (this._deliveryZoneTypeRepository == null)
+                {
+                    this._deliveryZoneTypeRepository = new DeliveryZoneTypeRepository(_context);
+                }
+                return _deliveryZoneTypeRepository;
             }
         }
 
