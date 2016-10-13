@@ -21,24 +21,48 @@
                 <div class="row">
                     <div class="col-md-9" style="height: 600px">
 
-                        <ya-map ya-zoom="10" ya-center="[37.75,55.73]" ya-event-click="notActiveZone($event)" ya-after-init="initMap($target);">
+                        <ya-map ya-zoom="10" ya-center="[37.75,55.73]" ya-event-click="notActiveZone($event)"
+                                ya-after-init="initMap($target);">
                             <ya-geo-object ng-if="model.objects.length!=0"
                                            ng-repeat="object in model.objects"
                                            ya-source="object.polygon"
                                            ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1 }"
                                            ya-after-init="addedPolygon($target);"
                                            ya-event-click="changeActiveZoneWithMap($event)"
-                                           ya-draw>{{object.options}}</ya-geo-object>
+                                           ya-draw>{{object.options}}
+                            </ya-geo-object>
                         </ya-map>
                     </div>
                     <div class="col-md-3">
                         <a ng-click="addObject();" href="javascript:void(0);" class="btn btn-default">Добавить зону</a>
-                        <a ng-click="deleteObject();" href="javascript:void(0);" class="btn btn-default">Удалить зону</a>
+                        <a ng-click="deleteObject();" href="javascript:void(0);" class="btn btn-default">Удалить
+                            зону</a>
+
+                        <div class="padding-top-20">
+                            <div class="form-group">
+                                <label for="subdivisions">Подразделение:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select name="priceType" id="subdivisions" class="form-control"
+                                            ng-model="model.priceTypeModel">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+                                            {{subdivision.Name}}
+                                        </option>
+                                    </select>
+                                    <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
+                                        <!--подразделения </code>-->
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="padding-top-20" ng-show="model.zoneForm.active">
                             <form role="form">
                                 <div class="form-group">
                                     <label for="zoneName">Название зоны:</label>
-                                    <input class="form-control" ng-model="model.zoneForm.name" ng-change="changeValueActiveZone();" id="zoneName" placeholder="Название зоны"
+                                    <input class="form-control" ng-model="model.zoneForm.name"
+                                           ng-change="changeValueActiveZone();" id="zoneName"
+                                           placeholder="Название зоны"
                                            type="text">
                                 </div>
                             </form>
