@@ -8,6 +8,15 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
     public interface IDeliveryZoneModel : IBaseBusninessModel
     {
         /// <summary>
+        /// Площадка
+        /// </summary>
+        IPlatformModel Platform
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Типы зон
         /// </summary>
         IDeliveryZoneTypeModel DeliveryZoneType

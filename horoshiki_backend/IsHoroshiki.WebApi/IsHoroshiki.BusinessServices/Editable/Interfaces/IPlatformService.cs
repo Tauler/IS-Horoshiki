@@ -1,12 +1,18 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.Interfaces;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace IsHoroshiki.BusinessServices.Editable.Interfaces
 {
     /// <summary>
-    /// Cервис Платформа
+    /// Cервис Площадка
     /// </summary>
     public interface IPlatformService : IBaseEditableService<IPlatformModel>
     {
-       
+        /// <summary>
+        /// Получить все площадки для подразделения
+        /// </summary>
+        /// <param name="subDivisionId">Id подразделения</param>
+        Task<IEnumerable<IPlatformModel>> GetAllBySubDivision(int subDivisionId);
     }
 }

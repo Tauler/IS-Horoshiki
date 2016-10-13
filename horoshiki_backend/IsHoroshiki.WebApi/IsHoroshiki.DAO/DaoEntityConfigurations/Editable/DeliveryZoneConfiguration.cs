@@ -1,4 +1,4 @@
-﻿using IsHoroshiki.BusinessEntities.Editable;
+﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
 {
@@ -22,7 +22,8 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
             Property(p => p.Coordinates)
                 .IsRequired();
 
-            HasRequired(s => s.DeliveryZoneType);            
+            HasRequired(s => s.DeliveryZoneType);
+            HasRequired(s => s.Platform);
         }
 
         #endregion

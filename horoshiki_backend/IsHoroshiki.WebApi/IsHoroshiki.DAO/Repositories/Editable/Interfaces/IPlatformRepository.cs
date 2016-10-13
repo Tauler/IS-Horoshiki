@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
+using System.Collections.Generic;
 
 namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
 {
@@ -7,6 +8,12 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
     /// </summary>
     public interface IPlatformRepository : IBaseRepository<Platform>
     {
+        /// <summary>
+        /// Получить все площадки для подразделения
+        /// </summary>
+        /// <param name="subDivisionId">Id подразделения</param>
+        IEnumerable<Platform> GetAllBySubDivision(int subDivisionId);
+
         /// <summary>
         /// true - если существует площадка, для которой указан пользователь с Id
         /// </summary>

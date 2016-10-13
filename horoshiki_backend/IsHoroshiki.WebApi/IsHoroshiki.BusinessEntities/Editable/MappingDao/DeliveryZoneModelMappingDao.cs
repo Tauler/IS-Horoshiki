@@ -2,6 +2,7 @@
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 
 namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
 {
@@ -21,7 +22,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 Name = model.Name,
-                DeliveryZoneType = model.DeliveryZoneType.ToDaoEntity(),
+                Platform = model.Platform != null ? model.Platform.ToDaoEntity() : null,
+                DeliveryZoneType = model.DeliveryZoneType != null ? model.DeliveryZoneType.ToDaoEntity() : null,
                 Coordinates = GetBytes(model.Сoordinates)
             };
         }
@@ -47,6 +49,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 Name = model.Name,
+                Platform = model.Platform != null ? model.Platform.ToModelEntity() : null,
                 DeliveryZoneType = model.DeliveryZoneType != null ? model.DeliveryZoneType.ToModelEntity() : null,
                 Сoordinates = GetString(model.Coordinates)
             };
@@ -72,6 +75,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         {
             daoModel.Id = model.Id;
             daoModel.Name = model.Name;
+            daoModel.PlatformId = model.Platform != null ? model.Platform.Id : 0;
             daoModel.DeliveryZoneTypeId = model.DeliveryZoneType != null ? model.DeliveryZoneType.Id : 0;
             daoModel.Coordinates = GetBytes(model.Сoordinates);
 

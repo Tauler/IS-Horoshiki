@@ -3,7 +3,7 @@
 namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
 {
     /// <summary>
-    /// Конфигурация Платформа
+    /// Конфигурация Площадка
     /// </summary>
     public class PlatformConfiguration : BaseDaoEntityConfiguration<Platform>
     {

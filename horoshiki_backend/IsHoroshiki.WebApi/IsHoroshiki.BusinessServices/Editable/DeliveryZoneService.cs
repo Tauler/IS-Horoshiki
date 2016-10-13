@@ -3,14 +3,14 @@ using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.DAO.UnitOfWorks;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
-using IsHoroshiki.BusinessEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
     /// <summary>
-    /// Сервис  Зона доставки
+    /// Сервис Зона доставки
     /// </summary>
     public class DeliveryZoneService : BaseEditableService<IDeliveryZoneModel, IDeliveryZoneValidator, DeliveryZone, IDeliveryZoneRepository>, IDeliveryZoneService
     {

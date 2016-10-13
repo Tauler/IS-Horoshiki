@@ -12,6 +12,16 @@ namespace IsHoroshiki.BusinessEntities.Editable
     public class DeliveryZoneModel : BaseBusninessModel, IDeliveryZoneModel
     {
         /// <summary>
+        /// Площадка
+        /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<PlatformModel, IPlatformModel>))]
+        public IPlatformModel Platform
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Типы зон
         /// </summary>
         [JsonConverter(typeof(EntityModelConverter<DeliveryZoneTypeModel, IDeliveryZoneTypeModel>))]

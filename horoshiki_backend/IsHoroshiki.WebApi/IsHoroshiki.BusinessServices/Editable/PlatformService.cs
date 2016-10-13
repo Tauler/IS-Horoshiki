@@ -10,11 +10,12 @@ using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
+using System.Linq;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
     /// <summary>
-    /// Сервис Платформа
+    /// Сервис Площадка
     /// </summary>
     public class PlatformService : BaseEditableService<IPlatformModel, IPlatformValidator, Platform, IPlatformRepository>, IPlatformService
     {
@@ -29,6 +30,27 @@ namespace IsHoroshiki.BusinessServices.Editable
             : base(unitOfWork, unitOfWork.PlatformRepository, validator)
         {
             
+        }
+
+        #endregion
+
+        #region IPlatformService
+
+        /// <summary>
+        /// Получить все площадки для подразделения
+        /// </summary>
+        /// <param name="subDivisionId">Id подразделения</param>
+        public async Task<IEnumerable<IPlatformModel>> GetAllBySubDivision(int subDivisionId)
+        {
+            var resultDao = _repository.GetAllBySubDivision(subDivisionId);
+            var result = resultDao.ToModelEntityList().ToList();
+            foreach (var platform in result)
+            {
+                var zones = _unitOfWork.DeliveryZoneRepository.GetAllByPlatform(platform.Id);
+                platform.DeliveryZones = zones.ToModelEntityList().ToList();
+            }
+                       
+            return result;
         }
 
         #endregion

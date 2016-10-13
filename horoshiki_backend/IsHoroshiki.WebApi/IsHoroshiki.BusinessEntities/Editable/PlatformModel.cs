@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace IsHoroshiki.BusinessEntities.Editable
 {
     /// <summary>
-    /// Платформа
+    /// Площадка
     /// </summary>
     public class PlatformModel : BaseBusninessModel, IPlatformModel
     {
@@ -59,6 +59,16 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// </summary>
         [JsonConverter(typeof(CollectionEntityConverter<BuyProcessModel, IBuyProcessModel>))]
         public ICollection<IBuyProcessModel> BuyProcesses
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Зоны доставки
+        /// </summary>
+        [JsonConverter(typeof(CollectionEntityConverter<DeliveryZoneModel, IDeliveryZoneModel>))]
+        public ICollection<IDeliveryZoneModel> DeliveryZones
         {
             get;
             set;

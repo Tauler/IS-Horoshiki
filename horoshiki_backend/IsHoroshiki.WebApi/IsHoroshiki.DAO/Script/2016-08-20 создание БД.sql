@@ -155,16 +155,16 @@ CREATE TABLE [dbo].[DeliveryTimes](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[DeliveryZones]    Script Date: 11.09.2016 15:12:31 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[DeliveryZones](
+
+CREATE TABLE [dbo].[DeliveryZoneTypes](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Guid] [uniqueidentifier] NOT NULL,
 	[Time] [int] NOT NULL,
-	[Value] [nvarchar](100) NOT NULL,
- CONSTRAINT [PK_dbo.DeliveryZones] PRIMARY KEY CLUSTERED 
+	[Background] [nvarchar](10) NOT NULL,
+	[Opacity] [real] NOT NULL,
+	[BorderColor] [nvarchar](10) NOT NULL,
+	[Value] [nvarchar](255) NOT NULL,
+ CONSTRAINT [PK_dbo.DeliveryZoneTypes] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]

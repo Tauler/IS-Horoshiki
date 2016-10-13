@@ -11,7 +11,7 @@ namespace IsHoroshiki.BusinessServices
        where TModelEntity : IBaseBusninessModel
     {
         /// <summary>
-        /// Получить всех пользователей
+        /// Получить все 
         /// </summary>
         /// <param name="pageNo">Номер страницы</param>
         /// <param name="pageSize">Размер страницы</param>

@@ -6,7 +6,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
 {
     /// <summary>
-    /// Подразделения
+    /// Площадка
     /// </summary>
     public interface IPlatformModel : IBaseBusninessModel
     {
@@ -50,6 +50,15 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// Способы покупки
         /// </summary>
         ICollection<IBuyProcessModel> BuyProcesses
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Зоны доставки
+        /// </summary>
+        ICollection<IDeliveryZoneModel> DeliveryZones
         {
             get;
             set;

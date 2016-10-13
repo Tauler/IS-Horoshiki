@@ -1,5 +1,7 @@
-﻿using IsHoroshiki.BusinessEntities.Editable;
+﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
 {
@@ -32,6 +34,26 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             }
 
             Context.Entry(entity).Reference(p => p.DeliveryZoneType).Load();
+        }
+
+        #endregion
+
+        #region IDeliveryZoneRepository
+
+        /// <summary>  
+        /// Получить все записи для площадки
+        /// </summary>  
+        /// <param name="platformId">Id площадки</param>
+        public IEnumerable<DeliveryZone> GetAllByPlatform(int platformId)
+        {
+            var result = DbSet.Where(d => d.PlatformId == platformId).ToList();
+
+            foreach (var entity in result)
+            {
+                LoadChildEntities(entity);
+            }
+
+            return result;
         }
 
         #endregion

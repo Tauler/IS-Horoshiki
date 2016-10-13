@@ -2,13 +2,31 @@
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 
-namespace IsHoroshiki.BusinessEntities.Editable
+namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
     /// <summary>
     /// Зона доставки
     /// </summary>
     public class DeliveryZone : BaseDaoEntity
     {
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public int PlatformId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public Platform Platform
+        {
+            get;
+            set;
+        }
+        
         /// <summary>
         /// Тип зоны
         /// </summary>

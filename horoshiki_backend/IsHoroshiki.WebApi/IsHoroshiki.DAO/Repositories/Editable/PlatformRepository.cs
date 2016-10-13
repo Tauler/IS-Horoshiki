@@ -1,5 +1,6 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
@@ -23,7 +24,16 @@ namespace IsHoroshiki.DAO.Repositories.Editable
 
         #endregion
 
-        #region 
+        #region IPlatformRepository
+
+        /// <summary>
+        /// Получить все площадки для подразделения
+        /// </summary>
+        /// <param name="subDivisionId">Id подразделения</param>
+        public IEnumerable<Platform> GetAllBySubDivision(int subDivisionId)
+        {
+            return DbSet.Where(p => p.SubDivisionId == subDivisionId).ToList();
+        }
 
         /// <summary>
         /// true - если существует площака, для которой указан пользователь с Id

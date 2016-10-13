@@ -6,7 +6,7 @@ using IsHoroshiki.DAO.DaoEntities.NotEditable;
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
     /// <summary>
-    /// Платформа
+    /// Площадка
     /// </summary>
     public class Platform : BaseDaoEntity
     {

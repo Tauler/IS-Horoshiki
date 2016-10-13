@@ -5,6 +5,7 @@ using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.Editable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity.Migrations;
 
 namespace IsHoroshiki.DAO
 {
@@ -116,9 +117,18 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
+        /// Список сущностей БД зон доставки
+        /// </summary>
+        public DbSet<DeliveryZone> DeliveryZones
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Список сущностей БД Типы зон доставки
         /// </summary>
-        public DbSet<DeliveryZoneType> DeliveryZones
+        public DbSet<DeliveryZoneType> DeliveryZoneTypes
         {
             get;
             set;
@@ -143,8 +153,11 @@ namespace IsHoroshiki.DAO
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
-            
+            //Database.SetInitializer<ApplicationDbContext>(null);
+            //Database.SetInitializer(new ApplicationDbInitializer());
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, ApplicationDbConfiguration>());
         }
+    
 
         #endregion
 
@@ -175,5 +188,23 @@ namespace IsHoroshiki.DAO
         }
 
         #endregion
+
+        internal sealed class ApplicationDbInitializer : MigrateDatabaseToLatestVersion<ApplicationDbContext, ApplicationDbConfiguration>
+        {
+
+        }
+
+        internal sealed class ApplicationDbConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
+        {
+            public ApplicationDbConfiguration()
+            {
+                AutomaticMigrationsEnabled = true;
+            }
+
+            protected override void Seed(ApplicationDbContext context)
+            {
+                //base.Seed(context);
+            }
+        }
     }
 }
