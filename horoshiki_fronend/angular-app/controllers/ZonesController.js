@@ -5,8 +5,8 @@
 
 var zonesControllers = angular.module('zonesControllers', []);
 
-zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'BackendService',
-    function ($scope, $location, BackendService) {
+zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'BackendService', 'SubdivisionService',
+    function ($scope, $location, BackendService, SubdivisionService) {
 
         var obj_index = 0;
 
@@ -14,8 +14,13 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         $scope.model.objects = [];
         $scope.model.zoneForm = {};
         $scope.model.zoneForm.active = false;
-        $scope.map = {};
 
+        $scope.model.def = {};
+        $scope.model.def.options = {
+
+        };
+
+        $scope.map = {};
 
         $scope.initMap = function (target) {
             $scope.map = target;
@@ -32,7 +37,6 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
 
         }
 
-
         $scope.addObject = function () {
 
             var zone = {
@@ -41,9 +45,9 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 options: {
                     editorDrawingCursor: 'crosshair',
                     editorMaxPoints: 50,
-                    fillColor: '#00cc00',
-                    strokeColor: '#00034F',
-                    fillOpacity: '0.3',
+                    fillColor: '#444444',
+                    strokeColor: '#444444',
+                    fillOpacity: '0.1',
                     strokeWidth: 1
                 },
                 polygon: {
@@ -83,22 +87,6 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
             }
         }
 
-        // $scope.editZone = function (geoObject) {
-        //
-        //     // $scope.map.geoObjects.add(polygon);
-        //
-        //
-        //     // $scope.map.geoObjects.each(function (geoObject) {
-        //     //     if (geoObject.properties.get('id') == id) {
-        //             geoObject.editor.stopEditing();
-        //             console.log(geoObject.geometry.getCoordinates());
-        //     //     }
-        //     // });
-        //
-        //     // console.log(object.getCoordinates());
-        //     // object.editor.stopEditing();
-        // }
-
         $scope.changeActiveZoneWithMap = function (event) {
             $scope.changeActiveZone(event.get('target').properties.get('index'));
         }
@@ -111,6 +99,16 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     $scope.model.zoneForm.active = true;
                 }
             }
+
+            $scope.map.geoObjects.each(function (geoObject) {
+                geoObject.options.set({fillOpacity: '0.1'});
+                geoObject.editor.stopEditing();
+                if (geoObject.properties.get('index') == index) {
+                    geoObject.options.set({fillOpacity: '0.3'});
+                    geoObject.editor.startEditing();
+                }
+            });
+
         }
 
         $scope.changeValueActiveZone = function () {
@@ -124,8 +122,26 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
 
         $scope.notActiveZone = function (event) {
             $scope.model.zoneForm.active = false;
+            $scope.map.geoObjects.each(function (geoObject) {
+                geoObject.options.set({fillOpacity: '0.1'});
+                geoObject.editor.stopEditing();
+            });
         }
 
 
+        $scope.getAllSubdivisions = function () {
+            $scope.model.subdivisions = SubdivisionService.getSubdivisionsWithoutPaginate('Id', true).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.subdivisions = result.Data.Data;
+
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+        }
+
+        $scope.getAllSubdivisions();
     }
 ]);
