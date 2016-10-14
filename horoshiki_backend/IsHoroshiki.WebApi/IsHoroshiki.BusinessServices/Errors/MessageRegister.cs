@@ -101,6 +101,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(PlatformErrors.UserNotFound, ResourceBusinessServices.PlatformService_UserNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.BuyProcessNotFound, ResourceBusinessServices.PlatformService_BuyProcessNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.CanNotDeleteExistUser, ResourceBusinessServices.PlatformService_CanNotDeleteExistUser);
+            MessageHolder.Instance.AddMessage(PlatformErrors.YandexMapIsNull, ResourceBusinessServices.PlatformService_YandexMapIsNull);
         }
 
         /// <summary>

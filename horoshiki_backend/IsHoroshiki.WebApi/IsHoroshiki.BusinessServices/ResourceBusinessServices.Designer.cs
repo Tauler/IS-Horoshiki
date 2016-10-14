@@ -394,6 +394,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать координаты площадки!.
+        /// </summary>
+        internal static string PlatformService_YandexMapIsNull {
+            get {
+                return ResourceManager.GetString("PlatformService_YandexMapIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходмио указать способы покупки!.
         /// </summary>
         internal static string PlatformValidator_BuyProcessesIsNullModel {

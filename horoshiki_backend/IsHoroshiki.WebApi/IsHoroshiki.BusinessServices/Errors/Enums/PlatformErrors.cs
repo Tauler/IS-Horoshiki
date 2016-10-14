@@ -70,5 +70,10 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// Невозможно удалить платформу, т.к. он привязана к пользователю!
         /// </summary>
         CanNotDeleteExistUser,
+
+        /// <summary>
+        /// Необходимо указать координаты площадки!
+        /// </summary>
+        YandexMapIsNull,
     }
 }

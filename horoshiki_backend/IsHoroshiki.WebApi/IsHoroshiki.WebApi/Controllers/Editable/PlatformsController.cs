@@ -4,6 +4,8 @@ using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using System.Threading.Tasks;
 using System;
 using IsHoroshiki.WebApi.Handlers;
+using IsHoroshiki.BusinessEntities.Editable;
+using IsHoroshiki.BusinessServices;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
@@ -41,6 +43,35 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             {
                 var list = await _service.GetAllBySubDivision(subDivisionId);
                 return Ok(list);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Сохранение координат площадки
+        /// </summary>
+        /// <param name="model">Модель сохранения координат площадки</param>
+        [HttpPost]
+        [Route("addYandexMap")]
+        public async Task<IHttpActionResult> AddYandexMapToPlatform(AddYandexMapPlatformModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
+                ModelEntityModifyResult result = await _service.AddYandexMapToPlatform(model.PlatformId, model.YandexMap);
+                if (!result.IsValidationSucceeded || !result.IsSucceeded)
+                {
+                    return new ErrorMessageResult(result.ValidationErrors);
+                }
+
+                return Ok();
             }
             catch (Exception e)
             {
