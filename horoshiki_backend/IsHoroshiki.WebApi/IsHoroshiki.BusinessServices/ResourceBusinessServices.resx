@@ -186,8 +186,14 @@
   <data name="DeliveryZoneValidator_DeliveryZoneTypeIsNull" xml:space="preserve">
     <value>Необходимо указать тип зоны доставки!</value>
   </data>
+  <data name="DeliveryZoneValidator_DeliveryZoneTypeNotFound" xml:space="preserve">
+    <value>Не найден тип зоны с Id="{0}"!</value>
+  </data>
   <data name="DeliveryZoneValidator_NameIsNull" xml:space="preserve">
     <value>Необходимо указать наименование!</value>
+  </data>
+  <data name="DeliveryZoneValidator_PlatformNotFound" xml:space="preserve">
+    <value>Не найдена площадка с Id="{0}"!</value>
   </data>
   <data name="DeliveryZoneValidator_СoordinatesIsNull" xml:space="preserve">
     <value>Необходимо указать координаты зоны доставки!</value>

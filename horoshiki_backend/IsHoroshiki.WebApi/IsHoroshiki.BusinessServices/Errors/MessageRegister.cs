@@ -118,6 +118,8 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.NameIsNull, ResourceBusinessServices.DeliveryZoneValidator_NameIsNull);
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.DeliveryZoneTypeIsNull, ResourceBusinessServices.DeliveryZoneValidator_DeliveryZoneTypeIsNull);
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.СoordinatesIsNull, ResourceBusinessServices.DeliveryZoneValidator_СoordinatesIsNull);
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.DeliveryZoneTypeNotFound, ResourceBusinessServices.DeliveryZoneValidator_DeliveryZoneTypeNotFound);
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.PlatformNotFound, ResourceBusinessServices.DeliveryZoneValidator_PlatformNotFound);
         }
 
         #endregion
