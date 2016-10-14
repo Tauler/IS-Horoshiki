@@ -28,6 +28,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             FillMessageSubDivisionHolder();
             FillMessagePlatformHolder();
             FillMessageEmployeeReasonDismissalHolder();
+            FillMessageDeliveryZoneHolder();
         }
 
         #region private

@@ -153,7 +153,7 @@ namespace IsHoroshiki.DAO
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
-            //Database.SetInitializer<ApplicationDbContext>(null);
+            Database.SetInitializer<ApplicationDbContext>(null);
             //Database.SetInitializer(new ApplicationDbInitializer());
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, ApplicationDbConfiguration>());
         }

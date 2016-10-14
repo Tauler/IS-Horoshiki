@@ -29,7 +29,7 @@
                                            ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1 }"
                                            ya-after-init="addedPolygon($target);"
                                            ya-event-click="changeActiveZoneWithMap($event)"
-                                           ya-draw>{{object.options}}
+                                           ya-draw>
                             </ya-geo-object>
                         </ya-map>
                     </div>
@@ -43,14 +43,29 @@
                                 <label for="subdivisions">Подразделение:</label>
                                 <div class="input-group" style="width: 100%">
                                     <select name="priceType" id="subdivisions" class="form-control"
-                                            ng-model="model.priceTypeModel">
-                                        <option value="">Не выбрано</option>
+                                            ng-model="model.subdivision"
+                                            ng-change="changeSubdivision();">
+                                        <!--<option value="">Не выбрано</option>-->
                                         <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
                                             {{subdivision.Name}}
                                         </option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="platforms">Площадка:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select name="priceType" id="platforms" class="form-control"
+                                            ng-model="model.platform"
+                                            ng-change="changePlatform();">
+                                        <!--<option value="">Не выбрано</option>-->
+                                        <option ng-repeat="platform in model.platforms" value="{{platform}}">
+                                            {{platform.Name}}
+                                        </option>
+                                    </select>
                                     <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
-                                        <!--подразделения </code>-->
+                                    <!--подразделения </code>-->
                                 </div>
                             </div>
                         </div>

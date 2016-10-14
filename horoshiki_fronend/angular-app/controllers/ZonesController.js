@@ -5,8 +5,8 @@
 
 var zonesControllers = angular.module('zonesControllers', []);
 
-zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'BackendService', 'SubdivisionService',
-    function ($scope, $location, BackendService, SubdivisionService) {
+zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'BackendService', 'SubdivisionService', 'PlatformsService',
+    function ($scope, $location, BackendService, SubdivisionService, PlatformsService) {
 
         var obj_index = 0;
 
@@ -107,6 +107,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     geoObject.options.set({fillOpacity: '0.3'});
                     geoObject.editor.startEditing();
                 }
+                console.log(JSON.stringify(geoObject.geometry.getCoordinates()));
             });
 
         }
@@ -128,12 +129,26 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
             });
         }
 
+        $scope.changeSubdivision = function () {
+            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+        }
+
+        $scope.changePlatform = function () {
+            if($scope.model.platform!=undefined && $scope.model.platform!=''){
+
+            }
+
+        }
+        
 
         $scope.getAllSubdivisions = function () {
-            $scope.model.subdivisions = SubdivisionService.getSubdivisionsWithoutPaginate('Id', true).success(function (result) {
+            SubdivisionService.getSubdivisionsWithoutPaginate('Id', true).success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.subdivisions = result.Data.Data;
-
+                    if($scope.model.subdivisions.length!=0){
+                        $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+                        $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+                    }
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -141,7 +156,23 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 httpErrors($location.url(), status);
             });
         }
-
+        
+        $scope.getAllPlatformBySubdivision = function (id) {
+           PlatformsService.getAllBySubdivision(id).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.platforms = result.Data;
+                    if($scope.model.platforms.length!=0){
+                        $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
+                    }
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+        }
+        
+        
         $scope.getAllSubdivisions();
     }
 ]);
