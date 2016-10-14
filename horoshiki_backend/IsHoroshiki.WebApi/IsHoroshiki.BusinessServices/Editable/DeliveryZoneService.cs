@@ -80,6 +80,11 @@ namespace IsHoroshiki.BusinessServices.Editable
                 result.DeliveryZoneType = _unitOfWork.DeliveryZoneTypeRepository.GetByIdAsync(result.DeliveryZoneTypeId).Result;
             }
 
+            if (result.PlatformId > 0)
+            {
+                result.Platform = _unitOfWork.PlatformRepository.GetByIdAsync(result.PlatformId).Result;
+            }
+
             return result;
         }
 
