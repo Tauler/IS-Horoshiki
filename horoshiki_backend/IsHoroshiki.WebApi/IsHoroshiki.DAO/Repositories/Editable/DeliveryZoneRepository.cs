@@ -34,6 +34,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             }
 
             Context.Entry(entity).Reference(p => p.DeliveryZoneType).Load();
+            Context.Entry(entity).Reference(p => p.Platform).Load();
         }
 
         #endregion

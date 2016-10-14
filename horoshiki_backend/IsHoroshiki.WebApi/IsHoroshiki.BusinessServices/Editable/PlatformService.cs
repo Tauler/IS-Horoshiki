@@ -11,6 +11,7 @@ using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
 using System.Linq;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -52,6 +53,36 @@ namespace IsHoroshiki.BusinessServices.Editable
                        
             return result;
         }
+
+        /// <summary>
+        /// Сохранение координат площадки
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <param name="coordinates">Координаты площадки</param>
+        /// <returns></returns>
+        public async Task<ModelEntityModifyResult> AddYandexMapToPlatform(int platformId, string coordinates)
+        {
+            var daoEntity = await _repository.GetByIdAsync(platformId);
+            if (daoEntity == null)
+            {
+                var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { platformId });
+                return new ModelEntityModifyResult(errorData);
+            }
+
+            if (string.IsNullOrEmpty(coordinates))
+            {
+                var errorData = new ErrorData(PlatformErrors.YandexMapIsNull);
+                return new ModelEntityModifyResult(errorData);
+            }
+
+            daoEntity.YandexMap = coordinates;
+
+            _repository.Update(daoEntity);
+            _unitOfWork.Save();
+
+            return new ModelEntityModifyResult();
+        }
+
 
         #endregion
 

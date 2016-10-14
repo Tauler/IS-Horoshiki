@@ -90,6 +90,7 @@
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
     <Compile Include="Editable\DeliveryZoneModel.cs" />
+    <Compile Include="Editable\Helpers\AddYandexMapPlatformModel.cs" />
     <Compile Include="Editable\Interfaces\IDeliveryZoneModel.cs" />
     <Compile Include="Editable\Interfaces\IPlatformModel.cs" />
     <Compile Include="Editable\Interfaces\ISubDivisionModel.cs" />

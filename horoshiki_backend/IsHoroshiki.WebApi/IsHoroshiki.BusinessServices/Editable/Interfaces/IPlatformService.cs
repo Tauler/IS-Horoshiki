@@ -14,5 +14,13 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// </summary>
         /// <param name="subDivisionId">Id подразделения</param>
         Task<IEnumerable<IPlatformModel>> GetAllBySubDivision(int subDivisionId);
+
+        /// <summary>
+        /// Сохранение координат площадки
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <param name="coordinates">Координаты площадки</param>
+        /// <returns></returns>
+        Task<ModelEntityModifyResult> AddYandexMapToPlatform(int platformId, string coordinates);
     }
 }

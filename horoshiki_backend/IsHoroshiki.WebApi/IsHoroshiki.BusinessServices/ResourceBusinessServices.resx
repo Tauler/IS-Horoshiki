@@ -186,8 +186,14 @@
   <data name="DeliveryZoneValidator_DeliveryZoneTypeIsNull" xml:space="preserve">
     <value>Необходимо указать тип зоны доставки!</value>
   </data>
+  <data name="DeliveryZoneValidator_DeliveryZoneTypeNotFound" xml:space="preserve">
+    <value>Не найден тип зоны с Id="{0}"!</value>
+  </data>
   <data name="DeliveryZoneValidator_NameIsNull" xml:space="preserve">
     <value>Необходимо указать наименование!</value>
+  </data>
+  <data name="DeliveryZoneValidator_PlatformNotFound" xml:space="preserve">
+    <value>Не найдена площадка с Id="{0}"!</value>
   </data>
   <data name="DeliveryZoneValidator_СoordinatesIsNull" xml:space="preserve">
     <value>Необходимо указать координаты зоны доставки!</value>
@@ -221,6 +227,9 @@
   </data>
   <data name="PlatformService_UserNotFound" xml:space="preserve">
     <value>Пользователя для указанного ID="{0}" не существует!</value>
+  </data>
+  <data name="PlatformService_YandexMapIsNull" xml:space="preserve">
+    <value>Необходимо указать координаты площадки!</value>
   </data>
   <data name="PlatformValidator_BuyProcessesIsNullModel" xml:space="preserve">
     <value>Необходмио указать способы покупки!</value>

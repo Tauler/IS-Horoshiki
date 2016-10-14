@@ -6,6 +6,9 @@ using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.BusinessServices.Validators;
+using System.Threading.Tasks;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -30,6 +33,34 @@ namespace IsHoroshiki.BusinessServices.Editable
         #endregion
 
         #region protected override
+
+        /// <summary>
+        /// Валидация сущности
+        /// </summary>
+        /// <param name="model">Сущность</param>
+        /// <returns></returns>
+        protected override async Task<ValidationResult> ValidationInternal(IDeliveryZoneModel model)
+        {
+            if (model.DeliveryZoneType != null)
+            {
+                var daoDeliveryZoneType = await _unitOfWork.DeliveryZoneTypeRepository.GetByIdAsync(model.DeliveryZoneType.Id);
+                if (daoDeliveryZoneType == null)
+                {
+                    return new ValidationResult(DeliveryZoneErrors.DeliveryZoneTypeNotFound, model.DeliveryZoneType.Id);
+                }
+            }
+
+            if (model.Platform != null)
+            {
+                var daoPlatform = await _unitOfWork.PlatformRepository.GetByIdAsync(model.Platform.Id);
+                if (daoPlatform == null)
+                {
+                    return new ValidationResult(DeliveryZoneErrors.PlatformNotFound, model.Platform.Id);
+                }
+            }
+
+            return new ValidationResult();
+        }
 
         /// <summary>
         /// Метод конвертации Dao объектa в бизнес-модель 

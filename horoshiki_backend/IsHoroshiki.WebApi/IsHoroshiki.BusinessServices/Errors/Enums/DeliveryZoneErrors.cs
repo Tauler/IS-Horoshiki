@@ -19,5 +19,15 @@
         /// Координаты зон не должны быть пустым
         /// </summary>
         СoordinatesIsNull,
+
+        /// <summary>
+        /// Не найден тип зоны с указанныи Id
+        /// </summary>
+        DeliveryZoneTypeNotFound,
+
+        /// <summary>
+        /// Не найдена площадка с указанныи Id
+        /// </summary>
+        PlatformNotFound,
     }
 }

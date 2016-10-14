@@ -28,6 +28,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             FillMessageSubDivisionHolder();
             FillMessagePlatformHolder();
             FillMessageEmployeeReasonDismissalHolder();
+            FillMessageDeliveryZoneHolder();
         }
 
         #region private
@@ -100,6 +101,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(PlatformErrors.UserNotFound, ResourceBusinessServices.PlatformService_UserNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.BuyProcessNotFound, ResourceBusinessServices.PlatformService_BuyProcessNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.CanNotDeleteExistUser, ResourceBusinessServices.PlatformService_CanNotDeleteExistUser);
+            MessageHolder.Instance.AddMessage(PlatformErrors.YandexMapIsNull, ResourceBusinessServices.PlatformService_YandexMapIsNull);
         }
 
         /// <summary>
@@ -118,6 +120,8 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.NameIsNull, ResourceBusinessServices.DeliveryZoneValidator_NameIsNull);
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.DeliveryZoneTypeIsNull, ResourceBusinessServices.DeliveryZoneValidator_DeliveryZoneTypeIsNull);
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.СoordinatesIsNull, ResourceBusinessServices.DeliveryZoneValidator_СoordinatesIsNull);
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.DeliveryZoneTypeNotFound, ResourceBusinessServices.DeliveryZoneValidator_DeliveryZoneTypeNotFound);
+            MessageHolder.Instance.AddMessage(DeliveryZoneErrors.PlatformNotFound, ResourceBusinessServices.DeliveryZoneValidator_PlatformNotFound);
         }
 
         #endregion

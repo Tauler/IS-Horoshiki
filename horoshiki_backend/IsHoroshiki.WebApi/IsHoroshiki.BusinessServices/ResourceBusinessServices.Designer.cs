@@ -268,11 +268,29 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Не найден тип зоны с Id=&quot;{0}&quot;!.
+        /// </summary>
+        internal static string DeliveryZoneValidator_DeliveryZoneTypeNotFound {
+            get {
+                return ResourceManager.GetString("DeliveryZoneValidator_DeliveryZoneTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать наименование!.
         /// </summary>
         internal static string DeliveryZoneValidator_NameIsNull {
             get {
                 return ResourceManager.GetString("DeliveryZoneValidator_NameIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не найдена площадка с Id=&quot;{0}&quot;!.
+        /// </summary>
+        internal static string DeliveryZoneValidator_PlatformNotFound {
+            get {
+                return ResourceManager.GetString("DeliveryZoneValidator_PlatformNotFound", resourceCulture);
             }
         }
         
@@ -372,6 +390,15 @@ namespace IsHoroshiki.BusinessServices {
         internal static string PlatformService_UserNotFound {
             get {
                 return ResourceManager.GetString("PlatformService_UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать координаты площадки!.
+        /// </summary>
+        internal static string PlatformService_YandexMapIsNull {
+            get {
+                return ResourceManager.GetString("PlatformService_YandexMapIsNull", resourceCulture);
             }
         }
         
