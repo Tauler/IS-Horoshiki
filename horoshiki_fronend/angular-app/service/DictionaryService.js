@@ -28,5 +28,10 @@ dictionaryServices.service('DictionaryService', ['$http', function($http) {
     this.getDepartments = function () {
         return $http.get(backendServerAddr+'/api/Departments', {timeout: backendTimeout, headers: getToken()});
     }
+    this.getDeliveryZoneTypes = function () {
+        return $http.get(backendServerAddr+'/api/DeliveryZoneTypes', {timeout: backendTimeout, headers: getToken()});
+    }
+
+
 }]);
 

@@ -18,6 +18,20 @@ platformsServices.service('PlatformsService', ['$http', function($http) {
     this.getAllBySubdivision = function (id) {
         return $http.get(backendServerAddr+'api/Platforms/subDivision?subDivisionId='+id, {timeout: backendTimeout, headers: getToken()});
     }
+
+    this.editCenter = function (id, center) {
+        var resp = $http({
+            url: backendServerAddr+'api/Platforms/addYandexMap',
+            method: 'POST',
+            data: {
+                "PlatformId": id,
+                "YandexMap": center
+            },
+            headers:  getToken()
+        });
+        return resp;
+
+    }
     
 
     this.getAllSmall = function (sortField, asc) {

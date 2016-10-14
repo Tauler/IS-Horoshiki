@@ -22,19 +22,22 @@
                     <div class="col-md-9" style="height: 600px">
                         <ya-map ya-zoom="10" ya-center="[37.75,55.73]" ya-event-click="notActiveZone($event)"
                                 ya-after-init="initMap($target);">
-                                <ya-geo-object ng-if="model.objects.length!=0"
-                                               ng-repeat="object in model.objects"
-                                               ya-source="object.polygon"
-                                               ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1 }"
-                                               ya-after-init="addedPolygon($target);"
-                                               ya-event-click="changeActiveZoneWithMap($event)">
-                                </ya-geo-object>
+                            <ya-geo-object ng-if="model.objects.length!=0"
+                                           ng-repeat="object in model.objects"
+                                           ya-source="object.polygon"
+                                           ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1 }"
+                                           ya-after-init="addedPolygon($target);"
+                                           ya-event-click="changeActiveZoneWithMap($event)"
+                                           ya-event-geometrychange="changeGeometry($event)">
+                            </ya-geo-object>
                         </ya-map>
                     </div>
                     <div class="col-md-3">
                         <a ng-click="addObject();" href="javascript:void(0);" class="btn btn-default">Добавить зону</a>
-                        <a ng-click="deleteObject();" href="javascript:void(0);" class="btn btn-default">Удалить зону</a>
-                        <a ng-click="saveCenterPlatform();" href="javascript:void(0);" class="btn btn-primary">Закрепить центр для площадки</a>
+                        <a ng-click="deleteObject();" href="javascript:void(0);" class="btn btn-default">Удалить
+                            зону</a>
+                        <a ng-click="saveCenterPlatform();" href="javascript:void(0);" class="btn btn-primary">Закрепить
+                            центр для площадки</a>
 
                         <div class="padding-top-20">
                             <div class="form-group">
@@ -77,6 +80,22 @@
                                            ng-change="changeValueActiveZone();" id="zoneName"
                                            placeholder="Название зоны"
                                            type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="zoneType">Тип зоны:</label>
+                                    <div class="input-group" style="width: 100%">
+                                        <select name="priceType" id="zoneType" class="form-control"
+                                                ng-model="model.zoneForm.zoneType"
+                                                ng-change="changeZoneType();">
+                                            <option value="">Не выбрано</option>
+                                            <option ng-repeat="zoneTypes in model.deliveryZoneTypes" value="{{zoneTypes}}">
+                                                {{zoneTypes.Value}}
+                                            </option>
+                                        </select>
+                                        <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
+                                        <!--подразделения </code>-->
+                                    </div>
                                 </div>
                             </form>
                         </div>
