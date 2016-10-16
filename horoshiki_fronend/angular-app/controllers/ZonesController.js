@@ -15,6 +15,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         $scope.model.zoneForm = {};
         $scope.model.zoneForm.active = false;
 
+
         $scope.model.def = {};
         $scope.model.def.options = {};
 
@@ -48,19 +49,17 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         }
 
         $scope.addObject = function () {
-
-
-
             var zone = {
                 index: obj_index,
                 name: 'Зона ' + obj_index,
                 id: 0,
                 type: $scope.model.deliveryZoneTypes[0],
+                platformId: JSON.parse($scope.model.platform).Id,
                 options: {
                     editorDrawingCursor: 'crosshair',
                     editorMaxPoints: 200,
-                    fillColor: '#444444',
-                    strokeColor: '#444444',
+                    fillColor: JSON.parse($scope.model.zoneForm.zoneType).Background,
+                    strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor,
                     fillOpacity: '0.1',
                     strokeWidth: 1
                 },
@@ -72,26 +71,36 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     properties: {index: obj_index, isNew: true}
                 }
             }
-
-
             $scope.model.objects.push(zone);
             obj_index++;
         }
 
         $scope.deleteObject = function () {
             if ($scope.model.zoneForm.active && $scope.model.zoneForm.index != undefined && $scope.model.zoneForm != '') {
-
-                $scope.map.geoObjects.each(function (geoObject) {
-                    if (geoObject.properties.get('index') == $scope.model.zoneForm.index) {
-                        $scope.map.geoObjects.remove(geoObject);
-                    }
-                });
-
+                
                 for ($index in $scope.model.objects) {
                     if ($scope.model.objects[$index].index == $scope.model.zoneForm.index) {
-                        $scope.model.objects = $scope.model.objects.filter(function (item) {
-                            return item !== $scope.model.objects[$index];
+                        console.log($scope.model.objects[$index].id);
+                        ZonesService.delete($scope.model.objects[$index].id).success(function (result) {
+                            if (result.Success == 1) {
+
+                                $scope.model.objects = $scope.model.objects.filter(function (item) {
+                                    return item !== $scope.model.objects[$index];
+                                });
+
+                                $scope.map.geoObjects.each(function (geoObject) {
+                                    if (geoObject.properties.get('index') == $scope.model.zoneForm.index) {
+                                        $scope.map.geoObjects.remove(geoObject);
+                                    }
+                                });
+
+                            } else {
+                                displayErrorMessage(result.ReasonMessage);
+                            }
+                        }).error(function (result, status) {
+                            httpErrors($location.url(), status);
                         });
+
                         break;
                     }
                 }
@@ -112,11 +121,8 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     $scope.model.zoneForm.name = $scope.model.objects[$index].name;
                     $scope.model.zoneForm.index = $scope.model.objects[$index].index;
                     $scope.model.zoneForm.active = true;
-
-
+                    
                     $scope.model.zoneForm.zoneType = angular.toJson($scope.model.objects[$index].type);
-
-
                 }
 
             }
@@ -238,28 +244,31 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         $scope.changePlatform = function () {
             if ($scope.model.platform != undefined && $scope.model.platform != '') {
                 $scope.setMapCenter(JSON.parse($scope.model.platform).YandexMap);
+                $scope.model.zoneForm.platformId = JSON.parse($scope.model.platform).Id;
             }
         }
 
         $scope.changeZoneType = function () {
-
             for ($index in $scope.model.objects) {
                 if ($scope.model.objects[$index].index == JSON.parse($scope.model.zoneForm.zoneType).index) {
                     $scope.model.objects[$index].type = JSON.parse($scope.model.zoneForm.zoneType);
                 }
             }
 
+            $scope.updateColorZone();
             $scope.saveZone();
+            
+        }
 
-            // $scope.map.geoObjects.each(function (geoObject) {
-            //     geoObject.options.set({fillOpacity: '0.1'});
-            //     geoObject.editor.stopEditing();
-            //     if (geoObject.properties.get('index') == index) {
-            //         geoObject.options.set({fillOpacity: '0.3'});
-            //         geoObject.editor.startEditing();
-            //     }
-            //     // console.log(JSON.stringify(geoObject.geometry.getCoordinates()));
-            // });
+        $scope.updateColorZone = function () {
+            $scope.map.geoObjects.each(function (geoObject) {
+                if (geoObject.properties.get('index') == $scope.model.zoneForm.index) {
+                    console.log(geoObject.options.get('fillColor'));
+                    geoObject.options.set({fillColor: JSON.parse($scope.model.zoneForm.zoneType).Background});
+                    geoObject.options.set({strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor});
+                    console.log(geoObject.options.get('fillColor'));
+                }
+            });
         }
 
         $scope.updateMapCoordinates = function (platforms) {
@@ -285,6 +294,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                         name: deliveryZone.Name,
                         id: deliveryZone.Id,
                         type: deliveryZone.DeliveryZoneType,
+                        platformId: platform.Id,
                         options: {
                             editorDrawingCursor: 'crosshair',
                             editorMaxPoints: 200,
@@ -332,6 +342,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     $scope.model.platforms = result.Data;
                     if ($scope.model.platforms.length != 0) {
                         $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
+                        $scope.model.zoneForm.platformId = $scope.model.platforms[0].Id;
                     }
                     $scope.updateMapCoordinates($scope.model.platforms);
                 } else {

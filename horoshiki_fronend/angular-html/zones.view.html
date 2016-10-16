@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-3">
                         <a ng-click="addObject();" href="javascript:void(0);" class="btn btn-default">Добавить зону</a>
-                        <a ng-click="deleteObject();" href="javascript:void(0);" class="btn btn-default">Удалить
+                        <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active" href="javascript:void(0);" class="btn btn-default">Удалить
                             зону</a>
                         <a ng-click="saveCenterPlatform();" href="javascript:void(0);" class="btn btn-primary">Закрепить
                             центр для площадки</a>
@@ -113,9 +113,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="zone in model.objects">
+                            <tr ng-repeat="zone in model.objects | filter:{platformId:model.zoneForm.platformId}">
                                 <td>
-                                    {{$index}}
+                                    {{zone.platformId}}-{{model.zoneForm.platformId}}
                                 </td>
                                 <td>
                                     <a ng-click="changeActiveZone(zone.index);"> {{zone.name}}</a>

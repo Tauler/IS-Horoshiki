@@ -26,4 +26,13 @@ zonesServices.service('ZonesService', ['$http', function($http) {
         return resp;
     };
     
+    this.delete = function (id) {
+        var resp = $http({
+            url: backendServerAddr+'/api/DeliveryZones/'+id,
+            method: 'DELETE',
+            headers:  getToken()
+        });
+        return resp;
+    };
+    
 }]);
