@@ -58,8 +58,10 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 options: {
                     editorDrawingCursor: 'crosshair',
                     editorMaxPoints: 200,
-                    fillColor: JSON.parse($scope.model.zoneForm.zoneType).Background,
-                    strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor,
+                    // fillColor: JSON.parse($scope.model.zoneForm.zoneType).Background,
+                    // strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor,
+                    fillColor: '#ccc',
+                     strokeColor: '#ccg',
                     fillOpacity: '0.1',
                     strokeWidth: 1
                 },
@@ -113,10 +115,10 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
             $scope.changeActiveZone(event.get('target').properties.get('index'));
         }
 
+
+
         $scope.changeActiveZone = function (index) {
             for ($index in $scope.model.objects) {
-
-
                 if ($scope.model.objects[$index].index == index) {
                     $scope.model.zoneForm.name = $scope.model.objects[$index].name;
                     $scope.model.zoneForm.index = $scope.model.objects[$index].index;
@@ -124,7 +126,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     
                     $scope.model.zoneForm.zoneType = angular.toJson($scope.model.objects[$index].type);
                 }
-
+                break;
             }
 
             $scope.map.geoObjects.each(function (geoObject) {
@@ -136,6 +138,14 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 }
                 // console.log(JSON.stringify(geoObject.geometry.getCoordinates()));
             });
+
+            for($indexP in $scope.model.platforms){
+                if($scope.model.platforms[$indexP].Id == $scope.model.objects[index].platformId){
+                    $scope.model.platform = angular.toJson($scope.model.platforms[$indexP]);
+                    $scope.model.zoneForm.platformId = JSON.parse($scope.model.platform).Id;
+                }
+            }
+
 
         }
 
@@ -186,6 +196,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
             for ($index in objects) {
                 if (event.get('target').properties.get('index') == objects[$index].index) {
                     $scope.model.objects[$index].polygon.geometry.coordinates = event.get('target').geometry.getCoordinates();
+                    break;
                 }
             }
 
