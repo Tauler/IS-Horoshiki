@@ -20,7 +20,8 @@
 
                 <div class="row">
                     <div class="col-md-9" style="height: 600px">
-                        <ya-map ya-zoom="10" ya-center="{{model.subdivisionCenter}}" ya-event-click="notActiveZone($event)"
+                        <ya-map ya-zoom="10" ya-center="{{model.subdivisionCenter}}"
+                                ya-event-click="notActiveZone($event)"
                                 ya-after-init="initMap($target);">
                             <ya-geo-object ng-if="model.objects.length!=0"
                                            ng-repeat="object in model.objects"
@@ -33,11 +34,7 @@
                         </ya-map>
                     </div>
                     <div class="col-md-3">
-                        <a ng-click="addObject();" href="javascript:void(0);" class="btn btn-default">Добавить зону</a>
-                        <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active" href="javascript:void(0);" class="btn btn-default">Удалить
-                            зону</a>
-                        <a ng-click="saveCenterPlatform();" href="javascript:void(0);" class="btn btn-primary">Закрепить
-                            центр для площадки</a>
+
 
                         <div class="padding-top-20">
                             <div class="form-group">
@@ -69,6 +66,29 @@
                                     <!--подразделения </code>-->
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <dev class="col-md-12 margin-bottom-10">
+                                    <a ng-click="saveCenterPlatform();" href="javascript:void(0);"
+                                        class="btn btn-primary btn-block">
+                                        Закрепить центр для площадки
+                                    </a>
+                                </dev>
+                            </div>
+                            <div class="row">
+                                <dev class="col-md-6 ">
+                                    <a ng-click="addObject();" href="javascript:void(0);"
+                                       class="btn btn-default btn-block">Добавить зону
+                                    </a>
+                                </dev>
+                                <dev class="col-md-6 ">
+                                    <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active"
+                                       href="javascript:void(0);" class="btn btn-default btn-block ">
+                                        Удалить зону
+                                    </a>
+                                </dev>
+                            </div>
+
                         </div>
 
 
@@ -89,7 +109,8 @@
                                                 ng-model="model.zoneForm.zoneType"
                                                 ng-change="changeZoneType();">
                                             <option value="">Не выбрано</option>
-                                            <option ng-repeat="zoneTypes in model.deliveryZoneTypes" value="{{zoneTypes}}">
+                                            <option ng-repeat="zoneTypes in model.deliveryZoneTypes"
+                                                    value="{{zoneTypes}}">
                                                 {{zoneTypes.Value}}
                                             </option>
                                         </select>
@@ -101,26 +122,24 @@
                         </div>
 
                         <table class="table table-hover">
-                            <thead class="bordered-darkorange">
+                            <thead class="bordered-blue">
                             <tr>
                                 <th>
-                                    #
+                                    Зоны
                                 </th>
                                 <th>
-                                    Название
-                                </th>
 
+                                </th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="zone in model.objects | filter:{platformId:model.zoneForm.platformId}">
+                            <tr ng-repeat="zone in model.objects | filter:{platformId:model.zoneForm.platformId}" ng-click="changeActiveZoneWithList(zone.index);" ng-class="model.zoneForm.index == zone.index ? 'table-hover_active':''" >
                                 <td>
-                                    {{zone.platformId}}-{{model.zoneForm.platformId}}
+                                    {{zone.name}}
                                 </td>
                                 <td>
-                                    <a ng-click="changeActiveZoneWithList(zone.index);"> {{zone.name}}</a>
+                                    {{zone.type.Value}}
                                 </td>
-
                             </tr>
                             </tbody>
                         </table>

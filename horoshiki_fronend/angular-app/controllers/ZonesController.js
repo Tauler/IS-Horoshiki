@@ -160,10 +160,6 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 // console.log(JSON.stringify(geoObject.geometry.getCoordinates()));
             });
 
-
-
-            // console.log($scope.model.zoneForm.index);
-
         }
 
         $scope.changeValueActiveZone = function () {

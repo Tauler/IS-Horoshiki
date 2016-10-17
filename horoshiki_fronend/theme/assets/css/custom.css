@@ -21,6 +21,9 @@
     margin-bottom: 0px;
 }
 
+.table-hover_active{
+    background-color: #B3F0FF;
+}
 
 /**/
 /* datepicker */
