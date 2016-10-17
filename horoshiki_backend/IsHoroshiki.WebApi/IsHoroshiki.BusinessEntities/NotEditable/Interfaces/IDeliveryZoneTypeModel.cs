@@ -40,5 +40,23 @@
             get;
             set;
         }
+
+        /// <summary>
+        /// ZIndex
+        /// </summary>
+        int ZIndex
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Приоритет
+        /// </summary>
+        int Priority
+        {
+            get;
+            set;
+        }
     }
 }

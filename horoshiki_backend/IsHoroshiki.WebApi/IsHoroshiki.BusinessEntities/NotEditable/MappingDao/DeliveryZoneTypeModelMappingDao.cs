@@ -25,6 +25,8 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
                 Background = model.Background,
                 BorderColor = model.BorderColor,
                 Opacity = model.Opacity,
+                Priority = model.Priority,
+                ZIndex = model.ZIndex,
                 Value = model.Value
             };
         }
@@ -54,6 +56,8 @@ namespace IsHoroshiki.BusinessEntities.NotEditable.MappingDao
                 Background = model.Background,
                 BorderColor = model.BorderColor,
                 Opacity = model.Opacity,
+                ZIndex = model.ZIndex,
+                Priority = model.Priority,
                 Value = model.Value
             };
         }

@@ -43,5 +43,23 @@ namespace IsHoroshiki.BusinessEntities.NotEditable
             get;
             set;
         }
+
+        /// <summary>
+        /// ZIndex
+        /// </summary>
+        public int ZIndex
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Приоритет
+        /// </summary>
+        public int Priority
+        {
+            get;
+            set;
+        }
     }
 }
