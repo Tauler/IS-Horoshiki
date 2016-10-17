@@ -53,14 +53,17 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 id: 0,
                 type: $scope.model.deliveryZoneTypes[0],
                 platformId: JSON.parse($scope.model.platform).Id,
+                zindex: JSON.parse($scope.model.zoneForm.zoneType).ZIndex,
                 options: {
                     editorDrawingCursor: 'crosshair',
                     editorMaxPoints: 200,
                     fillColor: JSON.parse($scope.model.zoneForm.zoneType).Background,
                     strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor,
+                    zIndex: JSON.parse($scope.model.zoneForm.zoneType).ZIndex,
+                    zIndexActive: JSON.parse($scope.model.zoneForm.zoneType).ZIndex,
                     // fillColor: '#ccc',
                     // strokeColor: '#ccg',
-                    fillOpacity: '0.1',
+                    fillOpacity: '0.2',
                     strokeWidth: 1
                 },
                 polygon: {
@@ -80,7 +83,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 
                 for ($index in $scope.model.objects) {
                     if ($scope.model.objects[$index].index == $scope.model.zoneForm.index) {
-                        console.log($scope.model.objects[$index].id);
+                        // console.log($scope.model.objects[$index].id);
                         ZonesService.delete($scope.model.objects[$index].id).success(function (result) {
                             if (result.Success == 1) {
 
@@ -150,7 +153,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
             }
 
             $scope.map.geoObjects.each(function (geoObject) {
-                geoObject.options.set({fillOpacity: '0.1'});
+                geoObject.options.set({fillOpacity: '0.2'});
                 geoObject.editor.stopEditing();
                 if (geoObject.properties.get('index') == index) {
                     geoObject.options.set({fillOpacity: '0.3'});
@@ -206,7 +209,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         };
 
         $scope.changeGeometry = function (event) {
-            console.log("change geometry");
+            // console.log("change geometry");
             var objects = $scope.model.objects;
             for ($index in objects) {
                 if (event.get('target').properties.get('index') == objects[$index].index) {
@@ -240,7 +243,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     if (objects[$index].id == 0) {
                         ZonesService.add(deliveryZone).success(function (result) {
                             if (result.Success == 1) {
-                                console.log("add");
+                                // console.log("add");
                                 $scope.model.objects[$index].id = result.Data;
                             } else {
                                 displayErrorMessage(result.ReasonMessage);
@@ -251,7 +254,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     } else {
                         ZonesService.edit(deliveryZone).success(function (result) {
                             if (result.Success == 1) {
-                                console.log("edit");
+                                // console.log("edit");
                             } else {
                                 displayErrorMessage(result.ReasonMessage);
                             }
@@ -290,10 +293,10 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         $scope.updateColorZone = function () {
             $scope.map.geoObjects.each(function (geoObject) {
                 if (geoObject.properties.get('index') == $scope.model.zoneForm.index) {
-                    console.log(geoObject.options.get('fillColor'));
                     geoObject.options.set({fillColor: JSON.parse($scope.model.zoneForm.zoneType).Background});
                     geoObject.options.set({strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor});
-                    console.log(geoObject.options.get('fillColor'));
+                    geoObject.options.set({zIndex: JSON.parse($scope.model.zoneForm.zoneType).ZIndex});
+                    geoObject.options.set({zIndexActive: JSON.parse($scope.model.zoneForm.zoneType).ZIndex});
                 }
             });
         };
@@ -327,6 +330,8 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                             editorMaxPoints: 200,
                             fillColor: deliveryZone.DeliveryZoneType.Background,
                             strokeColor: deliveryZone.DeliveryZoneType.BorderColor,
+                            zIndex: deliveryZone.DeliveryZoneType.ZIndex,
+                            zIndexActive: deliveryZone.DeliveryZoneType.ZIndex,
                             fillOpacity: '0.1',
                             strokeWidth: 1
                         },
@@ -374,7 +379,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     $scope.updateMapCoordinates($scope.model.platforms);
 
                     $scope.model.subdivisionCenter = JSON.parse($scope.model.platform).YandexMap;
-                    console.log($scope.model.subdivisionCenter);
+                    // console.log($scope.model.subdivisionCenter);
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }

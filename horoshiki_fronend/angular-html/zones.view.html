@@ -26,7 +26,7 @@
                             <ya-geo-object ng-if="model.objects.length!=0"
                                            ng-repeat="object in model.objects"
                                            ya-source="object.polygon"
-                                           ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1 }"
+                                           ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1, zIndex: '{{object.options.zIndex}}', zIndexActive: 'object.options.zIndexActive'  }"
                                            ya-after-init="addedPolygon($target);"
                                            ya-event-click="changeActiveZoneWithMap($event)"
                                            ya-event-geometrychange="changeGeometry($event)">
