@@ -243,7 +243,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     if (objects[$index].id == 0) {
                         ZonesService.add(deliveryZone).success(function (result) {
                             if (result.Success == 1) {
-                                // console.log("add");
+                                console.log("add");
                                 $scope.model.objects[$index].id = result.Data;
                             } else {
                                 displayErrorMessage(result.ReasonMessage);
@@ -254,7 +254,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     } else {
                         ZonesService.edit(deliveryZone).success(function (result) {
                             if (result.Success == 1) {
-                                // console.log("edit");
+                                console.log("edit");
                             } else {
                                 displayErrorMessage(result.ReasonMessage);
                             }
@@ -280,7 +280,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
 
         $scope.changeZoneType = function () {
             for ($index in $scope.model.objects) {
-                if ($scope.model.objects[$index].index == JSON.parse($scope.model.zoneForm.zoneType).index) {
+                if ($scope.model.objects[$index].index == $scope.model.zoneForm.index) {
                     $scope.model.objects[$index].type = JSON.parse($scope.model.zoneForm.zoneType);
                 }
             }
@@ -297,6 +297,7 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                     geoObject.options.set({strokeColor: JSON.parse($scope.model.zoneForm.zoneType).BorderColor});
                     geoObject.options.set({zIndex: JSON.parse($scope.model.zoneForm.zoneType).ZIndex});
                     geoObject.options.set({zIndexActive: JSON.parse($scope.model.zoneForm.zoneType).ZIndex});
+                    // console.log("123");
                 }
             });
         };

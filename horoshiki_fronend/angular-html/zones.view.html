@@ -94,13 +94,13 @@
 
                         <div class="padding-top-20" ng-show="model.zoneForm.active">
                             <form role="form">
-                                <div class="form-group">
-                                    <label for="zoneName">Название зоны:</label>
-                                    <input class="form-control" ng-model="model.zoneForm.name"
-                                           ng-blur="changeValueActiveZone();" id="zoneName"
-                                           placeholder="Название зоны"
-                                           type="text">
-                                </div>
+                                <!--<div class="form-group">-->
+                                    <!--<label for="zoneName">Название зоны:</label>-->
+                                    <!--<input class="form-control" ng-model="model.zoneForm.name"-->
+                                           <!--ng-blur="changeValueActiveZone();" id="zoneName"-->
+                                           <!--placeholder="Название зоны"-->
+                                           <!--type="text">-->
+                                <!--</div>-->
 
                                 <div class="form-group">
                                     <label for="zoneType">Тип зоны:</label>
@@ -125,18 +125,18 @@
                             <thead class="bordered-blue">
                             <tr>
                                 <th>
-                                    Зоны
+                                    Зоны доставки
                                 </th>
-                                <th>
+                                <!--<th>-->
 
-                                </th>
+                                <!--</th>-->
                             </tr>
                             </thead>
                             <tbody>
                             <tr ng-repeat="zone in model.objects | filter:{platformId:model.zoneForm.platformId}" ng-click="changeActiveZoneWithList(zone.index);" ng-class="model.zoneForm.index == zone.index ? 'table-hover_active':''" >
-                                <td>
-                                    {{zone.name}}
-                                </td>
+                                <!--<td>-->
+                                    <!--{{zone.name}}-->
+                                <!--</td>-->
                                 <td>
                                     {{zone.type.Value}}
                                 </td>
