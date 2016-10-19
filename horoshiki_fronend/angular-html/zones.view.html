@@ -14,7 +14,7 @@
     <div class="col-xs-12 col-md-12">
         <div class="widget">
             <div class="widget-header  with-footer">
-                <span class="widget-caption">Подразделения</span>
+                <span class="widget-caption">Зоны доставки</span>
             </div>
             <div class="widget-body">
 
@@ -155,7 +155,7 @@
                         <br/><br/><br/><br/>
 
 
-                        <label for="autocomplete">Название зоны: </label>
+                        <label for="autocomplete">Проверка попадания в зону: </label>
                         <div>
                             <div class="form-group col-md-9 padding-right-0 padding-left-0">
                                 <input class="form-control" id="autocomplete">
@@ -186,7 +186,7 @@
                 <h4 class="modal-title">Тест попадания адреса в зону</h4>
             </div>
             <div class="modal-body">
-                <p ng-show="model.geoAddress.isCheck=='true'">Введеный адрес принадлежит типу зоны "{{model.geoAddress.zoneTypeName}}" площадки "{{model.geoAddress.platformName}}"</p>
+                <p ng-show="model.geoAddress.isCheck=='true'">Введеный адрес принадлежит зоне "{{model.geoAddress.zoneTypeName}}" площадки "{{model.geoAddress.platformName}}"</p>
                 <p ng-show="model.geoAddress.isCheck=='false'">Введеный адрес не принадлежит зонам</p>
                 <p ng-show="model.geoAddress.isCheck=='load'">Обрабатываю запрос</p>
             </div>
