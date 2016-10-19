@@ -107,6 +107,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private IPlatformRepository _platformRepository;
 
+        /// <summary>
+        /// Репозиторий План продаж
+        /// </summary>
+        private ISalePlanRepository _salePlanRepository;
+
         #endregion
 
         #region Конструктор
@@ -360,6 +365,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._platformRepository = new PlatformRepository(_context);
                 }
                 return _platformRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозитарий План продаж 
+        /// </summary>  
+        public ISalePlanRepository SalePlanRepository
+        {
+            get
+            {
+                if (this._salePlanRepository == null)
+                {
+                    this._salePlanRepository = new SalePlanRepository(_context);
+                }
+                return _salePlanRepository;
             }
         }
 

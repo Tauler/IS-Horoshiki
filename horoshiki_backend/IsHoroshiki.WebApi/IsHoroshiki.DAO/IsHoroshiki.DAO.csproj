@@ -63,6 +63,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
+    <Compile Include="DaoEntities\Editable\SalePlan.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\EmployeeReasonDismissalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\DeliveryZoneConfiguration.cs" />
     <Compile Include="DatabaseConstant.cs" />
@@ -111,6 +112,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUserManager.cs" />
     <Compile Include="Repositories\Editable\DeliveryZoneRepository.cs" />
+    <Compile Include="Repositories\Editable\Interfaces\ISalePlanRepository.cs" />
+    <Compile Include="Repositories\Editable\SalePlanRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IDeliveryZoneRepository.cs" />
     <Compile Include="Repositories\Editable\PlatformRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />

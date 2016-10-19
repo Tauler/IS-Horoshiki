@@ -6,6 +6,8 @@ using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using Microsoft.Practices.Unity;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans;
+using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 
 namespace IsHoroshiki.BusinessEntities
 {
@@ -38,6 +40,9 @@ namespace IsHoroshiki.BusinessEntities
 
             container.RegisterType<IDeliveryZoneTypeModel, DeliveryZoneTypeModel>();
             container.RegisterType<IDeliveryZoneModel, DeliveryZoneModel>();
+
+            container.RegisterType<ISalePlanPeriodModel, SalePlanPeriodModel>();
+            container.RegisterType<ISalePlanModel, SalePlanModel>();
 
             return container;
         }

@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
 using IsHoroshiki.WebApi.Handlers;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 
 namespace IsHoroshiki.WebApi
 {
@@ -22,6 +23,7 @@ namespace IsHoroshiki.WebApi
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IEmployeeReasonDismissalModel>());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IDepartmentModel>());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IDeliveryZoneModel>());
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISalePlanModel>());
         }
     }
 }

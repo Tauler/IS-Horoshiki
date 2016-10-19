@@ -57,8 +57,10 @@
   <ItemGroup>
     <Compile Include="Editable\AccountService.cs" />
     <Compile Include="Editable\DeliveryZoneService.cs" />
+    <Compile Include="Editable\SalePlanService.cs" />
     <Compile Include="Editable\Interfaces\IAccountService.cs" />
     <Compile Include="Editable\Interfaces\IDeliveryZoneService.cs" />
+    <Compile Include="Editable\Interfaces\ISalePlanService.cs" />
     <Compile Include="Editable\Interfaces\IPlatformService.cs" />
     <Compile Include="Editable\PlatformService.cs" />
     <Compile Include="Errors\Enums\AccountErrors.cs" />
@@ -120,9 +122,11 @@
     <Compile Include="Utils\UtilService.cs" />
     <Compile Include="Utils\Interfaces\IUtilService.cs" />
     <Compile Include="Validators\Editable\DeliveryZoneValidator.cs" />
+    <Compile Include="Validators\Editable\SalePlanValidator.cs" />
     <Compile Include="Validators\Editable\EmployeeReasonDismissalValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IAccountValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IDeliveryZoneValidator.cs" />
+    <Compile Include="Validators\Editable\Interfaces\ISalePlanValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IEmployeeReasonDismissalValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IPlatformValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\ISubDivisionValidator.cs" />
@@ -156,7 +160,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Editable\SalePlans\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

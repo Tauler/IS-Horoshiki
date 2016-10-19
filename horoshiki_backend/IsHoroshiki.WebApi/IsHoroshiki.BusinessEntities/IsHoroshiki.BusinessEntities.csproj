@@ -89,6 +89,11 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
+    <Compile Include="Editable\SalePlans\ISalePlanModel.cs" />
+    <Compile Include="Editable\SalePlans\ISalePlanPeriodModel.cs" />
+    <Compile Include="Editable\SalePlans\PlanType.cs" />
+    <Compile Include="Editable\SalePlans\Result\SalePlanResult.cs" />
+    <Compile Include="Editable\SalePlans\SalePlanModel.cs" />
     <Compile Include="Editable\DeliveryZoneModel.cs" />
     <Compile Include="Editable\Helpers\AddYandexMapPlatformModel.cs" />
     <Compile Include="Editable\Interfaces\IDeliveryZoneModel.cs" />
@@ -99,6 +104,7 @@
     <Compile Include="Editable\MappingDao\DeliveryZoneModelMappingDao.cs" />
     <Compile Include="Editable\PlatformModel.cs" />
     <Compile Include="Account\ApplicationUserSmallModel.cs" />
+    <Compile Include="Editable\SalePlans\SalePlanPeriodModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
     <Compile Include="Kladr\Enums\ContentType.cs" />
