@@ -92,7 +92,16 @@
     <Compile Include="Editable\SalePlans\ISalePlanModel.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanPeriodModel.cs" />
     <Compile Include="Editable\SalePlans\PlanType.cs" />
-    <Compile Include="Editable\SalePlans\Result\SalePlanResult.cs" />
+    <Compile Include="Editable\SalePlans\Result\SalePlanSumDayModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\ISalePlanSumDayModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\ISalePlanSumRowModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\SalePlanDayModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\ISalePlanDayModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\ISalePlanTableModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\ISalePlanDataRowModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\SalePlanTableModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\SalePlanSumRowModel.cs" />
+    <Compile Include="Editable\SalePlans\Result\SalePlanDataRowModel.cs" />
     <Compile Include="Editable\SalePlans\SalePlanModel.cs" />
     <Compile Include="Editable\DeliveryZoneModel.cs" />
     <Compile Include="Editable\Helpers\AddYandexMapPlatformModel.cs" />

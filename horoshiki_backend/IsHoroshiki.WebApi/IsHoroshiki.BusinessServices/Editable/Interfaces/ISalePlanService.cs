@@ -12,6 +12,6 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <summary>
         /// Создать план
         /// </summary>
-        Task<SalePlanResult> CreatePlan();
+        Task<SalePlanTableModel> CreatePlan(ISalePlanModel model);
     }
 }

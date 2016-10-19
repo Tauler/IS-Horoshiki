@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using System;
+using System.Linq;
+using System.Globalization;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -37,53 +39,164 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <summary>
         /// Создать план
         /// </summary>
-        public async Task<SalePlanResult> CreatePlan()
+        public async Task<SalePlanTableModel> CreatePlan(ISalePlanModel model)
         {
-            ISalePlanModel model = new SalePlanModel();
-            model.SalePlanPeriod = new SalePlanPeriodModel()
+            if (model == null)
             {
-                Year = 2016,
-                Month = 11
-            };
+                model = new SalePlanModel();
+                model.SalePlanPeriod = new SalePlanPeriodModel()
+                {
+                    Year = 2016,
+                    Month = 11
+                };
 
-            model.AnalizePeriod1 = new SalePlanPeriodModel()
+                model.AnalizePeriod1 = new SalePlanPeriodModel()
+                {
+                    Year = 2015,
+                    Month = 11
+                };
+
+                model.AnalizePeriod2 = new SalePlanPeriodModel()
+                {
+                    Year = 2016,
+                    Month = 10
+                };
+            }
+
+            var result = new SalePlanTableModel();
+
+            var plans = GetPlans(model.SalePlanPeriod);
+            var analize1 = GetPlans(model.AnalizePeriod1);
+            var analize2 = GetPlans(model.AnalizePeriod2);
+
+            var rows = new List<ISalePlanDataRowModel>();
+            foreach (var plan in plans)
             {
-                Year = 2016,
-                Month = 15
-            };
+                var planRow = new SalePlanDataRowModel();
+                planRow.Plan = plan;
+                rows.Add(planRow);
+            }
+           
+            AddAnanlyze(analize1, rows);
+            AddAnanlyze(analize2, rows, false);
 
-            model.AnalizePeriod2 = new SalePlanPeriodModel()
+            result.DataRows = rows;
+
+            var planSumRow = new SalePlanSumRowModel();
+            planSumRow.Plan = new SalePlanSumDayModel()
             {
-                Year = 2016,
-                Month = 10
+                Delivery = GetSum(result.DataRows.Where(dr => dr.Plan != null).Select(dr => dr.Plan).ToList()),
+                Self = GetSum(result.DataRows.Where(dr => dr.Plan != null).Select(dr => dr.Plan).ToList(), false),
             };
-
-
-            var result = new SalePlanResult();
-
-
-            var startDate = new DateTime(1, model.SalePlanPeriod.Month, model.SalePlanPeriod.Year);
-
-
-            var daysInMonth = DateTime.DaysInMonth(model.SalePlanPeriod.Month, model.SalePlanPeriod.Year);
-            var endDate = new DateTime(daysInMonth, model.SalePlanPeriod.Month, model.SalePlanPeriod.Year);
-
-            var plans = GetPLans(startDate, endDate);
+            planSumRow.Analize1 = new SalePlanSumDayModel()
+            {
+                Delivery = GetSum(result.DataRows.Where(dr => dr.Analize1 != null).Select(dr => dr.Analize1).ToList()),
+                Self = GetSum(result.DataRows.Where(dr => dr.Analize1 != null).Select(dr => dr.Analize1).ToList(), false),
+            };
+            planSumRow.Analize2 = new SalePlanSumDayModel()
+            {
+                Delivery = GetSum(result.DataRows.Where(dr => dr.Analize2 != null).Select(dr => dr.Analize2).ToList()),
+                Self = GetSum(result.DataRows.Where(dr => dr.Analize2 != null).Select(dr => dr.Analize2).ToList(), false),
+            };
+            result.SumRow = planSumRow;
 
             return result;
         }
 
-        private List<SalePlanDay> GetPLans(DateTime startDate, DateTime endDate)
+        private int GetSum(List<ISalePlanDayModel> list, bool isDelivery = true)
         {
-            var plans = new List<SalePlanDay>();
+            return isDelivery ? list.Sum(l => l.Delivery) : list.Sum(l => l.Self);
+        }
+
+        /// <summary>
+        /// Заполнить данными анализа
+        /// </summary>
+        /// <param name="analize"></param>
+        /// <param name="rows">Стрроки с планом</param>
+        /// <param name="isFirstAnalize">true - заполнить Анализ 1</param>
+        private void AddAnanlyze(List<ISalePlanDayModel> analize, List<ISalePlanDataRowModel> rows, bool isFirstAnalize = true)
+        {
+            var rowsWithPlan = rows.Where(a => a.Plan != null).ToList();
+            var firstDayOfWeekPlan = rowsWithPlan[0].Plan.DayOfWeek;
+
+            var firstDayAnalize = analize.First(a => a.DayOfWeek == firstDayOfWeekPlan);
+            var beforeFirstDayAnalize = analize.Where(a => a.Date < firstDayAnalize.Date).ToList();
+            var afterFirstDayAnalize = analize.Where(a => a.Date >= firstDayAnalize.Date).ToList();
+           
+            for (int i = 0; i < afterFirstDayAnalize.Count; i++)
+            {
+                ISalePlanDataRowModel planRow;
+                if (i > rows.Count - 1)
+                {
+                    planRow = new SalePlanDataRowModel();
+                    rows.Add(planRow);
+                }
+                else
+                {
+                    planRow = rowsWithPlan[i];
+                }
+
+                if (isFirstAnalize)
+                {
+                    planRow.Analize1 = afterFirstDayAnalize[i];
+                }
+                else
+                {
+                    planRow.Analize2 = afterFirstDayAnalize[i];
+                }
+            }
+
+            var rowsBeforePlan = rows.Except(rowsWithPlan).ToList();
+
+            rowsBeforePlan.Reverse();
+            beforeFirstDayAnalize.Reverse();
+
+            for (int i = 0; i < beforeFirstDayAnalize.Count; i++)
+            {
+                ISalePlanDataRowModel planRow;
+                if (i > rowsBeforePlan.Count - 1)
+                {
+                    planRow = new SalePlanDataRowModel();
+                    rows.Insert(0, planRow);
+                }
+                else
+                {
+                    planRow = rowsBeforePlan[i];
+                }
+
+                if (isFirstAnalize)
+                {
+                    planRow.Analize1 = beforeFirstDayAnalize[i];
+                }
+                else
+                {
+                    planRow.Analize2 = beforeFirstDayAnalize[i];
+                }
+            }
+        }
+
+        private List<ISalePlanDayModel> GetPlans(ISalePlanPeriodModel periodModel)
+        {
+            var startDate = new DateTime(periodModel.Year, periodModel.Month, 1);
+            var daysInMonth = DateTime.DaysInMonth(periodModel.Year, periodModel.Month);
+            var endDate = new DateTime(periodModel.Year, periodModel.Month, daysInMonth);
+
+            return GetPlans(startDate, endDate);
+        }
+
+        private List<ISalePlanDayModel> GetPlans(DateTime startDate, DateTime endDate)
+        {
+            var random = new Random();
+            var plans = new List<ISalePlanDayModel>();
             for (var current = startDate; current <= endDate; current = current.AddDays(1))
             {
-                var plan = new SalePlanDay()
+                var plan = new SalePlanDayModel()
                 {
                     Date = current,
                     DayOfWeek = current.DayOfWeek,
-                    Delivery = 1,
-                    Self = 2
+                    DayOfWeekDescr = current.ToString("ddd", new CultureInfo("ru-Ru")),
+                    Delivery = random.Next(500),
+                    Self = random.Next(500),
                 };
                 plans.Add(plan);
             }

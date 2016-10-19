@@ -34,11 +34,11 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Создать план
         /// </summary>
         [Route("create")]
-        public async Task<IHttpActionResult> CreatePlan()
+        public async Task<IHttpActionResult> CreatePlan(ISalePlanModel model)
         {
             try
             {
-                var list = await _service.CreatePlan();
+                var list = await _service.CreatePlan(model);
                 return Ok(list);
             }
             catch (Exception e)

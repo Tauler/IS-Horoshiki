@@ -1,60 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
 {
     /// <summary>
-    /// Сформированый план продаж
-    /// </summary>
-    public class SalePlanResult
-    {
-        /// <summary>
-        /// Строка отчета
-        /// </summary>
-        public List<SalePlanRow> Rows
-        {
-            get;
-            set;
-        }
-    }
-
-    /// <summary>
-    /// Строка плана
-    /// </summary>
-    public class SalePlanRow
-    {
-        /// <summary>
-        /// План на месяц (который редактируется)
-        /// </summary>
-        public SalePlanDay Plan
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Анализ 1
-        /// </summary>
-        public SalePlanDay Analize1
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Анализ 2
-        /// </summary>
-        public SalePlanDay Analize2
-        {
-            get;
-            set;
-        }
-    }
-
-    /// <summary>
     /// Сумма чеков на день
     /// </summary>
-    public class SalePlanDay
+    public class SalePlanDayModel : ISalePlanDayModel
     {
         /// <summary>
         /// Дата

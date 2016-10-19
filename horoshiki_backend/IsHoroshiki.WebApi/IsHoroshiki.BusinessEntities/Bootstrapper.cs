@@ -8,6 +8,7 @@ using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.NotEditable;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.Editable.SalePlan;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
 
 namespace IsHoroshiki.BusinessEntities
 {
@@ -43,6 +44,11 @@ namespace IsHoroshiki.BusinessEntities
 
             container.RegisterType<ISalePlanPeriodModel, SalePlanPeriodModel>();
             container.RegisterType<ISalePlanModel, SalePlanModel>();
+            container.RegisterType<ISalePlanDayModel, SalePlanDayModel>();
+            container.RegisterType<ISalePlanTableModel, SalePlanTableModel>();
+            container.RegisterType<ISalePlanDataRowModel, SalePlanDataRowModel>();
+            container.RegisterType<ISalePlanSumDayModel, SalePlanSumDayModel>();
+            container.RegisterType<ISalePlanSumRowModel, SalePlanSumRowModel>();
 
             return container;
         }
