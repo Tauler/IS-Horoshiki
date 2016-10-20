@@ -22,15 +22,15 @@ namespace IsHoroshiki.BusinessEntities.Integrations.MappingDao
                 IdCheck = model.Id,
                 DateDoc = model.DateDoc,
                 Status = model.Status,
-                Klient = model.Klient,
+                Client = model.Client,
                 Cook = model.Cook,
                 Zona = model.Zona,
                 Before = model.Before,
                 OrderView = model.OrderView,
-                TimeStartCooking = model.TimeStartCooking,
-                TimeEndCooking = model.TimeEndCooking,
-                DateStartMaking = model.DateStartMaking,
-                DateEndMaking = model.DateEndMaking,
+                PlanCookingTimeStart = model.PlanCookingTimeStart,
+                PlanCookingTimeEnd = model.PlanCookingTimeEnd,
+                PlanCookingDateStart = model.PlanCookingDateStart,
+                PlanCookingDateEnd = model.PlanCookingDateEnd,
                 TimeDelivery = model.TimeDelivery,
                 DateDelivery = model.DateDelivery,
                 Driver = model.Driver,
@@ -38,9 +38,9 @@ namespace IsHoroshiki.BusinessEntities.Integrations.MappingDao
                 AddressKaldr = model.AddressKaldr,
                 CoordinateWidth = model.CoordinateWidth,
                 CoordinateLongitude = model.CoordinateWidth,
-                IsSushiDepartment = model.IsSushiDepartment,
-                IsPizzaDepartment = model.IsPizzaDepartment,
-                IsCoolDepartment = model.IsCoolDepartment
+                IsSushiSubDepartment = model.IsSushiSubDepartment,
+                IsPizzaSubDepartment = model.IsPizzaSubDepartment,
+                IsCoolSubDepartment = model.IsCoolSubDepartment
             };
         }
 
@@ -67,15 +67,15 @@ namespace IsHoroshiki.BusinessEntities.Integrations.MappingDao
                 Id = model.IdCheck,
                 DateDoc = model.DateDoc,
                 Status = model.Status,
-                Klient = model.Klient,
+                Client = model.Client,
                 Cook = model.Cook,
                 Zona = model.Zona,
                 Before = model.Before,
                 OrderView = model.OrderView,
-                TimeStartCooking = model.TimeStartCooking,
-                TimeEndCooking = model.TimeEndCooking,
-                DateStartMaking = model.DateStartMaking,
-                DateEndMaking = model.DateEndMaking,
+                PlanCookingTimeStart = model.PlanCookingTimeStart,
+                PlanCookingTimeEnd = model.PlanCookingTimeEnd,
+                PlanCookingDateStart = model.PlanCookingDateStart,
+                PlanCookingDateEnd = model.PlanCookingDateEnd,
                 TimeDelivery = model.TimeDelivery,
                 DateDelivery = model.DateDelivery,
                 Driver = model.Driver,
@@ -83,9 +83,9 @@ namespace IsHoroshiki.BusinessEntities.Integrations.MappingDao
                 AddressKaldr = model.AddressKaldr,
                 CoordinateWidth = model.CoordinateWidth,
                 CoordinateLongitude = model.CoordinateWidth,
-                IsSushiDepartment = model.IsSushiDepartment,
-                IsPizzaDepartment = model.IsPizzaDepartment,
-                IsCoolDepartment = model.IsCoolDepartment
+                IsSushiSubDepartment = model.IsSushiSubDepartment,
+                IsPizzaSubDepartment = model.IsPizzaSubDepartment,
+                IsCoolSubDepartment = model.IsCoolSubDepartment
             };
         }
 

@@ -64,7 +64,9 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
+    <Compile Include="DaoEntities\Editable\SaleCheck.cs" />
     <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />
+    <Compile Include="DaoEntityConfigurations\Editable\SaleCheckConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\EmployeeReasonDismissalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Integrations\IntegrationCheckConfiguration.cs" />
@@ -114,7 +116,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUserManager.cs" />
     <Compile Include="Repositories\Editable\DeliveryZoneRepository.cs" />
+    <Compile Include="Repositories\Editable\Interfaces\ISaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanRepository.cs" />
+    <Compile Include="Repositories\Editable\SaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\SalePlanRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IDeliveryZoneRepository.cs" />
     <Compile Include="Repositories\Editable\PlatformRepository.cs" />

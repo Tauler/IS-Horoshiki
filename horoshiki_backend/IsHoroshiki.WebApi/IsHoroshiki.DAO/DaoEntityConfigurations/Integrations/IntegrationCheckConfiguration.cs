@@ -27,7 +27,7 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
             Property(p => p.Status)
                 .HasMaxLength(100);
 
-            Property(p => p.Klient)
+            Property(p => p.Client)
                 .HasMaxLength(100);
 
             Property(p => p.Cook)
@@ -42,16 +42,16 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
             Property(p => p.OrderView)
                 .HasMaxLength(100);
 
-            Property(p => p.TimeStartCooking)
+            Property(p => p.PlanCookingTimeStart)
                 .HasMaxLength(25);
 
-            Property(p => p.TimeEndCooking)
+            Property(p => p.PlanCookingTimeEnd)
                 .HasMaxLength(25);
 
-            Property(p => p.DateStartMaking)
+            Property(p => p.PlanCookingDateStart)
                 .HasMaxLength(25);
 
-            Property(p => p.DateEndMaking)
+            Property(p => p.PlanCookingDateEnd)
                 .HasMaxLength(25);
 
             Property(p => p.TimeDelivery)
@@ -69,13 +69,13 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
             Property(p => p.CoordinateLongitude)
                 .HasMaxLength(100);
 
-            Property(p => p.IsSushiDepartment)
+            Property(p => p.IsSushiSubDepartment)
                 .HasMaxLength(10);
 
-            Property(p => p.IsPizzaDepartment)
+            Property(p => p.IsPizzaSubDepartment)
                 .HasMaxLength(10);
 
-            Property(p => p.IsCoolDepartment)
+            Property(p => p.IsCoolSubDepartment)
                 .HasMaxLength(10);
         }
 

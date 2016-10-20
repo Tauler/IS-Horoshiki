@@ -1,212 +1,190 @@
-﻿namespace IsHoroshiki.BusinessEntities.Integrations
+﻿using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using System;
+using System.Collections.Generic;
+
+namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
     /// <summary>
-    /// Получение чеков (заказов) из 1С
+    /// Чек продаж
     /// </summary>
-    public interface IIntegrationCheckModel
+    public class SaleCheck : BaseDaoEntity
     {
         /// <summary>
-        /// cmd
+        /// Дата и время чека (время приема заказа)
         /// </summary>
-        string Cmd
+        public DateTime? DateDoc
         {
             get;
             set;
         }
 
         /// <summary>
-        /// id
+        /// Номер чека
         /// </summary>
-        string Id
+        public string IdCheck
         {
             get;
             set;
         }
 
         /// <summary>
-        /// дата документа
+        /// Сумма чека
         /// </summary>
-        string DateDoc
+        public decimal Sum
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Статус
+        /// Способ покупки
         /// </summary>
-        string Status
+        public int BuyProcessId
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Клиент
+        /// Способ покупки
         /// </summary>
-        string Client
+        public BuyProcess BuyProcess
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Повар
+        /// Подотделы
         /// </summary>
-        string Cook
+        public ICollection<SubDepartment> SubDepartments
         {
             get;
             set;
         }
 
         /// <summary>
-        /// зона
+        /// Время нач приготовления план
         /// </summary>
-        string Zona
+        public DateTime? PlanCookingStart
         {
             get;
             set;
         }
 
         /// <summary>
-        /// раньше
+        /// Время нач приготовления факт
         /// </summary>
-        string Before
+        public DateTime? FactCookingStart
         {
             get;
             set;
         }
 
         /// <summary>
-        /// видзаказа
+        /// Время оконч приготовления план 
         /// </summary>
-        string OrderView
+        public DateTime? PlanCookingEnd
         {
             get;
             set;
         }
 
         /// <summary>
-        /// время нач приготовления план
+        /// Время оконч приготовления факт 
         /// </summary>
-        string PlanCookingTimeStart
+        public DateTime? FactCookingEnd
         {
             get;
             set;
         }
 
         /// <summary>
-        /// время кон приготовления план
+        /// Нач упаковки план
         /// </summary>
-        string PlanCookingTimeEnd
+        public DateTime? PlanPackingStart
         {
             get;
             set;
         }
 
         /// <summary>
-        /// дата нач производства
+        /// Нач упаковки факт
         /// </summary>
-        string PlanCookingDateStart
-        {
-            get;
-            set;
-        }
-       
-        /// <summary>
-        /// дата кон приготовления план
-        /// </summary>
-        string PlanCookingDateEnd
+        public DateTime? FactPackingStart
         {
             get;
             set;
         }
 
         /// <summary>
-        /// время доставки план
+        /// Oкончание упаковки план
         /// </summary>
-        string TimeDelivery
+        public DateTime? PlanPackingEnd
         {
             get;
             set;
         }
 
         /// <summary>
-        /// дата доставки план
+        /// Oкончание упаковки факт
         /// </summary>
-        string DateDelivery
+        public DateTime? FactPackingEnd
         {
             get;
             set;
         }
 
         /// <summary>
-        /// voditel
+        /// начало доставки план
         /// </summary>
-        string Driver
+        public DateTime? PlanDeliveryStart
         {
             get;
             set;
         }
 
         /// <summary>
-        /// адрес
+        /// начало доставки факт
         /// </summary>
-        string Address
+        public DateTime? FactDeliveryStart
         {
             get;
             set;
         }
 
         /// <summary>
-        /// АдресКЛАДР
+        /// Окончание доставки план
         /// </summary>
-        string AddressKaldr
+        public DateTime? PlanDeliveryEnd
         {
             get;
             set;
         }
 
         /// <summary>
-        /// КоординатаШ
+        /// Окончание доставки факт
         /// </summary>
-        string CoordinateWidth
+        public DateTime? FactDeliveryEnd
         {
             get;
             set;
         }
 
         /// <summary>
-        /// КоординатаД
+        /// Площадка
         /// </summary>
-        string CoordinateLongitude
+        public int PlatformId
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Цех суши
+        /// Площадка
         /// </summary>
-        string IsSushiSubDepartment
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Цех пица
-        /// </summary>
-        string IsPizzaSubDepartment
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Хол цех
-        /// </summary>
-        string IsCoolSubDepartment
+        public Platform Platform
         {
             get;
             set;

@@ -1,4 +1,6 @@
-﻿using IsHoroshiki.DAO.DaoEntities.NotEditable;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 namespace IsHoroshiki.DAO.Repositories.NotEditable.Interfaces
 {
@@ -7,6 +9,6 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable.Interfaces
     /// </summary>
     public interface IDepartmentRepository : IBaseNotEditableDictionaryRepository<Department>
     {
-      
+        
     }
 }

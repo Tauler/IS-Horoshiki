@@ -1,4 +1,5 @@
 ﻿using System;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 
 namespace IsHoroshiki.DAO.DaoEntities.Integrations
 {
@@ -55,7 +56,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// Клиент
         /// </summary>
-        public string Klient
+        public string Client
         {
             get;
             set;
@@ -100,7 +101,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// время нач приготовления план
         /// </summary>
-        public string TimeStartCooking
+        public string PlanCookingTimeStart
         {
             get;
             set;
@@ -109,7 +110,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// время кон приготовления план
         /// </summary>
-        public string TimeEndCooking
+        public string PlanCookingTimeEnd
         {
             get;
             set;
@@ -118,7 +119,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// дата нач производства
         /// </summary>
-        public string DateStartMaking
+        public string PlanCookingDateStart
         {
             get;
             set;
@@ -127,7 +128,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// дата кон приготовления план
         /// </summary>
-        public string DateEndMaking
+        public string PlanCookingDateEnd
         {
             get;
             set;
@@ -199,7 +200,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// Цех суши
         /// </summary>
-        public string IsSushiDepartment
+        public string IsSushiSubDepartment
         {
             get;
             set;
@@ -208,7 +209,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// Цех пица
         /// </summary>
-        public string IsPizzaDepartment
+        public string IsPizzaSubDepartment
         {
             get;
             set;
@@ -217,7 +218,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         /// <summary>
         /// Хол цех
         /// </summary>
-        public string IsCoolDepartment
+        public string IsCoolSubDepartment
         {
             get;
             set;

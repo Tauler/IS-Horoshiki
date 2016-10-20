@@ -118,6 +118,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private IIntegrationCheckRepository _integrationCheckRepository;
 
+        /// <summary>
+        /// Репозиторий Чек продаж
+        /// </summary>
+        private ISaleCheckRepository _saleCheckRepository;
+
         #endregion
 
         #region Конструктор
@@ -403,7 +408,22 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                 return _integrationCheckRepository;
             }
         }
-       
+
+        /// <summary>  
+        /// Репозитарий Чек продаж
+        /// </summary>  
+        public ISaleCheckRepository SaleCheckRepository
+        {
+            get
+            {
+                if (this._saleCheckRepository == null)
+                {
+                    this._saleCheckRepository = new SaleCheckRepository(_context);
+                }
+                return _saleCheckRepository;
+            }
+        }
+
         #endregion
 
         #region методы

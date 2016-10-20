@@ -62,7 +62,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// Клиент
         /// </summary>
         [JsonProperty(PropertyName = "klient")]
-        public string Klient
+        public string Client
         {
             get;
             set;
@@ -112,7 +112,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// время нач приготовления план
         /// </summary>
         [JsonProperty(PropertyName = "время нач приготовления план")]
-        public string TimeStartCooking
+        public string PlanCookingTimeStart
         {
             get;
             set;
@@ -122,7 +122,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// время кон приготовления план
         /// </summary>
         [JsonProperty(PropertyName = "время кон приготовления план")]
-        public string TimeEndCooking
+        public string PlanCookingTimeEnd
         {
             get;
             set;
@@ -132,7 +132,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// дата нач производства
         /// </summary>
         [JsonProperty(PropertyName = "дата нач производства")]
-        public string DateStartMaking
+        public string PlanCookingDateStart
         {
             get;
             set;
@@ -142,7 +142,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// дата кон приготовления план
         /// </summary>
         [JsonProperty(PropertyName = "дата кон приготовления план")]
-        public string DateEndMaking
+        public string PlanCookingDateEnd
         {
             get;
             set;
@@ -222,7 +222,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// Цех суши
         /// </summary>
         [JsonProperty(PropertyName = "Цех суши")]
-        public string IsSushiDepartment
+        public string IsSushiSubDepartment
         {
             get;
             set;
@@ -232,7 +232,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// Цех пица
         /// </summary>
         [JsonProperty(PropertyName = "Цех пица")]
-        public string IsPizzaDepartment
+        public string IsPizzaSubDepartment
         {
             get;
             set;
@@ -242,7 +242,7 @@ namespace IsHoroshiki.BusinessEntities.Integrations
         /// Хол цех
         /// </summary>
         [JsonProperty(PropertyName = "Хол цех")]
-        public string IsCoolDepartment
+        public string IsCoolSubDepartment
         {
             get;
             set;

@@ -5,7 +5,6 @@ using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.Editable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Data.Entity.Migrations;
 using IsHoroshiki.DAO.DaoEntities.Integrations;
 
 namespace IsHoroshiki.DAO
@@ -193,6 +192,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryTimeConfiguration());
             modelBuilder.Configurations.Add(new IntegrationCheckConfiguration());
+           // modelBuilder.Configurations.Add(new SaleCheckConfiguration());
         }
 
         #endregion

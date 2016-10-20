@@ -20,7 +20,7 @@ namespace IsHoroshiki.DAO.Helpers
         {
             if (string.IsNullOrEmpty(arg))
             {
-                throw new ArgumentNullException(arg);
+                throw new ArgumentNullException(message);
             }
         }
     }
