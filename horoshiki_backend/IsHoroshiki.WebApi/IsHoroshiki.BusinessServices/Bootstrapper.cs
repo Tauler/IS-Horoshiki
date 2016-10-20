@@ -10,6 +10,7 @@ using IsHoroshiki.BusinessServices.Utils.Interfaces;
 using IsHoroshiki.BusinessServices.Validators.Editable;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Kladr;
+using IsHoroshiki.BusinessServices.Integrations;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -58,6 +59,7 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<ISalePlanService, SalePlanService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IIntegrationService, IntegrationService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 
             container.RegisterType<IKladrService, KladrService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
 

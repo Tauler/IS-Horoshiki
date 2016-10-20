@@ -89,6 +89,8 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
+    <Compile Include="Integrations\IIntegrationCheckModel.cs" />
+    <Compile Include="Integrations\IntegrationCheckModel.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanModel.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanPeriodModel.cs" />
     <Compile Include="Editable\SalePlans\PlanType.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Editable\SalePlans\SalePlanPeriodModel.cs" />
     <Compile Include="IBaseBusninessModel.cs" />
     <Compile Include="BaseBusninessModel.cs" />
+    <Compile Include="Integrations\MappingDao\IntegrationCheckModelMappingDao.cs" />
     <Compile Include="Kladr\Enums\ContentType.cs" />
     <Compile Include="Kladr\KladrResultModel.cs" />
     <Compile Include="Kladr\MappingDao\KladrResultModelMappingDao.cs" />

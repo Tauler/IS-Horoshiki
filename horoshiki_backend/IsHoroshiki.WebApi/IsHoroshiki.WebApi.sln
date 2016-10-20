@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsHoroshiki.BusinessService
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsHoroshiki.DAO.Kladr", "IsHoroshiki.DAO.Kladr\IsHoroshiki.DAO.Kladr.csproj", "{804FF4A4-B0D8-4D7A-8157-B8BB3EB43E93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsHoroshiki.Integration1C", "IsHoroshiki.Integration1C\IsHoroshiki.Integration1C.csproj", "{003F1F18-D4D3-49E3-A240-F4C95A4D838E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{804FF4A4-B0D8-4D7A-8157-B8BB3EB43E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{804FF4A4-B0D8-4D7A-8157-B8BB3EB43E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{804FF4A4-B0D8-4D7A-8157-B8BB3EB43E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003F1F18-D4D3-49E3-A240-F4C95A4D838E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003F1F18-D4D3-49E3-A240-F4C95A4D838E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003F1F18-D4D3-49E3-A240-F4C95A4D838E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003F1F18-D4D3-49E3-A240-F4C95A4D838E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

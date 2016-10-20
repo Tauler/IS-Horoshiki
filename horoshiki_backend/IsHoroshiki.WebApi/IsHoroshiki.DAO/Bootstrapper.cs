@@ -6,6 +6,7 @@ using IsHoroshiki.DAO.Repositories.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.DAO.Repositories.NotEditable;
 using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
+using IsHoroshiki.DAO.Repositories.Integrations;
 
 namespace IsHoroshiki.DAO
 {
@@ -43,6 +44,7 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<IPlatformRepository, PlatformRepository>();
             container.RegisterType<ISalePlanRepository, SalePlanRepository>();
+            container.RegisterType<IIntegrationCheckRepository, IntegrationCheckRepository>();
 
             return container;
         }

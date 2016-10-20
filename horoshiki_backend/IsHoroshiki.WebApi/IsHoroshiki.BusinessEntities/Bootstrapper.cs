@@ -9,6 +9,7 @@ using IsHoroshiki.BusinessEntities.NotEditable;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
+using IsHoroshiki.BusinessEntities.Integrations;
 
 namespace IsHoroshiki.BusinessEntities
 {
@@ -50,6 +51,8 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<ISalePlanSumDayModel, SalePlanSumDayModel>();
             container.RegisterType<ISalePlanSumRowModel, SalePlanSumRowModel>();
 
+            container.RegisterType<IIntegrationCheckModel, IntegrationCheckModel>();
+            
             return container;
         }
     }

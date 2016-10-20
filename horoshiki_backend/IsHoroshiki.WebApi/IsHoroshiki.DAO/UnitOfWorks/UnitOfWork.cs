@@ -7,6 +7,7 @@ using IsHoroshiki.DAO.Repositories.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using IsHoroshiki.DAO.Repositories.NotEditable;
 using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
+using IsHoroshiki.DAO.Repositories.Integrations;
 
 namespace IsHoroshiki.DAO.UnitOfWorks
 {
@@ -111,6 +112,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// Репозиторий План продаж
         /// </summary>
         private ISalePlanRepository _salePlanRepository;
+
+        /// <summary>
+        /// Репозиторий План продаж
+        /// </summary>
+        private IIntegrationCheckRepository _integrationCheckRepository;
 
         #endregion
 
@@ -383,6 +389,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
             }
         }
 
+        /// <summary>  
+        /// Репозитарий План продаж
+        /// </summary>  
+        public IIntegrationCheckRepository IntegrationCheckRepository
+        {
+            get
+            {
+                if (this._integrationCheckRepository == null)
+                {
+                    this._integrationCheckRepository = new IntegrationCheckRepository(_context);
+                }
+                return _integrationCheckRepository;
+            }
+        }
+       
         #endregion
 
         #region методы

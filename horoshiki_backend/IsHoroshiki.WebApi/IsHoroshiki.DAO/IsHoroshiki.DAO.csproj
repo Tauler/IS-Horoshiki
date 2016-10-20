@@ -64,8 +64,10 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
+    <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\EmployeeReasonDismissalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\DeliveryZoneConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\Integrations\IntegrationCheckConfiguration.cs" />
     <Compile Include="DatabaseConstant.cs" />
     <Compile Include="IBaseDaoEntity.cs" />
     <Compile Include="BaseDaoEntity.cs" />
@@ -119,6 +121,8 @@
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\Accounts\Interfaces\IAccountRepository.cs" />
+    <Compile Include="Repositories\Integrations\IntegrationCheckRepository.cs" />
+    <Compile Include="Repositories\Integrations\IIntegrationCheckRepository.cs" />
     <Compile Include="Repositories\NotEditable\BaseNotEditableRepository.cs" />
     <Compile Include="Repositories\NotEditable\DeliveryTimeRepository.cs" />
     <Compile Include="Repositories\Editable\EmployeeReasonDismissalRepository.cs" />
@@ -158,6 +162,7 @@
     <Content Include="Script\2016-08-20 создание БД.sql" />
     <Content Include="Script\2016-10-13 добавление зон.sql" />
     <Content Include="Script\2016-08-23 заполнение справочников.sql" />
+    <Content Include="Script\2016-10-20 Интеграция с 1с.sql" />
     <Content Include="Script\2016-10-17 Приоритет тип зон.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

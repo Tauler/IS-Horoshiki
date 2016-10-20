@@ -82,6 +82,8 @@
     <Compile Include="BaseBusinessService.cs" />
     <Compile Include="BaseNotEditableService.cs" />
     <Compile Include="IBaseNotEditableService.cs" />
+    <Compile Include="Integrations\IIntegrationService.cs" />
+    <Compile Include="Integrations\IntegrationService.cs" />
     <Compile Include="Kladr\BaseKladrBusinessService.cs" />
     <Compile Include="Kladr\Interfaces\IBaseKladrBusinessService.cs" />
     <Compile Include="Kladr\Interfaces\IKladrService.cs" />

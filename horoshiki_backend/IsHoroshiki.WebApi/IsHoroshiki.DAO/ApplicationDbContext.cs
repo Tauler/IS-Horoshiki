@@ -6,6 +6,7 @@ using IsHoroshiki.DAO.DaoEntityConfigurations.Editable;
 using IsHoroshiki.DAO.DaoEntityConfigurations.NotEditable;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.Migrations;
+using IsHoroshiki.DAO.DaoEntities.Integrations;
 
 namespace IsHoroshiki.DAO
 {
@@ -142,7 +143,16 @@ namespace IsHoroshiki.DAO
             get;
             set;
         }
-        
+
+        /// <summary>
+        /// Получение чеков (заказов) из 1С
+        /// </summary>
+        public DbSet<IntegrationCheck> IntegrationCheck
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Конструктор
@@ -154,10 +164,7 @@ namespace IsHoroshiki.DAO
             : base("DefaultConnection")
         {
             Database.SetInitializer<ApplicationDbContext>(null);
-            //Database.SetInitializer(new ApplicationDbInitializer());
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, ApplicationDbConfiguration>());
         }
-    
 
         #endregion
 
@@ -185,26 +192,9 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new DeliveryZoneConfiguration());
             modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryTimeConfiguration());
+            modelBuilder.Configurations.Add(new IntegrationCheckConfiguration());
         }
 
         #endregion
-
-        internal sealed class ApplicationDbInitializer : MigrateDatabaseToLatestVersion<ApplicationDbContext, ApplicationDbConfiguration>
-        {
-
-        }
-
-        internal sealed class ApplicationDbConfiguration : DbMigrationsConfiguration<ApplicationDbContext>
-        {
-            public ApplicationDbConfiguration()
-            {
-                AutomaticMigrationsEnabled = true;
-            }
-
-            protected override void Seed(ApplicationDbContext context)
-            {
-                //base.Seed(context);
-            }
-        }
     }
 }
