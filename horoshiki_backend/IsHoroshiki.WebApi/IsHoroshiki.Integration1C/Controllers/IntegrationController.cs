@@ -3,6 +3,9 @@ using IsHoroshiki.BusinessServices.Helpers;
 using IsHoroshiki.BusinessServices.Integrations;
 using System;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -27,28 +30,18 @@ namespace IsHoroshiki.Integration1C.Controllers
         {
             try
             {
-                try
-                {
-                    var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Logs\\test_kuki.txt");
-                  
-                    try
-                    {
-                        File.AppendAllText(path, "gggggggggggggggggggggggg");
-                        File.AppendAllText(path, this.Request.Headers.Authorization.Parameter);
-                        File.AppendAllText(path, this.Request.Headers.Authorization.Scheme);
-                    }
-                    catch (Exception e)
-                    {
-                        File.AppendAllText(path, e.Message);
-                    }
-                }
-                catch (Exception e)
-                {
-                    
-                }
 
-                IIntegrationService service = new IntegrationService();
-                return await service.Save(model);
+                var value = GetCookie(Request, "authentication");
+                if (!string.IsNullOrEmpty(value) && value.ToUpper() == "one_c_robot:a582cacfdd4061ae060838ddc357d483".ToUpper())
+                {
+                    IIntegrationService service = new IntegrationService();
+                    return await service.Save(model);
+                }
+                else
+                {
+                    Logger.Error("Не авторизации в заголовке!!!");
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -56,6 +49,23 @@ namespace IsHoroshiki.Integration1C.Controllers
                 Logger.Error(e.StackTrace);
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Retrieves an individual cookie from the cookies collection
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cookieName"></param>
+        /// <returns></returns>
+        private string GetCookie(HttpRequestMessage request, string cookieName)
+        {
+            CookieHeaderValue cookie = request.Headers.GetCookies(cookieName).FirstOrDefault();
+            if (cookie != null)
+            {
+                return cookie[cookieName].Value;
+            }
+
+            return null;
         }
 
         #endregion
