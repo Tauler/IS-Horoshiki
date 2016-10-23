@@ -11,6 +11,51 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
     public class SaleCheck : BaseDaoEntity
     {
         /// <summary>
+        /// Способ покупки
+        /// </summary>
+        public int? BuyProcessId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Способ покупки
+        /// </summary>
+        public BuyProcess BuyProcess
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Подотделы
+        /// </summary>
+        public ICollection<SubDepartment> SubDepartments
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public int PlatformId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public Platform Platform
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата и время чека (время приема заказа)
         /// </summary>
         public DateTime? DateDoc
@@ -32,33 +77,6 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// Сумма чека
         /// </summary>
         public decimal Sum
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Способ покупки
-        /// </summary>
-        public int BuyProcessId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Способ покупки
-        /// </summary>
-        public BuyProcess BuyProcess
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Подотделы
-        /// </summary>
-        public ICollection<SubDepartment> SubDepartments
         {
             get;
             set;
@@ -167,24 +185,6 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// Окончание доставки факт
         /// </summary>
         public DateTime? FactDeliveryEnd
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Площадка
-        /// </summary>
-        public int PlatformId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Площадка
-        /// </summary>
-        public Platform Platform
         {
             get;
             set;

@@ -1,5 +1,6 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
+using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
 {
@@ -18,6 +19,20 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             : base(context)
         {
 
+        }
+
+        #endregion
+
+        #region ISaleCheckRepository
+
+        /// <summary>
+        /// Найти чек по его Id
+        /// </summary>
+        /// <param name="idCheck">Id чека</param>
+        /// <returns></returns>
+        public SaleCheck GetByCheckId(string idCheck)
+        {
+            return DbSet.FirstOrDefault(check => check.IdCheck == idCheck);
         }
 
         #endregion

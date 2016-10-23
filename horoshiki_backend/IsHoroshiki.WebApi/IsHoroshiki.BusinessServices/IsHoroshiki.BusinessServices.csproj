@@ -45,6 +45,10 @@
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.10\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -74,6 +78,8 @@
     <Compile Include="Errors\GenericSimpleHolder.cs" />
     <Compile Include="Errors\MessageHolder.cs" />
     <Compile Include="Errors\MessageRegister.cs" />
+    <Compile Include="Helpers\Logger.cs" />
+    <Compile Include="Helpers\RecurrentTask.cs" />
     <Compile Include="IBaseEditableService.cs" />
     <Compile Include="BaseEditableService.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -84,6 +90,10 @@
     <Compile Include="IBaseNotEditableService.cs" />
     <Compile Include="Integrations\IIntegrationService.cs" />
     <Compile Include="Integrations\IntegrationService.cs" />
+    <Compile Include="Integrations\Queues\IIntegrationCheckQueue.cs" />
+    <Compile Include="Integrations\Queues\INormalizationCheck.cs" />
+    <Compile Include="Integrations\Queues\IntegrationCheckQueue.cs" />
+    <Compile Include="Integrations\Queues\NormalizationCheck.cs" />
     <Compile Include="Kladr\BaseKladrBusinessService.cs" />
     <Compile Include="Kladr\Interfaces\IBaseKladrBusinessService.cs" />
     <Compile Include="Kladr\Interfaces\IKladrService.cs" />

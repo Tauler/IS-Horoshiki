@@ -1,4 +1,6 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Integrations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.Integrations
 {
@@ -18,7 +20,20 @@ namespace IsHoroshiki.DAO.Repositories.Integrations
         {
 
         }
-        
+
+        #endregion
+
+        #region Конструктор
+
+        /// <summary>
+        /// Список чеков для нормализации
+        /// </summary>
+        /// <returns></returns>
+        public List<IntegrationCheck> GetForNormalization()
+        {
+            return DbSet.Where(ic => ic.Cmd.ToUpper() == "order".ToUpper() && !ic.IsSuccessConvert).ToList();
+        }
+
         #endregion
     }
 }

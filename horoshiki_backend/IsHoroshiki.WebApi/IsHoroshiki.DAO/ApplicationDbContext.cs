@@ -144,9 +144,18 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
-        /// Получение чеков (заказов) из 1С
+        /// Чеков (заказов) из 1С
         /// </summary>
         public DbSet<IntegrationCheck> IntegrationCheck
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Нормализованый чек (заказов) из 1С
+        /// </summary>
+        public DbSet<SaleCheck> SaleCheck
         {
             get;
             set;
@@ -192,7 +201,7 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new DeliveryZoneTypeConfiguration());
             modelBuilder.Configurations.Add(new DeliveryTimeConfiguration());
             modelBuilder.Configurations.Add(new IntegrationCheckConfiguration());
-           // modelBuilder.Configurations.Add(new SaleCheckConfiguration());
+            modelBuilder.Configurations.Add(new SaleCheckConfiguration());
         }
 
         #endregion

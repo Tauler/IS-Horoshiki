@@ -1,4 +1,6 @@
-﻿namespace IsHoroshiki.DAO.DaoEntities.NotEditable
+﻿using System.Collections.Generic;
+
+namespace IsHoroshiki.DAO.DaoEntities.NotEditable
 {
     /// <summary>
     /// Подотдел
@@ -18,6 +20,15 @@
         /// Депратамент
         /// </summary>
         public Department Department
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Чеки продаж
+        /// </summary>
+        public ICollection<Editable.SaleCheck> SaleChecks
         {
             get;
             set;

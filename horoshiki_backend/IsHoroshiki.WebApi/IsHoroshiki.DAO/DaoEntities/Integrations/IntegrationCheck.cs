@@ -18,6 +18,24 @@ namespace IsHoroshiki.DAO.DaoEntities.Integrations
         }
 
         /// <summary>
+        /// true - если нормально нормализован
+        /// </summary>
+        public bool IsSuccessConvert
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Описание ошибки при конвертировании
+        /// </summary>
+        public string ErrorConvert
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// cmd
         /// </summary>
         public string Cmd
