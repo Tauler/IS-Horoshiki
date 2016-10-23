@@ -104,6 +104,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// <returns></returns>
         private DateTime? ToDate(string date)
         {
+            if (string.IsNullOrEmpty(date))
+            {
+                return null;
+            }
+
             DateTime result;
             if (DateTime.TryParse(date.Replace(" ", ""), out result))
             {
@@ -120,6 +125,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// <returns></returns>
         private TimeSpan? ToTime(string time)
         {
+            if (string.IsNullOrEmpty(time))
+            {
+                return null;
+            }
+
             TimeSpan result;
             if (TimeSpan.TryParse(time.Replace(".", ":").Replace(" ", ""), out result))
             {

@@ -24,11 +24,6 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         private static readonly Queue<IntegrationCheck> _queue = new Queue<IntegrationCheck>();
 
         /// <summary>
-        /// UnitOfWork
-        /// </summary>
-        private UnitOfWork _unitOfWork = new UnitOfWork();
-
-        /// <summary>
         /// Запуск потока нормализации записей в БД
         /// </summary>
         private readonly RecurrentTask _excecuteNormalization;
@@ -47,7 +42,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// </summary>
         private IntegrationCheckQueue()
         {
-            _excecuteNormalization = new RecurrentTask(TimeSpan.FromSeconds(30), Execute, "Execute normalization for checks", false);
+            _excecuteNormalization = new RecurrentTask(TimeSpan.FromSeconds(10), Execute, "Execute normalization for checks", false);
         }
 
         #endregion
@@ -61,10 +56,13 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         {
             try
             {
-                var list = _unitOfWork.IntegrationCheckRepository.GetForNormalization();
-                foreach (var check in list)
+                using (var unitOfWork = new UnitOfWork())
                 {
-                    Enqueue(check);
+                    var list = unitOfWork.IntegrationCheckRepository.GetForNormalization();
+                    foreach (var check in list)
+                    {
+                        Enqueue(check);
+                    }
                 }
             }
             catch (Exception e)
@@ -97,7 +95,10 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         {
             lock (_queue)
             {
-                _queue.Enqueue(check);
+                if (check.Cmd.ToUpper() == "order".ToUpper())
+                {
+                    _queue.Enqueue(check);
+                }
             }
         }
 
@@ -110,54 +111,62 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// </summary>
         protected async void Execute()
         {
+            if (_isExecuting)
+            {
+                return;
+            }
+            _isExecuting = true;
+
             try
             {
-                if (_isExecuting)
-                {
-                    return;
-                }
-                _isExecuting = true;
-
                 while (_queue.Count > 0)
                 {
                     IntegrationCheck check = _queue.Dequeue();
 
-                    try
+                    using (var unitOfWork = new UnitOfWork())
                     {
-                        var normalization = new NormalizationCheck(_unitOfWork);
-                        var normaCheck = await normalization.ExecuteNormalization(check);
+                        try
+                        {
+                            var normalization = new NormalizationCheck(unitOfWork);
+                            var normaCheck = await normalization.ExecuteNormalization(check);
 
-                        var exist = _unitOfWork.SaleCheckRepository.GetByCheckId(normaCheck.IdCheck);
-                        if (exist == null && check.Status.ToUpper() != "Удален".ToUpper())
-                        {
-                            _unitOfWork.SaleCheckRepository.Insert(normaCheck);
-                        }
-                        else
-                        {
-                            if (check.Status.ToUpper() == "Удален".ToUpper())
+                            var statusDelete = "Удален".ToUpper();
+
+                            var exist = unitOfWork.SaleCheckRepository.GetByCheckId(normaCheck.IdCheck);
+                            if (exist == null && check.Status.ToUpper() != statusDelete)
                             {
-                                _unitOfWork.SaleCheckRepository.Delete(exist);
+                                unitOfWork.SaleCheckRepository.Insert(normaCheck);
                             }
                             else
                             {
-                                normaCheck.Id = exist.Id;
-                                _unitOfWork.SaleCheckRepository.Update(exist);
+                                if (check.Status.ToUpper() == statusDelete)
+                                {
+                                    if (exist != null)
+                                    {
+                                        unitOfWork.SaleCheckRepository.Delete(exist);
+                                    }
+                                }
+                                else
+                                {
+                                    normaCheck.Id = exist.Id;
+                                    unitOfWork.SaleCheckRepository.Update(exist);
+                                }
                             }
+                            unitOfWork.Save();
+
+                            check.IsSuccessConvert = true;
+                            check.ErrorConvert = string.Empty;
                         }
-                        _unitOfWork.Save();
+                        catch (Exception e)
+                        {
+                            check.IsSuccessConvert = false;
+                            check.ErrorConvert = e.Message;
+                            Logger.Error(e.Message);
+                        }
 
-                        check.IsSuccessConvert = true;
-                        check.ErrorConvert = string.Empty;
+                        unitOfWork.IntegrationCheckRepository.Update(check);
+                        unitOfWork.Save();
                     }
-                    catch (Exception e)
-                    {
-                        check.IsSuccessConvert = false;
-                        check.ErrorConvert = e.Message;
-                        Logger.Error(e.Message);
-                    }
-
-                    _unitOfWork.IntegrationCheckRepository.Update(check);
-                    _unitOfWork.Save();
                 }
             }
             catch (Exception e)
