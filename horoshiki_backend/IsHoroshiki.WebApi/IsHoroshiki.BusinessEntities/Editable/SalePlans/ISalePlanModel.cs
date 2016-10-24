@@ -56,7 +56,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlan
         /// <summary>
         /// Планируемый средний чек
         /// </summary>
-        float AvarageCheck
+        float AverageCheck
         {
             get;
             set;

@@ -94,7 +94,7 @@ BEGIN
 	SELECT 
 			[DateDoc],
 			[BuyProcessId],
-			count(*)
+			count(*) as CountCheck
 	FROM 
 	(
 		SELECT DISTINCT 

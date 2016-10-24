@@ -63,6 +63,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
+    <Compile Include="DaoEntities\Editable\Helpers\SaleAnalizeResult.cs" />
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
     <Compile Include="DaoEntities\Editable\SaleCheck.cs" />
     <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />

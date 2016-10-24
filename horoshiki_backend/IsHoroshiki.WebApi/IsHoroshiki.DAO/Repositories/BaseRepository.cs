@@ -4,6 +4,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using IsHoroshiki.DAO.Helpers;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace IsHoroshiki.DAO.Repositories
 {
@@ -197,7 +199,7 @@ namespace IsHoroshiki.DAO.Repositories
 
         #endregion
 
-        #region методы
+        #region protected virtual
 
         /// <summary>
         /// Действие с сущностью перед добавлением в БД
@@ -224,6 +226,17 @@ namespace IsHoroshiki.DAO.Repositories
         protected virtual void LoadChildEntities(TDaoEntity entity)
         {
 
+        }
+
+        /// <summary>
+        /// Создать параметр БД
+        /// </summary>
+        /// <param name="name">Наименование</param>
+        /// <param name="value">Значение</param>
+        /// <returns></returns>
+        protected virtual IDataParameter GetParameter(string name, object value)
+        {
+            return new SqlParameter(name, value); 
         }
 
         #endregion
