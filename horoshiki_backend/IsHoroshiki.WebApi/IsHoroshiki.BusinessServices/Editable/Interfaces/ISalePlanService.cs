@@ -10,8 +10,23 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
     public interface ISalePlanService : IBaseEditableService<ISalePlanModel>
     {
         /// <summary>
-        /// Создать план
+        /// Создать\Редактировать план
         /// </summary>
-        Task<SalePlanTableModel> CreatePlan(ISalePlanModel model);
+        Task<SalePlanTableModel> Add(ISalePlanModel model);
+
+        /// <summary>
+        /// Создать\Редактировать план
+        /// </summary>
+        Task<SalePlanTableModel> Update(ISalePlanModel model);
+
+        /// <summary>
+        /// Редактировать ячейку отчета
+        /// </summary>
+        Task<ModelEntityModifyResult> UpdateAverageCheck(ISalePlanModel model);
+
+        /// <summary>
+        /// Редактировать ячейку отчета
+        /// </summary>
+        Task<ModelEntityModifyResult> UpdateCell(ISalePlanCellModel model);
     }
 }
