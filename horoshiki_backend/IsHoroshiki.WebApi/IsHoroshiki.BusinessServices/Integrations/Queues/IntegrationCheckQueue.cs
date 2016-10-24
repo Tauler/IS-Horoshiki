@@ -132,6 +132,8 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
 
                             var statusDelete = "Удален".ToUpper();
 
+                            //var result = unitOfWork.SaleCheckRepository.GetSaleCheckAnalize(1, new DateTime(2016, 10, 1), new DateTime(2016, 10, 1), 1 == 1);
+
                             var exist = unitOfWork.SaleCheckRepository.GetByCheckId(normaCheck.IdCheck);
                             if (exist == null && check.Status.ToUpper() != statusDelete)
                             {
