@@ -12,8 +12,17 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// </summary>
     [Authorize]
     [RoutePrefix("api/salePlan")]
-    public class SalePlanController : BaseEditableController<ISalePlanModel, ISalePlanService>
+    public class SalePlanController : BaseController<ISalePlanModel>
     {
+        #region поля и свойства
+
+        /// <summary>
+        /// Сервис бизнес-логики
+        /// </summary>
+        private readonly ISalePlanService _service;
+
+        #endregion
+
         #region Конструктор
 
         /// <summary>
@@ -23,23 +32,92 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         public SalePlanController(ISalePlanService service)
             : base(service)
         {
-            
+            _service = service;
         }
 
         #endregion
 
         #region методы контроллера
 
-        /// <summary>
-        /// Создать план
-        /// </summary>
-        [Route("create")]
-        public async Task<IHttpActionResult> CreatePlan(ISalePlanModel model)
+        /// <summary>  
+        /// Найти по Id 
+        /// </summary>  
+        /// <param name="id">Id</param>  
+        [Route("{id}")]
+        public override async Task<IHttpActionResult> GetById(int id)
         {
             try
             {
-                var list = await _service.CreatePlan(model);
-                return Ok(list);
+                var result = await _service.Add(null);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Создать план
+        /// </summary>
+        [Route("add")]
+        public async Task<IHttpActionResult> Add(ISalePlanModel model)
+        {
+            try
+            {
+                var result = await _service.Add(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Редактировать план
+        /// </summary>
+        [Route("Update")]
+        public async Task<IHttpActionResult> Update(ISalePlanModel model)
+        {
+            try
+            {
+                var result = await _service.Update(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Редактировать cредний чек плана 
+        /// </summary>
+        [Route("UpdateAverageCheck")]
+        public async Task<IHttpActionResult> UpdateAverageCheck(ISalePlanModel model)
+        {
+            try
+            {
+                var result = await _service.UpdateAverageCheck(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
+        /// <summary>
+        /// Редактировать ячейку отчета
+        /// </summary>
+        [Route("UpdateCell")]
+        public async Task<IHttpActionResult> UpdateCell(ISalePlanCellModel model)
+        {
+            try
+            {
+                var result = await _service.UpdateCell(model);
+                return Ok(result);
             }
             catch (Exception e)
             {
