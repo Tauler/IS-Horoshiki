@@ -61,6 +61,8 @@
   <ItemGroup>
     <Compile Include="Editable\AccountService.cs" />
     <Compile Include="Editable\DeliveryZoneService.cs" />
+    <Compile Include="Editable\SalePlans\ISalePlanHelper.cs" />
+    <Compile Include="Editable\SalePlans\SalePlanHelper.cs" />
     <Compile Include="Editable\SalePlanService.cs" />
     <Compile Include="Editable\Interfaces\IAccountService.cs" />
     <Compile Include="Editable\Interfaces\IDeliveryZoneService.cs" />
@@ -172,9 +174,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Editable\SalePlans\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

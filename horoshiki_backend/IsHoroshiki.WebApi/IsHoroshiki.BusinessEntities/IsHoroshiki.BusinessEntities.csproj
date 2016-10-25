@@ -89,8 +89,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
-    <Compile Include="Editable\SalePlans\SalePlanCellModel.cs" />
-    <Compile Include="Editable\SalePlans\ISalePlanCellModel.cs" />
+    <Compile Include="Editable\MappingDao\SalePlanDayModelMappingDao.cs" />
     <Compile Include="Integrations\IIntegrationCheckModel.cs" />
     <Compile Include="Integrations\IntegrationCheckModel.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanModel.cs" />
@@ -99,8 +98,8 @@
     <Compile Include="Editable\SalePlans\Result\SalePlanSumDayModel.cs" />
     <Compile Include="Editable\SalePlans\Result\ISalePlanSumDayModel.cs" />
     <Compile Include="Editable\SalePlans\Result\ISalePlanSumRowModel.cs" />
-    <Compile Include="Editable\SalePlans\Result\SalePlanDayModel.cs" />
-    <Compile Include="Editable\SalePlans\Result\ISalePlanDayModel.cs" />
+    <Compile Include="Editable\SalePlans\SalePlanDayModel.cs" />
+    <Compile Include="Editable\SalePlans\ISalePlanDayModel.cs" />
     <Compile Include="Editable\SalePlans\Result\ISalePlanTableModel.cs" />
     <Compile Include="Editable\SalePlans\Result\ISalePlanDataRowModel.cs" />
     <Compile Include="Editable\SalePlans\Result\SalePlanTableModel.cs" />

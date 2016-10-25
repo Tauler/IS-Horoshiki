@@ -1,34 +1,34 @@
 ﻿using System;
 
-namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
+namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
     /// <summary>
-    /// Сумма чеков на день
+    /// День плана продаж
     /// </summary>
-    public interface ISalePlanDayModel 
+    public class SalePlanDay : BaseDaoEntity
     {
+        /// <summary>
+        /// План продаж
+        /// </summary>
+        public int SalePlanId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// План продаж
+        /// </summary>
+        public SalePlan SalePlan
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Дата
         /// </summary>
-        DateTime Date
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// День недели
-        /// </summary>
-        DayOfWeek DayOfWeek
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// День недели
-        /// </summary>
-        string DayOfWeekDescr
+        public DateTime Date
         {
             get;
             set;
@@ -37,7 +37,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Доставка
         /// </summary>
-        int Delivery
+        public int Delivery
         {
             get;
             set;
@@ -46,18 +46,10 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Cамовывоз
         /// </summary>
-        int Self
+        public int Self
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// Итого
-        /// </summary>
-        int Sum
-        {
-            get;
         }
     }
 }

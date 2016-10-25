@@ -44,9 +44,11 @@ namespace IsHoroshiki.DAO
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<IPlatformRepository, PlatformRepository>();
 
+            container.RegisterType<IIntegrationCheckRepository, IntegrationCheckRepository>();
             container.RegisterType<ISaleCheckRepository, SaleCheckRepository>();
             container.RegisterType<ISalePlanRepository, SalePlanRepository>();
-            container.RegisterType<IIntegrationCheckRepository, IntegrationCheckRepository>();
+            container.RegisterType<ISalePlanDayRepository, SalePlanDayRepository>();
+            
 
             return container;
         }

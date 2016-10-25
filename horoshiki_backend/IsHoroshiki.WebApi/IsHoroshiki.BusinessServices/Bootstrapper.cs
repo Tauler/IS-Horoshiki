@@ -11,6 +11,7 @@ using IsHoroshiki.BusinessServices.Validators.Editable;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Kladr;
 using IsHoroshiki.BusinessServices.Integrations;
+using IsHoroshiki.BusinessServices.Editable.SalePlans;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -58,6 +59,8 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IUtilService, UtilService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<ISalePlanService, SalePlanService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<ISalePlanHelper, SalePlanHelper>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            
 
             container.RegisterType<IIntegrationService, IntegrationService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 

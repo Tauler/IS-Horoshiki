@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.SalePlan;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
 using System.Threading.Tasks;
 
@@ -27,6 +28,6 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <summary>
         /// Редактировать ячейку отчета
         /// </summary>
-        Task<ModelEntityModifyResult> UpdateCell(ISalePlanCellModel model);
+        Task<ModelEntityModifyResult> UpdateCell(ISalePlanDayModel model);
     }
 }

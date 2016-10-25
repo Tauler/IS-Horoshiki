@@ -161,6 +161,24 @@ namespace IsHoroshiki.DAO
             set;
         }
 
+        /// <summary>
+        /// План продаж
+        /// </summary>
+        public DbSet<SalePlan> SalePlan
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// День плана продаж
+        /// </summary>
+        public DbSet<SalePlanDay> SalePlanDay
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Конструктор
@@ -202,6 +220,8 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new DeliveryTimeConfiguration());
             modelBuilder.Configurations.Add(new IntegrationCheckConfiguration());
             modelBuilder.Configurations.Add(new SaleCheckConfiguration());
+            modelBuilder.Configurations.Add(new SalePlanConfiguration());
+            modelBuilder.Configurations.Add(new SalePlanDayConfiguration());
         }
 
         #endregion
