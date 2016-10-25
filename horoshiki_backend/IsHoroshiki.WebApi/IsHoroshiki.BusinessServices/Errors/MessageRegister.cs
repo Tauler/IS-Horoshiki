@@ -1,4 +1,5 @@
-﻿using IsHoroshiki.BusinessServices.Errors.Enums;
+﻿using System;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 
 namespace IsHoroshiki.BusinessServices.Errors
 {
@@ -29,6 +30,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             FillMessagePlatformHolder();
             FillMessageEmployeeReasonDismissalHolder();
             FillMessageDeliveryZoneHolder();
+            FillMessageSalePlanHolder();
         }
 
         #region private
@@ -85,7 +87,7 @@ namespace IsHoroshiki.BusinessServices.Errors
         }
 
         /// <summary>
-        /// Заполнение ошибок для платформ
+        /// Заполнение ошибок для площадки
         /// </summary>
         private static void FillMessagePlatformHolder()
         {
@@ -122,6 +124,24 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.СoordinatesIsNull, ResourceBusinessServices.DeliveryZoneValidator_СoordinatesIsNull);
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.DeliveryZoneTypeNotFound, ResourceBusinessServices.DeliveryZoneValidator_DeliveryZoneTypeNotFound);
             MessageHolder.Instance.AddMessage(DeliveryZoneErrors.PlatformNotFound, ResourceBusinessServices.DeliveryZoneValidator_PlatformNotFound);
+        }
+
+        /// <summary>
+        /// Заполнение ошибок для плана продаж
+        /// </summary>
+        private static void FillMessageSalePlanHolder()
+        {
+            MessageHolder.Instance.AddMessage(SalePlanErrors.PlatformIsNull, ResourceBusinessServices.SalePlanValidator_PlatformIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.SalePlanPeriodIsNull, ResourceBusinessServices.SalePlanValidator_SalePlanPeriodIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.SalePlanPeriodMonthIsNull, ResourceBusinessServices.SalePlanValidator_SalePlanPeriodMonthIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.SalePlanPeriodYearIsNull, ResourceBusinessServices.SalePlanValidator_SalePlanPeriodYearIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod1IsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod1IsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod1MonthIsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod1MonthIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod1YearIsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod1YearIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod2IsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod2IsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod2MonthIsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod2MonthIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod2YearIsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod2YearIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNull, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNull);            
         }
 
         #endregion

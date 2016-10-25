@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace IsHoroshiki.BusinessServices.Errors.Enums
 {
     /// <summary>
-    /// Список ошибок для платформ
+    /// Список ошибок для площадки
     /// </summary>
     public enum PlatformErrors
     {
@@ -67,7 +67,7 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         BuyProcessNotFound,
 
         /// <summary>
-        /// Невозможно удалить платформу, т.к. он привязана к пользователю!
+        /// Невозможно удалить площадку, т.к. она привязана к пользователю!
         /// </summary>
         CanNotDeleteExistUser,
 

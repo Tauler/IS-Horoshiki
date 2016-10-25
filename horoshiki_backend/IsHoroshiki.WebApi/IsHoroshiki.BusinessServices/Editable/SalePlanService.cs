@@ -12,6 +12,7 @@ using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 using System;
+using System.Linq;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -51,6 +52,17 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         public async Task<SalePlanTableModel> Add(ISalePlanModel model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
+            var validateResult = await _validator.ValidateAsync(model);
+            if (!validateResult.IsSucceeded)
+            {
+                throw new Exception(validateResult.Errors.First().Message);
+            }
+
             return await this._salePlanHelper.Get(model);
         }
 
@@ -59,6 +71,17 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         public async Task<SalePlanTableModel> Update(ISalePlanModel model)
         {
+            if (model == null)
+            {
+                return null;
+            }
+
+            var validateResult = await _validator.ValidateAsync(model);
+            if (!validateResult.IsSucceeded)
+            {
+                throw new Exception(validateResult.Errors.First().Message);
+            }
+
             return await this._salePlanHelper.Get(model);
         }
 
@@ -67,7 +90,29 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         public async Task<ModelEntityModifyResult> UpdateAverageCheck(ISalePlanModel model)
         {
-            return await UpdateAsync(model);
+            if (model == null)
+            {
+                return new ModelEntityModifyResult(CommonErrors.EntityUpdateIsNull);
+            }
+
+            var daoEntity = await _repository.GetByIdAsync(model.Id);
+            if (daoEntity == null)
+            {
+                var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { model.Id });
+                return new ModelEntityModifyResult(errorData);
+            }
+
+            if (model.AverageCheck == 0)
+            {
+                return new ModelEntityModifyResult(SalePlanErrors.AverageCheckIsNull);
+            }
+
+            daoEntity.AverageCheck = model.AverageCheck;
+
+            _repository.Update(daoEntity);
+            _unitOfWork.Save();
+
+            return new ModelEntityModifyResult();
         }
 
         /// <summary>
@@ -81,18 +126,6 @@ namespace IsHoroshiki.BusinessServices.Editable
                 {
                     return new ModelEntityModifyResult(CommonErrors.Exception);
                 }
-
-                //var validateResult = await _validator.ValidateAsync(model);
-                //if (!validateResult.IsSucceeded)
-                //{
-                //    return new ModelEntityModifyResult(validateResult.Errors);
-                //}
-
-                //var customValidateResult = await ValidationInternal(model);
-                //if (!customValidateResult.IsSucceeded)
-                //{
-                //    return new ModelEntityModifyResult(customValidateResult.Errors);
-                //}
 
                 var daoEntity = await _unitOfWork.SalePlanDayRepository.GetByIdAsync(model.Id);
                 if (daoEntity == null)

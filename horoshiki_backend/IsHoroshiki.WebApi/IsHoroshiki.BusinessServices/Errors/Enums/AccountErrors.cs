@@ -81,7 +81,7 @@
         PlatformRepositoryIsNull,
 
         /// <summary>
-        /// Невозможно удалить пользователя, т.к. он привязан к платформе!
+        /// Невозможно удалить пользователя, т.к. он привязан к площадке!
         /// </summary>
         CanNotDeleteExistPlatform,
 

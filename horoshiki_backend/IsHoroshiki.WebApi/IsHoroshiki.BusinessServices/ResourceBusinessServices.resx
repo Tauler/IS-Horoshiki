@@ -121,7 +121,7 @@
     <value>Ошибка при добавлении пользователя!</value>
   </data>
   <data name="AccountsController_CanNotDeleteExistPlatform" xml:space="preserve">
-    <value>Невозможно удалить пользователя, т.к. он привязан к платформе!</value>
+    <value>Невозможно удалить пользователя, т.к. он привязан к площадке!</value>
   </data>
   <data name="AccountsController_ConfirmPasswordIsNull" xml:space="preserve">
     <value>Необходимо указать подтверждение пароля!</value>
@@ -217,7 +217,7 @@
     <value>Способа покупки для указанного ID="{0}" не существует!</value>
   </data>
   <data name="PlatformService_CanNotDeleteExistUser" xml:space="preserve">
-    <value>Невозможно удалить платформу, т.к. он привязана к пользователю!</value>
+    <value>Невозможно удалить площадку, т.к. она привязана к пользователю!</value>
   </data>
   <data name="PlatformService_PlatformStatusNotFound" xml:space="preserve">
     <value>Статуса площадки для указанного ID="{0}" не существует!</value>
@@ -248,6 +248,39 @@
   </data>
   <data name="PlatformValidator_TimeStartIsNullModel" xml:space="preserve">
     <value>Необходимо указать время начала работы!</value>
+  </data>
+  <data name="SalePlanValidator_AnalizePeriod1IsNull" xml:space="preserve">
+    <value>Необходимо указать период Анализ1 плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_AnalizePeriod1MonthIsNull" xml:space="preserve">
+    <value>Необходимо указать месяц Анализ1 плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_AnalizePeriod1YearIsNull" xml:space="preserve">
+    <value>Необходимо указать год Анализ1 плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_AnalizePeriod2IsNull" xml:space="preserve">
+    <value>Необходимо указать период Анализ2 плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_AnalizePeriod2MonthIsNull" xml:space="preserve">
+    <value>Необходимо указать месяц Анализ2 плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_AnalizePeriod2YearIsNull" xml:space="preserve">
+    <value>Необходимо указать год Анализ2 плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_AverageCheckIsNull" xml:space="preserve">
+    <value>Необходимо указать средний чек!</value>
+  </data>
+  <data name="SalePlanValidator_PlatformIsNull" xml:space="preserve">
+    <value>Необходимо указать площадку!</value>
+  </data>
+  <data name="SalePlanValidator_SalePlanPeriodIsNull" xml:space="preserve">
+    <value>Необходимо указать период плана продаж!</value>
+  </data>
+  <data name="SalePlanValidator_SalePlanPeriodMonthIsNull" xml:space="preserve">
+    <value>Необходимо указать месяц период плана!</value>
+  </data>
+  <data name="SalePlanValidator_SalePlanPeriodYearIsNull" xml:space="preserve">
+    <value>Необходимо указать год плана продаж!</value>
   </data>
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
     <value>Не найден тип цены с Id="{0}"!</value>

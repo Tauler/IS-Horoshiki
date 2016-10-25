@@ -3,7 +3,7 @@
 namespace IsHoroshiki.BusinessServices.Validators.Editable.Interfaces
 {
     /// <summary>
-    /// Валидатор Платформа
+    /// Валидатор Площадка
     /// </summary>
     public interface IPlatformValidator : IValidator<IPlatformModel>
     {
