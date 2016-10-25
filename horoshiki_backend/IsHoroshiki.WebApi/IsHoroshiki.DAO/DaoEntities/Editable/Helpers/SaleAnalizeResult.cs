@@ -17,18 +17,18 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         }
 
         /// <summary>
-        /// Способ покупки
+        /// Доставка
         /// </summary>
-        public int? BuyProcessId
+        public int Delivery
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Кол-во чеков на этот день
+        /// Cамовывоз
         /// </summary>
-        public int CountCheck
+        public int Self
         {
             get;
             set;

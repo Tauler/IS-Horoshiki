@@ -1,6 +1,6 @@
 USE [IsHoroshiki]
 GO
-/****** Object:  StoredProcedure [dbo].[SaleCheckAnalize]    Script Date: 24.10.2016 17:01:22 ******/
+/****** Object:  StoredProcedure [dbo].[SaleCheckAnalize]    Script Date: 25.10.2016 10:44:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -14,6 +14,15 @@ ALTER PROCEDURE [dbo].[SaleCheckAnalize]
 )
 AS
 BEGIN
+	DECLARE @SubDepartmentSuchiId int
+	DECLARE @DeliveryId int
+	DECLARE @SelfId		int
+
+	SET @SubDepartmentSuchiId = (SELECT ID FROM [dbo].[SubDepartments] WHERE [GUID] = 'FCD7586F-EDDB-4531-BE83-E006BEB766D3')
+	SET @DeliveryId = (SELECT ID FROM [dbo].[BuyProcesses] WHERE [GUID] = 'FBBAE261-CD71-4FA3-AF63-E04FC1E5CB18')
+	SET @SelfId = (SELECT ID FROM [dbo].[BuyProcesses] WHERE [GUID] = '1C47B31F-D28B-4DEF-BE40-E588CADD853B')
+
+
 	CREATE TABLE #RESULT
 	(
 		[Id]			  int,
@@ -22,7 +31,9 @@ BEGIN
 		[BuyProcessId]	  int,
 		[SubDepartmentId] int,
 		[IsSuchi]		  bit,
-		[IsNeedRemove]	  bit
+		[IsNeedRemove]	  bit,
+		[Delivery]		  int,
+		[Self]			  int
 	)
 
 	--отбираем все чеки за указанный период
@@ -33,6 +44,8 @@ BEGIN
 			[DateDoc], 
 			[BuyProcessId], 
 			link.[SubDepartmentId],
+			0,
+			0,
 			0,
 			0
 	  FROM [dbo].[SaleChecks] sc
@@ -76,7 +89,7 @@ BEGIN
 	   SET
 			[IsSuchi] = 1
 	 WHERE
- 			[SubDepartmentId] in (SELECT ID FROM [SubDepartments] WHERE [GUID] = 'FCD7586F-EDDB-4531-BE83-E006BEB766D3') AND
+ 			[SubDepartmentId] = @SubDepartmentSuchiId AND
 			ID = 
 			(
 				SELECT	
@@ -90,27 +103,37 @@ BEGIN
 				HAVING COUNT(ID) = 1
 			)
 
+	--удаляем не соответсвующие условию
+	DELETE FROM #RESULT WHERE [IsSuchi] <> @IsSuchi
+
+
+    --проставляем для подсчета суммы доставки Доставка
+	UPDATE
+			#RESULT
+	   SET
+			[Delivery] = 1
+	 WHERE
+			[BuyProcessId] = @DeliveryId
+
+	--проставляем для подсчета суммы доставки Самовывоз
+	UPDATE
+			#RESULT
+	   SET
+			[Self] = 1
+	 WHERE
+			[BuyProcessId] = @SelfId
+
 
 	SELECT 
 			[DateDoc],
-			[BuyProcessId],
-			count(*) as CountCheck
+			SUM([Delivery]) as [Delivery],
+			SUM([Self]) as [Self]
 	FROM 
-	(
-		SELECT DISTINCT 
-				[DateDoc],
-				[BuyProcessId], 
-				[Id], 
-				[IsSuchi]
-		FROM 
-				#RESULT
-	) d
-	WHERE
-			[IsSuchi] = @IsSuchi
+			#RESULT
 	GROUP BY
-			[DateDoc], [BuyProcessId]
+			[DateDoc]
 	ORDER BY
-			[DateDoc], [BuyProcessId]
+			[DateDoc]
 
 
 	DROP TABLE #RESULT;

@@ -6,13 +6,13 @@
     public enum PlanType
     {
         /// <summary>
-        /// Пицца
-        /// </summary>
-        Pizza,
-
-        /// <summary>
         /// Суши
         /// </summary>
-        Suchi
+        Suchi = 1,
+
+        /// <summary>
+        /// Пицца
+        /// </summary>
+        Pizza = 2,
     }
 }

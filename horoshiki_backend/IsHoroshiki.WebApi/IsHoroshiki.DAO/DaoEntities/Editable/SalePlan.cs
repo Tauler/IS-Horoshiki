@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
@@ -11,5 +7,49 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
     /// </summary>
     public class SalePlan : BaseDaoEntity
     {
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public int PlatformId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Площадка
+        /// </summary>
+        public Platform Platform
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Год
+        /// </summary>
+        public int Year
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Месяц
+        /// </summary>
+        public int Month
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Дни планирования
+        /// </summary>
+        public ICollection<SalePlanDay> SalePlanDays
+        {
+            get;
+            set;
+        }
     }
 }

@@ -114,6 +114,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private ISalePlanRepository _salePlanRepository;
 
         /// <summary>
+        /// Репозиторий День плана продаж
+        /// </summary>
+        private ISalePlanDayRepository _salePlanDayRepository;
+
+        /// <summary>
         /// Репозиторий План продаж
         /// </summary>
         private IIntegrationCheckRepository _integrationCheckRepository;
@@ -391,6 +396,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._salePlanRepository = new SalePlanRepository(_context);
                 }
                 return _salePlanRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозитарий День плана продаж
+        /// </summary>  
+        public ISalePlanDayRepository SalePlanDayRepository
+        {
+            get
+            {
+                if (this._salePlanDayRepository == null)
+                {
+                    this._salePlanDayRepository = new SalePlanDayRepository(_context);
+                }
+                return _salePlanDayRepository;
             }
         }
 

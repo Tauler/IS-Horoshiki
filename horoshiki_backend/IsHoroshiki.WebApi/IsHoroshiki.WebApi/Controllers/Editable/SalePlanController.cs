@@ -4,6 +4,7 @@ using IsHoroshiki.BusinessServices.Editable.Interfaces;
 using System.Threading.Tasks;
 using System;
 using IsHoroshiki.WebApi.Handlers;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
@@ -43,11 +44,15 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Найти по Id 
         /// </summary>  
         /// <param name="id">Id</param>  
-        [Route("{id}")]
         public override async Task<IHttpActionResult> GetById(int id)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
                 var result = await _service.Add(null);
                 return Ok(result);
             }
@@ -65,6 +70,11 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
                 var result = await _service.Add(model);
                 return Ok(result);
             }
@@ -82,6 +92,11 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
                 var result = await _service.Update(model);
                 return Ok(result);
             }
@@ -99,6 +114,11 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
                 var result = await _service.UpdateAverageCheck(model);
                 return Ok(result);
             }
@@ -112,10 +132,15 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Редактировать ячейку отчета
         /// </summary>
         [Route("UpdateCell")]
-        public async Task<IHttpActionResult> UpdateCell(ISalePlanCellModel model)
+        public async Task<IHttpActionResult> UpdateCell(ISalePlanDayModel model)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
                 var result = await _service.UpdateCell(model);
                 return Ok(result);
             }

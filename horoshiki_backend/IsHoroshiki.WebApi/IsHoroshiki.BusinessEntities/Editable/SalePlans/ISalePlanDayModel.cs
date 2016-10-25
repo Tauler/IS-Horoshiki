@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
+namespace IsHoroshiki.BusinessEntities.Editable.SalePlans
 {
     /// <summary>
     /// Сумма чеков на день
     /// </summary>
-    public class SalePlanDayModel : ISalePlanDayModel
+    public interface ISalePlanDayModel : IBaseBusninessModel
     {
         /// <summary>
         /// Дата
         /// </summary>
-        public DateTime Date
+        DateTime Date
         {
             get;
             set;
@@ -19,7 +19,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// День недели
         /// </summary>
-        public DayOfWeek DayOfWeek
+        DayOfWeek DayOfWeek
         {
             get;
             set;
@@ -28,7 +28,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// День недели
         /// </summary>
-        public string DayOfWeekDescr
+        string DayOfWeekDescr
         {
             get;
             set;
@@ -37,7 +37,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Доставка
         /// </summary>
-        public int Delivery
+        int Delivery
         {
             get;
             set;
@@ -46,7 +46,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Cамовывоз
         /// </summary>
-        public int Self
+        int Self
         {
             get;
             set;
@@ -55,12 +55,9 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Итого
         /// </summary>
-        public int Sum
+        int Sum
         {
-            get
-            {
-                return Delivery + Self;
-            }
+            get;
         }
     }
 }
