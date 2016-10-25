@@ -21,6 +21,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'platformsControllers',
     'reasonDismissalControllers',
     'zonesControllers',
+    'salesPlanControllers',
 
     'backendServices',
     'accountServices',
@@ -30,7 +31,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'subdivisionsServices',
     'platformsServices',
     'reasonDismissalServices',
-    'zonesServices'
+    'zonesServices',
+    'salesPlanServices'
 
 ]);
 
@@ -147,6 +149,15 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'zones',
                 title: 'Просмотр площадок'
+            })
+
+            .when('/salesplan', {
+                templateUrl: '/angular-html/salesplan.index.html',
+                controller: 'SalesPlanIndexController',
+                pageId: 'salesPlanIndex',
+                groupId: 'management',
+                subgroupId: 'salesPlan',
+                title: 'План продаж'
             })
 
             .when('/error', {

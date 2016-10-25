@@ -19,6 +19,26 @@ var enumPositions = {
     manager: '27c9376b-47b6-4eca-8920-e8a0e63f267c'
 }
 
+var enumTypePlan = {
+    sushi: {id:1, name: 'Суши'},
+    pizza: {id:2, name: 'Пицца'}
+}
+
+var enumYears = [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024];
+var enumMonth = [
+        {id:0, name:'Январь'},
+        {id:1, name:'Февраль'},
+        {id:2, name:'Март'},
+        {id:3, name:'Апрель'},
+        {id:4, name:'Май'},
+        {id:5, name:'Июнь'},
+        {id:6, name:'Июль'},
+        {id:7, name:'Август'},
+        {id:8, name:'Сентябрь'},
+        {id:9, name:'Октябрь'},
+        {id:10, name:'Ноябрь'},
+        {id:11, name:'Декабрь'}
+];
 
 function resizeFooter(){
     var contentHeight = $(window).height() - 123;

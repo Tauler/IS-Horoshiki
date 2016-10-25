@@ -23,7 +23,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
     <!--Beyond styles-->
     <link href="/theme/assets/css/beyond.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/theme/assets/css/custom.css" rel="stylesheet" type="text/css"/>
+    <link href="/theme/assets/css/custom/custom.css" rel="stylesheet" type="text/css"/>
     <!--<link href="/theme/assets/css/demo.min.css" rel="stylesheet" />-->
     <link href="/theme/assets/css/typicons.min.css" rel="stylesheet"/>
     <link href="/theme/assets/css/animate.min.css" rel="stylesheet"/>
@@ -82,8 +82,8 @@
                             </a>
                         </li>
 
-                        <li ng-class="groupId == '' ? 'open':''">
-                            <a class="login-area">
+                        <li ng-class="groupId == 'management' ? 'open':''">
+                            <a class="login-area" href="/salesplan">
                                 <section>
                                     <h2><span class="profile"><span>Управление</span></span></h2>
                                 </section>
@@ -239,6 +239,29 @@
                     </a>
                 </li>
             </ul>
+
+            <ul ng-if="groupId=='management'" class="nav sidebar-menu">
+
+                <li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/target">
+                        <i class="menu-icon fa fa-circle-o"></i>
+                        <span class="menu-text"> Цели </span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
+                    <a href="/salesplan">
+                        <i class="menu-icon fa fa-calendar"></i>
+                        <span class="menu-text"> План продаж </span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/workgraph">
+                        <i class="menu-icon fa fa-area-chart"></i>
+                        <span class="menu-text"> Графики работы </span>
+                    </a>
+                </li>
+
+            </ul>
             <!-- /Sidebar Menu -->
         </div>
         <!-- /Page Sidebar -->
@@ -319,7 +342,7 @@
 <script type="text/javascript" src="/angular-app/controllers/PlatformsController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/ReasonDismissalController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/ZonesController.js"></script>
-
+<script type="text/javascript" src="/angular-app/controllers/SalesPlanController.js"></script>
 
 <!-- Angular services -->
 <script type="text/javascript" src="/angular-app/service/TranslationService.js"></script>
@@ -331,6 +354,7 @@
 <script type="text/javascript" src="/angular-app/service/PlatformsService.js"></script>
 <script type="text/javascript" src="/angular-app/service/ReasonDismissalService.js"></script>
 <script type="text/javascript" src="/angular-app/service/ZonesService.js"></script>
+<script type="text/javascript" src="/angular-app/service/SalesPlanService.js"></script>
 
 <!-- Angular directives -->
 <script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
