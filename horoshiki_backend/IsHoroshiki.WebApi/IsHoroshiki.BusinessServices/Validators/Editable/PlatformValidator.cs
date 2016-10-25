@@ -7,7 +7,7 @@ using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 namespace IsHoroshiki.BusinessServices.Validators.Editable
 {
     /// <summary>
-    /// Валидатор Платформа
+    /// Валидатор Площадка
     /// </summary>
     public class PlatformValidator : IPlatformValidator
     {

@@ -11,16 +11,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlan
     public class SalePlanModel : BaseBusninessModel, ISalePlanModel
     {
         /// <summary>
-        /// Подразделение
-        /// </summary>
-        [JsonConverter(typeof(EntityModelConverter<SubDivisionModel, ISubDivisionModel>))]
-        public SubDivisionModel SubDivision
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Площадка
         /// </summary>
         [JsonConverter(typeof(EntityModelConverter<PlatformModel, IPlatformModel>))]
@@ -63,7 +53,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlan
         /// <summary>
         /// Планируемый средний чек
         /// </summary>
-        public float AverageCheck
+        public decimal AverageCheck
         {
             get;
             set;

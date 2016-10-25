@@ -15,7 +15,8 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
         public SalePlanConfiguration() 
             : base("SalePlans")
         {
-            
+            Property(i => i.AverageCheck)
+               .HasColumnType("Money");
         }
 
         #endregion

@@ -9,15 +9,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlan
     public interface ISalePlanModel : IBaseBusninessModel
     {
         /// <summary>
-        /// Подразделение
-        /// </summary>
-        SubDivisionModel SubDivision
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Площадка
         /// </summary>
         IPlatformModel Platform
@@ -56,7 +47,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlan
         /// <summary>
         /// Планируемый средний чек
         /// </summary>
-        float AverageCheck
+        decimal AverageCheck
         {
             get;
             set;

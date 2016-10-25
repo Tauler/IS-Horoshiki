@@ -9,7 +9,7 @@ namespace IsHoroshiki.DAO.DaoEntities.NotEditable
     public class BuyProcess : BaseNotEditableDaoEntity
     {
         /// <summary>
-        /// Платформа
+        /// Площадка
         /// </summary>
         public ICollection<Platform> Platforms
         {

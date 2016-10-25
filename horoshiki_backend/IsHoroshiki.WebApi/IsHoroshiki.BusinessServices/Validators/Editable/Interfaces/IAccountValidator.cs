@@ -4,7 +4,7 @@ using IsHoroshiki.BusinessEntities.Account.Interfaces;
 namespace IsHoroshiki.BusinessServices.Validators.Editable.Interfaces
 {
     /// <summary>
-    /// Валидатор Платформа
+    /// Валидатор Пользователь
     /// </summary>
     public interface IAccountValidator : IValidator<IApplicationUserModel>
     {

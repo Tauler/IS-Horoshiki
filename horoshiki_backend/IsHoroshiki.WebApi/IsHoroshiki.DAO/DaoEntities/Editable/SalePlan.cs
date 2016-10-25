@@ -44,6 +44,15 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         }
 
         /// <summary>
+        /// Планируемый средний чек
+        /// </summary>
+        public decimal AverageCheck
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дни планирования
         /// </summary>
         public ICollection<SalePlanDay> SalePlanDays

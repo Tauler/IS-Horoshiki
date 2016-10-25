@@ -70,7 +70,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Невозможно удалить пользователя, т.к. он привязан к платформе!.
+        ///   Looks up a localized string similar to Невозможно удалить пользователя, т.к. он привязан к площадке!.
         /// </summary>
         internal static string AccountsController_CanNotDeleteExistPlatform {
             get {
@@ -358,7 +358,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Невозможно удалить платформу, т.к. он привязана к пользователю!.
+        ///   Looks up a localized string similar to Невозможно удалить площадку, т.к. она привязана к пользователю!.
         /// </summary>
         internal static string PlatformService_CanNotDeleteExistUser {
             get {
@@ -453,6 +453,105 @@ namespace IsHoroshiki.BusinessServices {
         internal static string PlatformValidator_TimeStartIsNullModel {
             get {
                 return ResourceManager.GetString("PlatformValidator_TimeStartIsNullModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать период Анализ1 плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_AnalizePeriod1IsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AnalizePeriod1IsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать месяц Анализ1 плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_AnalizePeriod1MonthIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AnalizePeriod1MonthIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать год Анализ1 плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_AnalizePeriod1YearIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AnalizePeriod1YearIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать период Анализ2 плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_AnalizePeriod2IsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AnalizePeriod2IsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать месяц Анализ2 плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_AnalizePeriod2MonthIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AnalizePeriod2MonthIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать год Анализ2 плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_AnalizePeriod2YearIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AnalizePeriod2YearIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать средний чек!.
+        /// </summary>
+        internal static string SalePlanValidator_AverageCheckIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AverageCheckIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать площадку!.
+        /// </summary>
+        internal static string SalePlanValidator_PlatformIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_PlatformIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать период плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_SalePlanPeriodIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_SalePlanPeriodIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать месяц период плана!.
+        /// </summary>
+        internal static string SalePlanValidator_SalePlanPeriodMonthIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_SalePlanPeriodMonthIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать год плана продаж!.
+        /// </summary>
+        internal static string SalePlanValidator_SalePlanPeriodYearIsNull {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_SalePlanPeriodYearIsNull", resourceCulture);
             }
         }
         

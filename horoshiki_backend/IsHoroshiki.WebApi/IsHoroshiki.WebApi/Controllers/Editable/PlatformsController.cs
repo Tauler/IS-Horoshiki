@@ -21,7 +21,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="service">Cервис Платформа</param>
+        /// <param name="service">Cервис Площадка</param>
         public PlatformsController(IPlatformService service)
             : base(service)
         {

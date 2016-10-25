@@ -3,6 +3,7 @@ CREATE TABLE [dbo].[SalePlans](
 	[PlatformId] [int] NOT NULL,
 	[Year] [int] NOT NULL,
 	[Month] [int] NOT NULL,
+	[AverageCheck] [money] NOT NULL,
  CONSTRAINT [PK_dbo.SalePlans] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

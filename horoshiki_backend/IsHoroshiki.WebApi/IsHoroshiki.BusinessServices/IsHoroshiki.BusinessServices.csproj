@@ -74,6 +74,7 @@
     <Compile Include="Errors\Enums\DeliveryZoneErrors.cs" />
     <Compile Include="Errors\Enums\EmployeeReasonDismissalErrors.cs" />
     <Compile Include="Errors\Enums\PlatformErrors.cs" />
+    <Compile Include="Errors\Enums\SalePlanErrors.cs" />
     <Compile Include="Errors\Enums\SubDivisionErrors.cs" />
     <Compile Include="Errors\ErrorDatas\UnauthorizedErrorData.cs" />
     <Compile Include="Errors\ErrorDatas\ErrorData.cs" />
