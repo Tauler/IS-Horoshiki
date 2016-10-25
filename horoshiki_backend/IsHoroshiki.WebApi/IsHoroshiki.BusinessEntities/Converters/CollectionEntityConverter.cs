@@ -19,8 +19,12 @@ namespace IsHoroshiki.BusinessEntities.Converters
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            IList<Tt> items = serializer.Deserialize<List<T>>(reader).Cast<Tt>().ToList();
-            return items;
+            if (existingValue == null)
+            {
+                return existingValue;
+            }
+
+            return serializer.Deserialize<List<T>>(reader).Cast<Tt>().ToList();
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
