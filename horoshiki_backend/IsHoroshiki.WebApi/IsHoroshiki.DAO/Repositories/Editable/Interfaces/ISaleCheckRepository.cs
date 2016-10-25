@@ -1,7 +1,6 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using System;
 using System.Collections.Generic;
-using static IsHoroshiki.DAO.Repositories.Editable.SaleCheckRepository;
 
 namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
 {
@@ -25,6 +24,6 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
         /// <param name="end">Дата окончания</param>
         /// <param name="isSushi">true - если суши</param>
         /// <returns></returns>
-        List<AnalizeResult> GetSaleCheckAnalize(int idPlatform, DateTime start, DateTime end, bool isSushi);
+        List<SaleAnalizeResult> GetSaleCheckAnalize(int idPlatform, DateTime start, DateTime end, bool isSushi);
     }
 }

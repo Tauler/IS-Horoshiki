@@ -37,7 +37,6 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             return DbSet.FirstOrDefault(check => check.IdCheck == idCheck);
         }
 
-
         /// <summary>
         /// Получить отчет-анализ за период
         /// </summary>
@@ -46,35 +45,16 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <param name="end">Дата окончания</param>
         /// <param name="isSushi">true - если суши</param>
         /// <returns></returns>
-        public List<AnalizeResult> GetSaleCheckAnalize(int idPlatform, DateTime start, DateTime end, bool isSushi)
+        public List<SaleAnalizeResult> GetSaleCheckAnalize(int idPlatform, DateTime start, DateTime end, bool isSushi)
         {
-            return Context.Database.SqlQuery<AnalizeResult>("exec SaleCheckAnalize @PlatformId, @DateBegin, @DateEnd, @IsSuchi", idPlatform, start, end, isSushi).ToList();
+            return Context.Database.SqlQuery<SaleAnalizeResult>("exec dbo.SaleCheckAnalize @PlatformId, @DateBegin, @DateEnd, @IsSuchi",
+                GetParameter("PlatformId", idPlatform),
+                GetParameter("DateBegin", start),
+                GetParameter("DateEnd", end),
+                GetParameter("IsSuchi", isSushi))
+                .ToList();
         }
 
-        #endregion
-
-        public class AnalizeResult
-        {
-            public DateTime DateDoc
-            {
-                get;
-                set;
-            }
-
-            public int BuyProcessId
-            {
-                get;
-                set;
-            }
-
-            public int CountCheck
-            {
-                get;
-                set;
-            }
-
-            
-        }
-
+        #endregion      
     }
 }

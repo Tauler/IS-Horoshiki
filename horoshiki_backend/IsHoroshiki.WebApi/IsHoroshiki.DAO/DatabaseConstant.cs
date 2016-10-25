@@ -72,5 +72,27 @@ namespace IsHoroshiki.DAO
                 return Guid.Parse("FCD7586F-EDDB-4531-BE83-E006BEB766D3");
             }
         }
+
+        /// <summary>
+        /// Способ покупки - Доставка
+        /// </summary>
+        public static Guid BuyProcessDelivery
+        {
+            get
+            {
+                return Guid.Parse("FBBAE261-CD71-4FA3-AF63-E04FC1E5CB18");
+            }
+        }
+
+        /// <summary>
+        /// Способ покупки - Самовывоз
+        /// </summary>
+        public static Guid BuyProcessSelf
+        {
+            get
+            {
+                return Guid.Parse("1C47B31F-D28B-4DEF-BE40-E588CADD853B");
+            }
+        }
     }
 }

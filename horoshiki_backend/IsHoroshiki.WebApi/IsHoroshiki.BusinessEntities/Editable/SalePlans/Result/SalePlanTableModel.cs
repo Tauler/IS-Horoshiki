@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 
 namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
 {
@@ -7,6 +8,15 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
     /// </summary>
     public class SalePlanTableModel : ISalePlanTableModel
     {
+        /// <summary>
+        /// План продаж
+        /// </summary>
+        public ISalePlanModel SalePlan
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Строка отчета
         /// </summary>

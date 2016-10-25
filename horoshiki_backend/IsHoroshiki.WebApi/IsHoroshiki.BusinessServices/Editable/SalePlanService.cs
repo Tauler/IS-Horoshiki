@@ -37,9 +37,41 @@ namespace IsHoroshiki.BusinessServices.Editable
         #region ISalePlanService
 
         /// <summary>
+        /// Создать\Редактировать план
+        /// </summary>
+        public async Task<SalePlanTableModel> Add(ISalePlanModel model)
+        {
+            return await CreatePlan(model);
+        }
+
+        /// <summary>
+        /// Создать\Редактировать план
+        /// </summary>
+        public async Task<SalePlanTableModel> Update(ISalePlanModel model)
+        {
+            return await CreatePlan(model);
+        }
+
+        /// <summary>
+        /// Редактировать cредний чек плана 
+        /// </summary>
+        public async Task<ModelEntityModifyResult> UpdateAverageCheck(ISalePlanModel model)
+        {
+            return new ModelEntityModifyResult();
+        }
+
+        /// <summary>
+        /// Редактировать ячейку отчета
+        /// </summary>
+        public async Task<ModelEntityModifyResult> UpdateCell(ISalePlanCellModel model)
+        {
+            return new ModelEntityModifyResult();
+        }
+
+        /// <summary>
         /// Создать план
         /// </summary>
-        public async Task<SalePlanTableModel> CreatePlan(ISalePlanModel model)
+        private async Task<SalePlanTableModel> CreatePlan(ISalePlanModel model)
         {
             if (model == null)
             {
@@ -64,6 +96,7 @@ namespace IsHoroshiki.BusinessServices.Editable
             }
 
             var result = new SalePlanTableModel();
+            result.SalePlan = model;
 
             var plans = GetPlans(model.SalePlanPeriod);
             var analize1 = GetPlans(model.AnalizePeriod1);

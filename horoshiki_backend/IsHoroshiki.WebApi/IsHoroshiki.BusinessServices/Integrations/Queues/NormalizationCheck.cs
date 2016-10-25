@@ -51,7 +51,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                 IdCheck = check.IdCheck,
                 DateDoc = dateDoc,
                 Sum = 0,
-                BuyProcessId = null,
+                BuyProcessId = await GetBuyProcess(check),
                 SubDepartments = await GetSubDepartaments(check),
                 PlanCookingStart = ToDate(check.PlanCookingDateStart, check.PlanCookingTimeStart),
                 FactCookingStart = null,
@@ -72,6 +72,42 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         #endregion
 
         #region public методы
+
+        /// <summary>
+        /// Способ покупки
+        /// </summary>
+        /// <param name="check">Чек</param>
+        /// <returns></returns>
+        private Task<int?> GetBuyProcess(IntegrationCheck check)
+        {
+            return Task<int?>.Factory.StartNew(() =>
+            {
+                Guid? guid = null;
+                if (check.Driver == "1234" || check.Zona == "1")
+                {
+                    guid = DAO.DatabaseConstant.BuyProcessSelf;
+                }
+                else if (check.Zona == "2" || check.Zona == "3" || check.Zona == "4")
+                {
+                    guid = DAO.DatabaseConstant.BuyProcessDelivery;
+                }
+
+                if (guid.HasValue)
+                {
+                    var exist = _unitOfWork.BuyProcessPepository.GetByGuid(guid.Value);
+                    if (exist != null)
+                    {
+                        return exist.Id;
+                    }
+
+                    return null;
+                }
+                else
+                {
+                    return null;
+                }
+            });
+        }
 
         /// <summary>
         /// Отделы для чека
