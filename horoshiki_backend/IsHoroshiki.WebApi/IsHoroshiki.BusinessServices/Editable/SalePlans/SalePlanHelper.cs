@@ -59,8 +59,9 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             var result = new SalePlanTableModel();
 
             result.SalePlan = model;
+            result.SalePlan.Id = daoSalePlan.Id;
 
-            var plans = GetSaleDayPlans(daoSalePlan);
+           var plans = GetSaleDayPlans(daoSalePlan);
             var analize1 = GetAnalize(model.Platform.Id, model.AnalizePeriod1, model.PlanType == PlanType.Suchi);
             var analize2 = GetAnalize(model.Platform.Id, model.AnalizePeriod2, model.PlanType == PlanType.Suchi);
 
@@ -85,10 +86,10 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// <returns></returns>
         private SalePlan GetPlanFromDatabase(ISalePlanModel model)
         {
-            var existPlan = _unitOfWork.SalePlanRepository.GetByPeriod(model.Platform.Id, model.SalePlanPeriod.Year, model.SalePlanPeriod.Month);
+            var existPlan = _unitOfWork.SalePlanRepository.GetByPeriod(model.Platform.Id, (int)model.PlanType, model.SalePlanPeriod.Year, model.SalePlanPeriod.Month);
             if (existPlan == null)
             {
-                existPlan = CreatePlan(model.Platform.Id, model.SalePlanPeriod);
+                existPlan = CreatePlan(model.Platform.Id, model.PlanType, model.SalePlanPeriod);
 
                 _unitOfWork.SalePlanRepository.Insert(existPlan);
 
@@ -115,9 +116,10 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// Создать пустой план
         /// </summary>
         /// <param name="platformId">Id площадки</param>
+        /// <param name="planType">Id типа плана</param>
         /// <param name="periodModel">Период планирования</param>
         /// <returns></returns>
-        private SalePlan CreatePlan(int platformId, ISalePlanPeriodModel periodModel)
+        private SalePlan CreatePlan(int platformId, PlanType planType, ISalePlanPeriodModel periodModel)
         {
             DateTime startDate, endDate;
             ExtractPeriod(periodModel, out startDate, out endDate);
@@ -125,6 +127,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             var newPlan = new SalePlan();
 
             newPlan.PlatformId = platformId;
+            newPlan.PlanTypeId = (int)planType;
             newPlan.Year = periodModel.Year;
             newPlan.Month = periodModel.Month;
 
