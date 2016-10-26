@@ -215,8 +215,6 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
         }
 
         $scope.updateData = function () {
-            // console.log($scope.model.salePlanTable.SalePlan);
-
             SalesPlanService.edit($scope.model.salePlanTable.SalePlan).success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.salePlanTable = result.Data;
@@ -232,15 +230,6 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
 
         $scope.changeCallSalePlan = function (plan) {
 
-            // var call = {
-            //     Date: $scope.model.salePlanTable,
-            //     DayOfWeek: ,
-            //     DayOfWeekDescr: ,
-            //     Delivery: ,
-            //     Self: ,
-            //     Sum:
-            // }
-
 
             SalesPlanService.editCall(plan).success(function (result) {
                 if (result.Success == 1) {
@@ -253,9 +242,6 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
             });
 
         }
-        
-        //----------------
-
         $scope.getAllSubdivisions();
     }
 ]);
