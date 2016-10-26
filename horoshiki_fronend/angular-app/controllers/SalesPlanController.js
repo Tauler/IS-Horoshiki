@@ -188,9 +188,34 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
             $scope.updateData();
         }
 
+        $scope.chacgeAverageCheck = function () {
+            SalesPlanService.editAverageCheck($scope.model.salePlanTable.SalePlan).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.updateData();
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+        }
+
+        $scope.changeCallSalePlan = function (plan) {
+
+            SalesPlanService.editCall(plan).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.updateData();
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
+        }
 
         $scope.updateData = function () {
-            console.log($scope.model.salePlanTable.SalePlan);
+            // console.log($scope.model.salePlanTable.SalePlan);
 
             SalesPlanService.edit($scope.model.salePlanTable.SalePlan).success(function (result) {
                 if (result.Success == 1) {
@@ -205,6 +230,8 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
             });
         }
 
+        
+        
         //----------------
 
         $scope.getAllSubdivisions();
