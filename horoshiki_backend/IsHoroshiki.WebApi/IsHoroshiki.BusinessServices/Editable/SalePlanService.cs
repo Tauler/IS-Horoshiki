@@ -13,6 +13,7 @@ using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 using System;
 using System.Linq;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans.Reports;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -50,7 +51,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <summary>
         /// Создать\Редактировать план
         /// </summary>
-        public async Task<SalePlanTableModel> Add(ISalePlanModel model)
+        public async Task<ISalePlanTableModel> Add(ISalePlanModel model)
         {
             if (model == null)
             {
@@ -69,7 +70,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <summary>
         /// Создать\Редактировать план
         /// </summary>
-        public async Task<SalePlanTableModel> Update(ISalePlanModel model)
+        public async Task<ISalePlanTableModel> Update(ISalePlanModel model)
         {
             if (model == null)
             {
@@ -149,8 +150,33 @@ namespace IsHoroshiki.BusinessServices.Editable
             }
         }
 
+        /// <summary>
+        /// Отчет плана продаж
+        /// </summary>
+        /// <param name="model">План продаж</param>
+        /// <returns></returns>
+        public async Task<ISalePlanReportModel> GetReport(ISalePlanModel model)
+        {
+            try
+            {
+                var daoEntity = await _unitOfWork.SalePlanDayRepository.GetByIdAsync(model.Id);
+                if (daoEntity == null)
+                {
+                    var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { model.Id });
+                    throw new Exception(errorData.Message);
+                }
+
+                return await this._salePlanHelper.GetReport(model);
+            }
+            catch (Exception e)
+            {
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                throw new Exception(errorData.Message);
+            }
+        }
+
         #endregion
-   
+
         #region protected override
 
         /// <summary>
