@@ -230,7 +230,29 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
             });
         }
 
-        
+        $scope.changeCallSalePlan = function (plan) {
+
+            // var call = {
+            //     Date: $scope.model.salePlanTable,
+            //     DayOfWeek: ,
+            //     DayOfWeekDescr: ,
+            //     Delivery: ,
+            //     Self: ,
+            //     Sum:
+            // }
+
+
+            SalesPlanService.editCall(plan).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.updateData();
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
+        }
         
         //----------------
 
