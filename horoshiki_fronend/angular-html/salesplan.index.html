@@ -277,15 +277,28 @@
                                 <tr ng-repeat="row in model.salePlanTable.DataRows">
                                     <td>{{row.Plan.Date | date : 'dd.MM.yyyy'}}</td>
                                     <td>{{row.Plan.DayOfWeekDescr}}</td>
-                                    <td class="text-bold">{{row.Plan.Sum}}</td>
+                                    <td class="text-bold">{{row.Analize1.Sum}}</td>
                                     <td>{{row.Analize1.Delivery}}</td>
                                     <td>{{row.Analize1.Self}}</td>
-                                    <td class="text-bold">{{row.Analize1.Sum}}</td>
+                                    <td class="text-bold">{{row.Analize2.Sum}}</td>
                                     <td>{{row.Analize2.Delivery}}</td>
                                     <td>{{row.Analize2.Self}}</td>
-                                    <td class="text-bold">{{row.Analize2.Sum}}</td>
-                                    <td><input ng-if="row.Plan!=null" ng-model="row.Plan.Delivery" type="text" style="text-align: center"></td>
-                                    <td><input ng-if="row.Plan!=null" ng-model="row.Plan.Self" type="text" style="text-align: center"></td>
+                                    <td class="text-bold">{{row.Plan.Sum}}</td>
+                                    <td><input ng-if="row.Plan!=null" ng-model="row.Plan.Delivery" ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
+                                    <td><input ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-bold" colspan="2">Итого:</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Delivery+model.salePlanTable.SumRow.Analize1.Self}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Delivery}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Self}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery+model.salePlanTable.SumRow.Analize2.Self}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Self}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Delivery+model.salePlanTable.SumRow.Plan.Self}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Delivery}}</td>
+                                    <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Self}}</td>
                                 </tr>
                                 </tbody>
 

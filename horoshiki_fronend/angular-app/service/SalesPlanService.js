@@ -24,4 +24,14 @@ salesPlanServices.service('SalesPlanService', ['$http', function($http) {
         return resp;
     };
 
+    this.editCall = function (object) {
+        var resp = $http({
+            url: backendServerAddr+'/api/salePlan/UpdateCell',
+            method: 'POST',
+            data: object,
+            headers:  getToken()
+        });
+        return resp;
+    }
+
 }]);
