@@ -175,7 +175,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// <summary>
         /// Проверка существования плана за указанный период
         /// </summary>
-        [Route("report")]
+        [Route("isexist")]
         public async Task<IHttpActionResult> IsExist(ISalePlanModel model)
         {
             try
