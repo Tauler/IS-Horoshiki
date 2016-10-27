@@ -64,6 +64,8 @@ namespace IsHoroshiki.BusinessServices.Editable
                 throw new Exception(validateResult.Errors.First().Message);
             }
 
+            ThrowIfPlatformNotExist(model.Platform.Id);
+
             return await this._salePlanHelper.Get(model);
         }
 
@@ -72,19 +74,12 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         public async Task<ISalePlanTableModel> Update(ISalePlanModel model)
         {
-            if (model == null)
-            {
-                return null;
-            }
+            await ThrowIfSalePlanNotExist(model);
 
-            var validateResult = await _validator.ValidateAsync(model);
-            if (!validateResult.IsSucceeded)
-            {
-                throw new Exception(validateResult.Errors.First().Message);
-            }
-
-            return await this._salePlanHelper.Get(model);
+            return await Add(model);
         }
+
+      
 
         /// <summary>
         /// Редактировать cредний чек плана 
@@ -159,14 +154,30 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             try
             {
-                var daoEntity = await _unitOfWork.SalePlanDayRepository.GetByIdAsync(model.Id);
-                if (daoEntity == null)
-                {
-                    var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { model.Id });
-                    throw new Exception(errorData.Message);
-                }
+                await ThrowIfSalePlanNotExist(model);
+                ThrowIfPlatformNotExist(model.Platform.Id);
 
                 return await this._salePlanHelper.GetReport(model);
+            }
+            catch (Exception e)
+            {
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                throw new Exception(errorData.Message);
+            }
+        }
+
+        /// <summary>
+        /// Есть ли план продаж на этот период
+        /// </summary>
+        /// <param name="model">План продаж</param>
+        /// <returns></returns>
+        public async Task<bool> IsExist(ISalePlanModel model)
+        {
+            try
+            {
+                ThrowIfPlatformNotExist(model.Platform.Id);
+
+                return this._repository.IsExist(model.Platform.Id, (int)model.PlanType, model.SalePlanPeriod.Year, model.SalePlanPeriod.Month);
             }
             catch (Exception e)
             {
@@ -219,6 +230,35 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             return daoEntity;
         }
+
+        /// <summary>
+        /// Вбросить экспешн, если не существует площадки
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        private async void ThrowIfPlatformNotExist(int platformId)
+        {
+            var plaformIsExist = await _unitOfWork.PlatformRepository.IsExistsAsync(platformId);
+            if (!plaformIsExist)
+            {
+                var errorData = new ErrorData(SalePlanErrors.PlatformIsNull);
+                throw new Exception(errorData.Message);
+            }
+        }
+
+        /// <summary>
+        /// Вбросить экспешн, если не существует плана продаж
+        /// </summary>
+        /// <param name="model">план продаж</param>
+        private async Task ThrowIfSalePlanNotExist(ISalePlanModel model)
+        {
+            var isExist = await IsExist(model);
+            if (!isExist)
+            {
+                var errorData = new ErrorData(SalePlanErrors.SalePlanNotExit);
+                throw new Exception(errorData.Message);
+            }
+        }
+
 
         #endregion
     }

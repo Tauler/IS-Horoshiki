@@ -84,16 +84,50 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             model.ThrowIfNull();
             model.Platform.ThrowIfNull();
             model.SalePlanPeriod.ThrowIfNull();
-            model.AnalizePeriod1.ThrowIfNull();
-            model.AnalizePeriod2.ThrowIfNull();
 
             var result = new SalePlanReportModel();
 
             result.SalePlan = model;
             result.DataRows = GetReportDataRows(model.SalePlanPeriod);
+            CalculateReport(model, PlanType.Pizza, result);
+            CalculateReport(model, PlanType.Suchi, result);
             result.SumRow = GetReportDataRows(result.DataRows);
 
             return result;
+        }
+
+        /// <summary>
+        /// Подсчитать суммы
+        /// </summary>
+        /// <param name="model">План</param>
+        /// <param name="planType">тип плана</param>
+        /// <param name="result">Результат</param>
+        /// <returns></returns>
+        private void CalculateReport(ISalePlanModel model, PlanType planType, SalePlanReportModel result)
+        {
+            model.PlanType = planType;
+
+            var existPlan = GetPlanFromDatabase(model, false);
+            if (existPlan == null)
+            {
+                return;
+            }
+
+            foreach (var salePlanData in result.DataRows)
+            {
+                var resultCalc = existPlan.SalePlanDays
+                    .Where(sp => salePlanData.DateStart <= sp.Date && sp.Date <= salePlanData.DateEnd)
+                    .Sum(sp => (sp.Self + sp.Delivery)) * existPlan.AverageCheck;
+
+                if (planType == PlanType.Pizza)
+                {
+                    salePlanData.Pizza += resultCalc;
+                }
+                else
+                {
+                    salePlanData.Sushi += resultCalc;
+                }
+            }
         }
 
         /// <summary>
@@ -155,12 +189,18 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// План продаж из БД. Если его не существует, то создать и сохранить в БД.
         /// </summary>
         /// <param name="model">Модель</param>
+        /// <param name="createIfNotExist">создать если не существует</param>
         /// <returns></returns>
-        private SalePlan GetPlanFromDatabase(ISalePlanModel model)
+        private SalePlan GetPlanFromDatabase(ISalePlanModel model, bool createIfNotExist = true)
         {
             var existPlan = _unitOfWork.SalePlanRepository.GetByPeriod(model.Platform.Id, (int)model.PlanType, model.SalePlanPeriod.Year, model.SalePlanPeriod.Month);
             if (existPlan == null)
             {
+                if (!createIfNotExist)
+                {
+                    return null;
+                }
+
                 existPlan = CreatePlan(model.Platform.Id, model.PlanType, model.SalePlanPeriod);
 
                 _unitOfWork.SalePlanRepository.Insert(existPlan);

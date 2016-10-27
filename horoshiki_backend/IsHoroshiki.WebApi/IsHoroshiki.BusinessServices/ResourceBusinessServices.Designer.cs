@@ -529,6 +529,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Плана продаж на указанную дату не существует!.
+        /// </summary>
+        internal static string SalePlanValidator_SalePlanNotExit {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_SalePlanNotExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать период плана продаж!.
         /// </summary>
         internal static string SalePlanValidator_SalePlanPeriodIsNull {

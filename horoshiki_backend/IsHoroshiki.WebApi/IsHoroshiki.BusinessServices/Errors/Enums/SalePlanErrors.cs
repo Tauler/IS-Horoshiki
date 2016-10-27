@@ -64,6 +64,11 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// <summary>
         /// Не указан средний чек!
         /// </summary>
-        AverageCheckIsNull
+        AverageCheckIsNull,
+
+        /// <summary>
+        /// Плана продаж на указанную дату не существует!
+        /// </summary>
+        SalePlanNotExit
     }
 }
