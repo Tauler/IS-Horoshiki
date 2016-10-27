@@ -1,11 +1,4 @@
-USE [IsHoroshiki]
-GO
-/****** Object:  StoredProcedure [dbo].[SaleCheckAnalize]    Script Date: 25.10.2016 10:44:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER PROCEDURE [dbo].[SaleCheckAnalize]
+CREATE PROCEDURE [dbo].[SaleCheckAnalize]
 (
 	@PlatformId	int,
     @DateBegin	DATETIME,
