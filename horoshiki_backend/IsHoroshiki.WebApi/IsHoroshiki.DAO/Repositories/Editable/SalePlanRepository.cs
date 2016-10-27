@@ -29,12 +29,16 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// Найти план по периоду
         /// </summary>
         /// <param name="platformId">Id площадки</param>
+        /// <param name="planTypeId">Id тип плана</param>
         /// <param name="year">Год</param>
         /// <param name="month">Месяц</param>
         /// <returns></returns>
-        public SalePlan GetByPeriod(int platformId, int year, int month)
+        public SalePlan GetByPeriod(int platformId, int planTypeId, int year, int month)
         {
-            return DbSet.FirstOrDefault(plan => plan.PlatformId == platformId && plan.Year == year && plan.Month == month);
+            return DbSet.FirstOrDefault(plan => plan.PlatformId == platformId 
+                && plan.PlanTypeId == planTypeId
+                && plan.Year == year 
+                && plan.Month == month);
         }
 
         #endregion

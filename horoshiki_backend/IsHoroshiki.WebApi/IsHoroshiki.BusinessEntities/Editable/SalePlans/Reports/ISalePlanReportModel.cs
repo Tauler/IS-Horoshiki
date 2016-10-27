@@ -1,12 +1,12 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using System.Collections.Generic;
 
-namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
+namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Reports
 {
     /// <summary>
-    /// Сформированый план продаж
+    /// Отчет продаж
     /// </summary>
-    public interface ISalePlanTableModel
+    public interface ISalePlanReportModel
     {
         /// <summary>
         /// План продаж
@@ -20,7 +20,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Строка отчета
         /// </summary>
-        List<ISalePlanDataRowModel> DataRows
+        List<ISalePlanReportRowModel> DataRows
         {
             get;
             set;
@@ -29,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.SalePlans.Result
         /// <summary>
         /// Итоговая строка отчета
         /// </summary>
-        ISalePlanSumRowModel SumRow
+        ISalePlanReportSumRowModel SumRow
         {
             get;
             set;

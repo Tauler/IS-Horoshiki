@@ -1,0 +1,1 @@
+ALTER TABLE [dbo].[SalePlans] ADD [PlanTypeId] INT NOT NULL DEFAULT(1)

@@ -26,6 +26,15 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         }
 
         /// <summary>
+        /// Тип плана продаж
+        /// </summary>
+        public int PlanTypeId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Год
         /// </summary>
         public int Year

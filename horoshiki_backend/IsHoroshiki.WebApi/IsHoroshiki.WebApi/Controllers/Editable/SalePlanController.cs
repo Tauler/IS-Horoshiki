@@ -150,6 +150,28 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
         }
 
+        /// <summary>
+        /// Отчет плана продаж
+        /// </summary>
+        [Route("report")]
+        public async Task<IHttpActionResult> Report(ISalePlanModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
+                var result = await _service.GetReport(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
         #endregion
     }
 }

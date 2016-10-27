@@ -1,6 +1,7 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans.Reports;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Helpers;
@@ -46,7 +47,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// Создать план, если не существует на указанный период.
         /// Если существует подтягиваем данные из БД.
         /// </summary>
-        public async Task<SalePlanTableModel> Get(ISalePlanModel model)
+        public async Task<ISalePlanTableModel> Get(ISalePlanModel model)
         {
             model.ThrowIfNull();
             model.Platform.ThrowIfNull();
@@ -56,9 +57,10 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
 
             var daoSalePlan = GetPlanFromDatabase(model);
 
-            var result = new SalePlanTableModel();
+            ISalePlanTableModel result = new SalePlanTableModel();
 
             result.SalePlan = model;
+            result.SalePlan.Id = daoSalePlan.Id;
 
             var plans = GetSaleDayPlans(daoSalePlan);
             var analize1 = GetAnalize(model.Platform.Id, model.AnalizePeriod1, model.PlanType == PlanType.Suchi);
@@ -74,6 +76,77 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             return result;
         }
 
+        /// <summary>
+        /// Отчет плана продаж
+        /// </summary>
+        public async Task<ISalePlanReportModel> GetReport(ISalePlanModel model)
+        {
+            model.ThrowIfNull();
+            model.Platform.ThrowIfNull();
+            model.SalePlanPeriod.ThrowIfNull();
+            model.AnalizePeriod1.ThrowIfNull();
+            model.AnalizePeriod2.ThrowIfNull();
+
+            var result = new SalePlanReportModel();
+
+            result.SalePlan = model;
+            result.DataRows = GetReportDataRows(model.SalePlanPeriod);
+            result.SumRow = GetReportDataRows(result.DataRows);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Подсчет суммы по неделям за период
+        /// </summary>
+        /// <param name="periodModel"></param>
+        /// <returns></returns>
+        private List<ISalePlanReportRowModel> GetReportDataRows(ISalePlanPeriodModel periodModel)
+        {
+            var result = new List<ISalePlanReportRowModel>();
+
+            DateTime startDate, endDate;
+            ExtractPeriod(periodModel, out startDate, out endDate);
+
+            var row = new SalePlanReportRowModel();
+            row.DateStart = startDate;
+            row.DateEnd = endDate;
+            result.Add(row);
+
+            for (var current = startDate; current <= endDate; current = current.AddDays(1))
+            {
+                if (current.DayOfWeek == DayOfWeek.Monday)
+                {
+                    row = new SalePlanReportRowModel();
+                    row.DateStart = current;
+                    row.DateEnd = current;
+                    result.Add(row);
+                }
+
+                if (current.DayOfWeek == DayOfWeek.Sunday || current == endDate)
+                {
+                    row.DateEnd = current;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Подсчет суммы отчета плана продаж
+        /// </summary>
+        /// <param name="dataRows"></param>
+        /// <returns></returns>
+        private ISalePlanReportSumRowModel GetReportDataRows(List<ISalePlanReportRowModel> dataRows)
+        {
+            var result = new SalePlanReportSumRowModel();
+
+            result.Pizza = dataRows.Sum(dr => dr.Pizza);
+            result.Sushi = dataRows.Sum(dr => dr.Sushi);
+            
+            return result;
+        }
+
         #endregion
 
         #region private
@@ -85,10 +158,10 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// <returns></returns>
         private SalePlan GetPlanFromDatabase(ISalePlanModel model)
         {
-            var existPlan = _unitOfWork.SalePlanRepository.GetByPeriod(model.Platform.Id, model.SalePlanPeriod.Year, model.SalePlanPeriod.Month);
+            var existPlan = _unitOfWork.SalePlanRepository.GetByPeriod(model.Platform.Id, (int)model.PlanType, model.SalePlanPeriod.Year, model.SalePlanPeriod.Month);
             if (existPlan == null)
             {
-                existPlan = CreatePlan(model.Platform.Id, model.SalePlanPeriod);
+                existPlan = CreatePlan(model.Platform.Id, model.PlanType, model.SalePlanPeriod);
 
                 _unitOfWork.SalePlanRepository.Insert(existPlan);
 
@@ -115,9 +188,10 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// Создать пустой план
         /// </summary>
         /// <param name="platformId">Id площадки</param>
+        /// <param name="planType">Id типа плана</param>
         /// <param name="periodModel">Период планирования</param>
         /// <returns></returns>
-        private SalePlan CreatePlan(int platformId, ISalePlanPeriodModel periodModel)
+        private SalePlan CreatePlan(int platformId, PlanType planType, ISalePlanPeriodModel periodModel)
         {
             DateTime startDate, endDate;
             ExtractPeriod(periodModel, out startDate, out endDate);
@@ -125,6 +199,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             var newPlan = new SalePlan();
 
             newPlan.PlatformId = platformId;
+            newPlan.PlanTypeId = (int)planType;
             newPlan.Year = periodModel.Year;
             newPlan.Month = periodModel.Month;
 
@@ -236,7 +311,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
         /// </summary>
         /// <param name="result">Построенная таблица для подсчета суммы</param>
         /// <returns></returns>
-        private SalePlanSumRowModel AddRowSum(SalePlanTableModel result)
+        private SalePlanSumRowModel AddRowSum(ISalePlanTableModel result)
         {
             var planSumRow = new SalePlanSumRowModel();
             planSumRow.Plan = new SalePlanSumDayModel()

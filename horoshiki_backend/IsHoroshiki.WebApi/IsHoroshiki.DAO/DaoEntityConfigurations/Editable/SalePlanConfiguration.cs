@@ -15,6 +15,9 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
         public SalePlanConfiguration() 
             : base("SalePlans")
         {
+            Property(i => i.PlanTypeId)
+                .IsRequired();
+
             Property(i => i.AverageCheck)
                .HasColumnType("Money");
         }

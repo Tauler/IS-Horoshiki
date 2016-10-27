@@ -1,5 +1,6 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
+using IsHoroshiki.BusinessEntities.Editable.SalePlans.Reports;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
 using System.Threading.Tasks;
 
@@ -13,12 +14,12 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <summary>
         /// Создать\Редактировать план
         /// </summary>
-        Task<SalePlanTableModel> Add(ISalePlanModel model);
+        Task<ISalePlanTableModel> Add(ISalePlanModel model);
 
         /// <summary>
         /// Создать\Редактировать план
         /// </summary>
-        Task<SalePlanTableModel> Update(ISalePlanModel model);
+        Task<ISalePlanTableModel> Update(ISalePlanModel model);
 
         /// <summary>
         /// Редактировать ячейку отчета
@@ -29,5 +30,12 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// Редактировать ячейку отчета
         /// </summary>
         Task<ModelEntityModifyResult> UpdateCell(ISalePlanDayModel model);
+
+        /// <summary>
+        /// Отчет плана продаж
+        /// </summary>
+        /// <param name="model">План продаж</param>
+        /// <returns></returns>
+        Task<ISalePlanReportModel> GetReport(ISalePlanModel model);
     }
 }
