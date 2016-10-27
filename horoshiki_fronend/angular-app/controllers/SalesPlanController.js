@@ -160,7 +160,7 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
             $scope.updateData();
         }
         $scope.changeTypePlanM2 = function () {
-            $scope.model.salePlanTable.SalePlan.PlaneType = JSON.parse($scope.model.typePlan).id;
+            $scope.model.salePlanTable.SalePlan.PlanType = JSON.parse($scope.model.typePlan).id;
             $scope.updateData();
         }
         $scope.changePlanPeriodMonth = function () {
