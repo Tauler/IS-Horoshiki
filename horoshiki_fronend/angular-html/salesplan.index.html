@@ -252,7 +252,8 @@
                                     <th class="col-md-3" colspan="3">
                                         <div class="text-align-center padding-bottom-10">Планируемый месяц</div>
                                         <div class="text-align-center">
-                                            <a class="btn btn-blue btn-block" ng-click="createPlan();"
+                                            <a class="btn btn-blue btn-block" ng-click="createReport();" data-toggle="modal"
+                                               data-target="#reportModal"
                                                href="javascript:void(0);">Сформировать отчет</a>
                                         </div>
                                     </th>
@@ -314,4 +315,57 @@
 
         </div>
     </div>
+</div>
+
+
+<!--Попап отчета-->
+
+<div id="reportModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Площадка: {{getPlatform().Name}}</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover table-cal-value-center">
+                    <thead>
+                    <tr>
+                        <th>
+                            Неделя
+                        </th>
+                        <th>
+                            Суши
+                        </th>
+                        <th>
+                            Пицца
+                        </th>
+                        <th>
+                            Суши+Пицца
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in model.report.DataRows">
+                        <td>{{row.PeriodDescription}}</td>
+                        <td>{{row.Sushi}}</td>
+                        <td>{{row.Pizza}}</td>
+                        <td>{{row.Sum}}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-bold">Итого:</td>
+                        <td class="text-bold">{{model.report.SumRow.Sushi}}</td>
+                        <td class="text-bold">{{model.report.SumRow.Pizza}}</td>
+                        <td class="text-bold">{{model.report.SumRow.Sum}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div> <!-- / .modal-dialog -->
 </div>

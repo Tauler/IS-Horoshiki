@@ -60,7 +60,6 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
                     $scope.model.platforms = result.Data;
                     if ($scope.model.platforms.length != 0) {
                         $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
-
                         if (!$scope.model.isIndex) {
                             $scope.changePlatformM2();
                         }
@@ -103,13 +102,34 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
 
 
 
-        $scope.changeSubdivision = function () {
-            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+
+        $scope.getPlatform = function () {
+            if($scope.model.platform!=undefined) {
+                return JSON.parse($scope.model.platform);
+            }
         }
 
 
 
         //----------------события
+
+        $scope.createReport = function () {
+            SalesPlanService.report($scope.model.salePlanTable.SalePlan).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.report = result.Data;
+                    // console.log($scope.model.report);
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
+        }
+
+        $scope.changeSubdivision = function () {
+            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+        }
 
         $scope.createPlan = function () {
 

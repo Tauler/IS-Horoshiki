@@ -44,4 +44,14 @@ salesPlanServices.service('SalesPlanService', ['$http', function($http) {
         return resp;
     }
 
+    this.report = function (object) {
+        var resp = $http({
+            url: backendServerAddr+'/api/salePlan/report',
+            method: 'POST',
+            data: object,
+            headers:  getToken()
+        });
+        return resp;
+    }
+
 }]);
