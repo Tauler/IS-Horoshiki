@@ -37,5 +37,12 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <param name="model">План продаж</param>
         /// <returns></returns>
         Task<ISalePlanReportModel> GetReport(ISalePlanModel model);
+
+        /// <summary>
+        /// Есть ли план продаж на этот период
+        /// </summary>
+        /// <param name="model">План продаж</param>
+        /// <returns></returns>
+        Task<bool> IsExist(ISalePlanModel model);
     }
 }

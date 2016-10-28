@@ -141,7 +141,8 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod2IsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod2IsNull);
             MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod2MonthIsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod2MonthIsNull);
             MessageHolder.Instance.AddMessage(SalePlanErrors.AnalizePeriod2YearIsNull, ResourceBusinessServices.SalePlanValidator_AnalizePeriod2YearIsNull);
-            MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNull, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNull);            
+            MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNull, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNull);
+            MessageHolder.Instance.AddMessage(SalePlanErrors.SalePlanNotExit, ResourceBusinessServices.SalePlanValidator_SalePlanNotExit);
         }
 
         #endregion

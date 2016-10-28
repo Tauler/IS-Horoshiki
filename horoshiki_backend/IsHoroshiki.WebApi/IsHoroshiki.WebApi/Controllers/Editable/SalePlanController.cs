@@ -172,6 +172,28 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             }
         }
 
+        /// <summary>
+        /// Проверка существования плана за указанный период
+        /// </summary>
+        [Route("isexist")]
+        public async Task<IHttpActionResult> IsExist(ISalePlanModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
+                var result = await _service.IsExist(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
         #endregion
     }
 }

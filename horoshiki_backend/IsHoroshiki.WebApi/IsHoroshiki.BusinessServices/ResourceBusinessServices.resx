@@ -273,6 +273,9 @@
   <data name="SalePlanValidator_PlatformIsNull" xml:space="preserve">
     <value>Необходимо указать площадку!</value>
   </data>
+  <data name="SalePlanValidator_SalePlanNotExit" xml:space="preserve">
+    <value>Плана продаж на указанную дату не существует!</value>
+  </data>
   <data name="SalePlanValidator_SalePlanPeriodIsNull" xml:space="preserve">
     <value>Необходимо указать период плана продаж!</value>
   </data>

@@ -41,6 +41,22 @@ namespace IsHoroshiki.DAO.Repositories.Editable
                 && plan.Month == month);
         }
 
+        /// <summary>
+        /// Есть ли план продаж на этот период
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <param name="planTypeId">Id тип плана</param>
+        /// <param name="year">Год</param>
+        /// <param name="month">Месяц</param>
+        /// <returns></returns>
+        public bool IsExist(int platformId, int planTypeId, int year, int month)
+        {
+            return DbSet.Any(plan => plan.PlatformId == platformId
+                && plan.PlanTypeId == planTypeId
+                && plan.Year == year
+                && plan.Month == month);
+        }
+
         #endregion
     }
 }

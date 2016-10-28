@@ -53,7 +53,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         {
             return DbSet.Any(p => p.SubDivisionId == subDivisionId);
         }
-       
+
         #endregion
 
         #region override
