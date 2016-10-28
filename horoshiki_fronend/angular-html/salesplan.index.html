@@ -5,7 +5,7 @@
             <a href="/">Главная</a>
         </li>
         <li>
-            <a href="/">Управление</a>
+            <a href="/salesplan">Управление</a>
         </li>
         <li class="active">План продаж</li>
     </ul>
@@ -105,7 +105,9 @@
                                                      href="javascript:void(0);">Создать</a></div>
                             <div class="col-md-4"><a class="btn btn-blue btn-block" href="javascript:void(0);"
                                                      ng-click="updatePlan();">Редактировать</a></div>
-                            <div class="col-md-4"><a class="btn btn-blue btn-block" href="javascript:void(0);">Отчет</a>
+                            <div class="col-md-4"><a ng-click="createReport();" data-toggle="modal"
+                                                     data-target="#reportModal" class="btn btn-blue btn-block"
+                                                     href="javascript:void(0);">Отчет</a>
                             </div>
                         </div>
 
@@ -165,7 +167,9 @@
                                         Средн. чек, р
                                     </td>
                                     <td>
-                                        <input ng-blur="chacgeAverageCheck();" class="form-control" maxlength="8" ng-model="model.salePlanTable.SalePlan.AverageCheck" type="text">
+                                        <input ng-blur="chacgeAverageCheck();" data-toggle="modal"
+                                               data-target="#reportModal" class="form-control" maxlength="8"
+                                               ng-model="model.salePlanTable.SalePlan.AverageCheck" type="text">
                                     </td>
                                 </tr>
                             </table>

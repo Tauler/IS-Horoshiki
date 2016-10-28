@@ -110,34 +110,11 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
         }
 
 
-
-        //----------------события
-
-        $scope.createReport = function () {
-            SalesPlanService.report($scope.model.salePlanTable.SalePlan).success(function (result) {
-                if (result.Success == 1) {
-                    $scope.model.report = result.Data;
-                    // console.log($scope.model.report);
-                } else {
-                    displayErrorMessage(result.ReasonMessage);
-                }
-            }).error(function (result, status) {
-                httpErrors($location.url(), status);
-            });
-
-        }
-
-        $scope.changeSubdivision = function () {
-            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
-        }
-
-        $scope.createPlan = function () {
-
+        $scope.createPlanModel = function () {
             var dateAnalizePeriod1 = new Date($scope.model.period.year - 1, JSON.parse($scope.model.period.month).id, 10);
             var dateAnalizePeriod2 = new Date($scope.model.period.year, JSON.parse($scope.model.period.month).id - 1, 10);
 
-            console.log(JSON.parse($scope.model.platform).Id);
-            var plan = {
+            return {
                 "Platform": {
                     "Id": JSON.parse($scope.model.platform).Id
                 },
@@ -157,9 +134,38 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
                 "PlanType": JSON.parse($scope.model.typePlan).id,
                 "Id": 0
             };
+        }
 
 
-            SalesPlanService.add(plan).success(function (result) {
+        //----------------события
+
+        $scope.createReport = function () {
+
+            var plan = {};
+            if($scope.model.isIndex){
+                plan = $scope.createPlanModel();
+            }else{
+                plan = $scope.model.salePlanTable.SalePlan;
+            }
+            SalesPlanService.report(plan).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.report = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
+        }
+
+        $scope.changeSubdivision = function () {
+            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+        }
+
+        $scope.createPlan = function () {
+
+            SalesPlanService.add($scope.createPlanModel()).success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.salePlanTable = result.Data;
                     $scope.model.isIndex = false;
