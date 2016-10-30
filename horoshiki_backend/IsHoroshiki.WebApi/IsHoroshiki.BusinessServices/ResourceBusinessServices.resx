@@ -267,6 +267,9 @@
   <data name="SalePlanValidator_AnalizePeriod2YearIsNull" xml:space="preserve">
     <value>Необходимо указать год Анализ2 плана продаж!</value>
   </data>
+  <data name="SalePlanValidator_AverageCheckIsNegative" xml:space="preserve">
+    <value>Сумма среднего чека не может быть отрицательной!</value>
+  </data>
   <data name="SalePlanValidator_AverageCheckIsNull" xml:space="preserve">
     <value>Необходимо указать средний чек!</value>
   </data>

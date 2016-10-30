@@ -69,6 +69,11 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// <summary>
         /// Плана продаж на указанную дату не существует!
         /// </summary>
-        SalePlanNotExit
+        SalePlanNotExit,
+
+        /// <summary>
+        /// Сумма среднего чека не может быть отрицательной!
+        /// </summary>
+        AverageCheckIsNegative,
     }
 }

@@ -103,6 +103,11 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new ModelEntityModifyResult(SalePlanErrors.AverageCheckIsNull);
             }
 
+            if (model.AverageCheck < 0)
+            {
+                return new ModelEntityModifyResult(SalePlanErrors.AverageCheckIsNegative);
+            }
+
             daoEntity.AverageCheck = model.AverageCheck;
 
             _repository.Update(daoEntity);

@@ -511,6 +511,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сумма среднего чека не может быть отрицательной!.
+        /// </summary>
+        internal static string SalePlanValidator_AverageCheckIsNegative {
+            get {
+                return ResourceManager.GetString("SalePlanValidator_AverageCheckIsNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать средний чек!.
         /// </summary>
         internal static string SalePlanValidator_AverageCheckIsNull {
