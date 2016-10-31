@@ -136,7 +136,7 @@ function displayMess(elem, disable){
         setTimeout(function () {
             $("#" + disable).removeAttr("disabled");
             $("#" + elem).hide(200);
-        }, 2000);
+        }, 4000);
     }
 }
 

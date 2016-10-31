@@ -54,4 +54,14 @@ salesPlanServices.service('SalesPlanService', ['$http', function($http) {
         return resp;
     }
 
+    this.isExist = function (object) {
+        var resp = $http({
+            url: backendServerAddr+'/api/salePlan/isexist',
+            method: 'POST',
+            data: object,
+            headers:  getToken()
+        });
+        return resp;
+    }
+
 }]);

@@ -3,8 +3,8 @@
  */
 var salesPlanControllers = angular.module('salesPlanControllers', []);
 
-salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$location', 'BackendService', 'SubdivisionService', 'PlatformsService', 'SalesPlanService',
-    function ($scope, $location, BackendService, SubdivisionService, PlatformsService, SalesPlanService) {
+salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootScope', '$location', 'BackendService', 'SubdivisionService', 'PlatformsService', 'SalesPlanService',
+    function ($scope, $rootScope, $location, BackendService, SubdivisionService, PlatformsService, SalesPlanService) {
 
         $scope.model = {};
 
@@ -38,12 +38,34 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
         $scope.model.analize1 = {};
         $scope.model.analize2 = {};
 
+        $scope.model.subdivisionIsDisabled = true;
+        $scope.model.platformIsDisabled = true;
+
         $scope.getAllSubdivisions = function () {
             SubdivisionService.getSubdivisionsWithoutPaginate('Id', true).success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.subdivisions = result.Data.Data;
                     if ($scope.model.subdivisions.length != 0) {
-                        $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+
+
+                        if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer){
+                            $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+                            $scope.subdivisionIsDisabled = false;
+                        }
+                        if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                            // console.log($rootScope.currentUser);
+                            //
+                            // for($index in $scope.mode.subdivisions){
+                            //     for($indexP in $scope.mode.subdivisions[$index].)
+                            // }
+                            //
+                            // $scope.model.subdivision = JSON.stringify($rootScope.currentUser.SubDivision);
+                            // $scope.subdivisionIsDisabled = true;
+                            $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+                        }
+
+
+
                         $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
                     }
                 } else {
@@ -137,7 +159,11 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
         }
 
 
+
+
         //----------------события
+
+
 
         $scope.createReport = function () {
 
@@ -161,6 +187,26 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
 
         $scope.changeSubdivision = function () {
             $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+        }
+
+        $scope.updatePlan = function() {
+            var plan = $scope.createPlanModel();
+            SalesPlanService.isExist(plan).success(function (result) {
+                if (result.Success == 1) {
+                    var isExist = result.Data;
+                    if(isExist){
+                        $scope.createPlan();
+                    }else{
+                        displayMess("planNotExist", true);
+
+                    }
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            });
+
         }
 
         $scope.createPlan = function () {
@@ -268,6 +314,12 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$locatio
             });
 
         }
-        $scope.getAllSubdivisions();
+
+        $rootScope.$watch('currentUserLoaded', function(){
+            if($rootScope.currentUserLoaded == true){
+                $scope.getAllSubdivisions();
+            }
+        });
+
     }
 ]);
