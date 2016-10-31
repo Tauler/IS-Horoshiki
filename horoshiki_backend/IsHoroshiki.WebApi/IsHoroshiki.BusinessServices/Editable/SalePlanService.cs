@@ -155,7 +155,6 @@ namespace IsHoroshiki.BusinessServices.Editable
         {
             try
             {
-                await ThrowIfSalePlanNotExist(model);
                 ThrowIfPlatformNotExist(model.Platform.Id);
 
                 return await this._salePlanHelper.GetReport(model);
