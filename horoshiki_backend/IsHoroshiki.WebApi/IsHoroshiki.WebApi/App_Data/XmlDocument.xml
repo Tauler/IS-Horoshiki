@@ -30,6 +30,9 @@
             <summary>
             
             </summary>
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:IsHoroshiki.WebApi.Startup.OAuthOptions">
             <summary>
@@ -47,9 +50,20 @@
             </summary>
             <param name="app"></param>
         </member>
+        <member name="M:IsHoroshiki.WebApi.Startup.Configuration(Owin.IAppBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+        </member>
         <member name="T:IsHoroshiki.WebApi.UnityConfig">
             <summary>
             Êîíôèãóðàöèÿ Unity
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.UnityConfig._isRegistered">
+            <summary>
+            true - åñëè êîíòåéíåð çàðåãèñòðèðîâàí
             </summary>
         </member>
         <member name="M:IsHoroshiki.WebApi.UnityConfig.RegisterComponents">
@@ -86,7 +100,7 @@
         </member>
         <member name="M:IsHoroshiki.WebApi.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
-            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "GetById-Values-id_name" instead of "GetValues/{id}?name={name}"
             </summary>
             <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
             <returns>The ID as a string.</returns>
@@ -566,6 +580,11 @@
             Абстрактный класс контроллера
             </summary>
         </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.BaseController`1._disposed">
+            <summary>
+            true - если был вызван Dispose
+            </summary>
+        </member>
         <member name="F:IsHoroshiki.WebApi.Controllers.BaseController`1._service">
             <summary>
             Сервис бизнес-логики
@@ -577,7 +596,7 @@
             </summary>
             <param name="service">Сервис бизнес-логики</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseController`1.Get(System.Int32)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseController`1.GetById(System.Int32)">
             <summary>  
             Найти по Id 
             </summary>  
@@ -590,23 +609,29 @@
             <param name="modelState">Словарь ошибок</param>
             <returns></returns>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.BaseEditableController`1">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseController`1.Dispose(System.Boolean)">
+            <summary>  
+            IDisposable
+            </summary>  
+            <param name="disposing"></param>  
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.BaseEditableController`2">
             <summary>
             Абстрактный класс редактируемого контроллера
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.BaseEditableController`1._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.BaseEditableController`2._service">
             <summary>
             Сервис бизнес-логики
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.#ctor(IsHoroshiki.BusinessServices.IBaseEditableService{`0})">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.#ctor(`1)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Сервис бизнес-логики</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.Get(System.Int32,System.Int32,System.String,System.Boolean)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.Get(System.Int32,System.Int32,System.String,System.Boolean)">
             <summary>
             Получить все записи
             </summary>
@@ -616,41 +641,55 @@
             <param name="isAscending">true - сортировать по возрастанию</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.Add(`0)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.GetAll(System.String,System.Boolean)">
+            <summary>
+            Получить все записи
+            </summary>
+            <param name="sortField">Поле для сортировки</param>
+            <param name="isAscending">true - сортировать по возрастанию</param>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.Add(`0)">
             <summary>
             Добавить в БД
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.Update(`0)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.Update(`0)">
             <summary>
             Обновить объект в БД
             </summary>
             <param name="model">Данные</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`1.Delete(System.Int32)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.IsCanDelete(System.Int32)">
+            <summary>
+            true - если можно удалить из БД
+            </summary>
+            <param name="id">Id объекта</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseEditableController`2.Delete(System.Int32)">
             <summary>
             Удалить Объект из БД по Id
             </summary>
             <param name="id">Id объекта</param>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1">
+        <member name="T:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`2">
             <summary>
             Абстрактный класс нередактируемого контроллера
             </summary>
         </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1._service">
+        <member name="F:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`2._service">
             <summary>
             Сервис бизнес-логики
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1.#ctor(IsHoroshiki.BusinessServices.IBaseNotEditableService{`0})">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`2.#ctor(`1)">
             <summary>
             Конструктор
             </summary>
             <param name="service">Сервис бизнес-логики</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`1.Get">
+        <member name="M:IsHoroshiki.WebApi.Controllers.BaseNotEditableController`2.Get">
             <summary>
             Получить все записи
             </summary>
@@ -658,16 +697,6 @@
         <member name="T:IsHoroshiki.WebApi.Controllers.Editable.AccountsController">
             <summary>
             Контроллер авторизации
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.LocalLoginProvider">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:IsHoroshiki.WebApi.Controllers.Editable.AccountsController._service">
-            <summary>
-            Сервис аккаунтов
             </summary>
         </member>
         <member name="P:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Authentication">
@@ -679,11 +708,28 @@
             <summary>
             Конструктор
             </summary>
-            <param name="service">Сервис аккаунтов</param>
+            <param name="service">Cервис Пользователи</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Get(System.Int32,System.Int32,System.String,System.Boolean,System.String,System.Nullable{System.Boolean},System.Int32,System.Int32,System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            Получить все записи
+            </summary>
+            <param name="pageNo">Номер страницы</param>
+            <param name="pageSize">Размер страницы</param>
+            <param name="sortField">Поле для сортировки</param>
+            <param name="isAscending">true - сортировать по возрастанию</param>
+            <param name="filterLastName">Фильтр по фамилии</param>
+            <param name="filterIsAccess">Фильтр Доступ в систему</param>
+            <param name="filterEmployeeStatusId">Фильтр Статус сотрудника</param>
+            <param name="filterPositionId">Фильтр Должности</param>
+            <param name="filterDepartmentId">Фильтр Отдел</param>
+            <param name="filterPlatformId">Фильтр Площадка</param>
+            <param name="filterIsHaveMedicalBook">Фильтр Наличие мед книжки</param>
+            <returns></returns>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Get(System.Int32,System.Int32,System.String,System.Boolean)">
             <summary>
-            Получить всех пользователей
+            Получить все записи
             </summary>
             <param name="pageNo">Номер страницы</param>
             <param name="pageSize">Размер страницы</param>
@@ -691,30 +737,13 @@
             <param name="isAscending">true - сортировать по возрастанию</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Add(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetAll(System.String,System.Boolean)">
             <summary>
-            Создать пользователя
+            Получить все записи
             </summary>
-            <param name="model">Данные</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Get(System.Int32)">
-            <summary>
-            Получить пользователя по Id
-            </summary>
-            <param name="id">Id пользователя</param>
+            <param name="sortField">Поле для сортировки</param>
+            <param name="isAscending">true - сортировать по возрастанию</param>
             <returns></returns>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Update(IsHoroshiki.BusinessEntities.Account.ApplicationUserModel)">
-            <summary>
-            Обновить пользователя
-            </summary>
-            <param name="model">Данные</param>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Delete(System.Int32)">
-            <summary>
-            Удалить пользователя по Id
-            </summary>
-            <param name="id">Id пользователя</param>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Logout">
             <summary>
@@ -743,23 +772,30 @@
             <param name="model">Данные</param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.RemoveLogin(IsHoroshiki.BusinessEntities.Account.RemoveLoginBindingModel)">
-            <summary>
-            Удалить пользователя
-            </summary>
-            <param name="model">Данные</param>
-        </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetCurrent">
             <summary>
             Получение текущего пользователя
             </summary>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.IsExistUserName(System.String)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.IsExistUserName(IsHoroshiki.BusinessEntities.Account.CheckExistUserName)">
             <summary>
             Проверка существования логина для пользователя
             </summary>
-            <param name="userName">Логин пользователя</param>
+            <param name="model">Модель проверки существования пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetAllSmallManager(System.String,System.Boolean)">
+            <summary>
+            Получить всех управляющих
+            </summary>
+            <param name="sortField">Поле для сортировки</param>
+            <param name="isAscending">true - сортировать по возрастанию</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetUserId">
+            <summary>
+            Найти Id пользователя
+            </summary>
             <returns></returns>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetErrorResult(Microsoft.AspNet.Identity.IdentityResult)">
@@ -769,35 +805,97 @@
             <param name="result"></param>
             <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetErrorResult(System.Web.Http.ModelBinding.ModelStateDictionary)">
+        <member name="T:IsHoroshiki.WebApi.Controllers.Editable.DeliveryZonesController">
             <summary>
-            Вернуть первую ошибку
+            Контроллер Зона доставки
             </summary>
-            <param name="modelState"></param>
-            <returns></returns>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.GetUserId">
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.DeliveryZonesController.#ctor(IsHoroshiki.BusinessServices.Editable.Interfaces.IDeliveryZoneService)">
             <summary>
-            Найти Id пользователя
+            Конструктор
             </summary>
-            <returns></returns>
+            <param name="service">Cервис Статус сотрудника</param>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.AccountsController.Dispose(System.Boolean)">
+        <member name="T:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController">
             <summary>
-            Очистить ресурсы
+            Контроллер План продаж
             </summary>
-            <param name="disposing"></param>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController._service">
+            <summary>
+            Сервис бизнес-логики
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.#ctor(IsHoroshiki.BusinessServices.Editable.Interfaces.ISalePlanService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис План продаж</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.GetById(System.Int32)">
+            <summary>  
+            Найти по Id 
+            </summary>  
+            <param name="id">Id</param>  
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.Add(IsHoroshiki.BusinessEntities.Editable.SalePlan.ISalePlanModel)">
+            <summary>
+            Создать план
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.Update(IsHoroshiki.BusinessEntities.Editable.SalePlan.ISalePlanModel)">
+            <summary>
+            Редактировать план
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.UpdateAverageCheck(IsHoroshiki.BusinessEntities.Editable.SalePlan.ISalePlanModel)">
+            <summary>
+            Редактировать cредний чек плана 
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.UpdateCell(IsHoroshiki.BusinessEntities.Editable.SalePlans.ISalePlanDayModel)">
+            <summary>
+            Редактировать ячейку отчета
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.SalePlanController.Report(IsHoroshiki.BusinessEntities.Editable.SalePlan.ISalePlanModel)">
+            <summary>
+            Отчет плана продаж
+            </summary>
         </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.Editable.PlatformsController">
             <summary>
-            Контроллер Платформа
+            Контроллер Площадка
             </summary>
         </member>
         <member name="M:IsHoroshiki.WebApi.Controllers.Editable.PlatformsController.#ctor(IsHoroshiki.BusinessServices.Editable.Interfaces.IPlatformService)">
             <summary>
             Конструктор
             </summary>
-            <param name="service">Cервис Платформа</param>
+            <param name="service">Cервис Площадка</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.PlatformsController.GetAllBySubDivision(System.Int32)">
+            <summary>
+            Получить все площадки для подразделения
+            </summary>
+            <param name="subDivisionId">Id подразделения</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.PlatformsController.AddYandexMapToPlatform(IsHoroshiki.BusinessEntities.Editable.AddYandexMapPlatformModel)">
+            <summary>
+            Сохранение координат площадки
+            </summary>
+            <param name="model">Модель сохранения координат площадки</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.Editable.EmployeeReasonDismissalsController">
+            <summary>
+            Контроллер Причины увольнения сотрудника
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Editable.EmployeeReasonDismissalsController.#ctor(IsHoroshiki.BusinessServices.Editable.Interfaces.IEmployeeReasonDismissalService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Cервис Статус сотрудника</param>
         </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.Editable.SubDivisionsController">
             <summary>
@@ -809,6 +907,43 @@
             Конструктор
             </summary>
             <param name="service">Cервис Подразделения</param>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Controllers.Kladr.KladrController">
+            <summary>
+            Контроллер КЛАДР
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.Kladr.KladrController._disposed">
+            <summary>
+            true - если был вызван Dispose
+            </summary>
+        </member>
+        <member name="F:IsHoroshiki.WebApi.Controllers.Kladr.KladrController._service">
+            <summary>
+            Сервис бизнес-логики
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Kladr.KladrController.#ctor(IsHoroshiki.BusinessServices.Kladr.IKladrService)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="service">Сервис бизнес-логики</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Kladr.KladrController.Get(System.String,System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Получить все записи
+            </summary>
+            <param name="contentType">Тип искомого объекта (область, район и т.п.)</param>
+            <param name="query">Наименование объекта в запросе</param>
+            <param name="regionId">Id объекта в запросе</param>
+            <param name="withParent">true - если необходимо вернуть родительскте записи для данного объекта</param>
+            <param name="limit">Максимальное количество записей в ответе</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Controllers.Kladr.KladrController.Dispose(System.Boolean)">
+            <summary>  
+            IDisposable
+            </summary>  
+            <param name="disposing"></param>  
         </member>
         <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryTimesController">
             <summary>
@@ -898,12 +1033,12 @@
             </summary>
             <param name="service">Cервис Статус площадки</param>
         </member>
-        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryZonesController">
+        <member name="T:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryZoneTypesController">
             <summary>
             Контроллер Типы зон доставки
             </summary>
         </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryZonesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IDeliveryZoneService)">
+        <member name="M:IsHoroshiki.WebApi.Controllers.NotEditable.DeliveryZoneTypesController.#ctor(IsHoroshiki.BusinessServices.NotEditable.Interfaces.IDeliveryZoneTypeService)">
             <summary>
             Конструктор
             </summary>
@@ -952,33 +1087,46 @@
             Проверить доступность сервиса и БД
             </summary>
         </member>
-        <member name="P:IsHoroshiki.WebApi.Controllers.ApiResponse.Version">
+        <member name="T:IsHoroshiki.WebApi.Handlers.ErrorMessageResult">
             <summary>
-            Версия
+            Возврат кастомный ошибки
             </summary>
         </member>
-        <member name="P:IsHoroshiki.WebApi.Controllers.ApiResponse.Success">
+        <member name="F:IsHoroshiki.WebApi.Handlers.ErrorMessageResult._error">
             <summary>
-            1 - если успешно выполнен запрос
+            Ошибка с описанием
             </summary>
         </member>
-        <member name="P:IsHoroshiki.WebApi.Controllers.ApiResponse.Reason">
-            <summary>
-            Сообщение об ошибке, если Success = 0
-            </summary>
-        </member>
-        <member name="P:IsHoroshiki.WebApi.Controllers.ApiResponse.Data">
-            <summary>
-            Данные, возвращаемые запросом
-            </summary>
-        </member>
-        <member name="M:IsHoroshiki.WebApi.Controllers.ApiResponse.#ctor(System.Int32,System.Object,System.String)">
+        <member name="M:IsHoroshiki.WebApi.Handlers.ErrorMessageResult.#ctor(System.Collections.Generic.IEnumerable{IsHoroshiki.BusinessServices.Errors.ErrorDatas.ErrorData})">
             <summary>
             Конструктор
             </summary>
-            <param name="success">1 - если успешно выполнен запрос</param>
-            <param name="data">Сообщение об ошибке, если success = 0</param>
-            <param name="reason">Данные, возвращаемые запросом</param>
+            <param name="errors">Ошибки с описанием</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Handlers.ErrorMessageResult.#ctor(IsHoroshiki.BusinessServices.Errors.ErrorDatas.ErrorData)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="error">Ошибка с описанием</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Handlers.ErrorMessageResult.#ctor(System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="error">Ошибка с описанием</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Handlers.ErrorMessageResult.#ctor(System.Exception)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="error">Ошибка с описанием</param>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Handlers.ErrorMessageResult.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Формирование ответа
+            </summary>
+            <param name="cancellationToken">Токен отмены</param>
+            <returns></returns>
         </member>
         <member name="T:IsHoroshiki.WebApi.Handlers.IocCustomCreationConverter`1">
             <summary>
@@ -1002,6 +1150,45 @@
             <param name="existingValue"></param>
             <param name="serializer"></param>
             <returns></returns>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.Handlers.ApiResponse">
+            <summary>
+            Ответ клиенту
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Handlers.ApiResponse.Version">
+            <summary>
+            Версия
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Handlers.ApiResponse.Success">
+            <summary>
+            1 - если успешно выполнен запрос
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Handlers.ApiResponse.Reason">
+            <summary>
+            Сообщение об ошибке, если Success = 0
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Handlers.ApiResponse.ReasonMessage">
+            <summary>
+            Сообщение об ошибке, если Success = 0
+            </summary>
+        </member>
+        <member name="P:IsHoroshiki.WebApi.Handlers.ApiResponse.Data">
+            <summary>
+            Данные, возвращаемые запросом
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.Handlers.ApiResponse.#ctor(System.Int32,System.Object,System.String,System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="success">1 - если успешно выполнен запрос</param>
+            <param name="data">Сообщение об ошибке, если success = 0</param>
+            <param name="reason">Данные, возвращаемые запросом</param>
+            <param name="reasonMessage">Расшифровка сообщения</param>
         </member>
         <member name="T:IsHoroshiki.WebApi.Handlers.WrappingHandler">
             <summary>
@@ -1117,6 +1304,16 @@
             </summary>
             <param name="userName"></param>
             <returns></returns>
+        </member>
+        <member name="T:IsHoroshiki.WebApi.WebApiApplication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IsHoroshiki.WebApi.WebApiApplication.Application_Start">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:IsHoroshiki.WebApi.ResourceControllers">
             <summary>
