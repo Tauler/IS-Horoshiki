@@ -211,7 +211,8 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             try
             {
                 var userId = User.Identity.GetUserId();
-                return await GetById(Int32.Parse(userId));
+                var result = await _service.GetCurrent(Int32.Parse(userId));
+                return Ok(result);
             }
             catch (Exception e)
             {

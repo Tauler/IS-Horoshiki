@@ -102,5 +102,12 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <param name="userId">Id пользователя</param>
         /// <returns></returns>
         Task<IdentityResult> RemovePasswordAsync(int userId);
+
+        /// <summary>
+        /// Получить текущего пользователя
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <returns></returns>
+        Task<IApplicationUserModel> GetCurrent(int userId);
     }
 }

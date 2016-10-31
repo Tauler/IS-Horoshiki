@@ -302,6 +302,34 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
+        /// Получить текущего пользователя
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <returns></returns>
+        public async Task<IApplicationUserModel> GetCurrent(int userId)
+        {
+            var result = await _repository.GetByIdAsync(userId);
+            if (result == null)
+            {
+                return null;
+            }
+
+            if (result.Platform != null)
+            {
+                result.Platform.SubDivision =  await _unitOfWork.SubDivisionRepository.GetByIdAsync(result.Platform.SubDivisionId);
+            }
+
+            return result.ToModelEntity();
+        }
+
+
+
+        #endregion
+
+        #region protected override
+
+
+        /// <summary>
         /// Валидация сущности при удалении
         /// </summary>
         /// <param name="daoEntity">Сущность</param>
@@ -316,10 +344,6 @@ namespace IsHoroshiki.BusinessServices.Editable
 
             return new ValidationResult();
         }
-
-        #endregion
-
-        #region protected override
 
         /// <summary>
         /// Валидация сущности
