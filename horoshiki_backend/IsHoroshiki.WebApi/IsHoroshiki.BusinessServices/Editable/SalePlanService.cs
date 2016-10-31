@@ -74,13 +74,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         public async Task<ISalePlanTableModel> Update(ISalePlanModel model)
         {
-            await ThrowIfSalePlanNotExist(model);
-
             return await Add(model);
         }
-
-      
-
+            
         /// <summary>
         /// Редактировать cредний чек плана 
         /// </summary>

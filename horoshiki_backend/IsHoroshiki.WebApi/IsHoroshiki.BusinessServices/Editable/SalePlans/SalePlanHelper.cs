@@ -61,6 +61,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
 
             result.SalePlan = model;
             result.SalePlan.Id = daoSalePlan.Id;
+            result.SalePlan.AverageCheck = daoSalePlan.AverageCheck;
 
             var plans = GetSaleDayPlans(daoSalePlan);
             var analize1 = GetAnalize(model.Platform.Id, model.AnalizePeriod1, model.PlanType == PlanType.Suchi);
@@ -145,10 +146,17 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             var row = new SalePlanReportRowModel();
             row.DateStart = startDate;
             row.DateEnd = endDate;
-            result.Add(row);
+            
+            //если пн - это начало периода
+            if (row.DateStart.DayOfWeek != DayOfWeek.Monday)
+            {
+                result.Add(row);
+            }
 
             for (var current = startDate; current <= endDate; current = current.AddDays(1))
             {
+                
+
                 if (current.DayOfWeek == DayOfWeek.Monday)
                 {
                     row = new SalePlanReportRowModel();
