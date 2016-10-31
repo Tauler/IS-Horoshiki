@@ -38,11 +38,7 @@ layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$loca
 
         $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $scope.pageId = current.pageId;
-        });
-        $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $scope.groupId = current.groupId;
-        });
-        $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
             $scope.subgroupId = current.subgroupId;
         });
 
@@ -91,5 +87,17 @@ layoutControllers.controller('LayoutController', ['$scope', '$rootScope', '$loca
             sessionStorage.removeItem('accessToken');
             redirectToMainSite();
         }
+		
+		//Роли пользователей
+        $rootScope.$watch('currentUserLoaded', function(){
+            if($rootScope.currentUserLoaded == true){
+                $rootScope.isChief = function(){
+					return $rootScope.currentUser.Position.Guid == enumPositions.chiefOperatingOfficer;
+				}
+				$rootScope.isManager = function(){
+					return $rootScope.currentUser.Position.Guid == enumPositions.manager;
+				}
+            }
+        });
     }
 ]);

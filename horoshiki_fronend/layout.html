@@ -81,7 +81,6 @@
                                 </section>
                             </a>
                         </li>
-
                         <li ng-class="groupId == 'management' ? 'open':''">
                             <a class="login-area" href="/salesplan">
                                 <section>
@@ -89,8 +88,7 @@
                                 </section>
                             </a>
                         </li>
-
-                        <li ng-class="groupId == 'settings' ? 'open':''">
+                        <li ng-show="isChief()" ng-class="groupId == 'settings' ? 'open':''">
                             <a class="login-area" href="/users">
                                 <section>
                                     <h2><span class="profile"><span>Настройки</span></span></h2>
@@ -150,6 +148,11 @@
 
             <!--Меню Метрики-->
             <ul ng-if="groupId=='metric'" class="nav sidebar-menu">
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Метрики</strong></span>
+                    </a>
+                </li>
                 <li ng-class="subgroupId == 'main' ? 'active':''">
                     <a href="index.html">
                         <i class="menu-icon fa fa-bar-chart-o"></i>
@@ -180,34 +183,46 @@
                         <span class="menu-text"> Продукт </span>
                     </a>
                 </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Рейтинги: Финансы </span>
+				<li>
+                    <a href="#"></a>
+                </li>
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Рейтинги</strong></span>
                     </a>
                 </li>
                 <li>
                     <a href="widgets.html">
                         <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Рейтинги: Клиенты </span>
+                        <span class="menu-text"> Финансы </span>
                     </a>
                 </li>
                 <li>
                     <a href="widgets.html">
                         <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Рейтинги: Скорость </span>
+                        <span class="menu-text"> Клиенты </span>
                     </a>
                 </li>
                 <li>
                     <a href="widgets.html">
                         <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Рейтинги: Продукт </span>
+                        <span class="menu-text"> Скорость </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-th"></i>
+                        <span class="menu-text"> Продукт </span>
                     </a>
                 </li>
             </ul>
 
-            <ul ng-if="groupId=='settings'" class="nav sidebar-menu">
-
+            <ul ng-if="isChief() && groupId=='settings'" class="nav sidebar-menu">
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Основные настройки</strong></span>
+                    </a>
+                </li>
                 <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
                     <a href="/subdivisions">
                         <i class="menu-icon fa fa-share-alt"></i>
@@ -216,8 +231,8 @@
                 </li>
                 <li ng-class="subgroupId == 'platforms' ? 'active':''">
                     <a href="/platforms">
-                        <i class="menu-icon fa fa-share-alt-square"></i>
-                        <span class="menu-text"> Площадки </span>
+                        <i class="menu-icon fa fa-cutlery"></i>
+                        <span class="menu-text"> Рестораны </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'users' ? 'active':''">
@@ -226,26 +241,158 @@
                         <span class="menu-text"> Пользователи </span>
                     </a>
                 </li>
-                <li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
+                <li ng-class="subgroupId == 'zones' ? 'active':''">
+                    <a href="/zones">
+                        <i class="menu-icon fa fa-truck"></i>
+                        <span class="menu-text"> Зоны доставки </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
                     <a href="/reasonDismissals">
                         <i class="menu-icon fa fa-user-times"></i>
                         <span class="menu-text"> Причины увольнения </span>
                     </a>
                 </li>
-                <li ng-class="subgroupId == 'zones' ? 'active':''">
-                    <a href="/zones">
-                        <i class="menu-icon fa fa-user-times"></i>
-                        <span class="menu-text"> Зоны доставки </span>
+				<li>
+                    <a href="#"></a>
+                </li>
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Условия доставки</strong></span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-fighter-jet"></i>
+                        <span class="menu-text"> Стандарты скорости </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-eye"></i>
+                        <span class="menu-text"> Настройки трекинга </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-dollar"></i>
+                        <span class="menu-text"> Мин. чек </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="#"></a>
+                </li>
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Управленческие настройки</strong></span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-money"></i>
+                        <span class="menu-text"> Система оплаты </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-bar-chart-o"></i>
+                        <span class="menu-text"> Настройки показателей </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-clock-o"></i>
+                        <span class="menu-text"> Нормочасы </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="widgets.html">
+                        <i class="menu-icon fa fa-puzzle-piece"></i>
+                        <span class="menu-text"> Настройки смен </span>
                     </a>
                 </li>
             </ul>
 
-            <ul ng-if="groupId=='management'" class="nav sidebar-menu">
-
+            <ul ng-if="isManager() && groupId=='management'" class="nav sidebar-menu">
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Оперативные</strong></span>
+                    </a>
+                </li>
                 <li ng-class="subgroupId == '' ? 'active':''">
                     <a href="/target">
                         <i class="menu-icon fa fa-circle-o"></i>
-                        <span class="menu-text"> Цели </span>
+                        <span class="menu-text"> Цели на год </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/target">
+                        <i class="menu-icon fa fa-dot-circle-o"></i>
+                        <span class="menu-text"> Цели на месяц </span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
+                    <a href="/salesplan">
+                        <i class="menu-icon fa fa-calendar"></i>
+                        <span class="menu-text"> План продаж </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/workgraph">
+                        <i class="menu-icon fa fa-area-chart"></i>
+                        <span class="menu-text"> Графики работы </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == 'users' ? 'active':''">
+                    <a href="/employees">
+                        <i class="menu-icon fa fa-group"></i>
+                        <span class="menu-text"> Список сотрудников </span>
+                    </a>
+                </li>
+				<li>
+                    <a href="#"></a>
+                </li>
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Настройки</strong></span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/zones">
+                        <i class="menu-icon fa fa-truck"></i>
+                        <span class="menu-text"> Зоны доставки </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/restaurant">
+                        <i class="menu-icon fa fa-cutlery"></i>
+                        <span class="menu-text"> Ресторанs </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/shifts">
+                        <i class="menu-icon fa fa-puzzle-piece"></i>
+                        <span class="menu-text"> Смены </span>
+                    </a>
+                </li>
+            </ul>
+			
+			<ul ng-if="isChief() && groupId=='management'" class="nav sidebar-menu">
+				<li>
+                    <a href="#">
+                        <span class="menu-text"><strong>Оперативные данные</strong></span>
+                    </a>
+                </li>
+                <li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/target">
+                        <i class="menu-icon fa fa-circle-o"></i>
+                        <span class="menu-text"> Цели на год </span>
+                    </a>
+                </li>
+				<li ng-class="subgroupId == '' ? 'active':''">
+                    <a href="/target">
+                        <i class="menu-icon fa fa-dot-circle-o"></i>
+                        <span class="menu-text"> Цели на месяц </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
@@ -260,7 +407,6 @@
                         <span class="menu-text"> Графики работы </span>
                     </a>
                 </li>
-
             </ul>
             <!-- /Sidebar Menu -->
         </div>
@@ -268,7 +414,6 @@
 
         <!-- Page Content -->
         <div class="page-content">
-
             <div ng-view></div>
         </div>
         <!-- /Page Content -->
@@ -276,7 +421,6 @@
     </div>
     <!-- /Page Container -->
     <!-- Main Container -->
-
 
     <div id="serverErrorModal" class="modal modal-message modal-warning fade" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
