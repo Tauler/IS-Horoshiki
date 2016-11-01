@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
@@ -72,37 +72,38 @@
 
     <changeSet id="27102016-5" author="onyushkindv">
         <sql>
-            CREATE TABLE [dbo].[AspNetUsers](
-            [Id] [int] IDENTITY(1,1) NOT NULL,
-            [FirstName] [nvarchar](256) NOT NULL,
-            [MiddleName] [nvarchar](256) NULL,
-            [LastName] [nvarchar](256) NOT NULL,
-            [Phone] [nvarchar](25) NULL,
-            [IsHaveMedicalBook] [bit] NOT NULL,
-            [MedicalBookEnd] [datetime] NULL,
-            [EmployeeStatusId] [int] NOT NULL,
-            [PositionId] [int] NOT NULL,
-            [PlatformId] [int] NULL,
-            [DateStart] [datetime] NOT NULL,
-            [DateEnd] [datetime] NULL,
-            [IsAccess] [bit] NOT NULL,
-            [Email] [nvarchar](256) NULL,
-            [EmailConfirmed] [bit] NOT NULL,
-            [PasswordHash] [nvarchar](max) NULL,
-            [SecurityStamp] [nvarchar](max) NULL,
-            [PhoneNumber] [nvarchar](max) NULL,
-            [PhoneNumberConfirmed] [bit] NOT NULL,
-            [TwoFactorEnabled] [bit] NOT NULL,
-            [LockoutEndDateUtc] [datetime] NULL,
-            [LockoutEnabled] [bit] NOT NULL,
-            [AccessFailedCount] [int] NOT NULL,
-            [UserName] [nvarchar](256) NOT NULL,
-            CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED
-            (
-            [Id] ASC
-            )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
-            ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-            ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+	CREATE TABLE [dbo].[AspNetUsers](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](256) NOT NULL,
+	[MiddleName] [nvarchar](256) NULL,
+	[LastName] [nvarchar](256) NOT NULL,
+	[Phone] [nvarchar](25) NULL,
+	[IsHaveMedicalBook] [bit] NOT NULL,
+	[MedicalBookEnd] [datetime] NULL,
+	[EmployeeStatusId] [int] NOT NULL,
+	[EmployeeReasonDismissalId] [int] NULL,
+	[PositionId] [int] NOT NULL,
+	[PlatformId] [int] NULL,
+	[DepartmentId] [int] NULL,
+	[DateStart] [datetime] NOT NULL,
+	[DateEnd] [datetime] NULL,
+	[IsAccess] [bit] NOT NULL,
+	[Email] [nvarchar](256) NULL,
+	[EmailConfirmed] [bit] NOT NULL,
+	[PasswordHash] [nvarchar](max) NULL,
+	[SecurityStamp] [nvarchar](max) NULL,
+	[PhoneNumber] [nvarchar](max) NULL,
+	[PhoneNumberConfirmed] [bit] NOT NULL,
+	[TwoFactorEnabled] [bit] NOT NULL,
+	[LockoutEndDateUtc] [datetime] NULL,
+	[LockoutEnabled] [bit] NOT NULL,
+	[AccessFailedCount] [int] NOT NULL,
+	[UserName] [nvarchar](256) NOT NULL,
+	 CONSTRAINT [PK_dbo.AspNetUsers] PRIMARY KEY CLUSTERED 
+	(
+	[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
         </sql>
     </changeSet>
 
@@ -174,15 +175,14 @@
 
     <changeSet id="27102016-10" author="onyushkindv">
         <sql>
-            CREATE TABLE [dbo].[EmployeeReasonDismissals](
-            [Id] [int] IDENTITY(1,1) NOT NULL,
-            [Value] [nvarchar](100) NOT NULL,
-            CONSTRAINT [PK_dbo.EmployeeReasonDismissals] PRIMARY KEY CLUSTERED
-            (
-            [Id] ASC
-            )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
-            ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-            ) ON [PRIMARY]
+        CREATE TABLE [dbo].[EmployeeReasonDismissals](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
+	CONSTRAINT [PK_dbo.EmployeeReasonDismissals] PRIMARY KEY CLUSTERED 
+	(
+	[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
         </sql>
     </changeSet>
 
@@ -248,23 +248,25 @@
 
     <changeSet id="27102016-16" author="onyushkindv">
         <sql>
-            CREATE TABLE [dbo].[Platforms](
-            [Id] [int] IDENTITY(1,1) NOT NULL,
-            [Name] [nvarchar](100) NOT NULL,
-            [SubDivisionId] [int] NOT NULL,
-            [UserId] [int] NULL,
-            [PlatformStatusId] [int] NOT NULL,
-            [YandexMap] [nvarchar](1000) NULL,
-            [Address] [nvarchar](250) NULL,
-            [TimeStart] [time](7) NOT NULL,
-            [TimeEnd] [time](7) NOT NULL,
-            [MinCheck] [money] NOT NULL,
-            CONSTRAINT [PK_dbo.Platforms] PRIMARY KEY CLUSTERED
-            (
-            [Id] ASC
-            )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
-            ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-            ) ON [PRIMARY]
+        CREATE TABLE [dbo].[Platforms](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](100) NOT NULL,
+	[SubDivisionId] [int] NOT NULL,
+	[UserId] [int] NULL,
+	[PlatformStatusId] [int] NOT NULL,
+	[YandexMap] [nvarchar](1000) NULL,
+	[Address] [nvarchar](250) NULL,
+	[TimeStart] [time](7) NOT NULL,
+	[TimeEnd] [time](7) NOT NULL,
+	[OrderTimeStart] [time](7) NOT NULL,
+	[OrderTimeEnd] [time](7) NOT NULL,
+	[MinCheck] [money] NOT NULL,
+ 	CONSTRAINT [PK_dbo.Platforms] PRIMARY KEY CLUSTERED 
+	(
+	[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+
         </sql>
     </changeSet>
 
@@ -659,24 +661,8 @@
             )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
             ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
             ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-
-            ALTER TABLE [dbo].[DeliveryZones] WITH CHECK ADD CONSTRAINT
-            [FK_dbo.DeliveryZones_dbo.DeliveryZoneTypes_DeliveryZoneTypeId] FOREIGN KEY([DeliveryZoneTypeId])
-            REFERENCES [dbo].[DeliveryZoneTypes] ([Id])
-            ON DELETE CASCADE
-
-            ALTER TABLE [dbo].[DeliveryZones] CHECK CONSTRAINT
-            [FK_dbo.DeliveryZones_dbo.DeliveryZoneTypes_DeliveryZoneTypeId]
-
-            ALTER TABLE [dbo].[DeliveryZones] WITH CHECK ADD CONSTRAINT [FK_dbo.DeliveryZones_dbo.Platforms_PlatformId]
-            FOREIGN KEY([PlatformId])
-            REFERENCES [dbo].[Platforms] ([Id])
-            ON DELETE CASCADE
-
-            ALTER TABLE [dbo].[DeliveryZones] CHECK CONSTRAINT [FK_dbo.DeliveryZones_dbo.Platforms_PlatformId]
-        </sql>
-    </changeSet>
-
+	</sql>
+   </changeSet>
     <changeSet id="27102016-54" author="onyushkindv">
         <sql>
             CREATE TABLE [dbo].[DeliveryZoneTypes](
@@ -693,6 +679,33 @@
             )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
             ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
             ) ON [PRIMARY]
+        </sql>
+    </changeSet>
+   <changeSet id="27102016-53_2" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[DeliveryZones] WITH CHECK ADD CONSTRAINT
+            [FK_dbo.DeliveryZones_dbo.DeliveryZoneTypes_DeliveryZoneTypeId] FOREIGN KEY([DeliveryZoneTypeId])
+            REFERENCES [dbo].[DeliveryZoneTypes] ([Id])
+            ON DELETE CASCADE
+        </sql>
+    </changeSet>
+    <changeSet id="27102016-53_3" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[DeliveryZones] CHECK CONSTRAINT
+            [FK_dbo.DeliveryZones_dbo.DeliveryZoneTypes_DeliveryZoneTypeId]
+        </sql>
+    </changeSet>
+    <changeSet id="27102016-53_4" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[DeliveryZones] WITH CHECK ADD CONSTRAINT [FK_dbo.DeliveryZones_dbo.Platforms_PlatformId]
+            FOREIGN KEY([PlatformId])
+            REFERENCES [dbo].[Platforms] ([Id])
+            ON DELETE CASCADE
+        </sql>
+    </changeSet>
+    <changeSet id="27102016-53_5" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[DeliveryZones] CHECK CONSTRAINT [FK_dbo.DeliveryZones_dbo.Platforms_PlatformId]
         </sql>
     </changeSet>
 
@@ -782,18 +795,50 @@
             )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
             ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
             ) ON [PRIMARY]
+    </sql>
+    </changeSet>
 
+    <changeSet id="27102016-61" author="onyushkindv">
+        <sql>
+            CREATE TABLE [dbo].[SalePlans](
+            [Id] [int] IDENTITY(1,1) NOT NULL,
+            [PlatformId] [int] NOT NULL,
+            [Year] [int] NOT NULL,
+            [Month] [int] NOT NULL,
+            [AverageCheck] [money] NOT NULL,
+            CONSTRAINT [PK_dbo.SalePlans] PRIMARY KEY CLUSTERED
+            (
+            [Id] ASC
+            )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+            ) ON [PRIMARY]
+       </sql>
+    </changeSet>
+
+    <changeSet id="27102016-58_1" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SaleChecks] WITH CHECK ADD CONSTRAINT [FK_dbo.SaleChecks_dbo.BuyProcesses_BuyProcessId]
             FOREIGN KEY([BuyProcessId])
             REFERENCES [dbo].[BuyProcesses] ([Id])
+      </sql>
+    </changeSet>
 
+    <changeSet id="27102016-58_2" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SaleChecks] CHECK CONSTRAINT [FK_dbo.SaleChecks_dbo.BuyProcesses_BuyProcessId]
+      </sql>
+    </changeSet>
 
+    <changeSet id="27102016-58_3" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SaleChecks] WITH CHECK ADD CONSTRAINT [FK_dbo.SaleChecks_dbo.Platforms_PlatformId]
             FOREIGN KEY([PlatformId])
             REFERENCES [dbo].[Platforms] ([Id])
             ON DELETE CASCADE
+      </sql>
+    </changeSet>
 
+    <changeSet id="27102016-58_4" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SaleChecks] CHECK CONSTRAINT [FK_dbo.SaleChecks_dbo.Platforms_PlatformId]
         </sql>
     </changeSet>
@@ -810,20 +855,33 @@
             )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
             ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
             ) ON [PRIMARY]
+    </sql>
+    </changeSet>
 
+     <changeSet id="27102016-59_1" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SubDepartments_SaleChecks_Link] WITH CHECK ADD CONSTRAINT
             [FK_dbo.SubDepartments_SaleChecks_Link_dbo.SaleChecks_SaleCheckId] FOREIGN KEY([SaleCheckId])
             REFERENCES [dbo].[SaleChecks] ([Id])
             ON DELETE CASCADE
-
+       </sql>
+    </changeSet>
+    <changeSet id="27102016-59_2" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SubDepartments_SaleChecks_Link] CHECK CONSTRAINT
             [FK_dbo.SubDepartments_SaleChecks_Link_dbo.SaleChecks_SaleCheckId]
-
+    </sql>
+    </changeSet>
+	<changeSet id="27102016-59_3" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SubDepartments_SaleChecks_Link] WITH CHECK ADD CONSTRAINT
             [FK_dbo.SubDepartments_SaleChecks_Link_dbo.SubDepartments_SubDepartmentId] FOREIGN KEY([SubDepartmentId])
             REFERENCES [dbo].[SubDepartments] ([Id])
             ON DELETE CASCADE
-
+    </sql>
+    </changeSet>
+	<changeSet id="27102016-59_4" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SubDepartments_SaleChecks_Link] CHECK CONSTRAINT
             [FK_dbo.SubDepartments_SaleChecks_Link_dbo.SubDepartments_SubDepartmentId]
         </sql>
@@ -834,24 +892,16 @@
         <sqlFile path="./sql/stored_procedures/sale_check_analize.sql"/>
     </changeSet>
 
-    <changeSet id="27102016-61" author="onyushkindv">
-        <sql>
-            CREATE TABLE [dbo].[SalePlans](
-            [Id] [int] IDENTITY(1,1) NOT NULL,
-            [PlatformId] [int] NOT NULL,
-            [Year] [int] NOT NULL,
-            [Month] [int] NOT NULL,
-            [AverageCheck] [money] NOT NULL,
-            CONSTRAINT [PK_dbo.SalePlans] PRIMARY KEY CLUSTERED
-            (
-            [Id] ASC
-            )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-            ) ON [PRIMARY]
 
+    <changeSet id="27102016-61_1" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SalePlans]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SalePlans_dbo.Platforms_PlatformId] FOREIGN KEY([PlatformId])
             REFERENCES [dbo].[Platforms] ([Id])
             ON DELETE CASCADE
-
+        </sql>
+    </changeSet>
+    <changeSet id="27102016-61_2" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SalePlans] CHECK CONSTRAINT [FK_dbo.SalePlans_dbo.Platforms_PlatformId]
         </sql>
     </changeSet>
@@ -869,11 +919,19 @@
             [Id] ASC
             )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
             ) ON [PRIMARY]
+ 	</sql>
+    </changeSet>
 
+    <changeSet id="27102016-62_1" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SalePlanDays]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SalePlanDays_dbo.SalePlans_SalePlanId] FOREIGN KEY([SalePlanId])
             REFERENCES [dbo].[SalePlans] ([Id])
             ON DELETE CASCADE
+ 	</sql>
+    </changeSet>
 
+    <changeSet id="27102016-62_2" author="onyushkindv">
+        <sql>
             ALTER TABLE [dbo].[SalePlanDays] CHECK CONSTRAINT [FK_dbo.SalePlanDays_dbo.SalePlans_SalePlanId]
         </sql>
     </changeSet>
@@ -884,10 +942,30 @@
         </sql>
     </changeSet>
 
+    <changeSet id="27102016-64" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[AspNetUsers]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUsers_dbo.Departments_DepartmentId] FOREIGN KEY([DepartmentId]) REFERENCES [dbo].[Departments] ([Id])
+        </sql>
+    </changeSet>
+
+    <changeSet id="27102016-65" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.Departments_DepartmentId]
+        </sql>
+    </changeSet>
+
+    <changeSet id="27102016-66" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[AspNetUsers]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUsers_dbo.EmployeeReasonDismissals_EmployeeReasonDismissalId] FOREIGN KEY([EmployeeReasonDismissalId]) REFERENCES [dbo].[EmployeeReasonDismissals] ([Id])
+        </sql>
+    </changeSet>
+
+    <changeSet id="27102016-67" author="onyushkindv">
+        <sql>
+            ALTER TABLE [dbo].[AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.EmployeeReasonDismissals_EmployeeReasonDismissalId]
+        </sql>
+    </changeSet>
 </databaseChangeLog>
-
-
-
 
 
 

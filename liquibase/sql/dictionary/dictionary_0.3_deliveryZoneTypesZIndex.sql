@@ -1,4 +1,4 @@
-UPDATE [dbo].[DeliveryZoneTypes] SET ZIndex = 4, Priority = 1 WHERE Guid = '48922505-A864-400D-B3D0-F4F70DDEB1E6';
+﻿UPDATE [dbo].[DeliveryZoneTypes] SET ZIndex = 4, Priority = 1 WHERE Guid = '48922505-A864-400D-B3D0-F4F70DDEB1E6';
 
 UPDATE [dbo].[DeliveryZoneTypes] SET ZIndex = 3, Priority = 2 WHERE Guid = 'B5874A2C-2711-42CC-B88A-54E8259FE7EC';
 

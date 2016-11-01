@@ -8,7 +8,6 @@ CREATE TABLE [dbo].[AspNetRoles](
 ) ON [PRIMARY]
 
 
-
 CREATE TABLE [dbo].[AspNetUserClaims](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[UserId] [int] NOT NULL,
@@ -45,6 +44,7 @@ CREATE TABLE [dbo].[AspNetUserRoles](
 ) ON [PRIMARY]
 
 
+
 CREATE TABLE [dbo].[AspNetUsers](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nvarchar](256) NOT NULL,
@@ -54,8 +54,10 @@ CREATE TABLE [dbo].[AspNetUsers](
 	[IsHaveMedicalBook] [bit] NOT NULL,
 	[MedicalBookEnd] [datetime] NULL,
 	[EmployeeStatusId] [int] NOT NULL,
+	[EmployeeReasonDismissalId] [int] NULL,
 	[PositionId] [int] NOT NULL,
 	[PlatformId] [int] NULL,
+	[DepartmentId] [int] NULL,
 	[DateStart] [datetime] NOT NULL,
 	[DateEnd] [datetime] NULL,
 	[IsAccess] [bit] NOT NULL,
@@ -127,7 +129,7 @@ CREATE TABLE [dbo].[Departments](
 
 CREATE TABLE [dbo].[EmployeeReasonDismissals](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[Value] [nvarchar](100) NOT NULL,
+	[Name] [nvarchar](256) NOT NULL,
  CONSTRAINT [PK_dbo.EmployeeReasonDismissals] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -189,12 +191,15 @@ CREATE TABLE [dbo].[Platforms](
 	[Address] [nvarchar](250) NULL,
 	[TimeStart] [time](7) NOT NULL,
 	[TimeEnd] [time](7) NOT NULL,
+	[OrderTimeStart] [time](7) NOT NULL,
+	[OrderTimeEnd] [time](7) NOT NULL,
 	[MinCheck] [money] NOT NULL,
  CONSTRAINT [PK_dbo.Platforms] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+
 
 
 CREATE TABLE [dbo].[PlatformStatuses](
@@ -393,6 +398,20 @@ REFERENCES [dbo].[AspNetUsers] ([Id])
 ON DELETE CASCADE
 
 ALTER TABLE [dbo].[AspNetUserRoles] CHECK CONSTRAINT [FK_dbo.AspNetUserRoles_dbo.AspNetUsers_UserId]
+
+
+
+ALTER TABLE [dbo].[AspNetUsers]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUsers_dbo.Departments_DepartmentId] FOREIGN KEY([DepartmentId])
+REFERENCES [dbo].[Departments] ([Id])
+
+
+ALTER TABLE [dbo].[AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.Departments_DepartmentId]
+
+
+ALTER TABLE [dbo].[AspNetUsers]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUsers_dbo.EmployeeReasonDismissals_EmployeeReasonDismissalId] FOREIGN KEY([EmployeeReasonDismissalId])
+REFERENCES [dbo].[EmployeeReasonDismissals] ([Id])
+
+ALTER TABLE [dbo].[AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.EmployeeReasonDismissals_EmployeeReasonDismissalId]
 
 ALTER TABLE [dbo].[AspNetUsers]  WITH CHECK ADD  CONSTRAINT [FK_dbo.AspNetUsers_dbo.EmployeeStatuses_EmployeeStatusId] FOREIGN KEY([EmployeeStatusId])
 REFERENCES [dbo].[EmployeeStatuses] ([Id])
