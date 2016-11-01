@@ -5,8 +5,8 @@
 
 var zonesControllers = angular.module('zonesControllers', []);
 
-zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'BackendService', 'SubdivisionService', 'PlatformsService', 'ZonesService', 'DictionaryService','$rootScope',
-    function ($scope, $location, BackendService, SubdivisionService, PlatformsService, ZonesService, DictionaryService, $rootScope) {
+zonesControllers.controller('ZonesViewController', ['$scope', '$rootScope', '$location', 'BackendService', 'SubdivisionService', 'PlatformsService', 'ZonesService', 'DictionaryService','$rootScope',
+    function ($scope, $rootScope, $location, BackendService, SubdivisionService, PlatformsService, ZonesService, DictionaryService, $rootScope) {
 
         var obj_index = 0;
 
@@ -267,12 +267,14 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
         };
 
         $scope.changeSubdivision = function () {
-            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
-            $scope.updateMapCoordinates($scope.model.platforms);
+            if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer) {
+                $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+                $scope.updateMapCoordinates($scope.model.platforms);
+            }
         };
 
         $scope.changePlatform = function () {
-            if ($scope.model.platform != undefined && $scope.model.platform != '') {
+            if ($scope.model.platform != undefined && $scope.model.platform != '' && $rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer) {
                 $scope.setMapCenter(JSON.parse($scope.model.platform).YandexMap);
                 $scope.model.zoneForm.platformId = JSON.parse($scope.model.platform).Id;
             }
@@ -353,12 +355,31 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
 
         };
 
+        $scope.model.subdivisionIsDisabled = true;
+        $scope.model.platformIsDisabled = true;
+
         $scope.getAllSubdivisions = function () {
             SubdivisionService.getSubdivisionsWithoutPaginate('Id', true).success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.subdivisions = result.Data.Data;
                     if ($scope.model.subdivisions.length != 0) {
-                        $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+
+
+                        if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer){
+                            $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+                            $scope.subdivisionIsDisabled = false;
+                        }
+                        if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                            console.log($rootScope.currentUser);
+
+                            for($index in $scope.model.subdivisions){
+                                if($scope.model.subdivisions[$index].Id == $rootScope.currentUser.Platform.SubDivision.Id){
+                                    $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[$index]);
+                                    $scope.subdivisionIsDisabled = true;
+                                }
+                            }
+                        }
+
                         $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
                     }
                 } else {
@@ -374,8 +395,21 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
                 if (result.Success == 1) {
                     $scope.model.platforms = result.Data;
                     if ($scope.model.platforms.length != 0) {
-                        $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
-                        $scope.model.zoneForm.platformId = $scope.model.platforms[0].Id;
+
+                        if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer) {
+                            $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
+                            $scope.model.zoneForm.platformId = $scope.model.platforms[0].Id;
+                            $scope.platformIsDisabled = false;
+                        }
+                        if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                            for($index in $scope.model.platforms){
+                                if($scope.model.platforms[$index].Id == $rootScope.currentUser.Platform.Id){
+                                    $scope.model.platform = angular.toJson($scope.model.platforms[$index]);
+                                    $scope.model.zoneForm.platformId = $scope.model.platforms[$index].Id;
+                                    $scope.platformIsDisabled = true;
+                                }
+                            }
+                        }
                     }
                     $scope.updateMapCoordinates($scope.model.platforms);
 
@@ -521,8 +555,12 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$location', 'Back
 
         // -----------------------------------------------------------------------------------
 
+        $rootScope.$watch('currentUserLoaded', function(){
+            if($rootScope.currentUserLoaded == true){
+                $scope.getAllSubdivisions();
+                $scope.getDeliveryZoneTypes();
+            }
+        });
 
-        $scope.getAllSubdivisions();
-        $scope.getDeliveryZoneTypes();
     }
 ]);

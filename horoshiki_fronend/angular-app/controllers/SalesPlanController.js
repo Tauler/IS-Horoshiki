@@ -53,20 +53,20 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
                             $scope.subdivisionIsDisabled = false;
                         }
                         if($rootScope.currentUser.Position.Guid==enumPositions.manager){
-                            // console.log($rootScope.currentUser);
-                            //
-                            // for($index in $scope.mode.subdivisions){
-                            //     for($indexP in $scope.mode.subdivisions[$index].)
-                            // }
-                            //
-                            // $scope.model.subdivision = JSON.stringify($rootScope.currentUser.SubDivision);
-                            // $scope.subdivisionIsDisabled = true;
-                            $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[0]);
+                            console.log($rootScope.currentUser);
+
+                            for($index in $scope.model.subdivisions){
+                               if($scope.model.subdivisions[$index].Id == $rootScope.currentUser.Platform.SubDivision.Id){
+                                   $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[$index]);
+                                   $scope.subdivisionIsDisabled = true;
+                               }
+                            }
                         }
 
 
-
-                        $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+                        if($scope.model.subdivision!=null) {
+                            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+                        }
                     }
                 } else {
                     displayErrorMessage(result.ReasonMessage);
@@ -81,7 +81,19 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
                 if (result.Success == 1) {
                     $scope.model.platforms = result.Data;
                     if ($scope.model.platforms.length != 0) {
-                        $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
+                        if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer) {
+                            $scope.model.platform = JSON.stringify($scope.model.platforms[0]);
+                            $scope.platformIsDisabled = false;
+                        }
+                        if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                            for($index in $scope.model.platforms){
+                                if($scope.model.platforms[$index].Id == $rootScope.currentUser.Platform.Id){
+                                    $scope.model.platform = angular.toJson($scope.model.platforms[$index]);
+                                    $scope.platformIsDisabled = true;
+                                }
+                            }
+                        }
+
                         if (!$scope.model.isIndex) {
                             $scope.changePlatformM2();
                         }
@@ -196,7 +208,9 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
         }
 
         $scope.changeSubdivision = function () {
-            $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+            if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer) {
+                $scope.getAllPlatformBySubdivision(JSON.parse($scope.model.subdivision).Id);
+            }
         }
 
         $scope.updatePlan = function() {
@@ -238,8 +252,10 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
         }
 
         $scope.changePlatformM2 = function () {
-            $scope.model.salePlanTable.SalePlan.Platform.Id = JSON.parse($scope.model.platform).Id;
-            $scope.updateData();
+            if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer) {
+                $scope.model.salePlanTable.SalePlan.Platform.Id = JSON.parse($scope.model.platform).Id;
+                $scope.updateData();
+            }
         }
         $scope.changeTypePlanM2 = function () {
             $scope.model.salePlanTable.SalePlan.PlanType = JSON.parse($scope.model.typePlan).id;

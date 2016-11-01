@@ -32,7 +32,7 @@
                                     Подразделение
                                 </td>
                                 <td>
-                                    <select class="form-control"
+                                    <select ng-disabled="subdivisionIsDisabled" class="form-control"
                                             ng-model="model.subdivision"
                                             ng-change="changeSubdivision();">
                                         <!--<option value="">Не выбрано</option>-->
@@ -47,7 +47,7 @@
                                     Площадка
                                 </td>
                                 <td>
-                                    <select class="form-control"
+                                    <select ng-disabled="platformIsDisabled" class="form-control"
                                             ng-model="model.platform">
                                         <!--<option value="">Не выбрано</option>-->
                                         <option ng-repeat="platform in model.platforms" value="{{platform}}">
@@ -127,7 +127,7 @@
                                         Подразделение
                                     </td>
                                     <td>
-                                        <select class="form-control"
+                                        <select ng-disabled="subdivisionIsDisabled" class="form-control"
                                                 ng-model="model.subdivision"
                                                 ng-change="changeSubdivision();">
                                             <!--<option value="">Не выбрано</option>-->
@@ -155,7 +155,7 @@
                                         Площадка
                                     </td>
                                     <td>
-                                        <select class="form-control"
+                                        <select ng-disabled="platformIsDisabled" class="form-control"
                                                 ng-model="model.platform" ng-change="changePlatformM2();">
                                             <!--<option value="">Не выбрано</option>-->
                                             <option ng-repeat="platform in model.platforms" value="{{platform}}">

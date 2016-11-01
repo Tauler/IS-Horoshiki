@@ -18,7 +18,7 @@
             </div>
             <div class="widget-body">
 
-                <div class="row" ng-show="model.isIndex">
+                <div class="row">
                     <div class="col-md-9" style="height: 600px">
                         <ya-map ya-zoom="10" ya-center="{{model.subdivisionCenter}}"
                                 ya-event-click="notActiveZone($event)"
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="subdivisions">Подразделение:</label>
                                 <div class="input-group" style="width: 100%">
-                                    <select name="priceType" id="subdivisions" class="form-control"
+                                    <select ng-disabled="subdivisionIsDisabled" name="priceType" id="subdivisions" class="form-control"
                                             ng-model="model.subdivision"
                                             ng-change="changeSubdivision();">
                                         <!--<option value="">Не выбрано</option>-->
@@ -54,7 +54,7 @@
                             <div class="form-group">
                                 <label for="platforms">Площадка:</label>
                                 <div class="input-group" style="width: 100%">
-                                    <select name="priceType" id="platforms" class="form-control"
+                                    <select ng-disabled="platformIsDisabled" name="priceType" id="platforms" class="form-control"
                                             ng-model="model.platform"
                                             ng-change="changePlatform();">
                                         <!--<option value="">Не выбрано</option>-->
