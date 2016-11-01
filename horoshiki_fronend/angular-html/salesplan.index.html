@@ -288,9 +288,9 @@
                                     <td class="text-bold">{{row.Analize2.Sum}}</td>
                                     <td>{{row.Analize2.Delivery}}</td>
                                     <td>{{row.Analize2.Self}}</td>
-                                    <td class="text-bold">{{row.Plan.Sum}}</td>
-                                    <td><input ng-if="row.Plan!=null" ng-model="row.Plan.Delivery" ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
-                                    <td><input ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
+                                    <td class="text-bold">{{sum(row.Plan.Delivery, row.Plan.Self)}}</td>
+                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Delivery"  ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
+                                    <td><input ng-keyup="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
                                 </tr>
 
                                 <tr>
@@ -301,14 +301,13 @@
                                     <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery+model.salePlanTable.SumRow.Analize2.Self}}</td>
                                     <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery}}</td>
                                     <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Self}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Delivery+model.salePlanTable.SumRow.Plan.Self}}</td>
+                                    <td class="text-bold">{{model.rowPlanSum}}</td>
                                     <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Delivery}}</td>
                                     <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Self}}</td>
                                 </tr>
                                 </tbody>
 
                             </table>
-
                         </div>
                     </div>
                     <!---------Основная таблица начало----------------->
@@ -320,6 +319,19 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    $(".numb").css("border", "1px solid red");
+
+    $(".numb").keydown(function(event){
+        console.log("123");
+        console.log(event);
+        if(e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)){
+            return false;
+        }
+    });
+</script>
 
 
 <!--Попап отчета-->

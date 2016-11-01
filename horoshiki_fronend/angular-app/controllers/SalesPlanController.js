@@ -159,6 +159,16 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
         }
 
 
+        $scope.model.rowPlanSum = 0;
+        $scope.rowPlanSum = function () {
+            var sum = 0;
+            for ($i in $scope.model.salePlanTable.DataRows) {
+                if ($scope.model.salePlanTable.DataRows[$i].Plan != null) {
+                    sum += $scope.model.salePlanTable.DataRows[$i].Plan.Sum;
+                }
+            }
+            $scope.model.rowPlanSum = sum;
+        }
 
 
         //----------------события
@@ -217,7 +227,7 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
                     $scope.model.isIndex = false;
 
                     $scope.editAnalizePeriod();
-
+                    $scope.rowPlanSum();
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -274,9 +284,11 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
 
         $scope.changeCallSalePlan = function (plan) {
 
+            $scope.rowPlanSum();
+
             SalesPlanService.editCall(plan).success(function (result) {
                 if (result.Success == 1) {
-                    $scope.updateData();
+                    // $scope.updateData();
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -300,18 +312,18 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
             });
         }
 
-        $scope.changeCallSalePlan = function (plan) {
+        $scope.sum = function (str1, str2) {
+            var sum = '';
+            if(str1!=undefined && str2!=undefined){
+                sum = parseInt(str1)+parseInt(str2);
+            }
+            return sum;
+        }
 
-
-            SalesPlanService.editCall(plan).success(function (result) {
-                if (result.Success == 1) {
-                    $scope.updateData();
-                } else {
-                    displayErrorMessage(result.ReasonMessage);
-                }
-            }).error(function (result, status) {
-                httpErrors($location.url(), status);
-            });
+        $scope.keyUpCallSalePlan = function (event) {
+            if(!numberRegexp.test(event.key) && event.key!="Tab" && event.key!="Backspace" && event.key!="Delete"){
+                event.preventDefault();
+            }
 
         }
 

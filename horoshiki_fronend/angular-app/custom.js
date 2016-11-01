@@ -4,6 +4,7 @@ var backendServerAddr = "/backend";
 var backendTimeout = 5000;
 
 var mailRegexp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
+var numberRegexp = /^[0-9]+$/;
 
 
 //Константы
@@ -156,3 +157,15 @@ function closeModal(id){
     $('#'+id).modal('hide');
 }
 
+function isNumber1(e) {
+
+        return false;
+
+};
+
+$("#numb").keyup(function(event){
+    console.log(event);
+    if(e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)){
+        return false;
+    }
+});
