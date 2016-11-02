@@ -82,14 +82,14 @@
                             </a>
                         </li>
                         <li ng-class="groupId == 'management' ? 'open':''">
-                            <a class="login-area" href="/salesplan">
+                            <a class="login-area" href="/salesplan" target="_self">
                                 <section>
                                     <h2><span class="profile"><span>Управление</span></span></h2>
                                 </section>
                             </a>
                         </li>
                         <li ng-show="isChief()" ng-class="groupId == 'settings' ? 'open':''">
-                            <a class="login-area" href="/users">
+                            <a class="login-area" href="/users" target="_self">
                                 <section>
                                     <h2><span class="profile"><span>Настройки</span></span></h2>
                                 </section>
@@ -224,31 +224,31 @@
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
-                    <a href="/subdivisions">
+                    <a href="/subdivisions" target="_self">
                         <i class="menu-icon fa fa-share-alt"></i>
                         <span class="menu-text"> Подразделения </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'platforms' ? 'active':''">
-                    <a href="/platforms">
+                    <a href="/platforms" target="_self">
                         <i class="menu-icon fa fa-cutlery"></i>
                         <span class="menu-text"> Рестораны </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'users' ? 'active':''">
-                    <a href="/users">
+                    <a href="/users" target="_self">
                         <i class="menu-icon fa fa-group"></i>
                         <span class="menu-text"> Пользователи </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'zones' ? 'active':''">
-                    <a href="/zones">
+                    <a href="/zones" target="_self">
                         <i class="menu-icon fa fa-truck"></i>
                         <span class="menu-text"> Зоны доставки </span>
                     </a>
                 </li>
 				<li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
-                    <a href="/reasonDismissals">
+                    <a href="/reasonDismissals" target="_self">
                         <i class="menu-icon fa fa-user-times"></i>
                         <span class="menu-text"> Причины увольнения </span>
                     </a>
@@ -332,19 +332,19 @@
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
-                    <a href="/salesplan">
+                    <a href="/salesplan" target="_self">
                         <i class="menu-icon fa fa-calendar"></i>
                         <span class="menu-text"> План продаж </span>
                     </a>
                 </li>
 				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/workgraph">
+                    <a href="/workgraph" target="_self">
                         <i class="menu-icon fa fa-area-chart"></i>
                         <span class="menu-text"> Графики работы </span>
                     </a>
                 </li>
 				<li ng-class="subgroupId == 'users' ? 'active':''">
-                    <a href="/employees">
+                    <a href="/employees" target="_self">
                         <i class="menu-icon fa fa-group"></i>
                         <span class="menu-text"> Список сотрудников </span>
                     </a>
@@ -358,19 +358,19 @@
                     </a>
                 </li>
                 <li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/zones">
+                    <a href="/zones" target="_self">
                         <i class="menu-icon fa fa-truck"></i>
                         <span class="menu-text"> Зоны доставки </span>
                     </a>
                 </li>
 				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/restaurant">
+                    <a href="/restaurant" target="_self">
                         <i class="menu-icon fa fa-cutlery"></i>
                         <span class="menu-text"> Ресторан </span>
                     </a>
                 </li>
 				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/shifts">
+                    <a href="/shifts" target="_self">
                         <i class="menu-icon fa fa-puzzle-piece"></i>
                         <span class="menu-text"> Смены </span>
                     </a>
@@ -396,13 +396,13 @@
                     </a>
                 </li>
                 <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
-                    <a href="/salesplan">
+                    <a href="/salesplan" target="_self">
                         <i class="menu-icon fa fa-calendar"></i>
                         <span class="menu-text"> План продаж </span>
                     </a>
                 </li>
                 <li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/workgraph">
+                    <a href="/workgraph" target="_self">
                         <i class="menu-icon fa fa-area-chart"></i>
                         <span class="menu-text"> Графики работы </span>
                     </a>
