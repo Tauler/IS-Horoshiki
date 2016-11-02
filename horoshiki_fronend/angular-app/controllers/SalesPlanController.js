@@ -174,11 +174,17 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
         $scope.model.rowPlanSum = 0;
         $scope.rowPlanSum = function () {
             var sum = 0;
+            var sumDelivery = 0;
+            var sumSelf = 0;
             for ($i in $scope.model.salePlanTable.DataRows) {
                 if ($scope.model.salePlanTable.DataRows[$i].Plan != null) {
-                    sum += $scope.model.salePlanTable.DataRows[$i].Plan.Sum;
+                    sum += parseInt($scope.model.salePlanTable.DataRows[$i].Plan.Sum);
+                    sumDelivery +=parseInt($scope.model.salePlanTable.DataRows[$i].Plan.Delivery);
+                    sumSelf +=parseInt($scope.model.salePlanTable.DataRows[$i].Plan.Self);
                 }
             }
+            $scope.model.salePlanTable.SumRow.Plan.Delivery = sumDelivery;
+            $scope.model.salePlanTable.SumRow.Plan.Self = sumSelf;
             $scope.model.rowPlanSum = sum;
         }
 
@@ -298,11 +304,13 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
             });
         }
 
-        $scope.changeCallSalePlan = function (plan) {
-
+        $scope.changeCallSalePlan = function (row) {
+            //считаем сумму строки
+            row.Plan.Sum = parseInt(row.Plan.Delivery) + parseInt(row.Plan.Self);
+            
             $scope.rowPlanSum();
 
-            SalesPlanService.editCall(plan).success(function (result) {
+            SalesPlanService.editCall(row.Plan).success(function (result) {
                 if (result.Success == 1) {
                     // $scope.updateData();
                 } else {

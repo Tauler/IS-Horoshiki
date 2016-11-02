@@ -288,9 +288,9 @@
                                     <td class="text-bold">{{row.Analize2.Sum}}</td>
                                     <td>{{row.Analize2.Delivery}}</td>
                                     <td>{{row.Analize2.Self}}</td>
-                                    <td class="text-bold">{{sum(row.Plan.Delivery, row.Plan.Self)}}</td>
-                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Delivery"  ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
-                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row.Plan);" type="text" style="text-align: center"></td>
+                                    <td class="text-bold">{{row.Plan.Sum}}</td>
+                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Delivery"  ng-blur="changeCallSalePlan(row);" type="text" style="text-align: center"></td>
+                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row);" type="text" style="text-align: center"></td>
                                 </tr>
 
                                 <tr>
