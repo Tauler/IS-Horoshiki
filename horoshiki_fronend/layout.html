@@ -313,7 +313,7 @@
                 </li>
             </ul>
 
-            <ul ng-if="isManager() && groupId=='management'" class="nav sidebar-menu">
+            <ul ng-if="isManager() && (groupId=='management' || groupId=='settings')" class="nav sidebar-menu">
 				<li>
                     <a href="#">
                         <span class="menu-text"><strong>Оперативные</strong></span>
@@ -363,8 +363,8 @@
                         <span class="menu-text"> Зоны доставки </span>
                     </a>
                 </li>
-				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/restaurant" target="_self">
+				<li ng-class="subgroupId == 'platforms' ? 'active':''">
+                    <a href="/platforms/view/{{currentUser.Platform.Id}}" target="_self">
                         <i class="menu-icon fa fa-cutlery"></i>
                         <span class="menu-text"> Ресторан </span>
                     </a>

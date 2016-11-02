@@ -109,9 +109,9 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
             })
 
             .when('/platforms', {
-                templateUrl: '/angular-html/platforms.view.html',
-                controller: 'PlatformsViewController',
-                pageId: 'platformsViewPage',
+                templateUrl: '/angular-html/platforms.list.html',
+                controller: 'PlatformsListController',
+                pageId: 'platformsListPage',
                 groupId: 'settings',
                 subgroupId: 'platforms',
                 title: 'Просмотр площадок'
@@ -131,6 +131,14 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'platforms',
                 title: 'Редактирование площадки'
+            })
+			.when('/platforms/view/:id', {
+                templateUrl: '/angular-html/platforms.view.html',
+                controller: 'PlatformsViewController',
+                pageId: 'platformsViewPage',
+                groupId: 'settings',
+                subgroupId: 'platforms',
+                title: 'Просмотр площадки'
             })
 
             .when('/reasonDismissals', {

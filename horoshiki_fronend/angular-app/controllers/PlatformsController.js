@@ -4,7 +4,7 @@
 
 var platformsControllers = angular.module('platformsControllers', []);
 
-platformsControllers.controller('PlatformsViewController', ['$scope', '$location', 'PlatformsService',
+platformsControllers.controller('PlatformsListController', ['$scope', '$location', 'PlatformsService',
     function ($scope, $location, PlatformsService) {
         $scope.model = {};
         $scope.model.platforms = [];
@@ -369,5 +369,134 @@ platformsControllers.controller('PlatformsAddController', ['$scope', '$location'
         $scope.getStatusSites();
         $scope.getPlatform();
 
+    }
+]);
+
+platformsControllers.controller('PlatformsViewController', ['$scope', '$location', 'PlatformsService', 'DictionaryService', 'UsersService', 'SubdivisionService', '$routeParams',
+    function ($scope, $location, PlatformsService, DictionaryService, UsersService, SubdivisionService, $routeParams) {
+        $scope.model = {};
+        $scope.model.platform = [];
+		$scope.model.error = {};
+		
+		$scope.model.localTime = {
+            start: '08:00',
+            end: '17:00'
+        }
+		
+		$scope.model.orderTime = {
+            start: '08:00',
+            end: '17:00'
+        }
+		
+		$scope.getSubdivisions = function () {
+            SubdivisionService.getSubdivisionsWithoutPaginate("Id", "True").success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.subdivisions = result.Data.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getUsers = function () {
+            UsersService.getAllManagers("Id", "True").success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.users = result.Data;
+                } else {
+                    displayErrorMessage(result.Reason);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getStatusSites = function () {
+            DictionaryService.getStatusSites().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.statusSites = result.Data;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $scope.getPlatform = function () {
+			PlatformsService.get($routeParams.id).success(function (result) {
+				if (result.Success == 1) {
+					$scope.model.platform = result.Data;
+
+					$scope.model.platform.SubDivision.Id = $scope.model.platform.SubDivision.Id.toString();
+					if ($scope.model.platform.SubDivision.Id == "" || $scope.model.platform.SubDivision.Id == undefined) {
+						$scope.model.error.statusDisabled = true;
+					} else {
+						$scope.model.error.statusDisabled = false;
+					}
+
+					if($scope.model.platform.User!=undefined && $scope.model.platform.User!=null){
+						$scope.model.platform.User.Id = $scope.model.platform.User.Id.toString();
+					}
+					if($scope.model.platform.PlatformStatus!=undefined && $scope.model.platform.PlatformStatus!=null) {
+						$scope.model.platform.PlatformStatus.Id = $scope.model.platform.PlatformStatus.Id.toString();
+					}
+
+					if ($scope.model.platform.TimeStart != "" && $scope.model.platform.TimeStart != undefined) {
+						var startTimeArr = $scope.model.platform.TimeStart.split(':');
+						$scope.model.localTime.start = startTimeArr[0] + ":" + startTimeArr[1];
+					}
+					if ($scope.model.platform.TimeEnd != "" && $scope.model.platform.TimeEnd != undefined) {
+						var endTimeArr = $scope.model.platform.TimeEnd.split(':');
+						$scope.model.localTime.end = endTimeArr[0] + ":" + endTimeArr[1];
+					}
+
+					if ($scope.model.platform.OrderTimeStart != "" && $scope.model.platform.OrderTimeStart != undefined) {
+						var startTimeArr = $scope.model.platform.OrderTimeStart.split(':');
+						$scope.model.orderTime.start = startTimeArr[0] + ":" + startTimeArr[1];
+					}
+					if ($scope.model.platform.OrderTimeEnd != "" && $scope.model.platform.OrderTimeEnd != undefined) {
+						var endTimeArr = $scope.model.platform.OrderTimeEnd.split(':');
+						$scope.model.orderTime.end = endTimeArr[0] + ":" + endTimeArr[1];
+					}
+
+					$scope.checkboxes.getBuyProcesses();
+
+				} else {
+					displayErrorMessage(result.ReasonMessage);
+				}
+			}).error(function (result, status) {
+				httpErrors($location.url(), status);
+			})
+        }
+		
+		$scope.getSubdivisions();
+		$scope.getUsers();
+		$scope.getStatusSites();
+		$scope.getPlatform();
+		
+		$scope.checkboxes = {};
+        $scope.checkboxes.getBuyProcesses = function () {
+            DictionaryService.getBuyProcesses().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.buyProcessesValue = result.Data;
+                    for (var i = 0; i < $scope.model.buyProcessesValue.length; i++) {
+                        $scope.model.buyProcessesValue[i].checked = false;
+                        if ($scope.model.platform.BuyProcesses != null && $scope.model.platform.BuyProcesses != undefined) {
+                            for (var j = 0; j < $scope.model.platform.BuyProcesses.length; j++) {
+                                if ($scope.model.platform.BuyProcesses[j].Id == $scope.model.buyProcessesValue[j].Id) {
+                                    $scope.model.buyProcessesValue[j].checked = true;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
     }
 ]);

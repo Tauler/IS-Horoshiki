@@ -53,8 +53,6 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
                             $scope.subdivisionIsDisabled = false;
                         }
                         if($rootScope.currentUser.Position.Guid==enumPositions.manager){
-                            console.log($rootScope.currentUser);
-
                             for($index in $scope.model.subdivisions){
                                if($scope.model.subdivisions[$index].Id == $rootScope.currentUser.Platform.SubDivision.Id){
                                    $scope.model.subdivision = JSON.stringify($scope.model.subdivisions[$index]);

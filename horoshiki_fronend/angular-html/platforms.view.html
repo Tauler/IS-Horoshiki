@@ -1,180 +1,174 @@
-
 <div class="page-breadcrumbs">
     <ul class="breadcrumb">
         <li>
             <i class="fa fa-home"></i>
             <a href="/">Главная</a>
         </li>
-        <!--<li>-->
-        <!--<a href="/users">Настройки</a>-->
-        <!--</li>-->
-        <li class="active">Площадки</li>
+        <li>
+            Площадки
+        </li>
+        <li class="active">Просмотр площадки</li>
     </ul>
 </div>
-
 
 <div class="page-body">
     <div class="col-xs-12 col-md-12">
         <div class="widget">
             <div class="widget-header  with-footer">
-                <span class="widget-caption">Площадки</span>
+                <span class="widget-caption">Просмотр площадки</span>
             </div>
             <div class="widget-body">
-
-                <div class="padding-bottom-10 text-align-left">
-                    <a href="/platforms/add" class="btn btn-success">Создать площадку</a>
-                </div>
-                <table class="table table-hover table-striped table-bordered">
-                    <thead class="bordered-blueberry">
-                    <tr>
-                    <tr>
-                        <th>
-                            <div ng-if="model.orderby.field!='Name'">
-                                <a ng-click="changeSort('Name',true)">Наименование<i
-                                        class="fa fa-sort padding-left-5"></i></a>
+                <form role="form" class="margin-10" id="platformForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Наименование:</label>
+                                <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
+                                       placeholder="Наименование"
+                                       ng-model="model.platform.Name" name="name" id="name" type="text">
+                                <code class="ng-binding" ng-show="model.error.name">Необходимо указать наименование. Значение должно быть от 3 до 50 символов </code>
                             </div>
-                            <div ng-if="model.orderby.field=='Name' && model.orderby.asc==true">
-                                <a ng-click="changeSort('Name',false)">Наименование</a><i
-                                    class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="subdivisions">Подразделение:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select ng-change="checkErrorSubdivisions();" id="subdivisions" class="form-control"
+                                            ng-model="model.platform.SubDivision.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="subdivision in model.subdivisions"
+                                                value="{{subdivision.Id}}">
+                                            {{subdivision.Name}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.subdivision">Необходимо указать подразделение.  </code>
+                                </div>
                             </div>
-                            <div ng-if="model.orderby.field=='Name' && model.orderby.asc==false">
-                                <a ng-click="changeSort('Name',true)">Наименование</a><i
-                                    class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                    </div>
+                    <div class="row margin-top-10">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address">Адрес:</label>
+                                <input type="text" class="form-control" ng-blur="checkErrorAddress();" maxlength="255"
+                                          placeholder="Адрес"
+                                          ng-model="model.platform.Address" name="address" id="address">
+                                <code class="ng-binding" ng-show="model.error.address">Необходимо указать адрес. Значение должно быть от 3 до 250 символов</code>
                             </div>
-                        </th>
-
-
-                        <th>
-                            <div ng-if="model.orderby.field!='SubDivision'">
-                                <a ng-click="changeSort('SubDivision',true)">Подразделение<i
-                                        class="fa fa-sort padding-left-5"></i></a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="subdivisions">Время работы:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">c</span>
+												<input class="form-control" ng-model="model.localTime.start" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">до</span>
+												<input class="form-control" ng-model="model.localTime.end" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <code class="ng-binding" ng-show="model.error.localTime">
+                                    Необходимо указать время работы
+                                </code>
                             </div>
-                            <div ng-if="model.orderby.field=='SubDivision' && model.orderby.asc==true">
-                                <a ng-click="changeSort('SubDivision',false)">Подразделение</a><i
-                                    class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                    </div>
+                    <div class="row margin-top-30">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="subdivisions">Управляющий:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select class="form-control" ng-model="model.platform.User.Id">
+                                        <option value="">Не выбрано</option>
+                                        <option ng-repeat="user in model.users" value="{{user.Id}}">
+                                            {{user.FirstName +' '+ user.LastName}}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
-                            <div ng-if="model.orderby.field=='SubDivision' && model.orderby.asc==false">
-                                <a ng-click="changeSort('SubDivision',true)">Подразделение</a><i
-                                    class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="subdivisions">Статус площадки:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <select ng-change="checkErrorStatusSite();"
+                                            class="form-control"
+                                            ng-model="model.platform.PlatformStatus.Id">
+                                        <!--<option value="">Не выбрано</option>-->
+                                        <option ng-repeat="status in model.statusSites" value="{{status.Id}}">
+                                            {{status.Value}}
+                                        </option>
+                                    </select>
+                                    <code class="ng-binding" ng-show="model.error.statusSite">Необходимо указать cтатус площадки</code>
+                                </div>
                             </div>
-                        </th>
-
-                        <th>
-                            <div ng-if="model.orderby.field!='User'">
-                                <a ng-click="changeSort('User',true)">Управляющий<i
-                                        class="fa fa-sort padding-left-5"></i></a>
+                        </div>
+                    </div>
+                    <div class="row margin-top-30">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Способы покупки:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <div ng-repeat="buyProcess in model.buyProcessesValue" class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="model.buyProcessesValue[$index].checked">
+                                            <span class="text">{{buyProcess.Value}}</span>
+                                        </label>
+                                    </div>
+                                    <code class="ng-binding" ng-show="model.error.buyProcess">Необходимо указать хотя бы один способ покупки</code>
+                                </div>
                             </div>
-                            <div ng-if="model.orderby.field=='User' && model.orderby.asc==true">
-                                <a ng-click="changeSort('User',false)">Управляющий</a><i
-                                    class="fa fa-sort-asc padding-left-5"></i>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="name">Минимальный чек:</label>
+                                <input class="form-control" ng-blur="checkErrorMinCheck();" maxlength="50"
+                                       placeholder="Минимальный чек"
+                                       ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
+                                <code class="ng-binding" ng-show="model.error.minCheck">Необходимо указать ненулевое значение минимального чека.</code>
                             </div>
-                            <div ng-if="model.orderby.field=='User' && model.orderby.asc==false">
-                                <a ng-click="changeSort('User',true)">Управляющий</a><i
-                                    class="fa fa-sort-desc padding-left-5"></i>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="subdivisions">Время приема заказов:</label>
+                                <div class="input-group" style="width: 100%">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">c</span>
+												<input class="form-control" ng-model="model.orderTime.start" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">до</span>
+												<input class="form-control" ng-model="model.orderTime.end" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <code class="ng-binding" ng-show="model.error.orderTime">
+                                    Необходимо указать время приема заказа
+                                </code>
                             </div>
-                        </th>
-
-                        <th>
-                            <div ng-if="model.orderby.field!='PlatformStatus'">
-                                <a ng-click="changeSort('PlatformStatus',true)">Статус<i
-                                        class="fa fa-sort padding-left-5"></i></a>
-                            </div>
-                            <div ng-if="model.orderby.field=='PlatformStatus' && model.orderby.asc==true">
-                                <a ng-click="changeSort('PlatformStatus',false)">Статус</a><i
-                                    class="fa fa-sort-asc padding-left-5"></i>
-                            </div>
-                            <div ng-if="model.orderby.field=='PlatformStatus' && model.orderby.asc==false">
-                                <a ng-click="changeSort('PlatformStatus',true)">Статус</a><i
-                                    class="fa fa-sort-desc padding-left-5"></i>
-                            </div>
-                        </th>
-
-                        <th>
-                            <div>
-                                Время работы
-                            </div>
-                        </th>
-
-                        <th>
-                            <div ng-if="model.orderby.field!='MinCheck'">
-                                <a ng-click="changeSort('MinCheck',true)">Минимальный чек<i
-                                        class="fa fa-sort padding-left-5"></i></a>
-                            </div>
-                            <div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==true">
-                                <a ng-click="changeSort('MinCheck',false)">Минимальный чек</a><i
-                                    class="fa fa-sort-asc padding-left-5"></i>
-                            </div>
-                            <div ng-if="model.orderby.field=='MinCheck' && model.orderby.asc==false">
-                                <a ng-click="changeSort('MinCheck',true)">Минимальный чек</a><i
-                                    class="fa fa-sort-desc padding-left-5"></i>
-                            </div>
-                        </th>
-                        <!--Действие-->
-                        <th>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="platform in model.platforms">
-
-
-                        <td><a href="/platforms/edit/{{platform.Id}}">{{platform.Name}}</a></td>
-                        <td ng-bind="platform.SubDivision.Name"></td>
-                        <td ng-bind="platform.User.FirstName+' '+platform.User.LastName"></td>
-                        <td ng-bind="platform.PlatformStatus.Value"></td>
-                        <td ng-bind="platform.TimeStart + ' - ' + platform.TimeEnd"></td>
-                        <td ng-bind="platform.MinCheck"></td>
-                        <td>
-
-                            <div class="btn-group">
-                                <a aria-expanded="false" href="javascript:void(0);" class="btn btn-blue btn-xs"
-                                   data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu dropdown-blue">
-                                    <li><a href="/platforms/edit/{{platform.Id}}"><i class="fa fa-edit"></i>
-                                        Редактировать</a></li>
-                                    <li><a href="javascript:void(0);" data-toggle="modal"
-                                           data-target="#deletePlatformModal"
-                                           ng-click="deletePlatformModal(platform);"><i
-                                            class="fa fa-cloud"></i> Удалить</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="text-center margin-top-10 margin-bottom-20">
-                    <uib-pagination template-url="/angular-html/directives/pagination.html"
-                                    ng-if="model.platforms.length>0"
-                                    ng-model="model.paging.PageNo"
-                                    total-items="model.paging.TotalRecordCount"
-                                    max-size="model.countPageButton"
-                                    items-per-page="model.clientPageSize"
-                                    boundary-links="true"
-                                    first-text="{{$parent.translation.pagination_btn_first_page}}"
-                                    last-text="{{$parent.translation.pagination_btn_last_page}}"
-                                    previous-text="{{$parent.translation.pagination_btn_previous_page}}"
-                                    next-text="{{$parent.translation.pagination_btn_next_page}}">
-                    </uib-pagination>
-                </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
-<div id="deletePlatformModal" class="modal modal-primary" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Удаление площадки</h4>
-            </div>
-            <div class="modal-body">
-                <p>Вы действительно хотите удалить площадку {{model.deletePlatformModel.Name}}?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="deletePlatform();" data-dismiss="modal">Удалить</button>
-                <button type="button" class="btn btn-default" ng-click="deletePlatformClose();" data-dismiss="modal">Отменить</button>
-            </div>
-        </div>
-    </div> <!-- / .modal-dialog -->
-</div>
+<script type="text/javascript">
+$(function(){
+    $("#platformForm :input").prop("disabled", true);
+});
+</script>
