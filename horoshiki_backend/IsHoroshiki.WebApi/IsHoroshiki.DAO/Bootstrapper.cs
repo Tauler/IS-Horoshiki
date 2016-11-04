@@ -50,6 +50,7 @@ namespace IsHoroshiki.DAO
             container.RegisterType<ISalePlanDayRepository, SalePlanDayRepository>();
 
             container.RegisterType<IShiftTypeRepository, ShiftTypeRepository>();
+            container.RegisterType<IShiftPersonalRepository, ShiftPersonalRepository>();
 
 
             return container;
