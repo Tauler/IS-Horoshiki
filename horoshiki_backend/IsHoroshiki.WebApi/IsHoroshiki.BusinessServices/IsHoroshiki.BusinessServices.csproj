@@ -107,7 +107,9 @@
     <Compile Include="NotEditable\Interfaces\IDeliveryTimeService.cs" />
     <Compile Include="Editable\Interfaces\IEmployeeReasonDismissalService.cs" />
     <Compile Include="NotEditable\Interfaces\IOrderPayService.cs" />
+    <Compile Include="NotEditable\Interfaces\IShiftTypeService.cs" />
     <Compile Include="NotEditable\OrderPayService.cs" />
+    <Compile Include="NotEditable\ShiftTypeService.cs" />
     <Compile Include="NotEditable\SubDepartmentService.cs" />
     <Compile Include="NotEditable\Interfaces\ISubDepartmentService.cs" />
     <Compile Include="NotEditable\Interfaces\IEmployeeStatusService.cs" />

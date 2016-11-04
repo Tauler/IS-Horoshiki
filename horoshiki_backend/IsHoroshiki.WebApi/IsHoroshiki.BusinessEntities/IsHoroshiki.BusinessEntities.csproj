@@ -138,12 +138,15 @@
     <Compile Include="NotEditable\DeliveryTimeModel.cs" />
     <Compile Include="NotEditable\DeliveryZoneTypeModel.cs" />
     <Compile Include="NotEditable\Interfaces\IDeliveryTimeModel.cs" />
+    <Compile Include="NotEditable\Interfaces\IShiftTypeModel.cs" />
     <Compile Include="NotEditable\Interfaces\ISubDepartmentModel.cs" />
     <Compile Include="NotEditable\MappingDao\DeliveryTimeTypeModelMappingDao.cs" />
     <Compile Include="Editable\MappingDao\EmployeeReasonDismissalModelMappingDao.cs" />
     <Compile Include="NotEditable\MappingDao\OrderPayModelMappingDao.cs" />
+    <Compile Include="NotEditable\MappingDao\ShiftTypeModelMappingDao.cs" />
     <Compile Include="NotEditable\MappingDao\SubDepartmentModelMappingDao.cs" />
     <Compile Include="NotEditable\OrderPayModel.cs" />
+    <Compile Include="NotEditable\ShiftTypeModel.cs" />
     <Compile Include="NotEditable\SubDepartmentModel.cs" />
     <Compile Include="NotEditable\DepartmentModel.cs" />
     <Compile Include="NotEditable\EmployeeStatusModel.cs" />

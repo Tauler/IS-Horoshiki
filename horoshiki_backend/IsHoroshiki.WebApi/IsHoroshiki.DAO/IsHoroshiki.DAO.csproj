@@ -68,12 +68,14 @@
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
     <Compile Include="DaoEntities\Editable\SaleCheck.cs" />
     <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />
+    <Compile Include="DaoEntities\NotEditable\ShiftType.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanDayConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SaleCheckConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\EmployeeReasonDismissalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Integrations\IntegrationCheckConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\NotEditable\ShiftTypeConfiguration.cs" />
     <Compile Include="DatabaseConstant.cs" />
     <Compile Include="IBaseDaoEntity.cs" />
     <Compile Include="BaseDaoEntity.cs" />
@@ -139,8 +141,10 @@
     <Compile Include="Repositories\NotEditable\Interfaces\IDeliveryTimeRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IEmployeeReasonDismissalRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IOrderPayRepository.cs" />
+    <Compile Include="Repositories\NotEditable\Interfaces\IShiftTypeRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\ISubDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditable\OrderPayRepository.cs" />
+    <Compile Include="Repositories\NotEditable\ShiftTypeRepository.cs" />
     <Compile Include="Repositories\NotEditable\SubDepartmentRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IBaseNotEditableDictionaryRepository.cs" />
     <Compile Include="Repositories\NotEditable\Interfaces\IBuyProcessRepository.cs" />
@@ -172,6 +176,7 @@
     <Content Include="Script\2016-08-20 создание БД.sql" />
     <Content Include="Script\2016-10-13 добавление зон.sql" />
     <Content Include="Script\2016-08-23 заполнение справочников.sql" />
+    <Content Include="Script\2016-11-04 add ShiftTypes.sql" />
     <Content Include="Script\2016-10-26 SalePlan add planType.sql" />
     <Content Include="Script\2016-10-25 SalePlan.sql" />
     <Content Include="Script\2016-10-24 ХП SaleCheckAnalize.sql" />
