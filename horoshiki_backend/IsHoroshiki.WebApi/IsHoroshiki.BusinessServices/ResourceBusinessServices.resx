@@ -228,6 +228,18 @@
   <data name="PlatformService_UserNotFound" xml:space="preserve">
     <value>Пользователя для указанного ID="{0}" не существует!</value>
   </data>
+  <data name="PlatformService_WrongOrderTimeEndForAroundClock" xml:space="preserve">
+    <value>Неверно задано время окончания приема заказов для круглосуточного режима</value>
+  </data>
+  <data name="PlatformService_WrongOrderTimeStartForAroundClock" xml:space="preserve">
+    <value>Неверно задано время начала приема заказов для круглосуточного режима</value>
+  </data>
+  <data name="PlatformService_WrongTimeEndForAroundClock" xml:space="preserve">
+    <value>Неверно задано время окончания работы для круглосуточного режима</value>
+  </data>
+  <data name="PlatformService_WrongTimeStartForAroundClock" xml:space="preserve">
+    <value>Неверно задано время начала работы для круглосуточного режима</value>
+  </data>
   <data name="PlatformService_YandexMapIsNull" xml:space="preserve">
     <value>Необходимо указать координаты площадки!</value>
   </data>

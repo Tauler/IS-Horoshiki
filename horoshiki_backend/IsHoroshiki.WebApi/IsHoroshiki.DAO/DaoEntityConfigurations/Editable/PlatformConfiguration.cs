@@ -48,6 +48,9 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
 
             Property(i => i.MinCheck)
                 .HasColumnType("Money");
+
+            Property(p => p.IsAroundClock)
+                .IsRequired();
         }
 
         #endregion

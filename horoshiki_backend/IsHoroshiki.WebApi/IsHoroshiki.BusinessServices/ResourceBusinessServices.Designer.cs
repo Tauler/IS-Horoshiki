@@ -394,6 +394,42 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Неверно задано время окончания приема заказов для круглосуточного режима.
+        /// </summary>
+        internal static string PlatformService_WrongOrderTimeEndForAroundClock {
+            get {
+                return ResourceManager.GetString("PlatformService_WrongOrderTimeEndForAroundClock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неверно задано время начала приема заказов для круглосуточного режима.
+        /// </summary>
+        internal static string PlatformService_WrongOrderTimeStartForAroundClock {
+            get {
+                return ResourceManager.GetString("PlatformService_WrongOrderTimeStartForAroundClock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неверно задано время окончания работы для круглосуточного режима.
+        /// </summary>
+        internal static string PlatformService_WrongTimeEndForAroundClock {
+            get {
+                return ResourceManager.GetString("PlatformService_WrongTimeEndForAroundClock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неверно задано время начала работы для круглосуточного режима.
+        /// </summary>
+        internal static string PlatformService_WrongTimeStartForAroundClock {
+            get {
+                return ResourceManager.GetString("PlatformService_WrongTimeStartForAroundClock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Необходимо указать координаты площадки!.
         /// </summary>
         internal static string PlatformService_YandexMapIsNull {
