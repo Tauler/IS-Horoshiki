@@ -382,6 +382,20 @@ namespace IsHoroshiki.BusinessServices.Editable
                 }
             }
 
+            if (model.SubDepartment != null && model.SubDepartment.Id > 0)
+            {
+                var subDepartment = await _unitOfWork.SubDepartmentRepository.GetByIdAsync(model.SubDepartment.Id);
+                if (subDepartment == null)
+                {
+                    return new ValidationResult(AccountErrors.SubDepartmentRepositoryIsNull, model.SubDepartment.Id);
+                }
+
+                if (model.Department != null && model.Department.Id != subDepartment.DepartmentId)
+                {
+                    return new ValidationResult(AccountErrors.SubDepartmentMistakeForDepartment);
+                }
+            }
+
             if (model.EmployeeReasonDismissal != null && model.EmployeeReasonDismissal.Id > 0)
             {
                 var employeeReasonDismissal = await _unitOfWork.EmployeeReasonDismissalRepository.GetByIdAsync(model.EmployeeReasonDismissal.Id);

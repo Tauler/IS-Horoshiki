@@ -91,6 +91,15 @@ namespace IsHoroshiki.BusinessEntities.Account.Interfaces
         }
 
         /// <summary>
+        /// Подотдел
+        /// </summary>
+        ISubDepartmentModel SubDepartment
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата приема
         /// </summary>
         DateTime DateStart

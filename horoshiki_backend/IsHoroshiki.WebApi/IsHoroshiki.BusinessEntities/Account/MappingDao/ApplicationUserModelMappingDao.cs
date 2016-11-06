@@ -60,6 +60,15 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 daoModel.DepartmentId = null;
             }
 
+            if (model.SubDepartment != null && model.SubDepartment.Id > 0)
+            {
+                daoModel.SubDepartmentId = model.SubDepartment.Id;
+            }
+            else
+            {
+                daoModel.SubDepartmentId = null;
+            }
+
             if (model.Platform != null && model.Platform.Id > 0)
             {
                 daoModel.PlatformId = model.Platform.Id;
@@ -108,6 +117,7 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
                 Position = model.Position != null ? model.Position.ToModelEntity() : null,
                 Platform = isLoadChild && model.Platform != null ? model.Platform.ToModelEntity(false) : null,
                 Department = isLoadChild && model.Department != null ? model.Department.ToModelEntity() : null,
+                SubDepartment = isLoadChild && model.SubDepartment != null ? model.SubDepartment.ToModelEntity() : null,
                 DateStart = model.DateStart,
                 DateEnd = model.DateEnd,
                 IsAccess = model.IsAccess,

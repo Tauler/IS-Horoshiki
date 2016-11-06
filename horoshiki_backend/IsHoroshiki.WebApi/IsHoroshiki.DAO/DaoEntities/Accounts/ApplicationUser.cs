@@ -171,6 +171,24 @@ namespace IsHoroshiki.DAO.DaoEntities.Accounts
         }
 
         /// <summary>
+        /// Подотдел
+        /// </summary>
+        public virtual int? SubDepartmentId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Подотдел
+        /// </summary>
+        public virtual SubDepartment SubDepartment
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата приема
         /// </summary>
         public DateTime DateStart

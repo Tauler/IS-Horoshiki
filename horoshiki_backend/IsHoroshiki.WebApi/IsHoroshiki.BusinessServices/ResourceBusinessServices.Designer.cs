@@ -88,6 +88,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Нужно указать отдел, т.к. задан подотдел!.
+        /// </summary>
+        internal static string AccountsController_DepartmentIsNullForSubDepartment {
+            get {
+                return ResourceManager.GetString("AccountsController_DepartmentIsNullForSubDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Департамента для указанного ID={0} не существует!.
         /// </summary>
         internal static string AccountsController_DepartmentRepositoryIsNull {
@@ -201,6 +210,24 @@ namespace IsHoroshiki.BusinessServices {
         internal static string AccountsController_PositionRepositoryIsNull {
             get {
                 return ResourceManager.GetString("AccountsController_PositionRepositoryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неправильно указан отдел для подотдела!.
+        /// </summary>
+        internal static string AccountsController_SubDepartmentMistakeForDepartment {
+            get {
+                return ResourceManager.GetString("AccountsController_SubDepartmentMistakeForDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подотдела сотрудника для указанного ID={0} не существует!.
+        /// </summary>
+        internal static string AccountsController_SubDepartmentRepositoryIsNull {
+            get {
+                return ResourceManager.GetString("AccountsController_SubDepartmentRepositoryIsNull", resourceCulture);
             }
         }
         

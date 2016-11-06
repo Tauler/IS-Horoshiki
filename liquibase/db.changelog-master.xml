@@ -8,5 +8,6 @@
 
     <include file="./db.changelog-0.1.0.xml"/>
     <include file="./db.changelog-branch_iteration_4.1.xml"/>
+    <include file="./db.changelog-branch_iteration_4.2.xml"/>
 </databaseChangeLog>
 

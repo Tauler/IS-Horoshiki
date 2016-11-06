@@ -93,6 +93,21 @@
         /// <summary>
         /// Причины увольнения для указанного ID={0} не существует!
         /// </summary>
-        EmployeeReasonDismissalRepositoryIsNull
+        EmployeeReasonDismissalRepositoryIsNull,
+
+        /// <summary>
+        /// Подотдела сотрудника для указанного ID={0} не существует!
+        /// </summary>
+        SubDepartmentRepositoryIsNull,
+
+        /// <summary>
+        /// Нужно указать отдел, т.к. задан подотдел!
+        /// </summary>
+        DepartmentIsNullForSubDepartment,
+
+        /// <summary>
+        /// Неправильно указан отдел для подотдела!
+        /// </summary>
+        SubDepartmentMistakeForDepartment
     }
 }

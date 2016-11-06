@@ -126,6 +126,9 @@
   <data name="AccountsController_ConfirmPasswordIsNull" xml:space="preserve">
     <value>Необходимо указать подтверждение пароля!</value>
   </data>
+  <data name="AccountsController_DepartmentIsNullForSubDepartment" xml:space="preserve">
+    <value>Нужно указать отдел, т.к. задан подотдел!</value>
+  </data>
   <data name="AccountsController_DepartmentRepositoryIsNull" xml:space="preserve">
     <value>Департамента для указанного ID={0} не существует!</value>
   </data>
@@ -164,6 +167,12 @@
   </data>
   <data name="AccountsController_PositionRepositoryIsNull" xml:space="preserve">
     <value>Должности для указанного ID="{0}" не существует!</value>
+  </data>
+  <data name="AccountsController_SubDepartmentMistakeForDepartment" xml:space="preserve">
+    <value>Неправильно указан отдел для подотдела!</value>
+  </data>
+  <data name="AccountsController_SubDepartmentRepositoryIsNull" xml:space="preserve">
+    <value>Подотдела сотрудника для указанного ID={0} не существует!</value>
   </data>
   <data name="AccountsController_UserNameIsNull" xml:space="preserve">
     <value>Необходимо указать логин!</value>

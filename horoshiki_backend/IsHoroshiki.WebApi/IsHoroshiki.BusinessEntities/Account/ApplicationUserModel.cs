@@ -102,6 +102,16 @@ namespace IsHoroshiki.BusinessEntities.Account
         }
 
         /// <summary>
+        /// Подотдел
+        /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<SubDepartmentModel, ISubDepartmentModel>))]
+        public ISubDepartmentModel SubDepartment
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Дата приема
         /// </summary>
         public DateTime DateStart

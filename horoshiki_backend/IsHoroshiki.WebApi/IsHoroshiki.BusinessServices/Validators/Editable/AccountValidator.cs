@@ -92,6 +92,12 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(AccountErrors.EmployeeStatusIsNull);
             }
 
+            if (element.SubDepartment != null && element.SubDepartment.Id > 0 
+                && (element.Department == null || element.Department.Id == 0))
+            {
+                return new ValidationResult(AccountErrors.DepartmentIsNullForSubDepartment);
+            }
+
             return new ValidationResult();
         }
 
