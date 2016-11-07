@@ -224,6 +224,8 @@ namespace IsHoroshiki.DAO
             modelBuilder.Configurations.Add(new SalePlanDayConfiguration());
             modelBuilder.Configurations.Add(new ShiftTypeConfiguration());
             modelBuilder.Configurations.Add(new ShiftPersonalConfiguration());
+            modelBuilder.Configurations.Add(new ShiftPersonalScheduleConfiguration());
+            modelBuilder.Configurations.Add(new ShiftPersonalSchedulePeriodConfiguration());
         }
 
         #endregion

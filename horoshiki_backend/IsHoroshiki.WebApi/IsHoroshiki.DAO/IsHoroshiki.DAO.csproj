@@ -64,12 +64,16 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\Helpers\SaleAnalizeResult.cs" />
+    <Compile Include="DaoEntities\Editable\ShiftPersonalSchedulePeriod.cs" />
+    <Compile Include="DaoEntities\Editable\ShiftPersonalSchedule.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonal.cs" />
     <Compile Include="DaoEntities\Editable\SalePlanDay.cs" />
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
     <Compile Include="DaoEntities\Editable\SaleCheck.cs" />
     <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />
     <Compile Include="DaoEntities\NotEditable\ShiftType.cs" />
+    <Compile Include="DaoEntityConfigurations\Editable\ShiftPersonalSchedulePeriodConfiguration.cs" />
+    <Compile Include="DaoEntityConfigurations\Editable\ShiftPersonalScheduleConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\ShiftPersonalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanDayConfiguration.cs" />
@@ -189,7 +193,8 @@
     <Content Include="Script\2016-10-24 ХП SaleCheckAnalize.sql" />
     <Content Include="Script\2016-10-20 Интеграция с 1с.sql" />
     <Content Include="Script\2016-10-17 Приоритет тип зон.sql" />
-    <Content Include="Script\2016-11-07 ХП ScheduleShiftPersonal.sql" />
+    <Content Include="Script\2016-11-07_1 Таблицы графика смен сотрудников.sql" />
+    <Content Include="Script\2016-11-07_2 ХП ScheduleShiftPersonal.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
