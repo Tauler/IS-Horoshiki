@@ -194,7 +194,9 @@
     <Content Include="Script\2016-10-20 Интеграция с 1с.sql" />
     <Content Include="Script\2016-10-17 Приоритет тип зон.sql" />
     <Content Include="Script\2016-11-07_1 Таблицы графика смен сотрудников.sql" />
-    <Content Include="Script\2016-11-07_2 ХП ScheduleShiftPersonal.sql" />
+    <Content Include="Script\2016-11-07_2 Function GetDateRange.sql" />
+    <Content Include="Script\2016-11-07_3 Custom type IdList.sql" />
+    <Content Include="Script\2016-11-07_4 ХП ScheduleShiftPersonal.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

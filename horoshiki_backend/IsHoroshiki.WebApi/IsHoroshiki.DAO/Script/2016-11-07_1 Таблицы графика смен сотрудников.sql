@@ -1,6 +1,7 @@
 CREATE TABLE [dbo].[ShiftPersonalSchedules](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[UserId] [int] NOT NULL,
+	[Date] datetime NOT NULL
  CONSTRAINT [PK_dbo.ShiftPersonalSchedules] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

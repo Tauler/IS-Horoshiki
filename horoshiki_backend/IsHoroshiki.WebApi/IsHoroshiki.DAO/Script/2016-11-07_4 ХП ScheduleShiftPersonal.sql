@@ -1,4 +1,4 @@
-ALTER PROCEDURE [dbo].[ScheduleShiftPersonal]
+CREATE PROCEDURE [dbo].[ScheduleShiftPersonal]
 (
     @DateBegin	DATETIME,
     @DateEnd	DATETIME
@@ -22,11 +22,22 @@ BEGIN
 		[UserId]		  int
 	)
 
+	CREATE TABLE #RESULT_USER_SHIFT
+	(
+		[DateDoc]		  datetime, 
+		[DepartmentId]	  int,
+		[SubDepartmentId] int,
+		[UserId]		  int,
+		[ShiftPersonalSchedulePeriodId] int,
+		[ShiftTypeId] int
+	)
+
+	--курсор периода дат
 	DECLARE DATE_CURSOR CURSOR FOR   
-	SELECT dateadd(day, number, @DateBegin)
+	SELECT 
+		[Date]
 	FROM 
-		(SELECT DISTINCT number FROM master.dbo.spt_values WHERE name is null) n
-	WHERE dateadd(day, number, @DateBegin) < @DateEnd
+		[dbo].[GetDateRange]('d', @DateBegin, @DateEnd) 
   
 	OPEN DATE_CURSOR  
 	FETCH NEXT FROM DATE_CURSOR   
@@ -35,6 +46,7 @@ BEGIN
 	WHILE @@FETCH_STATUS = 0  
 	BEGIN  
 
+	    --отбираем все отделы\подотделы на дату
 		INSERT INTO  #RESULT
 		(
 			[DateDoc]		  , 
@@ -58,6 +70,7 @@ BEGIN
 	DEALLOCATE DATE_CURSOR; 
 
 
+	--отбираем добавляем пользователей для сотрудников
 	INSERT INTO #RESULT_USER
 	(
 		[DateDoc]		  , 
@@ -77,10 +90,34 @@ BEGIN
 		 (u.SubDepartmentId IS NOT NULL AND u.SubDepartmentId = r.SubDepartmentId) OR
 		 (u.SubDepartmentId IS NULL AND u.DepartmentId IS NOT NULL AND u.DepartmentId = r.DepartmentId)
 
-	
+	--бобаляем смены графика для сотрудников
+	INSERT INTO #RESULT_USER_SHIFT
+	(
+		[DateDoc]		  , 
+		[DepartmentId]	  ,
+		[SubDepartmentId] ,
+		[UserId]		  ,
+		[ShiftPersonalSchedulePeriodId],
+		[ShiftTypeId]		  
+	)
+	SELECT
+		ru.[DateDoc]		 , 
+		ru.[DepartmentId]	 ,
+		ru.[SubDepartmentId] ,
+		ru.[UserId]			 ,
+		spp.Id				 ,
+		spp.ShiftTypeId
+	FROM
+		#RESULT_USER ru
+	LEFT JOIN
+		[dbo].[ShiftPersonalSchedules] sp ON sp.UserId = ru.UserId AND convert(varchar(10), sp.[Date], 120) = convert(varchar(10), ru.DateDoc, 120)
+	LEFT JOIN
+		[dbo].[ShiftPersonalSchedulePeriods] spp ON spp.[ShiftPersonalScheduleId] = sp.Id
 
-	SELECT * FROM #RESULT_USER
+
+	SELECT * FROM #RESULT_USER_SHIFT
 
 	DROP TABLE #RESULT
 	DROP TABLE #RESULT_USER
+	DROP TABLE #RESULT_USER_SHIFT
 END
