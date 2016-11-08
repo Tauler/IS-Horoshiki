@@ -59,7 +59,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             {
                 return new ErrorMessageResult(e);
             }
-        }
+        }        
 
         #endregion
     }

@@ -43,7 +43,16 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
             set;
         }
 
-	    /// <summary>
+        /// <summary>
+        /// Должность
+        /// </summary>
+        public int? PositionId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Период для графика смен сотрудника
         /// </summary>
         public int? ShiftPersonalSchedulePeriodId

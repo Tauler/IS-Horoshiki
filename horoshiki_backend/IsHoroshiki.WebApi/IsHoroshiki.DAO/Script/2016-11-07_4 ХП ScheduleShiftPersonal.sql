@@ -22,7 +22,8 @@ BEGIN
 		[DateDoc]		  datetime, 
 		[DepartmentId]	  int,
 		[SubDepartmentId] int,
-		[UserId]		  int
+		[UserId]		  int,
+		[PositionId]	  int
 	)
 
 	CREATE TABLE #RESULT_USER_SHIFT
@@ -31,6 +32,7 @@ BEGIN
 		[DepartmentId]	  int,
 		[SubDepartmentId] int,
 		[UserId]		  int,
+		[PositionId]	  int,
 		[ShiftPersonalSchedulePeriodId] int,
 		[ShiftTypeId] int
 	)
@@ -106,13 +108,15 @@ BEGIN
 		[DateDoc]		  , 
 		[DepartmentId]	  ,
 		[SubDepartmentId] ,
-		[UserId]		  
+		[UserId]		  ,
+		[PositionId]
 	)
 	SELECT
 		r.[DateDoc]		    , 
 		r.[DepartmentId]	,
 		r.[SubDepartmentId] ,
-		u.Id
+		u.Id,
+		u.PositionId
 	FROM
 		#RESULT r
 	LEFT JOIN
@@ -129,6 +133,7 @@ BEGIN
 		[DepartmentId]	  ,
 		[SubDepartmentId] ,
 		[UserId]		  ,
+		[PositionId]	  ,
 		[ShiftPersonalSchedulePeriodId],
 		[ShiftTypeId]		  
 	)
@@ -137,6 +142,7 @@ BEGIN
 		ru.[DepartmentId]	 ,
 		ru.[SubDepartmentId] ,
 		ru.[UserId]			 ,
+		ru.[PositionId]		 ,
 		spp.Id				 ,
 		spp.ShiftTypeId
 	FROM
