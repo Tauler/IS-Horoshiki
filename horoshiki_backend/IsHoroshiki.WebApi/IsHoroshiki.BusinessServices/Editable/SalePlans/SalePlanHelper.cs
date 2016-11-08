@@ -87,8 +87,6 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             model.Platform.ThrowIfNull();
             model.SalePlanPeriod.ThrowIfNull();
 
-            return new Task<ISalePlanReportModel>(() => { return new List<ISalePlanReportModel>(); });
-
             var result = new SalePlanReportModel();
 
             result.SalePlan = model;

@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Accounts;
+using System;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
@@ -20,6 +21,15 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// Пользователь
         /// </summary>
         public int UserId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Дата расписания работы сотрудника
+        /// </summary>
+        public DateTime Date
         {
             get;
             set;
