@@ -8,6 +8,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
     /// <summary>
     /// Создать план, если не существует на указанный период.
     /// Если существует подтягиваем данные из БД.
+    /// </summary>
     public interface ISalePlanHelper
     {
         /// <summary>

@@ -236,7 +236,32 @@ namespace IsHoroshiki.DAO.Repositories
         /// <returns></returns>
         protected virtual IDataParameter GetParameter(string name, object value)
         {
-            return new SqlParameter(name, value); 
+            return new SqlParameter(name, value);
+        }
+
+        /// <summary>
+        /// Создать параметр БД кастомного табличного списка
+        /// </summary>
+        /// <param name="name">Наименование</param>
+        /// <param name="values">Значение</param>
+        /// <returns></returns>
+        protected virtual IDataParameter GetParameterIdList(string name, List<int> values)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Id");
+
+            if (values != null)
+            {
+                foreach (var value in values)
+                {
+                    dt.Rows.Add(value);
+                }
+            }
+
+            var parameter = new SqlParameter(name, SqlDbType.Structured);
+            parameter.Value = dt;
+            parameter.TypeName = "dbo.IdList";
+            return parameter;
         }
 
         #endregion

@@ -1,5 +1,8 @@
 CREATE PROCEDURE [dbo].[ScheduleShiftPersonal]
 (
+	@Departaments AS dbo.IdList READONLY,
+	@SubDepartaments AS dbo.IdList READONLY,
+	@PlatformId INT,
     @DateBegin	DATETIME,
     @DateEnd	DATETIME
 )
@@ -47,7 +50,7 @@ BEGIN
 	BEGIN  
 
 	    --отбираем все отделы\подотделы на дату
-		INSERT INTO  #RESULT
+		INSERT INTO #RESULT
 		(
 			[DateDoc]		  , 
 			[DepartmentId]	  ,
@@ -61,7 +64,6 @@ BEGIN
 			Departments
 		LEFT JOIN 
 			SubDepartments ON SubDepartments.DepartmentId = Departments.Id 
-		
 
 		FETCH NEXT FROM DATE_CURSOR   
 		INTO @CURRENT_DATE
@@ -69,6 +71,34 @@ BEGIN
 	CLOSE DATE_CURSOR;  
 	DEALLOCATE DATE_CURSOR; 
 
+	IF ((SELECT count(*) FROM @SubDepartaments) > 0)
+	BEGIN
+		DELETE FROM 
+			#RESULT 
+		WHERE 
+		    SubDepartmentId IS NOT NULL AND
+			SubDepartmentId not in 
+			(
+				SELECT
+						Id
+					FROM
+						@SubDepartaments
+			)
+	END
+
+	IF ((SELECT count(*) FROM @Departaments) > 0)
+	BEGIN
+		DELETE FROM 
+			#RESULT 
+		WHERE 
+			DepartmentId not in 
+			(
+				SELECT
+						Id
+					FROM
+						@Departaments
+			)
+	END
 
 	--отбираем добавляем пользователей для сотрудников
 	INSERT INTO #RESULT_USER
@@ -87,8 +117,10 @@ BEGIN
 		#RESULT r
 	LEFT JOIN
 		AspNetUsers u ON
-		 (u.SubDepartmentId IS NOT NULL AND u.SubDepartmentId = r.SubDepartmentId) OR
-		 (u.SubDepartmentId IS NULL AND u.DepartmentId IS NOT NULL AND u.DepartmentId = r.DepartmentId)
+		 u.PlatformId = @PlatformId AND 	
+		 ((u.SubDepartmentId IS NOT NULL AND u.SubDepartmentId = r.SubDepartmentId) OR
+		 (u.SubDepartmentId IS NULL AND u.DepartmentId IS NOT NULL AND u.DepartmentId = r.DepartmentId))
+
 
 	--бобаляем смены графика для сотрудников
 	INSERT INTO #RESULT_USER_SHIFT

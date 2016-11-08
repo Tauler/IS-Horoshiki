@@ -5,7 +5,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
     /// <summary>
     /// Результат выполнения ХП ScheduleShiftPersonal
     /// </summary>
-    public class ScheduleShiftPersonalResult : BaseDaoEntity
+    public class ScheduleShiftPersonalResult
     {
         /// <summary>
         /// Дата
@@ -19,7 +19,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Отдел
         /// </summary>
-        public int DepartmentId
+        public int? DepartmentId
         {
             get;
             set;
@@ -28,34 +28,34 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Подотдел
         /// </summary>
-        public int SubDepartmentId
+        public int? SubDepartmentId
         {
             get;
             set;
         }
 
-	/// <summary>
+	    /// <summary>
         /// Пользователь
         /// </summary>
-        public int UserId
+        public int? UserId
         {
             get;
             set;
         }
 
-	/// <summary>
+	    /// <summary>
         /// Период для графика смен сотрудника
         /// </summary>
-        public int ShiftPersonalSchedulePeriodId
+        public int? ShiftPersonalSchedulePeriodId
         {
             get;
             set;
         }
 
-	/// <summary>
+	    /// <summary>
         /// Тип смены сотрудника
         /// </summary>
-        public int ShiftTypeId
+        public int? ShiftTypeId
         {
             get;
             set;

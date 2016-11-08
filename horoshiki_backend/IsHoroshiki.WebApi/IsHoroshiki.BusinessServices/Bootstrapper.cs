@@ -12,6 +12,7 @@ using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using IsHoroshiki.BusinessServices.Kladr;
 using IsHoroshiki.BusinessServices.Integrations;
 using IsHoroshiki.BusinessServices.Editable.SalePlans;
+using IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -40,6 +41,7 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IEmployeeReasonDismissalValidator, EmployeeReasonDismissalValidator>();
             container.RegisterType<IDeliveryZoneValidator, DeliveryZoneValidator>();
             container.RegisterType<ISalePlanValidator, SalePlanValidator>();
+            container.RegisterType<IShiftPersonalScheduleValidator, ShiftPersonalScheduleValidator>();
 
             container.RegisterType<IBuyProcessService, BuyProcessService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IPlatformStatusService, PlatformStatusService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
@@ -67,6 +69,9 @@ namespace IsHoroshiki.BusinessServices
 
             container.RegisterType<IKladrService, KladrService>().RegisterType<KladrUnitOfWork>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IShiftPersonalScheduleService, ShiftPersonalScheduleService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IShiftPersonalScheduleHelper, ShiftPersonalScheduleHelper>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+           
             return container;
         }
     }

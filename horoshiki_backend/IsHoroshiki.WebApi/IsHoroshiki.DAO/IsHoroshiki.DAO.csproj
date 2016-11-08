@@ -64,6 +64,7 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\Helpers\SaleAnalizeResult.cs" />
+    <Compile Include="DaoEntities\Editable\Helpers\ScheduleShiftPersonalResult.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonalSchedulePeriod.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonalSchedule.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonal.cs" />

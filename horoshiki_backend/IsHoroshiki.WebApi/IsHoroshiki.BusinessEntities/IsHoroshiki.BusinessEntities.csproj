@@ -96,6 +96,10 @@
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportSumRowModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\ShiftPersonalScheduleModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\IShiftPersonalScheduleModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Tables\ShiftPersonalScheduleReportModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Tables\IShiftPersonalScheduleReportModel.cs" />
     <Compile Include="Integrations\IIntegrationCheckModel.cs" />
     <Compile Include="Integrations\IntegrationCheckModel.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanModel.cs" />

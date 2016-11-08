@@ -322,8 +322,6 @@ namespace IsHoroshiki.BusinessServices.Editable
             return result.ToModelEntity();
         }
 
-
-
         #endregion
 
         #region protected override

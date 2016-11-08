@@ -35,8 +35,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         {
             return DbSet.Where(spd => spd.SalePlanId == salePlanId).ToList();
         }
-
-
+        
         #endregion
     }
 }

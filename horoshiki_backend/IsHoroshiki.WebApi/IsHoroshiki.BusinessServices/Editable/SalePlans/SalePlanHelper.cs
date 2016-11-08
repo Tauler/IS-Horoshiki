@@ -17,6 +17,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
     /// <summary>
     /// Создать план, если не существует на указанный период.
     /// Если существует подтягиваем данные из БД.
+    /// </summary>
     public class SalePlanHelper : ISalePlanHelper
     {
         #region поля и свойства
@@ -41,7 +42,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
 
         #endregion
 
-        #region public
+        #region ISalePlanHelper
 
         /// <summary>
         /// Создать план, если не существует на указанный период.
@@ -86,6 +87,8 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             model.Platform.ThrowIfNull();
             model.SalePlanPeriod.ThrowIfNull();
 
+            return new Task<ISalePlanReportModel>(() => { return new List<ISalePlanReportModel>(); });
+
             var result = new SalePlanReportModel();
 
             result.SalePlan = model;
@@ -96,6 +99,10 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
 
             return result;
         }
+
+        #endregion
+
+        #region private
 
         /// <summary>
         /// Подсчитать суммы
@@ -146,7 +153,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
             var row = new SalePlanReportRowModel();
             row.DateStart = startDate;
             row.DateEnd = endDate;
-            
+
             //если пн - это начало периода
             if (row.DateStart.DayOfWeek != DayOfWeek.Monday)
             {
@@ -155,7 +162,7 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
 
             for (var current = startDate; current <= endDate; current = current.AddDays(1))
             {
-                
+
 
                 if (current.DayOfWeek == DayOfWeek.Monday)
                 {
@@ -185,13 +192,9 @@ namespace IsHoroshiki.BusinessServices.Editable.SalePlans
 
             result.Pizza = dataRows.Sum(dr => dr.Pizza);
             result.Sushi = dataRows.Sum(dr => dr.Sushi);
-            
+
             return result;
         }
-
-        #endregion
-
-        #region private
 
         /// <summary>
         /// План продаж из БД. Если его не существует, то создать и сохранить в БД.
