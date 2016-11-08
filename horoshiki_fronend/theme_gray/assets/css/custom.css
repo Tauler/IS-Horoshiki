@@ -1,0 +1,18 @@
+table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bordered-0 tbody td {
+    border-right-width: 0;
+}
+
+.btn-link.active{
+    background-color: #626262 !important;
+}
+
+.custom-menu li a{
+    padding: 7px 0 7px 15px !important;
+}
+
+.custom-menu .left-menu-head a{
+    padding-left: 2px !important;
+}
+.custom-menu .left-menu-head a span{
+    font-weight: bold !important;
+}
