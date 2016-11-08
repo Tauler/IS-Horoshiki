@@ -130,10 +130,14 @@
     <Compile Include="Repositories\Editable\DeliveryZoneRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanDayRepository.cs" />
+    <Compile Include="Repositories\Editable\Interfaces\IShiftPersonalSchedulePeriodRepository.cs" />
+    <Compile Include="Repositories\Editable\Interfaces\IShiftPersonalScheduleRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IShiftPersonalRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanRepository.cs" />
     <Compile Include="Repositories\Editable\SaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\SalePlanDayRepository.cs" />
+    <Compile Include="Repositories\Editable\ShiftPersonalSchedulePeriodRepository.cs" />
+    <Compile Include="Repositories\Editable\ShiftPersonalScheduleRepository.cs" />
     <Compile Include="Repositories\Editable\ShiftPersonalRepository.cs" />
     <Compile Include="Repositories\Editable\SalePlanRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IDeliveryZoneRepository.cs" />

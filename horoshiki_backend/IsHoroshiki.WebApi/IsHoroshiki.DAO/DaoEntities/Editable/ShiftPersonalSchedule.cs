@@ -3,7 +3,7 @@
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
     /// <summary>
-    /// График периода смен работника
+    /// График периода смен сотрудника
     /// </summary>
     public class ShiftPersonalSchedule : BaseDaoEntity
     {

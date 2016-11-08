@@ -133,6 +133,16 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private IShiftTypeRepository _shiftTypeRepository;
 
+        /// <summary>
+        /// Репозиторий График периода смен сотрудника
+        /// </summary>
+        private IShiftPersonalScheduleRepository _shiftPersonalScheduleRepository;
+
+        /// <summary>
+        /// Репозиторий Период для графика смен сотрудника
+        /// </summary>
+        private IShiftPersonalSchedulePeriodRepository _shiftPersonalSchedulePeriodRepository;
+
         #endregion
 
         #region Конструктор
@@ -461,6 +471,36 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._shiftTypeRepository = new ShiftTypeRepository(_context);
                 }
                 return _shiftTypeRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий График периода смен сотрудника
+        /// </summary>  
+        public IShiftPersonalScheduleRepository ShiftPersonalScheduleRepository
+        {
+            get
+            {
+                if (this._shiftPersonalScheduleRepository == null)
+                {
+                    this._shiftPersonalScheduleRepository = new ShiftPersonalScheduleRepository(_context);
+                }
+                return _shiftPersonalScheduleRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозиторий Период для графика смен сотрудника
+        /// </summary>  
+        public IShiftPersonalSchedulePeriodRepository ShiftPersonalSchedulePeriodRepository
+        {
+            get
+            {
+                if (this._shiftPersonalSchedulePeriodRepository == null)
+                {
+                    this._shiftPersonalSchedulePeriodRepository = new ShiftPersonalSchedulePeriodRepository(_context);
+                }
+                return _shiftPersonalSchedulePeriodRepository;
             }
         }
 

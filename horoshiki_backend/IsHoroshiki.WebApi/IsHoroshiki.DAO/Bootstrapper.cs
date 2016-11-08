@@ -51,7 +51,8 @@ namespace IsHoroshiki.DAO
 
             container.RegisterType<IShiftTypeRepository, ShiftTypeRepository>();
             container.RegisterType<IShiftPersonalRepository, ShiftPersonalRepository>();
-
+            container.RegisterType<IShiftPersonalScheduleRepository, ShiftPersonalScheduleRepository>();
+            container.RegisterType<IShiftPersonalSchedulePeriodRepository, ShiftPersonalSchedulePeriodRepository>();
 
             return container;
         }
