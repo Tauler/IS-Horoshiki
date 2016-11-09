@@ -90,12 +90,15 @@
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
     <Compile Include="Editable\MappingDao\SalePlanDayModelMappingDao.cs" />
+    <Compile Include="Editable\MappingDao\ShiftPersonalModelMappingDao.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportSumRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportSumRowModel.cs" />
+    <Compile Include="Editable\ShiftPersonals\IShiftPersonalModel.cs" />
+    <Compile Include="Editable\ShiftPersonals\ShiftPersonalModel.cs" />
     <Compile Include="Integrations\IIntegrationCheckModel.cs" />
     <Compile Include="Integrations\IntegrationCheckModel.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanModel.cs" />
