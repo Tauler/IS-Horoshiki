@@ -16,3 +16,21 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
 .custom-menu .left-menu-head a span{
     font-weight: bold !important;
 }
+
+.padding-top-20{
+    padding-top: 20px;
+}
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+.table-hover_active{
+    background-color: #DFDFDF;
+}
+
+.padding-right-0{
+    padding-right: 0px;
+}
+.padding-left-0{
+    padding-left: 0px;
+}
