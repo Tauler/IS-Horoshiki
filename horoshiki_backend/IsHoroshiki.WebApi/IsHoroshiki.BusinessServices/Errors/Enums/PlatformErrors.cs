@@ -75,5 +75,25 @@ namespace IsHoroshiki.BusinessServices.Errors.Enums
         /// Необходимо указать координаты площадки!
         /// </summary>
         YandexMapIsNull,
+
+        /// <summary>
+        /// Неверно задано время начала работы для круглосуточного режима
+        /// </summary>
+        WrongTimeStartForAroundClock,
+
+        /// <summary>
+        /// Неверно задано время окончания работы для круглосуточного режима
+        /// </summary>
+        WrongTimeEndForAroundClock,
+
+        /// <summary>
+        /// Неверно задано время начала приема заказов для круглосуточного режима
+        /// </summary>
+        WrongOrderTimeStartForAroundClock,
+
+        /// <summary>
+        /// Неверно задано время окончания приема заказов для круглосуточного режима
+        /// </summary>
+        WrongOrderTimeEndForAroundClock,
     }
 }
