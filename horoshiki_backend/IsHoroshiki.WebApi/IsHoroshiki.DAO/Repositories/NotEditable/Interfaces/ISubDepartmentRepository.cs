@@ -17,5 +17,11 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable.Interfaces
         /// <param name="isSushi">true - суши</param>
         /// <returns></returns>
         Task<ICollection<SubDepartment>> GetSubDepartamentsAsync(bool isCool, bool isPizza, bool isSushi);
+
+        /// <summary>
+        /// Получить подотдел пицца
+        /// </summary>
+        /// <returns></returns>
+        Task<SubDepartment> GetSubDepartamentsPizzaAsync();
     }
 }

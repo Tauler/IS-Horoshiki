@@ -75,6 +75,7 @@
     <Compile Include="DaoEntityConfigurations\Editable\DeliveryZoneConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Integrations\IntegrationCheckConfiguration.cs" />
     <Compile Include="DatabaseConstant.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="IBaseDaoEntity.cs" />
     <Compile Include="BaseDaoEntity.cs" />
     <Compile Include="Bootstrapper.cs" />
@@ -172,6 +173,7 @@
     <Content Include="Script\2016-08-20 создание БД.sql" />
     <Content Include="Script\2016-10-13 добавление зон.sql" />
     <Content Include="Script\2016-08-23 заполнение справочников.sql" />
+    <Content Include="Script\2016-11-09 ХП SaleCheckAnalize исправленная.sql" />
     <Content Include="Script\2016-10-26 SalePlan add planType.sql" />
     <Content Include="Script\2016-10-25 SalePlan.sql" />
     <Content Include="Script\2016-10-24 ХП SaleCheckAnalize.sql" />
