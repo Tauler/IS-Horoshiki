@@ -135,8 +135,6 @@
                     </li>
                 </ul>
 
-
-
                 <ul ng-if="isChief() && groupId=='settings'" class="main-menu custom-menu">
             <!----------Основные настройки---------->
                     <li class="left-menu-head"><a href="javascript:void(0);">
@@ -191,8 +189,6 @@
                     </li>
                 </ul>
 
-
-
                 <ul ng-if="isManager() && (groupId=='management' || groupId=='settings')" class="main-menu custom-menu">
                     <!----------Основные настройки---------->
                     <li class="left-menu-head"><a href="javascript:void(0);">
@@ -212,6 +208,35 @@
                     </li>
 
                 </ul>
+
+                <ul ng-if="isChief() && groupId=='management'" class="main-menu custom-menu">
+                    <li class="left-menu-head">
+                        <a href="javascript:void(0);">
+                            <span class="menu-text">Оперативные данные</span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a href="/target">
+                            <span class="menu-text"> Цели на год </span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a href="/target">
+                            <span class="menu-text"> Цели на месяц </span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
+                        <a href="/salesplan" target="_self">
+                            <span class="menu-text"> План продаж </span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a href="/workgraph" target="_self">
+                            <span class="menu-text"> Графики работы </span>
+                        </a>
+                    </li>
+                </ul>
+
             </nav>
             <!-- /main-nav -->
         </div>
