@@ -18,6 +18,7 @@ BEGIN
 
 	CREATE TABLE #RESULT
 	(
+		[RowID] int not null identity(1,1) primary key,
 		[Id]			  int,
 		[IdCheck]		  nvarchar(100),
 		[DateDoc]		  datetime, 
@@ -101,13 +102,16 @@ BEGIN
 	 WHERE
 			[BuyProcessId] = @SelfId
 
-	WITH CTE AS(
-	   SELECT [IdCheck],
-	   		   RN = ROW_NUMBER()OVER(PARTITION BY [IdCheck] ORDER BY [IdCheck])
-	   FROM #RESULT
+	--убираем задвоенные
+	DELETE FROM #RESULT
+	WHERE [RowID] > 
+	(
+		SELECT
+				min([RowID]) 
+		FROM
+				#RESULT b
+      WHERE #RESULT.[IdCheck] = b.[IdCheck]
 	)
-	DELETE FROM CTE WHERE RN > 1
-
 
 	SELECT 
 			[DateDoc],
@@ -121,5 +125,5 @@ BEGIN
 			[DateDoc]
 
 
-	DROP TABLE #RESULT;
+	DROP TABLE #RESULT
 END

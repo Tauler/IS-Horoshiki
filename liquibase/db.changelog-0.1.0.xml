@@ -968,7 +968,7 @@
 
     <changeSet id="09112016-68" author="prohoroven">
         <comment>Хранимка sale_check_analize исправленная</comment>
-        <sqlFile path="./sql/stored_procedures/2016-11-09 ХП SaleCheckAnalize исправленная.sql"/>
+        <sqlFile path="./sql/stored_procedures/SaleCheckAnalize_without_duplicate.sql"/>
     </changeSet>
 </databaseChangeLog>
 
