@@ -50,7 +50,7 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<ISalePlanDataRowModel, SalePlanDataRowModel>();
             container.RegisterType<ISalePlanSumDayModel, SalePlanSumDayModel>();
             container.RegisterType<ISalePlanSumRowModel, SalePlanSumRowModel>();
-
+            
             container.RegisterType<IIntegrationCheckModel, IntegrationCheckModel>();
             
             return container;

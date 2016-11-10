@@ -136,5 +136,14 @@ namespace IsHoroshiki.BusinessEntities.Editable
             get;
             set;
         }
+
+        /// <summary>
+        /// Признак круглосуточного режима работы
+        /// </summary>
+        public bool IsAroundClock
+        {
+            get;
+            set;
+        }
     }
 }

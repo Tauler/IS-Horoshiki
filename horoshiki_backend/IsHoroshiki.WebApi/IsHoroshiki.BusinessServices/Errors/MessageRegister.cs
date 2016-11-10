@@ -104,6 +104,10 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(PlatformErrors.BuyProcessNotFound, ResourceBusinessServices.PlatformService_BuyProcessNotFound);
             MessageHolder.Instance.AddMessage(PlatformErrors.CanNotDeleteExistUser, ResourceBusinessServices.PlatformService_CanNotDeleteExistUser);
             MessageHolder.Instance.AddMessage(PlatformErrors.YandexMapIsNull, ResourceBusinessServices.PlatformService_YandexMapIsNull);
+            MessageHolder.Instance.AddMessage(PlatformErrors.WrongTimeStartForAroundClock, ResourceBusinessServices.PlatformService_WrongTimeStartForAroundClock);
+            MessageHolder.Instance.AddMessage(PlatformErrors.WrongTimeEndForAroundClock, ResourceBusinessServices.PlatformService_WrongTimeEndForAroundClock);
+            MessageHolder.Instance.AddMessage(PlatformErrors.WrongOrderTimeStartForAroundClock, ResourceBusinessServices.PlatformService_WrongOrderTimeStartForAroundClock);
+            MessageHolder.Instance.AddMessage(PlatformErrors.WrongOrderTimeEndForAroundClock, ResourceBusinessServices.PlatformService_WrongOrderTimeEndForAroundClock);
         }
 
         /// <summary>

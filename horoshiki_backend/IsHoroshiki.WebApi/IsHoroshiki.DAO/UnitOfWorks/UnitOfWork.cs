@@ -128,6 +128,16 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         /// </summary>
         private ISaleCheckRepository _saleCheckRepository;
 
+        /// <summary>
+        /// Репозиторий Тип смены
+        /// </summary>
+        private IShiftTypeRepository _shiftTypeRepository;
+
+        /// <summary>
+        /// Репозиторий Смена
+        /// </summary>
+        private IShiftPersonalRepository _shiftPersonalRepository;
+
         #endregion
 
         #region Конструктор
@@ -441,6 +451,36 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._saleCheckRepository = new SaleCheckRepository(_context);
                 }
                 return _saleCheckRepository;
+            }
+        }
+
+        /// <summary>  
+        /// Репозитарий Тип смены
+        /// </summary>  
+        public IShiftTypeRepository ShiftTypeRepository
+        {
+            get
+            {
+                if (this._shiftTypeRepository == null)
+                {
+                    this._shiftTypeRepository = new ShiftTypeRepository(_context);
+                }
+                return _shiftTypeRepository;
+            }
+        }
+
+        /// <summary>
+        /// Репозиторий Смена
+        /// </summary>
+        public IShiftPersonalRepository ShiftPersonalRepository
+        {
+            get
+            {
+                if (this._shiftPersonalRepository == null)
+                {
+                    this._shiftPersonalRepository = new ShiftPersonalRepository(_context);
+                }
+                return this._shiftPersonalRepository;
             }
         }
 

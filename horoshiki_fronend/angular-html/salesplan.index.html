@@ -1,336 +1,318 @@
-<div class="page-breadcrumbs">
-    <ul class="breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="/">Главная</a>
-        </li>
-        <li>
-            <a href="/salesplan" target="_self">Управление</a>
-        </li>
-        <li class="active">План продаж</li>
-    </ul>
+<div class="row">
+    <div class="col-lg-12 ">
+        <ul class="breadcrumb">
+            <li><a href="#">Главная</a></li>
+            <li><a  href="/salesplan" target="_self">Управление</a></li>
+            <li class="active">План продаж</li>
+        </ul>
+    </div>
+
 </div>
+<!-- main -->
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                    <!---------Главная страница (поиск) начало---------->
+                                    <div class="row" ng-show="model.isIndex">
+                                        <div class="col-md-5">
+                                            <table class="table_n">
+                                                <tr>
+                                                    <td>
+                                                        Подразделение
+                                                    </td>
+                                                    <td>
+                                                        <select ng-disabled="subdivisionIsDisabled" class="form-control"
+                                                                ng-model="model.subdivision"
+                                                                ng-change="changeSubdivision();">
+                                                            <!--<option value="">Не выбрано</option>-->
+                                                            <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+                                                                {{subdivision.Name}}
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Площадка
+                                                    </td>
+                                                    <td>
+                                                        <select ng-disabled="platformIsDisabled" class="form-control"
+                                                                ng-model="model.platform">
+                                                            <!--<option value="">Не выбрано</option>-->
+                                                            <option ng-repeat="platform in model.platforms" value="{{platform}}">
+                                                                {{platform.Name}}
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Тип плана
+                                                    </td>
+                                                    <td>
+                                                        <select class="form-control"
+                                                                ng-model="model.typePlan">
+                                                            <!--<option value="">Не выбрано</option>-->
+                                                            <option ng-repeat="type in model.typePlanes" value="{{type}}">
+                                                                {{type.name}}
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Период
+                                                    </td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <select class="form-control"
+                                                                        ng-model="model.period.month">
+                                                                    <!--<option value="">Не выбрано</option>-->
+                                                                    <option ng-repeat="month in model.month" value="{{month}}">
+                                                                        {{month.name}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control"
+                                                                        ng-model="model.period.year">
+                                                                    <!--<option value="">Не выбрано</option>-->
+                                                                    <option ng-repeat="year in model.years" value="{{year}}">
+                                                                        {{year}}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
 
-<div class="page-body">
-    <div class="col-xs-12 col-md-12">
-        <div class="widget">
-            <div class="widget-header  with-footer">
-                <span class="widget-caption">План продаж</span>
-                <!--<div class="widget-buttons">-->
-                <!--<button class="btn btn-blue btn-xs">Save</button>-->
-                <!--</div>-->
-            </div>
-            <div class="widget-body">
 
-
-                <!---------Главная страница (поиск) начало---------->
-                <div class="row" ng-show="model.isIndex">
-                    <div class="col-md-5">
-                        <table class="table_n">
-                            <tr>
-                                <td>
-                                    Подразделение
-                                </td>
-                                <td>
-                                    <select ng-disabled="subdivisionIsDisabled" class="form-control"
-                                            ng-model="model.subdivision"
-                                            ng-change="changeSubdivision();">
-                                        <!--<option value="">Не выбрано</option>-->
-                                        <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
-                                            {{subdivision.Name}}
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Площадка
-                                </td>
-                                <td>
-                                    <select ng-disabled="platformIsDisabled" class="form-control"
-                                            ng-model="model.platform">
-                                        <!--<option value="">Не выбрано</option>-->
-                                        <option ng-repeat="platform in model.platforms" value="{{platform}}">
-                                            {{platform.Name}}
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Тип плана
-                                </td>
-                                <td>
-                                    <select class="form-control"
-                                            ng-model="model.typePlan">
-                                        <!--<option value="">Не выбрано</option>-->
-                                        <option ng-repeat="type in model.typePlanes" value="{{type}}">
-                                            {{type.name}}
-                                        </option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Период
-                                </td>
-                                <td>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <select class="form-control"
-                                                    ng-model="model.period.month">
-                                                <!--<option value="">Не выбрано</option>-->
-                                                <option ng-repeat="month in model.month" value="{{month}}">
-                                                    {{month.name}}
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select class="form-control"
-                                                    ng-model="model.period.year">
-                                                <!--<option value="">Не выбрано</option>-->
-                                                <option ng-repeat="year in model.years" value="{{year}}">
-                                                    {{year}}
-                                                </option>
-                                            </select>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <div class="row padding-top-20 padding-bottom-20">
+                                                <div class="col-md-4">
+                                                    <button ng-click="createPlan();" type="button" class="btn btn-primary btn-block">Создать</button>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button ng-click="updatePlan();" type="button" class="btn btn-primary btn-block">Редактировать</button>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button ng-click="createReport();" data-toggle="modal" data-target="#reportModal" type="button" class="btn btn-primary btn-block">Отчет</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                    <!---------Главная страница (поиск) конец---------->
 
+                                    <!---------План продаж  начало----------------->
+                                    <div ng-show="!model.isIndex">
+                                        <!---------"меню" начало----------------->
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <table class="table_n">
+                                                    <tr>
+                                                        <td class="text-align-right padding-right-5">
+                                                            Подразделение
+                                                        </td>
+                                                        <td>
+                                                            <select ng-disabled="subdivisionIsDisabled" class="form-control"
+                                                                    ng-model="model.subdivision"
+                                                                    ng-change="changeSubdivision();">
+                                                                <!--<option value="">Не выбрано</option>-->
+                                                                <option ng-repeat="subdivision in model.subdivisions"
+                                                                        value="{{subdivision}}">
+                                                                    {{subdivision.Name}}
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class=" text-align-right padding-right-5">
+                                                            Тип плана
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control"
+                                                                    ng-model="model.typePlan" ng-change="changeTypePlanM2();">
+                                                                <!--<option value="">Не выбрано</option>-->
+                                                                <option ng-repeat="type in model.typePlanes" value="{{type}}">
+                                                                    {{type.name}}
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-align-right padding-right-5">
+                                                            Площадка
+                                                        </td>
+                                                        <td>
+                                                            <select ng-disabled="platformIsDisabled" class="form-control"
+                                                                    ng-model="model.platform" ng-change="changePlatformM2();">
+                                                                <!--<option value="">Не выбрано</option>-->
+                                                                <option ng-repeat="platform in model.platforms" value="{{platform}}">
+                                                                    {{platform.Name}}
+                                                                </option>
+                                                            </select>
+                                                        </td>
+                                                        <td class="text-align-right padding-right-5">
+                                                            Средн. чек, р
+                                                        </td>
+                                                        <td>
+                                                            <input ng-blur="chacgeAverageCheck();" class="form-control" maxlength="8"
+                                                                   ng-model="model.salePlanTable.SalePlan.AverageCheck" type="text">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!---------Основная таблица "меню" конец----------------->
 
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="row padding-top-20 padding-bottom-20">
-                            <div class="col-md-4"><a class="btn btn-blue btn-block" ng-click="createPlan();"
-                                                     href="javascript:void(0);">Создать</a></div>
-                            <div class="col-md-4"><a class="btn btn-blue btn-block" href="javascript:void(0);"
-                                                     ng-click="updatePlan();">Редактировать</a></div>
-                            <div class="col-md-4"><a ng-click="createReport();" data-toggle="modal"
-                                                     data-target="#reportModal" class="btn btn-blue btn-block"
-                                                     href="javascript:void(0);">Отчет</a>
+                                        <!---------Основная таблица начало----------------->
+                                        <div class="row padding-top-30">
+                                            <div class="col-md-12">
+
+                                                <table class="table table-bordered table-bordered-0 table-cal-value-center">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="col-md-3" colspan="2">
+                                                            <div class="text-align-center padding-bottom-10">Планируемый месяц</div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 padding-right-5">
+                                                                    <select ng-change="changePlanPeriodMonth();" class="form-control"
+                                                                            ng-model="model.period.month">
+                                                                        <!--<option value="">Не выбрано</option>-->
+                                                                        <option ng-repeat="month in model.month" value="{{month}}">
+                                                                            {{month.name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6 padding-left-5">
+                                                                    <select ng-change="changePlanPeriodYear();" class="form-control"
+                                                                            ng-model="model.period.year">
+                                                                        <!--<option value="">Не выбрано</option>-->
+                                                                        <option ng-repeat="year in model.years" value="{{year}}">
+                                                                            {{year}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th class="col-md-3" colspan="3">
+                                                            <div class="text-align-center padding-bottom-10">Месяц для сравнительного анализа 1</div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 padding-right-5">
+                                                                    <select ng-click="changeAnalize1Month();" class="form-control"
+                                                                            ng-model="model.analize1.month">
+                                                                        <!--<option value="">Не выбрано</option>-->
+                                                                        <option ng-repeat="month in model.month" value="{{month}}">
+                                                                            {{month.name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6 padding-left-5">
+                                                                    <select ng-click="changeAnalize1Year();" class="form-control"
+                                                                            ng-model="model.analize1.year">
+                                                                        <!--<option value="">Не выбрано</option>-->
+                                                                        <option ng-repeat="year in model.years" value="{{year}}">
+                                                                            {{year}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th class="col-md-3" colspan="3">
+                                                            <div class="text-align-center padding-bottom-10">Месяц для сравнительного анализа 2</div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 padding-right-5">
+                                                                    <select ng-click="changeAnalize2Month();" class="form-control"
+                                                                            ng-model="model.analize2.month">
+                                                                        <!--<option value="">Не выбрано</option>-->
+                                                                        <option ng-repeat="month in model.month" value="{{month}}">
+                                                                            {{month.name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-6 padding-left-5">
+                                                                    <select ng-click="changeAnalize2Year();" class="form-control"
+                                                                            ng-model="model.analize2.year">
+                                                                        <!--<option value="">Не выбрано</option>-->
+                                                                        <option ng-repeat="year in model.years" value="{{year}}">
+                                                                            {{year}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th class="col-md-3" colspan="3">
+                                                            <div class="text-align-center padding-bottom-10">Планируемый месяц</div>
+                                                            <div class="text-align-center">
+                                                                <button type="button" ng-click="createReport();" data-toggle="modal"
+                                                                        data-target="#reportModal" class="btn btn-primary">Сформировать отчет</button>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th class="col-md-2">Дата</th>
+                                                        <th class="col-md-1">День</th>
+                                                        <th class="col-md-1">Всего</th>
+                                                        <th class="col-md-1">Доставка</th>
+                                                        <th class="col-md-1">Самовывоз</th>
+                                                        <th class="col-md-1">Всего</th>
+                                                        <th class="col-md-1">Доставка</th>
+                                                        <th class="col-md-1">Самовывоз</th>
+                                                        <th class="col-md-1">Всего</th>
+                                                        <th class="col-md-1">Доставка</th>
+                                                        <th class="col-md-1">Самовывоз</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    <tr ng-repeat="row in model.salePlanTable.DataRows">
+                                                        <td>{{row.Plan.Date | date : 'dd.MM.yyyy'}}</td>
+                                                        <td>{{row.Plan.DayOfWeekDescr}}</td>
+                                                        <td class="text-bold">{{row.Analize1.Sum}}</td>
+                                                        <td>{{row.Analize1.Delivery}}</td>
+                                                        <td>{{row.Analize1.Self}}</td>
+                                                        <td class="text-bold">{{row.Analize2.Sum}}</td>
+                                                        <td>{{row.Analize2.Delivery}}</td>
+                                                        <td>{{row.Analize2.Self}}</td>
+                                                        <td class="text-bold">{{row.Plan.Sum}}</td>
+                                                        <td class="td-table-input"><input class="form-control input-table" ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Delivery"  ng-blur="changeCallSalePlan(row);" type="text" style="text-align: center"></td>
+                                                        <td class="td-table-input"><input class="form-control input-table" ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row);" type="text" style="text-align: center"></td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td class="text-bold" colspan="2">Итого:</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Delivery+model.salePlanTable.SumRow.Analize1.Self}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Delivery}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Self}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery+model.salePlanTable.SumRow.Analize2.Self}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Self}}</td>
+                                                        <td class="text-bold">{{model.rowPlanSum}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Delivery}}</td>
+                                                        <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Self}}</td>
+                                                    </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!---------Основная таблица начало----------------->
+                                    </div>
+                                    <!---------План продаж  конец----------------->
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-                <!---------Главная страница (поиск) конец---------->
-
-                <!---------План продаж  начало----------------->
-                <div ng-show="!model.isIndex">
-                    <!---------"меню" начало----------------->
-                    <div class="row">
-                        <div class="col-md-7">
-                            <table class="table_n">
-                                <tr>
-                                    <td class="text-align-right padding-right-5">
-                                        Подразделение
-                                    </td>
-                                    <td>
-                                        <select ng-disabled="subdivisionIsDisabled" class="form-control"
-                                                ng-model="model.subdivision"
-                                                ng-change="changeSubdivision();">
-                                            <!--<option value="">Не выбрано</option>-->
-                                            <option ng-repeat="subdivision in model.subdivisions"
-                                                    value="{{subdivision}}">
-                                                {{subdivision.Name}}
-                                            </option>
-                                        </select>
-                                    </td>
-                                    <td class=" text-align-right padding-right-5">
-                                        Тип плана
-                                    </td>
-                                    <td>
-                                        <select class="form-control"
-                                                ng-model="model.typePlan" ng-change="changeTypePlanM2();">
-                                            <!--<option value="">Не выбрано</option>-->
-                                            <option ng-repeat="type in model.typePlanes" value="{{type}}">
-                                                {{type.name}}
-                                            </option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-align-right padding-right-5">
-                                        Площадка
-                                    </td>
-                                    <td>
-                                        <select ng-disabled="platformIsDisabled" class="form-control"
-                                                ng-model="model.platform" ng-change="changePlatformM2();">
-                                            <!--<option value="">Не выбрано</option>-->
-                                            <option ng-repeat="platform in model.platforms" value="{{platform}}">
-                                                {{platform.Name}}
-                                            </option>
-                                        </select>
-                                    </td>
-                                    <td class="text-align-right padding-right-5">
-                                        Средн. чек, р
-                                    </td>
-                                    <td>
-                                        <input ng-blur="chacgeAverageCheck();" class="form-control" maxlength="8"
-                                               ng-model="model.salePlanTable.SalePlan.AverageCheck" type="text">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <!---------Основная таблица "меню" конец----------------->
-
-                    <!---------Основная таблица начало----------------->
-                    <div class="row padding-top-30">
-                        <div class="col-md-12">
-
-                            <table class="table table-bordered table-hover table-cal-value-center">
-                                <thead>
-                                <tr>
-                                    <th class="col-md-3" colspan="2">
-                                        <div class="text-align-center padding-bottom-10">Планируемый месяц</div>
-                                        <div class="row">
-                                            <div class="col-md-6 padding-right-5">
-                                                <select ng-change="changePlanPeriodMonth();" class="form-control"
-                                                        ng-model="model.period.month">
-                                                    <!--<option value="">Не выбрано</option>-->
-                                                    <option ng-repeat="month in model.month" value="{{month}}">
-                                                        {{month.name}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 padding-left-5">
-                                                <select ng-change="changePlanPeriodYear();" class="form-control"
-                                                        ng-model="model.period.year">
-                                                    <!--<option value="">Не выбрано</option>-->
-                                                    <option ng-repeat="year in model.years" value="{{year}}">
-                                                        {{year}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-3" colspan="3">
-                                        <div class="text-align-center padding-bottom-10">Месяц для сравнительного анализа 1</div>
-                                        <div class="row">
-                                            <div class="col-md-6 padding-right-5">
-                                                <select ng-click="changeAnalize1Month();" class="form-control"
-                                                        ng-model="model.analize1.month">
-                                                    <!--<option value="">Не выбрано</option>-->
-                                                    <option ng-repeat="month in model.month" value="{{month}}">
-                                                        {{month.name}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 padding-left-5">
-                                                <select ng-click="changeAnalize1Year();" class="form-control"
-                                                        ng-model="model.analize1.year">
-                                                    <!--<option value="">Не выбрано</option>-->
-                                                    <option ng-repeat="year in model.years" value="{{year}}">
-                                                        {{year}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-3" colspan="3">
-                                        <div class="text-align-center padding-bottom-10">Месяц для сравнительного анализа 2</div>
-                                        <div class="row">
-                                            <div class="col-md-6 padding-right-5">
-                                                <select ng-click="changeAnalize2Month();" class="form-control"
-                                                        ng-model="model.analize2.month">
-                                                    <!--<option value="">Не выбрано</option>-->
-                                                    <option ng-repeat="month in model.month" value="{{month}}">
-                                                        {{month.name}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 padding-left-5">
-                                                <select ng-click="changeAnalize2Year();" class="form-control"
-                                                        ng-model="model.analize2.year">
-                                                    <!--<option value="">Не выбрано</option>-->
-                                                    <option ng-repeat="year in model.years" value="{{year}}">
-                                                        {{year}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </th>
-                                    <th class="col-md-3" colspan="3">
-                                        <div class="text-align-center padding-bottom-10">Планируемый месяц</div>
-                                        <div class="text-align-center">
-                                            <a class="btn btn-blue btn-block" ng-click="createReport();" data-toggle="modal"
-                                               data-target="#reportModal"
-                                               href="javascript:void(0);">Сформировать отчет</a>
-                                        </div>
-                                    </th>
-                                </tr>
-
-                                <tr>
-                                    <th class="col-md-2">Дата</th>
-                                    <th class="col-md-1">День</th>
-                                    <th class="col-md-1">Всего</th>
-                                    <th class="col-md-1">Доставка</th>
-                                    <th class="col-md-1">Самовывоз</th>
-                                    <th class="col-md-1">Всего</th>
-                                    <th class="col-md-1">Доставка</th>
-                                    <th class="col-md-1">Самовывоз</th>
-                                    <th class="col-md-1">Всего</th>
-                                    <th class="col-md-1">Доставка</th>
-                                    <th class="col-md-1">Самовывоз</th>
-                                </tr>
-                                </thead>
-
-                                <tbody>
-                                <tr ng-repeat="row in model.salePlanTable.DataRows">
-                                    <td>{{row.Plan.Date | date : 'dd.MM.yyyy'}}</td>
-                                    <td>{{row.Plan.DayOfWeekDescr}}</td>
-                                    <td class="text-bold">{{row.Analize1.Sum}}</td>
-                                    <td>{{row.Analize1.Delivery}}</td>
-                                    <td>{{row.Analize1.Self}}</td>
-                                    <td class="text-bold">{{row.Analize2.Sum}}</td>
-                                    <td>{{row.Analize2.Delivery}}</td>
-                                    <td>{{row.Analize2.Self}}</td>
-                                    <td class="text-bold">{{row.Plan.Sum}}</td>
-                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Delivery"  ng-blur="changeCallSalePlan(row);" type="text" style="text-align: center"></td>
-                                    <td><input ng-keydown="keyUpCallSalePlan($event)" ng-if="row.Plan!=null" ng-model="row.Plan.Self" ng-blur="changeCallSalePlan(row);" type="text" style="text-align: center"></td>
-                                </tr>
-
-                                <tr>
-                                    <td class="text-bold" colspan="2">Итого:</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Delivery+model.salePlanTable.SumRow.Analize1.Self}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Delivery}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize1.Self}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery+model.salePlanTable.SumRow.Analize2.Self}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Delivery}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Analize2.Self}}</td>
-                                    <td class="text-bold">{{model.rowPlanSum}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Delivery}}</td>
-                                    <td class="text-bold">{{model.salePlanTable.SumRow.Plan.Self}}</td>
-                                </tr>
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
-                    <!---------Основная таблица начало----------------->
-                </div>
-                <!---------План продаж  конец----------------->
             </div>
-
-
         </div>
+        <!-- /row -->
     </div>
 </div>
-
-<script>
-
-    $(".numb").css("border", "1px solid red");
-
-    $(".numb").keydown(function(event){
-        console.log("123");
-        console.log(event);
-        if(e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)){
-            return false;
-        }
-    });
-</script>
 
 
 <!--Попап отчета-->
@@ -343,7 +325,7 @@
                 <h4 class="modal-title">Площадка: {{getPlatform().Name}}</h4>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered table-hover table-cal-value-center">
+                <table class="table table-bordered table-bordered-0 table-cal-value-center">
                     <thead>
                     <tr>
                         <th>

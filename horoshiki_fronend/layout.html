@@ -1,476 +1,278 @@
 <!DOCTYPE html>
-<html ng-app="horoshikiApp" xmlns="http://www.w3.org/1999/xhtml">
+<html ng-app="horoshikiApp">
 <head ng-controller="HeaderController">
-    <meta charset="utf-8"/>
     <title ng-bind="title + ' | IS Horoshiki'"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!--<meta name="description" content="Настройки смен | IsHoroshiki">-->
+    <meta name="author" content="IS_Horoshiki">
+    <!-- CSS -->
+    <link href="/theme_gray/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/theme_gray/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/theme_gray/assets/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/theme_gray/assets/css/jquery-ui-1.10.4.autocomplete.css" rel="stylesheet" type="text/css">
+    <!--&lt;!&ndash;[if lte IE 9]>-->
+    <!--<link href="/theme_grayassets/css/main-ie.css" rel="stylesheet" type="text/css"/>-->
+    <!--<link href="/theme_grayassets/css/main-ie-part2.css" rel="stylesheet" type="text/css"/>-->
+    <!--<![endif]&ndash;&gt;-->
+    <link href="/theme_gray/assets/css/custom.css" rel="stylesheet" type="text/css"/>
 
-    <meta name="description" content="Dashboard"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="shortcut icon" href="/theme/assets/img/favicon.png" type="image/x-icon">
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/kingadmin-favicon144x144.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/kingadmin-favicon114x114.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/kingadmin-favicon72x72.png">-->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="57x57" href="assets/ico/kingadmin-favicon57x57.png">-->
+    <link rel="shortcut icon" href="/theme_gray/assets/ico/favicon.png">
 
-
-    <!--Basic Styles-->
-    <link href="/theme/assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link id="bootstrap-rtl-link" href="" rel="stylesheet"/>
-    <link href="/theme/assets/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="/theme/assets/css/weather-icons.min.css" rel="stylesheet"/>
-
-    <!--Fonts-->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300"
-          rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
-    <!--Beyond styles-->
-    <link href="/theme/assets/css/beyond.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/theme/assets/css/custom/custom.css" rel="stylesheet" type="text/css"/>
-    <!--<link href="/theme/assets/css/demo.min.css" rel="stylesheet" />-->
-    <link href="/theme/assets/css/typicons.min.css" rel="stylesheet"/>
-    <link href="/theme/assets/css/animate.min.css" rel="stylesheet"/>
-    <link id="skin-link" href="" rel="stylesheet" type="text/css"/>
-
-    <!--<link href="/plugins/angular-ui-select/select.min.css" rel="stylesheet"/>-->
-
-    <link href="/theme/assets/js/autocomplete/jquery-ui-1.10.4.custom.css" rel="stylesheet"/>
-
-    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
-    <script src="/theme/assets/js/skins.min.js"></script>
     <base href="/"/>
 </head>
-<!-- /Head -->
-<!-- Body -->
-<body ng-controller="LayoutController">
-<!-- Loading Container -->
-<div class="loading-container">
-    <div class="loader"></div>
-</div>
-<!--  /Loading Container -->
-<!-- Navbar -->
-<div class="navbar">
-    <div class="navbar-inner">
-        <div class="navbar-container">
-            <!-- Navbar Barnd -->
-            <div class="navbar-header pull-left">
-                <a href="#" class="navbar-brand">
-                    <small>
-                        <img src="/theme/assets/img/horoshiki_logo.png" alt=""/>
-                    </small>
-                </a>
-            </div>
-            <!-- /Navbar Barnd -->
-            <!-- Sidebar Collapse -->
-            <div class="sidebar-collapse" id="sidebar-collapse">
-                <i class="collapse-icon fa fa-bars"></i>
-            </div>
-            <!-- /Sidebar Collapse -->
-            <!-- Account Area and Settings --->
-            <div class="navbar-header pull-right">
-                <div class="navbar-account">
-                    <ul class="account-area top-navbar-font-size-17">
-                        <li ng-class="groupId == 'metric' ? 'open':''">
-                            <a class="login-area" href="/">
-                                <section>
-                                    <h2><span class="profile"><span>Метрики</span></span></h2>
-                                </section>
-                            </a>
-                        </li>
-                        <li ng-class="groupId == '' ? 'open':''">
-                            <a class="login-area">
-                                <section>
-                                    <h2><span class="profile"><span>Отчеты</span></span></h2>
-                                </section>
-                            </a>
-                        </li>
-                        <li ng-class="groupId == 'management' ? 'open':''">
-                            <a class="login-area" href="/salesplan" target="_self">
-                                <section>
-                                    <h2><span class="profile"><span>Управление</span></span></h2>
-                                </section>
-                            </a>
-                        </li>
-                        <li ng-show="isChief()" ng-class="groupId == 'settings' ? 'open':''">
-                            <a class="login-area" href="/users" target="_self">
-                                <section>
-                                    <h2><span class="profile"><span>Настройки</span></span></h2>
-                                </section>
-                            </a>
-                        </li>
-                        <li ng-class="groupId == '' ? 'open':''">
-                            <a class="login-area">
-                                <section>
-                                    <h2><span class="profile"><span>Маркетинг</span></span></h2>
-                                </section>
-                            </a>
-                        </li>
-                        <li ng-class="groupId == '' ? 'open':''">
-                            <a class="login-area">
-                                <section>
-                                    <h2><span class="profile"><span>Производство</span></span></h2>
-                                </section>
-                            </a>
-                        </li>
-                        <li><div class="top-navbar-delimiter">|</div></li>
-                        <li>
-                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
-                                <section>
-                                    <h2><span> <i class="menu-icon fa fa-user"></i> &nbsp;&nbsp;{{currentUser.UserName}}</span></h2>
-                                </section>
-                            </a>
-                            <ul style="width: 200px;" class="dropdown-menu pull-right">
-                                <li>
-                                    <div class="padding-5 button-div" >Профиль</div>
-                                </li>
-                                <li>
-                                    <div class="padding-5 button-div" ng-click="logoutButton()">{{translation.template_header_tab_exit}}</div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /Account Area and Settings -->
-        </div>
-    </div>
-</div>
-<!-- /Navbar -->
-<!-- Main Container -->
-<div class="main-container container-fluid">
-    <!-- Page Container -->
-    <div class="page-container">
 
-        <!-- Page Sidebar -->
-        <div class="page-sidebar" id="sidebar">
-            <div class="sidebar-header-wrapper">
-                <!--<input class="searchinput" type="text">-->
-                <!--<i class="searchicon fa fa-search"></i>-->
-                <!--<div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>-->
-            </div>
-
-            <!--Меню Метрики-->
-            <ul ng-if="groupId=='metric'" class="nav sidebar-menu">
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Метрики</strong></span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'main' ? 'active':''">
+<body ng-controller="LayoutController" class="sidebar-fixed topnav-fixed ">
+<!-- WRAPPER -->
+<div id="wrapper" class="wrapper">
+    <!-- TOP BAR -->
+    <div class="top-bar navbar-fixed-top">
+        <div class="container">
+            <div class="clearfix">
+                <a href="#" class="pull-left toggle-sidebar-collapse"><i class="fa fa-bars"></i></a>
+                <!-- logo -->
+                <div class="pull-left left logo">
                     <a href="index.html">
-                        <i class="menu-icon fa fa-bar-chart-o"></i>
-                        <span class="menu-text"> Основные показатели </span>
+                        <!--<img src="/theme/assets/img/horoshiki_logo.png" alt=""/>-->
+                        <!--<img src="assets/img/kingadmin-logo-white.png" alt="KingAdmin - Admin Dashboard" />-->
                     </a>
-                </li>
-                <li>
-                    <a href="index.html">
-                        <i class="menu-icon fa fa-calculator"></i>
-                        <span class="menu-text"> Финансы </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="databoxes.html">
-                        <i class="menu-icon fa fa-users"></i>
-                        <span class="menu-text"> Клиенты </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-fighter-jet"></i>
-                        <span class="menu-text"> Скорость </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-ship"></i>
-                        <span class="menu-text"> Продукт </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="#"></a>
-                </li>
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Рейтинги</strong></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Финансы </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Клиенты </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Скорость </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-th"></i>
-                        <span class="menu-text"> Продукт </span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul ng-if="isChief() && groupId=='settings'" class="nav sidebar-menu">
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Основные настройки</strong></span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
-                    <a href="/subdivisions" target="_self">
-                        <i class="menu-icon fa fa-share-alt"></i>
-                        <span class="menu-text"> Подразделения </span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'platforms' ? 'active':''">
-                    <a href="/platforms" target="_self">
-                        <i class="menu-icon fa fa-cutlery"></i>
-                        <span class="menu-text"> Рестораны </span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'users' ? 'active':''">
-                    <a href="/users" target="_self">
-                        <i class="menu-icon fa fa-group"></i>
-                        <span class="menu-text"> Пользователи </span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'zones' ? 'active':''">
-                    <a href="/zones" target="_self">
-                        <i class="menu-icon fa fa-truck"></i>
-                        <span class="menu-text"> Зоны доставки </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
-                    <a href="/reasonDismissals" target="_self">
-                        <i class="menu-icon fa fa-user-times"></i>
-                        <span class="menu-text"> Причины увольнения </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="#"></a>
-                </li>
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Условия доставки</strong></span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-fighter-jet"></i>
-                        <span class="menu-text"> Стандарты скорости </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-eye"></i>
-                        <span class="menu-text"> Настройки трекинга </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-dollar"></i>
-                        <span class="menu-text"> Мин. чек </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="#"></a>
-                </li>
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Управленческие настройки</strong></span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-money"></i>
-                        <span class="menu-text"> Система оплаты </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-bar-chart-o"></i>
-                        <span class="menu-text"> Настройки показателей </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-clock-o"></i>
-                        <span class="menu-text"> Нормочасы </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="widgets.html">
-                        <i class="menu-icon fa fa-puzzle-piece"></i>
-                        <span class="menu-text"> Настройки смен </span>
-                    </a>
-                </li>
-            </ul>
-
-            <ul ng-if="isManager() && (groupId=='management' || groupId=='settings')" class="nav sidebar-menu">
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Оперативные</strong></span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/target">
-                        <i class="menu-icon fa fa-circle-o"></i>
-                        <span class="menu-text"> Цели на год </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/target">
-                        <i class="menu-icon fa fa-dot-circle-o"></i>
-                        <span class="menu-text"> Цели на месяц </span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
-                    <a href="/salesplan" target="_self">
-                        <i class="menu-icon fa fa-calendar"></i>
-                        <span class="menu-text"> План продаж </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/workgraph" target="_self">
-                        <i class="menu-icon fa fa-area-chart"></i>
-                        <span class="menu-text"> Графики работы </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == 'users' ? 'active':''">
-                    <a href="/employees" target="_self">
-                        <i class="menu-icon fa fa-group"></i>
-                        <span class="menu-text"> Список сотрудников </span>
-                    </a>
-                </li>
-				<li>
-                    <a href="#"></a>
-                </li>
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Настройки</strong></span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/zones" target="_self">
-                        <i class="menu-icon fa fa-truck"></i>
-                        <span class="menu-text"> Зоны доставки </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == 'platforms' ? 'active':''">
-                    <a href="/platforms/view/{{currentUser.Platform.Id}}" target="_self">
-                        <i class="menu-icon fa fa-cutlery"></i>
-                        <span class="menu-text"> Ресторан </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/shifts" target="_self">
-                        <i class="menu-icon fa fa-puzzle-piece"></i>
-                        <span class="menu-text"> Смены </span>
-                    </a>
-                </li>
-            </ul>
-			
-			<ul ng-if="isChief() && groupId=='management'" class="nav sidebar-menu">
-				<li>
-                    <a href="#">
-                        <span class="menu-text"><strong>Оперативные данные</strong></span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/target">
-                        <i class="menu-icon fa fa-circle-o"></i>
-                        <span class="menu-text"> Цели на год </span>
-                    </a>
-                </li>
-				<li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/target">
-                        <i class="menu-icon fa fa-dot-circle-o"></i>
-                        <span class="menu-text"> Цели на месяц </span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
-                    <a href="/salesplan" target="_self">
-                        <i class="menu-icon fa fa-calendar"></i>
-                        <span class="menu-text"> План продаж </span>
-                    </a>
-                </li>
-                <li ng-class="subgroupId == '' ? 'active':''">
-                    <a href="/workgraph" target="_self">
-                        <i class="menu-icon fa fa-area-chart"></i>
-                        <span class="menu-text"> Графики работы </span>
-                    </a>
-                </li>
-            </ul>
-            <!-- /Sidebar Menu -->
-        </div>
-        <!-- /Page Sidebar -->
-
-        <!-- Page Content -->
-        <div class="page-content">
-            <div ng-view></div>
-        </div>
-        <!-- /Page Content -->
-
-    </div>
-    <!-- /Page Container -->
-    <!-- Main Container -->
-
-    <div id="serverErrorModal" class="modal modal-message modal-warning fade" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="fa fa-warning"></i>
+                    <h1 class="sr-only">Dashboard</h1>
                 </div>
-                <div class="modal-title">{{translation.lk_error_modal_title}}</div>
+                <!-- end logo -->
+                <div class="pull-right right">
+                    <!-- top-bar-right -->
+                    <div class="top-bar-right">
+                        <a target="_self" href="/"><button ng-class="groupId == 'metric' ? 'active':''" type="button" class="btn btn-link"> Метрики</button></a>
+                        <a target="_self" href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Отчеты</button></a>
+                        <a target="_self" href="/salesplan"><button ng-class="groupId == 'management' ? 'active':''" type="button" class="btn btn-link"> Управление</button></a>
+                        <a target="_self" href="/users"><button ng-show="isChief()" ng-class="groupId == 'settings' ? 'active':''" type="button" class="btn btn-link"> Настройки</button></a>
+                        <a target="_self" href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Маркетинг</button></a>
+                        <a target="_self" href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Производство</button></a>
 
-                <div class="modal-body" id="serverErrorModalBody">{{translation.lk_error_modal_description}}</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-warning" data-dismiss="modal">Закрыть</button>
+                        <span style="color: #c1c1c1">|&nbsp;&nbsp; </span>
+                        <!-- logged user and the menu -->
+                        <div class="logged-user">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                    <i class="toggle-icon fa fa-user"></i>
+                                    {{currentUser.UserName}}
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="javascript: void(0)">
+                                            <i class="fa fa-user"></i>
+                                            <span class="text">Профиль</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);" ng-click="logoutButton();">
+                                            <i class="fa fa-power-off"></i>
+                                            <span class="text">{{translation.template_header_tab_exit}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end logged user and the menu -->
+                    </div>
+                    <!-- end top-bar-right -->
                 </div>
-            </div> <!-- / .modal-content -->
-        </div> <!-- / .modal-dialog -->
+            </div>
+        </div>
+        <!-- /container -->
     </div>
+    <!-- END TOP BAR -->
+    <!-- LEFT SIDEBAR -->
+    <div id="left-sidebar" class="left-sidebar ">
+        <!-- main-nav -->
+        <div class="sidebar-scroll">
+            <nav class="main-nav">
+                <ul ng-if="groupId=='metric'" class="main-menu custom-menu">
+                    <li class="left-menu-head">
+                        <a href="javascript:void(0);"><span class="text">Метрики</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'main' ? 'active':''">
+                        <a target="_self" href="/"><span class="text">Основные показатели</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Финансы</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Клиенты</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Скорость</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Продукт</span></a>
+                    </li>
+                    <li class="left-menu-head">
+                        <a href="javascript:void(0);"><span class="text">Рейтинги</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Финансы</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Клиенты</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Скорость</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Продукт</span></a>
+                    </li>
+                </ul>
 
+                <ul ng-if="isChief() && groupId=='settings'" class="main-menu custom-menu">
+            <!----------Основные настройки---------->
+                    <li class="left-menu-head"><a href="javascript:void(0);">
+                        <span class="text">Основные настройки</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
+                        <a target="_self" href="/subdivisions"><span class="text">Подразделения</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'platforms' ? 'active':''">
+                        <a target="_self" href="/platforms"><span class="text">Рестораны</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'users' ? 'active':''">
+                        <a target="_self" href="/users"><span class="text">Пользователи</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'zones' ? 'active':''">
+                        <a target="_self" href="/zones"><span class="text">Зоны доставки</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
+                        <a target="_self" href="/reasonDismissals"><span class="text">Причины увольнения</span></a>
+                    </li>
+            <!----------Условия доставки---------->
+                    <li class="left-menu-head">
+                        <a href="javascript:void(0);"><span class="text">Условия доставки</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Стандарты скорости</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Настройки трекинга</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Миню чек</span></a>
+                    </li>
+
+            <!----------Управленческие настройки---------->
+                    <li class="left-menu-head">
+                        <a href="javascript:void(0);">
+                            <span class="text"><strong>Управленческие настройки</strong></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Системы оплаты</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Настройки показателей</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Нормочасы</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="text">Настройки смен</span></a>
+                    </li>
+                </ul>
+
+                <ul ng-if="isManager() && (groupId=='management' || groupId=='settings')" class="main-menu custom-menu">
+                    <!----------Основные настройки---------->
+                    <li class="left-menu-head"><a href="javascript:void(0);">
+                        <span class="text">Оперативные</span></a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a target="_self" href="#"><span class="text">Цели на год</span></a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a target="_self" href="#"><span class="text">Цели на месяц</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
+                        <a target="_self" href="/salesplan"><span class="text">План продаж</span></a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a target="_self" href="#"><span class="text">Графики работы</span></a>
+                    </li>
+                </ul>
+
+                <ul ng-if="isChief() && groupId=='management'" class="main-menu custom-menu">
+                    <li class="left-menu-head">
+                        <a href="javascript:void(0);">
+                            <span class="menu-text">Оперативные данные</span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a href="/target">
+                            <span class="menu-text"> Цели на год </span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a href="/target">
+                            <span class="menu-text"> Цели на месяц </span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
+                        <a href="/salesplan" target="_self">
+                            <span class="menu-text"> План продаж </span>
+                        </a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a href="/workgraph" target="_self">
+                            <span class="menu-text"> Графики работы </span>
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+            <!-- /main-nav -->
+        </div>
+    </div>
+    <!-- END LEFT SIDEBAR -->
+    <!-- MAIN CONTENT WRAPPER -->
+    <div id="main-content-wrapper" class="content-wrapper ">
+        <div ng-view></div>
+        <!-- /main -->
+        <!-- FOOTER -->
+        <footer class="footer">
+            &copy; 2016 IS Horoshiki
+        </footer>
+        <!-- END FOOTER -->
+    </div>
+    <!-- END CONTENT WRAPPER -->
 </div>
+<!-- END WRAPPER -->
 
-<!--Basic Scripts-->
-<script src="/theme/assets/js/jquery.min.js"></script>
+<!-- Javascript -->
+<script type="text/javascript" src="/theme_gray/assets/js/jquery/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="/theme_gray/assets/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="/theme_gray/assets/js/plugins/modernizr/modernizr.js"></script>
+<!-- <script type="text/javascript" src="/theme_gray/assets/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script> -->
+<script type="text/javascript" src="/theme_gray/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/theme_gray/assets/js/king-common.js"></script>
+<!--<script type="text/javascript" src="demo-style-switcher/assets/js/deliswitch.js"></script>-->
 
-<script src="/theme/assets/js/bootstrap.min.js"></script>
-<!--<script src="/theme/assets/js/slimscroll/jquery.slimscroll.min.js"></script>-->
-
-<!--<script src="/theme/assets/js/select2/select2.js"></script>-->
-
-<script src="/theme/assets/js/datetime/datepicker-jquery-ui.min.js"></script>
-<script type="text/javascript" src="/theme/assets/js/datetime/datepicker.js"></script>
-<script type="text/javascript" src="/theme/assets/js/datetime/datepicker-ru.js"></script>
-<script type="text/javascript" src="/theme/assets/js/datetime/bootstrap-timepicker.js"></script>
-
-<!--Beyond Scripts-->
-<script src="/theme/assets/js/beyond.min.js"></script>
-
-
+<!-- <script type="text/javascript" src="/theme_gray/assets/js/datetime/datepicker-jquery-ui.min.js"></script>
+<script type="text/javascript" src="/theme_gray/assets/js/datetime/datepicker.js"></script>
+<script type="text/javascript" src="/theme_gray/assets/js/datetime/datepicker-ru.js"></script> -->
+<script type="text/javascript" src="/theme_gray/assets/js/datetime/bootstrap-timepicker.js"></script>
 
 <!-- Angular lib -->
-<!--<script type="text/javascript" src="/plugins/angular/lib/angular.min.js"></script>-->
+<!-- <script type="text/javascript" src="/plugins/angular/angular.js"></script> -->
 <script type="text/javascript" src="/plugins/angular/angular.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-route.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-cookies.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-resource.min.js"></script>
-
 <script type="text/javascript" src="/plugins/bootstrap-ui/angular-ui.bootstrap.pagination.js"></script>
 <script type="text/javascript" src="/plugins/bootstrap-ui/datepicker.js"></script>
-
 <script type="text/javascript" src="/plugins/bootstrap-ui/timepicker.js"></script>
-
 <!--<script type="text/javascript" src="/plugins/angular-ui-select/select.min.js"></script>-->
 
 <!-- Angular app -->
@@ -500,12 +302,11 @@
 <script type="text/javascript" src="/angular-app/service/ZonesService.js"></script>
 <script type="text/javascript" src="/angular-app/service/SalesPlanService.js"></script>
 
+<script type="text/javascript" src="/theme_gray/assets/js/jquery-ui-1.10.4.autocomplete.js"></script>
+<script src="/theme_gray/assets/js/datetime/datepicker-jquery-ui.js"></script>
+<script src="/theme_gray/assets/js/datetime/datepicker-ru.js"></script>
 <!-- Angular directives -->
 <script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
 
-<script type="text/javascript" src="/theme/assets/js/autocomplete/jquery-ui-1.10.4.custom.js"></script>
-
-
 </body>
-<!--  /Body -->
 </html>
