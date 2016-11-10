@@ -2,6 +2,34 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
     border-right-width: 0;
 }
 
+.table_n {
+  width: 100%;
+}
+
+.table_n tr td{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.table-cal-value-center tr td, .table-cal-value-center tr th{
+  text-align: center;
+}
+
+.text-bold{
+  font-weight: bold;
+}
+
+.input-table{
+  height: 25px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.td-table-input{
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
 .btn-link.active{
     background-color: #626262 !important;
 }
@@ -17,9 +45,6 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
     font-weight: bold !important;
 }
 
-.padding-top-20{
-    padding-top: 20px;
-}
 .margin-bottom-10{
     margin-bottom: 10px;
 }
@@ -42,21 +67,78 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
 .padding-left-5{
     padding-left: 5px;
 }
-
 .padding-left-10{
     padding-left: 10px;
 }
-
 .padding-left-15{
     padding-left: 15px;
+}
+.padding-left-20{
+  padding-left: 20px;
+}
+.padding-left-25{
+  padding-left: 25px;
+}
+.padding-left-30{
+  padding-left: 30px;
+}
+
+
+.padding-right-5{
+  padding-right: 5px;
+}
+.padding-right-10{
+  padding-right: 10px;
+}
+.padding-right-15{
+  padding-right: 15px;
+}
+.padding-right-20{
+  padding-right: 20px;
+}
+.padding-right-25{
+  padding-right: 25px;
+}
+.padding-right-30{
+  padding-right: 30px;
+}
+
+.padding-top-5{
+  padding-top: 5px;
+}
+.padding-top-10{
+  padding-top: 10px;
+}
+.padding-top-15{
+  padding-top: 15px;
+}
+.padding-top-20{
+  padding-top: 20px;
+}
+.padding-top-25{
+  padding-top: 25px;
+}
+.padding-top-30{
+  padding-top: 30px;
 }
 
 .padding-bottom-5{
     padding-bottom: 5px;
 }
-
 .padding-bottom-10{
     padding-bottom: 10px;
+}
+.padding-bottom-15{
+    padding-bottom: 15px;
+}
+.padding-bottom-20{
+    padding-bottom: 20px;
+}
+.padding-bottom-25{
+    padding-bottom: 25px;
+}
+.padding-bottom-30{
+  padding-bottom: 30px;
 }
 
 .text-align-right {
