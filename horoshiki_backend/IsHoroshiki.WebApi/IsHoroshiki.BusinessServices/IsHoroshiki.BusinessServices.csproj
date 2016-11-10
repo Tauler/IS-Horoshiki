@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Editable\AccountService.cs" />
     <Compile Include="Editable\DeliveryZoneService.cs" />
+    <Compile Include="Editable\Interfaces\IShiftPersonalService.cs" />
     <Compile Include="Editable\SalePlans\ISalePlanHelper.cs" />
     <Compile Include="Editable\SalePlans\SalePlanHelper.cs" />
     <Compile Include="Editable\SalePlanService.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Editable\Interfaces\ISalePlanService.cs" />
     <Compile Include="Editable\Interfaces\IPlatformService.cs" />
     <Compile Include="Editable\PlatformService.cs" />
+    <Compile Include="Editable\ShiftPersonalService.cs" />
     <Compile Include="Errors\Enums\AccountErrors.cs" />
     <Compile Include="Errors\Enums\CommonErrors.cs" />
     <Compile Include="Errors\Enums\DeliveryZoneErrors.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Utils\UtilService.cs" />
     <Compile Include="Utils\Interfaces\IUtilService.cs" />
     <Compile Include="Validators\Editable\DeliveryZoneValidator.cs" />
+    <Compile Include="Validators\Editable\Interfaces\IShiftPersonalValidator.cs" />
     <Compile Include="Validators\Editable\SalePlanValidator.cs" />
     <Compile Include="Validators\Editable\EmployeeReasonDismissalValidator.cs" />
     <Compile Include="Validators\Editable\Interfaces\IAccountValidator.cs" />
@@ -149,6 +152,7 @@
     <Compile Include="Validators\Editable\Interfaces\ISubDivisionValidator.cs" />
     <Compile Include="Validators\Editable\AccountValidator.cs" />
     <Compile Include="Validators\Editable\PlatformValidator.cs" />
+    <Compile Include="Validators\Editable\ShiftPersonalValidator.cs" />
     <Compile Include="Validators\Editable\SubDivisionValidator.cs" />
     <Compile Include="Validators\ValidationResult.cs" />
     <Compile Include="Validators\IValidator.cs" />
