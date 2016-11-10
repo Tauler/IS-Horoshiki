@@ -51,9 +51,9 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 title: 'Главная страница'
             })
             .when('/users', {
-                templateUrl: '/angular-html/users.view.html',
-                controller: 'UsersViewController',
-                pageId: 'usersViewPage',
+                templateUrl: '/angular-html/users.list.html',
+                controller: 'UsersListController',
+                pageId: 'usersListPage',
                 groupId: 'settings',
                 subgroupId: 'users',
                 title: 'Просмотр пользователей'
