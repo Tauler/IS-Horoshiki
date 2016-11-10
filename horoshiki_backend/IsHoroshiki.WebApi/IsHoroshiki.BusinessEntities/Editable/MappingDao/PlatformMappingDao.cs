@@ -56,7 +56,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
                 TimeEnd = model.TimeEnd,
                 OrderTimeStart = model.OrderTimeStart,
                 OrderTimeEnd = model.OrderTimeEnd,
-                MinCheck = model.MinCheck
+                MinCheck = model.MinCheck,
+                IsAroundClock = model.IsAroundClock
             };
         }
 
@@ -101,6 +102,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             daoModel.MinCheck = model.MinCheck;
             daoModel.OrderTimeStart = model.OrderTimeStart;
             daoModel.OrderTimeEnd = model.OrderTimeEnd;
+            daoModel.IsAroundClock = model.IsAroundClock;
 
             return daoModel;
         }

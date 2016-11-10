@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html ng-app="horoshikiAppLogin" xmlns="http://www.w3.org/1999/xhtml">
+<head ng-controller="HeaderController">
+    <meta charset="utf-8" />
+    <title ng-bind="title+'| IS Horoshiki'" ></title>
+
+    <meta name="description" content="login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="/theme/assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="/theme/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="/theme/assets/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+
+    <!--Beyond styles-->
+    <link href="/theme/assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="/theme/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="/theme/assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="/theme/assets/js/skins.min.js"></script>
+    <base href="/" />
+</head>
+<body ng-cloak>
+
+<div class="login-container animated fadeInDown" ng-controller="LoginLayoutController" ng-view>
+    <!--<div ></div>-->
+</div>
+
+
+    <!--Basic Scripts-->
+    <script src="/theme/assets/js/jquery.min.js"></script>
+    <script src="/theme/assets/js/bootstrap.min.js"></script>
+    <script src="/theme/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="/theme/assets/js/beyond.js"></script>
+
+
+    <!-- Angular lib -->
+    <!--<script type="text/javascript" src="/plugins/angular/lib/angular.min.js"></script>-->
+    <script type="text/javascript" src="/plugins/angular/angular.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-route.min.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="/plugins/angular/angular-resource.min.js"></script>
+
+    <!-- Angular app -->
+    <script type="text/javascript" src="/angular-app/app.js"></script>
+    <script type="text/javascript" src="/angular-app/custom.js"></script>
+
+    <!-- Angular controllers -->
+    <script type="text/javascript" src="/angular-app/controllers/LayoutController.js"></script>
+    <script type="text/javascript" src="/angular-app/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="/angular-app/controllers/ErrorController.js"></script>
+
+    <!-- Angular services -->
+    <script type="text/javascript" src="/angular-app/service/TranslationService.js"></script>
+    <script type="text/javascript" src="/angular-app/service/BackendService.js"></script>
+    <script type="text/javascript" src="/angular-app/service/AccountService.js"></script>
+
+</body>
+</html>

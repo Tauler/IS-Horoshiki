@@ -1,181 +1,186 @@
-<div class="page-breadcrumbs">
-    <ul class="breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="/">Главная</a>
-        </li>
-        <!--<li>-->
-        <!--<a href="/users">Настройки</a>-->
-        <!--</li>-->
-        <li class="active">Зоны доставки</li>
-    </ul>
+<div class="row">
+    <div class="col-lg-12 ">
+        <ul class="breadcrumb">
+            <li><a href="#">Главная</a></li>
+            <li class="active">Зоны доставки</li>
+        </ul>
+    </div>
 </div>
-<div class="page-body">
-    <div class="col-xs-12 col-md-12">
-        <div class="widget">
-            <div class="widget-header  with-footer">
-                <span class="widget-caption">Зоны доставки</span>
-            </div>
-            <div class="widget-body">
-
-                <div class="row">
-                    <div class="col-md-9" style="height: 600px">
-                        <ya-map ya-zoom="10" ya-center="{{model.subdivisionCenter}}"
-                                ya-event-click="notActiveZone($event)"
-                                ya-after-init="initMap($target);">
-                            <ya-geo-object ng-if="model.objects.length!=0"
-                                           ng-repeat="object in model.objects"
-                                           ya-source="object.polygon"
-                                           ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1, zIndex: '{{object.options.zIndex}}', zIndexActive: 'object.options.zIndexActive'  }"
-                                           ya-after-init="addedPolygon($target);"
-                                           ya-event-click="changeActiveZoneWithMap($event)"
-                                           ya-event-geometrychange="changeGeometry($event)">
-                            </ya-geo-object>
-                        </ya-map>
-                    </div>
-                    <div class="col-md-3">
 
 
-                        <div class="padding-top-20">
-                            <div class="form-group">
-                                <label for="subdivisions">Подразделение:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select ng-disabled="subdivisionIsDisabled" name="priceType" id="subdivisions" class="form-control"
-                                            ng-model="model.subdivision"
-                                            ng-change="changeSubdivision();">
-                                        <!--<option value="">Не выбрано</option>-->
-                                        <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
-                                            {{subdivision.Name}}
-                                        </option>
-                                    </select>
-                                </div>
+<!-- main -->
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+
+                        <div class="row">
+                            <div class="col-md-9" style="height: 600px">
+                                <ya-map ya-zoom="10" ya-center="{{model.subdivisionCenter}}"
+                                        ya-event-click="notActiveZone($event)"
+                                        ya-after-init="initMap($target);">
+                                    <ya-geo-object ng-if="model.objects.length!=0"
+                                                   ng-repeat="object in model.objects"
+                                                   ya-source="object.polygon"
+                                                   ya-options="{editorDrawingCursor: 'crosshair', editorMaxPoints: 300, fillColor: '{{object.options.fillColor}}', strokeColor: '{{object.options.strokeColor}}', fillOpacity: '{{object.options.fillOpacity}}', strokeWidth: 1, zIndex: '{{object.options.zIndex}}', zIndexActive: 'object.options.zIndexActive'  }"
+                                                   ya-after-init="addedPolygon($target);"
+                                                   ya-event-click="changeActiveZoneWithMap($event)"
+                                                   ya-event-geometrychange="changeGeometry($event)">
+                                    </ya-geo-object>
+                                </ya-map>
                             </div>
-
-                            <div class="form-group">
-                                <label for="platforms">Площадка:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select ng-disabled="platformIsDisabled" name="priceType" id="platforms" class="form-control"
-                                            ng-model="model.platform"
-                                            ng-change="changePlatform();">
-                                        <!--<option value="">Не выбрано</option>-->
-                                        <option ng-repeat="platform in model.platforms" value="{{platform}}">
-                                            {{platform.Name}}
-                                        </option>
-                                    </select>
-                                    <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
-                                    <!--подразделения </code>-->
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <dev class="col-md-12 margin-bottom-10">
-                                    <a ng-click="saveCenterPlatform();" href="javascript:void(0);"
-                                       class="btn btn-primary btn-block">
-                                        Закрепить центр для площадки
-                                    </a>
-                                </dev>
-                            </div>
-                            <div class="row">
-                                <dev class="col-md-6 ">
-                                    <a ng-click="addObject();" href="javascript:void(0);"
-                                       class="btn btn-default btn-block">Добавить зону
-                                    </a>
-                                </dev>
-                                <dev class="col-md-6 ">
-                                    <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active"
-                                       href="javascript:void(0);" class="btn btn-default btn-block ">
-                                        Удалить зону
-                                    </a>
-                                </dev>
-                            </div>
-
-                        </div>
+                            <div class="col-md-3">
 
 
-                        <div class="padding-top-20" ng-show="model.zoneForm.active">
-                            <form role="form">
-                                <!--<div class="form-group">-->
-                                <!--<label for="zoneName">Название зоны:</label>-->
-                                <!--<input class="form-control" ng-model="model.zoneForm.name"-->
-                                <!--ng-blur="changeValueActiveZone();" id="zoneName"-->
-                                <!--placeholder="Название зоны"-->
-                                <!--type="text">-->
-                                <!--</div>-->
-
-                                <div class="form-group">
-                                    <label for="zoneType">Тип зоны:</label>
-                                    <div class="input-group" style="width: 100%">
-                                        <select name="priceType" id="zoneType" class="form-control"
-                                                ng-model="model.zoneForm.zoneType"
-                                                ng-change="changeZoneType();">
-                                            <option value="">Не выбрано</option>
-                                            <option ng-repeat="zoneTypes in model.deliveryZoneTypes"
-                                                    value="{{zoneTypes}}">
-                                                {{zoneTypes.Value}}
-                                            </option>
-                                        </select>
-                                        <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
-                                        <!--подразделения </code>-->
+                                <div>
+                                    <div class="form-group">
+                                        <label for="subdivisions">Подразделение:</label>
+                                        <div class="input-group" style="width: 100%">
+                                            <select ng-disabled="subdivisionIsDisabled" name="priceType" id="subdivisions" class="form-control"
+                                                    ng-model="model.subdivision"
+                                                    ng-change="changeSubdivision();">
+                                                <!--<option value="">Не выбрано</option>-->
+                                                <option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+                                                    {{subdivision.Name}}
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="platforms">Площадка:</label>
+                                        <div class="input-group" style="width: 100%">
+                                            <select ng-disabled="platformIsDisabled" name="priceType" id="platforms" class="form-control"
+                                                    ng-model="model.platform"
+                                                    ng-change="changePlatform();">
+                                                <!--<option value="">Не выбрано</option>-->
+                                                <option ng-repeat="platform in model.platforms" value="{{platform}}">
+                                                    {{platform.Name}}
+                                                </option>
+                                            </select>
+                                            <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
+                                            <!--подразделения </code>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <dev class="col-md-12 margin-bottom-10">
+                                            <a ng-click="saveCenterPlatform();" href="javascript:void(0);"
+                                               class="btn btn-primary btn-block">
+                                                Закрепить центр для площадки
+                                            </a>
+                                        </dev>
+                                    </div>
+                                    <div class="row">
+                                        <dev class="col-md-6 ">
+                                            <a ng-click="addObject();" href="javascript:void(0);"
+                                               class="btn btn-default btn-block">Добавить зону
+                                            </a>
+                                        </dev>
+                                        <dev class="col-md-6 ">
+                                            <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active"
+                                               href="javascript:void(0);" class="btn btn-default btn-block ">
+                                                Удалить зону
+                                            </a>
+                                        </dev>
+                                    </div>
+
                                 </div>
-                            </form>
+
+
+                                <div class="padding-top-20" ng-show="model.zoneForm.active">
+                                    <form role="form">
+                                        <!--<div class="form-group">-->
+                                        <!--<label for="zoneName">Название зоны:</label>-->
+                                        <!--<input class="form-control" ng-model="model.zoneForm.name"-->
+                                        <!--ng-blur="changeValueActiveZone();" id="zoneName"-->
+                                        <!--placeholder="Название зоны"-->
+                                        <!--type="text">-->
+                                        <!--</div>-->
+
+                                        <div class="form-group">
+                                            <label for="zoneType">Тип зоны:</label>
+                                            <div class="input-group" style="width: 100%">
+                                                <select name="priceType" id="zoneType" class="form-control"
+                                                        ng-model="model.zoneForm.zoneType"
+                                                        ng-change="changeZoneType();">
+                                                    <option value="">Не выбрано</option>
+                                                    <option ng-repeat="zoneTypes in model.deliveryZoneTypes"
+                                                            value="{{zoneTypes}}">
+                                                        {{zoneTypes.Value}}
+                                                    </option>
+                                                </select>
+                                                <!--<code class="ng-binding" ng-show="model.error.priceType">Необходимо указать тип цен-->
+                                                <!--подразделения </code>-->
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <table class="table table-hover">
+                                    <thead class="bordered-blue">
+                                    <tr>
+                                        <th>
+                                            Зоны доставки
+                                        </th>
+                                        <!--<th>-->
+
+                                        <!--</th>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="zone in model.objects | filter:{platformId:model.zoneForm.platformId}"
+                                        ng-click="changeActiveZoneWithList(zone.index);"
+                                        ng-class="model.zoneForm.index == zone.index ? 'table-hover_active':''">
+                                        <!--<td>-->
+                                        <!--{{zone.name}}-->
+                                        <!--</td>-->
+                                        <td>
+                                            {{zone.type.Value}}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <!--<a ng-click="getGeoCoder();"-->
+                                <!--href="javascript:void(0);" class="btn btn-default btn-block ">-->
+                                <!--Координаты-->
+                                <!--</a>-->
+
+
+                                <br/><br/><br/>
+
+
+                                <label for="autocomplete">Проверка попадания в зону: </label>
+                                <div>
+                                    <div class="form-group col-md-9 padding-right-0 padding-left-0">
+                                        <input class="form-control" id="autocomplete">
+                                    </div>
+                                    <div class="col-md-3 padding-left-0">
+                                        <a ng-click="searchAddress();"
+                                           data-target="#checkAddressinZone"
+                                           href="javascript:void(0);"
+                                           data-toggle="modal"
+                                           class="btn btn-primary">Найти</a>
+                                    </div>
+
+                                </div>
+                                <!--<small>{{model.geoAddress}}</small>-->
+                            </div>
                         </div>
 
-                        <table class="table table-hover">
-                            <thead class="bordered-blue">
-                            <tr>
-                                <th>
-                                    Зоны доставки
-                                </th>
-                                <!--<th>-->
-
-                                <!--</th>-->
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="zone in model.objects | filter:{platformId:model.zoneForm.platformId}"
-                                ng-click="changeActiveZoneWithList(zone.index);"
-                                ng-class="model.zoneForm.index == zone.index ? 'table-hover_active':''">
-                                <!--<td>-->
-                                <!--{{zone.name}}-->
-                                <!--</td>-->
-                                <td>
-                                    {{zone.type.Value}}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <!--<a ng-click="getGeoCoder();"-->
-                           <!--href="javascript:void(0);" class="btn btn-default btn-block ">-->
-                            <!--Координаты-->
-                        <!--</a>-->
-
-
-                        <br/><br/><br/><br/>
-
-
-                        <label for="autocomplete">Проверка попадания в зону: </label>
-                        <div>
-                            <div class="form-group col-md-9 padding-right-0 padding-left-0">
-                                <input class="form-control" id="autocomplete">
-                            </div>
-                            <div class="col-md-3 padding-left-0">
-                                <a ng-click="searchAddress();"
-                                   data-target="#checkAddressinZone"
-                                   href="javascript:void(0);"
-                                   data-toggle="modal"
-                                   class="btn btn-primary">Найти</a>
-                            </div>
-
-                        </div>
-                        <!--<small>{{model.geoAddress}}</small>-->
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /row -->
     </div>
 </div>
+
+
+
 
 
 <div id="checkAddressinZone" class="modal modal-primary" style="display: none;" aria-hidden="true">
