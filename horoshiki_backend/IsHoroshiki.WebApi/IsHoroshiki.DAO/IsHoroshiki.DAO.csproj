@@ -64,12 +64,14 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\Helpers\SaleAnalizeResult.cs" />
+    <Compile Include="DaoEntities\Editable\MonthObjective.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonal.cs" />
     <Compile Include="DaoEntities\Editable\SalePlanDay.cs" />
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
     <Compile Include="DaoEntities\Editable\SaleCheck.cs" />
     <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />
     <Compile Include="DaoEntities\NotEditable\ShiftType.cs" />
+    <Compile Include="DaoEntityConfigurations\Editable\MonthObjectiveConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\ShiftPersonalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanDayConfiguration.cs" />
