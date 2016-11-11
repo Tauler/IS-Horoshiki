@@ -1,5 +1,6 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
+using System;
 using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
@@ -19,6 +20,32 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             : base(context)
         {
 
+        }
+
+        #endregion
+
+        #region IShiftPersonalRepository
+
+        /// <summary>
+        /// Поличить смену
+        /// </summary>
+        /// <param name="positionId">Идентификатор должности</param>
+        /// <param name="shiftTypeId">Идентификатор типа смены</param>
+        /// <returns></returns>
+        public ShiftPersonal Get(int positionId, int shiftTypeId)
+        {
+            return DbSet.FirstOrDefault(sp => sp.PositionId == positionId && sp.ShiftTypeId == shiftTypeId);
+        }
+
+        /// <summary>
+        /// Проверить существование смены
+        /// </summary>
+        /// <param name="positionId">Идентификатор должности</param>
+        /// <param name="shiftTypeId">Идентификатор типа смены</param>
+        /// <returns></returns>
+        public bool IsExist(int positionId, int shiftTypeId)
+        {
+            return DbSet.Any(sp => sp.PositionId == positionId && sp.ShiftTypeId == shiftTypeId);
         }
 
         #endregion
