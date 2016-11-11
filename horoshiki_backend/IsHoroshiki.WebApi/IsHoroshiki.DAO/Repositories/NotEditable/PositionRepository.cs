@@ -27,11 +27,16 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
 
         #endregion
 
+        #region IPositionRepository
+
         /// <summary>
-        /// Получить список должностей без Операционного дитектора, Управляющего рестораном и Курьера
+        /// Получить список всех должностей кроме:
+        /// 1) Операционного директора;
+        /// 2) Управляющего рестораном;
+        /// 3) Курьера
         /// </summary>
         /// <returns></returns>
-        public virtual async Task<IEnumerable<Position>> GetPositionsOnShiftAsync()
+        public async Task<IEnumerable<Position>> GetPositionsOnShiftAsync()
         {
             var list = DbSet.Where(p => FilterPositionsOnShift(p)).ToList();
             foreach (var daoEntity in list)
@@ -40,6 +45,8 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
             }
             return list;
         }
+
+        #endregion
 
         #region private
 
