@@ -4,7 +4,7 @@
 
 var subdivisionsControllers = angular.module('subdivisionsControllers', []);
 
-subdivisionsControllers.controller('SubdivisionViewController', ['$scope', '$location', 'SubdivisionService',
+subdivisionsControllers.controller('SubdivisionListController', ['$scope', '$location', 'SubdivisionService',
     function ($scope, $location, SubdivisionService) {
         $scope.model = {};
         $scope.model.subdivisions = [];
