@@ -84,9 +84,9 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
             })
 
             .when('/subdivisions', {
-                templateUrl: '/angular-html/subdivisions.view.html',
-                controller: 'SubdivisionViewController',
-                pageId: 'subdivisionViewPage',
+                templateUrl: '/angular-html/subdivisions.list.html',
+                controller: 'SubdivisionListController',
+                pageId: 'subdivisionListPage',
                 groupId: 'settings',
                 subgroupId: 'subdivisions',
                 title: 'Просмотр подразделений'
