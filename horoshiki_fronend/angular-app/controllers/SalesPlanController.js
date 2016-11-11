@@ -15,7 +15,7 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
         $scope.model.typePlanes = [];
         $scope.model.typePlanes[0] = enumTypePlan.pizza;
         $scope.model.typePlanes[1] = enumTypePlan.sushi;
-        $scope.model.typePlan = angular.toJson(enumTypePlan.pizza);
+        $scope.model.typePlan = angular.toJson(enumTypePlan.sushi);
 
 
         $scope.model.years = enumYears;
