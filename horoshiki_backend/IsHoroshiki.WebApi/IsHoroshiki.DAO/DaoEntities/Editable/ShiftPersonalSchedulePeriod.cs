@@ -1,5 +1,4 @@
-﻿using IsHoroshiki.DAO.DaoEntities.NotEditable;
-using System;
+﻿using System;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
@@ -21,24 +20,6 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         ///  График периода смен работника
         /// </summary>
         public int ShiftPersonalScheduleId
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Тип смены
-        /// </summary>
-        public ShiftType ShiftType
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Тип смены
-        /// </summary>
-        public int ShiftTypeId
         {
             get;
             set;

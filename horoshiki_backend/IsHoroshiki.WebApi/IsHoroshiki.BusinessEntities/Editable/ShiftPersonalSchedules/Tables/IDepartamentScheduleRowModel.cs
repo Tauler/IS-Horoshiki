@@ -12,29 +12,19 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         /// <summary>
         /// Строка в таблице - Отдел
         /// </summary>
-        IDepartmentModel DepartmentModel
-        {
-            get;
-            set;
-        }
-
-
-        /// <summary>
-        /// Строка в таблице - Должность
-        /// </summary>
-        IPositionModel PositionModel
+        IDepartmentModel Department
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Строка в таблице - сотрудники
+        /// Строка в таблице - подотдел или должность
         /// </summary>
-        List<IApplicationUserScheduleRowModel> UserRows
+        List<ISubDepartamentScheduleRowModel> SubDepartment
         {
             get;
             set;
-        }
+        }        
     }
 }

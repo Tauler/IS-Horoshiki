@@ -26,6 +26,15 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         }
 
         /// <summary>
+        /// наименование отдела
+        /// </summary>
+        public string DepartmentName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Подотдел
         /// </summary>
         public int? SubDepartmentId
@@ -34,10 +43,28 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
             set;
         }
 
-	    /// <summary>
+        /// <summary>
+        /// Наименование подотдела
+        /// </summary>
+        public string SubDepartmentName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Пользователь
         /// </summary>
         public int? UserId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Пользователь
+        /// </summary>
+        public string UserName
         {
             get;
             set;
@@ -53,9 +80,18 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         }
 
         /// <summary>
+        /// Наименование должности
+        /// </summary>
+        public string PositionName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Период для графика смен сотрудника
         /// </summary>
-        public int? ShiftPersonalSchedulePeriodId
+        public int? ShiftPersonalScheduleId
         {
             get;
             set;

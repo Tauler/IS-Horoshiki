@@ -104,9 +104,11 @@
     <Compile Include="Editable\ShiftPersonalSchedules\ShiftPersonalScheduleModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\IShiftPersonalScheduleModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\ApplicationUserScheduleRowModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Tables\SubDepartamentScheduleRowModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\HeaderScheduleColumnModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\IApplicationUserScheduleRowModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\DepartamentScheduleRowModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Tables\ISubDepartamentScheduleRowModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\IDepartamentScheduleRowModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\CourierScheduleRowModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\IHeaderScheduleColumnModel.cs" />

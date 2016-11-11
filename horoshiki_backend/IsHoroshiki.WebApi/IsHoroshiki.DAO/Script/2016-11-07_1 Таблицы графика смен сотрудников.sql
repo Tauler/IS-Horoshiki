@@ -1,6 +1,7 @@
 CREATE TABLE [dbo].[ShiftPersonalSchedules](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
-	[UserId] [int] NOT NULL,
+	[UserId]	  [int] NOT NULL,
+	[ShiftTypeId] [int] NOT NULL,
 	[Date] datetime NOT NULL
  CONSTRAINT [PK_dbo.ShiftPersonalSchedules] PRIMARY KEY CLUSTERED 
 (
@@ -18,11 +19,18 @@ GO
 ALTER TABLE [dbo].[ShiftPersonalSchedules] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.AspNetUsers_UserId]
 GO
 
+ALTER TABLE [dbo].[ShiftPersonalSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.ShiftTypes_ShiftTypeId] FOREIGN KEY([ShiftTypeId])
+REFERENCES [dbo].[ShiftTypes] ([Id])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[ShiftPersonalSchedules] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.ShiftTypes_ShiftTypeId]
+GO
+
 
 CREATE TABLE [dbo].[ShiftPersonalSchedulePeriods](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[ShiftPersonalScheduleId] [int] NOT NULL,
-	[ShiftTypeId] [int] NOT NULL,
 	[StartTime] [time](7) NOT NULL,
 	[StopTime] [time](7) NOT NULL,
  CONSTRAINT [PK_dbo.ShiftPersonalSchedulePeriods] PRIMARY KEY CLUSTERED 
@@ -39,12 +47,4 @@ ON DELETE CASCADE
 GO
 
 ALTER TABLE [dbo].[ShiftPersonalSchedulePeriods] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedulePeriods_dbo.ShiftPersonalSchedules_ShiftPersonalScheduleId]
-GO
-
-ALTER TABLE [dbo].[ShiftPersonalSchedulePeriods]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ShiftPersonalSchedulePeriods_dbo.ShiftTypes_ShiftTypeId] FOREIGN KEY([ShiftTypeId])
-REFERENCES [dbo].[ShiftTypes] ([Id])
-ON DELETE CASCADE
-GO
-
-ALTER TABLE [dbo].[ShiftPersonalSchedulePeriods] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedulePeriods_dbo.ShiftTypes_ShiftTypeId]
 GO

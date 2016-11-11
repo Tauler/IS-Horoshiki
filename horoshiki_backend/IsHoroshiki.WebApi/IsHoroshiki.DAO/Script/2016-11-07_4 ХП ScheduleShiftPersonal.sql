@@ -30,11 +30,15 @@ BEGIN
 	(
 		[DateDoc]		  datetime, 
 		[DepartmentId]	  int,
+		[DepartmentName]  nvarchar(100),
 		[SubDepartmentId] int,
+		[SubDepartmentName]  nvarchar(100),
 		[UserId]		  int,
+		[UserName]		  nvarchar(100),
 		[PositionId]	  int,
-		[ShiftPersonalSchedulePeriodId] int,
-		[ShiftTypeId] int
+		[PositionName]	  nvarchar(100),
+		[ShiftPersonalScheduleId] int,
+		[ShiftTypeId]	  int
 	)
 
 	--курсор периода дат
@@ -102,7 +106,7 @@ BEGIN
 			)
 	END
 
-	--отбираем добавляем пользователей для сотрудников
+	--добавляем сотрудников
 	INSERT INTO #RESULT_USER
 	(
 		[DateDoc]		  , 
@@ -119,14 +123,15 @@ BEGIN
 		u.PositionId
 	FROM
 		#RESULT r
-	LEFT JOIN
-		AspNetUsers u ON
-		 u.PlatformId = @PlatformId AND 	
+	LEFT JOIN AspNetUsers u ON
+		 u.PlatformId = @PlatformId			AND 	
+		 u.DepartmentId = r.DepartmentId	AND
+		 u.EmployeeStatusId <> 4			AND
 		 ((u.SubDepartmentId IS NOT NULL AND u.SubDepartmentId = r.SubDepartmentId) OR
 		 (u.SubDepartmentId IS NULL AND u.DepartmentId IS NOT NULL AND u.DepartmentId = r.DepartmentId))
 
 
-	--бобаляем смены графика для сотрудников
+	--добаляем смены для сотрудников
 	INSERT INTO #RESULT_USER_SHIFT
 	(
 		[DateDoc]		  , 
@@ -134,7 +139,7 @@ BEGIN
 		[SubDepartmentId] ,
 		[UserId]		  ,
 		[PositionId]	  ,
-		[ShiftPersonalSchedulePeriodId],
+		[ShiftPersonalScheduleId],
 		[ShiftTypeId]		  
 	)
 	SELECT
@@ -143,17 +148,72 @@ BEGIN
 		ru.[SubDepartmentId] ,
 		ru.[UserId]			 ,
 		ru.[PositionId]		 ,
-		spp.Id				 ,
-		spp.ShiftTypeId
+		sp.Id				 ,
+		1--sp.ShiftTypeId
 	FROM
 		#RESULT_USER ru
 	LEFT JOIN
 		[dbo].[ShiftPersonalSchedules] sp ON sp.UserId = ru.UserId AND convert(varchar(10), sp.[Date], 120) = convert(varchar(10), ru.DateDoc, 120)
-	LEFT JOIN
-		[dbo].[ShiftPersonalSchedulePeriods] spp ON spp.[ShiftPersonalScheduleId] = sp.Id
+
+    -- Наименование отдела
+	UPDATE
+			#RESULT_USER_SHIFT
+	   SET
+			DepartmentName = Value
+	  FROM
+			Departments
+	 WHERE  
+			#RESULT_USER_SHIFT.DepartmentId IS NOT NULL AND
+			#RESULT_USER_SHIFT.DepartmentId = Departments.Id
+
+	-- Наименование подотдела
+	UPDATE
+			#RESULT_USER_SHIFT
+	   SET
+			SubDepartmentName = Value
+	  FROM
+			SubDepartments
+	 WHERE  
+			#RESULT_USER_SHIFT.SubDepartmentId IS NOT NULL AND
+			#RESULT_USER_SHIFT.SubDepartmentId = SubDepartments.Id
+
+	-- Наименование должности
+	UPDATE
+			#RESULT_USER_SHIFT
+	   SET
+			PositionName = Value
+	  FROM
+			Positions
+	 WHERE  
+			#RESULT_USER_SHIFT.PositionId IS NOT NULL AND
+			#RESULT_USER_SHIFT.PositionId = Positions.Id
+
+	-- Наименование пользователя
+	UPDATE
+			#RESULT_USER_SHIFT
+	   SET
+			UserName = LastName + ' ' + FirstName
+	  FROM
+			AspNetUsers
+	 WHERE  
+			#RESULT_USER_SHIFT.UserId IS NOT NULL AND
+			#RESULT_USER_SHIFT.UserId = AspNetUsers.Id
 
 
-	SELECT * FROM #RESULT_USER_SHIFT
+	SELECT 
+		[DateDoc]		  , 
+		[DepartmentId]	  ,
+		[DepartmentName]  ,
+		[SubDepartmentId] ,
+		[SubDepartmentName],
+		[UserId]		  ,
+		[UserName]		  ,
+		[PositionId]	  ,
+		[PositionName]	  ,
+		[ShiftPersonalScheduleId],
+		[ShiftTypeId]	
+	FROM 
+		#RESULT_USER_SHIFT
 
 	DROP TABLE #RESULT
 	DROP TABLE #RESULT_USER

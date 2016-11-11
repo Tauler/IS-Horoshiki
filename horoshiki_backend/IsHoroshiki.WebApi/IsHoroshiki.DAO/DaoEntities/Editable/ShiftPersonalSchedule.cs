@@ -1,6 +1,7 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Accounts;
 using System;
 using System.Collections.Generic;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
@@ -22,6 +23,24 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// Пользователь
         /// </summary>
         public int UserId
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Тип смены
+        /// </summary>
+        public ShiftType ShiftType
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Тип смены
+        /// </summary>
+        public int ShiftTypeId
         {
             get;
             set;

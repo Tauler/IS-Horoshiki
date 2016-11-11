@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.BusinessEntities.Account;
 
 namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 {
@@ -66,7 +69,9 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             result.SalePlanCountColumns = GetSalePlanCountColumns(model, result);
 
             var schedulerShiftPersonals = _unitOfWork.ShiftPersonalScheduleRepository.GetScheduleShiftPersonal(departaments, subDepartaments, model.Platform.Id, model.DateStart, model.DateEnd);
-           
+
+            result.DepartamentScheduleRows = GetDepartamentScheduleRows(model, result, schedulerShiftPersonals);
+          
             return result;
         }
 
@@ -97,7 +102,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Заголовок таблицы
+        /// Кол-во чеков за период
         /// </summary>
         /// <param name="model">Данные с фронта</param>
         /// <param name="report">Отчет</param>
@@ -121,6 +126,100 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
                 }
 
                 result.Add(column);
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Отделы\сотрудники
+        /// </summary>
+        /// <param name="model">Данные с фронта</param>
+        /// <param name="report">Отчет</param>
+        /// <returns></returns>
+        private List<IDepartamentScheduleRowModel> GetDepartamentScheduleRows(IShiftPersonalScheduleDataModel model,
+            IShiftPersonalScheduleReportModel report, 
+            List<ScheduleShiftPersonalResult> scheduleShiftPersonalResults)
+        {
+            var result = new List<IDepartamentScheduleRowModel>();
+
+            foreach (var scheduleResult in scheduleShiftPersonalResults)
+            {
+                var rowDepartment = result.FirstOrDefault(r => r.Department.Id == scheduleResult.DepartmentId);
+                if (rowDepartment == null)
+                {
+                    rowDepartment = new DepartamentScheduleRowModel()
+                    {
+                        Department = new DepartmentModel()
+                        {
+                            Id = scheduleResult.DepartmentId.Value,
+                            Value = scheduleResult.DepartmentName
+                        },
+                        SubDepartment = new List<ISubDepartamentScheduleRowModel>()
+                    };
+
+                    result.Add(rowDepartment);
+                }
+
+                var subDepartamentRow = scheduleResult.SubDepartmentId.HasValue
+                    ? rowDepartment.SubDepartment.FirstOrDefault(sd => sd.SubDepartment != null && sd.SubDepartment.Id == scheduleResult.SubDepartmentId.Value)
+                    : rowDepartment.SubDepartment.FirstOrDefault(sd => sd.Position != null && sd.Position.Id == scheduleResult.PositionId.Value);
+
+                if (subDepartamentRow == null)
+                {
+                    subDepartamentRow = new SubDepartamentScheduleRowModel();
+
+                    if (scheduleResult.SubDepartmentId.HasValue)
+                    {
+                        subDepartamentRow.SubDepartment = new SubDepartmentModel()
+                        {
+                            Id = scheduleResult.SubDepartmentId.Value,
+                            Value = scheduleResult.SubDepartmentName
+                        };
+                    }
+                    else if (scheduleResult.PositionId.HasValue)
+                    {
+                        subDepartamentRow.Position = new PositionModel()
+                        {
+                            Id = scheduleResult.PositionId.Value,
+                            Value = scheduleResult.PositionName
+                        };
+                    }
+
+                    subDepartamentRow.UserRows = new List<IApplicationUserScheduleRowModel>();
+
+                    rowDepartment.SubDepartment.Add(subDepartamentRow);
+                }
+
+                if (scheduleResult.UserId.HasValue)
+                {
+                    var userRow = subDepartamentRow.UserRows.FirstOrDefault(ur => ur.User.Id == scheduleResult.UserId.Value);
+                    if (userRow == null)
+                    {
+                        userRow = new ApplicationUserScheduleRowModel()
+                        {
+                            Date = scheduleResult.DateDoc,
+                        };
+
+                        userRow.User = new ApplicationUserSmallModel()
+                        {
+                            Id = scheduleResult.UserId.Value,
+                            UserName = scheduleResult.UserName
+                        };
+                        
+                        subDepartamentRow.UserRows.Add(userRow);
+                    }
+
+                    if (scheduleResult.ShiftPersonalScheduleId.HasValue)
+                    {
+                        userRow.ShiftPersonalSchedule = new ShiftPersonalScheduleModel
+                        {
+                            Id = scheduleResult.ShiftPersonalScheduleId.Value,
+                            ShiftPersonalSchedulePeriods = new List<IShiftPersonalSchedulePeriodModel>()
+                        };
+                    }
+
+                }
             }
 
             return result;
