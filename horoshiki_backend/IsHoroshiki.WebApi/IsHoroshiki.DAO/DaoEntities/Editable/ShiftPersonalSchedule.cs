@@ -1,10 +1,11 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Accounts;
 using System;
+using System.Collections.Generic;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
     /// <summary>
-    /// График периода смен сотрудника
+    /// График периода сотрудника на день (смен)
     /// </summary>
     public class ShiftPersonalSchedule : BaseDaoEntity
     {
@@ -30,6 +31,15 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// Дата расписания работы сотрудника
         /// </summary>
         public DateTime Date
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Периоды работы сотрудника (смены)
+        /// </summary>
+        public ICollection<ShiftPersonalSchedulePeriod> ShiftPersonalSchedulePeriods
         {
             get;
             set;

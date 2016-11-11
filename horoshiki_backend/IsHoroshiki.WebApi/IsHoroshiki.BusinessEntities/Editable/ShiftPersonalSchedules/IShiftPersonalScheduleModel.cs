@@ -1,6 +1,4 @@
-﻿using IsHoroshiki.BusinessEntities.Editable.Interfaces;
-using IsHoroshiki.BusinessEntities.Editable.SalePlans;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -12,54 +10,28 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
     public interface IShiftPersonalScheduleModel : IBaseBusninessModel
     {
         /// <summary>
-        /// Площадка
+        /// Пользователь
         /// </summary>
-        IPlatformModel Platform
+        IApplicationUserModel User
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Список отделов
+        /// Дата расписания работы сотрудника
         /// </summary>
-        ICollection<IDepartmentModel> Departaments
+        DateTime Date
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// Список подотделов
-        /// </summary>
-        ICollection<ISubDepartmentModel> SubDepartaments
-        {
-            get;
-            set;
-        }
 
         /// <summary>
-        /// Тип плана
+        /// Расписание работы сотрудника (смены)
         /// </summary>
-        PlanType PlanType
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Дата начала формирования графика расписания 
-        /// </summary>
-        DateTime DateStart
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Дата окончания формирования графика расписания 
-        /// </summary>
-        DateTime DateEnd
+        ICollection<IShiftPersonalSchedulePeriodModel> ShiftPersonalSchedulePeriods
         {
             get;
             set;

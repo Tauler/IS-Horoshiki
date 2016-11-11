@@ -1,4 +1,4 @@
-ALTER TABLE [dbo].[AspNetUsers] ADD [SubDepartments] INT NULL
+ALTER TABLE [dbo].[AspNetUsers] ADD [SubDepartmentId] INT NULL
 
 GO
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System;
 using IsHoroshiki.WebApi.Handlers;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
+using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
@@ -43,7 +44,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Отчет плана продаж
         /// </summary>
         [Route("report")]
-        public async Task<IHttpActionResult> Report(IShiftPersonalScheduleModel model)
+        public async Task<IHttpActionResult> Report(IShiftPersonalScheduleDataModel model)
         {
             try
             {

@@ -12,6 +12,6 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
         /// <summary>
         /// График (расписание) смен сотрудников
         /// </summary>
-        Task<IShiftPersonalScheduleReportModel> GetReport(IShiftPersonalScheduleModel model);
+        Task<IShiftPersonalScheduleReportModel> GetReport(IShiftPersonalScheduleDataModel model);
     }
 }

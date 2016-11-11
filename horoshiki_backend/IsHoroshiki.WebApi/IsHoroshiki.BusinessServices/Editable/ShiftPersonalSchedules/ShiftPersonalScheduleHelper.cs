@@ -4,6 +4,7 @@ using IsHoroshiki.DAO.Helpers;
 using IsHoroshiki.DAO.UnitOfWorks;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,7 +42,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
         /// <summary>
         /// График (расписание) смен сотрудников
         /// </summary>
-        public async Task<IShiftPersonalScheduleReportModel> GetReport(IShiftPersonalScheduleModel model)
+        public async Task<IShiftPersonalScheduleReportModel> GetReport(IShiftPersonalScheduleDataModel model)
         {
             model.Platform.ThrowIfNull();
             model.DateStart.ThrowIfNull();
@@ -59,9 +60,70 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
                 subDepartaments = model.SubDepartaments.Select(d => d.Id).ToList();
             }
 
-            var r = _unitOfWork.ShiftPersonalScheduleRepository.GetScheduleShiftPersonal(departaments, subDepartaments, model.Platform.Id, model.DateStart, model.DateEnd);
+            var result = new ShiftPersonalScheduleReportModel();
 
-            return new ShiftPersonalScheduleReportModel();
+            result.HeaderScheduleColumns = GetHeaderScheduleColumns(model);
+            result.SalePlanCountColumns = GetSalePlanCountColumns(model, result);
+
+            var schedulerShiftPersonals = _unitOfWork.ShiftPersonalScheduleRepository.GetScheduleShiftPersonal(departaments, subDepartaments, model.Platform.Id, model.DateStart, model.DateEnd);
+           
+            return result;
+        }
+
+        #endregion
+
+        #region private
+
+        /// <summary>
+        /// Заголовок таблицы
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        private List<IHeaderScheduleColumnModel> GetHeaderScheduleColumns(IShiftPersonalScheduleDataModel model)
+        {
+            var result = new List<IHeaderScheduleColumnModel>();
+
+            for (var currentDate = model.DateStart; currentDate <= model.DateEnd; currentDate = currentDate.AddDays(1))
+            {
+                var column = new HeaderScheduleColumnModel()
+                {
+                    Date = currentDate,
+                    DayOfWeekDescr = currentDate.ToString("ddd", new CultureInfo("ru-Ru"))
+                };
+                result.Add(column);
+            }
+                        
+            return result;
+        }
+
+        /// <summary>
+        /// Заголовок таблицы
+        /// </summary>
+        /// <param name="model">Данные с фронта</param>
+        /// <param name="report">Отчет</param>
+        /// <returns></returns>
+        private List<ISalePlanCountColumnModel> GetSalePlanCountColumns(IShiftPersonalScheduleDataModel model, IShiftPersonalScheduleReportModel report)
+        {
+            var result = new List<ISalePlanCountColumnModel>();
+
+            Dictionary<DateTime, int> periods = _unitOfWork.SalePlanDayRepository.GetByCountPeriod(model.Platform.Id, (int)model.PlanType, model.DateStart, model.DateEnd);
+
+            foreach (var headerColumn in report.HeaderScheduleColumns)
+            {
+                var column = new SalePlanCountColumnModel()
+                {
+                    Date = headerColumn.Date,
+                };
+
+                if (periods.ContainsKey(headerColumn.Date))
+                {
+                    column.Count = periods[headerColumn.Date];
+                }
+
+                result.Add(column);
+            }
+
+            return result;
         }
 
         #endregion

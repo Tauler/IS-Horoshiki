@@ -25,6 +25,18 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
         }
 
         /// <summary>
+        /// Модель в DAO
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static ApplicationUser ToDaoEntity(this IApplicationUserSmallModel model)
+        {
+            var daoUser = new ApplicationUser();
+            Update(daoUser, model);
+            return daoUser;
+        }
+
+        /// <summary>
         /// Обновить поля в DAO модели
         /// </summary>
         /// <param name="daoModel"></param>
@@ -83,6 +95,20 @@ namespace IsHoroshiki.BusinessEntities.Account.MappingDao
             daoModel.IsAccess = model.IsAccess;
             daoModel.UserName = model.UserName;
             daoModel.Email = model.Email;
+        }
+
+        /// <summary>
+        /// Обновить поля в DAO модели
+        /// </summary>
+        /// <param name="daoModel"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static void Update(this ApplicationUser daoModel, IApplicationUserSmallModel model)
+        {
+            daoModel.Id = model.Id;
+            daoModel.UserName = model.UserName;
+            daoModel.FirstName = model.FirstName;
+            daoModel.LastName = model.LastName;
         }
 
         /// <summary>
