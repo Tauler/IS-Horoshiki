@@ -126,10 +126,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUserManager.cs" />
     <Compile Include="Repositories\Editable\DeliveryZoneRepository.cs" />
+    <Compile Include="Repositories\Editable\Interfaces\IMonthObjectiveRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanDayRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IShiftPersonalRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanRepository.cs" />
+    <Compile Include="Repositories\Editable\MonthObjectiveRepository.cs" />
     <Compile Include="Repositories\Editable\SaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\SalePlanDayRepository.cs" />
     <Compile Include="Repositories\Editable\ShiftPersonalRepository.cs" />
