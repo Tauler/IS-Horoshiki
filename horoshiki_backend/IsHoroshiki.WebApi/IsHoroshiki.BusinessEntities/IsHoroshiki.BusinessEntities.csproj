@@ -89,8 +89,11 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\CollectionEntityConverter.cs" />
     <Compile Include="Converters\EntityModelConverter.cs" />
+    <Compile Include="Editable\Interfaces\IMonthObjectiveModel.cs" />
     <Compile Include="Editable\MappingDao\SalePlanDayModelMappingDao.cs" />
     <Compile Include="Editable\MappingDao\ShiftPersonalModelMappingDao.cs" />
+    <Compile Include="Editable\MappingDao\MonthObjectiveModelMappingDao.cs" />
+    <Compile Include="Editable\MonthObjectiveModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportSumRowModel.cs" />
