@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace IsHoroshiki.BusinessServices.Editable.Interfaces
 {
     /// <summary>
-    /// Сервис смены
+    /// Сервис Смена
     /// </summary>
     public interface IShiftPersonalService : IBaseEditableService<IShiftPersonalModel>
     {

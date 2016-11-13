@@ -33,6 +33,10 @@ namespace IsHoroshiki.BusinessServices.Editable
 
         #endregion
 
+        #region IShiftPersonalService
+
+        #endregion
+
         #region override
 
         /// <summary>

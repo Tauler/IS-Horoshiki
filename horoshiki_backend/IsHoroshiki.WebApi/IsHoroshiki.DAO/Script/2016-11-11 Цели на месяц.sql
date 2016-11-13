@@ -1,5 +1,5 @@
 CREATE TABLE [dbo].[MonthObjectives](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[PlatformId] [int] NOT NULL,
 	[Year] [int] NOT NULL,
 	[Month] [int] NOT NULL,

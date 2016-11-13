@@ -12,7 +12,9 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// <summary>
     /// Контроллер Смена
     /// </summary>
-    public class ShiftPersonalController : BaseController<IShiftPersonalModel>
+    [Authorize]
+    [RoutePrefix("api/shiftPersonals")]
+    public class ShiftPersonalsController : BaseController<IShiftPersonalModel>
     {
         #region Поля и свойства
 
@@ -29,7 +31,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Конструктор
         /// </summary>
         /// <param name="service">Сервис Смена</param>
-        public ShiftPersonalController(IShiftPersonalService service)
+        public ShiftPersonalsController(IShiftPersonalService service)
             : base(service)
         {
             _service = service;

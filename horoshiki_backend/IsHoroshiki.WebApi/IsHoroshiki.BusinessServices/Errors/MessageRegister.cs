@@ -31,6 +31,8 @@ namespace IsHoroshiki.BusinessServices.Errors
             FillMessageEmployeeReasonDismissalHolder();
             FillMessageDeliveryZoneHolder();
             FillMessageSalePlanHolder();
+            FillMessageShiftPersonalHolder();
+            FillMessageMonthObjectiveHolder();
         }
 
         #region private
@@ -148,6 +150,25 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNull, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNull);
             MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNegative, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNegative);
             MessageHolder.Instance.AddMessage(SalePlanErrors.SalePlanNotExit, ResourceBusinessServices.SalePlanValidator_SalePlanNotExit);
+        }
+
+        /// <summary>
+        /// Заполнение ошибок для Смена
+        /// </summary>
+        private static void FillMessageShiftPersonalHolder()
+        {
+            MessageHolder.Instance.AddMessage(ShiftPersonalErrors.PositionIsNull, ResourceBusinessServices.ShiftPersonalValidator_PositionIsNull);
+            MessageHolder.Instance.AddMessage(ShiftPersonalErrors.ShiftTypeIsNull, ResourceBusinessServices.ShiftPersonalValidator_ShiftTypeIsNull);
+        }
+
+        /// <summary>
+        /// Заполнение ошибок для Цель на месяц по показателям
+        /// </summary>
+        private static void FillMessageMonthObjectiveHolder()
+        {
+            MessageHolder.Instance.AddMessage(MonthObjectiveErrors.PlatformIsNull, ResourceBusinessServices.MonthObjectiveValidator_PlatformIsNull);
+            MessageHolder.Instance.AddMessage(MonthObjectiveErrors.YearIsNull, ResourceBusinessServices.MonthObjectiveValidator_YearIsNull);
+            MessageHolder.Instance.AddMessage(MonthObjectiveErrors.MonthIsNull, ResourceBusinessServices.MonthObjectiveValidator_MonthIsNull);
         }
 
         #endregion
