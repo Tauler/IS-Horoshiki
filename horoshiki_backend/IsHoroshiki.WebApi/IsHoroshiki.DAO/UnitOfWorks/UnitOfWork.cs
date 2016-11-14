@@ -134,6 +134,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private IShiftTypeRepository _shiftTypeRepository;
 
         /// <summary>
+        /// Репозиторий Смена
+        /// </summary>
+        private IShiftPersonalRepository _shiftPersonalRepository;
+
+        /// <summary>
         /// Репозиторий График периода смен сотрудника
         /// </summary>
         private IShiftPersonalScheduleRepository _shiftPersonalScheduleRepository;
@@ -471,6 +476,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._shiftTypeRepository = new ShiftTypeRepository(_context);
                 }
                 return _shiftTypeRepository;
+            }
+        }
+
+        /// <summary>
+        /// Репозиторий Смена
+        /// </summary>
+        public IShiftPersonalRepository ShiftPersonalRepository
+        {
+            get
+            {
+                if (this._shiftPersonalRepository == null)
+                {
+                    this._shiftPersonalRepository = new ShiftPersonalRepository(_context);
+                }
+                return this._shiftPersonalRepository;
             }
         }
 

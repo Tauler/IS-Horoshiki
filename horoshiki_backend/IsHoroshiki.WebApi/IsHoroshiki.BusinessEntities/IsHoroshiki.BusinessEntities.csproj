@@ -92,12 +92,15 @@
     <Compile Include="Editable\MappingDao\ShiftPersonalSchedulePeriodModelMappingDao.cs" />
     <Compile Include="Editable\MappingDao\ShiftPersonalScheduleModelMappingDao.cs" />
     <Compile Include="Editable\MappingDao\SalePlanDayModelMappingDao.cs" />
+    <Compile Include="Editable\MappingDao\ShiftPersonalModelMappingDao.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportSumRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportSumRowModel.cs" />
+    <Compile Include="Editable\ShiftPersonals\IShiftPersonalModel.cs" />
+    <Compile Include="Editable\ShiftPersonals\ShiftPersonalModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\IShiftPersonalScheduleDataModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\ShiftPersonalScheduleDataModel.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\ShiftPersonalSchedulePeriodModel.cs" />

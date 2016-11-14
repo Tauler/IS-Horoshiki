@@ -56,8 +56,6 @@ function getToken() {
 }
 
 function httpErrors(url, status){
-
-    console.log(status);
     switch(status){
         case 401:
             redirect403(url);

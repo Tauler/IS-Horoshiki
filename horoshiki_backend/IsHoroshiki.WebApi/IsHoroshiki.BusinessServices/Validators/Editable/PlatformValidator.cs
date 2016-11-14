@@ -55,32 +55,6 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
                 return new ValidationResult(PlatformErrors.MinChecksIsNull);
             }
 
-            if (element.IsAroundClock)
-            {
-                var timeStartTicks = new TimeSpan(0, 0, 0).Ticks;
-                var timeEndTicks = new TimeSpan(1, 0, 0, 0).Ticks;
-
-                if (element.TimeStart.Ticks != timeStartTicks)
-                {
-                    return new ValidationResult(PlatformErrors.WrongTimeStartForAroundClock);
-                }
-
-                if (element.TimeEnd.Ticks != timeEndTicks)
-                {
-                    return new ValidationResult(PlatformErrors.WrongTimeEndForAroundClock);
-                }
-
-                if (element.OrderTimeStart.Ticks != timeStartTicks)
-                {
-                    return new ValidationResult(PlatformErrors.WrongOrderTimeStartForAroundClock);
-                }
-
-                if (element.OrderTimeEnd.Ticks != timeEndTicks)
-                {
-                    return new ValidationResult(PlatformErrors.WrongOrderTimeEndForAroundClock);
-                }
-            }
-
             return new ValidationResult();
         }
 
