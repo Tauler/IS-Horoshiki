@@ -965,6 +965,11 @@
             ALTER TABLE [dbo].[AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.EmployeeReasonDismissals_EmployeeReasonDismissalId]
         </sql>
     </changeSet>
+
+    <changeSet id="09112016-68" author="prohoroven">
+        <comment>Хранимка sale_check_analize исправленная</comment>
+        <sqlFile path="./sql/stored_procedures/SaleCheckAnalize_without_duplicate.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 

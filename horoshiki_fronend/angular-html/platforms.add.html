@@ -1,207 +1,170 @@
-<div class="page-breadcrumbs">
-    <ul class="breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="/">Главная</a>
-        </li>
-        <li>
-            <a href="/platforms" target="_self">Площадки</a>
-        </li>
-        <li ng-if="!isEdit()" class="active">Создание площадки</li>
-        <li ng-if="isEdit()" class="active">Редактирование площадки</li>
-    </ul>
+<div class="row">
+    <div class="col-lg-12 ">
+        <ul class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">Главная</a></li>
+            <li><a href="/platforms" target="_self">Площадки</a></li>
+			<li ng-if="!isEdit()" class="active">Создание площадки</li>
+			<li ng-if="isEdit()" class="active">Редактирование площадки</li>
+        </ul>
+    </div>
 </div>
 
-<div class="page-body">
-    <div class="col-xs-12 col-md-12">
-        <div class="widget">
-            <div class="widget-header  with-footer">
-                <span ng-show="!isEdit()" class="widget-caption">Создание площадки</span>
-                <span ng-show="isEdit()" class="widget-caption">Редактирование площадки</span>
-            </div>
-            <div class="widget-body">
-                <form role="form" class="margin-10">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">Наименование*:</label>
-                                <input class="form-control" ng-blur="checkErrorName();" maxlength="50"
-                                       placeholder="Наименование"
-                                       ng-model="model.platform.Name" name="name" id="name" type="text">
-                                <code class="ng-binding" ng-show="model.error.name">Необходимо указать наименование. Значение должно быть от 3 до 50 символов </code>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="subdivisions">Подразделение*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select ng-change="checkErrorSubdivisions();" id="subdivisions" class="form-control"
-                                            ng-model="model.platform.SubDivision.Id">
-                                        <option value="">Не выбрано</option>
-                                        <option ng-repeat="subdivision in model.subdivisions"
-                                                value="{{subdivision.Id}}">
-                                            {{subdivision.Name}}
-                                        </option>
-                                    </select>
-                                    <code class="ng-binding" ng-show="model.error.subdivision">Необходимо указать подразделение.  </code>
-                                </div>
-                            </div>
-                        </div>
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+						<div class="row">
+							<div class="col-md-12">
+								<form role="form" class="margin-10">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="name">Наименование*:</label>
+												<input class="form-control" ng-blur="checkErrorName();" maxlength="50" placeholder="Наименование" ng-model="model.platform.Name" name="name" id="name" type="text">
+												<code class="ng-binding" ng-show="model.error.name">Необходимо указать наименование. Значение должно быть от 3 до 50 символов</code>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="subdivisions">Подразделение*:</label>
+												<div class="input-group" style="width: 100%">
+													<select ng-change="checkErrorSubdivisions();" id="subdivisions" class="form-control" ng-model="model.platform.SubDivision.Id">
+														<option value="">Не выбрано</option>
+														<option ng-repeat="subdivision in model.subdivisions" value="{{subdivision.Id}}">
+															{{subdivision.Name}}
+														</option>
+													</select>
+													<code class="ng-binding" ng-show="model.error.subdivision">Необходимо указать подразделение</code>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row margin-top-10">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="address">Адрес*:</label>
+												<input type="text" class="form-control" ng-blur="checkErrorAddress();" maxlength="255" placeholder="Адрес" ng-model="model.platform.Address" name="address" id="address">
+												<code class="ng-binding" ng-show="model.error.address">Необходимо указать адрес. Значение должно быть от 3 до 250 символов</code>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="subdivisions">Время работы*:</label>
+												<div class="input-group" style="width: 100%">
+													<div class="row">
+														<div class="col-md-6">
+															<div class="input-group">
+																<span class="input-group-addon">c</span>
+																<timepicker ng-change="checkLocalTime();" ng-model="model.localTime.start"></timepicker>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="input-group">
+																<span class="input-group-addon">до</span>
+																<timepicker ng-change="checkLocalTime();" ng-model="model.localTime.end"></timepicker>
+															</div>
+														</div>
+													</div>
+												</div>
+												<code class="ng-binding" ng-show="model.error.localTime">
+													Необходимо указать время работы
+												</code>
+											</div>
+										</div>
+									</div>
+
+									<div class="row margin-top-30">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="subdivisions">Управляющий:</label>
+												<div class="input-group" style="width: 100%">
+													<select class="form-control" ng-model="model.platform.User.Id">
+														<option value="">Не выбрано</option>
+														<option ng-repeat="user in model.users" value="{{user.Id}}">
+															{{user.FirstName +' '+ user.LastName}}
+														</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="subdivisions">Статус площадки:</label>
+												<div class="input-group" style="width: 100%">
+													<select ng-disabled="model.error.statusDisabled" ng-change="checkErrorStatusSite();" class="form-control" ng-model="model.platform.PlatformStatus.Id">
+														<!--<option value="">Не выбрано</option>-->
+														<option ng-repeat="status in model.statusSites" value="{{status.Id}}">
+															{{status.Value}}
+														</option>
+													</select>
+													<code class="ng-binding" ng-show="model.error.statusSite">Необходимо указать cтатус площадки</code>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="row margin-top-30">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Способы покупки*:</label>
+												<div class="input-group" style="width: 100%">
+													<div ng-repeat="buyProcess in model.buyProcessesValue" class="checkbox">
+														<label>
+															<input type="checkbox" ng-model="model.buyProcessesValue[$index].checked">
+															<span class="text">{{buyProcess.Value}}</span>
+														</label>
+													</div>
+													<code class="ng-binding" ng-show="model.error.buyProcess">Необходимо указать хотя бы один способ покупки</code>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="name">Минимальный чек*:</label>
+												<input class="form-control" ng-blur="checkErrorMinCheck();" maxlength="50" placeholder="Минимальный чек" ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
+												<code class="ng-binding" ng-show="model.error.minCheck">Необходимо указать ненулевое значение минимального чека</code>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="subdivisions">Время приема заказов*:</label>
+												<div class="input-group" style="width: 100%">
+													<div class="row">
+														<div class="col-md-6">
+															<div class="input-group">
+																<span class="input-group-addon">c</span>
+																<timepicker ng-change="checkOrderTime();" ng-model="model.orderTime.start"></timepicker>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="input-group">
+																<span class="input-group-addon">до</span>
+																<timepicker ng-change="checkOrderTime();" ng-model="model.orderTime.end"></timepicker>
+															</div>
+														</div>
+													</div>
+												</div>
+												<code class="ng-binding" ng-show="model.error.orderTime">
+													Необходимо указать время приема заказа
+												</code>
+											</div>
+										</div>
+									</div>
+
+									<div class="margin-top-30 text-align-right">
+										<a ng-show="!isEdit()" href="javascript:void(0);" ng-click="savePlatform()" class="btn btn-success">Сохранить</a>
+										<a ng-show="isEdit()" href="javascript:void(0);" ng-click="savePlatform()" class="btn btn-success">Изменить</a>
+										<a href="/platforms" class="btn btn-default">Отмена</a>
+									</div>
+								</form>
+							</div>
+						</div>
                     </div>
-
-
-                    <div class="row margin-top-10">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="address">Адрес*:</label>
-                                <input type="text" class="form-control" ng-blur="checkErrorAddress();" maxlength="255"
-                                          placeholder="Адрес"
-                                          ng-model="model.platform.Address" name="address" id="address">
-                                <code class="ng-binding" ng-show="model.error.address">Необходимо указать адрес. Значение должно быть от 3 до 250 символов</code>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="subdivisions">Время работы*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">c</span>
-                                                <timepicker ng-change="checkLocalTime();" ng-model="model.localTime.start"></timepicker>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">до</span>
-                                                <timepicker ng-change="checkLocalTime();" ng-model="model.localTime.end"></timepicker>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <code class="ng-binding" ng-show="model.error.localTime">
-                                    Необходимо указать время работы
-                                </code>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row margin-top-30">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="subdivisions">Управляющий:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select class="form-control" ng-model="model.platform.User.Id">
-                                        <option value="">Не выбрано</option>
-                                        <option ng-repeat="user in model.users" value="{{user.Id}}">
-                                            {{user.FirstName +' '+ user.LastName}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="subdivisions">Статус площадки:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select ng-disabled="model.error.statusDisabled" ng-change="checkErrorStatusSite();"
-                                            class="form-control"
-                                            ng-model="model.platform.PlatformStatus.Id">
-                                        <!--<option value="">Не выбрано</option>-->
-                                        <option ng-repeat="status in model.statusSites" value="{{status.Id}}">
-                                            {{status.Value}}
-                                        </option>
-                                    </select>
-                                    <code class="ng-binding" ng-show="model.error.statusSite">Необходимо указать cтатус площадки</code>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row margin-top-30">
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Способы покупки*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <div ng-repeat="buyProcess in model.buyProcessesValue" class="checkbox">
-                                        <label>
-                                            <input type="checkbox" ng-model="model.buyProcessesValue[$index].checked">
-                                            <span class="text">{{buyProcess.Value}}</span>
-                                        </label>
-                                    </div>
-                                    <code class="ng-binding" ng-show="model.error.buyProcess">Необходимо указать хотя бы один способ покупки</code>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="name">Минимальный чек*:</label>
-                                <input class="form-control" ng-blur="checkErrorMinCheck();" maxlength="50"
-                                       placeholder="Минимальный чек"
-                                       ng-model="model.platform.MinCheck" name="minCheck" id="minCheck" type="text">
-                                <code class="ng-binding" ng-show="model.error.minCheck">Необходимо указать ненулевое значение минимального чека.</code>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="subdivisions">Время приема заказов*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">c</span>
-                                                <timepicker ng-change="checkOrderTime();" ng-model="model.orderTime.start"></timepicker>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">до</span>
-                                                <timepicker ng-change="checkOrderTime();" ng-model="model.orderTime.end"></timepicker>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <code class="ng-binding" ng-show="model.error.orderTime">
-                                    Необходимо указать время приема заказа
-                                </code>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="margin-top-30 text-align-right">
-
-
-                        <a ng-show="!isEdit()" href="javascript:void(0);" ng-click="savePlatform()"
-                           class="btn btn-success">Сохранить</a>
-                        <a ng-show="isEdit()" href="javascript:void(0);" ng-click="savePlatform()"
-                           class="btn btn-success">Изменить</a>
-
-                        <a href="/platforms" class="btn btn-default">Отмена</a>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    //    var $exampleMulti = $(".select_m").select2({
-    //        placeholder: "Выберите элемент",
-    //        allowClear: true
-    //    });
-    ////
-    //    $exampleMulti.val([ '{"Value":"Доставка","Id":1}', '{"Value":"Самовывоз","Id":2}' ]).trigger("change");
-
-
-//    $('.timepicker').timepicker({
-//        showMeridian: false,
-//        minuteStep: 5,
-//    });
-
-</script>

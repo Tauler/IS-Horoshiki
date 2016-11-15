@@ -60,7 +60,8 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<IAccountService, AccountService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<ISalePlanService, SalePlanService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<ISalePlanHelper, SalePlanHelper>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
-            
+            container.RegisterType<IShiftTypeService, ShiftTypeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+
 
             container.RegisterType<IIntegrationService, IntegrationService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 

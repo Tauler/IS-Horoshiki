@@ -49,6 +49,18 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
             });
         }
 
+        /// <summary>
+        /// Получить подотдел пицца
+        /// </summary>
+        /// <returns></returns>
+        public Task<SubDepartment> GetSubDepartamentsPizzaAsync()
+        {
+            return Task<SubDepartment>.Factory.StartNew(() =>
+            {
+                return DbSet.FirstOrDefault(sd => sd.Guid == DatabaseConstant.SubDepartmentPizza);
+            });
+        }
+
         #endregion
 
         #region private
