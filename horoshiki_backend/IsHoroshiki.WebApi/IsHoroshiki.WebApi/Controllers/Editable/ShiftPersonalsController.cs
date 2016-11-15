@@ -70,7 +70,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Редактировать смену
         /// </summary>
         [Route("Update")]
-        public async Task<IHttpActionResult> Update(IShiftPersonalModel model)
+        public async Task<IHttpActionResult> UpdateWorkingTime(IShiftPersonalModel model)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                     return GetErrorResult(ModelState);
                 }
 
-                var result = await _service.UpdateAsync(model);
+                var result = await _service.UpdateWorkingTime(model);
                 return Ok(result);
             }
             catch (Exception e)

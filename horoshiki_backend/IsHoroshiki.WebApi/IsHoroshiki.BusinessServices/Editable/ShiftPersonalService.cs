@@ -12,6 +12,8 @@ using IsHoroshiki.DAO.UnitOfWorks;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using System.Collections;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -42,6 +44,29 @@ namespace IsHoroshiki.BusinessServices.Editable
             IEnumerable<ShiftPersonal> shiftPersonals = CreateDefaultTable();
             var result = shiftPersonals.ToModelEntityList().ToList();
             return result;
+        }
+
+        /// <summary>
+        /// Сохранение рабочего интервала времени
+        /// </summary>
+        /// <param name="model">Смена</param>
+        /// <returns></returns>
+        public async Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalModel model)
+        {
+            var daoEntity = await _repository.GetByIdAsync(model.Id);
+            if (daoEntity == null)
+            {
+                var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { model.Id });
+                return new ModelEntityModifyResult(errorData);
+            }
+
+            daoEntity.StartTime = model.TimeStart;
+            daoEntity.StopTime = model.TimeEnd;
+
+            _repository.Update(daoEntity);
+            _unitOfWork.Save();
+
+            return new ModelEntityModifyResult();
         }
 
         #endregion
