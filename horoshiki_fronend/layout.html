@@ -200,6 +200,19 @@
                     <li ng-class="subgroupId == '' ? 'active':''">
                         <a target="_self" href="#"><span class="text">Графики работы</span></a>
                     </li>
+
+                    <li class="left-menu-head"><a href="javascript:void(0);">
+                        <span class="text">Настройки</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'zones' ? 'active':''">
+                        <a target="_self" href="/zones"><span class="text">Зоны доставки</span></a>
+                    </li>
+                    <li ng-class="subgroupId == 'platforms' ? 'active':''">
+                        <a target="_self" href="/platforms/view/{{currentUser.Platform.Id}}"><span class="text">Ресторан</span></a>
+                    </li>
+                    <li ng-class="subgroupId == '' ? 'active':''">
+                        <a target="_self" href="/shifts"><span class="text">Смены</span></a>
+                    </li>
                 </ul>
 
                 <ul ng-if="isChief() && groupId=='management'" class="main-menu custom-menu">

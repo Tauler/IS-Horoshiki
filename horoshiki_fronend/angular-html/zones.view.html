@@ -67,7 +67,7 @@
 
                                     <div class="row">
                                         <dev class="col-md-12 margin-bottom-10">
-                                            <a ng-click="saveCenterPlatform();" href="javascript:void(0);"
+                                            <a ng-disabled="subdivisionIsDisabled" ng-click="saveCenterPlatform();" href="javascript:void(0);"
                                                class="btn btn-primary btn-block">
                                                 Закрепить центр для площадки
                                             </a>
@@ -75,12 +75,12 @@
                                     </div>
                                     <div class="row">
                                         <dev class="col-md-6 ">
-                                            <a ng-click="addObject();" href="javascript:void(0);"
+                                            <a ng-disabled="subdivisionIsDisabled" ng-click="addObject();" href="javascript:void(0);"
                                                class="btn btn-default btn-block">Добавить зону
                                             </a>
                                         </dev>
                                         <dev class="col-md-6 ">
-                                            <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active"
+                                            <a ng-click="deleteObject();" ng-disabled="!model.zoneForm.active || subdivisionIsDisabled"
                                                href="javascript:void(0);" class="btn btn-default btn-block ">
                                                 Удалить зону
                                             </a>
