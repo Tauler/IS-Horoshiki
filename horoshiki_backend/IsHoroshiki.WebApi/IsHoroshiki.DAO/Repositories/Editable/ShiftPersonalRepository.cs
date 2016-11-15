@@ -49,5 +49,19 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         }
 
         #endregion
+
+        #region protected override
+
+        protected override void LoadChildEntities(ShiftPersonal entity)
+        {
+            if (entity == null)
+            {
+                return;
+            }
+            Context.Entry(entity).Reference(p => p.Position).Load();
+            Context.Entry(entity).Reference(p => p.ShiftType).Load();
+        }
+
+        #endregion
     }
 }

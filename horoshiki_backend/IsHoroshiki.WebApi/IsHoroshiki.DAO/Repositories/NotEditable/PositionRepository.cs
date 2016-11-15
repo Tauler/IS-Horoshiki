@@ -38,30 +38,14 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
         /// <returns></returns>
         public async Task<IEnumerable<Position>> GetPositionsOnShiftAsync()
         {
-            var list = DbSet.Where(p => FilterPositionsOnShift(p)).ToList();
+            var list = DbSet.Where(p => p.Guid != new Guid("449f1830-172a-4aec-bc29-6bb446cf8861")
+                && p.Guid != new Guid("27c9376b-47b6-4eca-8920-e8a0e63f267c")
+                && p.Guid != new Guid("c1fabe74-06e0-4fc6-be79-553fc2e9232b")).ToList();
             foreach (var daoEntity in list)
             {
                 LoadChildEntities(daoEntity);
             }
             return list;
-        }
-
-        #endregion
-
-        #region private
-
-        /// <summary>
-        /// Проверяет что должность не является Операционным дитектором, Управляющим рестораном и Курьером
-        /// </summary>
-        /// <param name="position"></param>
-        /// <returns></returns>
-        private bool FilterPositionsOnShift(Position position)
-        {
-            if (position.Guid == new Guid("449f1830-172a-4aec-bc29-6bb446cf8861")
-                || position.Guid == new Guid("27c9376b-47b6-4eca-8920-e8a0e63f267c")
-                || position.Guid == new Guid("c1fabe74-06e0-4fc6-be79-553fc2e9232b"))
-                return false;
-            return true;
         }
 
         #endregion

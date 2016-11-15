@@ -75,6 +75,8 @@
     <Compile Include="Editable\PlatformService.cs" />
     <Compile Include="Editable\MonthObjectiveService.cs" />
     <Compile Include="Editable\ShiftPersonalService.cs" />
+    <Compile Include="Editable\ShiftPersonals\IShiftPersonalHelper.cs" />
+    <Compile Include="Editable\ShiftPersonals\ShiftPersonalHelper.cs" />
     <Compile Include="Errors\Enums\AccountErrors.cs" />
     <Compile Include="Errors\Enums\CommonErrors.cs" />
     <Compile Include="Errors\Enums\DeliveryZoneErrors.cs" />
