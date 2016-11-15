@@ -1,8 +1,12 @@
 ﻿using IsHoroshiki.BusinessServices.Helpers;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.DaoEntities.Integrations;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.UnitOfWorks;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace IsHoroshiki.BusinessServices.Integrations.Queues
 {
@@ -148,7 +152,8 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                                 }
                                 else
                                 {
-                                    normaCheck.Id = exist.Id;
+                                    await UpdateDaoCheck(unitOfWork, normaCheck, exist);
+
                                     unitOfWork.SaleCheckRepository.Update(exist);
                                 }
                             }
@@ -177,6 +182,73 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             {
                 _isExecuting = false;
             }
+        }
+
+        /// <summary>
+        /// Обновить данные по чеку
+        /// </summary>
+        /// <param name="unitOfWork">UnitOfWork</param>
+        /// <param name="normaCheck">Распарсенный нормализованный чек</param>
+        /// <param name="exist">Нормализованный чек из БД</param>
+        /// <returns></returns>
+        private async Task UpdateDaoCheck(UnitOfWork unitOfWork, SaleCheck normaCheck, SaleCheck exist)
+        {
+            if (exist == null)
+            {
+                return;
+            }
+
+            exist.BuyProcessId = normaCheck.BuyProcessId;
+            if (exist.BuyProcessId.HasValue && exist.BuyProcessId > 0)
+            {
+                exist.BuyProcess = await unitOfWork.BuyProcessPepository.GetByIdAsync(exist.BuyProcessId.Value);
+            }
+
+
+            exist.SubDepartments = unitOfWork.SaleCheckRepository.GetSubDepartments(exist.Id);
+            if (exist.SubDepartments == null)
+            {
+                exist.SubDepartments = new List<SubDepartment>();
+            }
+
+            foreach (var subDepartament in normaCheck.SubDepartments)
+            {
+                var sd = await unitOfWork.SubDepartmentRepository.GetByIdAsync(subDepartament.Id);
+                if (exist.SubDepartments != null && !exist.SubDepartments.Any(sdep => sdep.Id == subDepartament.Id))
+                {
+                    exist.SubDepartments.Add(sd);
+                }
+            }
+
+            foreach (var subDepartament in exist.SubDepartments.ToList())
+            {
+                if (!normaCheck.SubDepartments.Any(sdep => sdep.Id == subDepartament.Id))
+                {
+                    exist.SubDepartments.Remove(subDepartament);
+                }
+            }
+
+            exist.PlatformId = normaCheck.PlatformId;
+            if (exist.PlatformId > 0)
+            {
+                exist.Platform = await unitOfWork.PlatformRepository.GetByIdAsync(exist.PlatformId);
+            }
+
+            exist.DateDoc = normaCheck.DateDoc;
+            exist.IdCheck = normaCheck.IdCheck;
+            exist.Sum = normaCheck.Sum;
+            exist.PlanCookingStart = normaCheck.PlanCookingStart;
+            exist.FactCookingStart = normaCheck.FactCookingStart;
+            exist.PlanCookingEnd = normaCheck.PlanCookingEnd;
+            exist.FactCookingEnd = normaCheck.FactCookingEnd;
+            exist.PlanPackingStart = normaCheck.PlanPackingStart;
+            exist.FactPackingStart = normaCheck.FactPackingStart;
+            exist.PlanPackingEnd = normaCheck.PlanPackingEnd;
+            exist.FactPackingEnd = normaCheck.FactPackingEnd;
+            exist.PlanDeliveryStart = normaCheck.PlanDeliveryStart;
+            exist.FactDeliveryStart = normaCheck.FactDeliveryStart;
+            exist.PlanDeliveryEnd = normaCheck.PlanDeliveryEnd;
+            exist.FactDeliveryEnd = normaCheck.FactDeliveryEnd;
         }
 
         #endregion

@@ -3,6 +3,7 @@ using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
 {
@@ -26,6 +27,29 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         #endregion
 
         #region ISaleCheckRepository
+
+        /// <summary>
+        /// Найти чек по его Id
+        /// </summary>
+        /// <param name="idCheck">Id чека</param>
+        /// <returns></returns>
+        public List<SubDepartment> GetSubDepartments(int Id)
+        {
+            var result = DbSet.FirstOrDefault(check => check.Id == Id);
+            if (result != null)
+            {
+                Context.Entry(result).Collection(p => p.SubDepartments).Load();
+
+                if (result.SubDepartments == null)
+                {
+                    return new List<SubDepartment>();
+                }
+
+                return result.SubDepartments.ToList();
+            }
+
+            return new List<SubDepartment>();
+        }
 
         /// <summary>
         /// Найти чек по его Id

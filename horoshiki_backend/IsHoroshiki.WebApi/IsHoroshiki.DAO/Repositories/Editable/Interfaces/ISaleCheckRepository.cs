@@ -1,6 +1,7 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using System;
 using System.Collections.Generic;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
 {
@@ -15,6 +16,13 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
         /// <param name="idCheck">Id чека</param>
         /// <returns></returns>
         SaleCheck GetByCheckId(string idCheck);
+
+        /// <summary>
+        /// Найти чек по его Id
+        /// </summary>
+        /// <param name="idCheck">Id чека</param>
+        /// <returns></returns>
+        List<SubDepartment> GetSubDepartments(int Id);
 
         /// <summary>
         /// Получить отчет-анализ за период

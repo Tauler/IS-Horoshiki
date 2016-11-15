@@ -5,6 +5,7 @@ using IsHoroshiki.DAO.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace IsHoroshiki.BusinessServices.Integrations.Queues
 {
@@ -19,6 +20,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// UnitOfWork
         /// </summary>
         private readonly UnitOfWork _unitOfWork;
+
+        /// <summary>
+        /// Id площадки
+        /// </summary>
+        private static int? _platformId;
 
         #endregion
 
@@ -65,13 +71,13 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                 FactDeliveryStart = null,
                 PlanDeliveryEnd = null,
                 FactDeliveryEnd = null,
-                PlatformId = await GetPlatform(check)
+                PlatformId = GetPlatform(check)
             };
         }
 
         #endregion
 
-        #region public методы
+        #region private
 
         /// <summary>
         /// Способ покупки
@@ -128,9 +134,22 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// </summary>
         /// <param name="check">Чек</param>
         /// <returns></returns>
-        private Task<int> GetPlatform(IntegrationCheck check)
+        private int GetPlatform(IntegrationCheck check)
         {
-            return Task<int>.Factory.StartNew(() => 1);
+            if (_platformId.HasValue)
+            {
+                return _platformId.Value;
+            }
+
+            int tempPlatformId = 0;
+            var platformId = ConfigurationSettings.AppSettings["PlatformId"];
+            if (platformId != null && int.TryParse(platformId, out tempPlatformId))
+            {
+                _platformId = tempPlatformId;
+            }
+
+            _platformId = 1;
+            return _platformId.Value;
         }
 
         /// <summary>
@@ -229,7 +248,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             bool.TryParse(value, out result);
             return result;
         }
-
+        
         #endregion
     }
 }
