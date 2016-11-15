@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
-using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.BusinessEntities.Converters;
+using Newtonsoft.Json;
 
 namespace IsHoroshiki.BusinessEntities.Editable
 {
@@ -13,6 +14,7 @@ namespace IsHoroshiki.BusinessEntities.Editable
         /// <summary>
         /// Платформа
         /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<PlatformModel, IPlatformModel>))]
         public IPlatformModel Platform
         {
             get;
