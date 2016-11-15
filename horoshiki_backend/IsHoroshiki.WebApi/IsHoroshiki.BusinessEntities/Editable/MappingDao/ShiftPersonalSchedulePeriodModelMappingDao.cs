@@ -21,7 +21,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 ShiftPersonalSchedule = model.ShiftPersonalSchedule != null ? model.ShiftPersonalSchedule.ToDaoEntity() : null,
-                //ShiftType = model.ShiftType != null ? model.ShiftType.ToDaoEntity() : null,
                 StartTime = model.StartTime,
                 StopTime = model.StopTime,
             };
@@ -48,7 +47,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 ShiftPersonalSchedule = model.ShiftPersonalSchedule != null ? model.ShiftPersonalSchedule.ToModelEntity() : null,
-                //ShiftType = model.ShiftType != null ? model.ShiftType.ToDaoEntity() : null,
                 StartTime = model.StartTime,
                 StopTime = model.StopTime,
             };

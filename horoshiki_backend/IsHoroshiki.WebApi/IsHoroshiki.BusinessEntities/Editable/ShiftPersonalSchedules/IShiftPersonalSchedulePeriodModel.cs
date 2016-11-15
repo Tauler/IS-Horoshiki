@@ -16,15 +16,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
             set;
         }
 
-        ///// <summary>
-        ///// Тип смены
-        ///// </summary>
-        //IShiftTypeModel ShiftType
-        //{
-        //    get;
-        //    set;
-        //}
-
         /// <summary>
         /// Начало работы
         /// </summary>

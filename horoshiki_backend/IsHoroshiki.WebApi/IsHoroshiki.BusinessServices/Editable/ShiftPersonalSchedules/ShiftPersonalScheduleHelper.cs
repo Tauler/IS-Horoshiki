@@ -145,84 +145,150 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 
             foreach (var scheduleResult in scheduleShiftPersonalResults)
             {
-                var rowDepartment = result.FirstOrDefault(r => r.Department.Id == scheduleResult.DepartmentId);
-                if (rowDepartment == null)
-                {
-                    rowDepartment = new DepartamentScheduleRowModel()
-                    {
-                        Department = new DepartmentModel()
-                        {
-                            Id = scheduleResult.DepartmentId.Value,
-                            Value = scheduleResult.DepartmentName
-                        },
-                        SubDepartment = new List<ISubDepartamentScheduleRowModel>()
-                    };
-
-                    result.Add(rowDepartment);
-                }
-
-                var subDepartamentRow = scheduleResult.SubDepartmentId.HasValue
-                    ? rowDepartment.SubDepartment.FirstOrDefault(sd => sd.SubDepartment != null && sd.SubDepartment.Id == scheduleResult.SubDepartmentId.Value)
-                    : rowDepartment.SubDepartment.FirstOrDefault(sd => sd.Position != null && sd.Position.Id == scheduleResult.PositionId.Value);
-
-                if (subDepartamentRow == null)
-                {
-                    subDepartamentRow = new SubDepartamentScheduleRowModel();
-
-                    if (scheduleResult.SubDepartmentId.HasValue)
-                    {
-                        subDepartamentRow.SubDepartment = new SubDepartmentModel()
-                        {
-                            Id = scheduleResult.SubDepartmentId.Value,
-                            Value = scheduleResult.SubDepartmentName
-                        };
-                    }
-                    else if (scheduleResult.PositionId.HasValue)
-                    {
-                        subDepartamentRow.Position = new PositionModel()
-                        {
-                            Id = scheduleResult.PositionId.Value,
-                            Value = scheduleResult.PositionName
-                        };
-                    }
-
-                    subDepartamentRow.UserRows = new List<IApplicationUserScheduleRowModel>();
-
-                    rowDepartment.SubDepartment.Add(subDepartamentRow);
-                }
-
-                if (scheduleResult.UserId.HasValue)
-                {
-                    var userRow = subDepartamentRow.UserRows.FirstOrDefault(ur => ur.User.Id == scheduleResult.UserId.Value);
-                    if (userRow == null)
-                    {
-                        userRow = new ApplicationUserScheduleRowModel()
-                        {
-                            Date = scheduleResult.DateDoc,
-                        };
-
-                        userRow.User = new ApplicationUserSmallModel()
-                        {
-                            Id = scheduleResult.UserId.Value,
-                            UserName = scheduleResult.UserName
-                        };
-                        
-                        subDepartamentRow.UserRows.Add(userRow);
-                    }
-
-                    if (scheduleResult.ShiftPersonalScheduleId.HasValue)
-                    {
-                        userRow.ShiftPersonalSchedule = new ShiftPersonalScheduleModel
-                        {
-                            Id = scheduleResult.ShiftPersonalScheduleId.Value,
-                            ShiftPersonalSchedulePeriods = new List<IShiftPersonalSchedulePeriodModel>()
-                        };
-                    }
-
-                }
+                IDepartamentScheduleRowModel rowDepartment = AddDepartmentRow(result, scheduleResult);
+                ISubDepartamentScheduleRowModel subDepartamentRow = AddSubDepartamentOrPositionRow(scheduleResult, rowDepartment);
+                AddUserRow(scheduleResult, subDepartamentRow);
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Добавление пользователя
+        /// </summary>
+        /// <param name="scheduleResult">Результат выполнения ХП</param>
+        /// <param name="subDepartamentRow">Строка подотдел или должности</param>
+        private void AddUserRow(ScheduleShiftPersonalResult scheduleResult, ISubDepartamentScheduleRowModel subDepartamentRow)
+        {
+            if (scheduleResult.UserId.HasValue)
+            {
+                var userRow = subDepartamentRow.UserRows.FirstOrDefault(ur => ur.User.Id == scheduleResult.UserId.Value);
+                if (userRow == null)
+                {
+                    userRow = new ApplicationUserScheduleRowModel()
+                    {
+                        Date = scheduleResult.DateDoc,
+                    };
+
+                    userRow.User = new ApplicationUserSmallModel()
+                    {
+                        Id = scheduleResult.UserId.Value,
+                        UserName = scheduleResult.UserName
+                    };
+
+                    subDepartamentRow.UserRows.Add(userRow);
+                }
+
+                if (scheduleResult.ShiftPersonalScheduleId.HasValue)
+                {
+                    AddShiftPersonalSchedule(scheduleResult, userRow);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Добавить смены для пользователя
+        /// </summary>
+        /// <param name="scheduleResult">Результат выполнения ХП</param>
+        /// <param name="userRow">Строка с пользователем</param>
+        private void AddShiftPersonalSchedule(ScheduleShiftPersonalResult scheduleResult, IApplicationUserScheduleRowModel userRow)
+        {
+            userRow.ShiftPersonalSchedule = new ShiftPersonalScheduleModel
+            {
+                Id = scheduleResult.ShiftPersonalScheduleId.Value,
+                ShiftType = new ShiftTypeModel
+                {
+                    Id = scheduleResult.ShiftTypeId.Value,
+                    Socr = scheduleResult.ShiftTypeDescr
+                },
+                ShiftPersonalSchedulePeriods = new List<IShiftPersonalSchedulePeriodModel>()
+            };
+
+            if (scheduleResult.ShiftPersonalScheduleDate.HasValue)
+            {
+                userRow.ShiftPersonalSchedule.Date = scheduleResult.ShiftPersonalScheduleDate.Value;
+            }
+
+            if (scheduleResult.ShiftTypeId.HasValue)
+            {
+                userRow.ShiftPersonalSchedule.ShiftType = new ShiftTypeModel
+                {
+                    Id = scheduleResult.ShiftTypeId.Value,
+                    Guid = scheduleResult.ShiftTypeGuid.Value,
+                    Socr = scheduleResult.ShiftTypeDescr
+                };
+            }
+        }
+
+        /// <summary>
+        /// Добавление строки подотдел или должности
+        /// </summary>
+        /// <param name="scheduleResult">Результат выполнения ХП</param>
+        /// <param name="rowDepartment">Строка отдела</param>
+        /// <returns></returns>
+        private ISubDepartamentScheduleRowModel AddSubDepartamentOrPositionRow(ScheduleShiftPersonalResult scheduleResult, IDepartamentScheduleRowModel rowDepartment)
+        {
+            var subDepartamentRow = scheduleResult.SubDepartmentId.HasValue
+                                ? rowDepartment.SubDepartment.FirstOrDefault(sd => sd.SubDepartment != null && sd.SubDepartment.Id == scheduleResult.SubDepartmentId.Value)
+                                : rowDepartment.SubDepartment.FirstOrDefault(sd => sd.Position != null && sd.Position.Id == scheduleResult.PositionId.Value);
+
+            if (subDepartamentRow == null)
+            {
+                subDepartamentRow = new SubDepartamentScheduleRowModel();
+
+                if (scheduleResult.SubDepartmentId.HasValue)
+                {
+                    subDepartamentRow.SubDepartment = new SubDepartmentModel()
+                    {
+                        Id = scheduleResult.SubDepartmentId.Value,
+                        Guid = scheduleResult.SubDepartmentGuid.Value,
+                        Value = scheduleResult.SubDepartmentName
+                    };
+                }
+                else if (scheduleResult.PositionId.HasValue)
+                {
+                    subDepartamentRow.Position = new PositionModel()
+                    {
+                        Id = scheduleResult.PositionId.Value,
+                        Guid = scheduleResult.PositionGuid.Value,
+                        Value = scheduleResult.PositionName
+                    };
+                }
+
+                subDepartamentRow.UserRows = new List<IApplicationUserScheduleRowModel>();
+
+                rowDepartment.SubDepartment.Add(subDepartamentRow);
+            }
+
+            return subDepartamentRow;
+        }
+
+        /// <summary>
+        /// Добавление строки отдел
+        /// </summary>
+        /// <param name="result">Список строк отделы в таблице</param>
+        /// <param name="scheduleResult">Результат выполнения ХП</param>
+        /// <returns></returns>
+        private IDepartamentScheduleRowModel AddDepartmentRow(List<IDepartamentScheduleRowModel> result, ScheduleShiftPersonalResult scheduleResult)
+        {
+            var rowDepartment = result.FirstOrDefault(r => r.Department.Id == scheduleResult.DepartmentId);
+            if (rowDepartment == null)
+            {
+                rowDepartment = new DepartamentScheduleRowModel()
+                {
+                    Department = new DepartmentModel()
+                    {
+                        Id = scheduleResult.DepartmentId.Value,
+                        Guid = scheduleResult.DepartmentGuid.Value,
+                        Value = scheduleResult.DepartmentName
+                    },
+                    SubDepartment = new List<ISubDepartamentScheduleRowModel>()
+                };
+
+                result.Add(rowDepartment);
+            }
+
+            return rowDepartment;
         }
 
         #endregion

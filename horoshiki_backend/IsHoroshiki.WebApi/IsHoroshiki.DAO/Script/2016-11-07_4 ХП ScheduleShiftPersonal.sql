@@ -30,15 +30,21 @@ BEGIN
 	(
 		[DateDoc]		  datetime, 
 		[DepartmentId]	  int,
+		[DepartmentGuid]  [uniqueidentifier],
 		[DepartmentName]  nvarchar(100),
 		[SubDepartmentId] int,
+		[SubDepartmentGuid]	 [uniqueidentifier],
 		[SubDepartmentName]  nvarchar(100),
 		[UserId]		  int,
 		[UserName]		  nvarchar(100),
 		[PositionId]	  int,
+		[PositionGuid]	  [uniqueidentifier],
 		[PositionName]	  nvarchar(100),
-		[ShiftPersonalScheduleId] int,
-		[ShiftTypeId]	  int
+		[ShiftPersonalScheduleId]	 int,
+		[ShiftPersonalScheduleDate]  datetime,
+		[ShiftTypeId]				 int,
+		[ShiftTypeGuid]	  [uniqueidentifier],
+		[ShiftTypeDescr]  nvarchar(25)
 	)
 
 	--курсор периода дат
@@ -140,7 +146,8 @@ BEGIN
 		[UserId]		  ,
 		[PositionId]	  ,
 		[ShiftPersonalScheduleId],
-		[ShiftTypeId]		  
+		[ShiftTypeId]	  ,
+		[ShiftPersonalScheduleDate]	  
 	)
 	SELECT
 		ru.[DateDoc]		 , 
@@ -149,7 +156,8 @@ BEGIN
 		ru.[UserId]			 ,
 		ru.[PositionId]		 ,
 		sp.Id				 ,
-		1--sp.ShiftTypeId
+		sp.ShiftTypeId		 ,
+		sp.Date
 	FROM
 		#RESULT_USER ru
 	LEFT JOIN
@@ -159,7 +167,8 @@ BEGIN
 	UPDATE
 			#RESULT_USER_SHIFT
 	   SET
-			DepartmentName = Value
+			DepartmentName = Value,
+			DepartmentGuid = [Guid]
 	  FROM
 			Departments
 	 WHERE  
@@ -170,7 +179,8 @@ BEGIN
 	UPDATE
 			#RESULT_USER_SHIFT
 	   SET
-			SubDepartmentName = Value
+			SubDepartmentName = Value,
+			SubDepartmentGuid = [Guid]
 	  FROM
 			SubDepartments
 	 WHERE  
@@ -181,7 +191,8 @@ BEGIN
 	UPDATE
 			#RESULT_USER_SHIFT
 	   SET
-			PositionName = Value
+			PositionName = Value,
+			PositionGuid = Guid
 	  FROM
 			Positions
 	 WHERE  
@@ -199,19 +210,37 @@ BEGIN
 			#RESULT_USER_SHIFT.UserId IS NOT NULL AND
 			#RESULT_USER_SHIFT.UserId = AspNetUsers.Id
 
+	-- Сокращенное наименование смены
+	UPDATE
+			#RESULT_USER_SHIFT
+	   SET
+			[ShiftTypeDescr] = Socr,
+			[ShiftTypeGuid]  = [Guid]
+	  FROM
+			ShiftTypes
+	 WHERE  
+			#RESULT_USER_SHIFT.[ShiftTypeId] IS NOT NULL AND 
+			#RESULT_USER_SHIFT.[ShiftTypeId] = ShiftTypes.Id
+
 
 	SELECT 
 		[DateDoc]		  , 
 		[DepartmentId]	  ,
+		[DepartmentGuid]  ,
 		[DepartmentName]  ,
 		[SubDepartmentId] ,
+		[SubDepartmentGuid],
 		[SubDepartmentName],
 		[UserId]		  ,
 		[UserName]		  ,
 		[PositionId]	  ,
+		[PositionGuid]	  ,
 		[PositionName]	  ,
 		[ShiftPersonalScheduleId],
-		[ShiftTypeId]	
+		[ShiftPersonalScheduleDate],
+		[ShiftTypeId],
+		[ShiftTypeGuid],
+		[ShiftTypeDescr]
 	FROM 
 		#RESULT_USER_SHIFT
 

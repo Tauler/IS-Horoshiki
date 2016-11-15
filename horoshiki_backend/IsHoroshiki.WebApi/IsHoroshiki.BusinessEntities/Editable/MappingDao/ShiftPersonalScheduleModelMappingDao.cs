@@ -3,6 +3,7 @@ using System.Linq;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
 using IsHoroshiki.BusinessEntities.Account.MappingDao;
+using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 
 namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
 {
@@ -22,6 +23,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 User = model.User != null ? model.User.ToDaoEntity() : null,
+                ShiftType = model.ShiftType != null ? model.ShiftType.ToDaoEntity() : null,
                 ShiftPersonalSchedulePeriods = model.ShiftPersonalSchedulePeriods != null ? model.ShiftPersonalSchedulePeriods.ToDaoEntityList().ToList() : null,
                 Date = model.Date
             };
@@ -48,6 +50,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             {
                 Id = model.Id,
                 User = model.User != null ? model.User.ToModelEntity() : null,
+                ShiftType = model.ShiftType != null ? model.ShiftType.ToModelEntity() : null,
                 ShiftPersonalSchedulePeriods = model.ShiftPersonalSchedulePeriods != null ? model.ShiftPersonalSchedulePeriods.ToModelEntityList().ToList() : null,
                 Date = model.Date
             };

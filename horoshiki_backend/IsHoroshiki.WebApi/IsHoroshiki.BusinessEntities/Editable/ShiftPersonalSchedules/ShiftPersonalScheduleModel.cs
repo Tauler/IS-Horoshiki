@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,15 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         /// Пользователь
         /// </summary>
         public IApplicationUserModel User
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Тип смены
+        /// </summary>
+        public IShiftTypeModel ShiftType
         {
             get;
             set;
