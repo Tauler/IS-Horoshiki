@@ -13,6 +13,7 @@ using IsHoroshiki.BusinessServices.Kladr;
 using IsHoroshiki.BusinessServices.Integrations;
 using IsHoroshiki.BusinessServices.Editable.SalePlans;
 using IsHoroshiki.BusinessServices.Editable.MonthObjectives;
+using IsHoroshiki.BusinessServices.Editable.ShiftPersonals;
 
 namespace IsHoroshiki.BusinessServices
 {
@@ -65,6 +66,7 @@ namespace IsHoroshiki.BusinessServices
             container.RegisterType<ISalePlanHelper, SalePlanHelper>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IShiftTypeService, ShiftTypeService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IShiftPersonalService, ShiftPersonalService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
+            container.RegisterType<IShiftPersonalHelper, ShiftPersonalHelper>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IMonthObjectiveService, MonthObjectiveService>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
             container.RegisterType<IMonthObjectiveHelper, MonthObjectiveHelper>().RegisterType<UnitOfWork>(new HierarchicalLifetimeManager());
 
