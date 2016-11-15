@@ -37,6 +37,17 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// </summary>
         private volatile bool _isExecuting;
 
+        /// <summary>
+        /// Кол-во чеков в очереди
+        /// </summary>
+        public int Count
+        {
+            get
+            {
+                return _queue.Count;
+            }
+        }
+
         #endregion
 
         #region Конструктор
