@@ -39,11 +39,9 @@ namespace IsHoroshiki.BusinessServices.Editable
 
         #region IShiftPersonalService
 
-        public async Task<IEnumerable<IShiftPersonalModel>> GetTable()
+        public async Task<IShiftPersonalTableModel> GetTable()
         {
-            IEnumerable<ShiftPersonal> shiftPersonals = CreateDefaultTable();
-            var result = shiftPersonals.ToModelEntityList().ToList();
-            return result;
+            return CreateDefaultTable();
         }
 
         /// <summary>
@@ -126,23 +124,50 @@ namespace IsHoroshiki.BusinessServices.Editable
 
         #region private
 
-        private IEnumerable<ShiftPersonal> CreateDefaultTable()
+        private IShiftPersonalTableModel CreateDefaultTable()
         {
-            var result = new List<ShiftPersonal>();
+            var table = new ShiftPersonalTableModel();
 
             var positions = _unitOfWork.PositionRepository.GetPositionsOnShiftAsync().Result;
             var shiftTypes = _unitOfWork.ShiftTypeRepository.GetAllAsync().Result;
 
+            var dataRows = new List<IShiftPersonalDataRowModel>();
+
             foreach (var position in positions)
             {
+                var dataRow = new ShiftPersonalDataRowModel();
+                dataRow.Position = position.Value;
+
+                var shiftTimes = new List<IShiftPersonalShiftTimeModel>();
+
                 foreach (var shiftType in shiftTypes)
                 {
                     var shiftPersonal = CreateOrUpdate(position, shiftType);
-                    result.Add(shiftPersonal);
+
+                    var shiftTime = new ShiftPersonalShiftTimeModel
+                    {
+                        ShiftPart = new ShiftPersonalShiftPartModel
+                        {
+                            Name = shiftPersonal.ShiftType.Value,
+                            ShortName = shiftPersonal.ShiftType.Socr
+                        },
+                        TimePart = new ShiftPersonalTimePartModel
+                        {
+                            Id = shiftPersonal.Id,
+                            TimeStart = shiftPersonal.StartTime,
+                            TimeEnd = shiftPersonal.StopTime
+                        }
+                    };
+
+                    shiftTimes.Add(shiftTime);
                 }
+                dataRow.ShiftTime = shiftTimes;
+
+                dataRows.Add(dataRow);
             }
 
-            return result;
+            table.DataRows = dataRows;
+            return table;
         }
 
         private ShiftPersonal CreateOrUpdate(Position position, ShiftType shiftType)
