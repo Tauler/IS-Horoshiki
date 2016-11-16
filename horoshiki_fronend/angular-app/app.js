@@ -22,6 +22,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'reasonDismissalControllers',
     'zonesControllers',
     'salesPlanControllers',
+    'changeSettingsControllers',
 
     'backendServices',
     'accountServices',
@@ -32,7 +33,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'platformsServices',
     'reasonDismissalServices',
     'zonesServices',
-    'salesPlanServices'
+    'salesPlanServices',
+    'changeSettingsServices'
 
 ]);
 
@@ -165,6 +167,15 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 pageId: 'salesPlanIndex',
                 groupId: 'management',
                 subgroupId: 'salesPlan',
+                title: 'План продаж'
+            })
+
+            .when('/changeSettings', {
+                templateUrl: '/angular-html/changeSettings.list.html',
+                controller: 'ChangeSettingsListController',
+                pageId: 'ChangeSettingsList',
+                groupId: 'settings',
+                subgroupId: 'changeSettings',
                 title: 'План продаж'
             })
 
