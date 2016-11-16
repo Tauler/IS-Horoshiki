@@ -8,7 +8,7 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
     function ($scope, $location, ChangeSettingsService) {
         $scope.model = {};
         $scope.model.changeSettings = [];
-        $scope.model.time="05:55:00";
+        $scope.model.isAroundClock = "false";
 
         ChangeSettingsService.getList().success(function (result) {
             if (result.Success == 1) {
@@ -21,5 +21,9 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
         }).error(function (result, status) {
             httpErrors($location.url(), status);
         })
+        
+        $scope.changeRow = function (row) {
+            
+        }
     }
 ]);

@@ -16,9 +16,9 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label><strong>Тип смены</strong></label>
-                                <select class="form-control">
-                                    <option value="cheese">Круглосуточный</option>
-                                    <option value="cheese">По рассписанию</option>
+                                <select ng-model="model.isAroundClock" class="form-control">
+                                    <option value="false">По рассписанию</option>
+                                    <option value="true">Круглосуточный</option>
                                 </select>
                             </div>
                         </div>
@@ -40,19 +40,20 @@
                                        class="table table-bordered table-bordered-0" style="margin-bottom: 0px">
                                     <tbody>
                                         <tr ng-repeat="row in table.ShiftTime">
+                                            <!--ng-if="row.IsAroundClock==model.isAroundClock"-->
+
                                             <td class="col-md-4"><span ng-show="$index==0">{{table.Position}}</span></td>
                                             <td class="col-md-2">{{row.ShiftPart.Name}}</td>
-                                            <td class="col-md-2">
+                                            <td class="col-md-2 input">
                                                 <timepicker ng-model="row.TimePart.TimeStart"></timepicker>
                                             </td>
-                                            <td class="col-md-2">
+                                            <td class="col-md-2 input">
                                                 <timepicker ng-model="row.TimePart.TimeEnd"></timepicker>
                                             </td>
                                             <td class="col-md-2">{{row.ShiftPart.ShortName}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
