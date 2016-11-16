@@ -8,6 +8,12 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonals
 {
     public interface IShiftPersonalShiftTimeModel
     {
+        bool IsAroundClock
+        {
+            get;
+            set;
+        }
+
         IShiftPersonalShiftPartModel ShiftPart
         {
             get;
