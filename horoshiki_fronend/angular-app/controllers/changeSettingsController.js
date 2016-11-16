@@ -12,7 +12,9 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
 
         ChangeSettingsService.getList().success(function (result) {
             if (result.Success == 1) {
-                console.log(result);
+                $scope.model.changeSettings = result.Data.DataRows;
+
+                console.log($scope.model.changeSettings );
             } else {
                 displayErrorMessage(result.ReasonMessage);
             }

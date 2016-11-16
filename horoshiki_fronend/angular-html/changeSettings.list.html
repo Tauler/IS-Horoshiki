@@ -24,204 +24,35 @@
                         </div>
                         <div class="row" style="padding-top: 30px;">
                             <div class="col-md-9">
-                                <table class="table table-bordered table-bordered-0">
+                                <table class="table table-bordered table-bordered-0" style="margin-bottom: 0px">
                                     <thead>
                                     <tr>
-                                        <th style="font-weight: bold">Должность</th>
-                                        <th style="font-weight: bold">Смена</th>
-                                        <th style="font-weight: bold">С</th>
-                                        <th style="font-weight: bold">По</th>
-                                        <th style="font-weight: bold">Обозначение</th>
+                                        <th class="col-md-4" style="font-weight: bold">Должность</th>
+                                        <th class="col-md-2" style="font-weight: bold">Смена</th>
+                                        <th class="col-md-2" style="font-weight: bold">С</th>
+                                        <th class="col-md-2" style="font-weight: bold">По</th>
+                                        <th class="col-md-2" style="font-weight: bold">Обозначение</th>
                                     </tr>
                                     </thead>
+                                </table>
+
+                                <table ng-repeat="table in model.changeSettings"
+                                       class="table table-bordered table-bordered-0" style="margin-bottom: 0px">
                                     <tbody>
-                                    <tr>
-                                        <td class="col-md-4">Менеджер смены</td>
-                                        <td class="col-md-2">Утро</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">{{model.time}}
-                                            <timepicker  ng-model="model.time" style="height: 25px; padding-top: 3px; padding-bottom: 3px;"></timepicker>
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">У</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Вечер</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="14:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">В</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Ночь</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Н</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Усиление</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="18:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Ус</td>
-                                    </tr>
-
-                                    <!------------------------------------>
-
-                                    <tr>
-                                        <td class="col-md-4" style="border-top-width: 2px;">Администратор</td>
-                                        <td class="col-md-2" style="border-top-width: 2px;">Утро</td>
-                                        <td class="col-md-2" style="border-top-width: 2px; padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="border-top-width: 2px; padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td style="border-top-width: 2px;" class="col-md-2">У</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Вечер</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="14:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">В</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Ночь</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Н</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Усиление</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="18:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Ус</td>
-                                    </tr>
-
-                                    <!------------------------------------>
-
-                                    <tr>
-                                        <td class="col-md-4" style="border-top-width: 2px;">Повар-сушист</td>
-                                        <td class="col-md-2" style="border-top-width: 2px;">Утро</td>
-                                        <td class="col-md-2" style="border-top-width: 2px; padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="border-top-width: 2px; padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td style="border-top-width: 2px;" class="col-md-2">У</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Вечер</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="14:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">В</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Ночь</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Н</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Усиление</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="18:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Ус</td>
-                                    </tr>
-
-                                    <!------------------------------------>
-
-                                    <tr>
-                                        <td class="col-md-4" style="border-top-width: 2px;">Повар-унисерсал</td>
-                                        <td class="col-md-2" style="border-top-width: 2px;">Утро</td>
-                                        <td class="col-md-2" style="border-top-width: 2px; padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="border-top-width: 2px; padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td style="border-top-width: 2px;" class="col-md-2">У</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Вечер</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="14:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">В</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Ночь</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="19:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="08:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Н</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="col-md-4"></td>
-                                        <td class="col-md-2">Усиление</td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="15:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2" style="padding-top: 5px; padding-bottom: 5px;">
-                                            <input value="18:00" class="form-control" style="height: 25px; padding-top: 3px; padding-bottom: 3px;" type="text">
-                                        </td>
-                                        <td class="col-md-2">Ус</td>
-                                    </tr>
+                                        <tr ng-repeat="row in table.ShiftTime">
+                                            <td class="col-md-4"><span ng-show="$index==0">{{table.Position}}</span></td>
+                                            <td class="col-md-2">{{row.ShiftPart.Name}}</td>
+                                            <td class="col-md-2">
+                                                <timepicker ng-model="row.TimePart.TimeStart"></timepicker>
+                                            </td>
+                                            <td class="col-md-2">
+                                                <timepicker ng-model="row.TimePart.TimeEnd"></timepicker>
+                                            </td>
+                                            <td class="col-md-2">{{row.ShiftPart.ShortName}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
