@@ -39,16 +39,15 @@
                                 <table ng-repeat="table in model.changeSettings"
                                        class="table table-bordered table-bordered-0" style="margin-bottom: 0px">
                                     <tbody>
-                                        <tr ng-repeat="row in table.ShiftTime">
-                                            <!--ng-if="row.IsAroundClock==model.isAroundClock"-->
+                                        <tr ng-repeat="row in table.ShiftTimes | filter:{ IsAroundClock: isAroundClock() }" >
 
                                             <td class="col-md-4"><span ng-show="$index==0">{{table.Position}}</span></td>
                                             <td class="col-md-2">{{row.ShiftPart.Name}}</td>
                                             <td class="col-md-2 input">
-                                                <timepicker ng-model="row.TimePart.TimeStart"></timepicker>
+                                                <timepicker ng-model="row.TimePart.TimeStart" ng-change="changeRow(row.TimePart);"></timepicker>
                                             </td>
                                             <td class="col-md-2 input">
-                                                <timepicker ng-model="row.TimePart.TimeEnd"></timepicker>
+                                                <timepicker ng-model="row.TimePart.TimeEnd" ng-change="changeRow(row.TimePart);"></timepicker>
                                             </td>
                                             <td class="col-md-2">{{row.ShiftPart.ShortName}}</td>
                                         </tr>

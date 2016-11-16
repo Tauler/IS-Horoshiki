@@ -70,7 +70,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// Редактировать смену
         /// </summary>
         [Route("Update")]
-        public async Task<IHttpActionResult> UpdateWorkingTime(IShiftPersonalModel model)
+        public async Task<IHttpActionResult> UpdateWorkingTime(IShiftPersonalTimePartModel model)
         {
             try
             {

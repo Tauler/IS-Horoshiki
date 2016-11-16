@@ -31,10 +31,13 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// </summary>
         /// <param name="positionId">Идентификатор должности</param>
         /// <param name="shiftTypeId">Идентификатор типа смены</param>
+        /// <param name="isAroundClock">Работа круглосуточно</param>
         /// <returns></returns>
-        public ShiftPersonal Get(int positionId, int shiftTypeId)
+        public ShiftPersonal Get(int positionId, int shiftTypeId, bool isAroundClock)
         {
-            return DbSet.FirstOrDefault(sp => sp.PositionId == positionId && sp.ShiftTypeId == shiftTypeId);
+            return DbSet.FirstOrDefault(sp => sp.PositionId == positionId
+                && sp.ShiftTypeId == shiftTypeId
+                && sp.IsAroundClock == isAroundClock);
         }
 
         /// <summary>
