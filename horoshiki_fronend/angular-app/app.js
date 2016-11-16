@@ -35,6 +35,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'platformsServices',
     'reasonDismissalServices',
     'zonesServices',
+
     'salesPlanServices',
     'changeSettingsServices',
 	'targetServices',
