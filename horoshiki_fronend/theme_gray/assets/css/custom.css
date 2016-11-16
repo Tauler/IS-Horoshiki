@@ -172,6 +172,15 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
     margin: 0;
 }
 
+.loading-spinner{
+	width: 100%;
+	text-align: center;
+}
+
+.logged-user-width{
+	min-width: 100px;
+}
+
 /*#region DatePicker*/
 .datepicker {
   top: 0;
