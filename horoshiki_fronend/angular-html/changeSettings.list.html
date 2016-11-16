@@ -44,10 +44,10 @@
                                             <td class="col-md-4"><span ng-show="$index==0">{{table.Position}}</span></td>
                                             <td class="col-md-2">{{row.ShiftPart.Name}}</td>
                                             <td class="col-md-2 input">
-                                                <timepicker ng-model="row.TimePart.TimeStart" ng-change="changeRow(row.TimePart);"></timepicker>
+                                                <timepicker ng-disabled="!isChief();" ng-model="row.TimePart.TimeStart" ng-change="changeRow(row.TimePart);"></timepicker>
                                             </td>
                                             <td class="col-md-2 input">
-                                                <timepicker ng-model="row.TimePart.TimeEnd" ng-change="changeRow(row.TimePart);"></timepicker>
+                                                <timepicker ng-disabled="!isChief();" ng-model="row.TimePart.TimeEnd" ng-change="changeRow(row.TimePart);"></timepicker>
                                             </td>
                                             <td class="col-md-2">{{row.ShiftPart.ShortName}}</td>
                                         </tr>

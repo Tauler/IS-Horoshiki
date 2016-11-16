@@ -4,8 +4,8 @@
 
 var changeSettingsControllers = angular.module('changeSettingsControllers', []);
 
-mainControllers.controller('ChangeSettingsListController', ['$scope', '$location', 'ChangeSettingsService',
-    function ($scope, $location, ChangeSettingsService) {
+mainControllers.controller('ChangeSettingsListController', ['$scope', '$location', 'ChangeSettingsService', '$rootScope',
+    function ($scope, $location, ChangeSettingsService, $rootScope) {
         $scope.model = {};
         $scope.model.changeSettings = [];
         $scope.model.isAroundClock = "false";
@@ -14,23 +14,11 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
             return JSON.parse($scope.model.isAroundClock);
         }
 
-        ChangeSettingsService.getList().success(function (result) {
-            if (result.Success == 1) {
-                $scope.model.changeSettings = result.Data.DataRows;
 
-                console.log($scope.model.changeSettings );
-            } else {
-                displayErrorMessage(result.ReasonMessage);
-            }
-        }).error(function (result, status) {
-            httpErrors($location.url(), status);
-        })
         
         $scope.changeRow = function (timePart) {
-            console.log("123");
             ChangeSettingsService.update(timePart).success(function (result) {
                 if (result.Success == 1) {
-                    console.log(result);
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
@@ -38,5 +26,23 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
                 httpErrors($location.url(), status);
             })
         }
+
+        $scope.getChangeSettings = function () {
+            ChangeSettingsService.getList().success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.changeSettings = result.Data.DataRows;
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+        $rootScope.$watch('currentUserLoaded', function(){
+            if($rootScope.currentUserLoaded == true){
+                $scope.getChangeSettings();
+            }
+        });
     }
 ]);
