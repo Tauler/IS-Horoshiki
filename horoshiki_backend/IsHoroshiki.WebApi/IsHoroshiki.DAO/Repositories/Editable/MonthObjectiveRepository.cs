@@ -58,5 +58,14 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         }
 
         #endregion
+
+        protected override void LoadChildEntities(MonthObjective entity)
+        {
+            if (entity == null)
+            {
+                return;
+            }
+            Context.Entry(entity).Reference(p => p.Platform).Load();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// Контроллер Цель на месяц по показателям
     /// </summary>
     [Authorize]
-    [RoutePrefix("api/monthObjectives")]
+    [RoutePrefix("api/MonthObjectives")]
     public class MonthObjectivesController : BaseController<IMonthObjectiveModel>
     {
         #region Поля и свойства
@@ -57,7 +57,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                     return GetErrorResult(ModelState);
                 }
 
-                var result = await _service.Add(null);
+                var result = await _service.GetByIdAsync(id);
                 return Ok(result);
             }
             catch (Exception e)

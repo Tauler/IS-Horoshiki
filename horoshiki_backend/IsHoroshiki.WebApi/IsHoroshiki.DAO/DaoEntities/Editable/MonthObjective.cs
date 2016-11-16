@@ -47,7 +47,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Цель - количество чеков на повара-сушиста в час
         /// </summary>
-        public float ChecksPerHourForPositionSushiChef
+        public double ChecksPerHourForPositionSushiChef
         {
             get;
             set;
@@ -56,7 +56,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Цель - количество чеков на курьера в час
         /// </summary>
-        public float ChecksPerHourForPositionCourier
+        public double ChecksPerHourForPositionCourier
         {
             get;
             set;
@@ -65,7 +65,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Цель - количество чеков на повара-пиццера в час
         /// </summary>
-        public float ChecksPerHourForPositionPizzaChef
+        public double ChecksPerHourForPositionPizzaChef
         {
             get;
             set;
