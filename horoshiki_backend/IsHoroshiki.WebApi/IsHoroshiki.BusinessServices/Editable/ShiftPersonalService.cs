@@ -47,9 +47,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <summary>
         /// Сохранение рабочего интервала времени
         /// </summary>
-        /// <param name="model">Смена</param>
+        /// <param name="model">Изменяемая часть смены</param>
         /// <returns></returns>
-        public async Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalModel model)
+        public async Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalTimePartModel model)
         {
             if (model == null)
             {
@@ -142,26 +142,10 @@ namespace IsHoroshiki.BusinessServices.Editable
 
                 foreach (var shiftType in shiftTypes)
                 {
-                    var shiftPersonal = CreateOrUpdate(position, shiftType);
-
-                    var shiftTime = new ShiftPersonalShiftTimeModel
-                    {
-                        ShiftPart = new ShiftPersonalShiftPartModel
-                        {
-                            Name = shiftPersonal.ShiftType.Value,
-                            ShortName = shiftPersonal.ShiftType.Socr
-                        },
-                        TimePart = new ShiftPersonalTimePartModel
-                        {
-                            Id = shiftPersonal.Id,
-                            TimeStart = shiftPersonal.StartTime,
-                            TimeEnd = shiftPersonal.StopTime
-                        }
-                    };
-
-                    shiftTimes.Add(shiftTime);
+                    shiftTimes.Add(CreateShiftTimeModel(CreateOrUpdate(position, shiftType, false)));
+                    shiftTimes.Add(CreateShiftTimeModel(CreateOrUpdate(position, shiftType, true)));
                 }
-                dataRow.ShiftTime = shiftTimes;
+                dataRow.ShiftTimes = shiftTimes;
 
                 dataRows.Add(dataRow);
             }
@@ -170,9 +154,28 @@ namespace IsHoroshiki.BusinessServices.Editable
             return table;
         }
 
-        private ShiftPersonal CreateOrUpdate(Position position, ShiftType shiftType)
+        private IShiftPersonalShiftTimeModel CreateShiftTimeModel(ShiftPersonal shiftPersonal)
         {
-            var shiftPersonal = _unitOfWork.ShiftPersonalRepository.Get(position.Id, shiftType.Id);
+            return new ShiftPersonalShiftTimeModel
+            {
+                IsAroundClock = shiftPersonal.IsAroundClock,
+                ShiftPart = new ShiftPersonalShiftPartModel
+                {
+                    Name = shiftPersonal.ShiftType.Value,
+                    ShortName = shiftPersonal.ShiftType.Socr
+                },
+                TimePart = new ShiftPersonalTimePartModel
+                {
+                    Id = shiftPersonal.Id,
+                    TimeStart = shiftPersonal.StartTime,
+                    TimeEnd = shiftPersonal.StopTime
+                }
+            };
+        }
+
+        private ShiftPersonal CreateOrUpdate(Position position, ShiftType shiftType, bool isAroundClock)
+        {
+            var shiftPersonal = _unitOfWork.ShiftPersonalRepository.Get(position.Id, shiftType.Id, isAroundClock);
             if (shiftPersonal == null)
             {
                 shiftPersonal = new ShiftPersonal() {
@@ -180,13 +183,13 @@ namespace IsHoroshiki.BusinessServices.Editable
                     PositionId = position.Id,
                     ShiftType = shiftType,
                     ShiftTypeId = shiftType.Id,
-                    IsAroundClock = false,
+                    IsAroundClock = isAroundClock,
                     StartTime = TimeSpan.FromHours(8),
                     StopTime = TimeSpan.FromHours(1)
                 };
                 _unitOfWork.ShiftPersonalRepository.Insert(shiftPersonal);
                 _unitOfWork.Save();
-                shiftPersonal = _unitOfWork.ShiftPersonalRepository.Get(position.Id, shiftType.Id);
+                shiftPersonal = _unitOfWork.ShiftPersonalRepository.Get(position.Id, shiftType.Id, isAroundClock);
             }
             return shiftPersonal;
         }

@@ -23,7 +23,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonals
         /// <summary>
         /// Настройки смен для должности
         /// </summary>
-        List<IShiftPersonalShiftTimeModel> ShiftTime
+        List<IShiftPersonalShiftTimeModel> ShiftTimes
         {
             get;
             set;
