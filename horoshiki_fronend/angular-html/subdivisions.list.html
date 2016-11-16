@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12 ">
         <ul class="breadcrumb">
-            <li><i class="fa fa-home"></i><a href="#">Главная</a></li>
+            <li><a href="/">Главная</a></li>
             <li class="active">Подразделения</li>
         </ul>
     </div>
@@ -78,7 +78,7 @@
 											<td ng-bind="subdivision.SiteHeader"></td>
 											<td>
 												<div class="btn-group">
-													<a aria-expanded="false" href="javascript:void(0);" class="btn btn-btn-default btn-xs" data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
+													<a aria-expanded="false" href="javascript:void(0);" class="btn btn-default btn-xs" data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
 													<ul class="dropdown-menu dropdown-blue">
 														<li><a href="/subdivisions/edit/{{subdivision.Id}}"><i class="fa fa-edit"></i> Редактировать</a></li>
 														<li><a href="javascript:void(0);" data-toggle="modal" data-target="#deleteIserModal" ng-click="deleteSubdivisionModal(subdivision)"><i class="fa fa-cloud"></i> Удалить</a></li>

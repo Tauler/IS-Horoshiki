@@ -69,6 +69,7 @@ function httpErrors(url, status){
         case 0:
             break;
         case -1:
+			redirectBackendError();
             break;
         default:
             redirectBackendError();

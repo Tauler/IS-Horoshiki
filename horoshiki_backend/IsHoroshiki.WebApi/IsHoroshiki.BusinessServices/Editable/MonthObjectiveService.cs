@@ -36,9 +36,10 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="repository">Репозиторий</param>
         /// <param name="validator">Валидатор</param>
-        public MonthObjectiveService(UnitOfWork unitOfWork, IMonthObjectiveValidator validator)
+        public MonthObjectiveService(UnitOfWork unitOfWork, IMonthObjectiveValidator validator, IMonthObjectiveHelper monthObjectiveHelper)
             : base(unitOfWork, unitOfWork.MonthObjectiveRepository, validator)
         {
+            this._monthObjectiveHelper = monthObjectiveHelper;
         }
 
         #endregion
@@ -116,7 +117,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         public override MonthObjective UpdateDaoInternal(MonthObjective daoEntity, IMonthObjectiveModel model)
         {
             var result = daoEntity.Update(model);
-            result.Platform = null;
+            result.Platform = _unitOfWork.PlatformRepository.GetByIdAsync(result.PlatformId).Result;
             return result;
         }
 

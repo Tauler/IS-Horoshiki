@@ -12,6 +12,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'ui.bootstrap.pagination',
     'timepickerDirectives',
     'datepickerDirectives',
+	'userLoadingDirectives',
 
     'layoutControllers',
     'errorControllers',

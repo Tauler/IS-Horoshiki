@@ -48,16 +48,18 @@
                 <div class="pull-right right">
                     <!-- top-bar-right -->
                     <div class="top-bar-right">
-                        <a target="_self" href="/"><button ng-class="groupId == 'metric' ? 'active':''" type="button" class="btn btn-link"> Метрики</button></a>
-                        <a target="_self" href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Отчеты</button></a>
-                        <a target="_self" href="/salesplan"><button ng-class="groupId == 'management' ? 'active':''" type="button" class="btn btn-link"> Управление</button></a>
-                        <a target="_self" href="/users"><button ng-show="isChief()" ng-class="groupId == 'settings' ? 'active':''" type="button" class="btn btn-link"> Настройки</button></a>
-                        <a target="_self" href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Маркетинг</button></a>
-                        <a target="_self" href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Производство</button></a>
+
+                        <a href="/"><button ng-class="groupId == 'metric' ? 'active':''" type="button" class="btn btn-link"> Метрики</button></a>
+                        <a href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Отчеты</button></a>
+                        <a href="/salesplan"><button ng-class="groupId == 'management' ? 'active':''" type="button" class="btn btn-link"> Управление</button></a>
+                        <a href="/users"><button ng-show="isChief()" ng-class="groupId == 'settings' ? 'active':''" type="button" class="btn btn-link"> Настройки</button></a>
+                        <a href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Маркетинг</button></a>
+                        <a href="/"><button ng-class="groupId == '' ? 'active':''" type="button" class="btn btn-link"> Производство</button></a>
 
                         <span style="color: #c1c1c1">|&nbsp;&nbsp; </span>
                         <!-- logged user and the menu -->
-                        <div class="logged-user">
+
+                        <div class="logged-user logged-user-width">
                             <div class="btn-group">
                                 <a href="#" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
                                     <i class="toggle-icon fa fa-user"></i>
@@ -98,7 +100,8 @@
                         <a href="javascript:void(0);"><span class="text">Метрики</span></a>
                     </li>
                     <li ng-class="subgroupId == 'main' ? 'active':''">
-                        <a target="_self" href="/"><span class="text">Основные показатели</span></a>
+
+                        <a href="/"><span class="text">Основные показатели</span></a>
                     </li>
                     <li>
                         <a href="#"><span class="text">Финансы</span></a>
@@ -131,23 +134,30 @@
 
                 <ul ng-if="isChief() && groupId=='settings'" class="main-menu custom-menu">
             <!----------Основные настройки---------->
-                    <li class="left-menu-head"><a href="javascript:void(0);">
-                        <span class="text">Основные настройки</span></a>
+
+
+                    <li class="left-menu-head">
+						<a href="javascript:void(0);"><span class="text">Основные настройки</span></a>
                     </li>
                     <li ng-class="subgroupId == 'subdivisions' ? 'active':''">
-                        <a target="_self" href="/subdivisions"><span class="text">Подразделения</span></a>
+
+                        <a href="/subdivisions"><span class="text">Подразделения</span></a>
                     </li>
                     <li ng-class="subgroupId == 'platforms' ? 'active':''">
-                        <a target="_self" href="/platforms"><span class="text">Рестораны</span></a>
+
+                        <a href="/platforms"><span class="text">Рестораны</span></a>
                     </li>
                     <li ng-class="subgroupId == 'users' ? 'active':''">
-                        <a target="_self" href="/users"><span class="text">Пользователи</span></a>
+
+                        <a href="/users"><span class="text">Пользователи</span></a>
                     </li>
                     <li ng-class="subgroupId == 'zones' ? 'active':''">
-                        <a target="_self" href="/zones"><span class="text">Зоны доставки</span></a>
+
+                        <a href="/zones"><span class="text">Зоны доставки</span></a>
                     </li>
                     <li ng-class="subgroupId == 'reasonDismissal' ? 'active':''">
-                        <a target="_self" href="/reasonDismissals"><span class="text">Причины увольнения</span></a>
+
+                        <a href="/reasonDismissals"><span class="text">Причины увольнения</span></a>
                     </li>
             <!----------Условия доставки---------->
                     <li class="left-menu-head">
@@ -160,14 +170,14 @@
                         <a href="#"><span class="text">Настройки трекинга</span></a>
                     </li>
                     <li>
+
                         <a href="#"><span class="text">Мин. чек</span></a>
                     </li>
 
             <!----------Управленческие настройки---------->
                     <li class="left-menu-head">
-                        <a href="javascript:void(0);">
-                            <span class="text">Управленческие настройки</span>
-                        </a>
+
+                        <a href="javascript:void(0);"><span class="text"><strong>Управленческие настройки</strong></span></a>
                     </li>
                     <li>
                         <a href="#"><span class="text">Системы оплаты</span></a>
@@ -185,20 +195,25 @@
 
                 <ul ng-if="isManager() && (groupId=='management' || groupId=='settings')" class="main-menu custom-menu">
                     <!----------Основные настройки---------->
-                    <li class="left-menu-head"><a href="javascript:void(0);">
-                        <span class="text">Оперативные</span></a>
+
+                    <li class="left-menu-head">
+						<a href="javascript:void(0);"><span class="text">Оперативные</span></a>
                     </li>
                     <li ng-class="subgroupId == '' ? 'active':''">
-                        <a target="_self" href="#"><span class="text">Цели на год</span></a>
+
+                        <a href="#"><span class="text">Цели на год</span></a>
                     </li>
                     <li ng-class="subgroupId == '' ? 'active':''">
-                        <a target="_self" href="#"><span class="text">Цели на месяц</span></a>
+
+                        <a href="#"><span class="text">Цели на месяц</span></a>
                     </li>
                     <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
-                        <a target="_self" href="/salesplan"><span class="text">План продаж</span></a>
+
+                        <a href="/salesplan"><span class="text">План продаж</span></a>
                     </li>
                     <li ng-class="subgroupId == '' ? 'active':''">
-                        <a target="_self" href="#"><span class="text">Графики работы</span></a>
+
+                        <a href="#"><span class="text">Графики работы</span></a>
                     </li>
 
                     <li class="left-menu-head"><a href="javascript:void(0);">
@@ -217,29 +232,24 @@
 
                 <ul ng-if="isChief() && groupId=='management'" class="main-menu custom-menu">
                     <li class="left-menu-head">
-                        <a href="javascript:void(0);">
-                            <span class="text">Оперативные данные</span>
-                        </a>
+
+                        <a href="javascript:void(0);"><span class="menu-text">Оперативные данные</span></a>
                     </li>
                     <li ng-class="subgroupId == '' ? 'active':''">
-                        <a href="/target">
-                            <span class="text"> Цели на год </span>
-                        </a>
+
+                        <a href="/target"><span class="menu-text"> Цели на год</span></a>
                     </li>
                     <li ng-class="subgroupId == '' ? 'active':''">
-                        <a href="/target">
-                            <span class="text"> Цели на месяц </span>
-                        </a>
+
+                        <a href="/target"><span class="menu-text"> Цели на месяц</span></a>
                     </li>
                     <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
-                        <a href="/salesplan" target="_self">
-                            <span class="text"> План продаж </span>
-                        </a>
+
+                        <a href="/salesplan"><span class="menu-text"> План продаж</span></a>
                     </li>
                     <li ng-class="subgroupId == '' ? 'active':''">
-                        <a href="/workgraph" target="_self">
-                            <span class="text"> Графики работы </span>
-                        </a>
+
+                        <a href="/workgraph"><span class="menu-text"> Графики работы</span></a>
                     </li>
                 </ul>
 
@@ -249,6 +259,7 @@
     </div>
     <!-- END LEFT SIDEBAR -->
     <!-- MAIN CONTENT WRAPPER -->
+	<user-loading-indicator></user-loading-indicator>
     <div id="main-content-wrapper" class="content-wrapper ">
         <div ng-view></div>
         <!-- /main -->
@@ -320,8 +331,10 @@
 <script type="text/javascript" src="/theme_gray/assets/js/jquery-ui-1.10.4.autocomplete.js"></script>
 <script src="/theme_gray/assets/js/datetime/datepicker-jquery-ui.js"></script>
 <script src="/theme_gray/assets/js/datetime/datepicker-ru.js"></script>
+
 <!-- Angular directives -->
 <script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
+<script type="text/javascript" src="/angular-app/directives/UserLoadingDirective.js"></script>
 
 </body>
 </html>
