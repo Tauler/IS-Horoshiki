@@ -17,8 +17,8 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <summary>
         /// Сохранение рабочего интервала времени
         /// </summary>
-        /// <param name="model">Смена</param>
+        /// <param name="model">Изменяемая часть смены</param>
         /// <returns></returns>
-        Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalModel model);
+        Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalTimePartModel model);
     }
 }

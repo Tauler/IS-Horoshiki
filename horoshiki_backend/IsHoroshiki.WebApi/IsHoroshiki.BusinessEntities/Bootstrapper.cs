@@ -55,6 +55,7 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<IIntegrationCheckModel, IntegrationCheckModel>();
 
             container.RegisterType<IShiftPersonalModel, ShiftPersonalModel>();
+            container.RegisterType<IShiftPersonalTimePartModel, ShiftPersonalTimePartModel>();
             container.RegisterType<IMonthObjectiveModel, MonthObjectiveModel>();
 
             return container;

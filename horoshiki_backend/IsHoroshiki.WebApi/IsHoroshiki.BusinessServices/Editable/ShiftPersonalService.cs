@@ -47,9 +47,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <summary>
         /// Сохранение рабочего интервала времени
         /// </summary>
-        /// <param name="model">Смена</param>
+        /// <param name="model">Изменяемая часть смены</param>
         /// <returns></returns>
-        public async Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalModel model)
+        public async Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalTimePartModel model)
         {
             if (model == null)
             {
