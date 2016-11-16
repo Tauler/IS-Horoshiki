@@ -39,7 +39,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Цель - количество чеков на повара-сушиста в час
         /// </summary>
-        float ChecksPerHourForPositionSushiChef
+        double ChecksPerHourForPositionSushiChef
         {
             get;
             set;
@@ -48,7 +48,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Цель - количество чеков на курьера в час
         /// </summary>
-        float ChecksPerHourForPositionCourier
+        double ChecksPerHourForPositionCourier
         {
             get;
             set;
@@ -57,7 +57,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.Interfaces
         /// <summary>
         /// Цель - количество чеков на повара-пиццера в час
         /// </summary>
-        float ChecksPerHourForPositionPizzaChef
+        double ChecksPerHourForPositionPizzaChef
         {
             get;
             set;

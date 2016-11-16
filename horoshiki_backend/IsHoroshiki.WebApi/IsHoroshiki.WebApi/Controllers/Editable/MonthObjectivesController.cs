@@ -57,7 +57,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                     return GetErrorResult(ModelState);
                 }
 
-                var result = await _service.Add(null);
+                var result = await _service.GetByIdAsync(id);
                 return Ok(result);
             }
             catch (Exception e)

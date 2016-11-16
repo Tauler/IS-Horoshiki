@@ -36,9 +36,10 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="repository">Репозиторий</param>
         /// <param name="validator">Валидатор</param>
-        public MonthObjectiveService(UnitOfWork unitOfWork, IMonthObjectiveValidator validator)
+        public MonthObjectiveService(UnitOfWork unitOfWork, IMonthObjectiveValidator validator, IMonthObjectiveHelper monthObjectiveHelper)
             : base(unitOfWork, unitOfWork.MonthObjectiveRepository, validator)
         {
+            this._monthObjectiveHelper = monthObjectiveHelper;
         }
 
         #endregion
