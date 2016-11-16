@@ -32,9 +32,9 @@ datepickerDirectives.directive('timepicker', function () {
                     element.find(".time-picker").timepicker({
                         showMeridian: false,
                         minuteStep: 5,
+                        isOpen: true,
                     });
                     element.find(".time-picker").timepicker('setTime', data);
-                    console.log(scope.ngDisabled);
                     element.find(".time-picker").attr("disabled", scope.ngDisabled);
                 }
             }, true);
