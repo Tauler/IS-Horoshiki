@@ -12,7 +12,7 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
     /// </summary>
     public interface IShiftPersonalService : IBaseEditableService<IShiftPersonalModel>
     {
-        Task<IEnumerable<IShiftPersonalModel>> GetTable();
+        Task<IShiftPersonalTableModel> GetTable();
 
         /// <summary>
         /// Сохранение рабочего интервала времени
