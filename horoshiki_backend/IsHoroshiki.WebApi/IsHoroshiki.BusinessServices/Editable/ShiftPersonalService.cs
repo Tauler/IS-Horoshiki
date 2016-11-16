@@ -53,6 +53,11 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         public async Task<ModelEntityModifyResult> UpdateWorkingTime(IShiftPersonalModel model)
         {
+            if (model == null)
+            {
+                return new ModelEntityModifyResult(CommonErrors.EntityUpdateIsNull);
+            }
+
             var daoEntity = await _repository.GetByIdAsync(model.Id);
             if (daoEntity == null)
             {
@@ -119,6 +124,8 @@ namespace IsHoroshiki.BusinessServices.Editable
 
         #endregion
 
+        #region private
+
         private IEnumerable<ShiftPersonal> CreateDefaultTable()
         {
             var result = new List<ShiftPersonal>();
@@ -158,5 +165,7 @@ namespace IsHoroshiki.BusinessServices.Editable
             }
             return shiftPersonal;
         }
+
+        #endregion
     }
 }

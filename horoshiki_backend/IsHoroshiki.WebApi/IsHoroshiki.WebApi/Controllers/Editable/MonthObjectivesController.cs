@@ -16,7 +16,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// Контроллер Цель на месяц по показателям
     /// </summary>
     [Authorize]
-    [RoutePrefix("api/monthObjectives")]
+    [RoutePrefix("api/MonthObjectives")]
     public class MonthObjectivesController : BaseController<IMonthObjectiveModel>
     {
         #region Поля и свойства

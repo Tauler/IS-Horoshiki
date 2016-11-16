@@ -15,7 +15,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
     /// Контроллер Смена
     /// </summary>
     [Authorize]
-    [RoutePrefix("api/shiftPersonals")]
+    [RoutePrefix("api/ShiftPersonals")]
     public class ShiftPersonalsController : BaseController<IShiftPersonalModel>
     {
         #region Поля и свойства
@@ -87,7 +87,6 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                 return new ErrorMessageResult(e);
             }
         }
-
 
         #endregion
     }

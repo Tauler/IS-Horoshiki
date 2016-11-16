@@ -116,7 +116,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         public override MonthObjective UpdateDaoInternal(MonthObjective daoEntity, IMonthObjectiveModel model)
         {
             var result = daoEntity.Update(model);
-            result.Platform = null;
+            result.Platform = _unitOfWork.PlatformRepository.GetByIdAsync(result.PlatformId).Result;
             return result;
         }
 
