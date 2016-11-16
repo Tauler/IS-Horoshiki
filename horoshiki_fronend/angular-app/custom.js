@@ -5,7 +5,7 @@ var backendTimeout = 5000;
 
 var mailRegexp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
 var numberRegexp = /^[0-9]+$/;
-
+var numberWithDotRegexp = /^[0-9.]+$/;
 
 //Константы
 var employeeStatus = {
