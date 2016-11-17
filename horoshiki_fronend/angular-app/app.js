@@ -23,6 +23,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'reasonDismissalControllers',
     'zonesControllers',
     'salesPlanControllers',
+    'changeSettingsControllers',
+	'targetControllers',
 
     'backendServices',
     'accountServices',
@@ -33,7 +35,10 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'platformsServices',
     'reasonDismissalServices',
     'zonesServices',
-    'salesPlanServices'
+
+    'salesPlanServices',
+    'changeSettingsServices',
+	'targetServices',
 
 ]);
 
@@ -166,6 +171,24 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 pageId: 'salesPlanIndex',
                 groupId: 'management',
                 subgroupId: 'salesPlan',
+                title: 'План продаж'
+            })
+			
+			.when('/target/month', {
+                templateUrl: '/angular-html/target.month.html',
+                controller: 'TargetMonthController',
+                pageId: 'targetMonth',
+                groupId: 'management',
+                subgroupId: 'target',
+                title: 'Цели на месяц'
+            })
+
+            .when('/changeSettings', {
+                templateUrl: '/angular-html/changeSettings.list.html',
+                controller: 'ChangeSettingsListController',
+                pageId: 'ChangeSettingsList',
+                groupId: 'settings',
+                subgroupId: 'changeSettings',
                 title: 'План продаж'
             })
 
