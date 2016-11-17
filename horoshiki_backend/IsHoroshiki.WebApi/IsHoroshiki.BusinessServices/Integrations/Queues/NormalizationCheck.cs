@@ -1,10 +1,13 @@
-﻿using IsHoroshiki.DAO.DaoEntities.Editable;
+﻿using IsHoroshiki.DAO;
+using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.DaoEntities.Integrations;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO.Helpers;
 using IsHoroshiki.DAO.UnitOfWorks;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace IsHoroshiki.BusinessServices.Integrations.Queues
 {
@@ -19,6 +22,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// UnitOfWork
         /// </summary>
         private readonly UnitOfWork _unitOfWork;
+
+        /// <summary>
+        /// Id площадки
+        /// </summary>
+        private static int? _platformId;
 
         #endregion
 
@@ -51,7 +59,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                 IdCheck = check.IdCheck,
                 DateDoc = dateDoc,
                 Sum = 0,
-                BuyProcessId = await GetBuyProcess(check),
+                BuyProcessId = GetBuyProcess(check),
                 SubDepartments = await GetSubDepartaments(check),
                 PlanCookingStart = ToDate(check.PlanCookingDateStart, check.PlanCookingTimeStart),
                 FactCookingStart = null,
@@ -65,48 +73,40 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                 FactDeliveryStart = null,
                 PlanDeliveryEnd = null,
                 FactDeliveryEnd = null,
-                PlatformId = await GetPlatform(check)
+                PlatformId = GetPlatform(check)
             };
         }
 
         #endregion
 
-        #region public методы
+        #region private методы
 
         /// <summary>
         /// Способ покупки
         /// </summary>
         /// <param name="check">Чек</param>
         /// <returns></returns>
-        private Task<int?> GetBuyProcess(IntegrationCheck check)
+        private int? GetBuyProcess(IntegrationCheck check)
         {
-            return Task<int?>.Factory.StartNew(() =>
+            Guid guid;
+            if (check.Zona.TrimProbel() == "2" 
+                || check.Zona.TrimProbel() == "3" 
+                || check.Zona.TrimProbel() == "4")
             {
-                Guid? guid = null;
-                if (check.Driver == "1234" || check.Zona == "1")
-                {
-                    guid = DAO.DatabaseConstant.BuyProcessSelf;
-                }
-                else if (check.Zona == "2" || check.Zona == "3" || check.Zona == "4")
-                {
-                    guid = DAO.DatabaseConstant.BuyProcessDelivery;
-                }
+                guid = DAO.DatabaseConstant.BuyProcessDelivery;
+            }
+            else
+            {
+                guid = DAO.DatabaseConstant.BuyProcessSelf;
+            }
+           
+            var exist = _unitOfWork.BuyProcessPepository.GetByGuid(guid);
+            if (exist != null)
+            {
+                return exist.Id;
+            }
 
-                if (guid.HasValue)
-                {
-                    var exist = _unitOfWork.BuyProcessPepository.GetByGuid(guid.Value);
-                    if (exist != null)
-                    {
-                        return exist.Id;
-                    }
-
-                    return null;
-                }
-                else
-                {
-                    return null;
-                }
-            });
+            return null;
         }
 
         /// <summary>
@@ -116,11 +116,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// <returns></returns>
         private async Task<ICollection<SubDepartment>> GetSubDepartaments(IntegrationCheck check)
         {
-            var isCool = ToBool(check.IsCoolSubDepartment);
-            var IsPizza = ToBool(check.IsPizzaSubDepartment);
-            var isSushi = ToBool(check.IsSushiSubDepartment);
-
-            return await _unitOfWork.SubDepartmentRepository.GetSubDepartamentsAsync(isCool, IsPizza, isSushi);
+            var subDepartament = await _unitOfWork.SubDepartmentRepository.GetSubDepartamentsPizzaAsync();
+            return new List<SubDepartment>()
+            {
+                subDepartament
+            };
         }
 
         /// <summary>
@@ -128,9 +128,22 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// </summary>
         /// <param name="check">Чек</param>
         /// <returns></returns>
-        private Task<int> GetPlatform(IntegrationCheck check)
+        private int GetPlatform(IntegrationCheck check)
         {
-            return Task<int>.Factory.StartNew(() => 1);
+            if (_platformId.HasValue)
+            {
+                return _platformId.Value;
+            }
+
+            int tempPlatformId = 0;
+            var platformId = ConfigurationSettings.AppSettings["PlatformId"];
+            if (platformId != null && int.TryParse(platformId, out tempPlatformId))
+            {
+                _platformId = tempPlatformId;
+            }
+
+            _platformId = 1;
+            return _platformId.Value;
         }
 
         /// <summary>
@@ -146,7 +159,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             }
 
             DateTime result;
-            if (DateTime.TryParse(date.Replace(" ", ""), out result))
+            if (DateTime.TryParse(date.TrimProbel(), out result))
             {
                 return result;
             }
@@ -167,7 +180,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             }
 
             TimeSpan result;
-            if (TimeSpan.TryParse(time.Replace(".", ":").Replace(" ", ""), out result))
+            if (TimeSpan.TryParse(time.Replace(".", ":").TrimProbel(), out result))
             {
                 return result;
             }
@@ -216,20 +229,21 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// <returns></returns>
         private bool ToBool(string value)
         {
-            if (value == "0")
+            var val = value.TrimProbel();
+            if (val == "0")
             {
                 return false;
             }
-            else if (value == "1")
+            else if (val == "1")
             {
                 return true;
             }
 
             bool result;
-            bool.TryParse(value, out result);
+            bool.TryParse(val, out result);
             return result;
         }
-
+        
         #endregion
     }
 }
