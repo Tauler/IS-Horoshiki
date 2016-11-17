@@ -63,7 +63,25 @@ namespace IsHoroshiki.BusinessServices.Editable
                 throw new Exception(errorData.Message);
             }
         }
-        
+
+        /// <summary>
+        /// Планирование смен сотрудника на оперделенный день
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ModelEntityModifyResult> UpdateCell(ICollection<IShiftPersonalScheduleModel> models)
+        {
+            try
+            {
+                return new ModelEntityModifyResult();
+            }
+            catch (Exception e)
+            {
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                throw new Exception(errorData.Message);
+            }
+        }
+
         #endregion
 
         #region protected override

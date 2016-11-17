@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System;
 using IsHoroshiki.WebApi.Handlers;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
-using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables;
+using System.Collections.Generic;
 
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
@@ -41,7 +41,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         #region методы контроллера
 
         /// <summary>
-        /// Отчет плана продаж
+        /// График смен сотрудников
         /// </summary>
         [Route("report")]
         public async Task<IHttpActionResult> Report(IShiftPersonalScheduleDataModel model)
@@ -60,7 +60,29 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
             {
                 return new ErrorMessageResult(e);
             }
-        }        
+        }
+
+        /// <summary>
+        /// Редактировать список смен сотрудника
+        /// </summary>
+        [Route("updateCell")]
+        public async Task<IHttpActionResult> UpdateCell(ICollection<IShiftPersonalScheduleModel> model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
+                var result = await _service.UpdateCell(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
 
         #endregion
     }
