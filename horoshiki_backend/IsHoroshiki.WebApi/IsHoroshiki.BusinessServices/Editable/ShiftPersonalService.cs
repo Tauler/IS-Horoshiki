@@ -14,6 +14,7 @@ using System.Collections;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.BusinessServices.Errors.ErrorDatas;
 using IsHoroshiki.BusinessServices.Errors.Enums;
+using IsHoroshiki.BusinessServices.Editable.ShiftPersonals;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -22,6 +23,15 @@ namespace IsHoroshiki.BusinessServices.Editable
     /// </summary>
     public class ShiftPersonalService : BaseEditableService<IShiftPersonalModel, IShiftPersonalValidator, ShiftPersonal, IShiftPersonalRepository>, IShiftPersonalService
     {
+        #region Поля и свойства
+
+        /// <summary>
+        /// Создает результатирующую таблицу с настройками смен работы
+        /// </summary>
+        private readonly IShiftPersonalHelper _shiftPersonalHelper;
+
+        #endregion
+
         #region Конструктор
 
         /// <summary>
@@ -30,18 +40,23 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="unitOfWork">UnitOfWork</param>
         /// <param name="repository">Репозиторий</param>
         /// <param name="validator">Валидатор</param>
-        public ShiftPersonalService(UnitOfWork unitOfWork, IShiftPersonalValidator validator)
+        public ShiftPersonalService(UnitOfWork unitOfWork, IShiftPersonalValidator validator, IShiftPersonalHelper shiftPersonalHelper)
             : base(unitOfWork, unitOfWork.ShiftPersonalRepository, validator)
         {
+            this._shiftPersonalHelper = shiftPersonalHelper;
         }
 
         #endregion
 
         #region IShiftPersonalService
 
+        /// <summary>
+        /// Создать результатирующую таблицу с настройками смен работы
+        /// </summary>
+        /// <returns></returns>
         public async Task<IShiftPersonalTableModel> GetTable()
         {
-            return CreateDefaultTable();
+            return _shiftPersonalHelper.CreateDefaultTable();
         }
 
         /// <summary>
@@ -118,80 +133,6 @@ namespace IsHoroshiki.BusinessServices.Editable
         protected override IShiftPersonalModel ConvertTo(ShiftPersonal daoEntity)
         {
             return daoEntity.ToModelEntity();
-        }
-
-        #endregion
-
-        #region private
-
-        private IShiftPersonalTableModel CreateDefaultTable()
-        {
-            var table = new ShiftPersonalTableModel();
-
-            var positions = _unitOfWork.PositionRepository.GetPositionsOnShiftAsync().Result;
-            var shiftTypes = _unitOfWork.ShiftTypeRepository.GetAllAsync().Result;
-
-            var dataRows = new List<IShiftPersonalDataRowModel>();
-
-            foreach (var position in positions)
-            {
-                var dataRow = new ShiftPersonalDataRowModel();
-                dataRow.Position = position.Value;
-
-                var shiftTimes = new List<IShiftPersonalShiftTimeModel>();
-
-                foreach (var shiftType in shiftTypes)
-                {
-                    shiftTimes.Add(CreateShiftTimeModel(CreateOrUpdate(position, shiftType, false)));
-                    shiftTimes.Add(CreateShiftTimeModel(CreateOrUpdate(position, shiftType, true)));
-                }
-                dataRow.ShiftTimes = shiftTimes;
-
-                dataRows.Add(dataRow);
-            }
-
-            table.DataRows = dataRows;
-            return table;
-        }
-
-        private IShiftPersonalShiftTimeModel CreateShiftTimeModel(ShiftPersonal shiftPersonal)
-        {
-            return new ShiftPersonalShiftTimeModel
-            {
-                IsAroundClock = shiftPersonal.IsAroundClock,
-                ShiftPart = new ShiftPersonalShiftPartModel
-                {
-                    Name = shiftPersonal.ShiftType.Value,
-                    ShortName = shiftPersonal.ShiftType.Socr
-                },
-                TimePart = new ShiftPersonalTimePartModel
-                {
-                    Id = shiftPersonal.Id,
-                    TimeStart = shiftPersonal.StartTime,
-                    TimeEnd = shiftPersonal.StopTime
-                }
-            };
-        }
-
-        private ShiftPersonal CreateOrUpdate(Position position, ShiftType shiftType, bool isAroundClock)
-        {
-            var shiftPersonal = _unitOfWork.ShiftPersonalRepository.Get(position.Id, shiftType.Id, isAroundClock);
-            if (shiftPersonal == null)
-            {
-                shiftPersonal = new ShiftPersonal() {
-                    Position = position,
-                    PositionId = position.Id,
-                    ShiftType = shiftType,
-                    ShiftTypeId = shiftType.Id,
-                    IsAroundClock = isAroundClock,
-                    StartTime = isAroundClock ? TimeSpan.Zero : TimeSpan.FromHours(8),
-                    StopTime = isAroundClock ? TimeSpan.Zero : TimeSpan.FromHours(1)
-                };
-                _unitOfWork.ShiftPersonalRepository.Insert(shiftPersonal);
-                _unitOfWork.Save();
-                shiftPersonal = _unitOfWork.ShiftPersonalRepository.Get(position.Id, shiftType.Id, isAroundClock);
-            }
-            return shiftPersonal;
         }
 
         #endregion

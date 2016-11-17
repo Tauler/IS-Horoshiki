@@ -12,6 +12,10 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
     /// </summary>
     public interface IShiftPersonalService : IBaseEditableService<IShiftPersonalModel>
     {
+        /// <summary>
+        /// Создать результатирующую таблицу с настройками смен работы
+        /// </summary>
+        /// <returns></returns>
         Task<IShiftPersonalTableModel> GetTable();
 
         /// <summary>
