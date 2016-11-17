@@ -184,8 +184,8 @@ namespace IsHoroshiki.BusinessServices.Editable
                     ShiftType = shiftType,
                     ShiftTypeId = shiftType.Id,
                     IsAroundClock = isAroundClock,
-                    StartTime = TimeSpan.FromHours(8),
-                    StopTime = TimeSpan.FromHours(1)
+                    StartTime = isAroundClock ? TimeSpan.Zero : TimeSpan.FromHours(8),
+                    StopTime = isAroundClock ? TimeSpan.Zero : TimeSpan.FromHours(1)
                 };
                 _unitOfWork.ShiftPersonalRepository.Insert(shiftPersonal);
                 _unitOfWork.Save();
