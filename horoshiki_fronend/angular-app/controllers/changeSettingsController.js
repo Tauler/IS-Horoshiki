@@ -14,8 +14,6 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
             return JSON.parse($scope.model.isAroundClock);
         }
 
-
-        
         $scope.changeRow = function (timePart) {
             ChangeSettingsService.update(timePart).success(function (result) {
                 if (result.Success == 1) {
@@ -28,6 +26,8 @@ mainControllers.controller('ChangeSettingsListController', ['$scope', '$location
         }
 
         $scope.getChangeSettings = function () {
+            if($rootScope.isManager())
+                return false;
             ChangeSettingsService.getList().success(function (result) {
                 if (result.Success == 1) {
                     $scope.model.changeSettings = result.Data.DataRows;
