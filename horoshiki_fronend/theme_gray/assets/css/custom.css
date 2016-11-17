@@ -1,6 +1,15 @@
 table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bordered-0 tbody td {
     border-right-width: 0;
 }
+table.table-bordered-0 tbody td.input{
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+table.table-bordered-0 tbody td input{
+	height: 25px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
 
 .table_n {
   width: 100%;
@@ -140,22 +149,47 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
 .padding-bottom-30{
   padding-bottom: 30px;
 }
-
 .text-align-right {
     text-align: right !important;
 }
-
 .text-align-left {
     text-align: left !important;
 }
-
 .margin-top-30 {
     margin-top: 30px !important;
 }
-
 .margin-top-10 {
     margin-top: 10px !important;
 }
+.margin-bottom-20 {
+    margin-bottom: 20px !important;
+}
+.margin-bottom-50 {
+    margin-bottom: 50px !important;
+}
+.padding-right-50 {
+	padding-right: 50px !important;
+}
+.red {
+	color: #df5138 !important;
+}
+.green {
+	color: #8cc474 !important;
+}
+
+.pagination, .pager {
+    margin: 0;
+}
+
+.loading-spinner{
+	width: 100%;
+	text-align: center;
+}
+
+.logged-user-width{
+	min-width: 100px;
+}
+
 
 /*#region DatePicker*/
 .datepicker {

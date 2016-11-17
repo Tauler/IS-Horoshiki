@@ -5,7 +5,7 @@ var backendTimeout = 5000;
 
 var mailRegexp = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/;
 var numberRegexp = /^[0-9]+$/;
-
+var numberWithDotRegexp = /^[0-9.]+$/;
 
 //Константы
 var employeeStatus = {
@@ -56,8 +56,6 @@ function getToken() {
 }
 
 function httpErrors(url, status){
-
-    console.log(status);
     switch(status){
         case 401:
             redirect403(url);
@@ -71,6 +69,7 @@ function httpErrors(url, status){
         case 0:
             break;
         case -1:
+			redirectBackendError();
             break;
         default:
             redirectBackendError();

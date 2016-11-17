@@ -64,12 +64,14 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\Helpers\SaleAnalizeResult.cs" />
+    <Compile Include="DaoEntities\Editable\MonthObjective.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonal.cs" />
     <Compile Include="DaoEntities\Editable\SalePlanDay.cs" />
     <Compile Include="DaoEntities\Editable\SalePlan.cs" />
     <Compile Include="DaoEntities\Editable\SaleCheck.cs" />
     <Compile Include="DaoEntities\Integrations\IntegrationCheck.cs" />
     <Compile Include="DaoEntities\NotEditable\ShiftType.cs" />
+    <Compile Include="DaoEntityConfigurations\Editable\MonthObjectiveConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\ShiftPersonalConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanConfiguration.cs" />
     <Compile Include="DaoEntityConfigurations\Editable\SalePlanDayConfiguration.cs" />
@@ -125,10 +127,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DaoEntities\Accounts\ApplicationUserManager.cs" />
     <Compile Include="Repositories\Editable\DeliveryZoneRepository.cs" />
+    <Compile Include="Repositories\Editable\Interfaces\IMonthObjectiveRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanDayRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\IShiftPersonalRepository.cs" />
     <Compile Include="Repositories\Editable\Interfaces\ISalePlanRepository.cs" />
+    <Compile Include="Repositories\Editable\MonthObjectiveRepository.cs" />
     <Compile Include="Repositories\Editable\SaleCheckRepository.cs" />
     <Compile Include="Repositories\Editable\SalePlanDayRepository.cs" />
     <Compile Include="Repositories\Editable\ShiftPersonalRepository.cs" />
@@ -181,6 +185,7 @@
     <Content Include="Script\2016-08-20 создание БД.sql" />
     <Content Include="Script\2016-10-13 добавление зон.sql" />
     <Content Include="Script\2016-08-23 заполнение справочников.sql" />
+    <Content Include="Script\2016-11-11 Цели на месяц.sql" />
     <Content Include="Script\2016-11-05 Признак круглосуточно для площадки.sql" />
     <Content Include="Script\2016-11-04 add ShiftPersonals.sql" />
     <Content Include="Script\2016-11-04 add ShiftTypes.sql" />
