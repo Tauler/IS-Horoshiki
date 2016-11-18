@@ -24,7 +24,93 @@
         ALTER TABLE [dbo].[AspNetUsers] CHECK CONSTRAINT [FK_dbo.AspNetUsers_dbo.SubDepartments_SubDepartmentId]
         </sql>
     </changeSet>
+	
+	<changeSet id="18112016_1" author="prohoroven">
+        <sql>
+			CREATE TABLE [dbo].[ShiftPersonalSchedules](
+				[Id] [int] IDENTITY(1,1) NOT NULL,
+				[UserId]	  [int] NOT NULL,
+				[ShiftTypeId] [int] NOT NULL,
+				[Date] datetime NOT NULL
+			 CONSTRAINT [PK_dbo.ShiftPersonalSchedules] PRIMARY KEY CLUSTERED 
+			(
+				[Id] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_2" author="prohoroven">
+        <sql>
+			ALTER TABLE [dbo].[ShiftPersonalSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.AspNetUsers_UserId] FOREIGN KEY([UserId])
+			REFERENCES [dbo].[AspNetUsers] ([Id])
+			ON DELETE CASCADE
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_3" author="prohoroven">
+        <sql>
+			ALTER TABLE [dbo].[ShiftPersonalSchedules] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.AspNetUsers_UserId]
+        </sql>
+    </changeSet>
 
+	<changeSet id="18112016_4" author="prohoroven">
+        <sql>
+			ALTER TABLE [dbo].[ShiftPersonalSchedules]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.ShiftTypes_ShiftTypeId] FOREIGN KEY([ShiftTypeId])
+			REFERENCES [dbo].[ShiftTypes] ([Id])
+			ON DELETE CASCADE
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_5" author="prohoroven">
+        <sql>
+			ALTER TABLE [dbo].[ShiftPersonalSchedules] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedules_dbo.ShiftTypes_ShiftTypeId]
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_6" author="prohoroven">
+        <sql>
+			CREATE TABLE [dbo].[ShiftPersonalSchedulePeriods](
+				[Id] [int] IDENTITY(1,1) NOT NULL,
+				[ShiftPersonalScheduleId] [int] NOT NULL,
+				[StartTime] [time](7) NOT NULL,
+				[StopTime] [time](7) NOT NULL,
+			 CONSTRAINT [PK_dbo.ShiftPersonalSchedulePeriods] PRIMARY KEY CLUSTERED 
+			(
+				[Id] ASC
+			)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+			) ON [PRIMARY]
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_7" author="prohoroven">
+        <sql>
+			ALTER TABLE [dbo].[ShiftPersonalSchedulePeriods]  WITH CHECK ADD  CONSTRAINT [FK_dbo.ShiftPersonalSchedulePeriods_dbo.ShiftPersonalSchedules_ShiftPersonalScheduleId] FOREIGN KEY([ShiftPersonalScheduleId])
+			REFERENCES [dbo].[ShiftPersonalSchedules] ([Id])
+			ON DELETE CASCADE
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_8" author="prohoroven">
+        <sql>
+			ALTER TABLE [dbo].[ShiftPersonalSchedulePeriods] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedulePeriods_dbo.ShiftPersonalSchedules_ShiftPersonalScheduleId]
+        </sql>
+    </changeSet>
+	
+	<changeSet id="18112016_9" author="prohoroven">
+        <comment>Функция создания таблицы периода дат</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-07_Function_GetDateRange.sql"/>
+    </changeSet>
+	
+	<changeSet id="18112016_10" author="prohoroven">
+        <comment>Создание входного типа список Id для ХП</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-07_Custom_type_IdList.sql"/>
+    </changeSet>
+	
+	<changeSet id="18112016_11" author="prohoroven">
+        <comment>Создание таблицы графика смен персонала</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-07_ScheduleShiftPersonal.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
