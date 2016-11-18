@@ -71,7 +71,9 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             var schedulerShiftPersonals = _unitOfWork.ShiftPersonalScheduleRepository.GetScheduleShiftPersonal(departaments, subDepartaments, model.Platform.Id, model.DateStart, model.DateEnd);
 
             result.DepartamentScheduleRows = GetDepartamentScheduleRows(model, result, schedulerShiftPersonals);
-          
+
+            await UpdateNameTrainee(result);
+
             return result;
         }
 
@@ -289,6 +291,29 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             }
 
             return rowDepartment;
+        }
+
+        /// <summary>
+        /// Добавить постфикс к имени стажера
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private async Task UpdateNameTrainee(ShiftPersonalScheduleReportModel result)
+        {
+            var list = await _unitOfWork.AccountRepository.GetAllSmallTrainee();
+            foreach (var departamentRow in result.DepartamentScheduleRows)
+            {
+                foreach (var subDepartamentRow in departamentRow.SubDepartment)
+                {
+                    foreach (var userRow in subDepartamentRow.UserRows)
+                    {
+                        if (list.Any(user => user.Id == userRow.User.Id))
+                        {
+                            userRow.User.UserName += " (ст)";
+                        }
+                    }
+                }
+            }
         }
 
         #endregion

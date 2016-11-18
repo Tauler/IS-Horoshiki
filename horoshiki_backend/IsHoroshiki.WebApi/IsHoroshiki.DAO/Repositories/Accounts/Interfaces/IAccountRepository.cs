@@ -117,5 +117,13 @@ namespace IsHoroshiki.DAO.Repositories.Accounts.Interfaces
         /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <returns></returns>
         Task<IEnumerable<ApplicationUser>> GetAllSmallManager(string sortField = "", bool isAscending = true);
+
+        /// <summary>
+        /// Получить всех стажеров
+        /// </summary>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <returns></returns>
+        Task<IEnumerable<ApplicationUser>> GetAllSmallTrainee(string sortField = "", bool isAscending = true);
     }
 }

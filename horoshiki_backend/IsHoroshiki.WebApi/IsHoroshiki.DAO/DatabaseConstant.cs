@@ -19,6 +19,17 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
+        /// Статус работника - стажер
+        /// </summary>
+        public static Guid EmployeeStatusTrainee
+        {
+            get
+            {
+                return Guid.Parse("F64423DC-FB22-41F3-8FAA-DA9B38EA671D");
+            }
+        }
+
+        /// <summary>
         /// Должность - Операционный директор
         /// </summary>
         public static Guid PositionOperationDirector
