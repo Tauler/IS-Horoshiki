@@ -16,7 +16,7 @@ subdivisionsServices.service('SubdivisionService', ['$http', function ($http) {
     };
 
     this.getSubdivision = function (id) {
-        return $http.get(backendServerAddr+'api/SubDivisions/'+id, {timeout: backendTimeout, headers: getToken()});
+        return $http.get(backendServerAddr+'/api/SubDivisions/'+id, {timeout: backendTimeout, headers: getToken()});
     };
 
     this.subdivisionsAdd = function (subdivision) {

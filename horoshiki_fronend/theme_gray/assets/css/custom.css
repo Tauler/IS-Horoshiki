@@ -1,6 +1,15 @@
 table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bordered-0 tbody td {
     border-right-width: 0;
 }
+table.table-bordered-0 tbody td.input{
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+table.table-bordered-0 tbody td input{
+	height: 25px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
 
 .table_n {
   width: 100%;
@@ -171,6 +180,16 @@ table.table-bordered-0 thead th, table.table-bordered-0 tbody th, table.table-bo
 .pagination, .pager {
     margin: 0;
 }
+
+.loading-spinner{
+	width: 100%;
+	text-align: center;
+}
+
+.logged-user-width{
+	min-width: 100px;
+}
+
 
 /*#region DatePicker*/
 .datepicker {

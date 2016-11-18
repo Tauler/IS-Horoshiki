@@ -376,6 +376,33 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать месяц для цели!.
+        /// </summary>
+        internal static string MonthObjectiveValidator_MonthIsNull {
+            get {
+                return ResourceManager.GetString("MonthObjectiveValidator_MonthIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать площадку!.
+        /// </summary>
+        internal static string MonthObjectiveValidator_PlatformIsNull {
+            get {
+                return ResourceManager.GetString("MonthObjectiveValidator_PlatformIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать год для цели!.
+        /// </summary>
+        internal static string MonthObjectiveValidator_YearIsNull {
+            get {
+                return ResourceManager.GetString("MonthObjectiveValidator_YearIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Способа покупки для указанного ID=&quot;{0}&quot; не существует!.
         /// </summary>
         internal static string PlatformService_BuyProcessNotFound {
@@ -633,6 +660,24 @@ namespace IsHoroshiki.BusinessServices {
         internal static string SalePlanValidator_SalePlanPeriodYearIsNull {
             get {
                 return ResourceManager.GetString("SalePlanValidator_SalePlanPeriodYearIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать должность!.
+        /// </summary>
+        internal static string ShiftPersonalValidator_PositionIsNull {
+            get {
+                return ResourceManager.GetString("ShiftPersonalValidator_PositionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать тип смены!.
+        /// </summary>
+        internal static string ShiftPersonalValidator_ShiftTypeIsNull {
+            get {
+                return ResourceManager.GetString("ShiftPersonalValidator_ShiftTypeIsNull", resourceCulture);
             }
         }
         

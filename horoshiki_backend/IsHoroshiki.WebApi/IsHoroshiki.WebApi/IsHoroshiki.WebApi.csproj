@@ -260,6 +260,8 @@
     <Compile Include="Controllers\Editable\ShiftPersonalScheduleController.cs" />
     <Compile Include="Controllers\Editable\SalePlanController.cs" />
     <Compile Include="Controllers\Editable\PlatformsController.cs" />
+    <Compile Include="Controllers\Editable\MonthObjectivesController.cs" />
+    <Compile Include="Controllers\Editable\ShiftPersonalsController.cs" />
     <Compile Include="Controllers\Kladr\KladrController.cs" />
     <Compile Include="Controllers\Editable\EmployeeReasonDismissalsController.cs" />
     <Compile Include="Controllers\NotEditable\ShiftTypesController.cs" />

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonals;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 
 namespace IsHoroshiki.BusinessServices.Validators.Editable
 {
@@ -22,6 +23,14 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
         /// <returns></returns>
         public async Task<ValidationResult> ValidateAsync(IShiftPersonalModel element)
         {
+            if (element.Position == null)
+            {
+                return new ValidationResult(ShiftPersonalErrors.PositionIsNull);
+            }
+            if (element.ShiftType == null)
+            {
+                return new ValidationResult(ShiftPersonalErrors.ShiftTypeIsNull);
+            }
             return new ValidationResult();
         }
 

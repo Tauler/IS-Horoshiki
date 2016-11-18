@@ -47,6 +47,10 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$rootScope', '$lo
         }
 
         $scope.addObject = function () {
+
+            if($scope.subdivisionIsDisabled)
+                return false;
+
             var zone = {
                 index: obj_index,
                 name: 'Зона ' + obj_index,
@@ -79,6 +83,9 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$rootScope', '$lo
         }
 
         $scope.deleteObject = function () {
+            if($scope.subdivisionIsDisabled)
+                return false;
+
             if ($scope.model.zoneForm.active && $scope.model.zoneForm.index != undefined && $scope.model.zoneForm != '') {
 
                 for ($index in $scope.model.objects) {
@@ -176,6 +183,10 @@ zonesControllers.controller('ZonesViewController', ['$scope', '$rootScope', '$lo
         }
 
         $scope.saveCenterPlatform = function () {
+
+            if($scope.subdivisionIsDisabled)
+                return false;
+
             var platform = JSON.parse($scope.model.platform);
             platform.YandexMap = JSON.stringify($scope.map.getCenter());
 

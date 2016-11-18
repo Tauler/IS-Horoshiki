@@ -343,10 +343,12 @@ salesPlanControllers.controller('SalesPlanIndexController', ['$scope', '$rootSco
         }
 
         $scope.keyUpCallSalePlan = function (event) {
-            if(!numberRegexp.test(event.key) && event.key!="Tab" && event.key!="Backspace" && event.key!="Delete"){
+
+
+            // console.log(numberRegexp.test(event.key));
+            if((event.keyCode<46 || event.keyCode>57)&&(event.keyCode<96 || event.keyCode>105) && event.keyCode!=8 && event.keyCode!=9 && event.keyCode!=37 && event.keyCode!=39){
                 event.preventDefault();
             }
-
         }
 
         $rootScope.$watch('currentUserLoaded', function(){

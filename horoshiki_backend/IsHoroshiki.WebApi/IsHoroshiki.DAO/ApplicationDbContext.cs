@@ -179,6 +179,33 @@ namespace IsHoroshiki.DAO
             set;
         }
 
+        /// <summary>
+        /// Смена
+        /// </summary>
+        public DbSet<ShiftPersonal> ShiftPersonal
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Тип смены
+        /// </summary>
+        public DbSet<ShiftType> ShiftType
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Цель на месяц по показателям
+        /// </summary>
+        public DbSet<MonthObjective> MonthObjective
+        {
+            get;
+            set;
+        }
+
         #endregion
 
         #region Конструктор

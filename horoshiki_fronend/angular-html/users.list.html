@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12 ">
         <ul class="breadcrumb">
-            <li><i class="fa fa-home"></i><a href="#">Главная</a></li>
+            <li><a href="/">Главная</a></li>
             <li class="active">Пользователи</li>
         </ul>
     </div>
@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-md-12">
 								<div class="padding-bottom-10 text-align-left">
-									<a href="javascript:void(0);" ng-click="toAddUserPage();" class="btn btn-success">{{$parent.translation.user_list_button_add_user}}</a>
+									<a href="javascript:void(0);" ng-click="toAddUserPage();" class="btn btn-default">{{$parent.translation.user_list_button_add_user}}</a>
 								</div>
 								<table class="table table-bordered table-bordered-0">
 									<thead class="bordered-blueberry">
@@ -208,7 +208,7 @@
 											<td ng-show="!user.IsHaveMedicalBook" title="Дата окончания: {{user.MedicalBookEnd | date : 'dd.MM.yyyy'}}"><i class="fa fa-book red"></i></td>
 											<td>
 												<div class="btn-group padding-right-50">
-													<a aria-expanded="false" href="javascript:void(0);" class="btn btn-primary btn-xs" data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
+													<a aria-expanded="false" href="javascript:void(0);" class="btn btn-default btn-xs" data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
 													<ul class="dropdown-menu dropdown-blue">
 														<li><a href="/users/edit/{{user.Id}}"><i class="fa fa-edit"></i> Редактировать</a>
 														</li>

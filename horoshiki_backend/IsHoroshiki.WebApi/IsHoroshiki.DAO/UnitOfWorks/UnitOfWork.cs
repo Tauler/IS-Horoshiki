@@ -139,6 +139,11 @@ namespace IsHoroshiki.DAO.UnitOfWorks
         private IShiftPersonalRepository _shiftPersonalRepository;
 
         /// <summary>
+        /// Репозиторий Цель на месяц по показателям
+        /// </summary>
+        private IMonthObjectiveRepository _monthObjectiveRepository;
+
+        /// <summary>
         /// Репозиторий График периода смен сотрудника
         /// </summary>
         private IShiftPersonalScheduleRepository _shiftPersonalScheduleRepository;
@@ -491,6 +496,21 @@ namespace IsHoroshiki.DAO.UnitOfWorks
                     this._shiftPersonalRepository = new ShiftPersonalRepository(_context);
                 }
                 return this._shiftPersonalRepository;
+            }
+        }
+
+        /// <summary>
+        /// Репозиторий Цель на месяц по показателям
+        /// </summary>
+        public IMonthObjectiveRepository MonthObjectiveRepository
+        {
+            get
+            {
+                if (this._monthObjectiveRepository == null)
+                {
+                    this._monthObjectiveRepository = new MonthObjectiveRepository(_context);
+                }
+                return this._monthObjectiveRepository;
             }
         }
 
