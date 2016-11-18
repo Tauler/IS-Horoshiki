@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
+using IsHoroshiki.BusinessServices.Errors.Enums;
 using IsHoroshiki.BusinessServices.Validators.Editable.Interfaces;
 using System.Threading.Tasks;
 
@@ -18,7 +19,16 @@ namespace IsHoroshiki.BusinessServices.Validators.Editable
         /// <returns></returns>
         public async Task<ValidationResult> ValidateAsync(IShiftPersonalScheduleModel element)
         {
-            
+            if (element.ShiftType == null)
+            {
+                return new ValidationResult(ShiftPersonalScheduleErrors.ShiftTypeIsNull);
+            }
+
+            if (element.User == null)
+            {
+                return new ValidationResult(ShiftPersonalScheduleErrors.UserIsNull);
+            }
+
             return new ValidationResult();
         }
 

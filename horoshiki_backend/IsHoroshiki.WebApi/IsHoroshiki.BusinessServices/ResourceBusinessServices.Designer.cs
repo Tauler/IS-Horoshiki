@@ -637,6 +637,87 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Указаны смены с разными датами!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_CollectionDateMoreOne {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_CollectionDateMoreOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Указаны смены с разными сотрудниками!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_CollectionUserMoreOne {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_CollectionUserMoreOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Указана смена усиление с другими типами смен!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_ShiftTypeIntensificationWithAnyTypes {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_ShiftTypeIntensificationWithAnyTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указан тип смены!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_ShiftTypeIsNull {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_ShiftTypeIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип смены с указанным Id=&quot;{0}&quot; не существует!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_ShiftTypeNotFound {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_ShiftTypeNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для существующего графика смены на дату указана дата, отличная от сохраненной в БД!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_UpdateMistakeDate {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_UpdateMistakeDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для существующего графика смены на дату указан тип смены, отличный от типа сохраненного в БД!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_UpdateMistakeType {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_UpdateMistakeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указан сотрудник!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_UserIsNull {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_UserIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сотрудника с указанным Id=&quot;{0}&quot; не существует!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_UserNotFound {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Не найден тип цены с Id=&quot;{0}&quot;!.
         /// </summary>
         internal static string SubDivisionService_PriceTypeNotFound {

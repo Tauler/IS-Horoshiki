@@ -17,6 +17,13 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="id">Id</param>  
         /// <returns></returns>  
+        TDaoEntity GetById(int id);
+
+        /// <summary>  
+        /// Найти по Id 
+        /// </summary>  
+        /// <param name="id">Id</param>  
+        /// <returns></returns>  
         Task<TDaoEntity> GetByIdAsync(int id);
 
         /// <summary>  

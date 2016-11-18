@@ -1,5 +1,6 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
+using System.Linq;
 
 namespace IsHoroshiki.DAO.Repositories.NotEditable
 {
@@ -18,6 +19,19 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
             : base(context)
         {
 
+        }
+
+        #endregion
+
+        #region IShiftTypeRepository
+
+        /// <summary>
+        /// Получить тип смены - усиление
+        /// </summary>
+        /// <returns></returns>
+        public ShiftType GetIntensification()
+        {
+            return DbSet.FirstOrDefault(st => st.Guid == DatabaseConstant.ShiftTypeIntensification);
         }
 
         #endregion

@@ -7,6 +7,10 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable.Interfaces
     /// </summary>
     public interface IShiftTypeRepository : IBaseNotEditableDictionaryRepository<ShiftType>
     {
-        
+        /// <summary>
+        /// Получить тип смены - усиление
+        /// </summary>
+        /// <returns></returns>
+        ShiftType GetIntensification();
     }
 }

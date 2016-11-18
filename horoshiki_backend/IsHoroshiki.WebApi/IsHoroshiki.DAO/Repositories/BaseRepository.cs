@@ -51,7 +51,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// </summary>  
         /// <param name="id">Id</param>  
         /// <returns></returns>  
-        public virtual async Task<TDaoEntity> GetByIdAsync(int id)
+        public virtual TDaoEntity GetById(int id)
         {
             var daoEntity = DbSet.Find(id);
             if (daoEntity != null)
@@ -59,6 +59,16 @@ namespace IsHoroshiki.DAO.Repositories
                 LoadChildEntities(daoEntity);
             }
             return daoEntity;
+        }
+
+        /// <summary>  
+        /// Найти по Id 
+        /// </summary>  
+        /// <param name="id">Id</param>  
+        /// <returns></returns>  
+        public virtual async Task<TDaoEntity> GetByIdAsync(int id)
+        {
+            return GetById(id);
         }
 
         /// <summary>  

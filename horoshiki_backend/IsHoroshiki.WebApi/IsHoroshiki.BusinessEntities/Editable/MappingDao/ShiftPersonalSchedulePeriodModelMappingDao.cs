@@ -60,6 +60,22 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
         public static IEnumerable<IShiftPersonalSchedulePeriodModel> ToModelEntityList(this IEnumerable<ShiftPersonalSchedulePeriod> models)
         {
             return models.Select(model => model.ToModelEntity());
-        }        
+        }
+
+        /// <summary>
+        /// Модель в DAO
+        /// </summary>
+        /// <param name="daoModel"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static ShiftPersonalSchedulePeriod Update(this ShiftPersonalSchedulePeriod daoModel, IShiftPersonalSchedulePeriodModel model)
+        {
+            daoModel.Id = model.Id;
+            daoModel.ShiftPersonalScheduleId = model.ShiftPersonalSchedule != null ? model.ShiftPersonalSchedule.Id : 0;
+            daoModel.StartTime = model.StartTime;
+            daoModel.StopTime = model.StopTime;
+
+            return daoModel;
+        }
     }
 }

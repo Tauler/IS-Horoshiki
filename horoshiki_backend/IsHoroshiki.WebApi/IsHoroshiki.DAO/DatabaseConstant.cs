@@ -105,5 +105,16 @@ namespace IsHoroshiki.DAO
                 return Guid.Parse("1C47B31F-D28B-4DEF-BE40-E588CADD853B");
             }
         }
+
+        /// <summary>
+        /// Тип смены - усиление
+        /// </summary>
+        public static Guid ShiftTypeIntensification
+        {
+            get
+            {
+                return Guid.Parse("9849AEF4-3413-4E3E-A427-4722CFA172F6");
+            }
+        }
     }
 }

@@ -309,6 +309,33 @@
   <data name="SalePlanValidator_SalePlanPeriodYearIsNull" xml:space="preserve">
     <value>Необходимо указать год плана продаж!</value>
   </data>
+  <data name="ShiftPersonalScheduleValidator_CollectionDateMoreOne" xml:space="preserve">
+    <value>Указаны смены с разными датами!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_CollectionUserMoreOne" xml:space="preserve">
+    <value>Указаны смены с разными сотрудниками!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_ShiftTypeIntensificationWithAnyTypes" xml:space="preserve">
+    <value>Указана смена усиление с другими типами смен!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_ShiftTypeIsNull" xml:space="preserve">
+    <value>Не указан тип смены!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_ShiftTypeNotFound" xml:space="preserve">
+    <value>Тип смены с указанным Id="{0}" не существует!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_UpdateMistakeDate" xml:space="preserve">
+    <value>Для существующего графика смены на дату указана дата, отличная от сохраненной в БД!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_UpdateMistakeType" xml:space="preserve">
+    <value>Для существующего графика смены на дату указан тип смены, отличный от типа сохраненного в БД!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_UserIsNull" xml:space="preserve">
+    <value>Не указан сотрудник!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_UserNotFound" xml:space="preserve">
+    <value>Сотрудника с указанным Id="{0}" не существует!</value>
+  </data>
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
     <value>Не найден тип цены с Id="{0}"!</value>
   </data>

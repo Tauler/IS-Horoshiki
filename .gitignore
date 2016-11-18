@@ -5,3 +5,13 @@
 /horoshiki_backend/IsHoroshiki.WebApi/IsHoroshiki.WebApi/obj/Release
 /horoshiki_backend/IsHoroshiki.WebApi/IsHoroshiki.WebApi/Properties/PublishProfiles
 /horoshiki_backend/IsHoroshiki.WebApi/IsHoroshiki.WebApi/Logs
+/horoshiki_backend/IsHoroshiki.WebApi/packages/EntityFramework.6.1.0
+/horoshiki_backend/IsHoroshiki.WebApi/packages/Microsoft.Owin.2.1.0
+/horoshiki_backend/IsHoroshiki.WebApi/packages/Microsoft.Owin.Cors.3.0.1
+/horoshiki_backend/IsHoroshiki.WebApi/packages/Microsoft.Owin.Security.2.1.0
+/horoshiki_backend/IsHoroshiki.WebApi/packages/Microsoft.Owin.Security.Cookies.2.1.0
+/horoshiki_backend/IsHoroshiki.WebApi/packages/Microsoft.Owin.Security.OAuth.2.1.0
+/horoshiki_backend/IsHoroshiki.WebApi/packages/NLog.4.3.10
+/horoshiki_backend/IsHoroshiki.WebApi/packages/NLog.4.3.7
+/horoshiki_backend/IsHoroshiki.WebApi/packages/NLog.Config.4.3.7
+/horoshiki_backend/IsHoroshiki.WebApi/packages/Newtonsoft.Json.4.5.11

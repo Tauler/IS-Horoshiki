@@ -213,11 +213,11 @@ namespace IsHoroshiki.BusinessServices.Editable
 
             if (result.UserId > 0)
             {
-                result.User = _unitOfWork.AccountRepository.GetByIdAsync(result.UserId.Value).Result;
+                result.User = _unitOfWork.AccountRepository.GetById(result.UserId.Value);
             }
 
-            result.PlatformStatus = _unitOfWork.PlatformStatusRepository.GetByIdAsync(result.PlatformStatusId).Result;
-            result.SubDivision = _unitOfWork.SubDivisionRepository.GetByIdAsync(result.SubDivisionId).Result;
+            result.PlatformStatus = _unitOfWork.PlatformStatusRepository.GetById(result.PlatformStatusId);
+            result.SubDivision = _unitOfWork.SubDivisionRepository.GetById(result.SubDivisionId);
 
             result.BuyProcesses.Clear();
 
@@ -225,7 +225,7 @@ namespace IsHoroshiki.BusinessServices.Editable
             {
                 foreach (var bp in model.BuyProcesses)
                 {
-                    var daoBp = _unitOfWork.BuyProcessPepository.GetByIdAsync(bp.Id).Result;
+                    var daoBp = _unitOfWork.BuyProcessPepository.GetById(bp.Id);
                     if (daoBp != null)
                     {
                         result.BuyProcesses.Add(daoBp);

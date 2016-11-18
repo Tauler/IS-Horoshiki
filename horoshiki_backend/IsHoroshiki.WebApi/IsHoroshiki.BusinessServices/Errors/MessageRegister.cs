@@ -31,6 +31,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             FillMessageEmployeeReasonDismissalHolder();
             FillMessageDeliveryZoneHolder();
             FillMessageSalePlanHolder();
+            FillMessageShiftPersonalScheduleHolder();
         }
 
         #region private
@@ -151,6 +152,22 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNull, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNull);
             MessageHolder.Instance.AddMessage(SalePlanErrors.AverageCheckIsNegative, ResourceBusinessServices.SalePlanValidator_AverageCheckIsNegative);
             MessageHolder.Instance.AddMessage(SalePlanErrors.SalePlanNotExit, ResourceBusinessServices.SalePlanValidator_SalePlanNotExit);
+        }
+
+        /// <summary>
+        /// Заполнение ошибок для графика смен сотрудников
+        /// </summary>
+        private static void FillMessageShiftPersonalScheduleHolder()
+        {
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.CollectionDateMoreOne, ResourceBusinessServices.ShiftPersonalScheduleValidator_CollectionDateMoreOne);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.CollectionUserMoreOne, ResourceBusinessServices.ShiftPersonalScheduleValidator_CollectionUserMoreOne);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.ShiftTypeIntensificationWithAnyTypes, ResourceBusinessServices.ShiftPersonalScheduleValidator_ShiftTypeIntensificationWithAnyTypes);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UpdateMistakeDate, ResourceBusinessServices.ShiftPersonalScheduleValidator_UpdateMistakeDate);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UpdateMistakeType, ResourceBusinessServices.ShiftPersonalScheduleValidator_UpdateMistakeType);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.ShiftTypeNotFound, ResourceBusinessServices.ShiftPersonalScheduleValidator_ShiftTypeNotFound);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UserNotFound, ResourceBusinessServices.ShiftPersonalScheduleValidator_UserNotFound);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.ShiftTypeIsNull, ResourceBusinessServices.ShiftPersonalScheduleValidator_ShiftTypeIsNull);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UserIsNull, ResourceBusinessServices.ShiftPersonalScheduleValidator_UserIsNull);
         }
 
         #endregion
