@@ -9,6 +9,12 @@ CREATE PROCEDURE [dbo].[ScheduleShiftPersonal]
 AS
 BEGIN
 	DECLARE @CURRENT_DATE datetime
+	--статус уволен
+	DECLARE @EmployeeStatusFiredGuid uniqueidentifier
+	DECLARE @EmployeeStatusFiredId   int
+
+	SET @EmployeeStatusFiredGuid = Convert(uniqueidentifier, '104688A6-9CD2-4FB9-AB03-9DA1B5474BE0')
+	SET @EmployeeStatusFiredId = (SELECT Id from EmployeeStatuses WHERE Guid = @EmployeeStatusFiredGuid)
 
 	CREATE TABLE #RESULT
 	(
@@ -81,7 +87,7 @@ BEGIN
 		INTO @CURRENT_DATE
 	END   
 	CLOSE DATE_CURSOR  
-	DEALLOCATE DATE_CURSOR
+	DEALLOCATE DATE_CURSOR 
 
 	IF ((SELECT count(*) FROM @SubDepartaments) > 0)
 	BEGIN
@@ -132,10 +138,10 @@ BEGIN
 	LEFT JOIN AspNetUsers u ON
 		 u.PlatformId = @PlatformId			AND 	
 		 u.DepartmentId = r.DepartmentId	AND
-		 u.EmployeeStatusId <> 4			AND
+		 u.EmployeeStatusId <> @EmployeeStatusFiredId AND
 		 ((u.SubDepartmentId IS NOT NULL AND u.SubDepartmentId = r.SubDepartmentId) OR
 		 (u.SubDepartmentId IS NULL AND u.DepartmentId IS NOT NULL AND u.DepartmentId = r.DepartmentId))
-
+		
 
 	--добаляем смены для сотрудников
 	INSERT INTO #RESULT_USER_SHIFT
