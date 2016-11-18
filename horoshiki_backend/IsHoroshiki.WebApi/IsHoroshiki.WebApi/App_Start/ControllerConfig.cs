@@ -7,6 +7,8 @@ using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonals;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
+using Newtonsoft.Json;
+using System;
 
 namespace IsHoroshiki.WebApi
 {
@@ -20,19 +22,24 @@ namespace IsHoroshiki.WebApi
         /// </summary>
         public static void Register()
         {
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IApplicationUserModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISubDivisionModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IPlatformModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IEmployeeReasonDismissalModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IDepartmentModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IDeliveryZoneModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISalePlanModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISalePlanDayModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IShiftPersonalModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IShiftPersonalTimePartModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IMonthObjectiveModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IShiftPersonalScheduleModel>());
-            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IShiftPersonalScheduleDataModel>());
+            RegisterConverter<IApplicationUserModel>();
+            RegisterConverter<ISubDivisionModel>();
+            RegisterConverter<IPlatformModel>();
+            RegisterConverter<IEmployeeReasonDismissalModel>();
+            RegisterConverter<IDepartmentModel>();
+            RegisterConverter<IDeliveryZoneModel>();
+            RegisterConverter<ISalePlanModel>();
+            RegisterConverter<ISalePlanDayModel>();
+            RegisterConverter<IShiftPersonalModel>();
+            RegisterConverter<IShiftPersonalTimePartModel>();
+            RegisterConverter<IMonthObjectiveModel>();
+            RegisterConverter<IShiftPersonalScheduleModel>();
+            RegisterConverter<IShiftPersonalScheduleDataModel>();
+        }
+
+        private static void RegisterConverter<T>()
+        {
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<T>());
         }
     }
 }

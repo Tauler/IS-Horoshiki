@@ -34,7 +34,6 @@ namespace IsHoroshiki.DAO
             set;
         }
 
-
         /// <summary>
         /// Список сущностей БД Статус площадки
         /// </summary>
@@ -201,6 +200,24 @@ namespace IsHoroshiki.DAO
         /// Цель на месяц по показателям
         /// </summary>
         public DbSet<MonthObjective> MonthObjective
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// График периода сотрудника на день (смен)
+        /// </summary>
+        public DbSet<ShiftPersonalSchedule> ShiftPersonalSchedule
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Период для графика смен сотрудника
+        /// </summary>
+        public DbSet<ShiftPersonalSchedulePeriod> ShiftPersonalSchedulePeriod
         {
             get;
             set;

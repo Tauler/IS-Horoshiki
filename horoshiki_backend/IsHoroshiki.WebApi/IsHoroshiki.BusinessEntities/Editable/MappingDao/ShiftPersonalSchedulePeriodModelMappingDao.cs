@@ -20,7 +20,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.MappingDao
             return new ShiftPersonalSchedulePeriod()
             {
                 Id = model.Id,
-                ShiftPersonalSchedule = model.ShiftPersonalSchedule != null ? model.ShiftPersonalSchedule.ToDaoEntity() : null,
+                ShiftPersonalScheduleId = model.ShiftPersonalSchedule != null ? model.ShiftPersonalSchedule.Id : 0,
                 StartTime = model.StartTime,
                 StopTime = model.StopTime,
             };

@@ -89,7 +89,7 @@ namespace IsHoroshiki.BusinessServices.Editable
                 }
 
                 var shiftTypeIntensification = _unitOfWork.ShiftTypeRepository.GetIntensification();
-                var shiftTypeIntensificationExist = models.Any(m => m.ShiftType.Id == shiftTypeIntensification.Id);
+                var shiftTypeIntensificationExist = models.Any(m => m.ShiftType != null && m.ShiftType.Id == shiftTypeIntensification.Id);
                 if (shiftTypeIntensificationExist)
                 {
                     if (models.Any(m => m.ShiftType.Id != shiftTypeIntensification.Id))
@@ -224,9 +224,18 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.UpdateMistakeType);
             }
 
-            foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
+            //при обновлении нельзя указывать другого сотрудника
+            if (shiftPersonalScheduleModel.User.Id != daoSchedule.UserId)
             {
-                InsertOrUpdatePeriod(daoSchedule.Id, periodModel);
+                return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.UpdateMistakeUser);
+            }
+
+            if (shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods != null)
+            {
+                foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
+                {
+                    InsertOrUpdatePeriod(daoSchedule.Id, periodModel);
+                }
             }
 
             _unitOfWork.ShiftPersonalScheduleRepository.Update(daoSchedule);
@@ -258,14 +267,30 @@ namespace IsHoroshiki.BusinessServices.Editable
             }
 
             var daoSchedule = CreateInternal(shiftPersonalScheduleModel);
-            UpdateDaoInternal(daoSchedule, shiftPersonalScheduleModel);
 
-            foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
+            if (daoSchedule.ShiftPersonalSchedulePeriods != null)
             {
-                InsertOrUpdatePeriod(daoSchedule.Id, periodModel);
+                foreach (var daoSchedulePeriod in daoSchedule.ShiftPersonalSchedulePeriods)
+                {
+                    daoSchedulePeriod.ShiftPersonalSchedule = daoSchedule;
+                    daoSchedulePeriod.ShiftPersonalScheduleId = daoSchedule.Id;
+                }
             }
 
-            _unitOfWork.ShiftPersonalScheduleRepository.Update(daoSchedule);
+            //if (daoSchedule.ShiftPersonalSchedulePeriods != null)
+            //{
+            //    daoSchedule.ShiftPersonalSchedulePeriods.Clear();
+            //}
+
+            _unitOfWork.ShiftPersonalScheduleRepository.Insert(daoSchedule);
+
+            //if (shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods != null)
+            //{
+            //    foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
+            //    {
+            //        InsertOrUpdatePeriod(1, periodModel);
+            //    }
+            //}
 
             return new ModelEntityModifyResult();
         }

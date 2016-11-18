@@ -340,10 +340,10 @@
     <value>Тип смены с указанным Id="{0}" не существует!</value>
   </data>
   <data name="ShiftPersonalScheduleValidator_UpdateMistakeDate" xml:space="preserve">
-    <value>Для существующего графика смены на дату указана дата, отличная от сохраненной в БД!</value>
+    <value>Для существующего графика смены указана дата, отличная от сохраненной даты в БД!</value>
   </data>
   <data name="ShiftPersonalScheduleValidator_UpdateMistakeType" xml:space="preserve">
-    <value>Для существующего графика смены на дату указан тип смены, отличный от типа сохраненного в БД!</value>
+    <value>Для существующего графика смены указан тип смены, отличный от типа сохраненного в БД!</value>
   </data>
   <data name="ShiftPersonalScheduleValidator_UserIsNull" xml:space="preserve">
     <value>Не указан сотрудник!</value>
@@ -368,5 +368,8 @@
   </data>
   <data name="Validator_NameIsNull" xml:space="preserve">
     <value>Необходимо указать наименование!</value>
+  </data>
+  <data name="ShiftPersonalScheduleValidator_UpdateMistakeUser" xml:space="preserve">
+    <value>Для существующего графика смены указан сотрудник, отличный от типа сохраненного в БД!</value>
   </data>
 </root>

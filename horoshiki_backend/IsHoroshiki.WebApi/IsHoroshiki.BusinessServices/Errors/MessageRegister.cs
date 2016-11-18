@@ -185,6 +185,7 @@ namespace IsHoroshiki.BusinessServices.Errors
             MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.ShiftTypeIntensificationWithAnyTypes, ResourceBusinessServices.ShiftPersonalScheduleValidator_ShiftTypeIntensificationWithAnyTypes);
             MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UpdateMistakeDate, ResourceBusinessServices.ShiftPersonalScheduleValidator_UpdateMistakeDate);
             MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UpdateMistakeType, ResourceBusinessServices.ShiftPersonalScheduleValidator_UpdateMistakeType);
+            MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UpdateMistakeUser, ResourceBusinessServices.ShiftPersonalScheduleValidator_UpdateMistakeUser);
             MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.ShiftTypeNotFound, ResourceBusinessServices.ShiftPersonalScheduleValidator_ShiftTypeNotFound);
             MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.UserNotFound, ResourceBusinessServices.ShiftPersonalScheduleValidator_UserNotFound);
             MessageHolder.Instance.AddMessage(ShiftPersonalScheduleErrors.ShiftTypeIsNull, ResourceBusinessServices.ShiftPersonalScheduleValidator_ShiftTypeIsNull);

@@ -1,5 +1,9 @@
-﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
+﻿using IsHoroshiki.BusinessEntities.Account;
+using IsHoroshiki.BusinessEntities.Account.Interfaces;
+using IsHoroshiki.BusinessEntities.Converters;
+using IsHoroshiki.BusinessEntities.NotEditable;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +17,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         /// <summary>
         /// Пользователь
         /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<ApplicationUserModel, IApplicationUserModel>))]
         public IApplicationUserModel User
         {
             get;
@@ -21,6 +26,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
 
         /// <summary>
         /// Тип смены
+        [JsonConverter(typeof(EntityModelConverter<ShiftTypeModel, IShiftTypeModel>))]
         /// </summary>
         public IShiftTypeModel ShiftType
         {
@@ -40,6 +46,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         /// <summary>
         /// Расписание работы сотрудника (смены)
         /// </summary>
+        [JsonConverter(typeof(CollectionEntityConverter<ShiftPersonalSchedulePeriodModel, IShiftPersonalSchedulePeriodModel>))]
         public ICollection<IShiftPersonalSchedulePeriodModel> ShiftPersonalSchedulePeriods
         {
             get;

@@ -664,24 +664,6 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Необходимо указать должность!.
-        /// </summary>
-        internal static string ShiftPersonalValidator_PositionIsNull {
-            get {
-                return ResourceManager.GetString("ShiftPersonalValidator_PositionIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Необходимо указать тип смены!.
-        /// </summary>
-        internal static string ShiftPersonalValidator_ShiftTypeIsNull {
-            get {
-                return ResourceManager.GetString("ShiftPersonalValidator_ShiftTypeIsNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Указаны смены с разными датами!.
         /// </summary>
         internal static string ShiftPersonalScheduleValidator_CollectionDateMoreOne {
@@ -727,7 +709,7 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для существующего графика смены на дату указана дата, отличная от сохраненной в БД!.
+        ///   Looks up a localized string similar to Для существующего графика смены указана дата, отличная от сохраненной даты в БД!.
         /// </summary>
         internal static string ShiftPersonalScheduleValidator_UpdateMistakeDate {
             get {
@@ -736,11 +718,20 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для существующего графика смены на дату указан тип смены, отличный от типа сохраненного в БД!.
+        ///   Looks up a localized string similar to Для существующего графика смены указан тип смены, отличный от типа сохраненного в БД!.
         /// </summary>
         internal static string ShiftPersonalScheduleValidator_UpdateMistakeType {
             get {
                 return ResourceManager.GetString("ShiftPersonalScheduleValidator_UpdateMistakeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Для существующего графика смены указан сотрудник, отличный от типа сохраненного в БД!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleValidator_UpdateMistakeUser {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleValidator_UpdateMistakeUser", resourceCulture);
             }
         }
         
@@ -759,6 +750,24 @@ namespace IsHoroshiki.BusinessServices {
         internal static string ShiftPersonalScheduleValidator_UserNotFound {
             get {
                 return ResourceManager.GetString("ShiftPersonalScheduleValidator_UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать должность!.
+        /// </summary>
+        internal static string ShiftPersonalValidator_PositionIsNull {
+            get {
+                return ResourceManager.GetString("ShiftPersonalValidator_PositionIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Необходимо указать тип смены!.
+        /// </summary>
+        internal static string ShiftPersonalValidator_ShiftTypeIsNull {
+            get {
+                return ResourceManager.GetString("ShiftPersonalValidator_ShiftTypeIsNull", resourceCulture);
             }
         }
         

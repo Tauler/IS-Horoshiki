@@ -37,7 +37,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
             set;
         }
 
-
         /// <summary>
         /// Расписание работы сотрудника (смены)
         /// </summary>
