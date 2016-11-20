@@ -194,6 +194,8 @@
     <Content Include="Script\2016-08-20 создание БД.sql" />
     <Content Include="Script\2016-10-13 добавление зон.sql" />
     <Content Include="Script\2016-08-23 заполнение справочников.sql" />
+    <Content Include="Script\2016-11-07_4 ХП ScheduleShiftPersonal - Copy.sql" />
+    <Content Include="Script\2016-11-20_1 Function GetScheduleShiftPersonalNormaHour.sql" />
     <Content Include="Script\2016-11-11 Цели на месяц.sql" />
     <Content Include="Script\2016-11-06 Подотдел в карточке пользователя.sql" />
     <Content Include="Script\2016-11-05 Признак круглосуточно для площадки.sql" />
@@ -208,7 +210,7 @@
     <Content Include="Script\2016-11-07_1 Таблицы графика смен сотрудников.sql" />
     <Content Include="Script\2016-11-07_2 Function GetDateRange.sql" />
     <Content Include="Script\2016-11-07_3 Custom type IdList.sql" />
-    <Content Include="Script\2016-11-07_4 ХП ScheduleShiftPersonal.sql" />
+    <Content Include="Script\2016-11-20_2 ХП ALTER ScheduleShiftPersonal.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
