@@ -1,5 +1,7 @@
 ﻿using IsHoroshiki.BusinessServices.Integrations.Queues;
 using IsHoroshiki.Integration1C.LogHandler;
+using System;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -11,6 +13,9 @@ namespace IsHoroshiki.Integration1C
     {
         protected void Application_Start()
         {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ru-RU");
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru-RU");
+
             GlobalConfiguration.Configuration.MessageHandlers.Add(new ApiLogHandler());
 
             AreaRegistration.RegisterAllAreas();

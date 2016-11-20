@@ -47,16 +47,6 @@ namespace IsHoroshiki.BusinessServices.Helpers
         /// </summary>
         /// <param name="message">Сообщение лога</param>
         /// <param name="pars">Дополнительный данные лога</param>
-        public static void Write(string message, params object[] pars)
-        {
-            _logger.Debug(message, pars);
-        }
-
-        /// <summary>
-        /// Запись в лог
-        /// </summary>
-        /// <param name="message">Сообщение лога</param>
-        /// <param name="pars">Дополнительный данные лога</param>
         public static void Error(string message, params object[] pars)
         {
             _logger.Error(message, pars);

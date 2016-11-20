@@ -158,9 +158,11 @@ namespace IsHoroshiki.BusinessServices.Helpers
             {
                 if (this._isStarted)
                 {
+                    CultureInfo сulture = Thread.CurrentThread.CurrentCulture;
                     CultureInfo uiCulture = Thread.CurrentThread.CurrentUICulture;
                     this._thread = new Thread(this.Iterate);
                     this._thread.IsBackground = true;
+                    this._thread.CurrentCulture = сulture;
                     this._thread.CurrentUICulture = uiCulture;
                     this._thread.Start();
                 }

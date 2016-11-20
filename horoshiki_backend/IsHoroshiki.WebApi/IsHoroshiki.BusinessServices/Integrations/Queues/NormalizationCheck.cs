@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Configuration;
+using IsHoroshiki.BusinessServices.Helpers;
+using System.Threading;
 
 namespace IsHoroshiki.BusinessServices.Integrations.Queues
 {
@@ -52,8 +54,12 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// <returns>Нормализованное состояние чека</returns>
         public async Task<SaleCheck> ExecuteNormalization(IntegrationCheck check)
         {
-            var dateDoc = ToDate(check.DateDoc);
+            if (string.IsNullOrEmpty(check.DateDoc))
+            {
+                Logger.Error("NormalizationCheck check.DateDoc IsNullOrEmpty!");
+            }
 
+            var dateDoc = ToDate(check.DateDoc);
             return new SaleCheck()
             {
                 IdCheck = check.IdCheck,
@@ -93,11 +99,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                 || check.Zona.TrimProbel() == "3" 
                 || check.Zona.TrimProbel() == "4")
             {
-                guid = DAO.DatabaseConstant.BuyProcessDelivery;
+                guid = DatabaseConstant.BuyProcessDelivery;
             }
             else
             {
-                guid = DAO.DatabaseConstant.BuyProcessSelf;
+                guid = DatabaseConstant.BuyProcessSelf;
             }
            
             var exist = _unitOfWork.BuyProcessPepository.GetByGuid(guid);
@@ -141,6 +147,10 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             {
                 _platformId = tempPlatformId;
             }
+            else
+            {
+                Logger.Error("NormalizationCheck значение площадки = 1 взято по умлочанию!");
+            }
 
             _platformId = 1;
             return _platformId.Value;
@@ -163,6 +173,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             {
                 return result;
             }
+            else
+            {
+                Logger.Error("NormalizationCheck невозможно конвертировать дату из чека! Date: {0}, CurrentCulture: {1}",
+                    date, Thread.CurrentThread.CurrentCulture.Name);
+            }
 
             return null;
         }
@@ -183,6 +198,10 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             if (TimeSpan.TryParse(time.Replace(".", ":").TrimProbel(), out result))
             {
                 return result;
+            }
+            else
+            {
+                Logger.Error("NormalizationCheck невозможно конвертировать время из чека! Time={0}", time);
             }
 
             return null;
