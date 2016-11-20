@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-lg-12 ">
+        <ul class="breadcrumb">
+            <li><a href="/">Главная</a></li>
+			<li>Управление</li>
+            <li class="active">План на месяц</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+                        <div class="row">
+							<div class="col-md-9">
+								<div class="row">
+									<div class="col-md-3">
+										<label><strong>Подразделение</strong></label>
+										<select class="form-control" ng-disabled="subdivisionIsDisabled" ng-model="model.subdivision" ng-change="reloadAllPlatformBySubdivision()">
+											<option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+												{{subdivision.Name}}
+											</option>
+										</select>
+									</div>
+									<div class="col-md-3">
+										<label><strong>Площадка</strong></label>
+										<select class="form-control" ng-disabled="platformIsDisabled" ng-model="model.platform" ng-change="reloadTarget()">
+											<option ng-repeat="platform in model.platforms" value="{{platform}}">
+												{{platform.Name}}
+											</option>
+										</select>
+									</div>
+									<div class="col-md-6">
+										<label><strong>Период</strong></label>
+										<div class="row">
+											<div class="col-md-4">
+												<select class="form-control" ng-model="model.period.month" ng-change="reloadTarget()">
+													<option ng-repeat="month in model.month" value="{{month}}">
+														{{month.name}}
+													</option>
+												</select>
+											</div>
+											<div class="col-md-2">
+												<select class="form-control" ng-model="model.period.year" ng-change="reloadTarget()">
+													<option ng-repeat="year in model.years" value="{{year}}">
+														{{year}}
+													</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row" style="padding-top: 30px;">
+									<div class="col-md-9">
+										<table class="table table-bordered table-bordered-0">
+											<thead>
+											<tr>
+												<th>Показатели</th>
+												<th>Цели</th>
+												<th></th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<td class="col-md-5">Чеков на повара - сушиста</td>
+												<td class="col-md-2 input">
+													<input type="text" ng-model="model.targetMonth.ChecksPerHourForPositionSushiChef" ng-blur="changeChecksSushiChef()" class="form-control">
+												</td>
+												<td class="col-md-4">шт/час</td>
+											</tr>
+											<tr>
+												<td>Чеков на повара - пиццера</td>
+												<td class="col-md-2 input">
+													<input type="text" ng-model="model.targetMonth.ChecksPerHourForPositionPizzaChef" ng-blur="changeChecksPizzaChef()" class="form-control">
+												</td>
+												<td>шт/час</td>
+											</tr>
+											<tr>
+												<td>Чеков на курьера</td>
+												<td class="col-md-2 input">
+													<input type="text" ng-model="model.targetMonth.ChecksPerHourForPositionCourier" ng-blur="changeChecksCourier()" class="form-control">
+												</td>
+												<td>шт/час</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

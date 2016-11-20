@@ -5,6 +5,7 @@ using IsHoroshiki.WebApi.Handlers;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
+using IsHoroshiki.BusinessEntities.Editable.ShiftPersonals;
 
 namespace IsHoroshiki.WebApi
 {
@@ -26,6 +27,9 @@ namespace IsHoroshiki.WebApi
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IDeliveryZoneModel>());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISalePlanModel>());
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<ISalePlanDayModel>());
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IShiftPersonalModel>());
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IShiftPersonalTimePartModel>());
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new IocCustomCreationConverter<IMonthObjectiveModel>());
         }
     }
 }

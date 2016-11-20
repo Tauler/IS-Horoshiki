@@ -4,7 +4,7 @@
 
 var usersControllers = angular.module('usersControllers', []);
 
-usersControllers.controller('UsersViewController', ['$scope', '$location', 'UsersService', 'DictionaryService', 'PlatformsService',
+usersControllers.controller('UsersListController', ['$scope', '$location', 'UsersService', 'DictionaryService', 'PlatformsService',
     function ($scope, $location, UsersService, DictionaryService, PlatformsService) {
         $scope.model = {};
         $scope.model.users = [];

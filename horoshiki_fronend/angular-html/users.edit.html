@@ -1,282 +1,324 @@
-<div class="page-breadcrumbs">
-    <ul class="breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="/">Главная</a>
-        </li>
-        <li>
-            <a href="/users" target="_self">Пользователи</a>
-        </li>
-        <li class="active">Редактирование пользователя</li>
-    </ul>
+<div class="row">
+    <div class="col-lg-12 ">
+        <ul class="breadcrumb">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/users" >Пользователи</a></li>
+            <li class="active">Редактирование пользователя</li>
+        </ul>
+    </div>
 </div>
 
-<div class="page-body">
-    <div class="col-xs-12 col-md-12">
-        <div class="widget">
-            <div class="widget-header  with-footer">
-                <span class="widget-caption">Редактирование пользователя</span>
-            </div>
-            <div class="widget-body">
-                <form role="form" class="margin-10">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="lastName">Фамилия*:</label>
-                                <input class="form-control" ng-blur="checkErrorLastName();" maxlength="50"
-                                       placeholder="Фамилия"
-                                       ng-model="model.user.LastName" name="lastName" id="lastName" type="text">
-                                <code class="ng-binding" ng-show="model.error.lastName">Необходимо указать фамилию пользователя. Значение должно быть от 3 до 50 символов </code>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="firstName">Имя*:</label>
-                                <input class="form-control" ng-blur="checkErrorFirstName();" maxlength="50"
-                                       placeholder="Имя"
-                                       ng-model="model.user.FirstName" name="firstName" id="firstName" type="text">
-                                <code class="ng-binding" ng-show="model.error.firstName">Необходимо указать имя пользователя. Значение должно быть от 3 до 50 символов </code>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="middleName">Отчество*:</label>
-                                <input class="form-control" ng-blur="checkErrorMiddleName();" maxlength="50"
-                                       placeholder="Отчество"
-                                       ng-model="model.user.MiddleName" name="middleName" id="middleName" type="text">
-                                <code class="ng-binding" ng-show="model.error.middleName">Необходимо указать отчество пользователя. Значение должно быть от 3 до 50 символов </code>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="phone">Телефон*:</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon">+7</span>
-                                    <input maxlength="10" class="form-control" ng-blur="checkErrorPhone();"
-                                           placeholder="Телефон" ng-model="model.user.Phone" name="phone" id="phone"
-                                           type="text">
-                                </div>
-                                <code class="ng-binding" ng-show="model.error.phone">Необходимо указать телефон пользователя. Значение должно состоять из 10 цифр </code>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <!--<div style="margin-top: 23px">-->
-                                <!--<a href="javascript:void(0);" name="phoneToLogin" ng-click="phoneToLogin();"-->
-                                   <!--class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве-->
-                                    <!--логина</a>-->
-
-                            <!--</div>-->
-                        </div>
-                    </div>
-
-                    <!--<div class="row">-->
-                        <!--<div class="col-md-4">-->
-                            <!--<div class="form-group">-->
-                                <!--<label for="email">Электронная почта:</label>-->
-                                <!--<input maxlength="255" class="form-control" ng-blur="checkErrorEmail();"-->
-                                       <!--placeholder="Телефон" ng-model="model.user.Email" name="email" id="email"-->
-                                       <!--type="text">-->
-                                <!--<code class="ng-binding" ng-show="model.error.email">Не верный формат поля "Электронная-->
-                                    <!--почта". </code>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-4">-->
-                            <!--<div style="margin-top: 23px">-->
-                                <!--<a href="javascript:void(0);" name="mailToLogin" ng-click="mailToLogin();"-->
-                                   <!--class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве-->
-                                    <!--логина</a>-->
-
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                    <div class="row margin-top-30">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="status">Должность*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select class="form-control" ng-change="checkErrorPosition();" class="form-control"
-                                            ng-model="model.Position">
-                                        <option value="">Не выбрано</option>
-                                        <option ng-repeat="option in model.positions" value="{{option}}">
-                                            {{option.Value}}
-                                        </option>
-                                    </select>
-                                    <code class="ng-binding" ng-show="model.error.position">Необходимо указать должность </code>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="platform">Отдел:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select class="form-control" id="department"
-                                            class="form-control"
-                                            ng-model="model.Department.Id">
-                                        <option value="">Не выбрано</option>
-                                        <option ng-repeat="department in model.departments" value="{{department.Id}}">
-                                            {{department.Value}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="platform">Площадка:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select class="form-control" id="platform" ng-change="checkErrorPlatform();"
-                                            class="form-control"
-                                            ng-model="model.Platform.Id">
-                                        <option value="">Не выбрано</option>
-                                        <option ng-repeat="option in model.platforms" value="{{option.Id}}">
-                                            {{option.Name}}
-                                        </option>
-                                    </select>
-                                    <code class="ng-binding" ng-show="model.error.platform">Необходимо указать площадку </code>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="status">Статус*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select style="width: 100%" class="form-control" name="status" id="status"
-                                            ng-model="model.EmployeeStatus">
-                                        <option ng-repeat="status in model.employeeStatuses" value="{{status}}">
-                                            {{status.Value}}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Дата приема*:</label>
-                                <datepicker ng-change="checkErrorDatepickerStartDate();" ng-model="model.datepickerStartDate"></datepicker>
-                            </div>
-                            <code class="ng-binding"  ng-show="model.error.datepickerStartDate">Необходимо указать дату приема </code>
-
-                        </div>
-                        <div ng-show="model.isDismissed" class="col-md-2">
-                            <div class="form-group">
-                                <label>Дата увольнения:</label>
-                                <datepicker ng-change="checkErrorDatepickerEndDate();" ng-model="model.datepickerEndDate"></datepicker>
-                            </div>
-                            <code class="ng-binding"  ng-show="model.error.datepickerEndDate">Необходимо указать дату увольнения </code>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div ng-show="model.isDismissed" class="form-group">
-                                <label for="reasonDismissal">Причина увольнения*:</label>
-                                <div class="input-group" style="width: 100%">
-                                    <select ng-change="checkErrorReasonDismissal();" class="form-control" id="reasonDismissal"
-                                            class="form-control"
-                                            ng-model="model.ReasonDismissal.Id">
-                                        <option value="">Не выбрано</option>
-                                        <option ng-repeat="reasonDismissal in model.reasonDismissals" value="{{reasonDismissal.Id}}">
-                                            {{reasonDismissal.Name}}
-                                        </option>
-                                    </select>
-                                    <code class="ng-binding" ng-show="model.error.reasonDismissal">Необходимо указать причину увольнения </code>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--<div class="row margin-top-30">-->
-                        <!--<div class="col-md-4">-->
-
-
-                            <!--<div class="checkbox">-->
-                                <!--<label>-->
-                                    <!--<input ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"-->
-                                           <!--id="isHaveMedicalBook" type="checkbox">-->
-                                    <!--<span class="text">Наличие мед. книжки</span>-->
-                                <!--</label>-->
-                            <!--</div>-->
-
-                            <!--<div class="form-group" ng-show="model.user.IsHaveMedicalBook">-->
-                                <!--&lt;!&ndash;<label>Срок окончания мед. книжки:</label>&ndash;&gt;-->
-                                <!--<datepicker ng-model="model.datepickerMedicalBook"></datepicker>-->
-                            <!--</div>-->
-
-
-                        <!--</div>-->
-                        <!--<div class="col-md-4">-->
-                            <!--<div class="checkbox">-->
-                                <!--<label>-->
-                                    <!--<input ng-model="model.user.IsAccess" name="isAccess"-->
-                                           <!--id="isAccess" type="checkbox">-->
-                                    <!--<span class="text">Доступ в IS</span>-->
-                                <!--</label>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-4"></div>-->
-                    <!--</div>-->
-
-
-                    <div class="row margin-top-30">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="col-md-12 padding-left-0">
-                                    <div class="padding-top-20 padding-left-0 col-md-6 text-align-left">
-                                        <label for="userName">Логин:</label>
-                                    </div>
-                                    <div class="col-md-6 text-align-right">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input ng-disabled="model.isDismissed" ng-model="model.user.IsAccess" name="isAccess"
-                                                       id="isAccess" type="checkbox">
-                                                <span class="text">Доступ в IS</span>
-                                            </label>
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form role="form" class="margin-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="lastName">Фамилия*:</label>
+                                                <input class="form-control" ng-blur="checkErrorLastName();"
+                                                       maxlength="50"
+                                                       placeholder="Фамилия"
+                                                       ng-model="model.user.LastName" name="lastName" id="lastName"
+                                                       type="text">
+                                                <code class="ng-binding" ng-show="model.error.lastName">Необходимо
+                                                    указать фамилию пользователя. Значение должно быть от 3 до 50
+                                                    символов </code>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="firstName">Имя*:</label>
+                                                <input class="form-control" ng-blur="checkErrorFirstName();"
+                                                       maxlength="50"
+                                                       placeholder="Имя"
+                                                       ng-model="model.user.FirstName" name="firstName" id="firstName"
+                                                       type="text">
+                                                <code class="ng-binding" ng-show="model.error.firstName">Необходимо
+                                                    указать имя пользователя. Значение должно быть от 3 до 50
+                                                    символов </code>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="middleName">Отчество*:</label>
+                                                <input class="form-control" ng-blur="checkErrorMiddleName();"
+                                                       maxlength="50"
+                                                       placeholder="Отчество"
+                                                       ng-model="model.user.MiddleName" name="middleName"
+                                                       id="middleName" type="text">
+                                                <code class="ng-binding" ng-show="model.error.middleName">Необходимо
+                                                    указать отчество пользователя. Значение должно быть от 3 до 50
+                                                    символов </code>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <input disabled class="form-control" ng-blur="checkErrorUserName();" maxlength="50"
-                                       placeholder="Логин"
-                                       ng-model="model.user.UserName" name="userName" id="userName" type="text">
-                                <!--<code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким-->
-                                    <!--логином уже существует. </code>-->
-                                <!--<code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин",-->
-                                    <!--данное поле не может быть меньше 3 и больше 50 символов. </code>-->
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input ng-change="checkErrorIsHaveMedicalBook();" ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"
-                                           id="isHaveMedicalBook" type="checkbox">
-                                    <span class="text">Наличие мед. книжки</span>
-                                </label>
-                            </div>
-                            <code class="ng-binding" ng-show="model.error.isHaveMedicalBook">Необходимо указать наличие медкнижки </code>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="phone">Телефон*:</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">+7</span>
+                                                    <input maxlength="10" class="form-control"
+                                                           ng-blur="checkErrorPhone();"
+                                                           placeholder="Телефон" ng-model="model.user.Phone"
+                                                           name="phone" id="phone"
+                                                           type="text">
+                                                </div>
+                                                <code class="ng-binding" ng-show="model.error.phone">Необходимо указать
+                                                    телефон пользователя. Значение должно состоять из 10 цифр </code>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <!--<div style="margin-top: 23px">-->
+                                            <!--<a href="javascript:void(0);" name="phoneToLogin" ng-click="phoneToLogin();"-->
+                                            <!--class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве-->
+                                            <!--логина</a>-->
+
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="row">-->
+                                    <!--<div class="col-md-4">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label for="email">Электронная почта:</label>-->
+                                    <!--<input maxlength="255" class="form-control" ng-blur="checkErrorEmail();"-->
+                                    <!--placeholder="Телефон" ng-model="model.user.Email" name="email" id="email"-->
+                                    <!--type="text">-->
+                                    <!--<code class="ng-binding" ng-show="model.error.email">Не верный формат поля "Электронная-->
+                                    <!--почта". </code>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4">-->
+                                    <!--<div style="margin-top: 23px">-->
+                                    <!--<a href="javascript:void(0);" name="mailToLogin" ng-click="mailToLogin();"-->
+                                    <!--class="btn btn-default"> <i class="fa fa-arrow-right "></i> Использовать в качестве-->
+                                    <!--логина</a>-->
+
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+                                    <div class="row margin-top-30">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="status">Должность*:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select class="form-control" ng-change="checkErrorPosition();"
+                                                            class="form-control"
+                                                            ng-model="model.Position">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="option in model.positions"
+                                                                value="{{option}}">
+                                                            {{option.Value}}
+                                                        </option>
+                                                    </select>
+                                                    <code class="ng-binding" ng-show="model.error.position">Необходимо
+                                                        указать должность </code>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="platform">Отдел:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select class="form-control" id="department"
+                                                            class="form-control"
+                                                            ng-model="model.Department.Id">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="department in model.departments"
+                                                                value="{{department.Id}}">
+                                                            {{department.Value}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="platform">Площадка:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select class="form-control" id="platform"
+                                                            ng-change="checkErrorPlatform();"
+                                                            class="form-control"
+                                                            ng-model="model.Platform.Id">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="option in model.platforms"
+                                                                value="{{option.Id}}">
+                                                            {{option.Name}}
+                                                        </option>
+                                                    </select>
+                                                    <code class="ng-binding" ng-show="model.error.platform">Необходимо
+                                                        указать площадку </code>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="status">Статус*:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select style="width: 100%" class="form-control" name="status"
+                                                            id="status"
+                                                            ng-model="model.EmployeeStatus">
+                                                        <option ng-repeat="status in model.employeeStatuses"
+                                                                value="{{status}}">
+                                                            {{status.Value}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Дата приема*:</label>
+                                                <datepicker ng-change="checkErrorDatepickerStartDate();"
+                                                            ng-model="model.datepickerStartDate"></datepicker>
+                                            </div>
+                                            <code class="ng-binding" ng-show="model.error.datepickerStartDate">Необходимо
+                                                указать дату приема </code>
+
+                                        </div>
+                                        <div ng-show="model.isDismissed" class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Дата увольнения:</label>
+                                                <datepicker ng-change="checkErrorDatepickerEndDate();"
+                                                            ng-model="model.datepickerEndDate"></datepicker>
+                                            </div>
+                                            <code class="ng-binding" ng-show="model.error.datepickerEndDate">Необходимо
+                                                указать дату увольнения </code>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div ng-show="model.isDismissed" class="form-group">
+                                                <label for="reasonDismissal">Причина увольнения*:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select ng-change="checkErrorReasonDismissal();"
+                                                            class="form-control" id="reasonDismissal"
+                                                            class="form-control"
+                                                            ng-model="model.ReasonDismissal.Id">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="reasonDismissal in model.reasonDismissals"
+                                                                value="{{reasonDismissal.Id}}">
+                                                            {{reasonDismissal.Name}}
+                                                        </option>
+                                                    </select>
+                                                    <code class="ng-binding" ng-show="model.error.reasonDismissal">Необходимо
+                                                        указать причину увольнения </code>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="row margin-top-30">-->
+                                    <!--<div class="col-md-4">-->
 
 
-                            <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
-                                <datepicker ng-change="checkErrorDatepickerMedicalBook();" ng-model="model.datepickerMedicalBook"></datepicker>
-                                <code class="ng-binding" ng-show="model.error.datepickerMedicalBook">Необходимо указать срок действия медкнижки </code>
+                                    <!--<div class="checkbox">-->
+                                    <!--<label>-->
+                                    <!--<input ng-model="model.user.IsHaveMedicalBook" name="isHaveMedicalBook"-->
+                                    <!--id="isHaveMedicalBook" type="checkbox">-->
+                                    <!--<span class="text">Наличие мед. книжки</span>-->
+                                    <!--</label>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="form-group" ng-show="model.user.IsHaveMedicalBook">-->
+                                    <!--&lt;!&ndash;<label>Срок окончания мед. книжки:</label>&ndash;&gt;-->
+                                    <!--<datepicker ng-model="model.datepickerMedicalBook"></datepicker>-->
+                                    <!--</div>-->
+
+
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4">-->
+                                    <!--<div class="checkbox">-->
+                                    <!--<label>-->
+                                    <!--<input ng-model="model.user.IsAccess" name="isAccess"-->
+                                    <!--id="isAccess" type="checkbox">-->
+                                    <!--<span class="text">Доступ в IS</span>-->
+                                    <!--</label>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-4"></div>-->
+                                    <!--</div>-->
+
+
+                                    <div class="row margin-top-30">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class="col-md-12 padding-left-0">
+                                                    <div class="padding-top-20 padding-left-0 col-md-6 text-align-left">
+                                                        <label for="userName">Логин:</label>
+                                                    </div>
+                                                    <div class="col-md-6 text-align-right">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input ng-disabled="model.isDismissed"
+                                                                       ng-model="model.user.IsAccess" name="isAccess"
+                                                                       id="isAccess" type="checkbox">
+                                                                <span class="text">Доступ в IS</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input disabled class="form-control" ng-blur="checkErrorUserName();"
+                                                       maxlength="50"
+                                                       placeholder="Логин"
+                                                       ng-model="model.user.UserName" name="userName" id="userName"
+                                                       type="text">
+                                                <!--<code class="ng-binding" ng-show="model.error.userNameExist">Пользователь с таким-->
+                                                <!--логином уже существует. </code>-->
+                                                <!--<code class="ng-binding" ng-show="model.error.userName">Не верный формат поля "Логин",-->
+                                                <!--данное поле не может быть меньше 3 и больше 50 символов. </code>-->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input ng-change="checkErrorIsHaveMedicalBook();"
+                                                           ng-model="model.user.IsHaveMedicalBook"
+                                                           name="isHaveMedicalBook"
+                                                           id="isHaveMedicalBook" type="checkbox">
+                                                    <span class="text">Наличие мед. книжки</span>
+                                                </label>
+                                            </div>
+                                            <code class="ng-binding" ng-show="model.error.isHaveMedicalBook">Необходимо
+                                                указать наличие медкнижки </code>
+
+
+                                            <div class="form-group" ng-show="model.user.IsHaveMedicalBook">
+                                                <datepicker ng-change="checkErrorDatepickerMedicalBook();"
+                                                            ng-model="model.datepickerMedicalBook"></datepicker>
+                                                <code class="ng-binding" ng-show="model.error.datepickerMedicalBook">Необходимо
+                                                    указать срок действия медкнижки </code>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="margin-top-30 text-align-right">
+                                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()"
+                                           class="btn btn-success">Сохранить</a>
+                                        <a ng-show="model.isDismissed" href="javascript:void(0);" data-toggle="modal"
+                                           data-target="#dismissalModal"
+                                           ng-click="" class="btn btn-success">Уволить</a>
+                                        <a href="/users" class="btn btn-default">Отмена</a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="margin-top-30 text-align-right">
-                        <a ng-show="!model.isDismissed" href="javascript:void(0);" ng-click="saveUser()" class="btn btn-success">Сохранить</a>
-                        <a ng-show="model.isDismissed" href="javascript:void(0);" data-toggle="modal"
-                           data-target="#dismissalModal"
-                           ng-click="" class="btn btn-success">Уволить</a>
-                        <a href="/users" class="btn btn-default">Отмена</a>
-                    </div>
-                </form>
-
+                </div>
             </div>
         </div>
+        <!-- /row -->
     </div>
 </div>
 

@@ -14719,10 +14719,13 @@ h3, h4, h5, h6 {
 }
 
 a {
-  color: #1D92AF;
+  /*color: #1D92AF;*/
+  color: #555;
+  cursor: pointer;
 }
 a:hover, a:focus {
   color: #14667b;
+  cursor: pointer
 }
 
 hr {
@@ -20919,7 +20922,7 @@ ul.nav-categories > li > a {
   }
 }
 .page-auth .center-block {
-  width: 100%;
+  width: 300px;
   border: 1px solid #ddd;
   padding: 25px;
   text-align: left;
@@ -20952,12 +20955,12 @@ ul.nav-categories > li > a {
 }
 @media screen and (min-width: 768px) {
   .page-auth .center-block {
-    width: 50%;
+    width: 300px;
   }
 }
 @media screen and (min-width: 992px) {
   .page-auth .center-block {
-    width: 30%;
+    width: 350px;
   }
 }
 

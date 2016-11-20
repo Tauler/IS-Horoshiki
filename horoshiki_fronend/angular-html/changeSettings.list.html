@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-lg-12 ">
+        <ul class="breadcrumb">
+            <li><a href="#">Главная</a></li>
+            <li class="active">Основные показатели</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table">
+                    <div class="widget-content">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><strong>Тип смены</strong></label>
+                                <select ng-model="model.isAroundClock" class="form-control">
+                                    <option value="false">По расписанию</option>
+                                    <option value="true">Круглосуточный</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 30px;">
+                            <div class="col-md-9">
+                                <table class="table table-bordered table-bordered-0" style="margin-bottom: 0px">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-md-4" style="font-weight: bold">Должность</th>
+                                        <th class="col-md-2" style="font-weight: bold">Смена</th>
+                                        <th class="col-md-2" style="font-weight: bold">С</th>
+                                        <th class="col-md-2" style="font-weight: bold">По</th>
+                                        <th class="col-md-2" style="font-weight: bold">Обозначение</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+
+                                <table ng-repeat="table in model.changeSettings"
+                                       class="table table-bordered table-bordered-0" style="margin-bottom: 0px">
+                                    <tbody>
+                                        <tr ng-repeat="row in table.ShiftTimes | filter:{ IsAroundClock: isAroundClock() }" >
+
+                                            <td class="col-md-4"><span ng-show="$index==0">{{table.Position}}</span></td>
+                                            <td class="col-md-2">{{row.ShiftPart.Name}}</td>
+                                            <td class="col-md-2 input">
+                                                <timepicker ng-disabled="!isChief();" ng-model="row.TimePart.TimeStart" ng-change="changeRow(row.TimePart);"></timepicker>
+                                            </td>
+                                            <td class="col-md-2 input">
+                                                <timepicker ng-disabled="!isChief();" ng-model="row.TimePart.TimeEnd" ng-change="changeRow(row.TimePart);"></timepicker>
+                                            </td>
+                                            <td class="col-md-2">{{row.ShiftPart.ShortName}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+</div>

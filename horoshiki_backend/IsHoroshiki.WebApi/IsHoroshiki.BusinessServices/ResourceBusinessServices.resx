@@ -213,6 +213,15 @@
   <data name="MessageNotRegister" xml:space="preserve">
     <value>Не зарегистрировано сообщение об ошибке для кода: "{0}"!</value>
   </data>
+  <data name="MonthObjectiveValidator_MonthIsNull" xml:space="preserve">
+    <value>Необходимо указать месяц для цели!</value>
+  </data>
+  <data name="MonthObjectiveValidator_PlatformIsNull" xml:space="preserve">
+    <value>Необходимо указать площадку!</value>
+  </data>
+  <data name="MonthObjectiveValidator_YearIsNull" xml:space="preserve">
+    <value>Необходимо указать год для цели!</value>
+  </data>
   <data name="PlatformService_BuyProcessNotFound" xml:space="preserve">
     <value>Способа покупки для указанного ID="{0}" не существует!</value>
   </data>
@@ -299,6 +308,12 @@
   </data>
   <data name="SalePlanValidator_SalePlanPeriodYearIsNull" xml:space="preserve">
     <value>Необходимо указать год плана продаж!</value>
+  </data>
+  <data name="ShiftPersonalValidator_PositionIsNull" xml:space="preserve">
+    <value>Необходимо указать должность!</value>
+  </data>
+  <data name="ShiftPersonalValidator_ShiftTypeIsNull" xml:space="preserve">
+    <value>Необходимо указать тип смены!</value>
   </data>
   <data name="SubDivisionService_PriceTypeNotFound" xml:space="preserve">
     <value>Не найден тип цены с Id="{0}"!</value>

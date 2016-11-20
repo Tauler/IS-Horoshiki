@@ -10,6 +10,7 @@ using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.Editable.SalePlan;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans.Result;
 using IsHoroshiki.BusinessEntities.Integrations;
+using IsHoroshiki.BusinessEntities.Editable.ShiftPersonals;
 
 namespace IsHoroshiki.BusinessEntities
 {
@@ -52,7 +53,11 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<ISalePlanSumRowModel, SalePlanSumRowModel>();
             
             container.RegisterType<IIntegrationCheckModel, IntegrationCheckModel>();
-            
+
+            container.RegisterType<IShiftPersonalModel, ShiftPersonalModel>();
+            container.RegisterType<IShiftPersonalTimePartModel, ShiftPersonalTimePartModel>();
+            container.RegisterType<IMonthObjectiveModel, MonthObjectiveModel>();
+
             return container;
         }
     }

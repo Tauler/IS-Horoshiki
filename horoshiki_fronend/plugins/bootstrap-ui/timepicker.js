@@ -9,6 +9,7 @@ datepickerDirectives.directive('timepicker', function () {
         restrict: 'E',
         scope: {
             ngModel: '=',
+            ngDisabled: '=',
             ngChange: '&'
         },
         template: "<input class='form-control time-picker' maxlength='5' type='text'>",
@@ -21,6 +22,7 @@ datepickerDirectives.directive('timepicker', function () {
                 scope.$apply(function () {
                     scope.ngChange();
                 });
+
             });
 
             scope.$watch('ngModel', function () {
@@ -30,8 +32,10 @@ datepickerDirectives.directive('timepicker', function () {
                     element.find(".time-picker").timepicker({
                         showMeridian: false,
                         minuteStep: 5,
+                        isOpen: true,
                     });
                     element.find(".time-picker").timepicker('setTime', data);
+                    element.find(".time-picker").attr("disabled", scope.ngDisabled);
                 }
             }, true);
         }

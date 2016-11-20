@@ -12,6 +12,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'ui.bootstrap.pagination',
     'timepickerDirectives',
     'datepickerDirectives',
+	'userLoadingDirectives',
 
     'layoutControllers',
     'errorControllers',
@@ -22,6 +23,8 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'reasonDismissalControllers',
     'zonesControllers',
     'salesPlanControllers',
+    'changeSettingsControllers',
+	'targetControllers',
 
     'backendServices',
     'accountServices',
@@ -32,7 +35,10 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'platformsServices',
     'reasonDismissalServices',
     'zonesServices',
-    'salesPlanServices'
+
+    'salesPlanServices',
+    'changeSettingsServices',
+	'targetServices',
 
 ]);
 
@@ -51,9 +57,9 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 title: 'Главная страница'
             })
             .when('/users', {
-                templateUrl: '/angular-html/users.view.html',
-                controller: 'UsersViewController',
-                pageId: 'usersViewPage',
+                templateUrl: '/angular-html/users.list.html',
+                controller: 'UsersListController',
+                pageId: 'usersListPage',
                 groupId: 'settings',
                 subgroupId: 'users',
                 title: 'Просмотр пользователей'
@@ -84,9 +90,9 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
             })
 
             .when('/subdivisions', {
-                templateUrl: '/angular-html/subdivisions.view.html',
-                controller: 'SubdivisionViewController',
-                pageId: 'subdivisionViewPage',
+                templateUrl: '/angular-html/subdivisions.list.html',
+                controller: 'SubdivisionListController',
+                pageId: 'subdivisionListPage',
                 groupId: 'settings',
                 subgroupId: 'subdivisions',
                 title: 'Просмотр подразделений'
@@ -165,6 +171,24 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 pageId: 'salesPlanIndex',
                 groupId: 'management',
                 subgroupId: 'salesPlan',
+                title: 'План продаж'
+            })
+			
+			.when('/target/month', {
+                templateUrl: '/angular-html/target.month.html',
+                controller: 'TargetMonthController',
+                pageId: 'targetMonth',
+                groupId: 'management',
+                subgroupId: 'target',
+                title: 'Цели на месяц'
+            })
+
+            .when('/changeSettings', {
+                templateUrl: '/angular-html/changeSettings.list.html',
+                controller: 'ChangeSettingsListController',
+                pageId: 'ChangeSettingsList',
+                groupId: 'settings',
+                subgroupId: 'changeSettings',
                 title: 'План продаж'
             })
 
