@@ -38,9 +38,9 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
         /// <returns></returns>
         public async Task<IEnumerable<Position>> GetPositionsOnShiftAsync()
         {
-            var list = DbSet.Where(p => p.Guid != new Guid("449f1830-172a-4aec-bc29-6bb446cf8861")
-                && p.Guid != new Guid("27c9376b-47b6-4eca-8920-e8a0e63f267c")
-                && p.Guid != new Guid("c1fabe74-06e0-4fc6-be79-553fc2e9232b")).ToList();
+            var list = DbSet.Where(p => p.Guid != DatabaseConstant.PositionOperationDirector
+                && p.Guid != DatabaseConstant.PositionManager
+                && p.Guid != DatabaseConstant.PositionСourier).ToList();
             foreach (var daoEntity in list)
             {
                 LoadChildEntities(daoEntity);

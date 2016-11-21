@@ -40,17 +40,6 @@ namespace IsHoroshiki.DAO.Repositories.Editable
                 && sp.IsAroundClock == isAroundClock);
         }
 
-        /// <summary>
-        /// Проверить существование смены
-        /// </summary>
-        /// <param name="positionId">Идентификатор должности</param>
-        /// <param name="shiftTypeId">Идентификатор типа смены</param>
-        /// <returns></returns>
-        public bool IsExist(int positionId, int shiftTypeId)
-        {
-            return DbSet.Any(sp => sp.PositionId == positionId && sp.ShiftTypeId == shiftTypeId);
-        }
-
         #endregion
 
         #region protected override

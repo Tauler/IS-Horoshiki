@@ -41,6 +41,17 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
+        /// Должность - Курьер
+        /// </summary>
+        public static Guid PositionСourier
+        {
+            get
+            {
+                return Guid.Parse("C1FABE74-06E0-4FC6-BE79-553FC2E9232B");
+            }
+        }
+
+        /// <summary>
         /// Подотдел - холодный цех
         /// </summary>
         public static Guid SubDepartmentCool

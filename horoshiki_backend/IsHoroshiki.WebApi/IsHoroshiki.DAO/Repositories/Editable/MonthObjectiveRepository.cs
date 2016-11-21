@@ -59,6 +59,8 @@ namespace IsHoroshiki.DAO.Repositories.Editable
 
         #endregion
 
+        #region override
+
         protected override void LoadChildEntities(MonthObjective entity)
         {
             if (entity == null)
@@ -67,5 +69,7 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             }
             Context.Entry(entity).Reference(p => p.Platform).Load();
         }
+
+        #endregion
     }
 }
