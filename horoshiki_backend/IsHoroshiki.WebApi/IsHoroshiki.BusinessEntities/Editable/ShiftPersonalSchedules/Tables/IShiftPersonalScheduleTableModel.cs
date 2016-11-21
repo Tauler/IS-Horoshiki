@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
 {
     /// <summary>
-    /// Таблица планировани работы сотрудников по сменам
+    /// Таблица планирования работы сотрудников по сменам за период
     /// </summary>
-    public interface IShiftPersonalScheduleReportModel
+    public interface IShiftPersonalScheduleTableModel
     {
         /// <summary>
         /// Строка заголовков - Cтолбцы дат в таблице
@@ -27,18 +26,18 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         }
 
         /// <summary>
-        /// График работы отдела (строка отдел в таблице).
+        /// Кол-во сотрудников в смене (итоговая и в разбивке по сменам)
         /// </summary>
-        List<IDepartamentScheduleRowModel> DepartamentScheduleRows
+        IShiftCountRow ShiftCountRow
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Курьеры (строка Курьеры в таблице)
+        /// Должности (сотрудники, строки в таблице)
         /// </summary>
-        ICourierScheduleRowModel Сourier
+        List<IPositionScheduleRowModel> PositionScheduleRows
         {
             get;
             set;

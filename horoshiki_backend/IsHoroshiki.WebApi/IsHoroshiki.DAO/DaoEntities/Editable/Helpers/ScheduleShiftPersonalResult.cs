@@ -159,5 +159,14 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
             get;
             set;
         }
+
+        /// <summary>
+        /// Норма часы
+        /// </summary>
+        public int NormaNormaHour
+        {
+            get;
+            set;
+        }
     }
 }

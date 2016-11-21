@@ -1,6 +1,5 @@
 ﻿using IsHoroshiki.BusinessEntities.Converters;
 using IsHoroshiki.BusinessEntities.Editable.Interfaces;
-using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.NotEditable;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using Newtonsoft.Json;
@@ -17,6 +16,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         /// <summary>
         /// Площадка
         /// </summary>
+        [JsonConverter(typeof(EntityModelConverter<PlatformModel, IPlatformModel>))]
         public IPlatformModel Platform
         {
             get;
@@ -26,8 +26,8 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         /// <summary>
         /// Список отделов
         /// </summary>
-        [JsonConverter(typeof(CollectionEntityConverter<DepartmentModel, IDepartmentModel>))]
-        public ICollection<IDepartmentModel> Departaments
+        [JsonConverter(typeof(EntityModelConverter<DepartmentModel, IDepartmentModel>))]
+        public IDepartmentModel Departament
         {
             get;
             set;
@@ -44,27 +44,19 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Тип плана
+        /// true - если необходимо формировать на день
         /// </summary>
-        public PlanType PlanType
+        public bool IsOnDay
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Дата начала формирования графика расписания 
+        /// Дата формирования графика расписания.
+        /// Или период, если IsOnDay = false
         /// </summary>
-        public DateTime DateStart
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Дата окончания формирования графика расписания 
-        /// </summary>
-        public DateTime DateEnd
+        public DateTime Date
         {
             get;
             set;

@@ -43,8 +43,8 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         /// <summary>
         /// График смен сотрудников
         /// </summary>
-        [Route("report")]
-        public async Task<IHttpActionResult> Report(IShiftPersonalScheduleDataModel model)
+        [Route("table")]
+        public async Task<IHttpActionResult> Table(IShiftPersonalScheduleDataModel model)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                     return GetErrorResult(ModelState);
                 }
 
-                var result = await _service.GetReport(model);
+                var result = await _service.GetTable(model);
                 return Ok(result);
             }
             catch (Exception e)

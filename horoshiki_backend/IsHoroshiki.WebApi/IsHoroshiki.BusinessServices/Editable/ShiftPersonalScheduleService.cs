@@ -54,11 +54,11 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// </summary>
         /// <param name="model"> Планирования графика работы сотрудников на период</param>
         /// <returns></returns>
-        public async Task<IShiftPersonalScheduleReportModel> GetReport(IShiftPersonalScheduleDataModel model)
+        public async Task<IShiftPersonalScheduleTableModel> GetTable(IShiftPersonalScheduleDataModel model)
         {
             try
             {
-                return await this._shiftPersonalScheduleHelper.GetReport(model);                
+                return await this._shiftPersonalScheduleHelper.GetTable(model);                
             }
             catch (Exception e)
             {

@@ -16,7 +16,7 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// </summary>
         /// <param name="model"> Планирования графика работы сотрудников на период</param>
         /// <returns></returns>
-        Task<IShiftPersonalScheduleReportModel> GetReport(IShiftPersonalScheduleDataModel model);
+        Task<IShiftPersonalScheduleTableModel> GetTable(IShiftPersonalScheduleDataModel model);
 
         /// <summary>
         /// Планирование смен сотрудника на оперделенный день

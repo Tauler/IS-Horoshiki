@@ -1,5 +1,4 @@
 ﻿using IsHoroshiki.BusinessEntities.Editable.Interfaces;
-using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,9 +20,9 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Список отделов
+        /// Отдел
         /// </summary>
-        ICollection<IDepartmentModel> Departaments
+        IDepartmentModel Departament
         {
             get;
             set;
@@ -39,30 +38,22 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Тип плана
+        /// true - если необходимо формировать на день
         /// </summary>
-        PlanType PlanType
+        bool IsOnDay
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Дата начала формирования графика расписания 
+        /// Дата формирования графика расписания.
+        /// Или период, если IsOnDay = false
         /// </summary>
-        DateTime DateStart
+        DateTime Date
         {
             get;
             set;
-        }
-
-        /// <summary>
-        /// Дата окончания формирования графика расписания 
-        /// </summary>
-        DateTime DateEnd
-        {
-            get;
-            set;
-        }
+        }        
     }
 }

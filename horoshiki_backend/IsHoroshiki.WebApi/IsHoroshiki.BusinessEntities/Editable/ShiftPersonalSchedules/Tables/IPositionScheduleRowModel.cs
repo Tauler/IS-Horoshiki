@@ -4,23 +4,21 @@ using System.Collections.Generic;
 namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
 {
     /// <summary>
-    /// Строка подотдел или должность
-    /// В строке может быть заполнено либо отдел, либо должность
+    /// Должности в графике смен (строка в таблице)
     /// </summary>
-    public interface ISubDepartamentScheduleRowModel
+    public interface IPositionScheduleRowModel
     {
         /// <summary>
-        /// Строка в таблице - подотдел
+        /// Наименование
         /// </summary>
-        ISubDepartmentModel SubDepartment
+        string Name
         {
             get;
             set;
         }
 
-
         /// <summary>
-        /// Строка в таблице - Должность
+        /// Должность
         /// </summary>
         IPositionModel Position
         {
@@ -31,7 +29,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         /// <summary>
         /// Строка в таблице - сотрудники
         /// </summary>
-        List<IApplicationUserScheduleRowModel> UserRows
+        List<IUserRowModel> UserRows
         {
             get;
             set;

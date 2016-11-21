@@ -167,7 +167,7 @@ namespace IsHoroshiki.DAO.Repositories
         /// <param name="sortField">Поле для сортировки</param>
         /// <param name="isAscending">true - сортировать по возрастанию</param>
         /// <param name="isLoadChild">true - если нужно загрузить дочерние объекты</param>
-        public virtual async Task<IEnumerable<TDaoEntity>> GetAllAsync(int pageNo = 1, int pageSize = Int32.MaxValue, string sortField = "", bool isAscending = true, bool isLoadChild = true)
+        public virtual IEnumerable<TDaoEntity> GetAll(int pageNo = 1, int pageSize = 50, string sortField = "", bool isAscending = true, bool isLoadChild = true)
         {
             int skip = (pageNo - 1) * pageSize;
 
@@ -186,6 +186,19 @@ namespace IsHoroshiki.DAO.Repositories
             }
 
             return list;
+        }
+
+        /// <summary>  
+        /// Получить все записи
+        /// </summary>  
+        /// <param name="pageNo">Номер страницы</param>
+        /// <param name="pageSize">Размер страницы</param>
+        /// <param name="sortField">Поле для сортировки</param>
+        /// <param name="isAscending">true - сортировать по возрастанию</param>
+        /// <param name="isLoadChild">true - если нужно загрузить дочерние объекты</param>
+        public virtual async Task<IEnumerable<TDaoEntity>> GetAllAsync(int pageNo = 1, int pageSize = Int32.MaxValue, string sortField = "", bool isAscending = true, bool isLoadChild = true)
+        {
+            return GetAll(pageNo, pageSize, sortField, isAscending, isLoadChild);
         }
 
         /// <summary>  

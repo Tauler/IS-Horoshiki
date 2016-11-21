@@ -1,35 +1,35 @@
 ﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using System;
+using System.Collections.Generic;
 
 namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
 {
     /// <summary>
     /// Строка в таблице - сотрудник
     /// </summary>
-    public interface IApplicationUserScheduleRowModel
+    public class UserRowModel : IUserRowModel
     {
-        /// <summary>
-        /// Дата (день недели)
-        /// </summary>
-        DateTime Date
-        {
-            get;
-            set;
-        }
-
         /// <summary>
         /// Сотрудник
         /// </summary>
-        IApplicationUserSmallModel User
+        public IApplicationUserSmallModel User
         {
             get;
             set;
         }
 
         /// <summary>
-        /// График периода сотрудника на день (смен)
+        /// Норма часы для сотрудника за период
         /// </summary>
-        IShiftPersonalScheduleModel ShiftPersonalSchedule
+        public int NormaHourColumn
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Список столбцов расписаний смен
+        /// </summary>
+        public List<IShiftPersonalScheduleModel> ScheduleColumns
         {
             get;
             set;
