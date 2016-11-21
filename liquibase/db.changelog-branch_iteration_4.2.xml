@@ -111,6 +111,16 @@
         <comment>Создание таблицы графика смен персонала</comment>
         <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-07_ScheduleShiftPersonal.sql"/>
     </changeSet>
+	
+	<changeSet id="20112016_1" author="prohoroven">
+        <comment>Скалярная функция подсчета нормачасов для пользователя</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-20_1_Function_GetScheduleShiftPersonalNormaHour.sql"/>
+    </changeSet>
+	
+	<changeSet id="20112016_2" author="prohoroven">
+        <comment>Создание таблицы графика смен персонала</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-20_2_ALTER_ScheduleShiftPersonal.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 
