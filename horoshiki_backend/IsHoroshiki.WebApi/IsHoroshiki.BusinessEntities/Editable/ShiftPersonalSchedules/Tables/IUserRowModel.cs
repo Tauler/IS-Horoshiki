@@ -27,9 +27,9 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         }
 
         /// <summary>
-        /// Список столбцов расписаний смен
+        /// Список смен
         /// </summary>
-        List<IShiftPersonalScheduleModel> ScheduleColumns
+        List<IUserShiftTypeColumn> UserShiftTypeColumns
         {
             get;
             set;

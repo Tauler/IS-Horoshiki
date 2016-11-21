@@ -12,6 +12,7 @@ using IsHoroshiki.BusinessEntities.NotEditable;
 using IsHoroshiki.BusinessEntities.Account;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
+using IsHoroshiki.DAO.DaoEntities.NotEditable;
 
 namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 {
@@ -49,39 +50,23 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
         /// </summary>
         public async Task<IShiftPersonalScheduleTableModel> GetTable(IShiftPersonalScheduleDataModel model)
         {
-            model.Platform.ThrowIfNull();
-            model.Departament.ThrowIfNull();
-            model.Date.ThrowIfNull();
-
-            List<int> departaments = null;
-            if (model.Departament != null)
-            {
-                departaments = new List<int>() { model.Departament.Id };
-            }
-
-            List<int> subDepartaments = null;
-            if (model.SubDepartaments != null)
-            {
-                subDepartaments = model.SubDepartaments.Select(d => d.Id).ToList();
-            }
-
+            model.Platform.ThrowIfNull("Platform is null");
+            model.Departament.ThrowIfNull("Departament is null");
+            model.Date.ThrowIfNull("Date is null");
+          
             DateTime dateStart, dateEnd;
             ExtractPeriod(model, out dateStart, out dateEnd);
 
-            var result = GetEmptyTable(model, dateStart, dateEnd);
+            var table = GetEmptyTable(model, dateStart, dateEnd);
 
-          
-            //result.SalePlanCountColumns = GetSalePlanCountColumns(dateStart, dateEnd, result);
-       
-            //var schedulerShiftPersonals = _unitOfWork.ShiftPersonalScheduleRepository.GetScheduleShiftPersonal(departaments, subDepartaments, model.Platform.Id, dateStart, dateEnd);
 
-            //AddPositionScheduleRows(model, result, schedulerShiftPersonals);
+            FillSalePlanCountColumns(model, dateStart, dateEnd, table);
+            FillPositionScheduleRows(model, dateStart, dateEnd, table);
+            FillShiftCountRows(table);
 
-            //result.UserCountByShiftTypeRows = GetUserCountByShiftTypeRows(result);
-            
-            //await UpdateNameTrainee(result);
+            await UpdateNameTrainee(table);
 
-            return result;
+            return table;
         }
 
         #endregion
@@ -218,214 +203,234 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             return result;
         }
 
+        /// <summary>
+        /// Кол-во чеков за период
+        /// </summary>
+        /// <param name="model">Данные с фронта</param>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <param name="table">График</param>
+        /// <returns></returns>
+        private void FillSalePlanCountColumns(IShiftPersonalScheduleDataModel model, DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
+        {
+            Dictionary<DateTime, int> periods = _unitOfWork.SalePlanDayRepository.GetByCountPeriod(model.Platform.Id, (int)PlanType.Suchi, dateStart, dateStart);
 
+            foreach (var headerColumn in table.SalePlanCountColumns)
+            {
+                if (periods.ContainsKey(headerColumn.Date))
+                {
+                    headerColumn.Count = periods[headerColumn.Date];
+                }
+            };
+        }
 
+        /// <summary>
+        /// Должности 
+        /// </summary>
+        /// <param name="model">Данные с фронта</param>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <param name="table">График</param>
+        /// <returns></returns>
+        private void FillPositionScheduleRows(IShiftPersonalScheduleDataModel model, DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
+        {
+            model.Platform.ThrowIfNull("Platform is null");
+            model.Departament.ThrowIfNull("Departament is null");
 
+            List<int> departaments = null;
+            if (model.Departament != null)
+            {
+                departaments = new List<int>() { model.Departament.Id };
+            }
 
+            List<int> subDepartaments = null;
+            if (model.SubDepartaments != null)
+            {
+                subDepartaments = model.SubDepartaments.Select(d => d.Id).ToList();
+            }
 
-        ///// <summary>
-        ///// Кол-во чеков за период
-        ///// </summary>
-        ///// <param name="model">Данные с фронта</param>
-        ///// <param name="dateStart">Начало периода</param>
-        ///// <param name="dateEnd">Окончание периода</param>
-        ///// <param name="report">Отчет</param>
-        ///// <returns></returns>
-        //private List<ISalePlanCountColumnModel> GetSalePlanCountColumns(IShiftPersonalScheduleDataModel model, DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel report)
-        //{
-        //    var result = new List<ISalePlanCountColumnModel>();
+            var scheduleShiftPersonalResults = _unitOfWork.ShiftPersonalScheduleRepository.GetScheduleShiftPersonal(departaments, subDepartaments, model.Platform.Id, dateStart, dateEnd);
 
-        //    Dictionary<DateTime, int> periods = _unitOfWork.SalePlanDayRepository.GetByCountPeriod(model.Platform.Id, (int)PlanType.Suchi, dateStart, dateStart);
+            var result = new List<IPositionScheduleRowModel>();
+            foreach (var scheduleResult in scheduleShiftPersonalResults)
+            {
+                if (!scheduleResult.PositionId.HasValue)
+                {
+                    continue;
+                }
 
-        //    foreach (var headerColumn in report.HeaderScheduleColumns)
-        //    {
-        //        var column = new SalePlanCountColumnModel()
-        //        {
-        //            Date = headerColumn.Date,
-        //        };
+                var positionRow = result.FirstOrDefault(p => p.Position.Id == scheduleResult.PositionId.Value);
+                if (positionRow == null)
+                {
+                    positionRow = new PositionScheduleRowModel();
+                    positionRow.Name = scheduleResult.PositionName;
+                    positionRow.Position = new PositionModel
+                    {
+                        Id = scheduleResult.PositionId.Value,
+                        Guid = scheduleResult.PositionGuid.Value,
+                        Value = scheduleResult.PositionName
+                    };
 
-        //        if (periods.ContainsKey(headerColumn.Date))
-        //        {
-        //            column.Count = periods[headerColumn.Date];
-        //        }
+                    result.Add(positionRow);
+                }
 
-        //        result.Add(column);
-        //    }
+                AddUserRows(scheduleResult, positionRow);
+            }
 
-        //    return result;
-        //}
+            table.PositionScheduleRows = result;
+        }
 
-        ///// <summary>
-        ///// Должности 
-        ///// </summary>
-        ///// <param name="model">Данные с фронта</param>
-        ///// <param name="report">Отчет</param>
-        ///// <returns></returns>
-        //private void AddPositionScheduleRows(IShiftPersonalScheduleDataModel model,
-        //    IShiftPersonalScheduleTableModel report,
-        //    List<ScheduleShiftPersonalResult> scheduleShiftPersonalResults)
-        //{
-        //    if (report.PositionScheduleRows == null)
-        //    {
-        //        report.PositionScheduleRows = new List<IPositionScheduleRowModel>();
-        //    }
+        /// <summary>
+        /// Группировка смен по дням
+        /// </summary>
+        /// <param name="table">График</param>
+        /// <returns></returns>
+        private void FillShiftCountRows(IShiftPersonalScheduleTableModel table)
+        {
+            foreach (var shiftCountRow in table.ShiftCountRow.ShiftCountByTypeRows)
+            {
+                foreach (var shiftCountByTypeColumn in shiftCountRow.ShiftCountByTypeColumns)
+                {
+                    shiftCountByTypeColumn.Count = table.PositionScheduleRows.Sum(positionRow => GetUserShiftTypeCountOnDate(shiftCountRow.ShiftType.Guid, shiftCountByTypeColumn.Date, positionRow.UserRows));
+                }
+            }
+        }
 
-        //    foreach (var scheduleResult in scheduleShiftPersonalResults)
-        //    {
-        //        if (!scheduleResult.PositionId.HasValue)
-        //        {
-        //            continue;
-        //        }
+        /// <summary>
+        /// Смены для сотрудников на этот день
+        /// </summary>
+        /// <param name="type">Тип смены</param>
+        /// <param name="date">Дата</param>
+        /// <param name="userRows">Список сотрудников</param>
+        /// <returns></returns>
+        private int GetUserShiftTypeCountOnDate(Guid type, DateTime date, List<IUserRowModel> userRows)
+        {
+            return userRows.Sum(userRow => GetUserShiftTypeCountOnDate(type, date, userRow.UserShiftTypeColumns));
+        }
 
-        //        var positionRow = report.PositionScheduleRows.FirstOrDefault(p => p.Position.Id == scheduleResult.PositionId.Value);
-        //        if (positionRow == null)
-        //        {
-        //            positionRow = new PositionScheduleRowModel();
-        //            positionRow.Name = scheduleResult.PositionName + " на смене";
-        //            positionRow.Position = new PositionModel
-        //            {
-        //                Id = scheduleResult.PositionId.Value,
-        //                Guid = scheduleResult.PositionGuid.Value,
-        //                Value = scheduleResult.PositionName
-        //            };
+        /// <summary>
+        /// Смены для сотрудников на этот день
+        /// </summary>
+        /// <param name="type">Тип смены</param>
+        /// <param name="date">Дата</param>
+        /// <param name="userShiftTypeColumns">Список смен для сотрудника на дату</param>
+        /// <returns></returns>
+        private int GetUserShiftTypeCountOnDate(Guid type, DateTime date, List<IUserShiftTypeColumn> userShiftTypeColumns)
+        {
+            var userShiftTypeColumnOnDate = userShiftTypeColumns.FirstOrDefault(stRow => stRow.Date == date && stRow.Schedules != null);
+            if (userShiftTypeColumnOnDate != null)
+            {
+                return userShiftTypeColumnOnDate.Schedules.Where(schedule => schedule.ShiftType.Guid == type).Count();
+            }
+            return 0;
+        }
 
-        //            report.PositionScheduleRows.Add(positionRow);
-        //        }
+        /// <summary>
+        /// Добавление пользователей
+        /// </summary>
+        /// <param name="scheduleResult">Результат выполнения ХП</param>
+        /// <param name="positionRow">Строка должности</param>
+        private void AddUserRows(ScheduleShiftPersonalResult scheduleResult, IPositionScheduleRowModel positionRow)
+        {
+            if (positionRow.UserRows == null)
+            {
+                positionRow.UserRows = new List<IUserRowModel>();
+            }
 
-        //        AddUserRows(scheduleResult, positionRow);
-        //    }
-        //}
+            if (!scheduleResult.UserId.HasValue)
+            {
+                return;
+            }
 
-        ///// <summary>
-        ///// Добавление пользователей
-        ///// </summary>
-        ///// <param name="scheduleResult">Результат выполнения ХП</param>
-        ///// <param name="positionRow">Строка должности</param>
-        //private void AddUserRows(ScheduleShiftPersonalResult scheduleResult, IPositionScheduleRowModel positionRow)
-        //{
-        //    if (positionRow.UserRows == null)
-        //    {
-        //        positionRow.UserRows = new List<IUserRowModel>();
-        //    }
+            var userRow = positionRow.UserRows.FirstOrDefault(ur => ur.User.Id == scheduleResult.UserId.Value);
+            if (userRow == null)
+            {
+                userRow = new UserRowModel();
 
-        //    if (!scheduleResult.UserId.HasValue)
-        //    {
-        //        return;
-        //    }
+                userRow.User = new ApplicationUserSmallModel()
+                {
+                    Id = scheduleResult.UserId.Value,
+                    UserName = scheduleResult.UserName
+                };
 
-        //    var userRow = positionRow.UserRows.FirstOrDefault(ur => ur.User.Id == scheduleResult.UserId.Value);
-        //    if (userRow == null)
-        //    {
-        //        userRow = new UserRowModel();
+                positionRow.UserRows.Add(userRow);
+            }
 
-        //        userRow.User = new ApplicationUserSmallModel()
-        //        {
-        //            Id = scheduleResult.UserId.Value,
-        //            UserName = scheduleResult.UserName
-        //        };
+            userRow.NormaHourColumn += scheduleResult.NormaNormaHour;
 
-        //        positionRow.UserRows.Add(userRow);
-        //    }
+            if (scheduleResult.ShiftPersonalScheduleId.HasValue)
+            {
+                AddScheduleColumns(scheduleResult, userRow);
+            }
+        }
 
-        //    if (scheduleResult.ShiftPersonalScheduleId.HasValue)
-        //    {
-        //        AddScheduleColumns(scheduleResult, userRow);
-        //    }
-        //}
+        /// <summary>
+        /// Добавление расписаний смен для сотрудников
+        /// </summary>
+        /// <param name="scheduleResult">Результат выполнения ХП</param>
+        /// <param name="userRow">Сотрудник</param>
+        private void AddScheduleColumns(ScheduleShiftPersonalResult scheduleResult, IUserRowModel userRow)
+        {
+            if (!scheduleResult.ShiftPersonalScheduleId.HasValue)
+            {
+                return;
+            }
 
-        ///// <summary>
-        ///// Добавление расписаний смен для сотрудников
-        ///// </summary>
-        ///// <param name="scheduleResult">Результат выполнения ХП</param>
-        ///// <param name="userRow">Сотрудник</param>
-        //private void AddScheduleColumns(ScheduleShiftPersonalResult scheduleResult, IUserRowModel userRow)
-        //{
-        //    if (userRow.ScheduleColumns == null)
-        //    {
-        //        userRow.ScheduleColumns = new List<IShiftPersonalScheduleModel>();
-        //    }
+            if (userRow.UserShiftTypeColumns == null)
+            {
+                userRow.UserShiftTypeColumns = new List<IUserShiftTypeColumn>();
+            }
 
-        //    if (!scheduleResult.UserId.HasValue)
-        //    {
-        //        return;
-        //    }
+            var userShiftTypeColumn = userRow.UserShiftTypeColumns.FirstOrDefault(ust => ust.Date == scheduleResult.ShiftPersonalScheduleDate.Value);
+            if (userShiftTypeColumn == null)
+            {
+                userShiftTypeColumn = new UserShiftTypeColumn()
+                {
+                    Date = scheduleResult.ShiftPersonalScheduleDate.Value,
+                    Schedules = new List<IShiftPersonalScheduleModel>()
+                };
 
-        //    var userRow = positionRow.UserRows.FirstOrDefault(ur => ur.User.Id == scheduleResult.UserId.Value);
-        //    if (userRow == null)
-        //    {
-        //        userRow = new UserRowModel()
-        //        {
-        //            Date = scheduleResult.DateDoc,
-        //        };
+                userRow.UserShiftTypeColumns.Add(userShiftTypeColumn);
+            }
 
-        //        userRow.User = new ApplicationUserSmallModel()
-        //        {
-        //            Id = scheduleResult.UserId.Value,
-        //            UserName = scheduleResult.UserName
-        //        };
+            var shiftPersonalSchedule = new ShiftPersonalScheduleModel()
+            {
+                Id = scheduleResult.ShiftPersonalScheduleId.Value,
+                Date = scheduleResult.ShiftPersonalScheduleDate.Value,
+            };
 
-        //        positionRow.UserRows.Add(userRow);
-        //    }
+            if (scheduleResult.ShiftTypeId.HasValue)
+            {
+                shiftPersonalSchedule.ShiftType = new ShiftTypeModel
+                {
+                    Id = scheduleResult.ShiftTypeId.Value,
+                    Guid = scheduleResult.ShiftTypeGuid.Value,
+                    Socr = scheduleResult.ShiftTypeDescr
+                };
+            }
 
-        //    if (scheduleResult.ShiftPersonalScheduleId.HasValue)
-        //    {
-        //        AddShiftPersonalSchedule(scheduleResult, userRow);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Добавить смены для пользователя
-        ///// </summary>
-        ///// <param name="scheduleResult">Результат выполнения ХП</param>
-        ///// <param name="userRow">Строка с пользователем</param>
-        //private void AddShiftPersonalSchedule(ScheduleShiftPersonalResult scheduleResult, IUserColumnModel userRow)
-        //{
-        //    userRow.ShiftPersonalSchedule = new ShiftPersonalScheduleModel
-        //    {
-        //        Id = scheduleResult.ShiftPersonalScheduleId.Value,
-        //        ShiftType = new ShiftTypeModel
-        //        {
-        //            Id = scheduleResult.ShiftTypeId.Value,
-        //            Socr = scheduleResult.ShiftTypeDescr
-        //        },
-        //        ShiftPersonalSchedulePeriods = new List<IShiftPersonalSchedulePeriodModel>()
-        //    };
-
-        //    if (scheduleResult.ShiftPersonalScheduleDate.HasValue)
-        //    {
-        //        userRow.ShiftPersonalSchedule.Date = scheduleResult.ShiftPersonalScheduleDate.Value;
-        //    }
-
-        //    if (scheduleResult.ShiftTypeId.HasValue)
-        //    {
-        //        userRow.ShiftPersonalSchedule.ShiftType = new ShiftTypeModel
-        //        {
-        //            Id = scheduleResult.ShiftTypeId.Value,
-        //            Guid = scheduleResult.ShiftTypeGuid.Value,
-        //            Socr = scheduleResult.ShiftTypeDescr
-        //        };
-        //    }
-        //}
-    
-        ///// <summary>
-        ///// Добавить постфикс к имени стажера
-        ///// </summary>
-        ///// <param name="result"></param>
-        ///// <returns></returns>
-        //private async Task UpdateNameTrainee(ShiftPersonalScheduleTableModel result)
-        //{
-        //    var list = await _unitOfWork.AccountRepository.GetAllSmallTrainee();
-        //    foreach (var positionRow in result.PositionScheduleRows)
-        //    {
-        //        foreach (var userRow in positionRow.UserRows)
-        //        {
-        //            if (list.Any(user => user.Id == userRow.User.Id))
-        //            {
-        //                userRow.User.UserName += " (ст)";
-        //            }
-        //        }
-        //    }
-        //}
+            userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
+        }
+        
+        /// <summary>
+        /// Добавить постфикс к имени стажера
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private async Task UpdateNameTrainee(ShiftPersonalScheduleTableModel result)
+        {
+            var list = await _unitOfWork.AccountRepository.GetAllSmallTrainee();
+            foreach (var positionRow in result.PositionScheduleRows)
+            {
+                foreach (var userRow in positionRow.UserRows)
+                {
+                    if (list.Any(user => user.Id == userRow.User.Id))
+                    {
+                        userRow.User.UserName += " (ст)";
+                    }
+                }
+            }
+        }
 
         #endregion
     }
