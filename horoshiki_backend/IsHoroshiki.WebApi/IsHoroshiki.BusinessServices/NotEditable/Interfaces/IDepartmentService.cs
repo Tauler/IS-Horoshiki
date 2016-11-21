@@ -1,5 +1,4 @@
 ﻿using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 
 namespace IsHoroshiki.BusinessServices.NotEditable.Interfaces
 {
@@ -8,6 +7,6 @@ namespace IsHoroshiki.BusinessServices.NotEditable.Interfaces
     /// </summary>
     public interface IDepartmentService : IBaseNotEditableService<IDepartmentModel>
     {
-       
+
     }
 }

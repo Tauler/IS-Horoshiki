@@ -61,6 +61,19 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
             });
         }
 
+        /// <summary>
+        /// Найти все подотделы для отдела
+        /// </summary>
+        /// <param name="departamentId">Id отдела</param>
+        /// <returns></returns>
+        public Task<List<SubDepartment>> GetAllByDepartament(int departamentId)
+        {
+            return Task<List<SubDepartment>>.Factory.StartNew(() =>
+            {
+                return DbSet.Where(sd => sd.DepartmentId == departamentId).ToList();
+            });
+        }
+
         #endregion
 
         #region private

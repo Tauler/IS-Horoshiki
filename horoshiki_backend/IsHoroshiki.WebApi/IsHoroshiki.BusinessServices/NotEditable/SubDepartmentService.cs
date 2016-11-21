@@ -5,6 +5,8 @@ using IsHoroshiki.BusinessServices.NotEditable.Interfaces;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
 using IsHoroshiki.DAO.Repositories.NotEditable.Interfaces;
 using IsHoroshiki.DAO.UnitOfWorks;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace IsHoroshiki.BusinessServices.NotEditable
 {
@@ -32,6 +34,21 @@ namespace IsHoroshiki.BusinessServices.NotEditable
             : base(unitOfWork.SubDepartmentRepository)
         {
             _unitOfWork = unitOfWork;
+        }
+
+        #endregion
+
+        #region ISubDepartmentService
+
+        /// <summary>
+        /// Найти все подотделы для отдела
+        /// </summary>
+        /// <param name="departamentId">Id отдела</param>
+        /// <returns></returns>
+        public async Task<List<ISubDepartmentModel>> GetAllByDepartament(int departamentId)
+        {
+            var daoResult = await _repository.GetAllByDepartament(departamentId);
+            return daoResult.ToModelEntityList().ToList();
         }
 
         #endregion

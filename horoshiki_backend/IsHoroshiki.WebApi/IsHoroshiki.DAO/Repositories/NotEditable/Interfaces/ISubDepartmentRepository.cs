@@ -23,5 +23,12 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<SubDepartment> GetSubDepartamentsPizzaAsync();
+
+        /// <summary>
+        /// Найти все подотделы для отдела
+        /// </summary>
+        /// <param name="departamentId">Id отдела</param>
+        /// <returns></returns>
+        Task<List<SubDepartment>> GetAllByDepartament(int departamentId);
     }
 }
