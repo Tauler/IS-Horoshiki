@@ -1,7 +1,5 @@
-﻿using IsHoroshiki.BusinessEntities.Editable.SalePlan;
-using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
+﻿using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace IsHoroshiki.BusinessServices.Editable.Interfaces
@@ -19,10 +17,10 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         Task<IShiftPersonalScheduleTableModel> GetTable(IShiftPersonalScheduleDataModel model);
 
         /// <summary>
-        /// Планирование смен сотрудника на оперделенный день
+        /// Планирование смен сотрудника на определенный день
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<ModelEntityModifyResult> UpdateCell(ICollection<IShiftPersonalScheduleModel> models);
+        Task<ModelEntityModifyResult> UpdateCell(IShiftPersonalScheduleUpdateModel model);
     }
 }

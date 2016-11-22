@@ -23,9 +23,18 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
         /// <summary>
         /// Найти в БД по типу и дате
         /// </summary>
+        /// <param name="userId">Id пользователя</param>
         /// <param name="shiftTypeId">Id типа смены</param>
         /// <param name="date">Дата</param>
         /// <returns></returns>
-        ShiftPersonalSchedule GetByTypeAndDate(int shiftTypeId, DateTime date);
+        ShiftPersonalSchedule GetByParam(int userId, int shiftTypeId, DateTime date);
+
+        /// <summary>
+        /// Найти все для пользвателя на дату
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="date">Дата</param>
+        /// <returns></returns>
+        List<ShiftPersonalSchedule> GetByParam(int userId, DateTime date);
     }
 }

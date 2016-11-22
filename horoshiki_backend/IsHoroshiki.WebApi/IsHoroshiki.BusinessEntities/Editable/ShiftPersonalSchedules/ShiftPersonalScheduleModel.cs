@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
 {
     /// <summary>
-    /// График периода сотрудника на день (смен)
+    /// Смена сотрудника
     /// </summary>
     public class ShiftPersonalScheduleModel : BaseBusninessModel, IShiftPersonalScheduleModel
     {

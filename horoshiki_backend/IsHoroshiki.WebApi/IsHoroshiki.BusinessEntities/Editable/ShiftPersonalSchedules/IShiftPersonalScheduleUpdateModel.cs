@@ -1,14 +1,13 @@
 ﻿using IsHoroshiki.BusinessEntities.Account.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
 {
     /// <summary>
-    /// Смена сотрудника
+    /// Обновление смен для пользователя на дату
     /// </summary>
-    public interface IShiftPersonalScheduleModel : IBaseBusninessModel
+    public interface IShiftPersonalScheduleUpdateModel
     {
         /// <summary>
         /// Пользователь
@@ -20,16 +19,7 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Тип смены
-        /// </summary>
-        IShiftTypeModel ShiftType
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Дата расписания работы сотрудника
+        /// Дата
         /// </summary>
         DateTime Date
         {
@@ -38,9 +28,9 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Расписание работы сотрудника (смены)
+        /// Список смен 
         /// </summary>
-        ICollection<IShiftPersonalSchedulePeriodModel> ShiftPersonalSchedulePeriods
+        ICollection<IShiftPersonalScheduleModel> ShiftPersonalSchedules
         {
             get;
             set;

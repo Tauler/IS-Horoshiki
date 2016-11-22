@@ -50,12 +50,24 @@ namespace IsHoroshiki.DAO.Repositories.Editable
         /// <summary>
         /// Найти в БД по типу и дате
         /// </summary>
+        /// <param name="userId">Id пользователя</param>
         /// <param name="shiftTypeId">Id типа смены</param>
         /// <param name="date">Дата</param>
         /// <returns></returns>
-        public ShiftPersonalSchedule GetByTypeAndDate(int shiftTypeId, DateTime date)
+        public ShiftPersonalSchedule GetByParam(int userId, int shiftTypeId, DateTime date)
         {
-            return DbSet.FirstOrDefault(s => s.ShiftTypeId == shiftTypeId && s.Date == date);
+            return DbSet.FirstOrDefault(s => s.UserId == userId && s.ShiftTypeId == shiftTypeId && s.Date == date);
+        }
+
+        /// <summary>
+        /// Найти все для пользвателя на дату
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="date">Дата</param>
+        /// <returns></returns>
+        public List<ShiftPersonalSchedule> GetByParam(int userId, DateTime date)
+        {
+            return DbSet.Where(s => s.UserId == userId && s.Date == date).ToList();
         }
 
         #endregion

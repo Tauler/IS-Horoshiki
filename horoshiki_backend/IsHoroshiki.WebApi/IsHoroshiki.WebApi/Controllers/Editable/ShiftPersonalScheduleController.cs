@@ -63,10 +63,11 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         }
 
         /// <summary>
-        /// Редактировать список смен сотрудника (без удаления)
+        /// Планирование смен сотрудника на определенный день.
+        /// Удаляем ВСЕ что нет в списке
         /// </summary>
         [Route("updateCell")]
-        public async Task<IHttpActionResult> UpdateCell(ICollection<IShiftPersonalScheduleModel> model)
+        public async Task<IHttpActionResult> UpdateCell(IShiftPersonalScheduleUpdateModel model)
         {
             try
             {

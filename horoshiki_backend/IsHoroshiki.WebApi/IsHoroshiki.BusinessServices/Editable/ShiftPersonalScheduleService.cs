@@ -14,6 +14,7 @@ using IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules;
 using System.Linq;
 using IsHoroshiki.BusinessEntities.Editable.MappingDao;
 using IsHoroshiki.DAO.Helpers;
+using IsHoroshiki.BusinessServices.Validators;
 
 namespace IsHoroshiki.BusinessServices.Editable
 {
@@ -68,70 +69,33 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
-        /// Планирование смен сотрудника на определенный день
+        /// Планирование смен сотрудника на определенный день.
+        /// Удаляем ВСЕ что нет в списке
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ModelEntityModifyResult> UpdateCell(ICollection<IShiftPersonalScheduleModel> models)
+        public async Task<ModelEntityModifyResult> UpdateCell(IShiftPersonalScheduleUpdateModel model)
         {
             try
             {
-                var dates = models.Select(m => m.Date).Distinct();
-                if (dates.Count() > 1)
-                {
-                    return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.CollectionDateMoreOne);
-                }
+                model.User.ThrowIfNull("User is null");
+                model.Date.ThrowIfNull("Date is nUll");
 
-                var users = models.Select(m => m.User).Distinct();
-                if (users.Count() > 1)
-                {
-                    return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.CollectionUserMoreOne);
-                }
+                var shiftPersonalSchedules = model.ShiftPersonalSchedules ?? new List<IShiftPersonalScheduleModel>();
 
-                var shiftTypeIntensification = _unitOfWork.ShiftTypeRepository.GetIntensification();
-                if (shiftTypeIntensification != null)
+                model.Date = model.Date.Date;
+                foreach (var shiftPersonalScheduleModel in shiftPersonalSchedules)
                 {
-                    var shiftTypeIntensificationExist = models.Any(m => m.ShiftType != null && m.ShiftType.Id == shiftTypeIntensification.Id);
-                    if (shiftTypeIntensificationExist)
-                    {
-                        if (models.Any(m => m.ShiftType.Id != shiftTypeIntensification.Id))
-                        {
-                            return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.ShiftTypeIntensificationWithAnyTypes);
-                        }
-                    }
-                }
-
-                foreach (var shiftPersonalScheduleModel in models)
-                {
-                    var validateResult = await _validator.ValidateAsync(shiftPersonalScheduleModel);
-                    if (!validateResult.IsSucceeded)
-                    {
-                        return new ModelEntityModifyResult(validateResult.Errors);
-                    }
-
                     shiftPersonalScheduleModel.Date = shiftPersonalScheduleModel.Date.Date;
-
-                    if (shiftPersonalScheduleModel.Id > 0)
-                    {
-                        var resultModify = UpdatePersonalSchedule(shiftPersonalScheduleModel);
-                        if (!resultModify.IsSucceeded)
-                        {
-                            return resultModify;
-                        }
-                    }
-                    else
-                    {
-                        var resultModify = InsertPersonalSchedule(shiftPersonalScheduleModel);
-                        if (!resultModify.IsSucceeded)
-                        {
-                            return resultModify;
-                        }
-                    }
                 }
 
-                _unitOfWork.Save();
+                ValidationResult validateModelResult = ValidateModel(model, shiftPersonalSchedules);
+                if (!validateModelResult.IsSucceeded)
+                {
+                    return new ModelEntityModifyResult(validateModelResult.Errors);
+                }
 
-                return new ModelEntityModifyResult();
+                return await UpdateInternal(model, shiftPersonalSchedules);
             }
             catch (Exception e)
             {
@@ -200,6 +164,103 @@ namespace IsHoroshiki.BusinessServices.Editable
         #endregion
 
         #region private
+
+        /// <summary>
+        /// Валидация модели 
+        /// </summary>
+        /// <param name="model">Модель, которую надо обновлять</param>
+        /// <param name="shiftPersonalSchedules">Список смен для сотрудника</param>
+        /// <returns></returns>
+        private ValidationResult ValidateModel(IShiftPersonalScheduleUpdateModel model, ICollection<IShiftPersonalScheduleModel> shiftPersonalSchedules)
+        {
+            var dates = shiftPersonalSchedules.Select(m => m.Date).Distinct();
+            if (dates.Count() > 1)
+            {
+                return new ValidationResult(ShiftPersonalScheduleErrors.CollectionDateMoreOne);
+            }
+
+            if (dates.Any(d => d != model.Date))
+            {
+                return new ValidationResult(ShiftPersonalScheduleErrors.CollectionDateMoreOne);
+            }
+
+
+            var users = shiftPersonalSchedules.Select(m => m.User).Distinct();
+            if (users.Count() > 1)
+            {
+                return new ValidationResult(ShiftPersonalScheduleErrors.CollectionUserMoreOne);
+            }
+
+            if (users.Any(u => u == null || u.Id != model.User.Id))
+            {
+                return new ValidationResult(ShiftPersonalScheduleErrors.CollectionUserMoreOne);
+            }
+
+            var shiftTypeIntensification = _unitOfWork.ShiftTypeRepository.GetIntensification();
+            if (shiftTypeIntensification != null)
+            {
+                var shiftTypeIntensificationExist = shiftPersonalSchedules.Any(m => m.ShiftType != null && m.ShiftType.Id == shiftTypeIntensification.Id);
+                if (shiftTypeIntensificationExist)
+                {
+                    if (shiftPersonalSchedules.Any(m => m.ShiftType.Id != shiftTypeIntensification.Id))
+                    {
+                        return new ValidationResult(ShiftPersonalScheduleErrors.ShiftTypeIntensificationWithAnyTypes);
+                    }
+                }
+            }
+
+            return new ValidationResult();
+        }
+
+        /// <summary>
+        /// Планирование смен сотрудника на определенный день.
+        /// Удаляем ВСЕ что нет в списке
+        /// </summary>
+        /// <param name="model">Модель, которую надо обновлять</param>
+        /// <param name="shiftPersonalSchedules">Список смен для сотрудника</param>
+        /// <returns></returns>
+        private async Task<ModelEntityModifyResult> UpdateInternal(IShiftPersonalScheduleUpdateModel model, ICollection<IShiftPersonalScheduleModel> shiftPersonalSchedules)
+        { 
+            //удаляем все то нет в списке
+            var existSchedulers = _repository.GetByParam(model.User.Id, model.Date);
+            foreach (var existScheduler in existSchedulers.ToList())
+            {
+                if (!shiftPersonalSchedules.Any(c => c.Id == existScheduler.Id))
+                {
+                    _unitOfWork.ShiftPersonalScheduleRepository.Delete(existScheduler);
+                }
+            }
+
+            foreach (var shiftPersonalScheduleModel in shiftPersonalSchedules)
+            {
+                var validateResult = await _validator.ValidateAsync(shiftPersonalScheduleModel);
+                if (!validateResult.IsSucceeded)
+                {
+                    return new ModelEntityModifyResult(validateResult.Errors);
+                }
+
+                if (shiftPersonalScheduleModel.Id > 0)
+                {
+                    var resultModify = UpdatePersonalSchedule(shiftPersonalScheduleModel);
+                    if (!resultModify.IsSucceeded)
+                    {
+                        return resultModify;
+                    }
+                }
+                else
+                {
+                    var resultModify = InsertPersonalSchedule(shiftPersonalScheduleModel);
+                    if (!resultModify.IsSucceeded)
+                    {
+                        return resultModify;
+                    }
+                }
+            }
+
+            _unitOfWork.Save();
+
+            return new ModelEntityModifyResult();
+        }
 
         /// <summary>
         /// Обновление расписания смены для сотрудника
@@ -292,7 +353,8 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new ModelEntityModifyResult(errorData);
             }
 
-            var daoSchedule = _repository.GetByTypeAndDate(shiftPersonalScheduleModel.ShiftType.Id, shiftPersonalScheduleModel.Date) ?? CreateInternal(shiftPersonalScheduleModel);
+            var daoSchedule = _repository.GetByParam(shiftPersonalScheduleModel.User.Id, shiftPersonalScheduleModel.ShiftType.Id, shiftPersonalScheduleModel.Date) 
+                ?? CreateInternal(shiftPersonalScheduleModel);
 
             //если в БД существует, обновляем
             if (daoSchedule.Id > 0)
