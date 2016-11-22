@@ -210,7 +210,9 @@
     <Content Include="Script\2016-11-07_1 Таблицы графика смен сотрудников.sql" />
     <Content Include="Script\2016-11-07_2 Function GetDateRange.sql" />
     <Content Include="Script\2016-11-07_3 Custom type IdList.sql" />
+    <Content Include="Script\2016-11-22_2 ALTER ScheduleShiftPersonal.sql" />
     <Content Include="Script\2016-11-20_2 ХП ALTER ScheduleShiftPersonal.sql" />
+    <Content Include="Script\2016-11-22_1 ALTER GetScheduleShiftPersonalNormaHour.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
