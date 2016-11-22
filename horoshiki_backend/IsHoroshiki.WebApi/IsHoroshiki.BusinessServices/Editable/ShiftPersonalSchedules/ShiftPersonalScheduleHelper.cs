@@ -278,6 +278,24 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             }
 
             table.PositionScheduleRows = result;
+
+            foreach (var positionScheduleRow in table.PositionScheduleRows)
+            {
+                positionScheduleRow.ShiftCountResultColumns = new List<IShiftCountResultColumn>();
+                for (var currentDate = dateStart; currentDate <= dateEnd; currentDate = currentDate.AddDays(1))
+                {
+                    var columnResultShiftType = new ShiftCountResultColumn()
+                    {
+                        Date = currentDate
+                    };
+                    positionScheduleRow.ShiftCountResultColumns.Add(columnResultShiftType);
+                }
+
+                foreach (var shiftCountResultColumn in positionScheduleRow.ShiftCountResultColumns)
+                {
+                    shiftCountResultColumn.Count = GetUserShiftTypeCountOnDate(Guid.Empty, shiftCountResultColumn.Date, positionScheduleRow.UserRows);
+                }
+            }
         }
 
         /// <summary>
@@ -320,7 +338,14 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             var userShiftTypeColumnOnDate = userShiftTypeColumns.FirstOrDefault(stRow => stRow.Date == date && stRow.Schedules != null);
             if (userShiftTypeColumnOnDate != null)
             {
-                return userShiftTypeColumnOnDate.Schedules.Where(schedule => schedule.ShiftType.Guid == type).Count();
+                if (type != Guid.Empty)
+                {
+                    return userShiftTypeColumnOnDate.Schedules.Where(schedule => schedule.ShiftType.Guid == type).Count();
+                }
+                else
+                {
+                    return userShiftTypeColumnOnDate.Schedules.Count();
+                }
             }
             return 0;
         }

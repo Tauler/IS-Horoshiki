@@ -27,6 +27,15 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         }
 
         /// <summary>
+        /// Всего кол-во сотрудников в смене на этот день (по всем сменам)
+        /// </summary>
+        List<IShiftCountResultColumn> ShiftCountResultColumns
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Строка в таблице - сотрудники
         /// </summary>
         List<IUserRowModel> UserRows
