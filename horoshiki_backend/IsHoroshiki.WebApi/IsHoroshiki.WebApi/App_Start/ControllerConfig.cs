@@ -36,6 +36,7 @@ namespace IsHoroshiki.WebApi
             RegisterConverter<IShiftPersonalScheduleModel>();
             RegisterConverter<IShiftPersonalScheduleDataModel>();
             RegisterConverter<IShiftPersonalScheduleUpdateModel>();
+            RegisterConverter<IShiftPersonalScheduleNormaHourModel>();
         }
 
         private static void RegisterConverter<T>()

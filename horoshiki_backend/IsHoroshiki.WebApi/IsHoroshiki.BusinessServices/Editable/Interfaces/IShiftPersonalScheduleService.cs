@@ -22,5 +22,12 @@ namespace IsHoroshiki.BusinessServices.Editable.Interfaces
         /// <param name="model"></param>
         /// <returns></returns>
         Task<ModelEntityModifyResult> UpdateCell(IShiftPersonalScheduleUpdateModel model);
+
+        /// <summary>
+        /// Получение норма часов за период для пользователя
+        /// </summary>
+        /// <param name="model">Модель запроса норма часов за период для пользователя</param>
+        /// <returns></returns>
+        Task<int> NormaHour(IShiftPersonalScheduleNormaHourModel model);
     }
 }

@@ -79,7 +79,7 @@ namespace IsHoroshiki.BusinessServices.Editable
             try
             {
                 model.User.ThrowIfNull("User is null");
-                model.Date.ThrowIfNull("Date is nUll");
+                model.Date.ThrowIfNull("Date is null");
 
                 var shiftPersonalSchedules = model.ShiftPersonalSchedules ?? new List<IShiftPersonalScheduleModel>();
 
@@ -96,6 +96,35 @@ namespace IsHoroshiki.BusinessServices.Editable
                 }
 
                 return await UpdateInternal(model, shiftPersonalSchedules);
+            }
+            catch (Exception e)
+            {
+                var errorData = new ErrorData(CommonErrors.Exception, e.Message);
+                throw new Exception(errorData.Message);
+            }
+        }
+
+        /// <summary>
+        /// Получение норма часов за период для пользователя
+        /// </summary>
+        /// <param name="model">Модель запроса норма часов за период для пользователя</param>
+        /// <returns></returns>
+        public async Task<int> NormaHour(IShiftPersonalScheduleNormaHourModel model)
+        {
+            try
+            {
+                model.User.ThrowIfNull("User is null");
+                model.DateStart.ThrowIfNull("DateStart is null");
+                model.DateEnd.ThrowIfNull("DateEnd is null");
+
+                var isExistUser = await _unitOfWork.AccountRepository.IsExistsAsync(model.User.Id);
+                if (!isExistUser)
+                {
+                    var errorData = new ErrorData(ShiftPersonalScheduleErrors.UserNotFound, parameters : new object[] { model.User.Id });
+                    throw new Exception(errorData.Message);
+                }
+
+                return _repository.GetScheduleShiftPersonalNormaHour(model.User.Id, model.DateStart, model.DateEnd);
             }
             catch (Exception e)
             {
@@ -173,6 +202,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         private ValidationResult ValidateModel(IShiftPersonalScheduleUpdateModel model, ICollection<IShiftPersonalScheduleModel> shiftPersonalSchedules)
         {
+            model.User.ThrowIfNull("User is null");
+            model.Date.ThrowIfNull("Date is null");
+
             var dates = shiftPersonalSchedules.Select(m => m.Date).Distinct();
             if (dates.Count() > 1)
             {
@@ -183,7 +215,6 @@ namespace IsHoroshiki.BusinessServices.Editable
             {
                 return new ValidationResult(ShiftPersonalScheduleErrors.CollectionDateMoreOne);
             }
-
 
             var users = shiftPersonalSchedules.Select(m => m.User).Distinct();
             if (users.Count() > 1)

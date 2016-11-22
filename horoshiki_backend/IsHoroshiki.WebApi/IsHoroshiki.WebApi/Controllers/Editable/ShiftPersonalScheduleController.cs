@@ -84,7 +84,29 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                 return new ErrorMessageResult(e);
             }
         }
-        
+
+        /// <summary>
+        /// Получение норма часов за период для пользователя
+        /// </summary>
+        [Route("normaHour")]
+        public async Task<IHttpActionResult> NormaHour(IShiftPersonalScheduleNormaHourModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return GetErrorResult(ModelState);
+                }
+
+                var result = await _service.NormaHour(model);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return new ErrorMessageResult(e);
+            }
+        }
+
         #endregion
     }
 }

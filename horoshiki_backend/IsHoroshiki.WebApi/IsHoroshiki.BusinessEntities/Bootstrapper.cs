@@ -66,7 +66,8 @@ namespace IsHoroshiki.BusinessEntities
             container.RegisterType<IShiftPersonalScheduleDataModel, ShiftPersonalScheduleDataModel>();
             container.RegisterType<IShiftPersonalScheduleTableModel, ShiftPersonalScheduleTableModel>();
             container.RegisterType<IShiftPersonalScheduleUpdateModel, ShiftPersonalScheduleUpdateModel>();
-
+            container.RegisterType<IShiftPersonalScheduleNormaHourModel, ShiftPersonalScheduleNormaHourModel>();
+            
             return container;
         }
     }

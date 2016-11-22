@@ -36,5 +36,14 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
         /// <param name="date">Дата</param>
         /// <returns></returns>
         List<ShiftPersonalSchedule> GetByParam(int userId, DateTime date);
+
+        /// <summary>
+        /// Вызов скалярной функции в БД GetScheduleShiftPersonalNormaHour
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <returns></returns>
+        int GetScheduleShiftPersonalNormaHour(int userId, DateTime dateStart, DateTime dateEnd);
     }
 }

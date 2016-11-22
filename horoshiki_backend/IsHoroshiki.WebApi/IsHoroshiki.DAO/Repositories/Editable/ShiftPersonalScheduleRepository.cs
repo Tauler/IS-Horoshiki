@@ -70,6 +70,24 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             return DbSet.Where(s => s.UserId == userId && s.Date == date).ToList();
         }
 
+        /// <summary>
+        /// Вызов скалярной функции в БД GetScheduleShiftPersonalNormaHour
+        /// </summary>
+        /// <param name="userId">Id пользователя</param>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <returns></returns>
+        public int GetScheduleShiftPersonalNormaHour(int userId, DateTime dateStart, DateTime dateEnd)
+        {
+            var result = Context.Database.SqlQuery<int?>("select dbo.GetScheduleShiftPersonalNormaHour(@userId, @shiftTypeId, @dateStart, @dateEnd)",
+                           GetParameter("userId", userId),
+                           GetParameter("shiftTypeId", 0),
+                           GetParameter("dateStart", dateStart),
+                           GetParameter("dateEnd", dateEnd)).FirstOrDefault();
+
+            return result.HasValue ? result.Value : 0;
+        }
+
         #endregion
     }
 }
