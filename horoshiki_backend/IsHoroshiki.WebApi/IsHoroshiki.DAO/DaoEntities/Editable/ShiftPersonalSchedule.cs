@@ -58,7 +58,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Периоды работы сотрудника (смены)
         /// </summary>
-        public ICollection<ShiftPersonalSchedulePeriod> ShiftPersonalSchedulePeriods
+        public virtual ICollection<ShiftPersonalSchedulePeriod> ShiftPersonalSchedulePeriods
         {
             get;
             set;

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace IsHoroshiki.WebApi.Controllers.Editable
 {
     /// <summary>
-    /// Контроллер План продаж
+    /// Контроллер График смен для сотрудников
     /// </summary>
     [Authorize]
     [RoutePrefix("api/shiftPersonalSchedule")]
@@ -63,7 +63,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
         }
 
         /// <summary>
-        /// Редактировать список смен сотрудника
+        /// Редактировать список смен сотрудника (без удаления)
         /// </summary>
         [Route("updateCell")]
         public async Task<IHttpActionResult> UpdateCell(ICollection<IShiftPersonalScheduleModel> model)
@@ -83,7 +83,7 @@ namespace IsHoroshiki.WebApi.Controllers.Editable
                 return new ErrorMessageResult(e);
             }
         }
-
+        
         #endregion
     }
 }

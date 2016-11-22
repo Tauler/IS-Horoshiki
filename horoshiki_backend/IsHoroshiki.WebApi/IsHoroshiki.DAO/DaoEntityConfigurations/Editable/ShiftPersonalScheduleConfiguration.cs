@@ -15,8 +15,7 @@ namespace IsHoroshiki.DAO.DaoEntityConfigurations.Editable
         public ShiftPersonalScheduleConfiguration() 
             : base("ShiftPersonalSchedules")
         {
-            HasMany(s => s.ShiftPersonalSchedulePeriods)
-               .WithRequired();
+            
         }
 
         #endregion

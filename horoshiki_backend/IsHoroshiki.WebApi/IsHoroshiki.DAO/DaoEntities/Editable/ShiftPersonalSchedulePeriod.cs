@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IsHoroshiki.DAO.DaoEntities.Editable
 {
@@ -11,7 +10,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         ///  График периода смен работника
         /// </summary>
-        public ShiftPersonalSchedule ShiftPersonalSchedule
+        public int ShiftPersonalScheduleId
         {
             get;
             set;
@@ -20,7 +19,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         ///  График периода смен работника
         /// </summary>
-        public int ShiftPersonalScheduleId
+        public ShiftPersonalSchedule ShiftPersonalSchedule
         {
             get;
             set;

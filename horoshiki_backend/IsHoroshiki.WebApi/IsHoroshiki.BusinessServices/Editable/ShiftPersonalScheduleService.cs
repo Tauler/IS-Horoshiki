@@ -89,12 +89,15 @@ namespace IsHoroshiki.BusinessServices.Editable
                 }
 
                 var shiftTypeIntensification = _unitOfWork.ShiftTypeRepository.GetIntensification();
-                var shiftTypeIntensificationExist = models.Any(m => m.ShiftType != null && m.ShiftType.Id == shiftTypeIntensification.Id);
-                if (shiftTypeIntensificationExist)
+                if (shiftTypeIntensification != null)
                 {
-                    if (models.Any(m => m.ShiftType.Id != shiftTypeIntensification.Id))
+                    var shiftTypeIntensificationExist = models.Any(m => m.ShiftType != null && m.ShiftType.Id == shiftTypeIntensification.Id);
+                    if (shiftTypeIntensificationExist)
                     {
-                        return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.ShiftTypeIntensificationWithAnyTypes);
+                        if (models.Any(m => m.ShiftType.Id != shiftTypeIntensification.Id))
+                        {
+                            return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.ShiftTypeIntensificationWithAnyTypes);
+                        }
                     }
                 }
 
@@ -105,6 +108,8 @@ namespace IsHoroshiki.BusinessServices.Editable
                     {
                         return new ModelEntityModifyResult(validateResult.Errors);
                     }
+
+                    shiftPersonalScheduleModel.Date = shiftPersonalScheduleModel.Date.Date;
 
                     if (shiftPersonalScheduleModel.Id > 0)
                     {
@@ -203,7 +208,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         private ModelEntityModifyResult UpdatePersonalSchedule(IShiftPersonalScheduleModel shiftPersonalScheduleModel)
         {
-            shiftPersonalScheduleModel.ThrowIfNull();
+            shiftPersonalScheduleModel.ThrowIfNull("shiftPersonalScheduleModel is null");
 
             var daoSchedule = _unitOfWork.ShiftPersonalScheduleRepository.GetById(shiftPersonalScheduleModel.Id);
             if (daoSchedule == null)
@@ -232,9 +237,28 @@ namespace IsHoroshiki.BusinessServices.Editable
 
             if (shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods != null)
             {
+                //удаляем период, если его нет в списке
+                var existsPeriods = _unitOfWork.ShiftPersonalSchedulePeriodRepository.GetByShiftPersonalScheduleId(shiftPersonalScheduleModel.Id);
+                foreach (var existsPeriod in existsPeriods.ToList())
+                {
+                    if (!shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods.Any(c => c.Id == existsPeriod.Id))
+                    {
+                        _unitOfWork.ShiftPersonalSchedulePeriodRepository.Delete(existsPeriod);
+                    }
+                }
+
                 foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
                 {
                     InsertOrUpdatePeriod(daoSchedule.Id, periodModel);
+                }
+            }
+            else
+            {
+                //удаляем период, т.к. его нет в списке
+                var existsPeriods = _unitOfWork.ShiftPersonalSchedulePeriodRepository.GetByShiftPersonalScheduleId(shiftPersonalScheduleModel.Id);
+                foreach (var existsPeriod in existsPeriods.ToList())
+                {
+                    _unitOfWork.ShiftPersonalSchedulePeriodRepository.Delete(existsPeriod);
                 }
             }
 
@@ -244,7 +268,9 @@ namespace IsHoroshiki.BusinessServices.Editable
         }
 
         /// <summary>
-        /// Добавить расписания смены для сотрудника
+        /// Добавить расписания смены для сотрудника.
+        /// Проверяем, если ID = 0, находим в БД по указаннмоу типу и дате.
+        /// Если нет в БД, то создаем
         /// </summary>
         /// <param name="shiftPersonalScheduleModel">Модель расписания смены соотрудника</param>
         /// <returns></returns>
@@ -266,31 +292,23 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new ModelEntityModifyResult(errorData);
             }
 
-            var daoSchedule = CreateInternal(shiftPersonalScheduleModel);
+            var daoSchedule = _repository.GetByTypeAndDate(shiftPersonalScheduleModel.ShiftType.Id, shiftPersonalScheduleModel.Date) ?? CreateInternal(shiftPersonalScheduleModel);
 
-            if (daoSchedule.ShiftPersonalSchedulePeriods != null)
+            //если в БД существует, обновляем
+            if (daoSchedule.Id > 0)
             {
-                foreach (var daoSchedulePeriod in daoSchedule.ShiftPersonalSchedulePeriods)
+                shiftPersonalScheduleModel.Id = daoSchedule.Id;
+
+                var resultModify = UpdatePersonalSchedule(shiftPersonalScheduleModel);
+                if (!resultModify.IsSucceeded)
                 {
-                    daoSchedulePeriod.ShiftPersonalSchedule = daoSchedule;
-                    daoSchedulePeriod.ShiftPersonalScheduleId = daoSchedule.Id;
+                    return resultModify;
                 }
             }
-
-            //if (daoSchedule.ShiftPersonalSchedulePeriods != null)
-            //{
-            //    daoSchedule.ShiftPersonalSchedulePeriods.Clear();
-            //}
-
-            _unitOfWork.ShiftPersonalScheduleRepository.Insert(daoSchedule);
-
-            //if (shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods != null)
-            //{
-            //    foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
-            //    {
-            //        InsertOrUpdatePeriod(1, periodModel);
-            //    }
-            //}
+            else
+            {
+                _unitOfWork.ShiftPersonalScheduleRepository.Insert(daoSchedule);
+            }
 
             return new ModelEntityModifyResult();
         }
@@ -302,8 +320,8 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <returns></returns>
         private ModelEntityModifyResult InsertOrUpdatePeriod(int daoScheduleId, IShiftPersonalSchedulePeriodModel periodModel)
         {
-            periodModel.ThrowIfNull();
-            daoScheduleId.ThrowIfNull();
+            periodModel.ThrowIfNull("periodModel is null");
+            daoScheduleId.ThrowIfNull("daoScheduleId = 0");
 
             if (periodModel.Id > 0)
             {

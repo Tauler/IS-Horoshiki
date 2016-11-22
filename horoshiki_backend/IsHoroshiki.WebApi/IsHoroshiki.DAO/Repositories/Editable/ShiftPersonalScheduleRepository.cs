@@ -47,6 +47,17 @@ namespace IsHoroshiki.DAO.Repositories.Editable
                 .ToList();
         }
 
+        /// <summary>
+        /// Найти в БД по типу и дате
+        /// </summary>
+        /// <param name="shiftTypeId">Id типа смены</param>
+        /// <param name="date">Дата</param>
+        /// <returns></returns>
+        public ShiftPersonalSchedule GetByTypeAndDate(int shiftTypeId, DateTime date)
+        {
+            return DbSet.FirstOrDefault(s => s.ShiftTypeId == shiftTypeId && s.Date == date);
+        }
+
         #endregion
     }
 }

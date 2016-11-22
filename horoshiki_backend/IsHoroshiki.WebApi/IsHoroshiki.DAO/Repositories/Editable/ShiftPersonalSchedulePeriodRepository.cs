@@ -1,6 +1,7 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace IsHoroshiki.DAO.Repositories.Editable
 {
@@ -19,6 +20,20 @@ namespace IsHoroshiki.DAO.Repositories.Editable
             : base(context)
         {
 
+        }
+
+        #endregion
+
+        #region  IShiftPersonalSchedulePeriodRepository
+        
+        /// <summary>
+        /// Найти все периоды для смены
+        /// </summary>
+        /// <param name="scheduleId">Id смены</param>
+        /// <returns></returns>
+        public List<ShiftPersonalSchedulePeriod> GetByShiftPersonalScheduleId(int scheduleId)
+        {
+            return DbSet.Where(p => p.ShiftPersonalScheduleId == scheduleId).ToList();
         }
 
         #endregion

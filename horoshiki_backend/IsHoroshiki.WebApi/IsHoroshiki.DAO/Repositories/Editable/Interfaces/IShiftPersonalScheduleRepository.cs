@@ -19,5 +19,13 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
         /// <param name="dateEnd">Дата окончания</param>
         /// <returns></returns>
         List<ScheduleShiftPersonalResult> GetScheduleShiftPersonal(List<int> departaments, List<int> subDepartaments, int platformId, DateTime dateBegin, DateTime dateEnd);
+
+        /// <summary>
+        /// Найти в БД по типу и дате
+        /// </summary>
+        /// <param name="shiftTypeId">Id типа смены</param>
+        /// <param name="date">Дата</param>
+        /// <returns></returns>
+        ShiftPersonalSchedule GetByTypeAndDate(int shiftTypeId, DateTime date);
     }
 }

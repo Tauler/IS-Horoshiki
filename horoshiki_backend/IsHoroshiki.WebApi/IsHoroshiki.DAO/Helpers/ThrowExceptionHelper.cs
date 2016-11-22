@@ -42,6 +42,19 @@ namespace IsHoroshiki.DAO.Helpers
         /// </summary>
         /// <param name="arg">Проверяемый аргумент</param>
         /// <param name="message">Сообщение</param>
+        public static void ThrowIfNull(this int arg, string message = "")
+        {
+            if (arg == 0)
+            {
+                throw new ArgumentNullException(message);
+            }
+        }
+
+        /// <summary>
+        /// Вброс эксепшена, если пустая строка
+        /// </summary>
+        /// <param name="arg">Проверяемый аргумент</param>
+        /// <param name="message">Сообщение</param>
         public static void ThrowIfNull(this DateTime arg, string message = "")
         {
             if (arg == null || arg == DateTime.MinValue)
