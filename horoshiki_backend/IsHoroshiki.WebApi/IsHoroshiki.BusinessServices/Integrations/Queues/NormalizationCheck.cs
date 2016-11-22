@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using IsHoroshiki.BusinessServices.Helpers;
 using System.Threading;
+using System.Globalization;
 
 namespace IsHoroshiki.BusinessServices.Integrations.Queues
 {
@@ -169,7 +170,7 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
             }
 
             DateTime result;
-            if (DateTime.TryParse(date.TrimProbel(), out result))
+            if (DateTime.TryParseExact(date.TrimProbel(), "dd.MM.yy", Thread.CurrentThread.CurrentCulture, DateTimeStyles.None, out result))
             {
                 return result;
             }
@@ -194,8 +195,9 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
                 return null;
             }
 
+            time = time.Replace(".", ":").TrimProbel();
             TimeSpan result;
-            if (TimeSpan.TryParse(time.Replace(".", ":").TrimProbel(), out result))
+            if (TimeSpan.TryParseExact(time, "g", Thread.CurrentThread.CurrentCulture, TimeSpanStyles.None, out result))
             {
                 return result;
             }
