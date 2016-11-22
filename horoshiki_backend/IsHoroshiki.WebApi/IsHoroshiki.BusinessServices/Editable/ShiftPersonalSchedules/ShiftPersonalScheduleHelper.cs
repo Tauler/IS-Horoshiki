@@ -13,6 +13,7 @@ using IsHoroshiki.BusinessEntities.Account;
 using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.NotEditable.MappingDao;
 using IsHoroshiki.DAO.DaoEntities.NotEditable;
+using IsHoroshiki.DAO;
 
 namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 {
@@ -53,16 +54,30 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             model.Platform.ThrowIfNull("Platform is null");
             model.Departament.ThrowIfNull("Departament is null");
             model.Date.ThrowIfNull("Date is null");
-          
+
+            var departament = _unitOfWork.DepartmentRepository.GetById(model.Departament.Id);
+
             DateTime dateStart, dateEnd;
             ExtractPeriod(model, out dateStart, out dateEnd);
 
             var table = GetEmptyTable(model, dateStart, dateEnd);
 
-
             FillSalePlanCountColumns(model, dateStart, dateEnd, table);
             FillPositionScheduleRows(model, dateStart, dateEnd, table);
-            FillShiftCountRows(table);
+           
+            if (departament.Guid == DatabaseConstant.Departament.Administration || departament.Guid == DatabaseConstant.Departament.Courier)
+            {
+                FillShiftCountPositionRows(dateStart, dateEnd, table);
+            }
+            else
+            {
+                FillShiftCountRows(dateStart, dateEnd, table);
+            }
+            
+            if (departament.Guid == DatabaseConstant.Departament.Courier)
+            {
+                FillSumHourUserRows(dateStart, dateEnd, table);
+            }
 
             await UpdateNameTrainee(table);
 
@@ -100,6 +115,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
         /// <param name="model">Данные запроса</param>
         /// <param name="dateStart">Начало периода</param>
         /// <param name="dateEnd">Окончание периода</param>
+        /// <param name="department">Отдел</param>
         /// <returns></returns>
         private ShiftPersonalScheduleTableModel GetEmptyTable(IShiftPersonalScheduleDataModel model, DateTime dateStart, DateTime dateEnd)
         {
@@ -107,8 +123,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 
             result.HeaderScheduleColumns = GetHeaderScheduleColumns(dateStart, dateEnd);
             result.SalePlanCountColumns = GetEmptySalePlanColumns(dateStart, dateEnd);
-            result.ShiftCountRow = GetEmptyShiftCountRow(dateStart, dateEnd);
-
+            
             return result;
         }
 
@@ -277,8 +292,18 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
                 AddUserRows(scheduleResult, positionRow);
             }
 
-            table.PositionScheduleRows = result;
+            table.PositionScheduleRows = result;            
+        }
 
+        /// <summary>
+        /// Группировка смен по дням для должности
+        /// </summary>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <param name="table">График</param>
+        /// <returns></returns>
+        private void FillShiftCountPositionRows(DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
+        {
             foreach (var positionScheduleRow in table.PositionScheduleRows)
             {
                 positionScheduleRow.ShiftCountResultColumns = new List<IShiftCountResultColumn>();
@@ -299,12 +324,41 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
         }
 
         /// <summary>
-        /// Группировка смен по дням
+        /// Сумма часов работы для сотрудника
         /// </summary>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
         /// <param name="table">График</param>
         /// <returns></returns>
-        private void FillShiftCountRows(IShiftPersonalScheduleTableModel table)
+        private void FillSumHourUserRows(DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
         {
+            foreach (var positionRow in table.PositionScheduleRows)
+            {
+                foreach (var userRow in positionRow.UserRows)
+                {
+                    for (var currentDate = dateStart; currentDate <= dateEnd; currentDate = currentDate.AddDays(1))
+                    {
+                        var userHourColumn = new UserHourColumn()
+                        {
+                            Date = currentDate
+                        };
+                        userRow.UserHourColumns.Add(userHourColumn);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Группировка смен по дням
+        /// </summary>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <param name="table">График</param>
+        /// <returns></returns>
+        private void FillShiftCountRows(DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
+        {
+            table.ShiftCountRow = GetEmptyShiftCountRow(dateStart, dateEnd);
+
             foreach (var shiftCountRow in table.ShiftCountRow.ShiftCountByTypeRows)
             {
                 foreach (var shiftCountByTypeColumn in shiftCountRow.ShiftCountByTypeColumns)

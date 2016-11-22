@@ -26,6 +26,16 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
             set;
         }
 
+
+        /// <summary>
+        /// Сумма часов работы для сотрудника(курьеры)
+        /// </summary>
+        List<IUserHourColumn> UserHourColumns
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Список смен
         /// </summary>
@@ -33,6 +43,6 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         {
             get;
             set;
-        }
+        }       
     }
 }

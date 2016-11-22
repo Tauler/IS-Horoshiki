@@ -27,6 +27,15 @@ namespace IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables
         }
 
         /// <summary>
+        /// Сумма часов работы для сотрудника (курьеры)
+        /// </summary>
+        public List<IUserHourColumn> UserHourColumns
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Список смен
         /// </summary>
         public List<IUserShiftTypeColumn> UserShiftTypeColumns

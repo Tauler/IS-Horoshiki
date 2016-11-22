@@ -5,8 +5,31 @@ namespace IsHoroshiki.DAO
     /// <summary>
     /// Guid записей справочников в БД
     /// </summary>
-    public static class DatabaseConstant
+    public class DatabaseConstant
     {
+        #region поля
+
+        /// <summary>
+        /// Константы отдел
+        /// </summary>
+        private static DatabaseConstantDepartament _departament;
+
+        #endregion
+
+        #region Конструктор
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        static DatabaseConstant()
+        {
+            _departament = new DatabaseConstantDepartament();
+        }
+
+        #endregion
+
+        #region свойства
+
         /// <summary>
         /// Статус работника - уволен
         /// </summary>
@@ -114,6 +137,69 @@ namespace IsHoroshiki.DAO
             get
             {
                 return Guid.Parse("9849AEF4-3413-4E3E-A427-4722CFA172F6");
+            }
+        }
+
+        /// <summary>
+        /// Константы отдел
+        /// </summary>
+        public static DatabaseConstantDepartament Departament
+        {
+            get
+            {
+                return _departament;
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Константы отдел
+        /// </summary>
+        public class DatabaseConstantDepartament 
+        {
+            /// <summary>
+            /// Колл-центр
+            /// </summary>
+            public Guid CallCenter
+            {
+                get
+                {
+                    return Guid.Parse("AC252958-75C9-4AFE-A685-A9E853E52994");
+                }
+            }
+
+            /// <summary>
+            /// Администрация
+            /// </summary>
+            public Guid Administration
+            {
+                get
+                {
+                    return Guid.Parse("9890056E-D74B-4057-AA54-91B403021D65");
+                }
+            }
+
+            /// <summary>
+            /// Производство
+            /// </summary>
+            public Guid Production
+            {
+                get
+                {
+                    return Guid.Parse("A011AF0E-6303-49A9-B29B-4F93E543D762");
+                }
+            }
+
+            /// <summary>
+            /// Отдел - доставка (курьеры)
+            /// </summary>
+            public Guid Courier
+            {
+                get
+                {
+                    return Guid.Parse("D8CCFE34-38A0-47FC-AD64-2C13BDA0678B");
+                }
             }
         }
     }

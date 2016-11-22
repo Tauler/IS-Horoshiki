@@ -102,6 +102,8 @@
     <Compile Include="Editable\SalePlans\Reports\SalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportRowModel.cs" />
     <Compile Include="Editable\SalePlans\Reports\ISalePlanReportSumRowModel.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Tables\UserHourColumn.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Tables\IUserHourColumn.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\UserShiftTypeColumn.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\IUserShiftTypeColumn.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Tables\ShiftCountRow.cs" />
