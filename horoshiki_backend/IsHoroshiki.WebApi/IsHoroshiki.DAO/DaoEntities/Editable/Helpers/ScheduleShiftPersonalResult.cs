@@ -163,7 +163,7 @@ namespace IsHoroshiki.DAO.DaoEntities.Editable
         /// <summary>
         /// Норма часы
         /// </summary>
-        public int NormaNormaHour
+        public int? NormaHour
         {
             get;
             set;
