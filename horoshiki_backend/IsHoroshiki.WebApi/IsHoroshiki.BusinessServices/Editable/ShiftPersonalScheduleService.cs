@@ -216,13 +216,13 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new ValidationResult(ShiftPersonalScheduleErrors.CollectionDateMoreOne);
             }
 
-            var users = shiftPersonalSchedules.Select(m => m.User).Distinct();
+            var users = shiftPersonalSchedules.Select(m => m.User.Id).Distinct();
             if (users.Count() > 1)
             {
                 return new ValidationResult(ShiftPersonalScheduleErrors.CollectionUserMoreOne);
             }
 
-            if (users.Any(u => u == null || u.Id != model.User.Id))
+            if (users.Any(id => id != model.User.Id))
             {
                 return new ValidationResult(ShiftPersonalScheduleErrors.CollectionUserMoreOne);
             }
