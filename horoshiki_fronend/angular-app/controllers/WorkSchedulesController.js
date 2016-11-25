@@ -30,6 +30,10 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 		$scope.model.sunday = {};
 		$scope.model.sunday.name = 'Вс';
 		
+		$scope.model.pageStatus = {};
+		$scope.model.pageStatus.saving = false;
+		$scope.model.pageStatus.loading = false;
+		
 		//текущий год
         $scope.model.period.year = angular.toJson(enumYears[0]);
         for (var $index in enumYears) {
@@ -233,6 +237,7 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 					"IsOnDay": isOnDay
 				};
 				
+				$scope.model.pageStatus.loading = true;
 				ShiftPersonalScheduleService.table(model).success(function(result){
 					if(result.Success == 1){
 						$scope.model.table = result.Data;
@@ -250,7 +255,9 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 					} else {
 						displayErrorMessage(result.ReasonMessage);
 					}
+					$scope.model.pageStatus.loading = false;
 				}).error(function (result, status) {
+					$scope.model.pageStatus.loading = false;
 					httpErrors($location.url(), status);
 				});
 			}
@@ -396,13 +403,16 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 				"Date": dateFormatterBackend(new Date(date))
 			};
 
+			$scope.model.pageStatus.saving = true;
 			ShiftPersonalScheduleService.updateCell(model).success(function(result){
                 if(result.Success == 1){
 					
                 } else {
                     displayErrorMessage(result.ReasonMessage);
                 }
+				$scope.model.pageStatus.saving = false;
             }).error(function (result, status) {
+				$scope.model.pageStatus.saving = false;
                 httpErrors($location.url(), status);
             });
 		}

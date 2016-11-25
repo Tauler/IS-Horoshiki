@@ -1,11 +1,15 @@
 <div class="row">
-    <div class="col-lg-12 padding-bottom-5">
+    <div class="col-lg-8 padding-bottom-5">
         <ul class="breadcrumb nopaddings">
             <li><a href="/">Главная</a></li>
             <li>Управление</li>
 			<li class="active">Графики работы</li>
         </ul>
     </div>
+	<div class="col-lg-1 work-scheduler-status padding-bottom-5 margin-right-15">
+		<span class="ng-hide" ng-show="model.pageStatus.saving">Сохранение...</span>
+		<span class="ng-hide" ng-show="model.pageStatus.loading">Загрузка...</span>
+	</div>
 </div>
 
 <div class="content">
@@ -52,6 +56,9 @@
 											<span ng-if="model.period.yearSelected!=null && model.period.monthSelected!=null">{{parJson(model.period.monthSelected).name}} {{model.period.yearSelected}}</span>
 											<span ng-if="model.period.yearSelected==null || model.period.monthSelected==null">Выбрать период</span>
 										</button>
+									</div>
+									<div class="col-md-1 work-scheduler-print margin-right-15">
+										<span>Печать</span>
 									</div>
 								</div>
 								<div class="row">

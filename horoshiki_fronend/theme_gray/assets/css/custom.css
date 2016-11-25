@@ -410,6 +410,21 @@ table.work-scheduler-table{
 	padding: 0px;
 }
 
+.work-scheduler-print{
+	float: right !important;
+}
+
+.work-scheduler-print span{
+	font-size: 14px;
+	padding: 0px 8px 1px 8px;
+	border-bottom: 1px dashed #000;
+}
+
+.work-scheduler-status{
+	float: right !important;
+	font-style: italic;
+}
+
 /* ####################################################### Datepicker, Timepicker ####################################################### */
 
 /*#region DatePicker*/
