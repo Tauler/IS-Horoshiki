@@ -176,11 +176,6 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
         /// <param name="userRow">Сотрудник</param>
         private void AddScheduleColumns(ScheduleShiftPersonalResult scheduleResult, IUserRowModel userRow)
         {
-            if (!scheduleResult.ShiftPersonalScheduleId.HasValue)
-            {
-                return;
-            }
-
             if (userRow.UserShiftTypeColumns == null)
             {
                 userRow.UserShiftTypeColumns = new List<IUserShiftTypeColumn>();
@@ -193,6 +188,11 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                     };
                     userRow.UserShiftTypeColumns.Add(newUserShiftTypeColumn);
                 }
+            }
+
+            if (!scheduleResult.ShiftPersonalScheduleId.HasValue)
+            {
+                return;
             }
 
             var userShiftTypeColumn = userRow.UserShiftTypeColumns.FirstOrDefault(ust => ust.Date == scheduleResult.ShiftPersonalScheduleDate.Value);
@@ -223,6 +223,10 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                 };
             }
 
+            if (userShiftTypeColumn.Schedules == null)
+            {
+                userShiftTypeColumn.Schedules = new List<IShiftPersonalScheduleModel>();
+            }
             userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
         }        
 
