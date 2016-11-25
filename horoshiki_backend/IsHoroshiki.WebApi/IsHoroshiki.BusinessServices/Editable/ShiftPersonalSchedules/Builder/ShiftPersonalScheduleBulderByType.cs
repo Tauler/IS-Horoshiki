@@ -184,6 +184,15 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
             if (userRow.UserShiftTypeColumns == null)
             {
                 userRow.UserShiftTypeColumns = new List<IUserShiftTypeColumn>();
+
+                for (var currentDate = this._dateStart; currentDate <= this._dateEnd; currentDate = currentDate.AddDays(1))
+                {
+                    var newUserShiftTypeColumn = new UserShiftTypeColumn()
+                    {
+                        Date = currentDate
+                    };
+                    userRow.UserShiftTypeColumns.Add(newUserShiftTypeColumn);
+                }
             }
 
             var userShiftTypeColumn = userRow.UserShiftTypeColumns.FirstOrDefault(ust => ust.Date == scheduleResult.ShiftPersonalScheduleDate.Value);

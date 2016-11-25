@@ -184,7 +184,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
         /// <param name="model">Данные запроса</param>
         /// <param name="startDate">Начало периода</param>
         /// <param name="endDate">Окончание периода</param>
-        private void ExtractPeriod(IShiftPersonalScheduleDataModel model, out DateTime startDate, out DateTime endDate)
+        protected void ExtractPeriod(IShiftPersonalScheduleDataModel model, out DateTime startDate, out DateTime endDate)
         {
             if (model.IsOnDay)
             {
