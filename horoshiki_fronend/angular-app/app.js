@@ -13,6 +13,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'timepickerDirectives',
     'datepickerDirectives',
 	'userLoadingDirectives',
+	'ui.bootstrap.popover',
 
     'layoutControllers',
     'errorControllers',
@@ -25,6 +26,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'salesPlanControllers',
     'changeSettingsControllers',
 	'targetControllers',
+	'workSchedulesControllers',
 
     'backendServices',
     'accountServices',
@@ -35,6 +37,7 @@ var horoshikiApp = angular.module('horoshikiApp', [
     'platformsServices',
     'reasonDismissalServices',
     'zonesServices',
+	'shiftPersonalScheduleServices',
 
     'salesPlanServices',
     'changeSettingsServices',
@@ -190,6 +193,15 @@ horoshikiApp.config(['$locationProvider', '$httpProvider', '$routeProvider',
                 groupId: 'settings',
                 subgroupId: 'changeSettings',
                 title: 'План продаж'
+            })
+			
+			.when('/workSchedules', {
+                templateUrl: '/angular-html/workschedules.list.html',
+                controller: 'WorkSchedulesListController',
+                pageId: 'WorkSchedulesList',
+                groupId: 'management',
+                subgroupId: 'workSchedules',
+                title: 'Графики работы'
             })
 
             .when('/error', {

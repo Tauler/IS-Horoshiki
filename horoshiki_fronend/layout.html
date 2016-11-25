@@ -202,8 +202,8 @@
                     <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
                         <a href="/salesplan"><span class="text">План продаж</span></a>
                     </li>
-                    <li ng-class="subgroupId == '' ? 'active':''">
-                        <a href="#"><span class="text">Графики работы</span></a>
+                    <li ng-class="subgroupId == 'workSchedules' ? 'active':''">
+                        <a href="/workSchedules"><span class="text">Графики работы</span></a>
                     </li>
                     <li class="left-menu-head"><a href="javascript:void(0);">
                         <span class="text">Настройки</span></a>
@@ -232,8 +232,8 @@
                     <li ng-class="subgroupId == 'salesPlan' ? 'active':''">
                         <a href="/salesplan"><span class="menu-text"> План продаж</span></a>
                     </li>
-                    <li ng-class="subgroupId == '' ? 'active':''">
-                        <a href="#"><span class="menu-text"> Графики работы</span></a>
+                    <li ng-class="subgroupId == 'workSchedules' ? 'active':''">
+                        <a href="/workSchedules"><span class="menu-text"> Графики работы</span></a>
                     </li>
                 </ul>
 
@@ -261,11 +261,9 @@
 <script type="text/javascript" src="/theme_gray/assets/js/jquery/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="/theme_gray/assets/js/bootstrap/bootstrap.js"></script>
 <script type="text/javascript" src="/theme_gray/assets/js/plugins/modernizr/modernizr.js"></script>
-<!-- <script type="text/javascript" src="/theme_gray/assets/js/plugins/bootstrap-tour/bootstrap-tour.custom.js"></script> -->
 <script type="text/javascript" src="/theme_gray/assets/js/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="/theme_gray/assets/js/king-common.js"></script>
 <!--<script type="text/javascript" src="demo-style-switcher/assets/js/deliswitch.js"></script>-->
-
 <!-- <script type="text/javascript" src="/theme_gray/assets/js/datetime/datepicker-jquery-ui.min.js"></script>
 <script type="text/javascript" src="/theme_gray/assets/js/datetime/datepicker.js"></script>
 <script type="text/javascript" src="/theme_gray/assets/js/datetime/datepicker-ru.js"></script> -->
@@ -278,9 +276,8 @@
 <script type="text/javascript" src="/plugins/angular/angular-cookies.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="/plugins/angular/angular-resource.min.js"></script>
+<script type="text/javascript" src="/plugins/bootstrap-ui/ui-bootstrap-tpls-2.2.0.min.js"></script>
 <script type="text/javascript" src="/plugins/bootstrap-ui/angular-ui.bootstrap.pagination.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-ui/datepicker.js"></script>
-<script type="text/javascript" src="/plugins/bootstrap-ui/timepicker.js"></script>
 <!--<script type="text/javascript" src="/plugins/angular-ui-select/select.min.js"></script>-->
 
 <!-- Angular app -->
@@ -297,8 +294,9 @@
 <script type="text/javascript" src="/angular-app/controllers/ReasonDismissalController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/ZonesController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/SalesPlanController.js"></script>
-<script type="text/javascript" src="angular-app/controllers/ChangeSettingsController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/ChangeSettingsController.js"></script>
 <script type="text/javascript" src="/angular-app/controllers/TargetController.js"></script>
+<script type="text/javascript" src="/angular-app/controllers/WorkSchedulesController.js"></script>
 
 <!-- Angular services -->
 <script type="text/javascript" src="/angular-app/service/TranslationService.js"></script>
@@ -313,6 +311,7 @@
 <script type="text/javascript" src="/angular-app/service/SalesPlanService.js"></script>
 <script type="text/javascript" src="/angular-app/service/ChangeSettingsService.js"></script>
 <script type="text/javascript" src="/angular-app/service/TargetService.js"></script>
+<script type="text/javascript" src="/angular-app/service/ShiftPersonalScheduleService.js"></script>
 
 <script type="text/javascript" src="/theme_gray/assets/js/jquery-ui-1.10.4.autocomplete.js"></script>
 <script src="/theme_gray/assets/js/datetime/datepicker-jquery-ui.js"></script>
@@ -321,6 +320,8 @@
 <!-- Angular directives -->
 <script type="text/javascript" src="/plugins/ya-map-2.2.js"></script>
 <script type="text/javascript" src="/angular-app/directives/UserLoadingDirective.js"></script>
+<script type="text/javascript" src="/angular-app/directives/DatepickerDirective.js"></script>
+<script type="text/javascript" src="/angular-app/directives/TimepickerDirective.js"></script>
 
 </body>
 </html>

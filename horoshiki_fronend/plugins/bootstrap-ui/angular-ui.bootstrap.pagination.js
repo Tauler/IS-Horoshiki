@@ -6,7 +6,7 @@
  * License: MIT
  */
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls","ui.bootstrap.pagination"]);
-angular.module("ui.bootstrap.tpls", ["template/pagination/pager.html","template/pagination/pagination.html"]);
+angular.module("ui.bootstrap.tpls", ["/angular-html/directives/pagination/pager.html","/angular-html/directives/pagination/pagination.html"]);
 angular.module('ui.bootstrap.pagination', [])
 .controller('UibPaginationController', ['$scope', '$attrs', '$parse', function($scope, $attrs, $parse) {
   var self = this,
@@ -108,7 +108,7 @@ angular.module('ui.bootstrap.pagination', [])
     controller: 'UibPaginationController',
     controllerAs: 'pagination',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'template/pagination/pagination.html';
+      return attrs.templateUrl || '/angular-html/directives/pagination/pagination.html';
     },
     replace: true,
     link: function(scope, element, attrs, ctrls) {
@@ -223,7 +223,7 @@ angular.module('ui.bootstrap.pagination', [])
     controller: 'UibPaginationController',
     controllerAs: 'pagination',
     templateUrl: function(element, attrs) {
-      return attrs.templateUrl || 'template/pagination/pager.html';
+      return attrs.templateUrl || '/angular-html/directives/pagination/pager.html';
     },
     replace: true,
     link: function(scope, element, attrs, ctrls) {

@@ -25,13 +25,21 @@ dictionaryServices.service('DictionaryService', ['$http', function($http) {
     this.getBuyProcesses = function () {
         return $http.get(backendServerAddr+'/api/BuyProcesses', {timeout: backendTimeout, headers: getToken()});
     }
+	
     this.getDepartments = function () {
         return $http.get(backendServerAddr+'/api/Departments', {timeout: backendTimeout, headers: getToken()});
     }
+	
+	this.getSubDepartments = function () {
+        return $http.get(backendServerAddr+'/api/subDepartments', {timeout: backendTimeout, headers: getToken()});
+    }
+	
     this.getDeliveryZoneTypes = function () {
         return $http.get(backendServerAddr+'/api/DeliveryZoneTypes', {timeout: backendTimeout, headers: getToken()});
     }
 
-
+	this.getShiftTypes = function () {
+        return $http.get(backendServerAddr+'/api/ShiftTypes', {timeout: backendTimeout, headers: getToken()});
+    }
 }]);
 

@@ -41,6 +41,13 @@ var enumMonth = [
         {id:11, name:'Декабрь'}
 ];
 
+var enumShiftCountRowsType = {
+	morning: '292ef8fb-49dc-42b1-9e75-bee16d5454b4',
+	evening: '4801812f-b7f1-4d64-ba8e-0e128ef3be20',
+	night: '435a9e46-279a-4aab-b8a3-4412c9631bbb',
+	powerup: '9849aef4-3413-4e3e-a427-4722cfa172f6'
+}
+
 function resizeFooter(){
     var contentHeight = $(window).height() - 123;
     $(".content-container").css("min-height", contentHeight + "px");
@@ -155,12 +162,6 @@ function displayErrorMessage(text){
 function closeModal(id){
     $('#'+id).modal('hide');
 }
-
-function isNumber1(e) {
-
-        return false;
-
-};
 
 $("#numb").keyup(function(event){
     console.log(event);

@@ -55,7 +55,7 @@ table.table-bordered-0 tbody td input{
 }
 
 .margin-bottom-10{
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .table-hover_active{
@@ -63,10 +63,10 @@ table.table-bordered-0 tbody td input{
 }
 
 .padding-right-0{
-    padding-right: 0px;
+    padding-right: 0px !important;
 }
 .padding-left-0{
-    padding-left: 0px;
+    padding-left: 0px !important;
 }
 .nopaddings{
     padding: 0px !important;
@@ -74,99 +74,177 @@ table.table-bordered-0 tbody td input{
 }
 
 .padding-left-5{
-    padding-left: 5px;
+    padding-left: 5px !important;
 }
 .padding-left-10{
-    padding-left: 10px;
+    padding-left: 10px !important;
 }
 .padding-left-15{
-    padding-left: 15px;
+    padding-left: 15px !important;
 }
 .padding-left-20{
-  padding-left: 20px;
+  padding-left: 20px !important;
 }
 .padding-left-25{
-  padding-left: 25px;
+  padding-left: 25px !important;
 }
 .padding-left-30{
-  padding-left: 30px;
+  padding-left: 30px !important;
 }
 
 
 .padding-right-5{
-  padding-right: 5px;
+  padding-right: 5px !important;
 }
 .padding-right-10{
-  padding-right: 10px;
+  padding-right: 10px !important;
 }
 .padding-right-15{
-  padding-right: 15px;
+  padding-right: 15px !important;
 }
 .padding-right-20{
-  padding-right: 20px;
+  padding-right: 20px !important;
 }
 .padding-right-25{
-  padding-right: 25px;
+  padding-right: 25px !important;
 }
 .padding-right-30{
-  padding-right: 30px;
+  padding-right: 30px !important;
 }
 
 .padding-top-5{
-  padding-top: 5px;
+  padding-top: 5px !important;
 }
 .padding-top-10{
-  padding-top: 10px;
+  padding-top: 10px !important;
 }
 .padding-top-15{
-  padding-top: 15px;
+  padding-top: 15px !important;
 }
 .padding-top-20{
-  padding-top: 20px;
+  padding-top: 20px !important;
 }
 .padding-top-25{
-  padding-top: 25px;
+  padding-top: 25px !important;
 }
 .padding-top-30{
-  padding-top: 30px;
+  padding-top: 30px !important;
 }
 
 .padding-bottom-5{
-    padding-bottom: 5px;
+    padding-bottom: 5px !important;
 }
 .padding-bottom-10{
-    padding-bottom: 10px;
+    padding-bottom: 10px !important;
 }
 .padding-bottom-15{
-    padding-bottom: 15px;
+    padding-bottom: 15px !important;
 }
 .padding-bottom-20{
-    padding-bottom: 20px;
+    padding-bottom: 20px !important;
 }
 .padding-bottom-25{
-    padding-bottom: 25px;
+    padding-bottom: 25px !important;
 }
 .padding-bottom-30{
-  padding-bottom: 30px;
+  padding-bottom: 30px !important;
 }
+
 .text-align-right {
     text-align: right !important;
 }
 .text-align-left {
     text-align: left !important;
 }
-.margin-top-30 {
-    margin-top: 30px !important;
+
+.margin-top-5 {
+    margin-top: 5px !important;
 }
 .margin-top-10 {
     margin-top: 10px !important;
 }
+.margin-top-15 {
+    margin-top: 15px !important;
+}
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+.margin-top-25 {
+    margin-top: 25px !important;
+}
+.margin-top-30 {
+    margin-top: 30px !important;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0px !important;
+}
+.margin-bottom-5 {
+    margin-bottom: 5px !important;
+}
+.margin-bottom-10 {
+    margin-bottom: 10px !important;
+}
+.margin-bottom-15 {
+    margin-bottom: 15px !important;
+}
 .margin-bottom-20 {
     margin-bottom: 20px !important;
+}
+.margin-bottom-25 {
+    margin-bottom: 25px !important;
+}
+.margin-bottom-30 {
+    margin-bottom: 30px !important;
 }
 .margin-bottom-50 {
     margin-bottom: 50px !important;
 }
+
+.margin-right-5 {
+    margin-right: 5px !important;
+}
+.margin-right-10 {
+    margin-right: 10px !important;
+}
+.margin-right-15 {
+    margin-right: 15px !important;
+}
+.margin-right-20 {
+    margin-right: 20px !important;
+}
+.margin-right-25 {
+    margin-right: 25px !important;
+}
+.margin-right-30 {
+    margin-right: 30px !important;
+}
+.margin-right-50 {
+    margin-right: 50px !important;
+}
+
+.margin-left-5 {
+    margin-left: 5px !important;
+}
+.margin-left-10 {
+    margin-left: 10px !important;
+}
+.margin-left-15 {
+    margin-left: 15px !important;
+}
+.margin-left-20 {
+    margin-left: 20px !important;
+}
+.margin-left-25 {
+    margin-left: 25px !important;
+}
+.margin-left-30 {
+    margin-left: 30px !important;
+}
+.margin-left-50 {
+    margin-left: 50px !important;
+}
+
 .padding-right-50 {
 	padding-right: 50px !important;
 }
@@ -190,6 +268,149 @@ table.table-bordered-0 tbody td input{
 	min-width: 100px;
 }
 
+.thin-select{
+	height: 22px;
+	padding-left: 2px !important;
+	background-position: right 1px top 5px !important;
+}
+
+.work-scheduler-dropdown{
+	background-color: #DFDFDF;
+	height: 22px;
+	border: 1px solid #D4D4D4;
+	text-align: center;
+	margin-left: -1px;
+}
+
+.work-scheduler-dropdown.open, .work-scheduler-department-open{
+	background-color: #A8A8A8;
+}
+
+.work-scheduler-dropdown a{
+	display: inline-block;
+	margin-top: 1px;
+	text-decoration: none;
+}
+
+.work-scheduler-dropdown a:hover{
+	color: #333;
+}
+
+.work-scheduler-dropdown.open a, .work-scheduler-dropdown.open button, .work-scheduler-department-open a, .work-scheduler-department-open button, .work-scheduler-department-open button:focus{
+	color: #F1F1F1;
+}
+
+.work-scheduler-dropdown ul, .work-scheduler-cell ul{
+	padding-left: 5px;
+}
+
+.work-scheduler-dropdown li, .work-scheduler-cell li{
+	font-size: 12px;
+	margin-top: -5px;
+}
+
+.work-scheduler-dropdown input[type="radio"] + label, .work-scheduler-cell input[type="checkbox"] + label{
+	margin-left: -20px;
+	padding-left: 20px;
+	padding-top: 2px;
+	background: url(/theme_gray/assets/img/checkbox_unchecked.png) no-repeat 0 0;
+}
+
+.work-scheduler-dropdown input[type="radio"]:checked + label, .work-scheduler-cell input[type="checkbox"]:checked + label{
+	background: url(/theme_gray/assets/img/checkbox_checked.png) no-repeat 0 0;
+}
+
+.work-scheduler-date-btn{
+	border-bottom: 1px dashed #000;
+	height: 22px;
+	padding: 0px 10px 0px 10px;
+	background: none;
+}
+
+.work-scheduler-btn{
+	height: 22px;
+	padding: 0px 10px 0px 10px;
+	background: none;
+	font-size: inherit;
+	margin-top: -1px;
+}
+
+.work-scheduler-popover-container .popover{
+	max-width:600px;
+	width: 400px;
+}
+
+.work-scheduler-popover-container .popover .popover-content{
+	padding: 4px;
+}
+
+table.work-scheduler-table{
+	width: auto;
+	margin-top: -1px;
+}
+
+.work-scheduler-table tbody tr td, .work-scheduler-table thead tr th{
+	height: 22px;
+	width: 30px;
+	padding: 0px;
+	text-align: center;
+	font-weight: normal;
+	vertical-align: bottom;
+}
+
+.work-scheduler-table thead tr th{
+	background-color: #ECECEC;
+	border: 1px solid #DFDFDF;
+}
+
+.work-scheduler-table tbody tr.work-scheduler-table-delimiter-clear td{
+	padding: 0px;
+	height: 4px;
+}
+
+.work-scheduler-table tbody tr.work-scheduler-table-delimiter-dark td{
+	padding: 0px;
+	height: 3px;
+	background-color: #ECECEC;
+}
+
+.work-scheduler-table thead tr th.work-scheduler-table-head-dummy{
+	border-left: 0px;
+}
+
+.work-scheduler-table thead tr th.work-scheduler-table-head-first{
+	padding-left: 3px;
+	border-right: 0px;
+	width: 175px;
+	text-align: left;
+}
+
+.work-scheduler-table tbody tr td.work-scheduler-table-body-first{
+	padding-left: 5px;
+	width: 175px;
+	text-align: left;
+}
+
+.work-scheduler-table-body-normaHour{
+	background-color: #ECECEC;
+}
+
+.work-scheduler-table-sunday{
+	background-color: #ECECEC !important;
+}
+
+.work-scheduler-cell{
+	position: relative;
+}
+
+.work-scheduler-cell button{
+	width: 100%;
+	height: 20px;
+	background-color: transparent;
+	padding: 0px;
+}
+
+/* ####################################################### Datepicker, Timepicker ####################################################### */
 
 /*#region DatePicker*/
 .datepicker {

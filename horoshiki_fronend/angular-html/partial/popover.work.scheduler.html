@@ -1,0 +1,31 @@
+<div class="work-scheduler-date">
+	<div class="row nopaddings">
+		<div class="col-md-2 nopaddings">
+			<select class="form-control thin-select nopaddings" ng-model="model.period.day">
+				<option ng-repeat="day in model.days" value="{{day}}">
+					{{day}}
+				</option>
+			</select>
+		</div>
+		<div class="col-md-4 padding-left-10 padding-right-0">
+			<select class="form-control thin-select nopaddings" ng-model="model.period.month" ng-change="getDays()">
+				<option ng-repeat="month in model.month" value="{{month}}">
+					{{month.name}}
+				</option>
+			</select>
+		</div>
+		<div class="col-md-4 padding-left-10 padding-right-0">
+			<select class="form-control thin-select nopaddings" ng-model="model.period.year" ng-change="getDays()">
+				<option ng-repeat="year in model.years" value="{{year}}">
+					{{year}}
+				</option>
+			</select>
+		</div>
+		<div class="col-md-1 padding-left-10 padding-right-0">
+			<button type="button" class="btn btn-xs btn-primary" ng-click="changeDatePopover()"><i class="fa fa-check"></i></button>
+		</div>
+		<div class="col-md-1 padding-left-10 padding-right-10">
+			<button type="button" class="btn btn-xs btn-default" ng-click="closeDatePopover()"><i class="fa fa-times"></i></button>
+		</div>
+	</div>
+</div>

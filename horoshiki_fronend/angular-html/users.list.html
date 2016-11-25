@@ -227,7 +227,7 @@
 										Показано <span ng-show="model.users.length>0">1</span><span ng-show="model.users.length<1">0</span> - {{model.users.length}} записи. (Всего: {{model.paging.TotalRecordCount}})
 									</div>
 									<div class="col-md-6 text-align-right">
-										<uib-pagination template-url="/angular-html/directives/pagination.html"
+										<uib-pagination
 											ng-if="model.users.length>0"
 											ng-model="model.paging.PageNo"
 											total-items="model.paging.TotalRecordCount"

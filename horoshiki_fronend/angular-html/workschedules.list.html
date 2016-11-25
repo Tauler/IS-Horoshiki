@@ -1,0 +1,220 @@
+<div class="row">
+    <div class="col-lg-12 padding-bottom-5">
+        <ul class="breadcrumb nopaddings">
+            <li><a href="/">Главная</a></li>
+            <li>Управление</li>
+			<li class="active">Графики работы</li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-table" style="min-height: 1024px;">
+                    <div class="widget-content padding-top-10">
+                        <div class="row">
+                            <div class="col-md-12">
+								<div class="row">
+									<!-- площадка -->
+									<div class="col-md-1">
+										<select class="form-control thin-select nopaddings" ng-disabled="subdivisionIsDisabled" ng-model="model.subdivision" ng-change="reloadAllPlatformBySubdivision()">
+											<option ng-repeat="subdivision in model.subdivisions" value="{{subdivision}}">
+												{{subdivision.Name}}
+											</option>
+										</select>
+									</div>
+									<div class="col-md-1">
+										<select class="form-control thin-select nopaddings" ng-disabled="platformIsDisabled" ng-model="model.platform" ng-change="reloadTableModel()">
+											<option ng-repeat="platform in model.platforms" value="{{platform}}">
+												{{platform.Name}}
+											</option>
+										</select>
+									</div>
+									<!-- департаменты -->
+									<div ng-repeat="department in model.departments" ng-class="{'work-scheduler-department-open' : department.Id == model.selectedDepartment.Id}" class="col-md-1 work-scheduler-dropdown">
+										<button ng-if="department.subDepartments.length==0" ng-click="selectDepartmentView(department, null)" type="button" class="btn work-scheduler-btn">{{department.Value}}</button>
+										<a ng-if="department.subDepartments.length>0" id="subDepartmentsMenu" href="javascript:void(0);" aria-expanded="false" data-toggle="dropdown">{{department.Value}}</a>
+										<ul ng-if="department.subDepartments.length>0" class="dropdown-menu dropdown-blue" aria-labelledby="subDepartmentsMenu">
+											<li ng-repeat="subDepartment in department.subDepartments">
+												<input type="radio" name="subdep-{{department.Id}}" id="radio-{{department.Id}}-{{subDepartment.Id}}" />
+												<label ng-click="selectDepartmentView(department, subDepartment)" for="radio-{{department.Id}}-{{subDepartment.Id}}">{{subDepartment.Value}}</label>
+											</li>
+										</ul>
+									</div>
+									<!-- дата -->
+									<div class="col-md-1 work-scheduler-popover-container">
+										<button type="button" class="btn work-scheduler-date-btn"
+											uib-popover-template="dynamicPopover.templateUrl"
+											popover-is-open="dynamicPopover.isOpen"
+											popover-placement="bottom">
+											<span ng-if="model.period.yearSelected!=null && model.period.monthSelected!=null">{{parJson(model.period.monthSelected).name}} {{model.period.yearSelected}}</span>
+											<span ng-if="model.period.yearSelected==null || model.period.monthSelected==null">Выбрать период</span>
+										</button>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12 margin-top-15 margin-bottom-15" ng-if="model.table.HeaderScheduleColumns.length>0">
+										<strong>LC 32%</strong>
+									</div>
+									<table class="table table-bordered work-scheduler-table margin-left-15 margin-bottom-0" ng-if="model.table.HeaderScheduleColumns.length>0">
+										<!-- шапка для всех -->
+										<thead class="bordered-blueberry">
+											<tr>
+												<th class="work-scheduler-table-head-first">
+													Дата
+												</th>
+												<th class="work-scheduler-table-head-dummy">
+												</th>
+												<th ng-repeat="column in model.table.HeaderScheduleColumns" style="color: #4692C3;">
+													{{formatHeaderDate(column.Date)}}
+												</th>
+											</tr>
+											<tr>
+												<th class="work-scheduler-table-head-first">
+													День
+												</th>
+												<th class="work-scheduler-table-head-dummy">
+												</th>
+												<th ng-repeat="column in model.table.HeaderScheduleColumns">
+													{{column.DayOfWeekDescr}}
+												</th>
+											</tr>
+											<tr>
+												<th class="work-scheduler-table-head-first">
+													Чеков
+												</th>
+												<th class="work-scheduler-table-head-dummy">
+												</th>
+												<th ng-repeat="column in model.table.SalePlanCountColumns">
+													{{showIfMoreZero(column.Count)}}
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- прозрачный разделитель для всех -->
+											<tr class="work-scheduler-table-delimiter-clear">
+												<td></td>
+												<td></td>
+												<td ng-repeat="column in model.table.SalePlanCountColumns" ng-class="{'work-scheduler-table-sunday' : todayIsSunday($index)}"></td>
+											</tr>
+											<!-- нормочасы для коллцентра и производства -->
+											<tr class="work-scheduler-table-body-normaHour" ng-if="model.table.ShiftCountRow!=null">
+												<td class="work-scheduler-table-body-first">
+													{{showDepartmentName()}}
+												</td>
+												<td>
+													н/ч
+												</td>
+												<td ng-repeat="column in model.table.SalePlanCountColumns"></td>
+											</tr>
+											<!-- смены для коллцентра и производства -->
+											<tr ng-repeat="rowsType in model.table.ShiftCountRow.ShiftCountByTypeRows" ng-if="model.table.ShiftCountRow!=null">
+												<td class="work-scheduler-table-body-first padding-left-15">
+													<span ng-if="isRowTypeMorning(rowsType.ShiftType.Guid)">утром на смене</span>
+													<span ng-if="isRowTypePowerup(rowsType.ShiftType.Guid)">усиление</span>
+													<span ng-if="isRowTypeEvening(rowsType.ShiftType.Guid)">вечером на смене</span>
+													<span ng-if="isRowTypeNight(rowsType.ShiftType.Guid)">ночью на смене</span>
+												</td>
+												<td></td>
+												<td ng-repeat="column in rowsType.ShiftCountByTypeColumns" ng-class="{'work-scheduler-table-sunday' : todayIsSunday($index)}">
+													{{showIfMoreZero(column.Count)}}
+												</td>
+											</tr>
+											<!-- темный разделитель для коллцентра и производства -->
+											<tr class="work-scheduler-table-delimiter-dark" ng-if="model.table.ShiftCountRow!=null">
+												<td></td>
+												<td></td>
+												<td ng-repeat="column in model.table.SalePlanCountColumns"></td>
+											</tr>
+										</tbody>
+									</table>
+									<!-- нормочасы для администрации и курьеров -->
+									<table class="table table-bordered work-scheduler-table margin-left-15 margin-bottom-0" ng-repeat="positionScheduleRow in model.table.PositionScheduleRows" ng-if="model.table.ShiftCountRow==null && model.table.PositionScheduleRows.length>0">
+										<thead>
+											<tr>
+												<th class="work-scheduler-table-head-first">
+													{{positionScheduleRow.Name}}
+												</th>
+												<th>
+													н/ч
+												</th>
+												<th ng-repeat="column in positionScheduleRow.ShiftCountResultColumns">
+													{{showIfMoreZero(column.Count)}}
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="userRow in positionScheduleRow.UserRows">
+												<td class="work-scheduler-table-body-first" style="color: #4692C3;">
+													{{userRow.User.UserName}}
+												</td>
+												<td>
+													{{userRow.NormaHourColumn}}
+												</td>
+												<td ng-repeat="column in userRow.UserHourColumns" ng-if="userRow.UserHourColumns!=null" ng-class="{'work-scheduler-table-sunday' : todayIsSunday($index)}">
+													{{column.SumHour}}
+												</td>
+												<td ng-repeat="column in userRow.UserShiftTypeColumns" ng-if="userRow.UserShiftTypeColumns!=null" ng-class="{'work-scheduler-table-sunday' : todayIsSunday($index)}">
+													<div class="work-scheduler-cell">
+														<button class="btn" type="button" id="drp-{{userRow.User.Id}}-{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="selectedShiftTypesDefault(column.Schedules)">{{showUserSchedules(column.Schedules)}}</button>
+														<ul class="dropdown-menu dropdown-blue work-scheduler-cell-dropdown" aria-labelledby="drp-{{userRow.User.Id}}-{{$index}}" ng-init="rand=getRandomId()">
+															<li ng-repeat="shiftType in model.shiftTypes">
+																<input type="checkbox" id="radio-{{shiftType.Id}}-{{rand}}" ng-model="model.selectedShiftTypes.ids[shiftType.Guid]" ng-change="setUserShiftType(userRow.User.Id, column.Date, shiftType.Guid);"/>
+																<label for="radio-{{shiftType.Id}}-{{rand}}">{{shiftType.Value}}</label>
+															</li>
+														</ul>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<!-- нормочасы для коллцентра и производства -->
+									<table class="table table-bordered work-scheduler-table margin-left-15 margin-bottom-0" ng-repeat="positionScheduleRow in model.table.PositionScheduleRows" ng-if="model.table.ShiftCountRow!=null && model.table.PositionScheduleRows.length>0">
+										<tbody>
+											<tr ng-repeat="userRow in positionScheduleRow.UserRows">
+												<td class="work-scheduler-table-body-first" style="color: #4692C3;">
+													{{userRow.User.UserName}}
+												</td>
+												<td>
+													{{userRow.NormaHourColumn}}
+												</td>
+												<td ng-repeat="column in userRow.UserHourColumns" ng-if="userRow.UserHourColumns!=null" ng-class="{'work-scheduler-table-sunday' : todayIsSunday($index)}">
+													{{column.SumHour}}
+												</td>
+												<td ng-repeat="column in userRow.UserShiftTypeColumns" ng-if="userRow.UserShiftTypeColumns!=null" ng-class="{'work-scheduler-table-sunday' : todayIsSunday($index)}">
+													<div class="work-scheduler-cell">
+														<button class="btn" type="button" id="drp-{{userRow.User.Id}}-{{$index}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-click="selectedShiftTypesDefault(column.Schedules)">{{showUserSchedules(column.Schedules)}}</button>
+														<ul class="dropdown-menu dropdown-blue work-scheduler-cell-dropdown" aria-labelledby="drp-{{userRow.User.Id}}-{{$index}}" ng-init="rand=getRandomId()">
+															<li ng-repeat="shiftType in model.shiftTypes">
+																<input type="checkbox" id="radio-{{shiftType.Id}}-{{rand}}" ng-model="model.selectedShiftTypes.ids[shiftType.Guid]" ng-change="setUserShiftType(userRow.User.Id, column.Date, shiftType.Guid);"/>
+																<label for="radio-{{shiftType.Id}}-{{rand}}">{{shiftType.Value}}</label>
+															</li>
+														</ul>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$(document).on('click', '.dropdown-menu.work-scheduler-cell-dropdown', function(e) {
+		e.stopPropagation();
+	});
+	
+	$(document).on('hidden.bs.dropdown', '.work-scheduler-cell', function(e) {
+		window.reloadTableModelWrapper();
+	});
+});
+</script>
