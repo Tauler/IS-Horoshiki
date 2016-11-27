@@ -56,7 +56,7 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 			$scope.model.days.push($scope.model.period.dayNoNeeded);
 			
 			var d = new Date($scope.model.period.year.toString(), (JSON.parse($scope.model.period.month).id + 1).toString(), 0).getDate();
-			
+
 			for (var i = 0; i < d; i++) {
 				$scope.model.days.push(i+1);
 			}
@@ -207,14 +207,17 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 		
 		// запрос таблицы
 		$scope.reloadTableModel = function(){
+
+			console.log(new Date());
+
 			if($scope.model.period.yearSelected!=null && $scope.model.period.monthSelected !=null)
 			{
 				if($scope.model.period.daySelected != $scope.model.period.dayNoNeeded){
 					var isOnDay = true;
-					var date = dateFormatterBackend(new Date($scope.model.period.yearSelected.toString()+'-'+(JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'-'+numb2($scope.model.period.daySelected)));
+					var date = dateFormatterBackend(new Date(numb2($scope.model.period.daySelected)+'/'+(JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'/'+$scope.model.period.yearSelected.toString()));
 				}else{
 					var isOnDay = false;
-					var date = dateFormatterBackend(new Date($scope.model.period.yearSelected.toString()+'-'+(JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'-01'));
+					var date = dateFormatterBackend(new Date('01/'+(JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'/'+$scope.model.period.yearSelected.toString()));
 				}
 				
 				if($scope.model.selectedSubDepartment != null){
@@ -297,7 +300,7 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 		
 		// функции форматирования для таблицы
 		$scope.formatHeaderDate = function(date){
-			return new Date(date).getDate();
+			return new Date(dateFormatterBackendToSafari(date)).getDate();
 		}
 		
 		$scope.showIfMoreZero = function(number){
@@ -389,8 +392,9 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 						"User": {
 							"Id": userId
 						},
-						"Date": dateFormatterBackend(new Date(date))
+						"Date": dateFormatterBackend(new Date(dateFormatterBackendToSafari(date)))
 					}
+
 					schedulesArray.push(obj);
 				}
 			}
@@ -400,7 +404,7 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 					"Id": userId
 				},
 				"ShiftPersonalSchedules": schedulesArray,
-				"Date": dateFormatterBackend(new Date(date))
+				"Date": dateFormatterBackend(new Date(dateFormatterBackendToSafari(date)))
 			};
 
 			$scope.model.pageStatus.saving = true;

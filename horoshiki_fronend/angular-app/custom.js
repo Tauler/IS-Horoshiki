@@ -129,11 +129,21 @@ function dateFormatter(date){
 }
 
 function dateFormatterBackend(date){
+
     var dd = date.getDate();
     var mm = date.getMonth()+1;
     var yyyy = date.getFullYear();
 
     return  yyyy+"-"+numb2(mm)+"-"+numb2(dd);
+}
+
+function dateFormatterBackendToSafari(dateTime){
+
+    var date = dateTime.split('T')[0].split("-");
+    var dd = date[2];
+    var mm = date[1];
+    var yyyy = date[0];
+    return  mm+'/'+dd+'/'+yyyy;
 }
 
 function displayMess(elem, disable){
