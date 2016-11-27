@@ -232,10 +232,10 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 					},
 					"Departament": {
 						"Id": $scope.model.selectedDepartment.Id,
-						"SubDepartaments": {
-							"Id": subDepId
-						}
 					},
+					"SubDepartaments": [{
+						"Id": subDepId
+					}],
 					"Date": date,
 					"IsOnDay": isOnDay
 				};

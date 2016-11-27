@@ -383,7 +383,7 @@ table.work-scheduler-table{
 }
 
 .work-scheduler-table thead tr th.work-scheduler-table-head-first{
-	padding-left: 3px;
+	padding-left: 5px;
 	border-right: 0px;
 	min-width: 175px;
     width: 175px;
