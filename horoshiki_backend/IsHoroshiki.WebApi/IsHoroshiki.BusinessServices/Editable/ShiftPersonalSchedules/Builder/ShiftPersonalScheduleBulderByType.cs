@@ -227,7 +227,12 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
             {
                 userShiftTypeColumn.Schedules = new List<IShiftPersonalScheduleModel>();
             }
-            userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
+
+            if (!userShiftTypeColumn.Schedules.Any(ustc => ustc.Date == shiftPersonalSchedule.Date 
+                && ustc.ShiftType.Id == shiftPersonalSchedule.ShiftType.Id))
+            {
+                userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
+            }
         }        
 
         #endregion
