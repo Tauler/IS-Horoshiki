@@ -372,4 +372,40 @@
   <data name="ShiftPersonalScheduleValidator_UpdateMistakeUser" xml:space="preserve">
     <value>Для существующего графика смены указан сотрудник, отличный от типа сохраненного в БД!</value>
   </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Administrator" xml:space="preserve">
+    <value>Администраторы на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Cleaner" xml:space="preserve">
+    <value>Уборщицы на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_CookCold" xml:space="preserve">
+    <value>Повара х/ц на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_CookSichi" xml:space="preserve">
+    <value>Повара-сушисты на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_CookUniversal" xml:space="preserve">
+    <value>Универсалы на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Courier" xml:space="preserve">
+    <value>Курьеры на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Manager" xml:space="preserve">
+    <value>Управляющие рестораном на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_ManagerShift" xml:space="preserve">
+    <value>Менеджеры на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_NotFind" xml:space="preserve">
+    <value>Не найдено описание должности для заголовка в таблице!</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_OperationDirector" xml:space="preserve">
+    <value>Директор на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Packer" xml:space="preserve">
+    <value>Упаковщики на смене</value>
+  </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Pizzer" xml:space="preserve">
+    <value>Пиццеры на смене</value>
+  </data>
 </root>

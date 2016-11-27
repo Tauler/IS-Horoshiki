@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder;
 using IsHoroshiki.DAO.Helpers;
 using IsHoroshiki.DAO;
+using System.Linq;
 
 namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 {
@@ -46,9 +47,16 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             model.Departament.ThrowIfNull("Departament is null");
             model.Date.ThrowIfNull("Date is null");
 
+            if (model.SubDepartaments != null && model.SubDepartaments.All(sd => sd.Id == 0))
+            {
+                model.SubDepartaments = null;
+            }
+
             ShiftPersonalScheduleBulder builder;
 
             var departament = _unitOfWork.DepartmentRepository.GetById(model.Departament.Id);
+            var subDepartament = model.SubDepartaments != null ? _unitOfWork.SubDepartmentRepository.GetById(model.SubDepartaments.First().Id) : null;
+
             if (departament.Guid == DatabaseConstant.Departament.Administration)
             {
                 builder = new ShiftPersonalScheduleBulderAdministration(_unitOfWork, model);
@@ -56,6 +64,13 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             else if (departament.Guid == DatabaseConstant.Departament.Courier)
             {
                 builder = new ShiftPersonalScheduleBulderCourier(_unitOfWork, model);
+            }
+            else if (departament.Guid == DatabaseConstant.Departament.Production &&
+                model.SubDepartaments != null &&
+                model.SubDepartaments.Count == 1 &&
+                subDepartament.Guid == DatabaseConstant.SubDepartament.Cleaner)
+            {
+                builder = new ShiftPersonalScheduleBulderCleaner(_unitOfWork, model);
             }
             else
             {

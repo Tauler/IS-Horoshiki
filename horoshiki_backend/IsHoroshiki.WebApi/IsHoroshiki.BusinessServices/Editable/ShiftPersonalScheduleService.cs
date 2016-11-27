@@ -81,21 +81,24 @@ namespace IsHoroshiki.BusinessServices.Editable
                 model.User.ThrowIfNull("User is null");
                 model.Date.ThrowIfNull("Date is null");
 
-                var shiftPersonalSchedules = model.ShiftPersonalSchedules ?? new List<IShiftPersonalScheduleModel>();
+                if (model.ShiftPersonalSchedules == null)
+                {
+                    model.ShiftPersonalSchedules = new List<IShiftPersonalScheduleModel>();
+                }
 
                 model.Date = model.Date.Date;
-                foreach (var shiftPersonalScheduleModel in shiftPersonalSchedules)
+                foreach (var shiftPersonalScheduleModel in model.ShiftPersonalSchedules)
                 {
                     shiftPersonalScheduleModel.Date = shiftPersonalScheduleModel.Date.Date;
                 }
 
-                ValidationResult validateModelResult = ValidateModel(model, shiftPersonalSchedules);
+                ValidationResult validateModelResult = ValidateModel(model);
                 if (!validateModelResult.IsSucceeded)
                 {
                     return new ModelEntityModifyResult(validateModelResult.Errors);
                 }
 
-                return await UpdateInternal(model, shiftPersonalSchedules);
+                return await UpdateInternal(model);
             }
             catch (Exception e)
             {
@@ -198,12 +201,13 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// Валидация модели 
         /// </summary>
         /// <param name="model">Модель, которую надо обновлять</param>
-        /// <param name="shiftPersonalSchedules">Список смен для сотрудника</param>
         /// <returns></returns>
-        private ValidationResult ValidateModel(IShiftPersonalScheduleUpdateModel model, ICollection<IShiftPersonalScheduleModel> shiftPersonalSchedules)
+        private ValidationResult ValidateModel(IShiftPersonalScheduleUpdateModel model)
         {
             model.User.ThrowIfNull("User is null");
             model.Date.ThrowIfNull("Date is null");
+
+            var shiftPersonalSchedules = model.ShiftPersonalSchedules ?? new List<IShiftPersonalScheduleModel>();
 
             var dates = shiftPersonalSchedules.Select(m => m.Date).Distinct();
             if (dates.Count() > 1)
@@ -250,13 +254,15 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// <param name="model">Модель, которую надо обновлять</param>
         /// <param name="shiftPersonalSchedules">Список смен для сотрудника</param>
         /// <returns></returns>
-        private async Task<ModelEntityModifyResult> UpdateInternal(IShiftPersonalScheduleUpdateModel model, ICollection<IShiftPersonalScheduleModel> shiftPersonalSchedules)
-        { 
+        private async Task<ModelEntityModifyResult> UpdateInternal(IShiftPersonalScheduleUpdateModel model)
+        {
+            var shiftPersonalSchedules = model.ShiftPersonalSchedules ?? new List<IShiftPersonalScheduleModel>();
+
             //удаляем все то нет в списке
             var existSchedulers = _repository.GetByParam(model.User.Id, model.Date);
             foreach (var existScheduler in existSchedulers.ToList())
             {
-                if (!shiftPersonalSchedules.Any(c => c.Id == existScheduler.Id))
+                if (!shiftPersonalSchedules.Any(c => c.Date == existScheduler.Date && c.ShiftType.Id == existScheduler.ShiftTypeId))
                 {
                     _unitOfWork.ShiftPersonalScheduleRepository.Delete(existScheduler);
                 }
@@ -270,22 +276,11 @@ namespace IsHoroshiki.BusinessServices.Editable
                     return new ModelEntityModifyResult(validateResult.Errors);
                 }
 
-                if (shiftPersonalScheduleModel.Id > 0)
+                var resultModify = InsertOrUpdatePersonalSchedule(shiftPersonalScheduleModel);
+                if (!resultModify.IsSucceeded)
                 {
-                    var resultModify = UpdatePersonalSchedule(shiftPersonalScheduleModel);
-                    if (!resultModify.IsSucceeded)
-                    {
-                        return resultModify;
-                    }
-                }
-                else
-                {
-                    var resultModify = InsertPersonalSchedule(shiftPersonalScheduleModel);
-                    if (!resultModify.IsSucceeded)
-                    {
-                        return resultModify;
-                    }
-                }
+                    return resultModify;
+                }                
             }
 
             _unitOfWork.Save();
@@ -297,76 +292,7 @@ namespace IsHoroshiki.BusinessServices.Editable
         /// Обновление расписания смены для сотрудника
         /// </summary>
         /// <param name="shiftPersonalScheduleModel">Модель расписания смены соотрудника</param>
-        /// <returns></returns>
-        private ModelEntityModifyResult UpdatePersonalSchedule(IShiftPersonalScheduleModel shiftPersonalScheduleModel)
-        {
-            shiftPersonalScheduleModel.ThrowIfNull("shiftPersonalScheduleModel is null");
-
-            var daoSchedule = _unitOfWork.ShiftPersonalScheduleRepository.GetById(shiftPersonalScheduleModel.Id);
-            if (daoSchedule == null)
-            {
-                var errorData = new ErrorData(CommonErrors.EntityUpdateNotFound, parameters: new object[] { shiftPersonalScheduleModel.Id });
-                return new ModelEntityModifyResult(errorData);
-            }
-
-            //при обновлении нельзя указывать другую дату
-            if (shiftPersonalScheduleModel.Date != daoSchedule.Date)
-            {
-                return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.UpdateMistakeDate);
-            }
-
-            //при обновлении нельзя указывать другой тип
-            if (shiftPersonalScheduleModel.ShiftType.Id != daoSchedule.ShiftTypeId)
-            {
-                return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.UpdateMistakeType);
-            }
-
-            //при обновлении нельзя указывать другого сотрудника
-            if (shiftPersonalScheduleModel.User.Id != daoSchedule.UserId)
-            {
-                return new ModelEntityModifyResult(ShiftPersonalScheduleErrors.UpdateMistakeUser);
-            }
-
-            if (shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods != null)
-            {
-                //удаляем период, если его нет в списке
-                var existsPeriods = _unitOfWork.ShiftPersonalSchedulePeriodRepository.GetByShiftPersonalScheduleId(shiftPersonalScheduleModel.Id);
-                foreach (var existsPeriod in existsPeriods.ToList())
-                {
-                    if (!shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods.Any(c => c.Id == existsPeriod.Id))
-                    {
-                        _unitOfWork.ShiftPersonalSchedulePeriodRepository.Delete(existsPeriod);
-                    }
-                }
-
-                foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
-                {
-                    InsertOrUpdatePeriod(daoSchedule.Id, periodModel);
-                }
-            }
-            else
-            {
-                //удаляем период, т.к. его нет в списке
-                var existsPeriods = _unitOfWork.ShiftPersonalSchedulePeriodRepository.GetByShiftPersonalScheduleId(shiftPersonalScheduleModel.Id);
-                foreach (var existsPeriod in existsPeriods.ToList())
-                {
-                    _unitOfWork.ShiftPersonalSchedulePeriodRepository.Delete(existsPeriod);
-                }
-            }
-
-            _unitOfWork.ShiftPersonalScheduleRepository.Update(daoSchedule);
-
-            return new ModelEntityModifyResult();
-        }
-
-        /// <summary>
-        /// Добавить расписания смены для сотрудника.
-        /// Проверяем, если ID = 0, находим в БД по указаннмоу типу и дате.
-        /// Если нет в БД, то создаем
-        /// </summary>
-        /// <param name="shiftPersonalScheduleModel">Модель расписания смены соотрудника</param>
-        /// <returns></returns>
-        private ModelEntityModifyResult InsertPersonalSchedule(IShiftPersonalScheduleModel shiftPersonalScheduleModel)
+        private ModelEntityModifyResult InsertOrUpdatePersonalSchedule(IShiftPersonalScheduleModel shiftPersonalScheduleModel)
         {
             shiftPersonalScheduleModel.ThrowIfNull();
 
@@ -384,26 +310,91 @@ namespace IsHoroshiki.BusinessServices.Editable
                 return new ModelEntityModifyResult(errorData);
             }
 
-            var daoSchedule = _repository.GetByParam(shiftPersonalScheduleModel.User.Id, shiftPersonalScheduleModel.ShiftType.Id, shiftPersonalScheduleModel.Date) 
-                ?? CreateInternal(shiftPersonalScheduleModel);
-
-            //если в БД существует, обновляем
-            if (daoSchedule.Id > 0)
+            var daoSchedule = _repository.GetByParam(shiftPersonalScheduleModel.User.Id, shiftPersonalScheduleModel.ShiftType.Id, shiftPersonalScheduleModel.Date);
+            if (daoSchedule == null)
             {
-                shiftPersonalScheduleModel.Id = daoSchedule.Id;
-
-                var resultModify = UpdatePersonalSchedule(shiftPersonalScheduleModel);
-                if (!resultModify.IsSucceeded)
+                daoSchedule = CreateInternal(shiftPersonalScheduleModel);
+                daoSchedule.ShiftPersonalSchedulePeriods = new List<ShiftPersonalSchedulePeriod>()
                 {
-                    return resultModify;
-                }
+                    CreatePersonalSchedulePeriod(daoSchedule, existUser.PlatformId.Value, existUser.PositionId)
+                };
+
+                _unitOfWork.ShiftPersonalScheduleRepository.Insert(daoSchedule);
             }
             else
             {
-                _unitOfWork.ShiftPersonalScheduleRepository.Insert(daoSchedule);
-            }
+                DeleteAllWhereNotInLIst(shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods, daoSchedule.Id);
+
+                if (shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods != null)
+                {
+                    foreach (var periodModel in shiftPersonalScheduleModel.ShiftPersonalSchedulePeriods)
+                    {
+                        InsertOrUpdatePeriod(daoSchedule.Id, periodModel);
+                    }
+                }
+                else
+                {
+                    daoSchedule.ShiftPersonalSchedulePeriods = new List<ShiftPersonalSchedulePeriod>()
+                    {
+                        CreatePersonalSchedulePeriod(daoSchedule, existUser.PlatformId.Value, existUser.PositionId)
+                    };
+                }
+
+                _unitOfWork.ShiftPersonalScheduleRepository.Update(daoSchedule);
+            }             
 
             return new ModelEntityModifyResult();
+        }
+
+        /// <summary>
+        /// Удалим все, что нет в списке
+        /// </summary>
+        /// <param name="shiftPersonalSchedulePeriods">Список периодов</param>
+        /// <param name="scheduleId">Id смены</param>
+        private void DeleteAllWhereNotInLIst(ICollection<IShiftPersonalSchedulePeriodModel> shiftPersonalSchedulePeriods, int scheduleId)
+        {
+            if (shiftPersonalSchedulePeriods == null)
+            {
+                shiftPersonalSchedulePeriods = new List<IShiftPersonalSchedulePeriodModel>();
+            }
+
+            //удаляем период, если его нет в списке
+            var existsPeriods = _unitOfWork.ShiftPersonalSchedulePeriodRepository.GetByShiftPersonalScheduleId(scheduleId);
+            foreach (var existsPeriod in existsPeriods.ToList())
+            {
+                if (!shiftPersonalSchedulePeriods.Any(c => c.Id == existsPeriod.Id))
+                {
+                    _unitOfWork.ShiftPersonalSchedulePeriodRepository.Delete(existsPeriod);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Создать период
+        /// </summary>
+        /// <param name="daoSchedule">Смена в БД</param>
+        /// <param name="platformId">Площадка</param>
+        /// <param name="positionId">Должность</param>
+        private ShiftPersonalSchedulePeriod CreatePersonalSchedulePeriod(ShiftPersonalSchedule daoSchedule, int platformId, int positionId)
+        {
+            var platform = _unitOfWork.PlatformRepository.GetById(platformId);
+            if (platform == null)
+            {
+                throw new Exception(string.Format("Не найдена площадка с Id: {0}", platformId));
+            }
+
+            var existPeriod = _unitOfWork.ShiftPersonalRepository.Get(positionId, daoSchedule.ShiftTypeId, platform.IsAroundClock);
+            if (existPeriod == null)
+            {
+                throw new Exception(string.Format("Для типа смены Id: {0}, должности: {1}, режим работы круглосуточно: {2} не задан режим работы!",
+                    daoSchedule.ShiftTypeId, positionId, platform.IsAroundClock));
+            }
+
+            var period = new ShiftPersonalSchedulePeriod();
+            period.ShiftPersonalScheduleId = daoSchedule.Id;
+            period.StartTime = existPeriod.StartTime;
+            period.StopTime = existPeriod.StopTime;
+            return period;            
         }
 
         /// <summary>

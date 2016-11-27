@@ -101,7 +101,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
 
             int skip = (pageNo - 1) * pageSize;
 
-            var list = query.Where(u => u.Position != null && u.Position.Guid != DatabaseConstant.PositionOperationDirector)
+            var list = query.Where(u => u.Position != null && u.Position.Guid != DatabaseConstant.Position.OperationDirector)
                             .OrderByPropertyName(sortField, isAscending)
                             .Skip(skip)
                             .Take(pageSize)
@@ -301,7 +301,7 @@ namespace IsHoroshiki.DAO.Repositories.Accounts
             var list = DbSet.Where(u => u.EmployeeStatus != null
                                         && u.EmployeeStatus.Guid != DatabaseConstant.EmployeeStatusDismissal 
                                         && u.Position != null 
-                                        && u.Position.Guid == DatabaseConstant.PositionManager)
+                                        && u.Position.Guid == DatabaseConstant.Position.Manager)
                            .OrderByPropertyName(sortField, isAscending)                        
                            .ToList()
                            .AsEnumerable();

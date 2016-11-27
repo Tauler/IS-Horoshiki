@@ -41,9 +41,9 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
             {
                 var result = new List<SubDepartment>();
 
-                AddSubDepartamentToList(isCool, result, DatabaseConstant.SubDepartmentCool);
-                AddSubDepartamentToList(isPizza, result, DatabaseConstant.SubDepartmentPizza);
-                AddSubDepartamentToList(isSushi, result, DatabaseConstant.SubDepartmentSushi);
+                AddSubDepartamentToList(isCool, result, DatabaseConstant.SubDepartament.Cool);
+                AddSubDepartamentToList(isPizza, result, DatabaseConstant.SubDepartament.Pizza);
+                AddSubDepartamentToList(isSushi, result, DatabaseConstant.SubDepartament.Sushi);
 
                 return result;
             });
@@ -57,7 +57,7 @@ namespace IsHoroshiki.DAO.Repositories.NotEditable
         {
             return Task<SubDepartment>.Factory.StartNew(() =>
             {
-                return DbSet.FirstOrDefault(sd => sd.Guid == DatabaseConstant.SubDepartmentPizza);
+                return DbSet.FirstOrDefault(sd => sd.Guid == DatabaseConstant.SubDepartament.Pizza);
             });
         }
 

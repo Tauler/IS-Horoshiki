@@ -219,7 +219,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                 {
                     Id = scheduleResult.ShiftTypeId.Value,
                     Guid = scheduleResult.ShiftTypeGuid.Value,
-                    Socr = scheduleResult.ShiftTypeDescr
+                    Socr = scheduleResult.ShiftTypeDescr.ToLower()
                 };
             }
 
@@ -227,7 +227,13 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
             {
                 userShiftTypeColumn.Schedules = new List<IShiftPersonalScheduleModel>();
             }
-            userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
+
+            if (!userShiftTypeColumn.Schedules.Any(ustc => ustc.Date == shiftPersonalSchedule.Date 
+                && ustc.ShiftType.Id == shiftPersonalSchedule.ShiftType.Id))
+            {
+                userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
+                userShiftTypeColumn.Schedules = userShiftTypeColumn.Schedules.OrderBy(s => s.ShiftType.Id).ToList();
+            }
         }        
 
         #endregion

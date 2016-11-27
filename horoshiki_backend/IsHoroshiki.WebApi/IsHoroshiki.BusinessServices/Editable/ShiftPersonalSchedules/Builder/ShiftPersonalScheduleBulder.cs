@@ -3,6 +3,7 @@ using IsHoroshiki.BusinessEntities.Editable.SalePlans;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules;
 using IsHoroshiki.BusinessEntities.Editable.ShiftPersonalSchedules.Tables;
 using IsHoroshiki.BusinessEntities.NotEditable;
+using IsHoroshiki.DAO;
 using IsHoroshiki.DAO.DaoEntities.Editable;
 using IsHoroshiki.DAO.Helpers;
 using IsHoroshiki.DAO.UnitOfWorks;
@@ -139,6 +140,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
         public void End()
         {
             UpdateNameTrainee(_table);
+            UpdateNamePosition(_table);
         }
 
         /// <summary>
@@ -214,7 +216,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                 var column = new HeaderScheduleColumnModel()
                 {
                     Date = currentDate,
-                    DayOfWeekDescr = currentDate.ToString("ddd", new CultureInfo("ru-Ru"))
+                    DayOfWeekDescr = currentDate.ToString("ddd", new CultureInfo("ru-Ru")).ToLower()
                 };
                 result.Add(column);
             }
@@ -254,7 +256,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
         /// <returns></returns>
         private void FillSalePlanCountColumns(IShiftPersonalScheduleDataModel model, DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
         {
-            Dictionary<DateTime, int> periods = _unitOfWork.SalePlanDayRepository.GetByCountPeriod(model.Platform.Id, (int)PlanType.Suchi, dateStart, dateStart);
+            Dictionary<DateTime, int> periods = _unitOfWork.SalePlanDayRepository.GetByCountPeriod(model.Platform.Id, (int)PlanType.Suchi, dateStart, dateEnd);
 
             foreach (var headerColumn in table.SalePlanCountColumns)
             {
@@ -365,6 +367,75 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Добавить должности на смене
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private void UpdateNamePosition(ShiftPersonalScheduleTableModel result)
+        {
+            var list = _unitOfWork.AccountRepository.GetAllSmallTrainee().Result;
+            foreach (var positionRow in result.PositionScheduleRows)
+            {
+                positionRow.Name = GetNamePosition(positionRow.Position.Guid);
+            }
+        }
+
+        /// <summary>
+        /// Наименование должности на смене
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        private string GetNamePosition(Guid position)
+        {
+            if (position == DatabaseConstant.Position.Administrator)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Administrator;
+            }
+            else if (position == DatabaseConstant.Position.Cleaner)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Cleaner;
+            }
+            else if (position == DatabaseConstant.Position.CookCold)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_CookCold;
+            }
+            else if (position == DatabaseConstant.Position.CookSichi)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_CookSichi;
+            }
+            else if (position == DatabaseConstant.Position.CookUniversal)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_CookUniversal;
+            }
+            else if (position == DatabaseConstant.Position.Courier)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Courier;
+            }
+            else if (position == DatabaseConstant.Position.Manager)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Manager;
+            }
+            else if (position == DatabaseConstant.Position.ManagerShift)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_ManagerShift;
+            }
+            else if (position == DatabaseConstant.Position.OperationDirector)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_OperationDirector;
+            }
+            else if (position == DatabaseConstant.Position.Packer)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Packer;
+            }
+            else if (position == DatabaseConstant.Position.Pizzer)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Pizzer;
+            }
+
+            throw new NotImplementedException(ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_NotFind);
         }
 
         #endregion

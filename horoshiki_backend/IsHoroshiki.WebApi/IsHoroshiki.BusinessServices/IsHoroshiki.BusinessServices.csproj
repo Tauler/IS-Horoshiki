@@ -76,6 +76,7 @@
     <Compile Include="Editable\Interfaces\IPlatformService.cs" />
     <Compile Include="Editable\PlatformService.cs" />
     <Compile Include="Editable\MonthObjectiveService.cs" />
+    <Compile Include="Editable\ShiftPersonalSchedules\Builder\ShiftPersonalScheduleBulderCleaner.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Builder\ShiftPersonalScheduleBulderCourier.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Builder\ShiftPersonalScheduleBulderByHour.cs" />
     <Compile Include="Editable\ShiftPersonalSchedules\Builder\ShiftPersonalScheduleBulderAdministration.cs" />
