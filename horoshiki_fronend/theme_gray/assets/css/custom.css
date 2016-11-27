@@ -270,7 +270,7 @@ table.table-bordered-0 tbody td input{
 
 .thin-select{
 	height: 22px;
-	padding-left: 2px !important;
+	padding-left: 5px !important;
 	background-position: right 1px top 5px !important;
 }
 
@@ -340,18 +340,22 @@ table.table-bordered-0 tbody td input{
 	width: 400px;
 }
 
+.work-scheduler-table .btn{
+    font-size: 12px;
+}
+
 .work-scheduler-popover-container .popover .popover-content{
 	padding: 4px;
 }
 
 table.work-scheduler-table{
-	width: auto;
+	width: 100%;
 	margin-top: -1px;
 }
 
 .work-scheduler-table tbody tr td, .work-scheduler-table thead tr th{
 	height: 22px;
-	width: 30px;
+	min-width: 30px;
 	padding: 0px;
 	text-align: center;
 	font-weight: normal;
@@ -381,12 +385,14 @@ table.work-scheduler-table{
 .work-scheduler-table thead tr th.work-scheduler-table-head-first{
 	padding-left: 3px;
 	border-right: 0px;
-	width: 175px;
+	min-width: 175px;
+    width: 175px;
 	text-align: left;
 }
 
 .work-scheduler-table tbody tr td.work-scheduler-table-body-first{
 	padding-left: 5px;
+    min-width: 175px;
 	width: 175px;
 	text-align: left;
 }
@@ -425,6 +431,13 @@ table.work-scheduler-table{
 	font-style: italic;
 }
 
+
+.left-sidebar {
+    width: 190px !important;
+}
+.content-wrapper {
+    margin-left: 190px;
+}
 /* ####################################################### Datepicker, Timepicker ####################################################### */
 
 /*#region DatePicker*/
