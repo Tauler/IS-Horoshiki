@@ -131,16 +131,16 @@ usersControllers.controller('UsersListController', ['$scope', '$location', 'User
             if ($scope.model.filter.employeeStatusId != undefined && $scope.model.filter.employeeStatusId != '') {
                 params += '&filterEmployeeStatusId=' + $scope.model.filter.employeeStatusId;
             }
-            if ($scope.model.filter.positionId != undefined && $scope.model.filter.positionId != ''){
+            if ($scope.model.filter.positionId != undefined && $scope.model.filter.positionId != '') {
                 params += '&filterPositionId=' + $scope.model.filter.positionId;
             }
-            if ($scope.model.filter.departmentId != undefined && $scope.model.filter.departmentId != ''){
+            if ($scope.model.filter.departmentId != undefined && $scope.model.filter.departmentId != '') {
                 params += '&filterDepartmentId=' + $scope.model.filter.departmentId;
             }
-            if ($scope.model.filter.platformId != undefined && $scope.model.filter.platformId != ''){
+            if ($scope.model.filter.platformId != undefined && $scope.model.filter.platformId != '') {
                 params += '&filterPlatformId=' + $scope.model.filter.platformId;
             }
-            if ($scope.model.filter.medicalBook != undefined && $scope.model.filter.medicalBook != ''){
+            if ($scope.model.filter.medicalBook != undefined && $scope.model.filter.medicalBook != '') {
                 params += '&filterIsHaveMedicalBook=' + $scope.model.filter.medicalBook;
             }
             return params;
@@ -172,12 +172,14 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             "UserName": "",
             "Password": "",
             "ConfirmPassword": "",
-            "Department": ""
+            "Department": "",
+            "SubDepartment": ""
         }
         $scope.model.user.IsAccess = true;
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
+        $scope.model.SubDepartment = {};
 
         //datepicker startDate init
         $scope.model.datepickerStartDate = {};
@@ -307,8 +309,8 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
         }
 
         $scope.model.isUserManager = function () {
-            if($scope.model.Position!=undefined || $scope.model.Position!=''){
-                if(JSON.parse($scope.model.Position).Guid==enumPositions.manager){
+            if ($scope.model.Position != undefined || $scope.model.Position != '') {
+                if (JSON.parse($scope.model.Position).Guid == enumPositions.manager) {
                     return true;
                 }
             }
@@ -326,7 +328,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
 
         $scope.model.error.datepickerMedicalBook = false;
         $scope.checkErrorDatepickerMedicalBook = function () {
-            if (($scope.model.datepickerMedicalBook.select==undefined || $scope.model.datepickerMedicalBook.select=='') && !$scope.model.isUserManager()) {
+            if (($scope.model.datepickerMedicalBook.select == undefined || $scope.model.datepickerMedicalBook.select == '') && !$scope.model.isUserManager()) {
                 $scope.model.error.datepickerMedicalBook = true;
             } else {
                 $scope.model.error.datepickerMedicalBook = false;
@@ -335,7 +337,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
 
         $scope.model.error.datepickerStartDate = false;
         $scope.checkErrorDatepickerStartDate = function () {
-            if ($scope.model.datepickerStartDate.select==undefined || $scope.model.datepickerStartDate.select=='') {
+            if ($scope.model.datepickerStartDate.select == undefined || $scope.model.datepickerStartDate.select == '') {
                 $scope.model.error.datepickerStartDate = true;
             } else {
                 $scope.model.error.datepickerStartDate = false;
@@ -348,7 +350,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
                 if (result.Success == 1) {
                     $scope.model.positions = [];
 
-                    if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer){
+                    if ($rootScope.currentUser.Position.Guid == enumPositions.chiefOperatingOfficer) {
                         for (var i = 0, j = 0; i < result.Data.length; i++) {
                             if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer) {
                                 $scope.model.positions[j] = result.Data[i];
@@ -356,7 +358,7 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
                             }
                         }
                     }
-                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                    if ($rootScope.currentUser.Position.Guid == enumPositions.manager) {
                         for (var i = 0, j = 0; i < result.Data.length; i++) {
                             if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer && result.Data[i].Guid != enumPositions.manager) {
                                 $scope.model.positions[j] = result.Data[i];
@@ -384,15 +386,56 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             })
         }
 
+
+        $scope.changeDepartment = function () {
+            if ($scope.model.Department.Id != "") {
+                $scope.getSubDepartments($scope.model.Department.Id);
+            } else {
+                $scope.model.isSubDepartmentsExisit = false;
+                $scope.model.SubDepartment.Id = "";
+            }
+        }
+
+
+        $scope.model.isSubDepartmentsExisit = false;
+        $scope.model.error.subDepartments = false;
+        $scope.checkErrorSubDepartments = function () {
+            if (($scope.model.SubDepartment.Id == "" || $scope.model.SubDepartment.Id == undefined) && $scope.model.isSubDepartmentsExisit) {
+                $scope.model.error.subDepartments = true;
+            } else {
+                $scope.model.error.subDepartments = false;
+            }
+        }
+
+
+        $scope.getSubDepartments = function (id) {
+            DictionaryService.getSubDepartmentsById(id).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.subDepartments = result.Data;
+                    if ($scope.model.subDepartments != null && $scope.model.subDepartments != 0) {
+                        $scope.model.isSubDepartmentsExisit = true;
+                    } else {
+                        $scope.model.isSubDepartmentsExisit = false;
+                        $scope.model.SubDepartment.Id = "";
+                    }
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
+
         $scope.getPlatformsSmall = function () {
             PlatformsService.getAllSmall("Id", "True").success(function (result) {
                 if (result.Success == 1) {
 
-                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
-                        $scope.model.platforms=[];
+                    if ($rootScope.currentUser.Position.Guid == enumPositions.manager) {
+                        $scope.model.platforms = [];
                         $scope.model.platforms[0] = $rootScope.currentUser.Platform;
                         $scope.model.Platform.Id = $rootScope.currentUser.Platform.Id.toString();
-                    }else{
+                    } else {
                         $scope.model.platforms = result.Data;
                     }
                 } else {
@@ -441,8 +484,8 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             }
         }
 
-        $rootScope.$watch('currentUserLoaded', function(){
-            if($rootScope.currentUserLoaded == true){
+        $rootScope.$watch('currentUserLoaded', function () {
+            if ($rootScope.currentUserLoaded == true) {
                 $scope.getPositions();
                 $scope.getPlatformsSmall();
             }
@@ -450,8 +493,6 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
 
         $scope.getDepartments();
         $scope.getEmployeeStatuses();
-
-
 
 
         $scope.saveUser = function () {
@@ -466,11 +507,11 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
             $scope.checkErrorPlatform();
             $scope.checkErrorIsHaveMedicalBook();
             $scope.checkErrorDatepickerMedicalBook();
+            $scope.checkErrorSubDepartments();
             // $scope.checkErrorEmail();
 
 
-
-            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook && !$scope.model.error.datepickerMedicalBook
+            if (!$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook && !$scope.model.error.datepickerMedicalBook && !$scope.model.error.subDepartments
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
@@ -510,6 +551,16 @@ usersControllers.controller('UsersAddController', ['$scope', '$rootScope', '$loc
                     $scope.model.user.MedicalBookEnd = dateFormatterBackend($scope.model.datepickerMedicalBook.select);
                 }
 
+                if ($scope.model.SubDepartment != "" && $scope.model.SubDepartment != undefined) {
+                    $scope.model.user.SubDepartment = {};
+                    if ($scope.model.SubDepartment.Id != undefined && $scope.model.SubDepartment.Id != '') {
+                        $scope.model.user.SubDepartment.Id = parseInt($scope.model.SubDepartment.Id);
+                    }
+                }
+                if ($scope.model.SubDepartment.Id == null && $scope.model.SubDepartment.Id == '') {
+                    $scope.model.user.SubDepartment = null;
+                }
+
                 UsersService.userAdd($scope.model.user).success(function (result) {
                     if (result.Success == 1) {
                         $location.url("/users");
@@ -547,13 +598,15 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
             "Password": "",
             "ConfirmPassword": "",
             "Department": "",
-            "EmployeeReasonDismissal": ""
+            "EmployeeReasonDismissal": "",
+            "SubDepartment": ""
         }
 
         $scope.model.user.IsAccess = true;
 
         $scope.model.Platform = {};
         $scope.model.Department = {};
+        $scope.model.SubDepartment = {};
         $scope.model.ReasonDismissal = {};
 
 
@@ -699,7 +752,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
         $scope.model.error.isHaveMedicalBook = false;
         $scope.checkErrorIsHaveMedicalBook = function () {
-            console.log(!$scope.model.isUserManager);
+            // console.log(!$scope.model.isUserManager);
             if (!$scope.model.user.IsHaveMedicalBook && !$scope.model.isUserManager()) {
                 $scope.model.error.isHaveMedicalBook = true;
             } else {
@@ -709,7 +762,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
         $scope.model.error.datepickerMedicalBook = false;
         $scope.checkErrorDatepickerMedicalBook = function () {
-            if (($scope.model.datepickerMedicalBook.select==undefined || $scope.model.datepickerMedicalBook.select=='') && !$scope.model.isUserManager()) {
+            if (($scope.model.datepickerMedicalBook.select == undefined || $scope.model.datepickerMedicalBook.select == '') && !$scope.model.isUserManager()) {
                 $scope.model.error.datepickerMedicalBook = true;
             } else {
                 $scope.model.error.datepickerMedicalBook = false;
@@ -718,7 +771,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
         $scope.model.error.datepickerStartDate = false;
         $scope.checkErrorDatepickerStartDate = function () {
-            if ($scope.model.datepickerStartDate.select==undefined || $scope.model.datepickerStartDate.select=='') {
+            if ($scope.model.datepickerStartDate.select == undefined || $scope.model.datepickerStartDate.select == '') {
                 $scope.model.error.datepickerStartDate = true;
             } else {
                 $scope.model.error.datepickerStartDate = false;
@@ -727,7 +780,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
         $scope.model.error.datepickerEndDate = false;
         $scope.checkErrorDatepickerEndDate = function () {
-            if (($scope.model.datepickerEndDate.select==undefined || $scope.model.datepickerEndDate.select=='') && $scope.model.isDismissed) {
+            if (($scope.model.datepickerEndDate.select == undefined || $scope.model.datepickerEndDate.select == '') && $scope.model.isDismissed) {
                 $scope.model.error.datepickerEndDate = true;
             } else {
                 $scope.model.error.datepickerEndDate = false;
@@ -735,10 +788,9 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
         }
 
 
-
         $scope.model.isUserManager = function () {
-            if($scope.model.Position!=undefined || $scope.model.Position!=''){
-                if(JSON.parse($scope.model.Position).Guid==enumPositions.manager){
+            if ($scope.model.Position != undefined || $scope.model.Position != '') {
+                if (JSON.parse($scope.model.Position).Guid == enumPositions.manager) {
                     return true;
                 }
             }
@@ -759,7 +811,7 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
                 if (result.Success == 1) {
                     $scope.model.positions = [];
 
-                    if($rootScope.currentUser.Position.Guid==enumPositions.chiefOperatingOfficer){
+                    if ($rootScope.currentUser.Position.Guid == enumPositions.chiefOperatingOfficer) {
                         for (var i = 0, j = 0; i < result.Data.length; i++) {
                             if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer) {
                                 $scope.model.positions[j] = result.Data[i];
@@ -767,13 +819,13 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
                             }
                         }
                     }
-                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
+                    if ($rootScope.currentUser.Position.Guid == enumPositions.manager) {
                         for (var i = 0, j = 0; i < result.Data.length; i++) {
                             if (result.Data[i].Guid != enumPositions.chiefOperatingOfficer && result.Data[i].Guid != enumPositions.manager) {
                                 $scope.model.positions[j] = result.Data[i];
                                 j++;
                             }
-                            if(result.Data[i].Guid == enumPositions.manager && $rootScope.currentUser.Id == $scope.model.user.Id){
+                            if (result.Data[i].Guid == enumPositions.manager && $rootScope.currentUser.Id == $scope.model.user.Id) {
                                 $scope.model.positions[j] = result.Data[i];
                                 j++;
                             }
@@ -812,15 +864,54 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
             })
         }
 
+        $scope.changeDepartment = function () {
+            if ($scope.model.Department.Id != "") {
+                $scope.getSubDepartments($scope.model.Department.Id);
+            } else {
+                $scope.model.isSubDepartmentsExisit = false;
+                $scope.model.SubDepartment.Id = "";
+            }
+        }
+
+
+        $scope.model.isSubDepartmentsExisit = false;
+        $scope.model.error.subDepartments = false;
+        $scope.checkErrorSubDepartments = function () {
+            if (($scope.model.SubDepartment.Id == "" || $scope.model.SubDepartment.Id == undefined) && $scope.model.isSubDepartmentsExisit) {
+                $scope.model.error.subDepartments = true;
+            } else {
+                $scope.model.error.subDepartments = false;
+            }
+        }
+
+
+        $scope.getSubDepartments = function (id) {
+            DictionaryService.getSubDepartmentsById(id).success(function (result) {
+                if (result.Success == 1) {
+                    $scope.model.subDepartments = result.Data;
+                    if ($scope.model.subDepartments != null && $scope.model.subDepartments != 0) {
+                        $scope.model.isSubDepartmentsExisit = true;
+                    } else {
+                        $scope.model.isSubDepartmentsExisit = false;
+                        $scope.model.SubDepartment.Id = "";
+                    }
+                } else {
+                    displayErrorMessage(result.ReasonMessage);
+                }
+            }).error(function (result, status) {
+                httpErrors($location.url(), status);
+            })
+        }
+
         $scope.getPlatformsSmall = function () {
             PlatformsService.getAllSmall("Id", "True").success(function (result) {
                 if (result.Success == 1) {
 
-                    if($rootScope.currentUser.Position.Guid==enumPositions.manager){
-                        $scope.model.platforms=[];
+                    if ($rootScope.currentUser.Position.Guid == enumPositions.manager) {
+                        $scope.model.platforms = [];
                         $scope.model.platforms[0] = $rootScope.currentUser.Platform;
                         $scope.model.Platform.Id = $rootScope.currentUser.Platform.Id.toString();
-                    }else{
+                    } else {
                         $scope.model.platforms = result.Data;
                     }
                 } else {
@@ -892,10 +983,15 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
                     if ($scope.model.user.Department != undefined && $scope.model.user.Department.Id != '') {
                         $scope.model.Department.Id = $scope.model.user.Department.Id.toString();
+                        $scope.changeDepartment();
                     }
                     // $scope.model.Platform = JSON.stringify($scope.model.user.Platform);
                     if ($scope.model.user.Platform != undefined && $scope.model.user.Platform.Id != '') {
                         $scope.model.Platform.Id = $scope.model.user.Platform.Id.toString();
+                    }
+
+                    if ($scope.model.user.SubDepartment != undefined && $scope.model.user.SubDepartment.Id != '') {
+                        $scope.model.SubDepartment.Id = $scope.model.user.SubDepartment.Id.toString();
                     }
 
                     $scope.model.user.Password = null;
@@ -926,8 +1022,8 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
         }
 
 
-        $rootScope.$watch('currentUserLoaded', function(){
-            if($rootScope.currentUserLoaded == true){
+        $rootScope.$watch('currentUserLoaded', function () {
+            if ($rootScope.currentUserLoaded == true) {
                 $scope.getPositions();
                 $scope.getPlatformsSmall();
             }
@@ -950,10 +1046,12 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
             $scope.checkErrorPosition();
             $scope.checkErrorReasonDismissal();
             $scope.checkErrorDatepickerEndDate();
+            $scope.checkErrorSubDepartments();
+
 
             // $scope.checkErrorEmail();
 
-            if (!$scope.model.error.reasonDismissal && !$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook && !$scope.model.error.datepickerMedicalBook && !$scope.model.error.datepickerEndDate
+            if (!$scope.model.error.reasonDismissal && !$scope.model.error.userName && !$scope.model.error.password && !$scope.model.error.confirmPassword && !$scope.model.error.firstName && !$scope.model.error.lastName && !$scope.model.error.middleName && !$scope.model.error.phone && !$scope.model.error.position && !$scope.model.error.platform && !$scope.model.error.email && !$scope.model.error.userNameExist && !$scope.model.error.isHaveMedicalBook && !$scope.model.error.datepickerMedicalBook && !$scope.model.error.datepickerEndDate && !$scope.model.error.subDepartments
             ) {
 
                 if ($scope.model.Position != "" && $scope.model.Position != undefined) {
@@ -1005,6 +1103,16 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
 
                 if ($scope.model.datepickerEndDate.select != "" && $scope.model.datepickerEndDate.select != undefined) {
                     $scope.model.user.DateEnd = dateFormatterBackend($scope.model.datepickerEndDate.select);
+                }
+
+                if ($scope.model.SubDepartment != "" && $scope.model.SubDepartment != undefined) {
+                    $scope.model.user.SubDepartment = {};
+                    if ($scope.model.SubDepartment.Id != undefined && $scope.model.SubDepartment.Id != '') {
+                        $scope.model.user.SubDepartment.Id = parseInt($scope.model.SubDepartment.Id);
+                    }
+                }
+                if ($scope.model.SubDepartment.Id == null && $scope.model.SubDepartment.Id == '') {
+                    $scope.model.user.SubDepartment = null;
                 }
 
                 UsersService.userEdit($scope.model.user).success(function (result) {

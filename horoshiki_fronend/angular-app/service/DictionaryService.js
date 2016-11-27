@@ -33,6 +33,10 @@ dictionaryServices.service('DictionaryService', ['$http', function($http) {
 	this.getSubDepartments = function () {
         return $http.get(backendServerAddr+'/api/subDepartments', {timeout: backendTimeout, headers: getToken()});
     }
+
+    this.getSubDepartmentsById = function (id) {
+        return $http.get(backendServerAddr+'/api/subDepartments/departament/'+id, {timeout: backendTimeout, headers: getToken()});
+    }
 	
     this.getDeliveryZoneTypes = function () {
         return $http.get(backendServerAddr+'/api/DeliveryZoneTypes', {timeout: backendTimeout, headers: getToken()});

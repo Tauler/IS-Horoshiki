@@ -108,40 +108,6 @@
                                     <div class="row margin-top-30">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label for="status">Должность*:</label>
-                                                <div class="input-group" style="width: 100%">
-                                                    <select class="form-control" ng-change="checkErrorPosition();"
-                                                            class="form-control"
-                                                            ng-model="model.Position">
-                                                        <option value="">Не выбрано</option>
-                                                        <option ng-repeat="option in model.positions"
-                                                                value="{{option}}">
-                                                            {{option.Value}}
-                                                        </option>
-                                                    </select>
-                                                    <code class="ng-binding" ng-show="model.error.position">Необходимо
-                                                        указать должность </code>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="platform">Отдел:</label>
-                                                <div class="input-group" style="width: 100%">
-                                                    <select class="form-control" id="department"
-                                                            class="form-control"
-                                                            ng-model="model.Department.Id">
-                                                        <option value="">Не выбрано</option>
-                                                        <option ng-repeat="department in model.departments"
-                                                                value="{{department.Id}}">
-                                                            {{department.Value}}
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
                                                 <label for="platform">Площадка:</label>
                                                 <div class="input-group" style="width: 100%">
                                                     <select class="form-control" id="platform"
@@ -159,6 +125,59 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="status">Должность*:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select class="form-control" ng-change="checkErrorPosition();"
+                                                            class="form-control"
+                                                            ng-model="model.Position">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="option in model.positions"
+                                                                value="{{option}}">
+                                                            {{option.Value}}
+                                                        </option>
+                                                    </select>
+                                                    <code class="ng-binding" ng-show="model.error.position">Необходимо
+                                                        указать должность </code>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="department">Отдел:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select class="form-control" id="department"
+                                                            class="form-control"
+                                                            ng-model="model.Department.Id" ng-change="changeDepartment();">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="department in model.departments"
+                                                                value="{{department.Id}}">
+                                                            {{department.Value}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" ng-show="model.isSubDepartmentsExisit">
+                                            <div class="form-group">
+                                                <label for="subDepartment">Подотдел:</label>
+                                                <div class="input-group" style="width: 100%">
+                                                    <select class="form-control" id="subDepartment"
+                                                            class="form-control"
+                                                            ng-model="model.SubDepartment.Id" ng-click="checkErrorSubDepartments();">
+                                                        <option value="">Не выбрано</option>
+                                                        <option ng-repeat="subDepartment in model.subDepartments"
+                                                                value="{{subDepartment.Id}}">
+                                                            {{subDepartment.Value}}
+                                                        </option>
+                                                    </select>
+                                                    <code class="ng-binding" ng-show="model.error.subDepartments">Необходимо
+                                                        указать подотдел</code>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <div class="row">
