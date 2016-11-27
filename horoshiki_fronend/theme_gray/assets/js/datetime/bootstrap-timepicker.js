@@ -91,6 +91,7 @@
     blurElement: function() {
       this.highlightedUnit = null;
       this.updateFromElementVal();
+      this.$element.trigger("changeValue.timepicker");
     },
 
     clear: function() {

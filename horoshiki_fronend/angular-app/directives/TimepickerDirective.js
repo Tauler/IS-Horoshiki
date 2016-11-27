@@ -15,7 +15,8 @@ datepickerDirectives.directive('timepicker', function () {
         template: "<input class='form-control time-picker' maxlength='5' type='text'>",
 
         link: function (scope, element) {
-            element.find(".time-picker").on("hide.timepicker", function (e) {
+            element.find(".time-picker").on("changeValue.timepicker", function (e) {
+                console.log("123");
                 scope.$apply(function () {
                     scope.ngModel = element.find(".time-picker").val();
                 });
