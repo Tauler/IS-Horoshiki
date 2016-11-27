@@ -47,6 +47,11 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
             model.Departament.ThrowIfNull("Departament is null");
             model.Date.ThrowIfNull("Date is null");
 
+            if (model.SubDepartaments != null && model.SubDepartaments.All(sd => sd.Id == 0))
+            {
+                model.SubDepartaments = null;
+            }
+
             ShiftPersonalScheduleBulder builder;
 
             var departament = _unitOfWork.DepartmentRepository.GetById(model.Departament.Id);

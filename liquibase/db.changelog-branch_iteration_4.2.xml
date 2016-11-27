@@ -137,7 +137,7 @@
         <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-26_1_ALTER_GetScheduleShiftPersonalNormaHour.sql"/>
     </changeSet>
 	
-    <changeSet id="26112016_2" author="prohoroven">
+    <changeSet id="26112016_22" author="prohoroven">
         <comment>Создание таблицы графика смен персонала</comment>
         <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-26_2_ALTER_ScheduleShiftPersonal.sql"/>
     </changeSet>
