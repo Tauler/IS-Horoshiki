@@ -214,7 +214,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                 var column = new HeaderScheduleColumnModel()
                 {
                     Date = currentDate,
-                    DayOfWeekDescr = currentDate.ToString("ddd", new CultureInfo("ru-Ru"))
+                    DayOfWeekDescr = currentDate.ToString("ddd", new CultureInfo("ru-Ru")).ToLower()
                 };
                 result.Add(column);
             }

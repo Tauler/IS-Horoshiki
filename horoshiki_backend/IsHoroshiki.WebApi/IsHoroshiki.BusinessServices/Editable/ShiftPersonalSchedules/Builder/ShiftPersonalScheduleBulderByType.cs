@@ -219,7 +219,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                 {
                     Id = scheduleResult.ShiftTypeId.Value,
                     Guid = scheduleResult.ShiftTypeGuid.Value,
-                    Socr = scheduleResult.ShiftTypeDescr
+                    Socr = scheduleResult.ShiftTypeDescr.ToLower()
                 };
             }
 
@@ -232,6 +232,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
                 && ustc.ShiftType.Id == shiftPersonalSchedule.ShiftType.Id))
             {
                 userShiftTypeColumn.Schedules.Add(shiftPersonalSchedule);
+                userShiftTypeColumn.Schedules = userShiftTypeColumn.Schedules.OrderBy(s => s.ShiftType.Id).ToList();
             }
         }        
 
