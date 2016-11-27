@@ -664,6 +664,114 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Администраторы на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Administrator {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Уборщицы на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Cleaner {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Cleaner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повара х/ц на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_CookCold {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_CookCold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повара-сушисты на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_CookSichi {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_CookSichi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Универсалы на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_CookUniversal {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_CookUniversal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Курьеры на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Courier {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Courier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Управляющие рестораном на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Manager {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Менеджеры на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_ManagerShift {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_ManagerShift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не найдено описание должности для заголовка в таблице!.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_NotFind {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_NotFind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Директор на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_OperationDirector {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_OperationDirector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Упаковщики на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Packer {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Packer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пиццеры на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Pizzer {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Pizzer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Указаны смены с разными датами!.
         /// </summary>
         internal static string ShiftPersonalScheduleValidator_CollectionDateMoreOne {

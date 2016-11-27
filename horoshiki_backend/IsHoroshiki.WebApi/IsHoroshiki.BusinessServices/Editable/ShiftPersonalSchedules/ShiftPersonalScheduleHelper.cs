@@ -6,9 +6,6 @@ using IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder;
 using IsHoroshiki.DAO.Helpers;
 using IsHoroshiki.DAO;
 using System.Linq;
-using System.Collections.Generic;
-using IsHoroshiki.BusinessEntities.NotEditable.Interfaces;
-using IsHoroshiki.BusinessEntities.NotEditable;
 
 namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
 {
@@ -68,7 +65,7 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules
                 model.SubDepartaments.Count == 1 &&
                 subDepartament.Guid == DatabaseConstant.SubDepartament.Cleaner)
             {
-                builder = new ShiftPersonalScheduleBulderCourier(_unitOfWork, model);
+                builder = new ShiftPersonalScheduleBulderCleaner(_unitOfWork, model);
             }
             else
             {

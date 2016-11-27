@@ -19,6 +19,11 @@ namespace IsHoroshiki.DAO
         /// </summary>
         private static DatabaseConstantSubDepartament _subDepartament;
 
+        /// <summary>
+        /// Константы должности
+        /// </summary>
+        private static DatabaseConstantPosition _position;
+
         #endregion
 
         #region Конструктор
@@ -30,6 +35,7 @@ namespace IsHoroshiki.DAO
         {
             _departament = new DatabaseConstantDepartament();
             _subDepartament = new DatabaseConstantSubDepartament();
+            _position = new DatabaseConstantPosition();
         }
 
         #endregion
@@ -55,28 +61,6 @@ namespace IsHoroshiki.DAO
             get
             {
                 return Guid.Parse("F64423DC-FB22-41F3-8FAA-DA9B38EA671D");
-            }
-        }
-
-        /// <summary>
-        /// Должность - Операционный директор
-        /// </summary>
-        public static Guid PositionOperationDirector
-        {
-            get
-            {
-                return Guid.Parse("449F1830-172A-4AEC-BC29-6BB446CF8861");
-            }
-        }
-
-        /// <summary>
-        /// Должность - управлющий
-        /// </summary>
-        public static Guid PositionManager
-        {
-            get
-            {
-                return Guid.Parse("27C9376B-47B6-4ECA-8920-E8A0E63F267C");
             }
         }
 
@@ -132,6 +116,17 @@ namespace IsHoroshiki.DAO
             get
             {
                 return _subDepartament;
+            }
+        }
+
+        /// <summary>
+        /// Константы должности
+        /// </summary>
+        public static DatabaseConstantPosition Position
+        {
+            get
+            {
+                return _position;
             }
         }
 
@@ -235,6 +230,133 @@ namespace IsHoroshiki.DAO
                     return Guid.Parse("441BB133-844B-452E-A720-F4E25E330528");
                 }
             }
+        }
+
+        /// <summary>
+        /// Константы должности
+        /// </summary>
+        public class DatabaseConstantPosition
+        {
+            /// <summary>
+            /// Операционный директор
+            /// </summary>
+            public Guid OperationDirector
+            {
+                get
+                {
+                    return Guid.Parse("449F1830-172A-4AEC-BC29-6BB446CF8861");
+                }
+            }
+
+            /// <summary>
+            /// Управляющий рестораном
+            /// </summary>
+            public Guid Manager
+            {
+                get
+                {
+                    return Guid.Parse("27C9376B-47B6-4ECA-8920-E8A0E63F267C");
+                }
+            }
+
+            /// <summary>
+            /// Менеджер смены
+            /// </summary>
+            public Guid ManagerShift
+            {
+                get
+                {
+                    return Guid.Parse("8AB6DB9C-36AC-4760-B2E2-43445EE11520");
+                }
+            }
+
+            /// <summary>
+            /// Администратор
+            /// </summary>
+            public Guid Administrator
+            {
+                get
+                {
+                    return Guid.Parse("4551B436-BB84-4A80-906D-F5AD5DC37D76");
+                }
+            }
+
+            /// <summary>
+            /// Повар сушист
+            /// </summary>
+            public Guid CookSichi
+            {
+                get
+                {
+                    return Guid.Parse("29F56215-45C8-484B-839C-3F2E22D5F0B7");
+                }
+            }
+
+            /// <summary>
+            /// Повар - универсал
+            /// </summary>
+            public Guid CookUniversal
+            {
+                get
+                {
+                    return Guid.Parse("EB4C9D17-B79D-46E4-BEBB-C2218AFB50CE");
+                }
+            }
+
+            /// <summary>
+            /// Пиццер
+            /// </summary>
+            public Guid Pizzer
+            {
+                get
+                {
+                    return Guid.Parse("418B8D56-EDC9-4E16-B6F8-CE68C52BDB79");
+                }
+            }
+
+            /// <summary>
+            /// Повар холодного цеха
+            /// </summary>
+            public Guid CookCold
+            {
+                get
+                {
+                    return Guid.Parse("F3031481-E4F1-4CA0-939A-78BE83C0951D");
+                }
+            }
+
+            /// <summary>
+            /// Упаковщик
+            /// </summary>
+            public Guid Packer
+            {
+                get
+                {
+                    return Guid.Parse("C6EAD0FF-B75A-4333-977C-AC24647734F7");
+                }
+            }
+
+            /// <summary>
+            /// Курьер
+            /// </summary>
+            public Guid Courier
+            {
+                get
+                {
+                    return Guid.Parse("C1FABE74-06E0-4FC6-BE79-553FC2E9232B");
+                }
+            }
+
+            /// <summary>
+            /// Уборщик
+            /// </summary>
+            public Guid Cleaner
+            {
+                get
+                {
+                    return Guid.Parse("F023CCAF-A518-4857-B352-528250B9DD23");
+                }
+            }            
         }
     }
 }
