@@ -14,6 +14,11 @@ namespace IsHoroshiki.DAO
         /// </summary>
         private static DatabaseConstantDepartament _departament;
 
+        /// <summary>
+        /// Константы подотдел
+        /// </summary>
+        private static DatabaseConstantSubDepartament _subDepartament;
+
         #endregion
 
         #region Конструктор
@@ -24,6 +29,7 @@ namespace IsHoroshiki.DAO
         static DatabaseConstant()
         {
             _departament = new DatabaseConstantDepartament();
+            _subDepartament = new DatabaseConstantSubDepartament();
         }
 
         #endregion
@@ -75,39 +81,6 @@ namespace IsHoroshiki.DAO
         }
 
         /// <summary>
-        /// Подотдел - холодный цех
-        /// </summary>
-        public static Guid SubDepartmentCool
-        {
-            get
-            {
-                return Guid.Parse("F2E916DC-21BB-47FB-8863-7ACF15DAAB02");
-            }
-        }
-
-        /// <summary>
-        /// Подотдел - пицца
-        /// </summary>
-        public static Guid SubDepartmentPizza
-        {
-            get
-            {
-                return Guid.Parse("4A1872B9-D334-4878-A895-0E4D2E7CDA70");
-            }
-        }
-
-        /// <summary>
-        /// Подотдел - Цех суши
-        /// </summary>
-        public static Guid SubDepartmentSushi
-        {
-            get
-            {
-                return Guid.Parse("FCD7586F-EDDB-4531-BE83-E006BEB766D3");
-            }
-        }
-
-        /// <summary>
         /// Способ покупки - Доставка
         /// </summary>
         public static Guid BuyProcessDelivery
@@ -148,6 +121,17 @@ namespace IsHoroshiki.DAO
             get
             {
                 return _departament;
+            }
+        }
+
+        /// <summary>
+        /// Константы подотдел
+        /// </summary>
+        public static DatabaseConstantSubDepartament SubDepartament
+        {
+            get
+            {
+                return _subDepartament;
             }
         }
 
@@ -199,6 +183,56 @@ namespace IsHoroshiki.DAO
                 get
                 {
                     return Guid.Parse("D8CCFE34-38A0-47FC-AD64-2C13BDA0678B");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Константы подотдел
+        /// </summary>
+        public class DatabaseConstantSubDepartament
+        {
+            /// <summary>
+            /// Подотдел - холодный цех
+            /// </summary>
+            public Guid Cool
+            {
+                get
+                {
+                    return Guid.Parse("F2E916DC-21BB-47FB-8863-7ACF15DAAB02");
+                }
+            }
+
+            /// <summary>
+            /// пицца
+            /// </summary>
+            public Guid Pizza
+            {
+                get
+                {
+                    return Guid.Parse("4A1872B9-D334-4878-A895-0E4D2E7CDA70");
+                }
+            }
+
+            /// <summary>
+            /// Цех суши
+            /// </summary>
+            public Guid Sushi
+            {
+                get
+                {
+                    return Guid.Parse("FCD7586F-EDDB-4531-BE83-E006BEB766D3");
+                }
+            }
+
+            /// <summary>
+            /// Уборка
+            /// </summary>
+            public Guid Cleaner
+            {
+                get
+                {
+                    return Guid.Parse("441BB133-844B-452E-A720-F4E25E330528");
                 }
             }
         }

@@ -98,7 +98,7 @@ BEGIN
 		DELETE FROM 
 			#RESULT 
 		WHERE 
-		    SubDepartmentId IS NOT NULL AND
+		    SubDepartmentId IS NULL OR
 			SubDepartmentId not in 
 			(
 				SELECT
@@ -134,7 +134,7 @@ BEGIN
 	SELECT
 		r.[DateDoc]		    , 
 		r.[DepartmentId]	,
-		r.[SubDepartmentId] ,
+		u.[SubDepartmentId] ,
 		u.Id,
 		u.PositionId
 	FROM
@@ -142,10 +142,23 @@ BEGIN
 	LEFT JOIN AspNetUsers u ON
 		 u.PlatformId = @PlatformId			AND 	
 		 u.DepartmentId = r.DepartmentId	AND
-		 u.EmployeeStatusId <> @EmployeeStatusFiredId AND
-		 ((u.SubDepartmentId IS NOT NULL AND u.SubDepartmentId = r.SubDepartmentId) OR
-		 (u.SubDepartmentId IS NULL AND u.DepartmentId IS NOT NULL AND u.DepartmentId = r.DepartmentId))
-		
+		 u.EmployeeStatusId <> @EmployeeStatusFiredId
+
+
+	IF ((SELECT count(*) FROM @SubDepartaments) > 0)
+	BEGIN
+		DELETE FROM 
+			#RESULT_USER 
+		WHERE 
+		    SubDepartmentId IS NULL OR
+			SubDepartmentId not in 
+			(
+				SELECT
+						Id
+					FROM
+						@SubDepartaments
+			)
+	END
 
 	--добаляем смены для сотрудников
 	INSERT INTO #RESULT_USER_SHIFT

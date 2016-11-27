@@ -91,7 +91,7 @@
         </sql>
     </changeSet>
 	
-	<changeSet id="18112016_8" author="prohoroven">
+     <changeSet id="18112016_8" author="prohoroven">
         <sql>
 			ALTER TABLE [dbo].[ShiftPersonalSchedulePeriods] CHECK CONSTRAINT [FK_dbo.ShiftPersonalSchedulePeriods_dbo.ShiftPersonalSchedules_ShiftPersonalScheduleId]
         </sql>
@@ -132,7 +132,7 @@
         <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-22_2_ALTER_ScheduleShiftPersonal.sql"/>
     </changeSet>
 
-    <changeSet id="26112016_1" author="prohoroven" failOnError="false">
+    <changeSet id="26112016_1" author="prohoroven">
         <comment>Скалярная функция подсчета нормачасов для пользователя</comment>
         <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-26_1_ALTER_GetScheduleShiftPersonalNormaHour.sql"/>
     </changeSet>
@@ -140,6 +140,12 @@
     <changeSet id="26112016_2" author="prohoroven">
         <comment>Создание таблицы графика смен персонала</comment>
         <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-11-26_2_ALTER_ScheduleShiftPersonal.sql"/>
+    </changeSet>
+
+    <changeSet id="26112016_3" author="prohoroven">
+        <sql>
+		INSERT INTO [dbo].[Positions] ([Guid] ,[Value]) VALUES ('F023CCAF-A518-4857-B352-528250B9DD23' , 'Уборщик')
+        </sql>
     </changeSet>
 </databaseChangeLog>
 
