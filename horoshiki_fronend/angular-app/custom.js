@@ -139,11 +139,15 @@ function dateFormatterBackend(date){
 
 function dateFormatterBackendToSafari(dateTime){
 
-    var date = dateTime.split('T')[0].split("-");
-    var dd = date[2];
-    var mm = date[1];
-    var yyyy = date[0];
-    return  mm+'/'+dd+'/'+yyyy;
+    if(dateTime!=null) {
+        var date = dateTime.split('T')[0].split("-");
+        var dd = date[2];
+        var mm = date[1];
+        var yyyy = date[0];
+        return mm + '/' + dd + '/' + yyyy;
+    }else{
+        return null;
+    }
 }
 
 function displayMess(elem, disable){
