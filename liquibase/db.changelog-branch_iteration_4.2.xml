@@ -147,6 +147,11 @@
 		INSERT INTO [dbo].[Positions] ([Guid] ,[Value]) VALUES ('F023CCAF-A518-4857-B352-528250B9DD23' , 'Уборщик')
         </sql>
     </changeSet>
+	 <changeSet id="28112016" author="prohoroven">
+        <sql>
+		INSERT INTO [dbo].[Positions] ([Guid] ,[Value]) VALUES ('ADBD797D-3253-4209-828B-92161C267E45' , 'Оператор')
+        </sql>
+    </changeSet>
 </databaseChangeLog>
 
 

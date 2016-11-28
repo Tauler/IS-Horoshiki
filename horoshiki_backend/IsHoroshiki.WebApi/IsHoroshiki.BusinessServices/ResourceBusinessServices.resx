@@ -408,4 +408,7 @@
   <data name="ShiftPersonalScheduleBulder_Positon_Pizzer" xml:space="preserve">
     <value>Пиццеры на смене</value>
   </data>
+  <data name="ShiftPersonalScheduleBulder_Positon_Operator" xml:space="preserve">
+    <value>Операторы на смене</value>
+  </data>
 </root>
