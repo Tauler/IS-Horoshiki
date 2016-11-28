@@ -78,7 +78,7 @@ namespace IsHoroshiki.BusinessServices.Editable
 
             var list = await _repository.GetAllAsync(pageNo, pageSize, sortField, isAscending, true, filterLastName, filterIsAccess, filterEmployeeStatusId, filterPositionId,
                 filterDepartmentId, filterPlatformId, filterIsHaveMedicalBook);
-            var count = list.Count();
+            var count = await _repository.CountAsync();
             var result = ConvertTo(list);
             return new PagedResult<IApplicationUserModel>(result, pageNo, pageSize, count);
         }
