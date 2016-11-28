@@ -356,7 +356,18 @@ namespace IsHoroshiki.DAO
                 {
                     return Guid.Parse("F023CCAF-A518-4857-B352-528250B9DD23");
                 }
-            }            
+            }
+
+            /// <summary>
+            /// Оператор колл-центра
+            /// </summary>
+            public Guid Operator
+            {
+                get
+                {
+                    return Guid.Parse("ADBD797D-3253-4209-828B-92161C267E45");
+                }
+            }
         }
     }
 }
