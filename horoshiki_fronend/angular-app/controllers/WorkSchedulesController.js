@@ -28,7 +28,7 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 		$scope.model.table = {};
 		
 		$scope.model.sunday = {};
-		$scope.model.sunday.name = 'Вс';
+		$scope.model.sunday.name = 'вс';
 		
 		$scope.model.pageStatus = {};
 		$scope.model.pageStatus.saving = false;
