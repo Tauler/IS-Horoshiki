@@ -207,17 +207,14 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 		
 		// запрос таблицы
 		$scope.reloadTableModel = function(){
-
-			console.log(new Date());
-
 			if($scope.model.period.yearSelected!=null && $scope.model.period.monthSelected !=null)
 			{
 				if($scope.model.period.daySelected != $scope.model.period.dayNoNeeded){
 					var isOnDay = true;
-					var date = dateFormatterBackend(new Date(numb2($scope.model.period.daySelected)+'/'+(JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'/'+$scope.model.period.yearSelected.toString()));
+					var date = dateFormatterBackend(new Date((JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'/'+numb2($scope.model.period.daySelected)+'/'+$scope.model.period.yearSelected.toString()));
 				}else{
 					var isOnDay = false;
-					var date = dateFormatterBackend(new Date('01/'+(JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'/'+$scope.model.period.yearSelected.toString()));
+					var date = dateFormatterBackend(new Date((JSON.parse($scope.model.period.monthSelected).id + 1).toString()+'/01/'+$scope.model.period.yearSelected.toString()));
 				}
 				
 				if($scope.model.selectedSubDepartment != null){
