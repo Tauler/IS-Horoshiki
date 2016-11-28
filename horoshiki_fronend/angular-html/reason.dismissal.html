@@ -16,7 +16,7 @@
                         <div class="row margin-bottom-50">
                             <div class="col-md-6">
 								<div class="padding-bottom-10 text-align-left">
-									<a class="btn btn-default" href="javascript:void(0);" data-toggle="modal" data-target="#editModal" ng-click="editModelDefValue();"> Добавить причину</a>
+									<a class="btn btn-default" href="#" data-toggle="modal" data-target="#editModal" ng-click="editModelDefValue();"> Добавить причину</a>
 								</div>
 								<table class="table table-bordered table-bordered-0">
 									<thead class="bordered-blueberry">
@@ -40,16 +40,16 @@
 									<tbody>
 										<tr ng-repeat="reasonDismissal in model.reasonDismissals">
 											<td>
-												<a href="javascript:void(0);" data-toggle="modal" data-target="#editModal" ng-click="editModalOpen(reasonDismissal);">{{reasonDismissal.Name}}</a></td>
+												<a href="#" data-toggle="modal" data-target="#editModal" ng-click="editModalOpen(reasonDismissal);">{{reasonDismissal.Name}}</a></td>
 											<td>
 												<div class="btn-group">
-													<a aria-expanded="false" href="javascript:void(0);" class="btn btn-default btn-xs" data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
+													<a aria-expanded="false" href="#" class="btn btn-default btn-xs" data-toggle="dropdown">Действие <i class="fa fa-angle-down"></i></a>
 													<ul class="dropdown-menu dropdown-blue">
 														<li>
-															<a href="javascript:void(0);" data-toggle="modal" data-target="#editModal" ng-click="editModalOpen(reasonDismissal);"><i class="fa fa-edit"></i> Редактировать</a>
+															<a href="#" data-toggle="modal" data-target="#editModal" ng-click="editModalOpen(reasonDismissal);"><i class="fa fa-edit"></i> Редактировать</a>
 														</li>
 														<li>
-															<a href="javascript:void(0);" data-toggle="modal" data-target="#deleteModal" ng-click="deleteModalOpen(reasonDismissal)"><i class="fa fa-remove"></i> Удалить</a>
+															<a href="#" data-toggle="modal" data-target="#deleteModal" ng-click="deleteModalOpen(reasonDismissal)"><i class="fa fa-remove"></i> Удалить</a>
 														</li>
 													</ul>
 												</div>

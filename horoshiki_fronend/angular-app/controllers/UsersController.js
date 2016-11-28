@@ -975,9 +975,9 @@ usersControllers.controller('UsersEditController', ['$scope', '$rootScope', '$lo
                         $scope.model.ReasonDismissal.Id = $scope.model.user.EmployeeReasonDismissal.Id.toString();
                     }
 
-                    $scope.model.datepickerStartDate.select = $scope.model.user.DateStart;
-                    $scope.model.datepickerMedicalBook.select = $scope.model.user.MedicalBookEnd;
-                    $scope.model.datepickerEndDate.select = $scope.model.user.DateEnd;
+                    $scope.model.datepickerStartDate.select = new Date(dateFormatterBackendToSafari($scope.model.user.DateStart));
+                    $scope.model.datepickerMedicalBook.select = new Date(dateFormatterBackendToSafari($scope.model.user.MedicalBookEnd));
+                    $scope.model.datepickerEndDate.select = new Date(dateFormatterBackendToSafari($scope.model.user.DateEnd));
 
                     $scope.model.Position = JSON.stringify($scope.model.user.Position);
 
