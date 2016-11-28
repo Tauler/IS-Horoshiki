@@ -434,6 +434,10 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
             {
                 return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Pizzer;
             }
+            else if (position == DatabaseConstant.Position.Operator)
+            {
+                return ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_Operator;
+            }
 
             throw new NotImplementedException(ResourceBusinessServices.ShiftPersonalScheduleBulder_Positon_NotFind);
         }

@@ -211,6 +211,7 @@
     <Content Include="Script\2016-11-07_2 Function GetDateRange.sql" />
     <Content Include="Script\2016-11-07_3 Custom type IdList.sql" />
     <Content Include="Script\2016-11-26_1 ALTER GetScheduleShiftPersonalNormaHour.sql" />
+    <Content Include="Script\2016-11-28 add operator position.sql" />
     <Content Include="Script\2016-11-26_3 add cleaner position.sql" />
     <Content Include="Script\2016-11-26_2 ALTER ScheduleShiftPersonal.sql" />
     <Content Include="Script\2016-11-22_2 ALTER ScheduleShiftPersonal.sql" />

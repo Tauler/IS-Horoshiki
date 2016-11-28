@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[Positions] ([Guid] ,[Value]) VALUES ('ADBD797D-3253-4209-828B-92161C267E45' , 'Оператор')

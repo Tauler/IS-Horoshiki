@@ -754,6 +754,15 @@ namespace IsHoroshiki.BusinessServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Операторы на смене.
+        /// </summary>
+        internal static string ShiftPersonalScheduleBulder_Positon_Operator {
+            get {
+                return ResourceManager.GetString("ShiftPersonalScheduleBulder_Positon_Operator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Упаковщики на смене.
         /// </summary>
         internal static string ShiftPersonalScheduleBulder_Positon_Packer {
