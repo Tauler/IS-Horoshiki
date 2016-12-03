@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by doninvs on 21.11.2016.
  */
  
@@ -301,8 +301,8 @@ workSchedulesControllers.controller('WorkSchedulesListController', ['$scope', '$
 		}
 		
 		$scope.showIfMoreZero = function(number){
-			//return number > 0 ? number : '';
-			return number; //debug
+			return number > 0 ? number : '';
+			//return number; //debug
 		}
 		
 		$scope.isRowTypeMorning = function(guid){
