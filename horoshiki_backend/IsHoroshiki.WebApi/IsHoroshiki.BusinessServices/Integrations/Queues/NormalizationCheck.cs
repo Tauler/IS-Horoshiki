@@ -116,11 +116,11 @@ namespace IsHoroshiki.BusinessServices.Integrations.Queues
         /// <returns></returns>
         private async Task<ICollection<SubDepartment>> GetSubDepartaments(IntegrationCheck check)
         {
-            var subDepartament = await _unitOfWork.SubDepartmentRepository.GetSubDepartamentsPizzaAsync();
-            return new List<SubDepartment>()
-            {
-                subDepartament
-            };
+            var isCool = ToBool(check.IsCoolSubDepartment);
+            var IsPizza = ToBool(check.IsPizzaSubDepartment);
+            var isSushi = ToBool(check.IsSushiSubDepartment);
+
+            return await _unitOfWork.SubDepartmentRepository.GetSubDepartamentsAsync(isCool, IsPizza, isSushi);
         }
 
         /// <summary>

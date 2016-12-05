@@ -147,10 +147,111 @@
 		INSERT INTO [dbo].[Positions] ([Guid] ,[Value]) VALUES ('F023CCAF-A518-4857-B352-528250B9DD23' , 'Уборщик')
         </sql>
     </changeSet>
-	 <changeSet id="28112016" author="prohoroven">
+    <changeSet id="28112016" author="prohoroven">
         <sql>
 		INSERT INTO [dbo].[Positions] ([Guid] ,[Value]) VALUES ('ADBD797D-3253-4209-828B-92161C267E45' , 'Оператор')
         </sql>
+    </changeSet>
+    <changeSet id="05122016" author="prohoroven">
+        <sql>
+	CREATE TABLE [dbo].[PlanTypes](
+		[Id]	[int] IDENTITY(1,1) NOT NULL,
+		[Guid]	[uniqueidentifier]	NOT NULL,
+		[Value] [nvarchar](100)		NOT NULL,
+ 	CONSTRAINT [PK_dbo.PlanTypes] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	</sql>
+    </changeSet>
+    <changeSet id="05122016_2" author="prohoroven">
+        <sql>
+	INSERT INTO [dbo].[PlanTypes] ([Guid],[Value]) VALUES ('D4C8C9C0-EA2F-47B6-8156-3030153AB8F4', 'Суши');
+
+	INSERT INTO [dbo].[PlanTypes] ([Guid],[Value]) VALUES ('5DE8DA4E-8E06-47B9-975E-354BAF1D41CE', 'Пицца');
+	</sql>
+    </changeSet>
+    <changeSet id="05122016_4" author="prohoroven">
+        <sql>
+	ALTER TABLE [dbo].[SalePlans]  WITH CHECK ADD  CONSTRAINT [FK_dbo.SalePlans_dbo.PlanTypes_PlanTypeId] FOREIGN KEY([PlanTypeId])
+	REFERENCES [dbo].[PlanTypes] ([Id])
+	ON DELETE CASCADE
+        </sql>
+    </changeSet>
+    <changeSet id="05122016_5" author="prohoroven">
+        <sql>
+	DELETE FROM [dbo].[SubDepartments_SaleChecks_Link]
+
+
+	INSERT INTO [dbo].[SubDepartments_SaleChecks_Link]
+	(
+		[SaleCheckId],
+		[SubDepartmentId]
+	)
+	SELECT
+		sc.[Id],
+		(SELECT Id FROM [dbo].[SubDepartments] WHERE Guid = 'FCD7586F-EDDB-4531-BE83-E006BEB766D3')
+  	FROM
+		dbo.IntegrationChecks ic
+  	INNER JOIN dbo.SaleChecks sc ON SC.IdCheck = ic.[IdCheck] 
+  	WHERE 
+		ic.IsSushiSubDepartment = 1 and
+		ic.Id = (
+				SELECT 
+						MAX(Id)
+				  FROM
+						dbo.IntegrationChecks ic2
+				 WHERE
+						ic2.IdCheck = ic.IdCheck  
+			)
+
+
+	INSERT INTO [dbo].[SubDepartments_SaleChecks_Link]
+	(
+		[SaleCheckId],
+		[SubDepartmentId]
+	)	
+	SELECT
+		sc.[Id],
+		(SELECT Id FROM [dbo].[SubDepartments] WHERE Guid = 'F2E916DC-21BB-47FB-8863-7ACF15DAAB02')
+	  FROM
+		dbo.IntegrationChecks ic
+	  INNER JOIN dbo.SaleChecks sc ON SC.IdCheck = ic.[IdCheck] 
+	  WHERE 
+		ic.[IsCoolSubDepartment] = 1 and
+		ic.Id = (
+				SELECT 
+						MAX(Id)
+				  FROM
+						dbo.IntegrationChecks ic2
+				 WHERE
+						ic2.IdCheck = ic.IdCheck  
+			)
+
+
+	INSERT INTO [dbo].[SubDepartments_SaleChecks_Link]
+	(
+		[SaleCheckId],
+		[SubDepartmentId]
+	)
+	SELECT
+		sc.[Id],
+		(SELECT Id FROM [dbo].[SubDepartments] WHERE Guid = '4A1872B9-D334-4878-A895-0E4D2E7CDA70')
+	  FROM
+		dbo.IntegrationChecks ic
+	  INNER JOIN dbo.SaleChecks sc ON SC.IdCheck = ic.[IdCheck] 
+	  WHERE 
+		ic.[IsPizzaSubDepartment] = 1 and
+		ic.Id = (
+				SELECT 
+						MAX(Id)
+				  FROM
+						dbo.IntegrationChecks ic2
+				 WHERE
+						ic2.IdCheck = ic.IdCheck  
+			)
+	</sql>
     </changeSet>
 </databaseChangeLog>
 
