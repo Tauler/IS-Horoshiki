@@ -256,13 +256,15 @@ namespace IsHoroshiki.BusinessServices.Editable.ShiftPersonalSchedules.Builder
         /// <returns></returns>
         private void FillSalePlanCountColumns(IShiftPersonalScheduleDataModel model, DateTime dateStart, DateTime dateEnd, IShiftPersonalScheduleTableModel table)
         {
-            Dictionary<DateTime, int> periods = _unitOfWork.SalePlanDayRepository.GetByCountPeriod(model.Platform.Id, (int)PlanType.Suchi, dateStart, dateEnd);
+            var subDepartamentId = model.SubDepartaments != null ? model.SubDepartaments.First().Id : 0;
+            var periods = _unitOfWork.ShiftPersonalScheduleRepository.GetSalePlanForScheduleShift(model.Platform.Id, model.Departament.Id, subDepartamentId, dateStart, dateEnd);
 
             foreach (var headerColumn in table.SalePlanCountColumns)
             {
-                if (periods.ContainsKey(headerColumn.Date))
+                var exist = periods.FirstOrDefault(p => p.Date == headerColumn.Date);
+                if (exist != null)
                 {
-                    headerColumn.Count = periods[headerColumn.Date];
+                    headerColumn.Count = exist.Count;
                 }
             };
         }

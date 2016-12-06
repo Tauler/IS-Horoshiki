@@ -253,6 +253,14 @@
 			)
 	</sql>
     </changeSet>
+	<changeSet id="06122016_1" author="prohoroven">
+        <comment>Подсчет чеков плана продаж на основе среднего</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-12-06_GetSalePlanAverageForScheduleShift.sql"/>
+    </changeSet>
+	<changeSet id="06122016_2" author="prohoroven">
+        <comment>Подсчет чеков плана продаж в зависимости от отдела</comment>
+        <sqlFile path="./sql/stored_procedures_branch_iteration_4.2/2016-12-06_GetSalePlanForScheduleShift.sql"/>
+    </changeSet>
 </databaseChangeLog>
 
 

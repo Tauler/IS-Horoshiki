@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.DAO.DaoEntities.Editable.Helpers;
 using IsHoroshiki.DAO.Repositories.Editable.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -86,6 +87,27 @@ namespace IsHoroshiki.DAO.Repositories.Editable
                            GetParameter("dateEnd", dateEnd)).FirstOrDefault();
 
             return result.HasValue ? result.Value : 0;
+        }
+
+        /// <summary>
+        /// Вызов табличной функции с подсчетом планируемых продаж в БД GetSalePlanForScheduleShift
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <param name="departamentId">Id отдела</param>
+        /// <param name="subDepartamentId">Id подотдела</param>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <returns></returns>
+        public List<SalePlanForScheduleShiftResult> GetSalePlanForScheduleShift(int platformId, int departamentId, int subDepartamentId, DateTime dateStart, DateTime dateEnd)
+        {
+            var result = Context.Database.SqlQuery<SalePlanForScheduleShiftResult>("select * from dbo.GetSalePlanForScheduleShift(@platformId, @departamentId, @subDepartamentId, @dateStart, @dateEnd)",
+                           GetParameter("platformId", platformId),
+                           GetParameter("departamentId", departamentId),
+                           GetParameter("subDepartamentId", subDepartamentId),
+                           GetParameter("dateStart", dateStart),
+                           GetParameter("dateEnd", dateEnd)).ToList();
+
+            return result != null ? result : new List<SalePlanForScheduleShiftResult>();
         }
 
         #endregion

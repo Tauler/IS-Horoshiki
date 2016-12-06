@@ -64,6 +64,7 @@
     <Compile Include="DaoEntities\Editable\DeliveryZone.cs" />
     <Compile Include="DaoEntities\Editable\EmployeeReasonDismissal.cs" />
     <Compile Include="DaoEntities\Editable\Helpers\SaleAnalizeResult.cs" />
+    <Compile Include="DaoEntities\Editable\Helpers\SalePlanForScheduleShiftResult.cs" />
     <Compile Include="DaoEntities\Editable\MonthObjective.cs" />
     <Compile Include="DaoEntities\Editable\Helpers\ScheduleShiftPersonalResult.cs" />
     <Compile Include="DaoEntities\Editable\ShiftPersonalSchedulePeriod.cs" />
@@ -219,6 +220,8 @@
     <Content Include="Script\2016-11-22_1 ALTER GetScheduleShiftPersonalNormaHour.sql" />
     <Content Include="Script\2016-12-02 add table plan type.sql" />
     <Content Include="Script\2016-12-05 add sale subdepartament link.sql" />
+    <Content Include="Script\2016-12-06 GetSalePlanForScheduleShift.sql" />
+    <Content Include="Script\2016-12-06 GetSalePlanAverageForScheduleShift.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
