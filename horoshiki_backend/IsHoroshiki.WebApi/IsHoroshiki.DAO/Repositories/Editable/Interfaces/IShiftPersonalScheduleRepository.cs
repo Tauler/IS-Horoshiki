@@ -1,4 +1,5 @@
 ﻿using IsHoroshiki.DAO.DaoEntities.Editable;
+using IsHoroshiki.DAO.DaoEntities.Editable.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -45,5 +46,16 @@ namespace IsHoroshiki.DAO.Repositories.Editable.Interfaces
         /// <param name="dateEnd">Окончание периода</param>
         /// <returns></returns>
         int GetScheduleShiftPersonalNormaHour(int userId, DateTime dateStart, DateTime dateEnd);
+
+        /// <summary>
+        /// Вызов табличной функции с подсчетом планируемых продаж в БД GetSalePlanForScheduleShift
+        /// </summary>
+        /// <param name="platformId">Id площадки</param>
+        /// <param name="departamentId">Id отдела</param>
+        /// <param name="subDepartamentId">Id подотдела</param>
+        /// <param name="dateStart">Начало периода</param>
+        /// <param name="dateEnd">Окончание периода</param>
+        /// <returns></returns>
+        List<SalePlanForScheduleShiftResult> GetSalePlanForScheduleShift(int platformId, int departamentId, int subDepartamentId, DateTime dateStart, DateTime dateEnd);
     }
 }
